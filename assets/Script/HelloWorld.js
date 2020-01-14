@@ -1,6 +1,7 @@
 var Global = require("Global")
 var Base64Tool = require("Base64Tool")
-const Buffer = require('buffer').Buffer;
+var VersionManager = require("VersionManager")
+
 cc.Class({
     extends: cc.Component,
 
@@ -67,13 +68,13 @@ cc.Class({
     },
     // use this for initialization
     onLoad: function () {
-        console.log("helloworld onLoad")
+        console.log("helloworld onLoad",VersionManager.getScriptVersion())
         // this.num = 0;
         // var self = this
         // this.label.string = this.text;
         // var Text = this.node.getChildByName("label")
         // // Text.getComponent(cc.Label).string = "LoL"
-        // Global.sayHello()
+        Global.sayHello()
         // this.call = function () {
         //     self.num = self.num + 1;
         //     console.log("delay**" + self.num)
