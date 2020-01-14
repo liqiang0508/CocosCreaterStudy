@@ -15,9 +15,9 @@ cc.Class({
         num: 0
     },
     start() {
+        cc.log("hello start")
         var GameClient = require("GameClient")
-        // GameClient.initData()
-        // GameClient.initWs("54.179.180.39","8089",function(){
+      
         cc.log("connect state",GameClient.getConnectState())
         var url = "https://httpbin.org/get?show_env=1"
         var HttpHelp = require("HttpHelper")
@@ -26,14 +26,14 @@ cc.Class({
             {
                 data =  JSON.parse(data);
                 cc.log("data=",data["args"]["show_env"])
-                // cc.log(Base64Tool.decode(data))//base64解密)
+               
             }
            
         })
 
         var ConstantItem  = require("ConstantItem")
         cc.log(ConstantItem[1])
-        
+
         window.Sound.playBackGround(window.SoundRes.MainBg);
         // })
         // Element.
@@ -68,13 +68,14 @@ cc.Class({
     },
     // use this for initialization
     onLoad: function () {
-        console.log("helloworld onLoad",VersionManager.getScriptVersion())
+       
+        Global.sayHello()
         // this.num = 0;
         // var self = this
         // this.label.string = this.text;
         // var Text = this.node.getChildByName("label")
         // // Text.getComponent(cc.Label).string = "LoL"
-        Global.sayHello()
+
         // this.call = function () {
         //     self.num = self.num + 1;
         //     console.log("delay**" + self.num)

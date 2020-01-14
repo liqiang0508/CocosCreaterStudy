@@ -251,12 +251,17 @@ var VersionManager = {
     },
     //获取本地最新脚本版本号
     getScriptVersion:function(){
-
-        return this.localCfg["scriptVersion"]
+       
+            return this.localCfg["scriptVersion"]
+        
+       
     },
     //包外配置
     parseTempCfg: function () {
-
+        if(!cc.sys.isNative)
+        {
+            return
+        }
         var self = this;
         var path = GtempCfg
         if (jsb.fileUtils.isFileExist(path)) {

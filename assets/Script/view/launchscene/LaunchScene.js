@@ -6,46 +6,29 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+
         Text: {
             default: null,
             type: cc.Label,
         }
     },
 
-    // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+
+    onLoad () {},
 
     start() {
         var self = this
-        console.log("LaunchScene onLoad", Global.Ghotupdateurl)
-        Global.sayHello()
 
         if (cc && cc.sys.isNative) {//native
-
             VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
-                console.log("checkUpdate===", code)
+                console.log("checkUpdate===code", code)
                 self.Text.string = code
-                if (code == 0) {
+                if (code == 0) {//热更新成功
                     self.goHomeScene()
                 }
-                else {
-                    //cc.director.loadScene("helloworld")
+                else {//热更新error
+                 
                 }
             }, function (progress) {
                 console.log("progress===", progress)
