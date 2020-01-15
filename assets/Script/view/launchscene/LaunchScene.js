@@ -2,6 +2,7 @@
 var Global = require("Global")
 var VersionManager = require("VersionManager")
 var GameClient = require("GameClient")
+var xxtea = require("xxtea")
 cc.Class({
     extends: cc.Component,
 
@@ -15,7 +16,7 @@ cc.Class({
 
 
 
-    onLoad () {},
+    onLoad() { },
 
     start() {
         var self = this
@@ -28,7 +29,7 @@ cc.Class({
                     self.goHomeScene()
                 }
                 else {//热更新error
-                 
+
                 }
             }, function (progress) {
                 console.log("progress===", progress)
@@ -39,6 +40,14 @@ cc.Class({
             self.goHomeScene()
 
         }
+
+        //xxtea
+        var str = "Hello World! 你好，中国🇨🇳！";
+        var key = "1234567890";
+        var encrypt_data = xxtea.encryptToString(str, key);
+        console.log("encrypt_data=",encrypt_data);
+        var decrypt_data = xxtea.decryptToString(encrypt_data, key);
+        console.log("decrypt_data==", decrypt_data);
     },
 
     goHomeScene() {

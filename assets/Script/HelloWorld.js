@@ -2,6 +2,8 @@ var Global = require("Global")
 var Base64Tool = require("Base64Tool")
 var VersionManager = require("VersionManager")
 var Devices = require("Devices")
+
+
 cc.Class({
     extends: cc.Component,
 
@@ -45,10 +47,11 @@ cc.Class({
         {
             window.Save.set("decicesID",timeStamp)
         }
-        cc.log(id)
        
         cc.log("Devices===id",Devices.getDevicesID(),cc.sys.os)
-        window.Sound.playBackGround(window.SoundRes.MainBg);
+
+        
+      
       
 
     },
