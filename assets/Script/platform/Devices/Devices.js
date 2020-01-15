@@ -1,5 +1,6 @@
 var Devices = {
     instance:undefined,
+    //获取设备id
     getDevicesID:function(){
         return this.instance.getDevicesID()
         
