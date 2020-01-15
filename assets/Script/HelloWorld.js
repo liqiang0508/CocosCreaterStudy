@@ -1,7 +1,7 @@
 var Global = require("Global")
 var Base64Tool = require("Base64Tool")
 var VersionManager = require("VersionManager")
-
+var Devices = require("Devices")
 cc.Class({
     extends: cc.Component,
 
@@ -34,22 +34,22 @@ cc.Class({
         var ConstantItem  = require("ConstantItem")
         cc.log(ConstantItem[1])
 
+        var timeStamp = new Date().getTime()//时间戳
+
+        cc.log("timeStamp=====",timeStamp,new Date().toLocaleDateString())
+        cc.log("timeStamp=====",timeStamp,new Date().toLocaleString())
+        cc.log("timeStamp=====",timeStamp,new Date().toLocaleTimeString())
+        // cc.log(window.Save.get("loginid",timeStamp))
+        var id = window.Save.get("decicesID",timeStamp)
+        if (id==timeStamp)
+        {
+            window.Save.set("decicesID",timeStamp)
+        }
+        cc.log(id)
+       
+        cc.log("Devices===id",Devices.getDevicesID(),cc.sys.os)
         window.Sound.playBackGround(window.SoundRes.MainBg);
-        // })
-        // Element.
-        // Element.requestFullScreen(({navigationUI:"hide"}))
-        // cc.view.enableAutoFullScreen(true)
-        // if (!cc.sys.isNative) {
-        //     var onFullScreenChange = function (event) {
-        //         cc.log("onFullScreenChange")
-        //     };
-        //     var onFullScreenError = function (event) {
-        //         cc.log("onFullScreenError",event)
-        //     };
-        //     // cc.view.enableAutoFullScreen(true)
-        //     // cc.screen.requestFullScreen();
-        // }
-        // this.launchFullScreen(document.documentElement)
+      
 
     },
 

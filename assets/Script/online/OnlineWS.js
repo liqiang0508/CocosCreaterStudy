@@ -40,16 +40,11 @@ cc.Class( {
             var data = new Buffer(evt.data,"utf8");
             var Package  = require("Package");
             var _package = Package.ParseStrToPackage(data.toString());
-         
-            if(self.globalCall != null )
-            {   
-               
-                self.globalCall(data);
-                self.update1(_package.m_header_name,data);
-             }
+            cc.log("onmessage--33333333333333.........-",_package);
 
-             cc.log("onmessage--33333333333333.........-",data);
+             self.callLocalFun(_package.m_header_name,_package.m_json)//消息回来的时候看看是否本地有注册的回调
 
+            
             
 
         };
@@ -191,67 +186,6 @@ cc.Class( {
         return new Uint8Array(u.buffer, 0, index)
     },
 
-   
-    // send: function(obj, callback)
-    // {
-        
-    //     obj = this.addHead(obj);
-    //     this.addLocalCallback(obj.funId, callback);
-
-    //     if (!this._wsiSendBinary) { return; }
-    //     if (this._wsiSendBinary.readyState === WebSocket.OPEN)
-    //     {    
-    //         var buf = JSON.stringify(obj);
-    //         cc.log("======send json :" , buf);
-    //         if(buf == null)
-    //             return ;
-    //         var arrData = this.string2u8array(buf)
-    //         this._wsiSendBinary.send(arrData);
-    //     }
-    //     else
-    //     {
-    //         cc.log("网络已经断开", this._wsiSendBinary.readyState);
-    //         this.reportOnlineOff("网络已经断开");
-    //     }
-    // },
-
-      //增加head
-    addProto:function(obj){
-        
-        var data = {};
-        data.header = {type:0,
-                        uid:0,
-                        name:obj.name,
-                        id:Math.floor(Math.random()*1000), 
-                        // extdata:0,
-                        sign:"972F12F7AC13B15F267B6555A80AED84", 
-                                
-        };
-        name:obj.name,
-        data.Data = obj.data;
-        // data[0] = "AP2 REQ 1.0";
-        // data.header["ext-data"] = 0;
-        // cc.log("data--",JSON.stringify(data));
-        var jsondata = JSON.stringify(obj.data);
-        cc.log("jsondata====",jsondata);
-        var encode = new Buffer(jsondata);
-        cc.log("encode====",encode.toString("base64"));
-
-        var _header="" ;
-        for (var key in data.header) {
-            // header = ""
-                // cc.log("****",key,data.header[key]);
-                _header+= key+":"+data.header[key]+"\n";
-
-            
-        } 
-        // cc.log("header,",_header);
-        var str = "AP2 REQ 1.0\n"+_header+"\n"+jsondata+"\n";
-        cc.log(str);
-      
-         return str;
-    },
-
 //@param send data数据
     send:function(data,callback)
     {
@@ -302,7 +236,8 @@ cc.Class( {
         // cc.director.getScheduler().scheduleUpdate(self, -1, false, this.update);
     },
 
-    update1:function(funId, data){
+    //调用本地存的方法
+    callLocalFun:function(funId, data){
         var func = this.callbackMap.get(funId);
         if(func!=undefined){
             cc.log("=========OnlineWs===heart==", funId);
@@ -344,7 +279,7 @@ cc.Class( {
 
     onDestroy:function(){
         cc.log("=====onlineWs=== onDestroy");
-        cc.director.getScheduler().unscheduleUpdate(this);
+        // cc.director.getScheduler().unscheduleUpdate(this);
         this.callbackMap.clear();
        
         if ( this._wsiSendBinary!=null && this._wsiSendBinary.readyState === WebSocket.OPEN){

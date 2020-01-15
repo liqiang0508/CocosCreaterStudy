@@ -114,7 +114,7 @@ window.Sound = {
         }
 
         this.curPlayBgSound = resPath;
-        this.playMusic(resPath, true, 0.5*volume / 100 );
+        this.playMusic(resPath, true, volume / 100 );
         this.backGroundResPath[resPath] = resPath;
         return true;
     },
@@ -166,7 +166,7 @@ window.Sound = {
         for (let resPath in this.backGroundResPath) {
             if (typeof (this.backGroundResPath[resPath]) == "string" && this.audioId[resPath] != undefined && this.audioId[resPath].length > 0) {
                 let id = this.audioId[resPath][0];
-                cc.audioEngine.setBackGroundVolume(id, volume / 100);
+                cc.audioEngine.setMusicVolume(volume / 100);
             }
         }
     },
