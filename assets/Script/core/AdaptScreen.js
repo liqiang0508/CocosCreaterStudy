@@ -16,17 +16,20 @@ cc.Class({
         // console.log("realSize==",realSize)
         var scaleX = realSize.width/designSize.width
         var scaleY = realSize.height/designSize.height
-
-        if(scaleX>scaleY)//宽度大于高
+        if(realSize.width>realSize.height)//横屏
         {
+           
             cc.Canvas.instance.fitHeight = true
             cc.Canvas.instance.fitWidth = false
         }
-        else
+        else//竖屏
         {
+
             cc.Canvas.instance.fitHeight = false
             cc.Canvas.instance.fitWidth = true
+
         }
+       
     },
 
     start () {
