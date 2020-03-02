@@ -45,14 +45,24 @@ cc.Class({
         var spWorldPos = sp.parent.convertToWorldSpaceAR(sp.getPosition());
         cc.log("sp1 world pos=", spWorldPos);
 
+        
 
         // 转换成node局部坐标
         var tobNode = sp2.parent
+        
         var pos2 = tobNode.convertToNodeSpaceAR(spWorldPos);
   
         sp2.runAction(cc.moveTo(0.5, pos2));
         // sp2.setPosition(pos2)
 
+        console.log("winSize",cc.winSize)
+        console.log("getDesignResolutionSize",cc.view.getDesignResolutionSize())
+        console.log("getFrameSize",cc.view.getFrameSize())
+        console.log("getVisibleSize",cc.view.getVisibleSize())
+        console.log("getCanvasSize",cc.view.getCanvasSize())
+        console.log("cc.sys.getSafeAreaRect()",cc.sys.getSafeAreaRect())
+
+        tobNode.setContentSize(cc.size(cc.sys.getSafeAreaRect().width,cc.sys.getSafeAreaRect().height))
 
 
     },

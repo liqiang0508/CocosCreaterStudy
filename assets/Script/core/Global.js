@@ -130,7 +130,7 @@ var Global = {
                     call(null);
 
                 }
-            }.bind(this);
+            }
             xhr.send();
         }
 
