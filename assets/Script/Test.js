@@ -56,8 +56,10 @@ cc.Class({
         // sp2.setPosition(pos2)
 
         console.log("winSize",cc.winSize)
+    
         console.log("getDesignResolutionSize",cc.view.getDesignResolutionSize())
         console.log("getFrameSize",cc.view.getFrameSize())
+        console.log("getVisibleSizeInPixel",cc.view.getVisibleSizeInPixel())
         console.log("getVisibleSize",cc.view.getVisibleSize())
         console.log("getCanvasSize",cc.view.getCanvasSize())
         console.log("cc.sys.getSafeAreaRect()",cc.sys.getSafeAreaRect())

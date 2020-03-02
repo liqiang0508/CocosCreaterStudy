@@ -10,8 +10,10 @@ cc.Class({
 
     onLoad () {
         var designSize = cc.view.getDesignResolutionSize()//设计尺寸
-        var realSize = cc.view.getCanvasSize()//设备真实尺寸
+        var realSize = cc.view.getVisibleSize()//可见尺寸
 
+        // console.log("designSize==",designSize)
+        // console.log("realSize==",realSize)
         var scaleX = realSize.width/designSize.width
         var scaleY = realSize.height/designSize.height
 
