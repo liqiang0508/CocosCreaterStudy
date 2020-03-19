@@ -35,24 +35,35 @@ cc.Class({
 
     start() {
         var sp = cc.find("New Sprite", this.node)
-        console.log("sp---", sp.getPosition())
+        // console.log("sp---", sp.getPosition())
         // var bg  = cc.find("New Layout",this.node)
         var sp2 = cc.find("New Layout/New Sprite", this.node)
-        console.log("sp2---", sp2.getPosition())
+        // console.log("sp2---", sp2.getPosition())
 
         sp2.setPosition(80,80)
         //获取世界坐标 找到parent worldpos
         var spWorldPos = sp.parent.convertToWorldSpaceAR(sp.getPosition());
-        cc.log("sp1 world pos=", spWorldPos);
+        // cc.log("sp1 world pos=", spWorldPos);
+      
+     
+        sp.on(cc.Node.EventType.TOUCH_START, function (event) {
+            console.log('Touch start');
+            sp.opacity = 200
+            // sp.color = cc.Color.BLACK
+          });
 
-        
+          sp.on(cc.Node.EventType.TOUCH_END, function (event) {
+            console.log('Touch end');
+            sp.opacity = 255
+            // sp.color = cc.Color.WHITE
+          });
 
         // 转换成node局部坐标
         var tobNode = sp2.parent
         
         var pos2 = tobNode.convertToNodeSpaceAR(spWorldPos);
   
-        sp2.runAction(cc.moveTo(0.5, pos2));
+        // sp2.runAction(cc.moveTo(0.5, pos2));
         // sp2.setPosition(pos2)
 
         console.log("winSize",cc.winSize)
@@ -64,7 +75,7 @@ cc.Class({
         console.log("getCanvasSize",cc.view.getCanvasSize())
         console.log("cc.sys.getSafeAreaRect()",cc.sys.getSafeAreaRect())
 
-        tobNode.setContentSize(cc.size(cc.sys.getSafeAreaRect().width,cc.sys.getSafeAreaRect().height))
+        // tobNode.setContentSize(cc.size(cc.sys.getSafeAreaRect().width,cc.sys.getSafeAreaRect().height))
 
 
     },
