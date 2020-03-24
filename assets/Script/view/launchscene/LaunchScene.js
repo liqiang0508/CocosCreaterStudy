@@ -4,6 +4,8 @@ var VersionManager = require("VersionManager")
 var GameClient = require("GameClient")
 var xxtea = require("xxtea")
 let i18n = require("i18n")
+
+var HttpHelper = require("HttpHelper");
 cc.Class({
     extends: cc.Component,
 
@@ -49,8 +51,10 @@ cc.Class({
         console.log("encrypt_data=",encrypt_data);
         var decrypt_data = xxtea.decryptToString(encrypt_data, key);
         console.log("decrypt_data==", decrypt_data);
+
+        //some test
         cc.log("window.DISTRIBUTE_CHANNEL ==",window.DISTRIBUTE_CHANNEL,cc.sys.isNative,cc.sys.os )
-        i18n.init("ch")
+        i18n.init("zh")
         cc.log("i18n===",i18n.t("STR_COREPLAY_BUTTON_FOLD"))
     },
 

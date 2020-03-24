@@ -32,6 +32,7 @@ cc.Class({
             }
            
         })
+    
 
         var ConstantItem  = require("ConstantItem")
         cc.log(ConstantItem[1])

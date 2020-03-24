@@ -4,11 +4,15 @@
       true
     ]
   ],
-  "excluded-modules": [],
+  "excluded-modules": [
+    "3D Physics/cannon.js",
+    "3D Physics/Builtin",
+    "3D Particle"
+  ],
   "group-list": [
     "default"
   ],
-  "start-scene": "ac78b3ac-1484-4cd5-af9c-53b5f88129fb",
+  "start-scene": "910e66c0-f310-4a44-8391-91bc62a030e5",
   "design-resolution-width": 750,
   "design-resolution-height": 1334,
   "fit-width": true,
@@ -20,7 +24,7 @@
     "height": 640,
     "width": 960
   },
-  "last-module-event-record-time": 1578901840393,
+  "last-module-event-record-time": 1584954625198,
   "assets-sort-type": "name",
   "facebook": {
     "appID": "",

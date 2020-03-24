@@ -8,7 +8,7 @@ window.Sound = {
         func: 音效播放结束回调
         single: 是否同时只播放一个respath音效资源
     */
-    playEffect: function (resPath, loop, volume, func, single) {
+    _playEffect: function (resPath, loop, volume, func, single) {
         let self = this;
         //cc.log("========sound========start", resPath);
         if (single && (self.audioId[resPath] != undefined && self.audioId[resPath].length > 0)) {
@@ -121,9 +121,9 @@ window.Sound = {
     /*
         播放音效
     */
-    playEffect: function (resPath, langage, sex, loop, volume, func, single) {
+    playEffect: function (resPath, loop, volume, func, single) {
         let actVolume = this.getEffectVolume();
-        this.playEffect(resPath, loop, actVolume/100, func, single);
+        this._playEffect(resPath, loop, actVolume/100, func, single);
 
     },
 
