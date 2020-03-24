@@ -78,8 +78,8 @@ properties:{
     m_header_name:0,
     m_header_ext_data:0,
 	m_header_id:42,
-	m_header_sign:undefined,
-	m_header_type:1,
+	m_header_sign:"",
+	m_header_type:1,//1加密
     m_header_uid:0,
     m_header_state:0,
 
@@ -136,7 +136,7 @@ properties:{
 
         var proto = this.m_game_name+" "+this.m_proto_type+" "+this.m_version;
         var header = "";
-        this.m_header_uid = window.GameEvent.UserInfo.uid;
+        this.m_header_uid = 0//window.GameEvent.UserInfo.uid;
         for (var key in this) {
             if(key.indexOf("header")>0)
             {

@@ -4,7 +4,7 @@ var VersionManager = require("VersionManager")
 var GameClient = require("GameClient")
 var xxtea = require("xxtea")
 let i18n = require("i18n")
-
+var Package = require("Package")
 var HttpHelper = require("HttpHelper");
 cc.Class({
     extends: cc.Component,
@@ -43,7 +43,10 @@ cc.Class({
             self.goHomeScene()
 
         }
-
+        //Package
+        var data = Package.biuldReq("Hello",{a:1,c:2})
+        cc.log("data-------------",data)
+        cc.log("data-------------2",data.encode())
         //xxtea
         var str = "Hello World! 你好，中国🇨🇳！";
         var key = "1234567890";

@@ -116,6 +116,24 @@ cc.Class( {
        
     },
 
+    Uint8ArrayToString:function (fileData){
+        var dataString = "";
+        for (var i = 0; i < fileData.length; i++) {
+          dataString += String.fromCharCode(fileData[i]);
+        }
+       
+        return dataString
+      },
+    stringToUint8Array: function (str) {
+        var arr = [];
+        for (var i = 0, j = str.length; i < j; ++i) {
+            arr.push(str.charCodeAt(i));
+        }
+
+        var tmpUint8Array = new Uint8Array(arr);
+        return tmpUint8Array
+    },
+    
     string2u8array: function(str)
     {
         
