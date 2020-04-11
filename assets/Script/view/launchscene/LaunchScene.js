@@ -27,7 +27,7 @@ cc.Class({
         if (cc && cc.sys.isNative) {//native
             VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
                
-                if (code == 0||code ==5) {//热更新成功或者不用更新
+                if (code == 0||code ==100) {//热更新成功或者不用更新
                     self.goHomeScene()
                 }
                 else {//热更新error

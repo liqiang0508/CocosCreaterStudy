@@ -23,7 +23,8 @@ if (cc && cc.sys.isNative) {
 // 2:获取MD5配置文件失败
 // 3:下载单个文件失败
 // 4:移动文件失败
-// 5 :更新成功
+// 5：读取包内配置失败
+// 100 :更新成功
 var Global = require("Global")
 var VersionManager = {
     remoteCfg: '',//远程配置
@@ -209,7 +210,7 @@ var VersionManager = {
         var str = JSON.stringify(this.remoteMd5Cfg, null, 4)
         Global.GcreateDir(jsb.fileUtils.getWritablePath() + "config")
         Global.GwriteStringToFile(str, GtempCfg)//移动完成后再把远程的配置存在可读写路径下的config目录
-        this.callFunWithState(5, "更新成功")
+        this.callFunWithState(100, "更新成功")
 
 
         var searchPaths = jsb.fileUtils.getSearchPaths();
@@ -242,6 +243,7 @@ var VersionManager = {
         cc.loader.loadRes('appinfoiii', function (err, jsonAsset) {
             if (err) {
                 cc.log("读取包内配置失败" + err);
+                self.callFunWithState(5, "读取包内配置失败，请检查本地配置")
             }
             else {
 
