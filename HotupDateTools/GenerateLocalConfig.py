@@ -9,6 +9,7 @@ import json
 import shutil
 import ziputils
 from collections import OrderedDict
+import projectConfig
 
 IgnorFile = ["CT_main.strings","EN_main.strings","appinfoiii.json","NO_main.strings"]
 
@@ -63,8 +64,9 @@ def getFileSize(filePath):
 	return os.path.getsize(filePath)
 
 def walk(path):
+	# print "walk======",path
 	for dirpath,dirnames,filenames in os.walk(path):#
-		# print dirpath
+		# print "dirpath=",dirpath
 		for file in filenames:
 			if dirpath in IgnorDir:
 				continue
@@ -83,23 +85,24 @@ def walk(path):
 
 def BuildRes():
 	print("BuildRes Start**************")
-	projectPath = os.getcwd()
-	key = "e2ededca-352b-49"
-	os.system("CocosCreator.exe  --build platform=android;debug=false;xxteaKey="+key+" --path "+projectPath)
+	# projectPath = os.getcwd()
+	projectPath = os.path.abspath(os.path.join(os.getcwd(), "../"))
+	encodekey = projectConfig.Key
+	os.system("CocosCreator.exe.lnk  --build platform=android;debug=false;xxteaKey="+encodekey+" --path "+projectPath)
 	print("BuildRes end**************")
 
 
 
 
 scriptVersion = 0
-if os.path.exists("appinfoiii.json"):
-	with open("appinfoiii.json","r") as f:
+if os.path.exists("../appinfoiii.json"):
+	with open("../appinfoiii.json","r") as f:
 		filedata = f.read()
 		jsondata = json.loads(filedata)
 		scriptVersion = jsondata['scriptVersion']
 		print scriptVersion
-if not os.path.exists("hotupversion"):
-	os.mkdir("hotupversion")
+if not os.path.exists("../hotupversion"):
+	os.mkdir("../hotupversion")
 
 BuildRes()#先生成编译出来的资源和脚本
 data = OrderedDict()
@@ -107,12 +110,15 @@ scriptVersion = scriptVersion+1
 data["scriptVersion"] = scriptVersion
 data["files"] = []
 
-os.chdir("build/jsb-default")
+os.chdir("../build/jsb-default")
+
 walk("src")#生成src的配置
 walk("res")#生成res的配置
 os.chdir("../../")
+
 with open("appinfoiii.json","w") as f:
 	f.write(json.dumps(data,indent=4))
+	f.close()
 
 copyFile("appinfoiii.json","assets/resources/appinfoiii.json")#生成最新的配置复制到项目中
 
@@ -145,8 +151,9 @@ ziputils.ZipEnd()
 moveFile("Script_"+str(scriptVersion)+".zip","../Script_"+str(scriptVersion)+".zip")
 
 os.chdir("../../")
+
 BuildRes()#上面生成最新的配置 所以还要编译一次
-copyFile("main.js","build/jsb-default/main.js") #复制一份main 里面加了热更新的路径
+copyFile("HotupDateTools/main.js","build/jsb-default/main.js") #复制一份main 里面加了热更新的路径
 
 print("generateLocalConfig  Script_"+str(scriptVersion)+"/res   End==========================")
 os.system('pause')

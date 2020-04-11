@@ -44,7 +44,7 @@ var VersionManager = {
     //下载远程md5
     downRemoteMd5: function (url) {
         var self = this
-        console.log("downRemoteMd5----,", url)
+        cc.log("下载远程md5,", url)
 
         HttpHelper.sendHttpRequest(url, function (data) {
             if (data == null) {
@@ -115,7 +115,7 @@ var VersionManager = {
 
     },
     downFiles: function (data) {
-        console.log("downFiles====", data.length)
+        // cc.log("下载文件====", data.length)
         if (data.length == 0) {
             this.MoveDone();
             return
@@ -136,11 +136,11 @@ var VersionManager = {
             Global.GcreateDir(tempDir)//创建临时文件夹
             Global.GcreateDir(realDir)//创建真实文件夹
 
-            downFileList[index]["tempfile"] = filetempPath
-            downFileList[index]["realfile"] = filerealPath
+            downFileList[index]["tempfile"] = filetempPath//临时文件路径
+            downFileList[index]["realfile"] = filerealPath//正式文件路径
             // console.log("index====",index, filetempPath,filerealPath)
 
-            console.log("downFile=====", fileurl)
+            cc.log("下载=====", fileurl)
             Global.GDownFile(fileurl, function (data) {
                 if (data) {
                     Global.GwriteDataToFile(data, filetempPath)
@@ -158,7 +158,7 @@ var VersionManager = {
                         if (self.progressCall) {
                             self.progressCall(Math.floor(100))
                         }
-                        console.log("down  done***")
+                        cc.log("下载完成***")
 
                         self.MoveFiles(downFileList)//移动文件
 
@@ -204,7 +204,7 @@ var VersionManager = {
 
     //移动完成 保存配置
     MoveDone: function () {
-        console.log("move done****")
+        cc.log("移动成功****")
         var str = JSON.stringify(this.remoteMd5Cfg, null, 4)
         Global.GcreateDir(jsb.fileUtils.getWritablePath() + "config")
         Global.GwriteStringToFile(str, GtempCfg)
@@ -221,14 +221,14 @@ var VersionManager = {
     },
     //
     ReStartGame: function () {
-        console.log("ReStartGame****")
+        cc.log("重启***")
         cc.audioEngine.stopAll();
         cc.game.restart()
     },
 
     callFunWithState: function (state, desc) {
         if (this.downcall) {
-            console.log(desc)
+            cc.log(desc)
             this.downcall(state)
         }
     },
@@ -238,7 +238,7 @@ var VersionManager = {
         var self = this;
         cc.loader.loadRes('appinfoiii', function (err, jsonAsset) {
             if (err) {
-                console.log("+++++++++++++++++++++++++" + err);
+                cc.log("+++++++++++++++++++++++++" + err);
             }
             else {
 
@@ -282,15 +282,15 @@ var VersionManager = {
             var debugUIDs = self.remoteCfg["debugUIDs"]//测试id组
 
             var localId = cc.sys.localStorage.getItem('debugId') || "724001";//本地存的上次登录的玩家id
-            console.log("localscriptVersion==" + localscriptVersion)
-            console.log("debugscriptVersion==" + debugscriptVersion)
-            console.log("remotescriptVersion==" + remotescriptVersion)
-            if (Global.GIsArrContain(debugUIDs, localId))//测试玩家
+            cc.log("本地脚本号==" + localscriptVersion)
+            cc.log("远程debug版本号==" + debugscriptVersion)
+            cc.log("远程版本号==" + remotescriptVersion)
+            if (Global.GIsArrContain(debugUIDs, localId))//先看是不是测试玩家
             {
 
-                if (parseInt(localscriptVersion) < parseInt(debugscriptVersion)) {
+                if (parseInt(localscriptVersion) != parseInt(debugscriptVersion)) {
 
-                    console.log("go debug")
+                    cc.log("走debug热更新判断")
                     var debugBaseUrl = self.remoteCfg["debugBaseUrl"]
                     debugBaseUrl = cc.js.formatStr(debugBaseUrl, debugscriptVersion)
                     var debugConfigFile = self.remoteCfg["debugConfigFile"]
@@ -302,9 +302,9 @@ var VersionManager = {
 
             }
 
-            if (parseInt(localscriptVersion) < parseInt(remotescriptVersion))//正式更新判断
+            if (parseInt(localscriptVersion) != parseInt(remotescriptVersion))//正式更新判断
             {
-                console.log("go ok")
+                cc.log("走正式的热更新判断")
                 var baseUrl = self.remoteCfg["baseUrl"]
                 baseUrl = cc.js.formatStr(baseUrl, remotescriptVersion)
                 var ConfigFile = self.remoteCfg["configFile"]

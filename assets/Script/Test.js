@@ -1,13 +1,8 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
+var xxtea = require("xxtea")
+let i18n = require("i18n")
+var Package = require("Package")
+var Devices = require("Devices")
 cc.Class({
     extends: cc.Component,
 
@@ -67,7 +62,6 @@ cc.Class({
         // sp2.setPosition(pos2)
 
         console.log("winSize",cc.winSize)
-    
         console.log("getDesignResolutionSize",cc.view.getDesignResolutionSize())
         console.log("getFrameSize",cc.view.getFrameSize())
         console.log("getVisibleSizeInPixel",cc.view.getVisibleSizeInPixel())
@@ -77,7 +71,39 @@ cc.Class({
 
         // tobNode.setContentSize(cc.size(cc.sys.getSafeAreaRect().width,cc.sys.getSafeAreaRect().height))
 
+         //Package
+         var data = Package.biuldReq("Hello",{a:1,c:2})
+        //  cc.log("data-------------",data)
+        //  cc.log("data-------------2",data.encode())
+         //xxtea
+         var str = "Hello World! 你好，中国🇨🇳！";
+         var key = "1234567890";
+         var encrypt_data = xxtea.encryptToString(str, key);
+         console.log("encrypt_data=",encrypt_data);
+         var decrypt_data = xxtea.decryptToString(encrypt_data, key);
+         console.log("decrypt_data==", decrypt_data);
+ 
+         //some test
+         cc.log("window.DISTRIBUTE_CHANNEL ==",window.DISTRIBUTE_CHANNEL,cc.sys.isNative,cc.sys.os )
+         i18n.init("zh")
+         cc.log("i18n===",i18n.t("STR_COREPLAY_BUTTON_FOLD"))
 
+         var ConstantItem  = require("ConstantItem")
+        cc.log(ConstantItem[1])
+
+        var timeStamp = new Date().getTime()//时间戳
+
+        cc.log("timeStamp=====",timeStamp,new Date().toLocaleDateString())
+        cc.log("timeStamp=====",timeStamp,new Date().toLocaleString())
+        cc.log("timeStamp=====",timeStamp,new Date().toLocaleTimeString())
+        // cc.log(window.Save.get("loginid",timeStamp))
+        var id = window.Save.get("decicesID",timeStamp)
+        if (id==timeStamp)
+        {
+            window.Save.set("decicesID",timeStamp)
+        }
+       
+        cc.log("Devices===id",Devices.getDevicesID(),cc.sys.os)
     },
 
     // update (dt) {},

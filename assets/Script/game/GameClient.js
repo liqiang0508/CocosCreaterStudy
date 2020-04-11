@@ -9,7 +9,7 @@ var GameClient = {
        
     },
 
-    initWs: function (host, port, call) {
+    connect: function (host, port, call) {
         this.ws = new OnlineWs();
         this.ws.connect(host, port);
         this.ws.setConnectCall(function () {//连接成功回调

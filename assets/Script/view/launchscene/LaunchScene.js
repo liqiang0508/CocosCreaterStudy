@@ -2,10 +2,7 @@
 var Global = require("Global")
 var VersionManager = require("VersionManager")
 var GameClient = require("GameClient")
-var xxtea = require("xxtea")
-let i18n = require("i18n")
-var Package = require("Package")
-var HttpHelper = require("HttpHelper");
+
 cc.Class({
     extends: cc.Component,
 
@@ -22,20 +19,21 @@ cc.Class({
     onLoad() { },
 
     start() {
+        cc.log("launchsene start")
         var self = this
-
+        cc.log("getWritablePath=",jsb.fileUtils.getWritablePath())
         if (cc && cc.sys.isNative) {//native
             VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
-                console.log("checkUpdate===code", code)
-                self.Text.string = code
-                if (code == 0) {//热更新成功
+               
+                if (code == 0||code ==5) {//热更新成功或者不用更新
                     self.goHomeScene()
                 }
                 else {//热更新error
-
+                    cc.log("热更新返回Erorcode", code)
+                    self.Text.string = "ErrorCode====="+code
                 }
             }, function (progress) {
-                console.log("progress===", progress)
+                cc.log("progress===", progress)
                 self.Text.string = "updateing" + progress + "%"
             })
         }
@@ -43,42 +41,29 @@ cc.Class({
             self.goHomeScene()
 
         }
-        //Package
-        var data = Package.biuldReq("Hello",{a:1,c:2})
-        cc.log("data-------------",data)
-        cc.log("data-------------2",data.encode())
-        //xxtea
-        var str = "Hello World! 你好，中国🇨🇳！";
-        var key = "1234567890";
-        var encrypt_data = xxtea.encryptToString(str, key);
-        console.log("encrypt_data=",encrypt_data);
-        var decrypt_data = xxtea.decryptToString(encrypt_data, key);
-        console.log("decrypt_data==", decrypt_data);
-
-        //some test
-        cc.log("window.DISTRIBUTE_CHANNEL ==",window.DISTRIBUTE_CHANNEL,cc.sys.isNative,cc.sys.os )
-        i18n.init("zh")
-        cc.log("i18n===",i18n.t("STR_COREPLAY_BUTTON_FOLD"))
+        
     },
 
     goHomeScene() {
         var self = this
-        GameClient.initWs("54.179.180.39", "8089", function () {
-            Global.gPreloadScene("helloworld", function (progress) {
+        GameClient.connect("54.179.180.39", "8089", function () {
+            Global.gPreloadScene("MainScene", function (loadprogress) {
                 // self.Text.string = progress
                 // console.log(progress)
             },
-                function (scenename, error) {
-                    if (!error) {
-                        Global.gSchduleOnce(self, function () {
-                            cc.director.loadScene(scenename, function () {
+            function (scenename, error)
+            {
+                if (!error) 
+                {
 
-                                var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
-                                Text.getComponent(cc.Label).string = "996"
-                            })
-                        }, 1)
-                    }
-                })
+                    cc.director.loadScene(scenename, function () 
+                    {
+                        var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
+                        Text.getComponent(cc.Label).string = "996"
+                    })
+                  
+                }
+            })
         })
     },
 
