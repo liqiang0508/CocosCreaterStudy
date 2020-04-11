@@ -88,15 +88,15 @@ def BuildRes():
 	# projectPath = os.getcwd()
 	projectPath = os.path.abspath(os.path.join(os.getcwd(), "../"))
 	encodekey = projectConfig.Key
-	os.system("CocosCreator.exe.lnk  --build platform=android;debug=false;xxteaKey="+encodekey+" --path "+projectPath)
+	os.system("CocosCreator.exe.lnk  --build platform=android;debug=false;template=default;xxteaKey="+encodekey+" --path "+projectPath)
 	print("BuildRes end**************")
 
 
 
 
 scriptVersion = 0
-if os.path.exists("../appinfoiii.json"):
-	with open("../appinfoiii.json","r") as f:
+if os.path.exists("../assets/resources/appinfoiii.json"):#判断本地有没有配置文件 获取当前版本号
+	with open("../assets/resources/appinfoiii.json","r") as f:
 		filedata = f.read()
 		jsondata = json.loads(filedata)
 		scriptVersion = jsondata['scriptVersion']
@@ -106,7 +106,7 @@ if not os.path.exists("../hotupversion"):
 
 BuildRes()#先生成编译出来的资源和脚本
 data = OrderedDict()
-scriptVersion = scriptVersion+1
+scriptVersion = scriptVersion+1#版本号加1 
 data["scriptVersion"] = scriptVersion
 data["files"] = []
 
@@ -116,26 +116,27 @@ walk("src")#生成src的配置
 walk("res")#生成res的配置
 os.chdir("../../")
 
-with open("appinfoiii.json","w") as f:
+with open("appinfoiii.json","w") as f:#保存md5配置文件
 	f.write(json.dumps(data,indent=4))
 	f.close()
 
 copyFile("appinfoiii.json","assets/resources/appinfoiii.json")#生成最新的配置复制到项目中
 
+#移动资源到hotupversion文件夹
 copyFileTree("build/jsb-default/src","hotupversion/Script_"+str(scriptVersion)+"/src")#移动到hotupversion文件夹
 copyFileTree("build/jsb-default/res","hotupversion/Script_"+str(scriptVersion)+"/res")#移动到hotupversion文件夹
-
 copyFile("appinfoiii.json","hotupversion/Script_"+str(scriptVersion)+"/appinfoiii.json")#配置文件移动到hotupversion文件夹
 
 # compress 压缩
 resdir = "hotupversion/Script_"+str(scriptVersion)+"/res"
 quality = "20-50"#压缩比
-main = "pngquant.exe"
+main = "HotupDateTools\pngquant.exe"
 for dirpath,dirnames,filenames in os.walk(resdir):#压缩目录下的所有文件
             for file in filenames:
                     if file.endswith("png"):
-                        # print "compressing......",os.path.join(dirpath, file)
+                        print "compressing......",os.path.join(dirpath, file)
                         cmd = main + " -f --ext .png --quality "+quality+" "+os.path.join(dirpath, file)
+                        print cmd
                         os.popen(cmd)
 
 

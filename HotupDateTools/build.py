@@ -6,10 +6,10 @@ print("build Start**************")
 projectPath = os.path.abspath(os.path.join(os.getcwd(), "../"))# os.getcwd()
 print projectPath
 key = projectConfig.Key
-# os.system("CocosCreator.exe.lnk  --build platform=android;debug=false;xxteaKey="+key+" --path "+projectPath)
+os.system("CocosCreator.exe.lnk  --build platform=android;debug=false;template=default;xxteaKey="+key+" --path "+projectPath)
 
-test = os.path.join(projectPath,"build/jsb-default")
-print test
+# test = os.path.join(projectPath,"build/jsb-default")
+# print test
 
 print("build End****************")
 os.system("pause")
