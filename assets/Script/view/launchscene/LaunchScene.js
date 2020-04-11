@@ -16,12 +16,14 @@ cc.Class({
 
 
 
-    onLoad() { },
+    onLoad() {
+        cc.log("launchsene onLoad")
+    },
 
     start() {
         cc.log("launchsene start")
         var self = this
-        cc.log("getWritablePath=",jsb.fileUtils.getWritablePath())
+       
         if (cc && cc.sys.isNative) {//native
             VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
                

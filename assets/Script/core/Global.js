@@ -49,7 +49,7 @@ var Global = {
             }
         })
     },
-
+    // 数组是否包含
     GIsArrContain:function (arr, n) {
         if (arr.indexOf(n) > -1) {
             return true;
@@ -58,7 +58,7 @@ var Global = {
             return false;
         }
     },
-
+    // 获取文件数据
     GgetDataFromFile: function (path) {
         if (cc.sys.isNative) {
             var data = jsb.fileUtils.getDataFromFile(path)
@@ -66,13 +66,13 @@ var Global = {
         }
         return null
     },
-
+    // 写文件  字符串
     GwriteStringToFile:function (str, path) {
         if (cc.sys.isNative) {
             jsb.fileUtils.writeStringToFile(str, path);
         }
     },
-
+    // 写文件数据
     GwriteDataToFile : function (data, path) {
         if (cc.sys.isNative) {
             jsb.fileUtils.writeDataToFile(new Uint8Array(data), path);
@@ -85,7 +85,7 @@ var Global = {
             jsb.fileUtils.createDirectory(path);
         }
     },
-
+//    url转成目录
     GgetDirByUrl:function (url) {
         var arr = url.split("/")
         // console.log("GgetDirByUrl==",arr)
@@ -135,7 +135,8 @@ var Global = {
         }
 
     },
-    Ghotupdateurl:"http://192.168.0.103/hotupversion/configrelease",
+   
+    Ghotupdateurl:"http://192.168.0.103/hotupversion/configrelease", // 热更新地址
     GgameType:1  // 1正式包 3debug
 
 }
