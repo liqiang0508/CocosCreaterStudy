@@ -33,6 +33,7 @@ var VersionManager = {
 
 
     checkUpdate: function (url, downcall, progressCall) {
+        cc.log("checkUpdate----",url)
         var self = this;
         this.parseLocalCfg()
 
