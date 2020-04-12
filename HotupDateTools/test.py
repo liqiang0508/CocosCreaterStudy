@@ -1,12 +1,15 @@
-
 import os
 
-os.chdir("../assets")
-path = os.getcwd()
 
-for dirpath,dirnames,filenames in os.walk(path):#
-	# print "dirpath=",dirpath
-	for file in filenames:
-		
-		path = os.path.join(dirpath, file)
-		print "walk......",path
+filepath = "../assets/Script/core/Global.js"
+data = ""
+with open(filepath,"r") as f:
+	data = f.read()
+	data = data.replace("GgameType:1","GgameType:3")
+	f.close()
+
+with open(filepath,"w+") as F:
+	F.write(data)
+	F.close()
+
+os.system("pause")
