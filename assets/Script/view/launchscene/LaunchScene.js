@@ -21,17 +21,17 @@ cc.Class({
     },
 
     start() {
-        cc.log("launchsene start")
+        cc.log("launchsene start",window.DISTRIBUTE_CHANNEL)
         var self = this
        
-        if (cc && cc.sys.isNative) {//native
+        if (cc && cc.sys.isNative&&window.DISTRIBUTE_CHANNEL!= chanel.WIN32) {//native  自带的模拟器不进行热更新
             VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
                
                 if (code == 0||code ==100) {//热更新成功或者不用更新
                     self.goHomeScene()
                 }
                 else {//热更新error
-                    cc.log("热更新返回Erorcode", code)
+                    cc.log("热更新返回--Erorcode", code)
                     self.Text.string = "ErrorCode====="+code
                 }
             }, function (progress) {
