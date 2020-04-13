@@ -1,5 +1,6 @@
 
 var HttpHelper = require("HttpHelper");
+var DevicesInfo = require("Devices")
 
 var GtempFolder = ""
 
@@ -24,6 +25,8 @@ if (cc && cc.sys.isNative) {
 // 3:下载单个文件失败
 // 4:移动文件失败
 // 5：读取包内配置失败
+// 6:不支持热更新的版本号
+// 7:不支持热更新的渠道
 // 100 :更新成功
 var Global = require("Global")
 var VersionManager = {
@@ -290,10 +293,23 @@ var VersionManager = {
             var localscriptVersion = self.localCfg["scriptVersion"]//本地配置版本号
             var remotescriptVersion = self.remoteCfg["scriptVersion"]//远程配置版本号
             var debugscriptVersion = self.remoteCfg["debugScriptVersion"]//测试版本号
-
+            var supportBinarys =  self.remoteCfg["supportBinarys"]//支持热更新的版本号
+            var channels = self.remoteCfg["channels"]//支持热更新的渠道号
             var debugUIDs = self.remoteCfg["debugUIDs"]//测试id组
-
             var localId = cc.sys.localStorage.getItem('debugId') ;//本地存的上次登录的玩家id
+
+            if(!Global.GIsArrContain(channels, window.DISTRIBUTE_CHANNEL))//app版本是否支持热更新
+            {
+                
+                self.callFunWithState(7, "不支持热更新的渠道号"+DevicesInfo.getAppVersion())
+                return 
+            }
+            if(!Global.GIsArrContain(supportBinarys, DevicesInfo.getAppVersion()))//app版本是否支持热更新
+            {
+                
+                self.callFunWithState(6, "不支持热更新的2进制版本号"+DevicesInfo.getAppVersion())
+                return 
+            }
             cc.log("本地脚本号==" + localscriptVersion)
             cc.log("远程debug版本号==" + debugscriptVersion)
             cc.log("远程版本号==" + remotescriptVersion)

@@ -8,7 +8,14 @@ var DevicesWeb = {
             window.Save.set("decicesID",timeStamp)
         }
         return id
+    },
+
+    getAppVersion:function(){
+        
+        return "0"
+        
     }
+    
 
 }
 

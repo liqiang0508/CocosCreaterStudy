@@ -24,7 +24,7 @@ cc.Class({
         cc.log("launchsene start",window.DISTRIBUTE_CHANNEL)
         var self = this
        
-        if (cc && cc.sys.isNative) {//native  自带的模拟器不进行热更新
+        if (cc && cc.sys.isNative&&cc.sys.os != cc.sys.OS_WINDOWS) {//native  自带的模拟器不进行热更新
             VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
                
                 if (code == 0)//不用更新
@@ -34,6 +34,10 @@ cc.Class({
                 else if(code ==100) {//热更新成功
                     
                     self.Reboot()
+                }
+                else if(code ==6 || code ==7) {//不支持的热更新的版本号,渠道号
+                    
+                    self.goHomeScene()
                 }
                 else {//热更新error
                     cc.log("热更新返回--Erorcode", code)
