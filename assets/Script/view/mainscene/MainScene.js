@@ -28,10 +28,13 @@ cc.Class({
     
 
         var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
-        Text.getComponent(cc.Label).string = "updated666"
+        Text.getComponent(cc.Label).string = "updated167"
         
 
-        
+        // cc.director.getScheduler().schedule(function(){
+
+        //     cc.log("schdule===")
+        // },this,1,0,0,false)
        
       
 

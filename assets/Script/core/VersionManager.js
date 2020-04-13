@@ -31,6 +31,8 @@ var VersionManager = {
     remoteMd5Cfg: '',//远程md5
     localCfg: '',//local配置
     stateCode: '',//更新状态码
+    totalDownSize:0,//下载文件总大小
+    downedSize:0,//已下载文件的大小
 
 
     checkUpdate: function (url, downcall, progressCall) {
@@ -62,9 +64,9 @@ var VersionManager = {
 
     comparefiles: function () {//对比差异文件
 
-        var localMd5Files = this.localCfg["files"]
+        var localMd5Files = this.localCfg["files"]//本地md5配置
+        var remoteMd5Files = this.remoteMd5Cfg["files"]//远程md5配置
 
-        var remoteMd5Files = this.remoteMd5Cfg["files"]
         var ChangeFiles = new Array()
         var localMd5Objects = {}
         var remoteMd5Objects = {}
@@ -72,7 +74,7 @@ var VersionManager = {
             var file = localMd5Files[i]
             var fileName = file["filename"]
             var md5 = file["md5"]
-            var fileSize = file["fileSize"]
+            var fileSize = file["size"]
             localMd5Objects[fileName] = { "md5": md5, "fileSize": fileSize }
 
         }
@@ -81,7 +83,7 @@ var VersionManager = {
             var file = remoteMd5Files[i]
             var fileName = file["filename"]
             var md5 = file["md5"]
-            var fileSize = file["fileSize"]
+            var fileSize = file["size"]
 
             remoteMd5Objects[fileName] = { "md5": md5, "fileSize": fileSize }
 
@@ -107,18 +109,18 @@ var VersionManager = {
                 ChangeFiles.push({ "fileName": name, "md5": remotemd5File, "fileSize": fileSize })
             }
         }
-
-        // for (var index in ChangeFiles){
-
-        //     console.log("change-",index,ChangeFiles[index]["fileName"])
-        // }
+        //totalDownSize 计算热更新下载文件的大小
+        for (var index in ChangeFiles){
+            var fileSize = ChangeFiles[index]["fileSize"]
+            this.totalDownSize = this.totalDownSize +fileSize
+        }
 
         this.downFiles(ChangeFiles)
 
     },
     downFiles: function (data) {
         // cc.log("下载文件====", data.length)
-        if (data.length == 0) {
+        if (data.length == 0) {//md5文件没有下载的
             this.MoveDone();
             return
         }
@@ -129,6 +131,7 @@ var VersionManager = {
         var downOneFile = function (index) {
             var BaseUrl = self.BaseUrl
             var fileName = downFileList[index]["fileName"]//下载文件路径
+            var fileSize = downFileList[index]["fileSize"]//下载文件大小
             var fileurl = BaseUrl + fileName//下载文件的url
             var filetempPath = GtempFolder + fileName//临时目录
             var filerealPath = GHotUpFolder + fileName//真实目录
@@ -147,18 +150,18 @@ var VersionManager = {
                 if (data) {
                     Global.GwriteDataToFile(data, filetempPath)
 
-
+                    self.downedSize = self.downedSize+fileSize//记录已下载文件的大小
 
                     if (self.DownIndex < downFileList.length - 1) {
                         self.DownIndex = self.DownIndex + 1
                         if (self.progressCall) {
-                            self.progressCall(Math.floor(self.DownIndex / downFileList.length * 100))
+                            self.progressCall(Math.floor(self.DownIndex / downFileList.length * 100),self.downedSize,self.totalDownSize)
                         }
                         downOneFile(self.DownIndex)
                     }
                     else {
                         if (self.progressCall) {
-                            self.progressCall(Math.floor(100))
+                            self.progressCall(Math.floor(100),self.downedSize,self.totalDownSize)
                         }
                         cc.log("下载完成***")
 
@@ -210,7 +213,7 @@ var VersionManager = {
         var str = JSON.stringify(this.remoteMd5Cfg, null, 4)
         Global.GcreateDir(jsb.fileUtils.getWritablePath() + "config")
         Global.GwriteStringToFile(str, GtempCfg)//移动完成后再把远程的配置存在可读写路径下的config目录
-        this.callFunWithState(100, "更新成功")
+        
 
 
         var searchPaths = jsb.fileUtils.getSearchPaths();
@@ -220,7 +223,9 @@ var VersionManager = {
        
         cc.sys.localStorage.setItem('HotUpdateSearchPaths', JSON.stringify(searchPaths));
         jsb.fileUtils.setSearchPaths(searchPaths);
-        this.ReStartGame()
+        this.callFunWithState(100, "更新成功")
+        // this.ReStartGame()
+        
 
     },
     //
@@ -228,6 +233,8 @@ var VersionManager = {
         cc.log("重启***")
         cc.audioEngine.stopAll();
         cc.game.restart()
+
+       
     },
 
     callFunWithState: function (state, desc) {

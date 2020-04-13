@@ -24,19 +24,25 @@ cc.Class({
         cc.log("launchsene start",window.DISTRIBUTE_CHANNEL)
         var self = this
        
-        if (cc && cc.sys.isNative&&window.DISTRIBUTE_CHANNEL!= chanel.WIN32) {//native  自带的模拟器不进行热更新
+        if (cc && cc.sys.isNative) {//native  自带的模拟器不进行热更新
             VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
                
-                if (code == 0||code ==100) {//热更新成功或者不用更新
+                if (code == 0)//不用更新
+                {
                     self.goHomeScene()
+                }
+                else if(code ==100) {//热更新成功
+                    
+                    self.Reboot()
                 }
                 else {//热更新error
                     cc.log("热更新返回--Erorcode", code)
                     self.Text.string = "ErrorCode====="+code
                 }
-            }, function (progress) {
+            }, function (progress,DownedSize,TotalSize) {
                 cc.log("progress===", progress)
-                self.Text.string = "updateing" + progress + "%"
+                var a = "updateing" + progress + "% ("+(DownedSize/1024/1000).toFixed(1)+"M/"+(TotalSize/1024/1000).toFixed(1)+"M)"
+                self.Text.string = a//"updateing" + progress + "%    "+DownedSize/1024+"M/"+TotalSize/1024+"M"
             })
         }
         else {//web
@@ -46,13 +52,27 @@ cc.Class({
         
     },
 
+    Reboot(){
+        Global.gSchduleOnce(this,function(){
+
+            VersionManager.ReStartGame()
+
+        },2)
+        
+    },
     goHomeScene() {
         var self = this
-        cc.director.loadScene("MainScene", function () 
-        {
-            var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
-            Text.getComponent(cc.Label).string = "updated2"
-        })
+
+        Global.gSchduleOnce(this,function(){
+
+            cc.director.loadScene("MainScene", function () 
+            {
+                // var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
+                // Text.getComponent(cc.Label).string = "updated2"
+            })
+
+        },2)
+       
         // GameClient.connect("54.179.180.39", "8089", function () {
         //     Global.gPreloadScene("MainScene", function (loadprogress) {
         //         // self.Text.string = progress
