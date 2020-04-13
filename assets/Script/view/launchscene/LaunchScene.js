@@ -48,25 +48,30 @@ cc.Class({
 
     goHomeScene() {
         var self = this
-        GameClient.connect("54.179.180.39", "8089", function () {
-            Global.gPreloadScene("MainScene", function (loadprogress) {
-                // self.Text.string = progress
-                // console.log(progress)
-            },
-            function (scenename, error)
-            {
-                if (!error) 
-                {
-
-                    cc.director.loadScene(scenename, function () 
-                    {
-                        var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
-                        Text.getComponent(cc.Label).string = "updated"
-                    })
-                  
-                }
-            })
+        cc.director.loadScene("MainScene", function () 
+        {
+            var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
+            Text.getComponent(cc.Label).string = "updated2"
         })
+        // GameClient.connect("54.179.180.39", "8089", function () {
+        //     Global.gPreloadScene("MainScene", function (loadprogress) {
+        //         // self.Text.string = progress
+        //         // console.log(progress)
+        //     },
+        //     function (scenename, error)
+        //     {
+        //         if (!error) 
+        //         {
+
+        //             cc.director.loadScene(scenename, function () 
+        //             {
+        //                 var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
+        //                 Text.getComponent(cc.Label).string = "updated"
+        //             })
+                  
+        //         }
+        //     })
+        // })
     },
 
     // update (dt) {},

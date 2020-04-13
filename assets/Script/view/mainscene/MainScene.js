@@ -27,6 +27,8 @@ cc.Class({
         })
     
 
+        var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
+        Text.getComponent(cc.Label).string = "updated666"
         
 
         
