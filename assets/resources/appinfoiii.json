@@ -1,5 +1,5 @@
 {
-    "scriptVersion": 2, 
+    "scriptVersion": 5, 
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc", 
@@ -8,7 +8,7 @@
         }, 
         {
             "filename": "src/project.jsc", 
-            "md5": "37A93F3BD251C19717DFEB6A61E955B2", 
+            "md5": "6E2418F4229A110F823EC79D712528E3", 
             "size": 56596
         }, 
         {
@@ -37,6 +37,11 @@
             "size": 2397
         }, 
         {
+            "filename": "res/import/23/2335bd42-26a9-441a-b92e-8d482d3c7f28.json", 
+            "md5": "AAA024ED1571FEB06247A5EEE39A92A5", 
+            "size": 173
+        }, 
+        {
             "filename": "res/import/28/2874f8dd-416c-4440-81b7-555975426e93.json", 
             "md5": "120E0B890F65AABA83A0ED668A8DF315", 
             "size": 3766
@@ -53,8 +58,8 @@
         }, 
         {
             "filename": "res/import/2d/2d2f792f-a40c-49bb-a189-ed176a246e49.json", 
-            "md5": "A5B1EFF8CB1CCEF8260C53089397DCA1", 
-            "size": 3109
+            "md5": "A84E8383FD243D33DD3A8B96F85468A6", 
+            "size": 3165
         }, 
         {
             "filename": "res/import/31/31bc895a-c003-4566-a9f3-2e54ae1c17dc.json", 
@@ -78,13 +83,18 @@
         }, 
         {
             "filename": "res/import/4a/4ae6f0d6-7d36-44fa-a868-f7ae34c40ca9.json", 
-            "md5": "67046BBB13FB4BFC464406F89F32909A", 
-            "size": 3092
+            "md5": "C51D5198851CF61930682213A1317D2E", 
+            "size": 4657
         }, 
         {
             "filename": "res/import/55/5558c428-a968-4dcb-94ad-b8912afb7c4d.json", 
             "md5": "5CF01193C7F8284E60843F5CCB9F72ED", 
             "size": 63
+        }, 
+        {
+            "filename": "res/import/58/58fe8245-4714-4141-b689-a4957af08390.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
         }, 
         {
             "filename": "res/import/6a/6aa0aa6a-ebee-4155-a088-a687a6aadec4.json", 
@@ -160,6 +170,11 @@
             "filename": "res/raw-assets/55/5558c428-a968-4dcb-94ad-b8912afb7c4d.mp3", 
             "md5": "1283DB2545DB20B2F86878B30C51A995", 
             "size": 382553
+        }, 
+        {
+            "filename": "res/raw-assets/58/58fe8245-4714-4141-b689-a4957af08390.png", 
+            "md5": "8FAB7D6E17B7BCB79B19372F7AF658B5", 
+            "size": 28117
         }, 
         {
             "filename": "res/raw-assets/6a/6aa0aa6a-ebee-4155-a088-a687a6aadec4.png", 

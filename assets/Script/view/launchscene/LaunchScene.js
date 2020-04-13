@@ -61,7 +61,7 @@ cc.Class({
                     cc.director.loadScene(scenename, function () 
                     {
                         var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
-                        Text.getComponent(cc.Label).string = "996"
+                        Text.getComponent(cc.Label).string = "updated"
                     })
                   
                 }
