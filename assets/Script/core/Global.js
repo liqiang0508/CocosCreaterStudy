@@ -136,7 +136,7 @@ var Global = {
 
     },
    
-    Ghotupdateurl:"http://192.168.0.103/hotupversion/configrelease", // 热更新地址
+    Ghotupdateurl:"http://192.168.65.172/hotupversion/configrelease", // 热更新地址
     GgameType:1  // 1正式包 3debug
 
 }
@@ -144,10 +144,10 @@ var Global = {
 
 if(Global.GgameType==1)//正式包
 {
-    Global.Ghotupdateurl = "http://192.168.0.103/hotupversion/configrelease"
+    Global.Ghotupdateurl = "http://192.168.65.172/hotupversion/configrelease"
 }
 if(Global.GgameType==3)//debug包
 {
-    Global.Ghotupdateurl = "http://192.168.0.103/hotupversion/configdebug"
+    Global.Ghotupdateurl = "http://192.168.65.172/hotupversion/configdebug"
 }
 module.exports = Global;

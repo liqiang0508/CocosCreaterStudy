@@ -165,14 +165,14 @@ ziputils.ZipEnd()
 # move
 moveFile("Script_"+str(scriptVersion)+".zip","../Script_"+str(scriptVersion)+".zip")
 
-os.chdir("../../")
+os.chdir("../../HotupDateTools")
 
 BuildRes()#上面生成最新的配置 所以还要编译一次
-copyFile("HotupDateTools/main.js","build/jsb-default/main.js") #复制一份main 里面加了热更新的路径
+copyFile("main.js","../build/jsb-default/main.js") #复制一份main 里面加了热更新的路径
 
 
 # 先把golbal里面的GgameType 修改回去
-filepath = "assets/Script/core/Global.js"
+filepath = "../assets/Script/core/Global.js"
 data = ""
 with open(filepath,"r") as f:
 	data = f.read()
