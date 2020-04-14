@@ -6,7 +6,7 @@ cc.Class({
        
     },
 
-    // LIFE-CYCLE CALLBACKS:
+    // Canvas的适配
 
     onLoad () {
         var designSize = cc.view.getDesignResolutionSize()//设计尺寸

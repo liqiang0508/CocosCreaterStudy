@@ -32,7 +32,7 @@ cc.Class({
         var sp = cc.find("New Sprite", this.node)
         // console.log("sp---", sp.getPosition())
         // var bg  = cc.find("New Layout",this.node)
-        var sp2 = cc.find("New Layout/New Sprite", this.node)
+        var sp2 = cc.find("content/New Sprite", this.node)
         // console.log("sp2---", sp2.getPosition())
 
         sp2.setPosition(80,80)
@@ -43,12 +43,18 @@ cc.Class({
      
         sp.on(cc.Node.EventType.TOUCH_START, function (event) {
             console.log('Touch start');
-            sp.opacity = 200
+            sp.opacity = 150
             // sp.color = cc.Color.BLACK
           });
 
           sp.on(cc.Node.EventType.TOUCH_END, function (event) {
             console.log('Touch end');
+            sp.opacity = 255
+            // sp.color = cc.Color.WHITE
+          });
+
+          sp.on(cc.Node.EventType.TOUCH_CANCEL, function (event) {
+            //console.log('Touch end');
             sp.opacity = 255
             // sp.color = cc.Color.WHITE
           });

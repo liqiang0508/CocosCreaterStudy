@@ -5,13 +5,13 @@ cc.Class({
     properties: {
 
     },
-
+    // 适配ui节点
     // LIFE-CYCLE CALLBACKS:
     //设置内容成大小
     onLoad() {
-        this.node.setContentSize(cc.view.getVisibleSize())
-        // console.log(cc.view.getVisibleSize())
-        // console.log(cc.sys.getSafeAreaRect())
+        this.node.setContentSize(cc.sys.getSafeAreaRect() )
+        // if(cc.sys.platform == cc.sys.OS_IOS)
+       
     },
 
     start() {
