@@ -23,7 +23,31 @@ cc.Class({
     start() {
         cc.log("launchsene start",window.DISTRIBUTE_CHANNEL)
         var self = this
+        
+
+        var showAlert = cc.find("showAlert",this.node)
+        ua.darkButton(showAlert, function () {
+            var Alert = require("Alert")
+            Alert.show("test",["你好","LOL"], function (option) {
+                // cc.log(option)
+                if (option == 0) {
+                    cc.log("你点击了YES")
+                }
+            })
+
+        })
+
+        var showAlertII = cc.find("showAlert1",this.node)
+        ua.darkButton(showAlertII, function () {
+            var AlertII = require("AlertII")
+            AlertII = new AlertII({"Parent":self.node,"pos":cc.v2(0,0)})
+            
+        
+
+        })
+
        
+
         if (cc && cc.sys.isNative) {//native  自带的模拟器不进行热更新
             VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
                
