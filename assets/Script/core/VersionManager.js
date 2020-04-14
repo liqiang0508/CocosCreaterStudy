@@ -300,10 +300,10 @@ var VersionManager = {
 
             if(!Global.GIsArrContain(channels, window.DISTRIBUTE_CHANNEL))//app版本是否支持热更新
             {
-                
-                self.callFunWithState(7, "不支持热更新的渠道号"+DevicesInfo.getAppVersion())
+                self.callFunWithState(7, "不支持热更新的渠道号"+window.DISTRIBUTE_CHANNEL)
                 return 
             }
+            
             if(!Global.GIsArrContain(supportBinarys, DevicesInfo.getAppVersion()))//app版本是否支持热更新
             {
                 

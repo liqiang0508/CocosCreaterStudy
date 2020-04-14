@@ -12,7 +12,7 @@ var DevicesWeb = {
 
     getAppVersion:function(){
         
-        return "0"
+        return "1.0.0"
         
     }
     

@@ -1,5 +1,5 @@
 {
-    "scriptVersion": 15, 
+    "scriptVersion": 22, 
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc", 
@@ -8,12 +8,12 @@
         }, 
         {
             "filename": "src/project.jsc", 
-            "md5": "CAC916EE20933D56C1BA18714B665C4D", 
-            "size": 56676
+            "md5": "C5386B431E9F4B1602C9671118296CCD", 
+            "size": 56932
         }, 
         {
             "filename": "src/settings.jsc", 
-            "md5": "54CAE3676D4DD5CD7261F42E9CE0345A", 
+            "md5": "6B9D4120BA660E49BBE1A347BEB80547", 
             "size": 812
         }, 
         {
@@ -58,8 +58,8 @@
         }, 
         {
             "filename": "res/import/2d/2d2f792f-a40c-49bb-a189-ed176a246e49.json", 
-            "md5": "DBBBB63D66EA3EA3B453837CBCCB4445", 
-            "size": 3345
+            "md5": "27A27F6D6818554373FE6351B1F51C75", 
+            "size": 3336
         }, 
         {
             "filename": "res/import/31/31bc895a-c003-4566-a9f3-2e54ae1c17dc.json", 
@@ -83,7 +83,7 @@
         }, 
         {
             "filename": "res/import/4a/4ae6f0d6-7d36-44fa-a868-f7ae34c40ca9.json", 
-            "md5": "8A4A0B7997FCFA0D0DF3027C6A976596", 
+            "md5": "6316B0017DE61FDD2E4DC0B4A194B1BA", 
             "size": 4658
         }, 
         {
@@ -138,8 +138,8 @@
         }, 
         {
             "filename": "res/import/ac/ac78b3ac-1484-4cd5-af9c-53b5f88129fb.json", 
-            "md5": "7A700E92B863A45E2B369B03450CA024", 
-            "size": 3028
+            "md5": "337B9B45F7A7E8AE32E2C5FAF4B6552D", 
+            "size": 4660
         }, 
         {
             "filename": "res/import/c0/c0040c95-c57f-49cd-9cbc-12316b73d0d4.json", 

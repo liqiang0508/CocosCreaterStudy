@@ -1,7 +1,6 @@
 var Global = require("Global")
 var Base64Tool = require("Base64Tool")
-var Devices = require("Devices")
-
+var DevicesInfo = require("Devices")
 
 cc.Class({
     extends: cc.Component,
@@ -28,7 +27,7 @@ cc.Class({
     
 
         var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
-        Text.getComponent(cc.Label).string = "updated167"
+        Text.getComponent(cc.Label).string = "设备版本号："+DevicesInfo.getAppVersion()+"\n"+"chanle"+window.DISTRIBUTE_CHANNEL
         
 
         // cc.director.getScheduler().schedule(function(){

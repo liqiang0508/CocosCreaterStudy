@@ -51,12 +51,16 @@ var Global = {
     },
     // 数组是否包含
     GIsArrContain:function (arr, n) {
-        if (arr.indexOf(n) > -1) {
-            return true;
-        }
-        else {
-            return false;
-        }
+       for (var i in arr)
+       {
+            var value = arr[i]
+            // cc.log(value,typeof(value),n,typeof(n))
+            if (value == n || value == toString(n))
+            {
+                return true
+            }
+       }
+       return false
     },
     // 获取文件数据
     GgetDataFromFile: function (path) {
