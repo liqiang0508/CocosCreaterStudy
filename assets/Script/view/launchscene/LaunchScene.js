@@ -43,9 +43,10 @@ cc.Class({
                     cc.log("热更新返回--Erorcode", code)
                     self.Text.string = "ErrorCode====="+code
                 }
-            }, function (progress,DownedSize,TotalSize) {
+            }, function (progress,DownedSize,TotalSize) {//下载进度，下载了多少kb ，总下载多少kb  
                 cc.log("progress===", progress)
-                var a = "updateing" + progress + "% ("+DownedSize+"M/"+TotalSize+"M)"
+
+                var a = "updateing" + progress + "% ("+DownedSize+"kb/"+TotalSize+"kb)"
                 self.Text.string = a//"updateing" + progress + "%    "+DownedSize/1024+"M/"+TotalSize/1024+"M"
             })
         }
