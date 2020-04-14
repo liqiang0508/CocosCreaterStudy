@@ -45,7 +45,7 @@ cc.Class({
                 }
             }, function (progress,DownedSize,TotalSize) {
                 cc.log("progress===", progress)
-                var a = "updateing" + progress + "% ("+(DownedSize/1024/1000).toFixed(1)+"M/"+(TotalSize/1024/1000).toFixed(1)+"M)"
+                var a = "updateing" + progress + "% ("+DownedSize+"M/"+TotalSize+"M)"
                 self.Text.string = a//"updateing" + progress + "%    "+DownedSize/1024+"M/"+TotalSize/1024+"M"
             })
         }

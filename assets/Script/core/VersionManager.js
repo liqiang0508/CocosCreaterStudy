@@ -158,13 +158,13 @@ var VersionManager = {
                     if (self.DownIndex < downFileList.length - 1) {
                         self.DownIndex = self.DownIndex + 1
                         if (self.progressCall) {
-                            self.progressCall(Math.floor(self.DownIndex / downFileList.length * 100),self.downedSize,self.totalDownSize)
+                            self.progressCall(Math.floor(self.DownIndex / downFileList.length * 100),(self.downedSize/1024/1000).toFixed(1),(self.totalDownSize/1024/1000).toFixed(1))
                         }
                         downOneFile(self.DownIndex)
                     }
                     else {
                         if (self.progressCall) {
-                            self.progressCall(Math.floor(100),self.downedSize,self.totalDownSize)
+                            self.progressCall(Math.floor(100),(self.downedSize/1024/1000).toFixed(1),(self.totalDownSize/1024/1000).toFixed(1))
                         }
                         cc.log("下载完成***")
 
