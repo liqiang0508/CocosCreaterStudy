@@ -32,7 +32,10 @@ cc.Class({
                     self.bClose()
       
         })
-    }
+    },
+    onLoad(){
+        cc.log("AlertII onload")
 
+    }
     // update (dt) {},
 });
