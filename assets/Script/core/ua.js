@@ -11,7 +11,7 @@ ua.darkButton = function(node,call)
             
         }
 
-    },this)
+    })
 
     
 }
@@ -32,6 +32,3 @@ ua.loadPrefabRes = function(filepath,call)
         }
     })
 }
-
-
-// module.exports = ua;
