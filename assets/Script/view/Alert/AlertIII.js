@@ -1,6 +1,7 @@
 
+var BaseComponent = require("BaseComponent")
 cc.Class({
-    extends: cc.Component,
+    extends: BaseComponent,
 
     properties: {
         // foo: {
@@ -92,6 +93,7 @@ cc.Class({
     
     showAlert(text,btninfo,call)
     {
+        this.EnterAni()
         this.setTitle(text)
         this.setButtonInfo(btninfo)
         this.AddClickBtnCall(call)
@@ -118,15 +120,15 @@ cc.Class({
 
     },
     
-    bClose()
-    {
-        if(this.node)
-        {
-            this.node.destroy()
-            this.node.removeFromParent()
+    // bClose()
+    // {
+    //     if(this.node)
+    //     {
+    //         this.node.destroy()
+    //         this.node.removeFromParent()
            
-        }
-    },
+    //     }
+    // },
 
     start () {
 
