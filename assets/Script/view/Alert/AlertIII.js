@@ -19,6 +19,10 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+        AimType:{
+            default:2,
+            override:true
+        }
     },
 
 
