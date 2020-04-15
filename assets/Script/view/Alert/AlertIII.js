@@ -20,7 +20,7 @@ cc.Class({
         //     }
         // },
         AimType:{
-            default:2,
+            default:1,
             override:true
         }
     },

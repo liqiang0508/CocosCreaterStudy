@@ -29,6 +29,7 @@ ua.loadPrefabRes = function(filepath,call)
         {    
             var newNode = cc.instantiate(prefab);
             call(newNode)
+            cc.loader.setAutoRelease(filepath,true)
         }
     })
 }
