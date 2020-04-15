@@ -1,7 +1,7 @@
 ua = {}
 
 
-
+//点击事件
 ua.darkButton = function(node,call)
 {
     node.on(cc.Node.EventType.TOUCH_END,function(){
@@ -13,14 +13,24 @@ ua.darkButton = function(node,call)
 
     },this)
 
-    node.on(cc.Node.EventType.TOUCH_CANCEL,function(){
-        if(call)
-        {
-            call()
-            
-        }
+    
+}
 
-    },this)
+//加载预制资源
+ua.loadPrefabRes = function(filepath,call)
+{
+    cc.loader.loadRes(filepath, function (err, prefab) {
+        if(err)
+        {
+            cc.error("Load error===="+filepath)
+            call(undefined)
+        }
+        else
+        {    
+            var newNode = cc.instantiate(prefab);
+            call(newNode)
+        }
+    })
 }
 
 

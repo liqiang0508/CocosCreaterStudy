@@ -23,30 +23,28 @@ cc.Class({
     start() {
         cc.log("launchsene start",window.DISTRIBUTE_CHANNEL)
         var self = this
-        var AlertIII = require("AlertIII")
-        AlertIII = new AlertIII()
-        AlertIII.sayHelo()
 
-        var showAlert = cc.find("uipanel/showAlert",this.node)
-        ua.darkButton(showAlert, function () {
-            var Alert = require("Alert")
-            Alert.show("test",["你好","LOL"], function (option) {
-                // cc.log(option)
-                if (option == 0) {
-                    cc.log("你点击了YES")
+
+        var showAlertIII = cc.find("uipanel/showAlert3",this.node)
+        ua.darkButton(showAlertIII, function () {
+
+            ua.loadPrefabRes("prefabs/AlertLayer2",function(_node){
+                if(_node){
+                    self.node.addChild(_node)
+                    var AlertIII = _node.getComponent("AlertIII")
+                    if(AlertIII)
+                    {
+                        AlertIII.setTitle("666")
+                        AlertIII.AddClickBtnCall(function(index){
+                            cc.log("click==",index)
+                        })
+                    }
+
                 }
+               
             })
-
-        })
-
-        var showAlertII = cc.find("uipanel/showAlert1",this.node)
-        ua.darkButton(showAlertII, function () {
-
-            var AlertII = require("AlertII")
-            AlertII = new AlertII({"Parent":self.node,"pos":cc.v2(0,0)})
+         
             
-        
-
         })
 
        
@@ -78,7 +76,7 @@ cc.Class({
             })
         }
         else {//web
-            // self.goHomeScene()
+            self.goHomeScene()
 
         }
         

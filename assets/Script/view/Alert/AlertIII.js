@@ -1,9 +1,3 @@
-// Learn cc.Class:
-//  - https://docs.cocos.com/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 cc.Class({
     extends: cc.Component,
@@ -26,18 +20,64 @@ cc.Class({
         // },
     },
 
-    // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
 
+        var self = this
+        
+        var text = this.node.getChildByName("bg").getChildByName("text")
+        text.getComponent(cc.Label).string = "LOL"
+        this.text = text
+        var btnyes = this.node.getChildByName("bg").getChildByName("btn_yes")
+        var btn_no = this.node.getChildByName("bg").getChildByName("btn_no")
+        var btn_middle = this.node.getChildByName("bg").getChildByName("btn_middle")
+
+        ua.darkButton(btn_middle, function () {
+            self.BtnCall(2)
+            self.bClose()
+        })
+        ua.darkButton(btnyes, function () {
+            self.BtnCall(1)
+            self.bClose()
+        })
+        ua.darkButton(btn_no, function () {
+            self.BtnCall(0)
+            self.bClose()
+
+        })
+
+        
+    },
+
+    setTitle(str){
+        this.text.getComponent(cc.Label).string = str;
+    },
+    
+    AddClickBtnCall(call){
+        this.ClickCall = call
+    },
+
+    BtnCall(index)
+    {
+        if( this.ClickCall )
+        {
+            this.ClickCall(index)
+        }
+    },
+    
+    bClose()
+    {
+        if(this.node)
+        {
+            this.node.destroy()
+            this.node.removeFromParent()
+           
+        }
+    },
     start () {
 
     },
 
-    sayHelo()
-    {
-        cc.log("ALERTIII  sayhello")
-    },
 
     // update (dt) {},
 });
