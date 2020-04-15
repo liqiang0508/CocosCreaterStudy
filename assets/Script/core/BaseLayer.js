@@ -2,17 +2,16 @@
 cc.Class({
     name:"baseLayer",
     properties:{
-        resNodeName:"",//加载prefab的名称
-        rootNode:{
-            override:true,
+        resNodeName:{//加载prefab的名称
             default:null,
+            override:true
+        },
+        rootNode:{//根节点
+            default:null,
+            override:true
         },
     },
     
-    sayHello:function(){
-
-        cc.log("AlertII sayHello")
-    },
 
     ctor(option){
        
@@ -31,14 +30,14 @@ cc.Class({
         cc.loader.loadRes(this.resNodeName, function (err, prefab) {
             if(err)
             {
-                cc.log("Load error---")
+                cc.log("Load error===="+this.resNodeName)
             }
             else
             {    
                 var newNode = cc.instantiate(prefab);
                 self.rootNode = newNode
-                cc.log(option)
-                cc.log(option["Parent"])
+                // cc.log(option)
+                // cc.log(option["Parent"])
                 if(option["Parent"])
                 {
                     self.addToParent(option["Parent"],option["pos"])

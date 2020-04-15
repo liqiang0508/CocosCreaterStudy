@@ -24,12 +24,12 @@ Alert.show = function(txt,btnInfo,call)//
 
             Alert.content = newNode
             //
-            var text = Alert.content.getChildByName("text")
+            var text = Alert.content.getChildByName("bg").getChildByName("text")
             text.getComponent(cc.Label).string = txt
 
-            var btnyes = Alert.content.getChildByName("btn_yes")
-            var btn_no = Alert.content.getChildByName("btn_no")
-            var btn_middle =  Alert.content.getChildByName("btn_middle")
+            var btnyes = Alert.content.getChildByName("bg").getChildByName("btn_yes")
+            var btn_no = Alert.content.getChildByName("bg").getChildByName("btn_no")
+            var btn_middle =  Alert.content.getChildByName("bg").getChildByName("btn_middle")
           
             if(btnInfo.length == 1)
             {

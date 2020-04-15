@@ -25,7 +25,7 @@ cc.Class({
         var self = this
         
 
-        var showAlert = cc.find("showAlert",this.node)
+        var showAlert = cc.find("uipanel/showAlert",this.node)
         ua.darkButton(showAlert, function () {
             var Alert = require("Alert")
             Alert.show("test",["你好","LOL"], function (option) {
@@ -37,7 +37,7 @@ cc.Class({
 
         })
 
-        var showAlertII = cc.find("showAlert1",this.node)
+        var showAlertII = cc.find("uipanel/showAlert1",this.node)
         ua.darkButton(showAlertII, function () {
             var AlertII = require("AlertII")
             AlertII = new AlertII({"Parent":self.node,"pos":cc.v2(0,0)})
