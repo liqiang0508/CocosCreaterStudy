@@ -90,6 +90,13 @@ cc.Class({
 
     },
     
+    showAlert(text,btninfo,call)
+    {
+        this.setTitle(text)
+        this.setButtonInfo(btninfo)
+        this.AddClickBtnCall(call)
+    },
+
     AddClickBtnCall(call){
         this.ClickCall = call
     },
@@ -120,7 +127,7 @@ cc.Class({
            
         }
     },
-    
+
     start () {
 
     },

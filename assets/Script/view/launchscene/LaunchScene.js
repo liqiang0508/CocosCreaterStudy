@@ -28,25 +28,17 @@ cc.Class({
         var showAlertIII = cc.find("uipanel/showAlert3",this.node)
         ua.darkButton(showAlertIII, function () {
 
-            ua.loadPrefabRes("prefabs/AlertLayer2",function(_node){
-                if(_node){
+            ua.loadPrefabRes("prefabs/AlertLayer2", function (_node) {
+                if (_node) {
                     self.node.addChild(_node)
                     var AlertIII = _node.getComponent("AlertIII")
-                    if(AlertIII)
-                    {
-                        AlertIII.setTitle("666")
-                        AlertIII.AddClickBtnCall(function(index){
-                            cc.log("click==",index)
+                    if (AlertIII) {
+                        AlertIII.showAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
+                            cc.log("click==", index)
                         })
-
-                        AlertIII.setButtonInfo(["LOL","LOL1"])
                     }
-
                 }
-               
             })
-         
-            
         })
 
        
