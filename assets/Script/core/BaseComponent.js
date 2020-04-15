@@ -5,7 +5,8 @@ cc.Class({
     properties: {
         AimType:{// AimType = 1;                    动画效果:  1:弹出 2:渐变 3:从右到左滑入 4:从左到右滑入
             default:1,
-            override:true
+            override:true,
+            tooltip:"弹出动画  1:弹出 2:渐变"
         }
     },
 
