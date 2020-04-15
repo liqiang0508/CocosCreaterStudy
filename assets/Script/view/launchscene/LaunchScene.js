@@ -38,6 +38,8 @@ cc.Class({
                         AlertIII.AddClickBtnCall(function(index){
                             cc.log("click==",index)
                         })
+
+                        AlertIII.setButtonInfo(["LOL","LOL1"])
                     }
 
                 }
@@ -76,7 +78,7 @@ cc.Class({
             })
         }
         else {//web
-            self.goHomeScene()
+            // self.goHomeScene()
 
         }
         
