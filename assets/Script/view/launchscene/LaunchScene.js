@@ -39,27 +39,6 @@ cc.Class({
         var self = this
         this.count = 0
 
-        var showAlertIII = cc.find("uipanel/showAlert3",this.node)
-        ua.darkButton(showAlertIII, function () {
-
-            Global.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
-                                cc.log("click==", index)
-                            })
-            // ua.loadPrefabRes("prefabs/AlertLayer2", function (_node) {
-            //     if (_node) {
-            //         self.node.addChild(_node)
-            //         var AlertIII = _node.getComponent("AlertIII")
-            //         if (AlertIII) {
-            //             AlertIII.showAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
-            //                 cc.log("click==", index)
-            //             })
-            //         }
-            //     }
-            // })
-        })
-
-       
-
         if (cc && cc.sys.isNative) {//native  自带的模拟器不进行热更新
 
            
@@ -74,7 +53,11 @@ cc.Class({
         }
         else {//web
             VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
-            // self.goLoginScene()
+            Global.gSchduleOnce(this, function () {
+
+                self.goLoginScene()
+
+            }, 4)
 
         }
         

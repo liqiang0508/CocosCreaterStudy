@@ -13,7 +13,7 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {},
 
     start () {
         if(Global.GgameType == 1)//正式包
@@ -25,6 +25,15 @@ cc.Class({
         {
             this.VersionText.string = "D"+VersionManager.getScriptVersion()
         }
+
+        var showAlertIII = cc.find("uipanel/btn_Alert",this.node)
+        ua.darkButton(showAlertIII, function () {
+
+            Global.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
+                cc.log("click==", index)
+            })
+
+        })
         
     },
 
