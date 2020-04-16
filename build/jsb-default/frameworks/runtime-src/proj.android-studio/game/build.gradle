@@ -11,7 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        externalNativeBuild {
+      /*  externalNativeBuild {
             ndkBuild {
                 if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
                     // skip the NDK Build step if PROP_NDK_MODE is none
@@ -32,7 +32,7 @@ android {
                     abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
                 }
             }
-        }
+        }*/
     }
 
     sourceSets.main {
@@ -42,14 +42,14 @@ android {
         manifest.srcFile "AndroidManifest.xml"
     }
 
-    externalNativeBuild {
+    /*externalNativeBuild {
         ndkBuild {
             if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
                 // skip the NDK Build step if PROP_NDK_MODE is none
                 path "jni/Android.mk"
             }
         }
-    }
+    }*/
 
     signingConfigs {
 
@@ -75,11 +75,11 @@ android {
                 signingConfig signingConfigs.release
             }
 
-            externalNativeBuild {
+            /*externalNativeBuild {
                 ndkBuild {
                     arguments 'NDK_DEBUG=0'
                 }
-            }
+            }*/
         }
 
         debug {
