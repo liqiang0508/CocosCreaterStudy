@@ -28,7 +28,7 @@ cc.Class({
         // cc.log("Updating" + Global.StrTime(".", this.count),this.count)
     },
 
-    unSchduleUpdateText(){
+    unSchduleUpdateText(){//取消显示updating...
         this.Text.node.opacity = 0
         Global.gUnSchduleFun(this,this.updateText)
 
@@ -41,18 +41,21 @@ cc.Class({
 
         var showAlertIII = cc.find("uipanel/showAlert3",this.node)
         ua.darkButton(showAlertIII, function () {
-            self.unSchduleUpdateText()
-            ua.loadPrefabRes("prefabs/AlertLayer2", function (_node) {
-                if (_node) {
-                    self.node.addChild(_node)
-                    var AlertIII = _node.getComponent("AlertIII")
-                    if (AlertIII) {
-                        AlertIII.showAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
-                            cc.log("click==", index)
-                        })
-                    }
-                }
-            })
+
+            Global.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
+                                cc.log("click==", index)
+                            })
+            // ua.loadPrefabRes("prefabs/AlertLayer2", function (_node) {
+            //     if (_node) {
+            //         self.node.addChild(_node)
+            //         var AlertIII = _node.getComponent("AlertIII")
+            //         if (AlertIII) {
+            //             AlertIII.showAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
+            //                 cc.log("click==", index)
+            //             })
+            //         }
+            //     }
+            // })
         })
 
        
@@ -70,7 +73,8 @@ cc.Class({
 
         }
         else {//web
-            self.goLoginScene()
+            VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
+            // self.goLoginScene()
 
         }
         
@@ -81,7 +85,7 @@ cc.Class({
        
         
         VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
-            self.unSchduleUpdateText()
+            self.unSchduleUpdateText()//停止显示update...
             
             if (code == 0)//不用更新
             {
@@ -91,17 +95,19 @@ cc.Class({
                 
                 self.Reboot()
             }
-            else if(code ==6 || code ==7) {//不支持的热更新的版本号,渠道号
+            else if(code ==6 || code ==7) {//不支持的热更新的版本号,渠道号  ，直接进登录界面
+                self.Text.node.opacity = 255
                 self.Text.string = "ErrorCode====="+code
                 self.goLoginScene()
             }
             else {//热更新error
-                cc.log("热更新返回--Erorcode", code)
+                self.Text.node.opacity = 255
                 self.Text.string = "ErrorCode====="+code
             }
         }, function (progress,DownedSize,TotalSize) {//下载进度，下载了多少kb ，总下载多少kb  
             cc.log("progress===", progress)
 
+            self.Text.node.opacity = 255
             var a = "updateing" + progress + "% ("+DownedSize+"kb/"+TotalSize+"kb)"
             self.Text.string = a//"updateing" + progress + "%    "+DownedSize/1024+"M/"+TotalSize/1024+"M"
         })
@@ -116,11 +122,8 @@ cc.Class({
         
     },
     goLoginScene() {
-        cc.log("goLoginScene----")
+        
         var self = this
-
-        this.unSchduleUpdateText()
-
         Global.gSchduleOnce(this,function(){
 
             cc.director.loadScene("LoginScene", function () 

@@ -149,6 +149,24 @@ var Global = {
         return s
     },
     
+    ShowAlert:function(str,btninfo,call){
+
+        ua.loadPrefabRes("prefabs/AlertLayer2", function (_node) {
+            if (_node) {
+                cc.director.getScene().getChildByName('Canvas').addChild(_node)
+                var AlertIII = _node.getComponent("AlertIII")
+                if (AlertIII) {
+                    AlertIII.showAlert(str, btninfo, function (index) {
+                     if (call)
+                     {
+                         call(index)
+                     }
+                    })
+                }
+            }
+        })
+    },
+    
     Ghotupdateurl:"http://192.168.65.172/hotupversion/configrelease", // 热更新地址
     GgameType:1  // 1正式包 3debug
 
