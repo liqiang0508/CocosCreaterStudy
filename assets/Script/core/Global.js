@@ -139,7 +139,16 @@ var Global = {
         }
 
     },
-   
+
+    StrTime:function(str, num) {
+        var s = ""
+        for(var i = 0;i<num;i++)
+        {
+                s = s+str  
+        }
+        return s
+    },
+    
     Ghotupdateurl:"http://192.168.65.172/hotupversion/configrelease", // 热更新地址
     GgameType:1  // 1正式包 3debug
 
