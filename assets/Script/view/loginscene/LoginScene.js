@@ -27,8 +27,9 @@ cc.Class({
         }
 
         var showAlertIII = cc.find("uipanel/btn_Alert",this.node)
-        ua.darkButton(showAlertIII, function () {
+        ua.darkButton(showAlertIII, function (event) {
 
+            // event.currentTarget.active = false
             Global.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
                 cc.log("click==", index)
             })

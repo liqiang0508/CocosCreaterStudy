@@ -4,10 +4,10 @@ ua = {}
 //点击事件
 ua.darkButton = function(node,call)
 {
-    node.on(cc.Node.EventType.TOUCH_END,function(){
+    node.on(cc.Node.EventType.TOUCH_END,function(event){
         if(call)
         {
-            call()
+            call(event)
             
         }
 
