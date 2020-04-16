@@ -35,8 +35,15 @@ cc.Class({
             })
 
         })
-        
+
+        var loadTex = cc.find("uipanel/loadTex",this.node)
+        var url = "http://54.179.180.39:8080/CSLServer/img/welcome.png"//"http://tools.itharbors.com/christmas/res/tree.png"
+        url = "http://tools.itharbors.com/christmas/res/tree.png"
+        Global.GloadTexture(url, function (tex) {
+            if (tex) {
+                loadTex.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(tex)
+            }
+        })
     },
 
-    // update (dt) {},
 });

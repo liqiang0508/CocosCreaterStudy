@@ -33,3 +33,23 @@ ua.loadPrefabRes = function(filepath,call)
         }
     })
 }
+
+//下载pic
+ua.loadTexture = function(url,call){
+
+ 
+
+    cc.loader.load(url, function (error, texture) {
+        if (error) {
+            if (call) {
+                call(null)
+            }
+            return
+        }
+        else {
+            call(texture)
+        }
+
+    })
+    
+}

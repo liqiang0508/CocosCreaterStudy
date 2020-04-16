@@ -113,7 +113,70 @@ var Global = {
         path = path + "/"
         return path
     },
+    //获取url最后的文件名
+    GgetFileNameByUrl:function(url)
+    {
+        var arr = url.split("/")
 
+        return arr[arr.length-1]
+    },
+    //load图片  web直接load  原生先缓存在本地
+    GloadTexture:function(url,call){
+        var self = this
+        if (cc.sys.isNative) //原生先下载
+        {
+            var picPath = jsb.fileUtils.getWritablePath()+"PicTemp/"
+            this.GcreateDir(picPath)
+            var filename = this.GgetFileNameByUrl(url)
+            var localpath = picPath+filename
+            if (jsb.fileUtils.isFileExist(localpath))//存在
+            {
+                
+                ua.loadTexture(localpath,function(tex){
+
+                    if(call){
+                        call(tex)
+                    }
+                })
+            }
+            else{//不存在
+
+                self.GDownFile(url, function (data) {
+                    self.GwriteDataToFile(data, localpath)
+                    ua.loadTexture(localpath, function (tex) {
+
+                        if (call) {
+                            call(tex)
+                        }
+                    })
+                })
+
+            }
+            
+        }
+    
+        else //web 直接load
+        {
+    
+            cc.loader.load(url, function (error, texture) 
+            {
+                if (error)
+                {
+                    if (call)
+                    {
+                        call(null)
+                    }
+                    return
+                }
+                else 
+                {
+                    call(texture)
+                }
+    
+            })
+        }
+
+    },
     //下载文件
     GDownFile:function (url, call) {
         if (cc.sys.isNative) {
