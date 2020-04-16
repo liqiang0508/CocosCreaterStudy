@@ -65,8 +65,17 @@ cc.Class({
 
     goCheckUpdate(){//检查热更新
         var self = this
-       
-        
+
+    // stateCode
+    // 0:不用更新 
+    // 1:获取版本配置文件失败
+    // 2:获取MD5配置文件失败
+    // 3:下载单个文件失败
+    // 4:移动文件失败
+    // 5：读取包内配置失败
+    // 6:不支持热更新的版本号
+    // 7:不支持热更新的渠道
+    // 100 :更新成功
         VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
             self.unSchduleUpdateText()//停止显示update...
             
@@ -83,9 +92,10 @@ cc.Class({
                 self.Text.string = "ErrorCode====="+code
                 self.goLoginScene()
             }
-            else {//热更新error
+            else {//热更新error   1 2 3 4 5
                 self.Text.node.opacity = 255
                 self.Text.string = "ErrorCode====="+code
+                self.Reboot()//失败重启
             }
         }, function (progress,DownedSize,TotalSize) {//下载进度，下载了多少kb ，总下载多少kb  
             cc.log("progress===", progress)

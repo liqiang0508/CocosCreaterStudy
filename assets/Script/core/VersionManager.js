@@ -203,6 +203,10 @@ var VersionManager = {
             }
             else {
                 this.callFunWithState(4, "移动文件失败" + tempfilePath)
+
+                jsb.fileUtils.removeDirectory(GHotUpFolder)//移动失败就删掉目录在创建
+                jsb.fileUtils.createDirectory(GHotUpFolder)
+
             }
 
         }
