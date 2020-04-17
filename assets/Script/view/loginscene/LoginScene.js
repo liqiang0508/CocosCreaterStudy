@@ -49,12 +49,14 @@ cc.Class({
         })
 
         var lastTouchTime = null;
+        var self = this
         //btn_Speech
         var btn_Speech = cc.find("uipanel/btn_Speech",this.node)
         btn_Speech.on(cc.Node.EventType.TOUCH_START,function(){
             lastTouchTime = Date.now()
             cc.log("开始录音")
-            voiceNative.prepare("record.amr");
+            self.SpeechFile = Date.now()+".amr"
+            voiceNative.prepare(self.SpeechFile);
         },this)
 
         btn_Speech.on(cc.Node.EventType.TOUCH_END,function(){
@@ -76,17 +78,17 @@ cc.Class({
                     voiceNative.release();
                     // 录音时间
                     var time = Date.now() - lastTouchTime;
-                    cc.log("现在时间。。。。。  " + Date.now());
-                    cc.log("开始时间。。。。。  " + lastTouchTime);
-                    cc.log("录音时间。。。。。  " + time);
+                    console.log("time now。。。。。  " + Date.now());
+                    console.log("begin time。。。。。  " + lastTouchTime);
+                    console.log("record time。。。。。  " + time);
                     // 读取录音文件
-                    var msgStr = voiceNative.getVoiceData("record.amr");
-                    cc.log(" 发送的字符串录音文件。。。。。  " + msgStr);
+                    var msgStr = voiceNative.getVoiceData(self.SpeechFile);
+                    console.log("sound data。。。。。  " + msgStr);
 
                      //本地测试测试
                     setTimeout(function () {
                         // 间隔两秒播放录音
-                        var msgfile = "record.amr";
+                        var msgfile = self.SpeechFile;
                         voiceNative.play(msgfile);
                         // 到这里结束
                         //voiceNative.writeVoice 根据msgStr 文件  和命名 把后端发送过来的语音存放本地

@@ -194,7 +194,7 @@ var VoiceNative = cc.Class({
     getVoiceData: function (filename) {
         if (cc.sys.isNative) {
             var url = this._voiceMediaPath + filename;
-            console.log("getVoiceData:" + url);
+            console.log("VoiceNative getVoiceData:" + url);
             // 读取二进制文件 获取文件数据           
             var fileData = jsb.fileUtils.getDataFromFile(url);
             if (fileData) {
