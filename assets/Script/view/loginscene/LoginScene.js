@@ -1,6 +1,7 @@
 var VersionManager = require("VersionManager")
 var Global = require("Global")
 const voiceNative = require("VoiceNative");
+var DevicesInfo = require("Devices")
 cc.Class({
     extends: cc.Component,
 
@@ -21,12 +22,12 @@ cc.Class({
     start () {
         if(Global.GgameType == 1)//正式包
         {
-            this.VersionText.string = "R"+VersionManager.getScriptVersion()
+            this.VersionText.string = DevicesInfo.getAppVersion()+"(R"+VersionManager.getScriptVersion()+")"
         }
 
         if(Global.GgameType == 3)//debug包
         {
-            this.VersionText.string = "D"+VersionManager.getScriptVersion()
+            this.VersionText.string =DevicesInfo.getAppVersion()+"(D"+VersionManager.getScriptVersion()+")"
         }
 
         var showAlertIII = cc.find("uipanel/btn_Alert",this.node)

@@ -162,6 +162,17 @@ public class AppActivity extends Cocos2dxActivity {
         super.onStart();
     }
 
+    public static int getGameChanel()
+    {
+        int chanel = 3;
+        return chanel;
+    }
+
+    public static int getLoginChanel()
+    {
+        int loginChanelID = 3;
+        return loginChanelID;
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
     {

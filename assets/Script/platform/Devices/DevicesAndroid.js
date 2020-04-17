@@ -1,13 +1,14 @@
 
 var DevicesAndroid = {
-    className:"",
+    className:"com/casino/game/ApplicationUtil",
     getDevicesID:function(){
-        cc.log("TODO DevicesAndroid getDevicesID")
-        return "123"
+        //cc.log("TODO DevicesAndroid getDevicesID")
+        var result = jsb.reflection.callStaticMethod(this.className, "getDeviceIdentifier", "()Ljava/lang/String;");
+        return result
     },
     getAppVersion:function(){
-        cc.log("TODO DevicesAndroid getAppVersion")
-        return "1.3.3"
+        var result = jsb.reflection.callStaticMethod(this.className, "getApplicationVersion", "()Ljava/lang/String;");
+        return result
         
     }
 

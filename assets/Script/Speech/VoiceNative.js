@@ -197,12 +197,13 @@ var VoiceNative = cc.Class({
         }
         
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            jsb.reflection.callStaticMethod(AndroidClassNamePlayer, "isPlay", "()Z");
+            return jsb.reflection.callStaticMethod(AndroidClassNamePlayer, "isPlay", "()Z");
         }
         else if (cc.sys.os == cc.sys.OS_IOS) {
-            jsb.reflection.callStaticMethod(IosClassName, "isPlay:");
+            return jsb.reflection.callStaticMethod(IosClassName, "isPlay:");
         }
         else {
+            return false
         }
 
     },
