@@ -77,7 +77,8 @@ function decode(content) {
     return newData;
 }
 
-const AndroidClassName = "org/cocos2dx/javascript/VoiceRecorder";
+const AndroidClassName = "com/casino/game/VoiceRecorder";
+const AndroidClassNamePlayer = "com/casino/game/VoicePlayer";
 const IosClassName = "VoiceSDK";
 
 var VoiceNative = cc.Class({
@@ -181,7 +182,7 @@ var VoiceNative = cc.Class({
         }
         cc.audioEngine.pauseAll();
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/VoicePlayer", "play", "(Ljava/lang/String;)V", filename);
+            jsb.reflection.callStaticMethod(AndroidClassNamePlayer, "play", "(Ljava/lang/String;)V", filename);
         }
         else if (cc.sys.os == cc.sys.OS_IOS) {
             jsb.reflection.callStaticMethod(IosClassName, "play:", filename);

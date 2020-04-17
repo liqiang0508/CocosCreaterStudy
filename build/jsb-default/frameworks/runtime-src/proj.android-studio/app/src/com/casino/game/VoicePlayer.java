@@ -1,4 +1,4 @@
-package org.cocos2dx.javascript;
+package com.casino.game;
 
 
 

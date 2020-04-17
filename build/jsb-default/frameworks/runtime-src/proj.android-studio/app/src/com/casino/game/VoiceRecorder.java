@@ -1,4 +1,4 @@
-package org.cocos2dx.javascript;
+package com.casino.game;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,6 +42,13 @@ public class VoiceRecorder {
 
 	// 准备方法
 	public static void prepare(String fileNameString) {
+
+		Boolean b = PermissionManager.CheckPermission(AppActivity.context, android.Manifest.permission.RECORD_AUDIO);
+		if(!b)//没有权限
+		{
+			PermissionManager.RequestPermission(AppActivity.activity,android.Manifest.permission.RECORD_AUDIO)
+			return
+		}
 		try {
 			// 一开始应该是false的
 			isPrepared = false;

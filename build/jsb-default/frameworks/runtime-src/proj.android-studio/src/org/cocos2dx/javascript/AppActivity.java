@@ -33,9 +33,12 @@ import android.content.Intent;
 import android.content.res.Configuration;
 
 public class AppActivity extends Cocos2dxActivity {
-
+    public static Context context;
+    public static AppActivity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        activity = this
+        context = getApplication();
         super.onCreate(savedInstanceState);
         // Workaround in
         // https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
