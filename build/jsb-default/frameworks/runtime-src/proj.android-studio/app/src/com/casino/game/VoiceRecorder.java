@@ -65,7 +65,7 @@ public class VoiceRecorder {
 			// 设置输出文件
 			mRecorder.setOutputFile(file.getAbsolutePath());
 			// 设置meidaRecorder的音频源是麦克风
-			mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+			mRecorder.setAudioSource(MediaRecorder.AudioSource.VOICE_COMMUNICATION);
 			mRecorder.setAudioEncodingBitRate(4750);
 			// 设置文件音频的输出格式为amr
 			mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
