@@ -99,6 +99,17 @@
     <orderEntry type="library" name="Gradle: __local_aars__:E./github/CocosCreaterStudy/build/jsb-default/frameworks/cocos2d-x/cocos/platform/android/java/libs/com.android.vending.expansion.zipfile.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:E./github/CocosCreaterStudy/build/jsb-default/frameworks/cocos2d-x/cocos/platform/android/java/libs/okhttp-3.12.7.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:E./github/CocosCreaterStudy/build/jsb-default/frameworks/cocos2d-x/cocos/platform/android/java/libs/okio-1.15.0.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.71@jar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.collection:collection:1.0.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.0.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.0.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.1.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.71@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core-ktx:1.3.0-rc01@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core:1.3.0-rc01@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.0@aar" level="project" />
     <orderEntry type="module" module-name="libcocos2dx" />
   </component>
 </module>

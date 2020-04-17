@@ -26,18 +26,22 @@ package org.cocos2dx.javascript;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
-
+import android.util.Log;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 
+import com.casino.game.PermissionManager;
+
+import androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback;
 public class AppActivity extends Cocos2dxActivity {
     public static Context context;
     public static AppActivity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        activity = this
+        activity = this;
         context = getApplication();
         super.onCreate(savedInstanceState);
         // Workaround in
@@ -51,6 +55,19 @@ public class AppActivity extends Cocos2dxActivity {
         }
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.getInstance().init(this);
+
+       /* Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
+        Log.i("bbbbbbbbb===",b+"");
+        if(!b)//没有权限
+        {
+            if (PermissionManager.IsUserDenyPermission()==false)//表示勾选了“不再提醒”。
+            {
+            }
+            else
+            {
+                PermissionManager.RequestPermission(AppActivity.activity,new String[]{android.Manifest.permission.RECORD_AUDIO},1);
+            }
+        }*/
 
     }
 
@@ -143,5 +160,25 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onStart() {
         SDKWrapper.getInstance().onStart();
         super.onStart();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+    {
+        Log.i("AppActivity","onRequestPermissionsResult"+requestCode);
+
+        if (requestCode == 1)//record audio
+        {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)//同意了授权
+            {
+                Log.i("AppActivity","Yes  Audio");
+
+            } else
+            {
+                Log.i("AppActivity","No  Audio");
+            }
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

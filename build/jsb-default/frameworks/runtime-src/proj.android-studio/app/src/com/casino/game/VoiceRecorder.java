@@ -6,6 +6,7 @@ import java.util.UUID;
 import android.util.Log;
 import android.media.MediaRecorder;
 import android.os.Environment;
+import org.cocos2dx.javascript.AppActivity;
 
 public class VoiceRecorder {
 
@@ -43,17 +44,15 @@ public class VoiceRecorder {
 	// 准备方法
 	public static void prepare(String fileNameString) {
 
-		Boolean b = PermissionManager.CheckPermission(AppActivity.context, android.Manifest.permission.RECORD_AUDIO);
+		Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
 		if(!b)//没有权限
 		{
-			PermissionManager.RequestPermission(AppActivity.activity,android.Manifest.permission.RECORD_AUDIO)
-			return
+			PermissionManager.RequestPermission(AppActivity.activity,new String[]{android.Manifest.permission.RECORD_AUDIO},1);
+			return;
 		}
 		try {
 			// 一开始应该是false的
 			isPrepared = false;
-			//Log.i("VoiceRecorder prepare",mDirString);
-			//Log.i("VoiceRecorder prepare2", fileNameString);
 			File dir = new File(mDirString);
 			if (!dir.exists()) {
 				dir.mkdirs();
@@ -123,6 +122,13 @@ public class VoiceRecorder {
 
 	// 释放资源
 	public static void release() {
+        Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
+        if(!b)//没有权限
+        {
+            PermissionManager.RequestPermission(AppActivity.activity,new String[]{android.Manifest.permission.RECORD_AUDIO},1);
+            return;
+        }
+
 		// 严格按照api流程进行
 		if(mRecorder != null){
 			mRecorder.stop();
@@ -134,6 +140,12 @@ public class VoiceRecorder {
 	// 取消,因为prepare时产生了一个文件，所以cancel方法应该要删除这个文件，
 	// 这是与release的方法的区别
 	public static void cancel() {
+        Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
+        if(!b)//没有权限
+        {
+            PermissionManager.RequestPermission(AppActivity.activity,new String[]{android.Manifest.permission.RECORD_AUDIO},1);
+            return;
+        }
 		release();
 		if (mCurrentFilePathString != null) {
 			File file = new File(mCurrentFilePathString);

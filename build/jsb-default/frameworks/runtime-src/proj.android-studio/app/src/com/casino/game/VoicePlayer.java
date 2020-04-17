@@ -4,11 +4,13 @@ package com.casino.game;
 
 import java.io.IOException;
 
+import org.cocos2dx.javascript.AppActivity;
 import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
+import android.util.Log;
 
 public class VoicePlayer {
 
@@ -19,6 +21,13 @@ private static MediaPlayer mPlayer;
 
 	public static  void play(String filePathString) {
 		// TODO Auto-generated method stub
+		Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
+		if(!b)//没有权限
+		{
+			PermissionManager.RequestPermission(AppActivity.activity,new String[]{android.Manifest.permission.RECORD_AUDIO},1);
+			return;
+		}
+
 		if (mPlayer==null) {
 			mPlayer=new MediaPlayer();
 			//保险起见，设置报错监听
