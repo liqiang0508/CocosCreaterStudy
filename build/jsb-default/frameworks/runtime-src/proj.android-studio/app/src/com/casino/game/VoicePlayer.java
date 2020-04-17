@@ -79,7 +79,15 @@ private static MediaPlayer mPlayer;
 			isPause=true;
 		}
 	}
-	
+	//是否正在播放
+	public static  Boolean  isPlay()
+	{
+		if (mPlayer!=null)
+		{
+			return mPlayer.isPlaying();
+		}
+		return true;
+	}
 	public static void stop(){
 		if (mPlayer!=null&&mPlayer.isPlaying()) {
 			mPlayer.stop();

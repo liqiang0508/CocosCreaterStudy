@@ -191,6 +191,22 @@ var VoiceNative = cc.Class({
         }
     },
 
+    isSpeechPlaying(){
+        if (!cc.sys.isNative) {
+            return;
+        }
+        
+        if (cc.sys.os == cc.sys.OS_ANDROID) {
+            jsb.reflection.callStaticMethod(AndroidClassNamePlayer, "isPlay", "()Z");
+        }
+        else if (cc.sys.os == cc.sys.OS_IOS) {
+            jsb.reflection.callStaticMethod(IosClassName, "isPlay:");
+        }
+        else {
+        }
+
+    },
+
     // 读取用来发送;
     getVoiceData: function (filename) {
         if (cc.sys.isNative) {

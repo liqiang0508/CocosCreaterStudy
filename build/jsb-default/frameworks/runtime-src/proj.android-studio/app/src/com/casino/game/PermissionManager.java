@@ -41,9 +41,9 @@ public class PermissionManager {
         }
 
     }
-//是否玩家拒绝过权限的请求
+//是否玩家  点过不再提醒
 //#，true表示没有勾选“不再提醒”，而false则表示勾选了“不再提醒”。当取值为false时，告诉用户打开系统的设置页面手动打开权限。
-    public  static Boolean IsUserDenyPermission(Activity activity,String permission)
+    public static Boolean IsUserDenyPermission(Activity activity,String permission)
     {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
