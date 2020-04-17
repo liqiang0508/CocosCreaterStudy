@@ -94,7 +94,7 @@ var VoiceNative = cc.Class({
     },
     init: function () {
         if (cc.sys.isNative) {
-            this._voiceMediaPath = jsb.fileUtils.getWritablePath() + "/voicemsgs/";
+            this._voiceMediaPath = jsb.fileUtils.getWritablePath() + "voicemsgs/";
             this.setStorageDir(this._voiceMediaPath);
         }
     },

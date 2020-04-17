@@ -3,7 +3,7 @@ package org.cocos2dx.javascript;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
-
+import android.util.Log;
 import android.media.MediaRecorder;
 import android.os.Environment;
 
@@ -33,6 +33,7 @@ public class VoiceRecorder {
 	
 	public static void setStorageDir(String fileDir){
 		mDirString = fileDir;
+		//Log.i("VoiceRecorder","setStorageDir:"+fileDir);
 	}
 	
 	public static String getStorageDir(){
@@ -44,7 +45,8 @@ public class VoiceRecorder {
 		try {
 			// 一开始应该是false的
 			isPrepared = false;
-
+			//Log.i("VoiceRecorder prepare",mDirString);
+			//Log.i("VoiceRecorder prepare2", fileNameString);
 			File dir = new File(mDirString);
 			if (!dir.exists()) {
 				dir.mkdirs();
