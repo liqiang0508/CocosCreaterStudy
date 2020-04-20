@@ -221,7 +221,7 @@ var VoiceNative = cc.Class({
                 return content;
             }
         }
-        return "";
+        return null;
     },
 
     getDataString: function (data) {

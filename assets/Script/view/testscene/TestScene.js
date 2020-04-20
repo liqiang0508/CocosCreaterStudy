@@ -159,9 +159,9 @@ cc.Class({
                     // 读取录音文件
                     var msgStr = voiceNative.getVoiceData(self.SpeechFile);
                     console.log("sound data。。。。。  " + msgStr);
-
-                     //本地测试测试
-                    setTimeout(function () {
+                    if (msgStr) {
+                      //本地测试测试
+                      setTimeout(function () {
                         // 间隔两秒播放录音
                         var msgfile = self.SpeechFile;
                         voiceNative.play(msgfile);
@@ -169,9 +169,11 @@ cc.Class({
                         //voiceNative.writeVoice 根据msgStr 文件  和命名 把后端发送过来的语音存放本地
                         // 本地测试不需要这步
                         voiceNative.writeVoice(msgfile, msgStr);
-                       // cc.log("即将要播放的语音内容" + msgStr);
-                                         
-                    }, 2000)
+                        // cc.log("即将要播放的语音内容" + msgStr);
+
+                      }, 2000)
+                    }
+                    
                 }
             }
         },this)
