@@ -145,7 +145,16 @@ cc.Class({
                    
                 })
                
-            } else
+            }
+            else if(Date.now() - lastTouchTime > 8000) 
+            {
+                voiceNative.cancel();
+              
+                Global.ShowAlert("录音时间大于8s", ["Yes"], function (index) {
+                   
+                })
+            }
+            else
             {
                 if (lastTouchTime != null) 
                 {
