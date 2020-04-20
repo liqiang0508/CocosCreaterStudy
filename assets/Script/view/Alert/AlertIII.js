@@ -73,6 +73,14 @@ cc.Class({
             this.setButtonText(this.btn_middle,info[0])
         }
 
+        if (info.length == 0) {//显示一个按钮
+            this.btnyes.active = false
+            this.btn_no.active = false
+            this.btn_middle.active = true
+
+            this.setButtonText("Yes")
+        }
+
         if (info.length == 2) {//显示2个按钮
             this.btnyes.active = true
             this.btn_no.active = true
