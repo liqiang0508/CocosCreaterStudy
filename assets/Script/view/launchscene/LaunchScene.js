@@ -114,12 +114,17 @@ cc.Class({
         },2)
         
     },
+    goTestScene(){
+
+        cc.director.loadScene("TestScene")
+
+    },
     goLoginScene() {
         
         var self = this
         Global.gSchduleOnce(this,function(){
 
-            cc.director.loadScene("LoginScene", function () 
+            cc.director.loadScene("TestScene", function () 
             {
                 // var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
                 // Text.getComponent(cc.Label).string = "updated2"
