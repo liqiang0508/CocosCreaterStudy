@@ -98,9 +98,12 @@ cc.Class({
                 self.goLoginScene()
             }
             else {//热更新error   1 2 3 4 5
-                self.Text.node.opacity = 255
-                self.Text.string = "ErrorCode====="+code
-                self.Reboot()//失败重启
+                // self.Text.node.opacity = 255
+                // self.Text.string = "ErrorCode====="+code
+               // self.Reboot()//失败重启
+                Global.ShowAlert("ErrorCode====="+code,[],function(){
+                    self.Reboot()//失败重启
+                })
             }
         }, function (progress,DownedSize,TotalSize) {//下载进度，下载了多少kb ，总下载多少kb  
             cc.log("progress===", progress)

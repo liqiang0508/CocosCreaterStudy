@@ -249,7 +249,7 @@ var VersionManager = {
 
     callFunWithState: function (state, desc) {
         if (this.downcall) {
-            console.log(desc)
+            console.log(desc+":"+state)
             this.downcall(state)
         }
     },
