@@ -73,7 +73,7 @@ cc.Class({
         //  cc.log("data-------------",data)
         //  cc.log("data-------------2",data.encode())
          //xxtea
-         var str = "Hello World! 你好，中国🇨🇳！";
+         var str = "Hello World! 你好，中国🇨🇳-----！";
          var key = "1234567890";
          var encrypt_data = xxtea.encryptToString(str, key);
          console.log("encrypt_data=",encrypt_data);
@@ -153,8 +153,8 @@ cc.Class({
                     voiceNative.release();
                     // 录音时间
                     var time = Date.now() - lastTouchTime;
-                    console.log("time now。。。。。  " + Date.now());
-                    console.log("begin time。。。。。  " + lastTouchTime);
+                    // console.log("time now。。。。。  " + Date.now());
+                    // console.log("begin time。。。。。  " + lastTouchTime);
                     console.log("record time。。。。。  " + time);
                     // 读取录音文件
                     var msgStr = voiceNative.getVoiceData(self.SpeechFile);
@@ -183,6 +183,16 @@ cc.Class({
             voiceNative.cancel();
             cc.log("取消录音")
         },this)
+
+        //encryptToString 语音-》string 发送  接收后解密 存储
+        /*var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
+        var endata = xxtea.encryptToString(data,"1234")
+        var dedata = xxtea.decrypt(endata,"1234")
+        cc.log(dedata)
+        jsb.fileUtils.writeDataToFile(dedata,jsb.fileUtils.getWritablePath()+"packageTemp/record22.amr")
+
+        */
+
     },
 
     // update (dt) {},

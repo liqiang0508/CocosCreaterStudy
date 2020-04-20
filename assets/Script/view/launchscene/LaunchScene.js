@@ -60,6 +60,11 @@ cc.Class({
             }, 2)
 
         }
+
+        var gotest = cc.find("uipanel/gotest",this.node)
+        ua.darkButton(gotest,function(){
+            self.goTestScene()
+        })
         
     },
 
