@@ -18,11 +18,11 @@ cc.Class({
 
     },
 
-    initUI()
+    show()
     {
+        this.EnterAni()
 
     },
-
 
     bClose()
     {   

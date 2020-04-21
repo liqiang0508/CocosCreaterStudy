@@ -1,10 +1,10 @@
 window.boot = function () {
-    if (window.cc && cc.sys.isNative) { 
-        var hotUpdateSearchPaths = cc.sys.localStorage.getItem('HotUpdateSearchPaths'); 
-        if (hotUpdateSearchPaths) { 
-            jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths)); 
-        }
-    }
+    // if (window.cc && cc.sys.isNative) { 
+    //     var hotUpdateSearchPaths = cc.sys.localStorage.getItem('HotUpdateSearchPaths'); 
+    //     if (hotUpdateSearchPaths) { 
+    //         jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths)); 
+    //     }
+    // }
     
     var settings = window._CCSettings;
     window._CCSettings = undefined;
@@ -183,6 +183,12 @@ window.boot = function () {
 };
 
 if (window.jsb) {
+    if (window.cc && cc.sys.isNative) { 
+        var hotUpdateSearchPaths = cc.sys.localStorage.getItem('HotUpdateSearchPaths'); 
+        if (hotUpdateSearchPaths) { 
+            jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths)); 
+        }
+    }
     var isRuntime = (typeof loadRuntime === 'function');
     if (isRuntime) {
         require('src/settings.js');

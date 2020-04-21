@@ -20,37 +20,37 @@ cc.Class({
     },
 
     start() {
-        var sp = cc.find("New Sprite", this.node)
+        // var sp = cc.find("New Sprite", this.node)
     
         var sp2 = cc.find("content/New Sprite", this.node)
 
 
         // sp2.setPosition(80,80)
         //获取世界坐标 找到parent worldpos
-        var spWorldPos = sp.parent.convertToWorldSpaceAR(sp.getPosition());
+        // var spWorldPos = sp.parent.convertToWorldSpaceAR(sp.getPosition());
     
-        sp.on(cc.Node.EventType.TOUCH_START, function (event) {
+        sp2.on(cc.Node.EventType.TOUCH_START, function (event) {
             console.log('Touch start');
-            sp.opacity = 150
+            sp2.opacity = 150
             // sp.color = cc.Color.BLACK
           });
 
-          sp.on(cc.Node.EventType.TOUCH_END, function (event) {
+          sp2.on(cc.Node.EventType.TOUCH_END, function (event) {
             console.log('Touch end');
-            sp.opacity = 255
+            sp2.opacity = 255
             // sp.color = cc.Color.WHITE
           });
 
-          sp.on(cc.Node.EventType.TOUCH_CANCEL, function (event) {
+          sp2.on(cc.Node.EventType.TOUCH_CANCEL, function (event) {
             //console.log('Touch end');
-            sp.opacity = 255
+            sp2.opacity = 255
             // sp.color = cc.Color.WHITE
           });
 
         // 转换成node局部坐标
         var tobNode = sp2.parent
         
-        var pos2 = tobNode.convertToNodeSpaceAR(spWorldPos);
+        // var pos2 = tobNode.convertToNodeSpaceAR(spWorldPos);
 
         console.log("winSize",cc.winSize)
         console.log("getDesignResolutionSize",cc.view.getDesignResolutionSize())
@@ -213,6 +213,22 @@ cc.Class({
           
         })
         
+        //__getOSVersion
+        var btn_showpopLayer = cc.find("uipanel/btn_showpopLayer", this.node)
+        ua.darkButton(btn_showpopLayer, function () {
+            ua.loadPrefabRes("prefabs/poplayer",function(prefabNode){
+                    if(prefabNode)
+                    {
+                        cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
+                        var com = prefabNode.getComponent("poplayer")
+                        com.show()
+                    }
+                  
+                   
+                
+            })
+          
+        })
 
     },
 
