@@ -21,17 +21,14 @@ cc.Class({
 
     start() {
         var sp = cc.find("New Sprite", this.node)
-        // console.log("sp---", sp.getPosition())
-        // var bg  = cc.find("New Layout",this.node)
+    
         var sp2 = cc.find("content/New Sprite", this.node)
-        // console.log("sp2---", sp2.getPosition())
 
-        sp2.setPosition(80,80)
+
+        // sp2.setPosition(80,80)
         //获取世界坐标 找到parent worldpos
         var spWorldPos = sp.parent.convertToWorldSpaceAR(sp.getPosition());
-        // cc.log("sp1 world pos=", spWorldPos);
-      
-     
+    
         sp.on(cc.Node.EventType.TOUCH_START, function (event) {
             console.log('Touch start');
             sp.opacity = 150
@@ -54,9 +51,6 @@ cc.Class({
         var tobNode = sp2.parent
         
         var pos2 = tobNode.convertToNodeSpaceAR(spWorldPos);
-  
-        // sp2.runAction(cc.moveTo(0.5, pos2));
-        // sp2.setPosition(pos2)
 
         console.log("winSize",cc.winSize)
         console.log("getDesignResolutionSize",cc.view.getDesignResolutionSize())
@@ -112,6 +106,14 @@ cc.Class({
             })
 
         })
+
+        //btn_EventTest
+        var btn_EventTest = cc.find("uipanel/btn_EventTest",this.node)
+        ua.darkButton(btn_EventTest, function (event) {
+
+            EventManager.dispatchEvent(self.node, RefreshInfo, { "name": "Lee123" })
+        })
+
 
         //load Tex
         var loadTex = cc.find("uipanel/loadTex",this.node)
