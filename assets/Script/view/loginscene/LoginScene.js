@@ -29,6 +29,11 @@ cc.Class({
             this.VersionText.string =DevicesInfo.getAppVersion()+"(D"+VersionManager.getScriptVersion()+")"
         }
 
+        var gotest = cc.find("uipanel/gotest",this.node)
+        ua.darkButton(gotest,function(){
+            self.goTestScene()
+        })
+
     },
 
 });

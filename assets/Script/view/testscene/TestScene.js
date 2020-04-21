@@ -195,12 +195,6 @@ cc.Class({
             cc.log("取消录音")
         },this)
 
-        // this.node.on("testEvent",function(event){
-
-        //     event.stopPropagation()
-        //     cc.log("Testevent-",event.detail.name)
-        // })
-
         EventManager.on(this.node, RefreshInfo, this.EventTest)
         //encryptToString 语音-》string 发送  接收后解密 存储
         /*var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
@@ -210,6 +204,14 @@ cc.Class({
         jsb.fileUtils.writeDataToFile(dedata,jsb.fileUtils.getWritablePath()+"packageTemp/record22.amr")
 
         */
+
+        //btn_fps
+        var btn_fps = cc.find("uipanel/btn_fps", this.node)
+        ua.darkButton(btn_fps, function () {
+            cc.log("setDisplayStats-")
+            cc.debug.setDisplayStats(cc.debug.isDisplayStats())
+        })
+        
 
     },
 
