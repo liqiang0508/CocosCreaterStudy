@@ -94,11 +94,11 @@ cc.Class({
         cc.log("timeStamp=====",timeStamp,new Date().toLocaleString())
         cc.log("timeStamp=====",timeStamp,new Date().toLocaleTimeString())
         // cc.log(window.Save.get("loginid",timeStamp))
-        var id = window.Save.get("decicesID",timeStamp)
-        if (id==timeStamp)
-        {
-            window.Save.set("decicesID",timeStamp)
-        }
+        // var id = window.Save.get("decicesID",timeStamp)
+        // if (id==timeStamp)
+        // {
+        //     window.Save.set("decicesID",timeStamp)
+        // }
        
         cc.log("DevicesInfo===id",DevicesInfo.getDevicesID(),cc.sys.os)
 
@@ -186,13 +186,24 @@ cc.Class({
                 }
             }
         },this)
-
+        // cc.debug.setDisplayStats(true)
 
         btn_Speech.on(cc.Node.EventType.TOUCH_CANCEL,function(){
             voiceNative.cancel();
             cc.log("取消录音")
         },this)
 
+        // this.node.on("testEvent",function(event){
+
+        //     event.stopPropagation()
+        //     cc.log("Testevent-",event.detail.name)
+        // })
+
+        EventManager.on(this.node, RefreshInfo, function (event) {
+
+            event.stopPropagation()
+            cc.log("Testevent-", event.detail.name)
+        })
         //encryptToString 语音-》string 发送  接收后解密 存储
         /*var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
         var endata = xxtea.encryptToString(data,"1234")
