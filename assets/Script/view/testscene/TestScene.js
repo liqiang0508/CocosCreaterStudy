@@ -208,8 +208,9 @@ cc.Class({
         //btn_fps
         var btn_fps = cc.find("uipanel/btn_fps", this.node)
         ua.darkButton(btn_fps, function () {
-            cc.log("setDisplayStats-")
-            cc.debug.setDisplayStats(cc.debug.isDisplayStats())
+            console.log("setDisplayStats-",!cc.debug.isDisplayStats())
+            cc.debug.setDisplayStats(!cc.debug.isDisplayStats())
+          
         })
         
 
