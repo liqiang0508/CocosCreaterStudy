@@ -199,11 +199,7 @@ cc.Class({
         //     cc.log("Testevent-",event.detail.name)
         // })
 
-        EventManager.on(this.node, RefreshInfo, function (event) {
-
-            event.stopPropagation()
-            cc.log("Testevent-", event.detail.name)
-        })
+        EventManager.on(this.node, RefreshInfo, this.EventTest)
         //encryptToString 语音-》string 发送  接收后解密 存储
         /*var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
         var endata = xxtea.encryptToString(data,"1234")
@@ -215,5 +211,14 @@ cc.Class({
 
     },
 
+    EventTest(event) {
+
+        event.stopPropagation()
+        cc.log("Testevent-", event.detail.name)
+    },
+
+    onDestroy(){
+        EventManager.off(this.node, RefreshInfo, this.EventTest)
+    }
     // update (dt) {},
 });

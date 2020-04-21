@@ -16,6 +16,19 @@ EventManager.on = function(node,eventName,call)
     })
 
 }
+//取消事件
+EventManager.off = function(node,eventName,call)
+{
+
+    node.off(eventName,function(event){
+
+        if(call)
+        {
+            call()
+        }
+    })
+
+}
 
 //事件分发
 EventManager.dispatchEvent = function(node,eventName,data)
