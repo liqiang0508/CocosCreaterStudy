@@ -129,7 +129,7 @@ cc.Class({
         var self = this
         Global.gSchduleOnce(this,function(){
 
-            cc.director.loadScene("TestScene", function () 
+            cc.director.loadScene("LoginScene", function () 
             {
                 // var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
                 // Text.getComponent(cc.Label).string = "updated2"

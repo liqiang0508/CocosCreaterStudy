@@ -19,6 +19,7 @@ cc.Class({
     },
 
     start () {
+        var self = this
         if(Global.GgameType == 1)//正式包
         {
             this.VersionText.string = DevicesInfo.getAppVersion()+"(R"+VersionManager.getScriptVersion()+")"
@@ -35,5 +36,9 @@ cc.Class({
         })
 
     },
+    goTestScene(){
+        cc.director.loadScene("TestScene")
+
+    }
 
 });

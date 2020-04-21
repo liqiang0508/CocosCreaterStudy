@@ -32,10 +32,8 @@ import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-
 import com.casino.game.PermissionManager;
 
-import androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback;
 public class AppActivity extends Cocos2dxActivity {
     public static Context context;
     public static AppActivity activity;
@@ -56,18 +54,18 @@ public class AppActivity extends Cocos2dxActivity {
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.getInstance().init(this);
 
-       /* Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
+        Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
         Log.i("bbbbbbbbb===",b+"");
         if(!b)//没有权限
         {
-            if (PermissionManager.IsUserDenyPermission()==false)//表示勾选了“不再提醒”。
+            if (PermissionManager.IsUserDenyPermission(activity,android.Manifest.permission.RECORD_AUDIO)==false)//表示勾选了“不再提醒”。
             {
             }
             else
             {
                 PermissionManager.RequestPermission(AppActivity.activity,new String[]{android.Manifest.permission.RECORD_AUDIO},1);
             }
-        }*/
+        }
 
     }
 
