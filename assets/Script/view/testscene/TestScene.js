@@ -37,7 +37,7 @@ cc.Class({
         var pos2 = sp4.parent.convertToNodeSpaceAR(sp2worldpos);//将世界坐标转换成父节点的坐标
         // sp4.setPosition(pos2)
         this.sp4OldPos = sp4.getPosition()
-
+        sp4.IsOriginPos = true
         //btn_posconvert
         var btn_posconvert = cc.find("uipanel/btn_posconvert", this.node)
         ua.darkButton(btn_posconvert,function(){
@@ -45,11 +45,9 @@ cc.Class({
             {
                 return 
             } 
-            var pos = sp4.getPosition()
-            if(pos.equals(self.sp4OldPos)){
-               
+
+            if(sp4.IsOriginPos == true){
                 var ac = cc.moveTo(1,pos2).easing( cc.easeSineOut())
-                
                 sp4.runAction(ac)
             }
             else
@@ -57,6 +55,7 @@ cc.Class({
                 var ac = cc.moveTo(1,self.sp4OldPos).easing( cc.easeSineOut())
                 sp4.runAction(ac)
             }
+            sp4.IsOriginPos = !sp4.IsOriginPos
            
         })
     
