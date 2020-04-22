@@ -25,9 +25,11 @@ cc.Class({
         }
     },
 
-
+    onDestroy(){
+        this._super()
+    },
     onLoad () {
-
+        this._super()
         var self = this
         
         var text = this.node.getChildByName("bg").getChildByName("text")

@@ -21,11 +21,21 @@ var KeypadDispatch = cc.Class({
       
        
     },
-    remove()
+    remove()//关闭界面自动移除最上面的
     {
+       
+        this.ComArr.pop()
+        // cc.log("remove-----",this.ComArr)
+       
+        
+    },
+
+    onbackkeyup(){//按了返回键
+
         var com =  this.ComArr.pop()
         if (com)
         {
+            cc.log("onbackkeyup-----")
             if(com.onbackpress)
             {
                 com.onbackpress()
@@ -33,6 +43,7 @@ var KeypadDispatch = cc.Class({
         }
         else
         {
+            cc.log("exit-----")
             Global.ShowAlert("确定要退出?", ["yes", "no"], function (index) {
                 if(index==1){
                     cc.game.end()
@@ -40,7 +51,8 @@ var KeypadDispatch = cc.Class({
             })
 
         }
-        
+
+
     },
     addEventListener(){
         
@@ -53,11 +65,11 @@ var KeypadDispatch = cc.Class({
         switch (event.keyCode) {
             case cc.macro.KEY.a:
                 console.log('release a key');
-                this.remove()
+                this.onbackkeyup()
                 break;
             case cc.macro.KEY.back:
                 console.log('release back-key');
-                this.remove()
+                this.onbackkeyup()
                 break;
 
         }

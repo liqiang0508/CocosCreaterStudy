@@ -11,8 +11,11 @@ cc.Class({
     },
 
     // LIFE-CYCLE CALLBACKS:
-
+    onDestroy(){
+        this._super()
+    },
     onLoad () {
+        this._super()
         var self = this
         var btnclose = this.node.getChildByName("btn_close")
         ua.darkButton(btnclose,function(){

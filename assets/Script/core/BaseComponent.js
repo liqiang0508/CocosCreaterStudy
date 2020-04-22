@@ -12,7 +12,9 @@ cc.Class({
 
     
 
-    // onLoad () {},
+    onLoad () {
+        KeypadDispatch.getInstance().add(this)
+    },
 
     start () {
 
@@ -82,7 +84,7 @@ cc.Class({
         this.bClose()
     },
     EnterAni(call){//进入动画
-        KeypadDispatch.getInstance().add(this)
+        
         if (this.AimType == 1) {//弹出方式
             var mask = this.node.getChildByName("mask")
             
