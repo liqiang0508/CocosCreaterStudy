@@ -27,36 +27,58 @@ cc.Class({
             searchPaths = jsb.fileUtils.getSearchPaths();
         }
        
+        var self =this    
         console.log("test scene  strart",searchPaths)
+
+        // 坐标转换
         var sp2 = cc.find("uipanel/New Sprite", this.node)
+        var sp4 = cc.find("content/sp4", this.node)
+        var sp2worldpos = sp2.parent.convertToWorldSpaceAR(sp2.getPosition())//转换成世界坐标
+        var pos2 = sp4.parent.convertToNodeSpaceAR(sp2worldpos);//将世界坐标转换成父节点的坐标
+        // sp4.setPosition(pos2)
+        this.sp4OldPos = sp4.getPosition()
 
-
-        // sp2.setPosition(80,80)
-        //获取世界坐标 找到parent worldpos
-        // var spWorldPos = sp.parent.convertToWorldSpaceAR(sp.getPosition());
+        //btn_posconvert
+        var btn_posconvert = cc.find("uipanel/btn_posconvert", this.node)
+        ua.darkButton(btn_posconvert,function(){
+            if(sp4.getNumberOfRunningActions()>0)
+            {
+                return 
+            } 
+            var pos = sp4.getPosition()
+            if(pos.equals(self.sp4OldPos)){
+               
+                var ac = cc.moveTo(1,pos2).easing( cc.easeSineOut())
+                
+                sp4.runAction(ac)
+            }
+            else
+            {
+                var ac = cc.moveTo(1,self.sp4OldPos).easing( cc.easeSineOut())
+                sp4.runAction(ac)
+            }
+           
+        })
     
         sp2.on(cc.Node.EventType.TOUCH_START, function (event) {
-            console.log('Touch start');
+            // console.log('Touch start');
             sp2.opacity = 150
             // sp.color = cc.Color.BLACK
-          });
+        });
 
-          sp2.on(cc.Node.EventType.TOUCH_END, function (event) {
-            console.log('Touch end');
+        sp2.on(cc.Node.EventType.TOUCH_END, function (event) {
+            // console.log('Touch end');
             sp2.opacity = 255
             // sp.color = cc.Color.WHITE
-          });
+        });
 
-          sp2.on(cc.Node.EventType.TOUCH_CANCEL, function (event) {
+        sp2.on(cc.Node.EventType.TOUCH_CANCEL, function (event) {
             //console.log('Touch end');
             sp2.opacity = 255
             // sp.color = cc.Color.WHITE
-          });
+        });
 
-        // 转换成node局部坐标
-        var tobNode = sp2.parent
-        
-        // var pos2 = tobNode.convertToNodeSpaceAR(spWorldPos);
+       
 
         console.log("winSize",cc.winSize)
         console.log("getDesignResolutionSize",cc.view.getDesignResolutionSize())
@@ -66,12 +88,11 @@ cc.Class({
         console.log("getCanvasSize",cc.view.getCanvasSize())
         console.log("cc.sys.getSafeAreaRect()",cc.sys.getSafeAreaRect())
 
-        // tobNode.setContentSize(cc.size(cc.sys.getSafeAreaRect().width,cc.sys.getSafeAreaRect().height))
+      
 
          //Package
          var data = Package.biuldReq("Hello",{a:1,c:2})
-        //  cc.log("data-------------",data)
-        //  cc.log("data-------------2",data.encode())
+
          //xxtea
          var str = "Hello World! 你好，中国🇨🇳-----！";
          var key = "1234567890";
@@ -116,7 +137,6 @@ cc.Class({
         //btn_EventTest
         var btn_EventTest = cc.find("uipanel/btn_EventTest",this.node)
         ua.darkButton(btn_EventTest, function (event) {
-
             EventManager.dispatchEvent(self.node, RefreshInfo, { "name": "Lee123" })
         })
 
@@ -194,7 +214,7 @@ cc.Class({
                 }
             }
         },this)
-        // cc.debug.setDisplayStats(true)
+
 
         btn_Speech.on(cc.Node.EventType.TOUCH_CANCEL,function(){
             voiceNative.cancel();
@@ -219,21 +239,19 @@ cc.Class({
           
         })
         
-        //__getOSVersion
+        //btn_showpopLayer
         var btn_showpopLayer = cc.find("uipanel/btn_showpopLayer", this.node)
         ua.darkButton(btn_showpopLayer, function () {
-            ua.loadPrefabRes("prefabs/poplayer",function(prefabNode){
-                    if(prefabNode)
-                    {
-                        cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
-                        var com = prefabNode.getComponent("poplayer")
-                        if(com)
-                        {
-                            com.show()
-                        }  
-                    } 
+            ua.loadPrefabRes("prefabs/poplayer", function (prefabNode) {
+                if (prefabNode) {
+                    cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
+                    var com = prefabNode.getComponent("poplayer")
+                    if (com) {
+                        com.show()
+                    }
+                }
             })
-          
+
         })
 
     },
@@ -241,7 +259,7 @@ cc.Class({
     EventTest(event) {
 
         event.stopPropagation()
-        cc.log("Testevent-", event.detail.name)
+        Global.ShowAlert("事件传来的参数"+JSON.stringify(event.detail),[])
     },
 
     onDestroy(){
