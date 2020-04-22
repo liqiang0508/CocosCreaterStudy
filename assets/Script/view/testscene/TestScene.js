@@ -5,7 +5,7 @@ var Package = require("Package")
 var DevicesInfo = require("Devices")
 var Global = require("Global")
 const voiceNative = require("VoiceNative");
-
+// var KeypadDispatch = require("KeypadDispatch")
 cc.Class({
     extends: cc.Component,
 
@@ -17,6 +17,8 @@ cc.Class({
 
     onLoad () {
       voiceNative.init();
+    //   KeypadDispatch.getInstance()
+      
     },
 
     start() {

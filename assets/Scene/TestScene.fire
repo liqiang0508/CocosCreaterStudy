@@ -3537,16 +3537,6 @@
     "_id": "3ft+ibpoFC/79HORYwx8WM"
   },
   {
-    "__type__": "43e41jtsGxORJ0f6gUlDaqj",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_id": "cafHojcLZBy4ldpAV/Jz7g"
-  },
-  {
     "__type__": "3d5f7WCRqhE5bZ5is2EOwx6",
     "_name": "",
     "_objFlags": 0,
@@ -3582,5 +3572,15 @@
     "_originalWidth": 0,
     "_originalHeight": 0,
     "_id": "c7F0Cwqv9COZn55B5RTMY/"
+  },
+  {
+    "__type__": "43e41jtsGxORJ0f6gUlDaqj",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_id": "e041/n9opBspf1UYUSMA2k"
   }
 ]

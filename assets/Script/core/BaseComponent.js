@@ -1,4 +1,4 @@
-
+var KeypadDispatch = require("KeypadDispatch")
 cc.Class({
     extends: cc.Component,
 
@@ -17,9 +17,12 @@ cc.Class({
     start () {
 
     },
-
+    onDestroy(){
+        KeypadDispatch.getInstance().remove()
+    },
     show()
     {
+       
         this.EnterAni()
 
     },
@@ -74,9 +77,12 @@ cc.Class({
         }
         
     },
+    onbackpress(){
 
+        this.bClose()
+    },
     EnterAni(call){//进入动画
-
+        KeypadDispatch.getInstance().add(this)
         if (this.AimType == 1) {//弹出方式
             var mask = this.node.getChildByName("mask")
             

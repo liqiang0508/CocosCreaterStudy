@@ -8,7 +8,7 @@
   ],
 
 
-  "scriptVersion": 37,
+  "scriptVersion": 38,
   "baseUrl": "http://192.168.65.172/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
 
