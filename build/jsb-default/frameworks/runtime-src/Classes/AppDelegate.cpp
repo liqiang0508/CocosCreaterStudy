@@ -51,8 +51,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     FileUtils::getInstance()->createDirectory(tDir + "packageTemp/");
     FileUtils::getInstance()->createDirectory(tDir + "config/");
 
+
     FileUtils::getInstance()->addSearchPath(tDir + "package/src/",true);
     FileUtils::getInstance()->addSearchPath(tDir + "package/res/",true);
+    FileUtils::getInstance()->addSearchPath(tDir + "package/",true);
 
 
     se::ScriptEngine* se = se::ScriptEngine::getInstance();

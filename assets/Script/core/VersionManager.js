@@ -226,13 +226,13 @@ var VersionManager = {
         
 
 
-        var searchPaths = jsb.fileUtils.getSearchPaths();
-        var newPaths = new Array(GHotUpFolder)
-        // searchPaths.unshift(GHotUpFolder)
-        Array.prototype.unshift.apply(searchPaths, newPaths)
-       
-        cc.sys.localStorage.setItem('HotUpdateSearchPaths', JSON.stringify(searchPaths));
-        jsb.fileUtils.setSearchPaths(searchPaths);
+        // var searchPaths = jsb.fileUtils.getSearchPaths();
+        // var newPaths = new Array(GHotUpFolder)
+        // // searchPaths.unshift(GHotUpFolder)
+        // Array.prototype.unshift.apply(searchPaths, newPaths)
+        // console.log("versionmanager===",searchPaths)
+        // cc.sys.localStorage.setItem('HotUpdateSearchPaths', JSON.stringify(searchPaths));
+        // jsb.fileUtils.setSearchPaths(searchPaths);
         this.callFunWithState(100, "更新成功")
         // this.ReStartGame()
         

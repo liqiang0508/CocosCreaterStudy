@@ -168,7 +168,7 @@ moveFile("Script_"+str(scriptVersion)+".zip","../Script_"+str(scriptVersion)+".z
 os.chdir("../../HotupDateTools")
 
 BuildRes()#上面生成最新的配置 所以还要编译一次
-copyFile("main.js","../build/jsb-default/main.js") #复制一份main 里面加了热更新的路径
+# copyFile("main.js","../build/jsb-default/main.js") #复制一份main 里面加了热更新的路径
 
 
 # 先把golbal里面的GgameType 修改回去

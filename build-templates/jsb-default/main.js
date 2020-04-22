@@ -1,10 +1,11 @@
 window.boot = function () {
-    // if (window.cc && cc.sys.isNative) { 
-    //     var hotUpdateSearchPaths = cc.sys.localStorage.getItem('HotUpdateSearchPaths'); 
-    //     if (hotUpdateSearchPaths) { 
-    //         jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths)); 
-    //     }
-    // }
+    if (window.cc && cc.sys.isNative) { 
+            var searchPaths = jsb.fileUtils.getSearchPaths();
+            var newPaths = new Array(jsb.fileUtils.getWritablePath() + "package/",jsb.fileUtils.getWritablePath() + "package/src",jsb.fileUtils.getWritablePath() + "package/res")
+            Array.prototype.unshift.apply(searchPaths, newPaths)
+            jsb.fileUtils.setSearchPaths(searchPaths)
+      
+    }
     
     var settings = window._CCSettings;
     window._CCSettings = undefined;
@@ -183,12 +184,6 @@ window.boot = function () {
 };
 
 if (window.jsb) {
-    if (window.cc && cc.sys.isNative) { 
-        var hotUpdateSearchPaths = cc.sys.localStorage.getItem('HotUpdateSearchPaths'); 
-        if (hotUpdateSearchPaths) { 
-            jsb.fileUtils.setSearchPaths(JSON.parse(hotUpdateSearchPaths)); 
-        }
-    }
     var isRuntime = (typeof loadRuntime === 'function');
     if (isRuntime) {
         require('src/settings.js');

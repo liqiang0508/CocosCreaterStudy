@@ -21,8 +21,14 @@ cc.Class({
 
     start() {
         // var sp = cc.find("New Sprite", this.node)
-    
-        var sp2 = cc.find("content/New Sprite", this.node)
+        var searchPaths  = "searchPaths--"
+        if(cc && cc.sys.isNative)
+        {
+            searchPaths = jsb.fileUtils.getSearchPaths();
+        }
+       
+        console.log("test scene  strart",searchPaths)
+        var sp2 = cc.find("uipanel/New Sprite", this.node)
 
 
         // sp2.setPosition(80,80)
