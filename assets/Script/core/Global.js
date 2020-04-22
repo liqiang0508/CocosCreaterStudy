@@ -86,7 +86,11 @@ var Global = {
     //创建目录
     GcreateDir:function (path) {
         if (cc.sys.isNative) {
-            jsb.fileUtils.createDirectory(path);
+            if(!jsb.fileUtils.isDirectoryExist(path))
+            {
+                jsb.fileUtils.createDirectory(path);
+            }
+           
         }
     },
 //    url转成目录

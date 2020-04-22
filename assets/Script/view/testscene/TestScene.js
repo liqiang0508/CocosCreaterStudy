@@ -227,11 +227,11 @@ cc.Class({
                     {
                         cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
                         var com = prefabNode.getComponent("poplayer")
-                        com.show()
-                    }
-                  
-                   
-                
+                        if(com)
+                        {
+                            com.show()
+                        }  
+                    } 
             })
           
         })
