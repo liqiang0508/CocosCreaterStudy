@@ -203,8 +203,8 @@ var VersionManager = {
             }
             else {
 
-                jsb.fileUtils.removeDirectory(GHotUpFolder)//移动失败就删掉目录在创建
-                jsb.fileUtils.createDirectory(GHotUpFolder)
+                // jsb.fileUtils.removeDirectory(GHotUpFolder)//移动失败就删掉目录在创建
+                // jsb.fileUtils.createDirectory(GHotUpFolder)
                 
                 this.callFunWithState(4, "移动文件失败" + tempfilePath)
 
@@ -248,6 +248,11 @@ var VersionManager = {
     },
 
     callFunWithState: function (state, desc) {
+        if(state!=0||state!=100)//没更新成功 就把热更新目录删掉 再创建
+        {
+            jsb.fileUtils.removeDirectory(GHotUpFolder)//移动失败就删掉目录在创建
+            jsb.fileUtils.createDirectory(GHotUpFolder)
+        }
         if (this.downcall) {
             console.log(desc+":"+state)
             this.downcall(state)
