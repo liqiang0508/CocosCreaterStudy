@@ -64,8 +64,8 @@ var KeypadDispatch = cc.Class({
         // console.log('onKeyUp--', event.keyCode);
         switch (event.keyCode) {
             case cc.macro.KEY.a:
-                console.log('release a key');
-                this.onbackkeyup()
+                // console.log('release a key');
+                //  this.onbackkeyup()//test
                 break;
             case cc.macro.KEY.back:
                 console.log('release back-key');

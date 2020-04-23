@@ -1,6 +1,7 @@
 var VersionManager = require("VersionManager")
 var Global = require("Global")
 var DevicesInfo = require("Devices")
+var KeypadDispatch = require("KeypadDispatch")
 cc.Class({
     extends: cc.Component,
 
@@ -15,7 +16,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        
+        KeypadDispatch.getInstance()
     },
 
     start () {
