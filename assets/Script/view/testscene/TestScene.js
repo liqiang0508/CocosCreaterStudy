@@ -255,6 +255,23 @@ cc.Class({
 
         })
 
+        //材质
+        var sp3 = cc.find("content/sp3", this.node)
+        var com = sp3.getComponent(cc.Sprite)
+        // let variant1 = cc.MaterialVariant.createWithBuiltin("2d-gray-sprite");
+        // com.setMaterial(0, variant1);
+
+        cc.loader.loadRes("materials/Dark", cc.Material, function (err, res) {
+            if(err)
+            {
+                cc.log("load err===")
+                return 
+            }
+            // cc.log("load111",res)
+            var material = cc.MaterialVariant.create(res)
+            com.setMaterial(0, material)
+        })
+          
     },
 
     EventTest(event) {

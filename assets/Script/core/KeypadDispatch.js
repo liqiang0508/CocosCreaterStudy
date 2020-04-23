@@ -44,7 +44,7 @@ var KeypadDispatch = cc.Class({
         else
         {
             cc.log("exit-----")
-            Global.ShowAlert("确定要退出?", ["yes", "no"], function (index) {
+            Global.ShowAlert("exit game?", ["yes", "no"], function (index) {
                 if(index==1){
                     cc.game.end()
                 }
