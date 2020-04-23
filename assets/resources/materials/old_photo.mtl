@@ -1,16 +1,17 @@
 {
   "__type__": "cc.Material",
-  "_name": "New Material",
+  "_name": "oldphoto",
   "_objFlags": 0,
   "_native": "",
   "_effectAsset": {
-    "__uuid__": "f8981c9c-f125-479d-85ad-4dbb5a0a7687"
+    "__uuid__": "a1a5301a-2f7e-4b39-9b52-bee80e404e84"
   },
   "_techniqueIndex": 0,
   "_techniqueData": {
     "0": {
       "defines": {
-        "USE_TEXTURE": true
+        "USE_TEXTURE": true,
+        "USE_OLD_PHOTO": true
       }
     }
   }

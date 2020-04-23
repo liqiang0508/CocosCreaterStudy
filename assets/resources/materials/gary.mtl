@@ -1,0 +1,26 @@
+{
+  "__type__": "cc.Material",
+  "_name": "Dark",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "f8981c9c-f125-479d-85ad-4dbb5a0a7687"
+  },
+  "_techniqueIndex": 0,
+  "_techniqueData": {
+    "0": {
+      "defines": {
+        "USE_TEXTURE": true,
+        "USE_ALPHA_TEST": false,
+        "ENABLE_ROUNDCORNER": true,
+        "USE_OLD_PHOTO": true
+      },
+      "props": {
+        "edge": 0.3,
+        "xRadius": 2222,
+        "yRadius": 20,
+        "oldLevel": 0
+      }
+    }
+  }
+}

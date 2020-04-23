@@ -255,22 +255,44 @@ cc.Class({
 
         })
 
-        //材质
+        //btn_GrayRenderCom  置灰 复原 针对于renderComponent
         var sp3 = cc.find("content/sp3", this.node)
-        var com = sp3.getComponent(cc.Sprite)
+        sp3.isGray = false
+        var btn_GrayRenderCom =  cc.find("uipanel/btn_GrayRenderCom", this.node) 
+        ua.darkButton(btn_GrayRenderCom,function(){
+           
+            var sp_com = sp3.getComponent(cc.Sprite)
+            if(sp3.isGray == false)
+            {
+                let variant1 = cc.MaterialVariant.createWithBuiltin("2d-gray-sprite");
+                sp_com.setMaterial(0, variant1);
+
+            }
+            else
+            {
+                let variant1 = cc.MaterialVariant.createWithBuiltin("2d-sprite");
+                sp_com.setMaterial(0, variant1);
+            }
+            sp3.isGray = !sp3.isGray
+
+        })
+
+        //材质
+        // var sp3 = cc.find("content/sp3", this.node)
+        // var com = sp3.getComponent(cc.Sprite)
         // let variant1 = cc.MaterialVariant.createWithBuiltin("2d-gray-sprite");
         // com.setMaterial(0, variant1);
 
-        cc.loader.loadRes("materials/Dark", cc.Material, function (err, res) {
-            if(err)
-            {
-                cc.log("load err===")
-                return 
-            }
-            // cc.log("load111",res)
-            var material = cc.MaterialVariant.create(res)
-            com.setMaterial(0, material)
-        })
+        // cc.loader.loadRes("materials/Dark", cc.Material, function (err, res) {
+        //     if(err)
+        //     {
+        //         cc.log("load err===")
+        //         return 
+        //     }
+        //     // cc.log("load111",res)
+        //     var material = cc.MaterialVariant.create(res)
+        //     com.setMaterial(0, material)
+        // })
           
     },
 

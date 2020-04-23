@@ -1,4 +1,9 @@
 // Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.  
+// 老照片特效
+// 原理：
+// r = 0.393 * r + 0.769 * g + 0.189 * b; 
+// g = 0.349 * r + 0.686 * g + 0.168 * b; 
+// b = 0.272 * r + 0.534 * g + 0.131 * b;
 
 CCEffect %{
   techniques:
@@ -13,6 +18,14 @@ CCEffect %{
       properties:
         texture: { value: white }
         alphaThreshold: { value: 0.5 }
+        # 老化程度
+        oldLevel: {
+          value: 1.0,
+          editor: {
+            tooltip: "老化程度",
+            range: [0.0, 1.0]
+          }
+        }
 }%
 
 
@@ -63,8 +76,29 @@ CCProgram fs %{
   uniform sampler2D texture;
   #endif
 
+  #if USE_OLD_PHOTO
+  uniform OldPhoto {
+    // 老化程度
+    float oldLevel;
+  };
+
+  /**
+   * 获取老化颜色
+   * 
+   * @param color 原始颜色 
+   *
+   * @return 老化后的颜色
+   */
+  vec4 getOldPhotoColor(vec4 color) {
+    float r = 0.393 * color.r + 0.769 * color.g + 0.189 * color.b; 
+    float g = 0.349 * color.r + 0.686 * color.g + 0.168 * color.b; 
+    float b = 0.272 * color.r + 0.534 * color.g + 0.131 * color.b;
+    return vec4(r, g, b, color.a);
+  }
+  #endif
+
   void main () {
-    vec4 o = vec4(0.299, 0.587, 0.114, 1);
+    vec4 o = vec4(1, 1, 1, 1);
 
     #if USE_TEXTURE
     o *= texture(texture, v_uv0);
@@ -76,10 +110,14 @@ CCProgram fs %{
     o *= v_color;
 
     ALPHA_TEST(o);
-    float gray = dot(o.rgb, vec3(0.299, 0.587, 0.114));
-    gl_FragColor.xyz = vec3(gray);
-                // a为透明度
-    gl_FragColor.a = o.a;
-    // gl_FragColor = o;
+
+    #if USE_OLD_PHOTO
+    vec4 srcColor = o;
+    vec4 oldColor = getOldPhotoColor(srcColor);
+
+    // o = srcColor + (oldColor - srcColor) * oldLevel;
+    o = mix(srcColor, oldColor, oldLevel);
+    #endif
+    gl_FragColor = o;
   }
 }%
