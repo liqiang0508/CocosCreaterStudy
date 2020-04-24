@@ -278,34 +278,11 @@ cc.Class({
         })
 
         //圆形裁剪
-        // var sp1 = cc.find("content/sp1", this.node)
-        // var sp_Com = sp1.getComponent(cc.Sprite)
-        // var ma = sp_Com.getMaterial(0)
-        // cc.log("ma==",ma)
-        // ma.setProperty("edge",0.5)
-
-        // var sp2 = cc.find("content/sp2", this.node)
-        // var sp2_Com = sp2.getComponent(cc.Sprite)
-        // var ma2 = sp2_Com.getMaterial(0)
-        // cc.log("ma2==",ma2)
-
-        //材质
-        // var sp3 = cc.find("content/sp3", this.node)
-        // var com = sp3.getComponent(cc.Sprite)
-        // let variant1 = cc.MaterialVariant.createWithBuiltin("2d-gray-sprite");
-        // com.setMaterial(0, variant1);
-
-        // cc.loader.loadRes("materials/Dark", cc.Material, function (err, res) {
-        //     if(err)
-        //     {
-        //         cc.log("load err===")
-        //         return 
-        //     }
-        //     // cc.log("load111",res)
-        //     var material = cc.MaterialVariant.create(res)
-        //     com.setMaterial(0, material)
-        // })
-          
+        cc.dynamicAtlasManager.enabled = false;//圆角shader必须开启不然显示有问题
+        var sp1 = cc.find("content/sp1", this.node)
+        var sp_Com = sp1.getComponent(cc.RenderComponent)
+        var ma = sp_Com.getMaterial(0)
+        // ma.setProperty("radius",0.5) 
     },
 
     EventTest(event) {

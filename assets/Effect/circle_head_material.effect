@@ -107,11 +107,11 @@ CCProgram fs %{
     #endif
     o *= v_color;
 
-    // 判断圆形周边的一圈像素, 根据羽化参数大小, 对周边一圈颜色的透明度进行平滑降低, 即>0.5r 为透明a=0, < 0.4r为不透明a=1,  否则透明度a= 线性0~1过渡.
-    // dis < 0.4 则为1, >0.5则为0, 否则就为0~1之间插值
-    // if( feather > 0.0 ){
-    //   o.a = smoothstep(radius, radius - feather, dis);
-    // }
+    //判断圆形周边的一圈像素, 根据羽化参数大小, 对周边一圈颜色的透明度进行平滑降低, 即>0.5r 为透明a=0, < 0.4r为不透明a=1,  否则透明度a= 线性0~1过渡.
+    //dis < 0.4 则为1, >0.5则为0, 否则就为0~1之间插值
+    if( feather > 0.0 ){
+      o.a = smoothstep(radius, radius - feather, dis);
+    }
     
     gl_FragColor = o;
   }

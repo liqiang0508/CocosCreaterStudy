@@ -788,7 +788,7 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": false,
+    "_isTrimmedMode": true,
     "_atlas": null,
     "_id": "8e4w0EaLRJx7niP32rEV4R"
   },
@@ -1118,7 +1118,7 @@
     ],
     "_spriteFrame": null,
     "_type": 1,
-    "_segments": 120,
+    "_segments": 360,
     "_N$alphaThreshold": 0,
     "_N$inverted": false,
     "_id": "98PKJ+ecpOKr7m3dPigzI3"
