@@ -255,7 +255,7 @@ cc.Class({
 
         })
 
-        //btn_GrayRenderCom  置灰 复原 针对于renderComponent
+        //btn_GrayRenderCom  置灰/复原 针对于renderComponent
         var sp3 = cc.find("content/sp3", this.node)
         sp3.isGray = false
         var btn_GrayRenderCom =  cc.find("uipanel/btn_GrayRenderCom", this.node) 
@@ -278,7 +278,8 @@ cc.Class({
         })
 
         //圆形裁剪
-        cc.dynamicAtlasManager.enabled = false;//圆角shader必须开启不然显示有问题
+        // cc.macro.CLEANUP_IMAGE_CACHE = false;
+        cc.dynamicAtlasManager.enabled = false;//圆角shader必须禁用动态合图不然显示有问题   会导致drawcall 上升
         var sp1 = cc.find("content/sp1", this.node)
         var sp_Com = sp1.getComponent(cc.RenderComponent)
         var ma = sp_Com.getMaterial(0)
