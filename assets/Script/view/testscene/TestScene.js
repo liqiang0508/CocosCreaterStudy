@@ -277,6 +277,18 @@ cc.Class({
 
         })
 
+        //圆形裁剪
+        // var sp1 = cc.find("content/sp1", this.node)
+        // var sp_Com = sp1.getComponent(cc.Sprite)
+        // var ma = sp_Com.getMaterial(0)
+        // cc.log("ma==",ma)
+        // ma.setProperty("edge",0.5)
+
+        // var sp2 = cc.find("content/sp2", this.node)
+        // var sp2_Com = sp2.getComponent(cc.Sprite)
+        // var ma2 = sp2_Com.getMaterial(0)
+        // cc.log("ma2==",ma2)
+
         //材质
         // var sp3 = cc.find("content/sp3", this.node)
         // var com = sp3.getComponent(cc.Sprite)
