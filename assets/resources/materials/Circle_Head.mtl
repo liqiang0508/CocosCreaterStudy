@@ -16,7 +16,7 @@
       "props": {
         "feather": 0.5,
         "radius": 0.5,
-        "alphaThreshold": 0.3,
+        "alphaThreshold": 0,
         "edge": 0.5
       }
     }
