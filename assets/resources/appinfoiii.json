@@ -1,5 +1,5 @@
 {
-    "scriptVersion": 40, 
+    "scriptVersion": 41, 
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc", 
@@ -8,13 +8,13 @@
         }, 
         {
             "filename": "src/project.jsc", 
-            "md5": "6E41B0E49E1E8CA1C2CB665A01CBFB87", 
-            "size": 60752
+            "md5": "49CD934979FDB72B5A8DBEA5A70ADC00", 
+            "size": 60780
         }, 
         {
             "filename": "src/settings.jsc", 
-            "md5": "022AD1F300D4C133EDDAA9A400B3DA88", 
-            "size": 984
+            "md5": "A0F0E7BCF2016C2294294C4755E85B44", 
+            "size": 1012
         }, 
         {
             "filename": "src/assets/Script/config/Chanel.jsc", 
@@ -103,7 +103,7 @@
         }, 
         {
             "filename": "res/import/4a/4ae6f0d6-7d36-44fa-a868-f7ae34c40ca9.json", 
-            "md5": "503865F2E732A02BD8AF5BB3635DE025", 
+            "md5": "113E72BFAAA01417C01DA49CE848325C", 
             "size": 6845
         }, 
         {
@@ -115,6 +115,11 @@
             "filename": "res/import/58/58fe8245-4714-4141-b689-a4957af08390.json", 
             "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
             "size": 69
+        }, 
+        {
+            "filename": "res/import/5b/5b9e3d33-5783-4c36-b3fa-841c2c316682.json", 
+            "md5": "CEDCAED4C3DC3E17F1661C57C8BA6C87", 
+            "size": 248
         }, 
         {
             "filename": "res/import/6a/6aa0aa6a-ebee-4155-a088-a687a6aadec4.json", 
@@ -163,8 +168,8 @@
         }, 
         {
             "filename": "res/import/a1/a1a5301a-2f7e-4b39-9b52-bee80e404e84.json", 
-            "md5": "9CD41C114FC5D5620AC85A935E6BAEA5", 
-            "size": 4944
+            "md5": "A455BA761B6DA77E54F9752196A9DEE3", 
+            "size": 4971
         }, 
         {
             "filename": "res/import/a2/a23235d1-15db-4b95-8439-a2e005bfff91.json", 
@@ -178,8 +183,8 @@
         }, 
         {
             "filename": "res/import/ac/ac78b3ac-1484-4cd5-af9c-53b5f88129fb.json", 
-            "md5": "E6D2DE7A3DE5DD317184A7D74C87BFE9", 
-            "size": 21644
+            "md5": "E4E404E93C0C274647E6313C368051EA", 
+            "size": 21638
         }, 
         {
             "filename": "res/import/b4/b43ff3c2-02bb-4874-81f7-f2dea6970f18.json", 
@@ -227,9 +232,14 @@
             "size": 187
         }, 
         {
+            "filename": "res/import/f0/f00ec1ee-13d1-4643-be55-17fa9d392084.json", 
+            "md5": "2754FD6B4702A931FD06DBC9BBD50FA3", 
+            "size": 4727
+        }, 
+        {
             "filename": "res/import/f8/f8981c9c-f125-479d-85ad-4dbb5a0a7687.json", 
-            "md5": "7DC4EDA5BA0E61003256A469B54334DB", 
-            "size": 3913
+            "md5": "62640889464728861FB9DA3EC0E55A0B", 
+            "size": 2608
         }, 
         {
             "filename": "res/import/ff/ff1a466e-e492-4dcf-b529-5a3875c19ec3.json", 

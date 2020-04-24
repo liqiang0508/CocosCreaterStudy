@@ -1,6 +1,6 @@
 {
   "__type__": "cc.Material",
-  "_name": "Circle_Head",
+  "_name": "circle_head",
   "_objFlags": 0,
   "_native": "",
   "_effectAsset": {
@@ -14,8 +14,10 @@
         "USE_ALPHA_TEST": false
       },
       "props": {
-        "feather": 0.02,
-        "radius": 0.5
+        "feather": 0.5,
+        "radius": 0.5,
+        "alphaThreshold": 0.3,
+        "edge": 0.5
       }
     }
   }
