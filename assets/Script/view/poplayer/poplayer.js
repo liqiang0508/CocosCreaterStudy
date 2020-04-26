@@ -22,6 +22,10 @@ cc.Class({
             self.bClose()
         })
     },
+    onbackpress(){
+        this._super()
+
+    },
 
     start () {
 

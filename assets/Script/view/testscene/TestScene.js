@@ -17,6 +17,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+      this._super()
       voiceNative.init();
     //   KeypadDispatch.getInstance()
       
