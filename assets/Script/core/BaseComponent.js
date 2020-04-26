@@ -11,7 +11,29 @@ cc.Class({
     },
 
     
+    showWiat(b){//显示菊花转之类的
+        var self = this
+        if(b)
+        {
+            ua.loadPrefabRes("prefabs/rotateLoading",function(node)
+            {
+                if (node)
+                {
+                   cc.director.getScene().getChildByName("Canvas").addChild(node)
+                   node.setName("rotateLoading")
+                }
+            })
+        }
+        else
+        {
+            var node = cc.director.getScene().getChildByName("Canvas").getChildByName("rotateLoading")
+            if (node)
+            {
+                node.removeFromParent()
+            }
+        }
 
+    },
     onLoad () {
         KeypadDispatch.getInstance().add(this)
     },

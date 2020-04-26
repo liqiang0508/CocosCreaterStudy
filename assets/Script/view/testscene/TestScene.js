@@ -5,9 +5,10 @@ var Package = require("Package")
 var DevicesInfo = require("Devices")
 var Global = require("Global")
 const voiceNative = require("VoiceNative");
+var BaseComponent = require("BaseComponent")
 // var KeypadDispatch = require("KeypadDispatch")
 cc.Class({
-    extends: cc.Component,
+    extends: BaseComponent,
 
     properties: {
 
@@ -132,9 +133,18 @@ cc.Class({
             Global.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
                 cc.log("click==", index)
             })
+            
 
         })
 
+        //btn_showWaiting
+        var btn_showWaiting = cc.find("uipanel/btn_showWaiting",this.node)
+        ua.darkButton(btn_showWaiting, function (event) {
+            self.showWiat(true)
+            setTimeout(function(){
+                self.showWiat(false)
+            },3000)
+        })
         //btn_EventTest
         var btn_EventTest = cc.find("uipanel/btn_EventTest",this.node)
         ua.darkButton(btn_EventTest, function (event) {
