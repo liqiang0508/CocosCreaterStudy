@@ -3,7 +3,7 @@
   "_name": "rotateSprite",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.48333333333333334,
+  "_duration": 0.4166666666666667,
   "sample": 60,
   "speed": 1,
   "wrapMode": 2,
@@ -14,49 +14,43 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "249dc93a-288b-4f98-9a6a-55428b0efa94"
+              "__uuid__": "dfdfc4b2-6bb4-4826-8f7a-e29a87ed3fb3"
             }
           },
           {
             "frame": 0.06666666666666667,
             "value": {
-              "__uuid__": "249dc93a-288b-4f98-9a6a-55428b0efa94"
+              "__uuid__": "a493338f-5f6c-4063-a5b5-b5dd74230945"
             }
           },
           {
             "frame": 0.13333333333333333,
             "value": {
-              "__uuid__": "bac1b567-f3c3-4cc0-921f-f50de5b064be"
+              "__uuid__": "b4b85a7e-cee9-4034-aa14-e31119b9ee01"
             }
           },
           {
             "frame": 0.2,
             "value": {
-              "__uuid__": "764dff5b-13df-441d-bb56-c49f52f8723e"
+              "__uuid__": "6fe410db-23ad-4705-9cea-3db1f2ff0071"
             }
           },
           {
             "frame": 0.26666666666666666,
             "value": {
-              "__uuid__": "902802a9-17ba-44bb-9998-ec817e340bdf"
+              "__uuid__": "1ea8d7fd-e317-47c0-8151-ea8064e99688"
             }
           },
           {
             "frame": 0.3333333333333333,
             "value": {
-              "__uuid__": "be478cec-697b-49cd-832b-92e09a2b7d61"
+              "__uuid__": "45ea1c29-f07f-4b0c-b802-c079e9b39ad9"
             }
           },
           {
             "frame": 0.4,
             "value": {
-              "__uuid__": "6c8109a7-b878-4ed4-a7f9-a650369ca666"
-            }
-          },
-          {
-            "frame": 0.4666666666666667,
-            "value": {
-              "__uuid__": "4a5430e1-85a6-4f1f-8948-8cce5111a548"
+              "__uuid__": "c1e9f0c7-96f4-4654-b225-4e10df2c1171"
             }
           }
         ]
