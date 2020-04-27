@@ -9,7 +9,16 @@
   "packable": true,
   "width": 195,
   "height": 270,
-  "platformSettings": {},
+  "platformSettings": {
+    "default": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        }
+      ]
+    }
+  },
   "subMetas": {
     "HelloWorld": {
       "ver": "1.0.4",

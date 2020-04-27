@@ -1,4 +1,4 @@
-ua = {}
+var ua = {}
 
 
 //点击事件
@@ -53,3 +53,5 @@ ua.loadTexture = function(url,call){
     })
     
 }
+
+window.ua = ua;

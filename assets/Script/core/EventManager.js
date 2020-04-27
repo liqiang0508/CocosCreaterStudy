@@ -1,5 +1,8 @@
 //事件分发
 
+//event define
+
+
 var EventManager = {}
 
 
@@ -44,6 +47,8 @@ EventManager.dispatchEvent = function(node,eventName,data)
 
 }
 
+window.EventManager  = EventManager ;
 
-//event define
-RefreshInfo = "refreshinfo";
+
+window.RefreshInfo = "refreshinfo";
+
