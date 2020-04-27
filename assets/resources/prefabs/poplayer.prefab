@@ -233,12 +233,12 @@
     "_prefab": {
       "__id__": 9
     },
-    "_opacity": 176,
+    "_opacity": 200,
     "_color": {
       "__type__": "cc.Color",
-      "r": 24,
-      "g": 190,
-      "b": 255,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
