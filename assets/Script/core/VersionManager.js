@@ -205,6 +205,8 @@ var VersionManager = {
 
                 jsb.fileUtils.removeDirectory(GHotUpFolder)//移动失败不知道移动了多少，就删掉热更新目录在创建
                 jsb.fileUtils.createDirectory(GHotUpFolder)
+
+                jsb.fileUtils.removeFile(GtempCfg)//移除包外的热更新配置
                 
                 this.callFunWithState(4, "移动文件失败" + tempfilePath)
 
