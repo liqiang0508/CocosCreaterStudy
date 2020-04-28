@@ -35,7 +35,7 @@ cc.Class({
     },
     start() {
         cc.log("launchsene start",window.DISTRIBUTE_CHANNEL)
-
+        cc.sys.localStorage.setItem('debugId',724001)
         var self = this
         this.count = 0
 
