@@ -78,7 +78,7 @@ cc.Class({
     // 6:不支持热更新的版本号
     // 7:不支持热更新的渠道
     // 100 :更新成功
-        VersionManager.checkUpdate(Global.Ghotupdateurl, function (code) {
+        VersionManager.checkUpdate(Global.Ghotupdateurl, function (code,url) {
             self.unSchduleUpdateText()//停止显示update...
             
             if (code == 0)//不用更新
@@ -90,14 +90,20 @@ cc.Class({
                 self.Reboot()
             }
             else if(code ==6 || code ==7) {//不支持的热更新的版本号,渠道号  ，直接进登录界面
-                self.Text.node.opacity = 255
-                self.Text.string = "ErrorCode====="+code
+
                 self.goLoginScene()
             }
+            else if(code == 8)//强制更新
+            {
+                Global.ShowAlert("发现新版本"+url,["yes","no"],function(index){
+                    if(index==1)//打开浏览器
+                    {
+                        cc.sys.openURL(url)
+                    }
+                })
+            }
             else {//热更新error   1 2 3 4 5
-                // self.Text.node.opacity = 255
-                // self.Text.string = "ErrorCode====="+code
-               // self.Reboot()//失败重启
+                
                 Global.ShowAlert("ErrorCode====="+code,[],function(){
                     self.Reboot()//失败重启
                 })
