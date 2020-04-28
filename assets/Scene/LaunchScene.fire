@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        337.5444387036607,
+        368.92122542809915,
         0,
         0,
         0,
@@ -577,7 +577,7 @@
     "_useOriginalSize": false,
     "_string": "",
     "_N$string": "",
-    "_fontSize": 40,
+    "_fontSize": 25,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,

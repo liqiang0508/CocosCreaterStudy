@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        337.5444387036607,
+        368.92122542809915,
         0,
         0,
         0,
@@ -456,9 +456,9 @@
     "_opacity": 150,
     "_color": {
       "__type__": "cc.Color",
-      "r": 194,
-      "g": 178,
-      "b": 178,
+      "r": 248,
+      "g": 93,
+      "b": 93,
       "a": 255
     },
     "_contentSize": {
@@ -560,7 +560,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
+      "width": 118.12,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -572,8 +572,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        355.05,
-        -620.78,
+        367.486,
+        -633.216,
         0,
         0,
         0,
@@ -611,9 +611,9 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "",
-    "_N$string": "",
-    "_fontSize": 40,
+    "_string": "1.3.0(R30)",
+    "_N$string": "1.3.0(R30)",
+    "_fontSize": 25,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -641,9 +641,9 @@
     "_target": null,
     "_alignFlags": 36,
     "_left": 0,
-    "_right": 19.95,
+    "_right": 7.514000000000021,
     "_top": 0,
-    "_bottom": 21.02,
+    "_bottom": 8.583999999999964,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -1215,6 +1215,7 @@
       "__id__": 2
     },
     "_enabled": true,
+    "AimType": 1,
     "VersionText": {
       "__id__": 12
     },
