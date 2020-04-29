@@ -95,7 +95,7 @@ cc.Class({
             }
             else if(code == 8)//强制更新
             {
-                Global.ShowAlert("发现新版本"+url,["yes","no"],function(index){
+                Global.ShowAlert("发现新版本"+url,[],function(index){
                     if(index==1)//打开浏览器
                     {
                         cc.sys.openURL(url)

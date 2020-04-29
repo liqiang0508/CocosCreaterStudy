@@ -307,7 +307,7 @@ var VersionManager = {
             var forcedBinaryVersions = self.remoteCfg["forcedBinaryVersions"]//强制更新版本号
             var channels = self.remoteCfg["channels"]//支持热更新的渠道号
             var debugUIDs = self.remoteCfg["debugUIDs"]//测试id组
-            var binaryUrl = self.remoteCfg["binaryUrl"][window.DISTRIBUTE_CHANNEL] || self.remoteCfg[0]//商店地址
+            var binaryUrl = self.remoteCfg["binaryUrl"][window.DISTRIBUTE_CHANNEL] || self.remoteCfg[0]//商店地址  根据远程配置的渠道号对应的数组
             var localId = cc.sys.localStorage.getItem('debugId') ;//本地存的上次登录的玩家id
             if(!Global.GIsArrContain(channels, window.DISTRIBUTE_CHANNEL))//app版本是否支持热更新
             {
