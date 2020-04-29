@@ -8,7 +8,7 @@ global azip
 # 初始化一个zip文件
 def ZipInit(targetzip):
 	global azip
-	azip = zipfile.ZipFile(targetzip, 'w')
+	azip = zipfile.ZipFile(targetzip, 'w',zipfile.ZIP_DEFLATED))
 	
 	
 	# 添加文件
