@@ -37,8 +37,8 @@ cc.Class({
         // 坐标转换
         var sp2 = cc.find("uipanel/New Sprite", this.node)
         var sp4 = cc.find("content/sp4", this.node)
-        var sp2worldpos = sp2.parent.convertToWorldSpaceAR(sp2.getPosition())//转换成世界坐标
-        var pos2 = sp4.parent.convertToNodeSpaceAR(sp2worldpos);//将世界坐标转换成父节点的坐标
+        var sp2worldpos = Global.ConverToWorldPos(sp2)//sp2.parent.convertToWorldSpaceAR(sp2.getPosition())//转换成世界坐标
+        var pos2 = Global.ConverToNodePos(sp4.parent,sp2worldpos)//sp4.parent.convertToNodeSpaceAR(sp2worldpos);//将世界坐标转换成父节点的坐标
         // sp4.setPosition(pos2)
         this.sp4OldPos = sp4.getPosition()
         sp4.IsOriginPos = true

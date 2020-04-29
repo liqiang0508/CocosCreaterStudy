@@ -206,7 +206,7 @@ var Global = {
         }
 
     },
-
+    //字符串 *num
     StrTime:function(str, num) {
         var s = ""
         for(var i = 0;i<num;i++)
@@ -214,6 +214,20 @@ var Global = {
                 s = s+str  
         }
         return s
+    },
+
+    //获取node世界坐标
+    ConverToWorldPos:function(node){
+
+        var worldpos = node.parent.convertToWorldSpaceAR(node.getPosition())
+        return worldpos
+
+    },
+    //把一个世界坐标转换成这个节点下的坐标
+    ConverToNodePos:function(node,worldpos){
+        var pos = node.convertToNodeSpaceAR(worldpos)
+        return pos
+
     },
     
     ShowAlert:function(str,btninfo,call){
