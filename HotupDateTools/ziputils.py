@@ -8,7 +8,7 @@ global azip
 # 初始化一个zip文件
 def ZipInit(targetzip):
 	global azip
-	azip = zipfile.ZipFile(targetzip, 'w',zipfile.ZIP_DEFLATED))
+	azip = zipfile.ZipFile(targetzip, 'w',zipfile.ZIP_DEFLATED)
 	
 	
 	# 添加文件
@@ -44,8 +44,8 @@ def ZipExtral(targetzip,destpath):
 	
 
 # ZipInit("tes1t.zip")
-# AddFile("en.js")
-# AddFile("ch.js")
+# AddFile("folder1")
+# AddFile("folder2")
 # ZipEnd()
 
 

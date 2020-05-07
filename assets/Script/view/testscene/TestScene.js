@@ -234,14 +234,17 @@ cc.Class({
         },this)
 
         EventManager.on(this.node, RefreshInfo, this.EventTest)
-        //encryptToString 语音-》string 发送  接收后解密 存储
-        /*var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
-        var endata = xxtea.encryptToString(data,"1234")
-        var dedata = xxtea.decrypt(endata,"1234")
-        cc.log(dedata)
-        jsb.fileUtils.writeDataToFile(dedata,jsb.fileUtils.getWritablePath()+"packageTemp/record22.amr")
+        //encryptToString 语音-》string(字符串压缩)）发送  接收后解密 存储
+        // var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
+        // var endata = xxtea.encryptToString(data,"1234")//编码成字符串
+        // cc.log(endata)
+        // var compressedSrr = StringTools.Compress(endata)//压缩字符串
+        // cc.log(compressedSrr)
+        // var destr = StringTools.Decompress(compressedSrr)//解压字符串
+        // var dedata = xxtea.decrypt(destr,"1234")//解码
+        // jsb.fileUtils.writeDataToFile(dedata,jsb.fileUtils.getWritablePath()+"packageTemp/record22.amr")
 
-        */
+        
 
         //btn_fps
         var btn_fps = cc.find("uipanel/btn_fps", this.node)
