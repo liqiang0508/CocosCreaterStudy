@@ -297,7 +297,33 @@ cc.Class({
         var sp1 = cc.find("content/sp1", this.node)
         var sp_Com = sp1.getComponent(cc.RenderComponent)
         var ma = sp_Com.getMaterial(0)
-        // ma.setProperty("radius",0.5) 
+        // ma.setProperty("radius",0.5)
+        
+        //画图测试
+        var garpgicsnode = cc.find("garpgicsnode", this.node)
+        var garpgics = garpgicsnode.getComponent(cc.Graphics)
+  
+        garpgicsnode.on(cc.Node.EventType.TOUCH_START,function(event){
+            var touches = event.getTouches();
+            var touchLoc = touches[0].getLocation();
+            touchLoc = garpgicsnode.convertToNodeSpaceAR(touchLoc);
+            // cc.log("TOUCH_START===",touchLoc,garpgics)
+            garpgics.moveTo(touchLoc.x,touchLoc.y)
+        })
+
+        garpgicsnode.on(cc.Node.EventType.TOUCH_MOVE,function(event){
+            var touches = event.getTouches();
+            var touchLoc = touches[0].getLocation();
+            touchLoc = garpgicsnode.convertToNodeSpaceAR(touchLoc);
+            // cc.log("TOUCH_MOVE===",touchLoc,garpgics)
+            garpgics.lineTo(touchLoc.x,touchLoc.y)
+            garpgics.stroke();
+          
+        })
+
+
+
+
     },
 
     EventTest(event) {
