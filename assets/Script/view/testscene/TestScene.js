@@ -159,7 +159,25 @@ cc.Class({
         url = "http://tools.itharbors.com/christmas/res/tree.png"
         Global.GloadTexture(url, function (tex) {
             if (tex) {
-                loadTex.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(tex)
+                var SpriteCom =  loadTex.getComponent(cc.Sprite)
+                SpriteCom.spriteFrame = new cc.SpriteFrame(tex)
+
+                //加载材质
+                // cc.loader.loadRes("materials/circle_head",cc.Material,function(err,res){
+                   
+                //     if(!err)
+                //     {
+                //         cc.log("res==",res)
+                //         var com = sp2.getComponent(cc.Sprite)
+                //         let variant1 = cc.MaterialVariant.create(res);
+                //         // variant1.setProperty("edge",0.01)
+                //         com.setMaterial(0, variant1);
+
+                //     }
+                //     else{
+                //         cc.log("err==",err)
+                //     }
+                // })
             }
         })
 
@@ -251,6 +269,7 @@ cc.Class({
         ua.darkButton(btn_fps, function () {
             console.log("setDisplayStats-",!cc.debug.isDisplayStats())
             cc.debug.setDisplayStats(!cc.debug.isDisplayStats())
+           
           
         })
         
@@ -293,7 +312,7 @@ cc.Class({
 
         //圆形裁剪
         // cc.macro.CLEANUP_IMAGE_CACHE = false;
-        cc.dynamicAtlasManager.enabled = false;//圆角shader必须禁用动态合图不然显示有问题   会导致drawcall 上升
+        // cc.dynamicAtlasManager.enabled = false;//圆角shader必须禁用动态合图不然显示有问题  会导致drawcall上升  或者关闭图片资源的packable
         var sp1 = cc.find("content/sp1", this.node)
         var sp_Com = sp1.getComponent(cc.RenderComponent)
         var ma = sp_Com.getMaterial(0)
@@ -325,6 +344,18 @@ cc.Class({
 
 
     },
+
+     
+    // var renderTexture = cc.RenderTexture()//cc.RenderTexture.initWithSize(750,1334, cc.gfx.RB_FMT_S8); 
+    // renderTexture.initWithSize(750,1334, cc.gfx.RB_FMT_S8); 
+    // var garpgicsnode = cc.find("garpgicsnode", this.node)
+    // renderTexture.begin(); 
+    // garpgicsnode.visit();
+    // // cc.director.getRunningScene().visit(); 
+    // renderTexture.end();
+    // var path =jsb.fileUtils.getWritablePath()+"hh.png"
+    // cc.log(path)
+    // renderTexture.saveToFile(path,cc.macro.ImageFormat.PNG)
 
     EventTest(event) {
 
