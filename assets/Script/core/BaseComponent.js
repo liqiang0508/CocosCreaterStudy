@@ -42,6 +42,7 @@ cc.Class({
 
     },
     onDestroy(){
+        this.node.targetOff(this)
         KeypadDispatch.getInstance().remove()
     },
     show()

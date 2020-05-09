@@ -138,7 +138,7 @@ cc.Class({
 
         })
 
-        //btn_showWaiting
+        //btn_showWaiting菊花转
         var btn_showWaiting = cc.find("uipanel/btn_showWaiting",this.node)
         ua.darkButton(btn_showWaiting, function (event) {
             self.showWiat(true)
@@ -364,7 +364,7 @@ cc.Class({
     },
 
     onDestroy(){
-        EventManager.off(this.node, RefreshInfo, this.EventTest)
+       this._super()
     }
     // update (dt) {},
 });
