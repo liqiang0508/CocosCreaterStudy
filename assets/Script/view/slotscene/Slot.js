@@ -122,7 +122,7 @@ cc.Class({
             }
             else//往下
             {
-                item.y = -this.node.height/2+item.height*i+item.height/2;
+                item.y = -this.node.height/2+item.height*i+item.height/2+this.space*(i+1);
             }
             
             // cc.log(" this.height==", this.node.height,item.x,item.y);
@@ -173,9 +173,9 @@ cc.Class({
         var child = this.node.children;
   
        
-        for(var start = 0; start < child.length;start++)
+        for(let start = 0; start < child.length;start++)
         {
-            var target = child[start];
+            let target = child[start];
 
             if(deltaY>0)//top
             {
@@ -184,7 +184,7 @@ cc.Class({
                 // cc.log(target)
                 if(target.y>=posy)// 超出了最上面
                 {
-                        target.y = target.y+(-child.length*this.item.height);
+                        target.y = target.y+(-child.length*this.item.height-child.length*this.space);
                         this.curIndex+=1;
                         if(this.curIndex>(Slot_PerNum-1))
                         {
@@ -199,7 +199,7 @@ cc.Class({
                      if(target.y>=posy)//top)
                      {
                         
-                        target.y = target.y+(-child.length*this.item.height);
+                        target.y = target.y+(-child.length*this.item.height-child.length*this.space);
                         this.curIndex+=1;
                         if(this.curIndex>(Slot_PerNum-1))
                         {
@@ -215,13 +215,13 @@ cc.Class({
                 var posy = -this.node.height/2-target.height/2;
                 if(target.y<=posy)// large top
                 {
-                        target.y = target.y+(child.length*this.item.height);
+                        target.y = target.y+(child.length*this.item.height+child.length*this.space);
                         this.curIndex+=1;
                         if(this.curIndex>(Slot_PerNum-1))
                         {
                             this.curIndex-=(Slot_PerNum);
                         }
-                        cc.log("updateItem==curIndex1",this.curIndex);
+                        // cc.log("updateItem==curIndex1",this.curIndex);
                            
                 }
                 else{ //small
@@ -230,14 +230,14 @@ cc.Class({
                      if(target.y<=posy)//top)
                      {
                         
-                        target.y = target.y+(child.length*this.item.height);
+                        target.y = target.y+(child.length*this.item.height+child.length*this.space);
                         // cc.log(">=--",start,"大于",posy);
                         this.curIndex+=1;
                         if(this.curIndex>(Slot_PerNum-1))
                         {
                             this.curIndex-=(Slot_PerNum);
                         }
-                        cc.log("updateItem==curIndex2",this.curIndex);
+                        // cc.log("updateItem==curIndex2",this.curIndex);
                      }
 
                 }
@@ -247,7 +247,7 @@ cc.Class({
     },
 
 
-    updateSlotsToDown(dt){
+    updateSlotsToDown(dt){//往下滚动
 
          var timedeal = dt//1/60;
         // cc.log("updateSlots",this.delta.y,  this.SlotState);
@@ -282,8 +282,10 @@ cc.Class({
 
                 this.resetPosY();//位置矫正
                 this.SlotState = window.SlotState.eSpeedDown;
-                var S = Slot_StopTime*this.ItemArray.length*this.item.height+Max_Speed/2+Slot_BackDistance;//vt*vt-vo*vo = 2as来算加速度
+                var S = Slot_StopTime*this.ItemArray.length*this.space+Slot_StopTime*this.ItemArray.length*this.item.height+Max_Speed/2+Slot_BackDistance;//vt*vt-vo*vo = 2as来算加速度
                 this.Acceleration = this.SpeedY * this.SpeedY/ (2 * S); 
+                
+                
                 // this.Acceleration = -this.Acceleration;
                 
                 cc.log("等待减速 curIndex=%s this.delta.y=%s this.Acceleration=%s",this.curIndex,this.SpeedY, this.Acceleration);
@@ -340,7 +342,7 @@ cc.Class({
         }
         this.updateItem(this.SpeedY);
     },
-    updateSlotsToTop(dt)
+    updateSlotsToTop(dt)//往上滚动
     {
 
         var timedeal =dt;
@@ -376,7 +378,7 @@ cc.Class({
 
                 this.resetPosY();//位置矫正
                 this.SlotState =window.SlotState.eSpeedDown;
-                var S = Slot_StopTime*this.ItemArray.length*this.item.height+Max_Speed/2+Slot_BackDistance;//vt*vt-vo*vo = 2as来算加速度
+                var S = Slot_StopTime*this.ItemArray.length*this.space+Slot_StopTime*this.ItemArray.length*this.item.height+Max_Speed/2+Slot_BackDistance;//vt*vt-vo*vo = 2as来算加速度
                 this.Acceleration = -this.SpeedY * this.SpeedY/ (2 * S); 
                 // this.Acceleration = -this.Acceleration;
                 
@@ -460,6 +462,7 @@ cc.Class({
                 if(self.StopCall)
                 {
                     self.StopCall();
+                    self.StopCall = null
                 }
                 self.HaveCompelete = true;
 
@@ -477,7 +480,7 @@ cc.Class({
         var target = this.ItemArray[index];
         var offset = target.y;
 
-        cc.log("resetPosY==",offset);
+        // cc.log("resetPosY==",offset);
         var child = this.node.children;
         for(var start = 0; start < child.length;start++)
         {

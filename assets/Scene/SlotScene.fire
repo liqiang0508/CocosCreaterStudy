@@ -606,7 +606,7 @@
     },
     "width": 260,
     "space": 30,
-    "movedirection": 0,
+    "movedirection": 1,
     "showItemNum": 3,
     "_id": "17tkmlMvhE559JiUJUsP0+"
   },

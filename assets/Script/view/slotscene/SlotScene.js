@@ -38,9 +38,28 @@ cc.Class({
             if(slotcompoent)
             {
                 slotcompoent.Spin()
-                slotcompoent.StopAtIndex(Math.floor(Math.random()*8),function(){
+                var stopIndex = Math.ceil(Math.random()*4)
+                slotcompoent.StopAtIndex(stopIndex,function(){
                     console.log("stop-")
                 })
+                
+               
+                var path =  "slots/stop_monkey"
+                cc.loader.loadRes(path,function(err,sp){
+
+                    if(err)
+                    {
+                        cc.log("err==",err)
+                        return 
+                    }
+                    
+                    if (sp) {
+                        // cc.log(sprite)
+                        slotcompoent.ItemArray[stopIndex].getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(sp)
+                    }
+
+                })
+              
 
             }
         })
