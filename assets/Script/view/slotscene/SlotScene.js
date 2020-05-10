@@ -38,12 +38,12 @@ cc.Class({
             if(slotcompoent)
             {
                 slotcompoent.Spin()
-                var stopIndex = Math.ceil(Math.random()*4)
+                var stopIndex = Math.floor(Math.random()*8)
+
+                //请求服务器停止点显示什么图片
                 slotcompoent.StopAtIndex(stopIndex,function(){
                     console.log("stop-")
                 })
-                
-               
                 var path =  "slots/stop_monkey"
                 cc.loader.loadRes(path,function(err,sp){
 
@@ -52,15 +52,11 @@ cc.Class({
                         cc.log("err==",err)
                         return 
                     }
-                    
                     if (sp) {
-                        // cc.log(sprite)
+
                         slotcompoent.ItemArray[stopIndex].getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(sp)
                     }
-
                 })
-              
-
             }
         })
     },

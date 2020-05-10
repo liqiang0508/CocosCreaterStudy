@@ -79,27 +79,40 @@ cc.Class({
          this.HaveCompelete = true;//是否完成了一次spin
 
          
-          this.schedule(this.update1, 1/60);
-        // this.randPos()
+         this.schedule(this.update1, 1/60);
+        //  this.randPos()
 
     },
 
-    randPos()//初始化的时候随机位置
+    randItemPic()//随机item上面的图片
     {
-        var index = Math.floor(Math.random()*Slot_PerNum)
-        cc.log('randPos===',index)
+        
         var child = this.node.children;
-  
-       
-        for(var start = 0; start < child.length;start++)
-        {
-            var target = child[start];
-            target.y = target.y+Math.abs(index-this.curIndex)*this.item.height
+        for (var start = 0; start < child.length; start++) {
+            if (start!= this.stopIndex )//不等于停止点 随机图片
+            {
+                let target = child[start];
+                // target.y = target.y+Math.abs(index-this.curIndex)*this.item.height
+                let index = Math.floor(Math.random() * iconTexture.length)
+                let name = iconTexture[index];
+                let path = "slots/" + name
+                // cc.log(path)
+                cc.loader.loadRes(path, function (err, sp) {
+                    if (err) {
+                        cc.log("err==", err)
+                        return
+                    }
+                    if (sp) {
+                        // cc.log(sprite)
+                        target.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(sp)
+                    }
+                })
 
-        }
-        this.curIndex = index
-
+            }
+           
+        } 
     },
+
     start () {
         // this.Spin();
 
@@ -263,6 +276,7 @@ cc.Class({
                     this.SpeedY = -Max_Speed;
 
                     cc.log("达到最高速度",this.SpeedY);
+                    this.randItemPic()
                     this.SlotState =window.SlotState.eWaitSpeedDown;
                 }
                 // cc.log("updateSlots  eSpeedUp",this.delta.y);
@@ -270,6 +284,7 @@ cc.Class({
             else{
                 this.SpeedY = -Max_Speed;
                 cc.log("达到最高速度",this.SpeedY);
+                this.randItemPic()
                 this.SlotState =window.SlotState.eWaitSpeedDown;
             }
         }
@@ -357,7 +372,7 @@ cc.Class({
                 {
                    
                     this.SpeedY = Max_Speed;
-
+                    this.randItemPic()
                     cc.log("达到最高速度",this.SpeedY);
                     this.SlotState =window.SlotState.eWaitSpeedDown;
                 }
@@ -366,6 +381,7 @@ cc.Class({
             else{
                 this.SpeedY = Max_Speed;
                 cc.log("达到最高速度",this.SpeedY);
+                this.randItemPic()
                 this.SlotState =window.SlotState.eWaitSpeedDown;
             }
         }
