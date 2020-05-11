@@ -31,7 +31,7 @@ if (cc && cc.sys.isNative) {
 // 100 :更新成功
 var Global = require("Global")
 var VersionManager = {
-    remoteCfg: '',//远程配置
+    remoteCfg: null,//远程配置
     remoteMd5Cfg: '',//远程md5
     localCfg: '',//local配置
     stateCode: '',//更新状态码
@@ -284,7 +284,7 @@ var VersionManager = {
     },
     //包外配置
     parseTempCfg: function () {
-        if(!cc.sys.isNative)
+        if(!cc.sys.isNative||this.remoteCfg=null)
         {
             return
         }

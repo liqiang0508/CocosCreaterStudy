@@ -34,14 +34,21 @@ cc.Class({
 
     },
     start() {
-        cc.log("launchsene start",window.DISTRIBUTE_CHANNEL)
+        cc.log("Chanel===",window.DISTRIBUTE_CHANNEL)
         cc.sys.localStorage.setItem('debugId',724001)
         var self = this
         this.count = 0
 
-        if (cc && cc.sys.isNative) {//native  自带的模拟器不进行热更新
-
-           
+        if (cc && cc.sys.isNative) {//native 
+  
+            if(window.DISTRIBUTE_CHANNEL== chanel.WIN32)// 自带的模拟器不进行热更新   
+            {
+                cc.log("模拟器不更新")
+                VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
+                self.goLoginScene()
+    
+                return
+            }     
             Global.gSchduleFun(this,this.updateText,1,cc.macro.REPEAT_FOREVER,0)//显示update...
 
             Global.gSchduleOnce(this, function () {

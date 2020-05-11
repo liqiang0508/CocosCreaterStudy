@@ -1,5 +1,5 @@
 {
-    "scriptVersion": 54, 
+    "scriptVersion": 55, 
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc", 
@@ -8,13 +8,13 @@
         }, 
         {
             "filename": "src/project.jsc", 
-            "md5": "5056A79B68B2EFB8BC30590B4ABDA915", 
-            "size": 61084
+            "md5": "1C31D166C96033037B169327C73802D2", 
+            "size": 62984
         }, 
         {
             "filename": "src/settings.jsc", 
-            "md5": "125948E4FCA9E1DCFEE7EAFF24696AE1", 
-            "size": 1044
+            "md5": "7ACD99360A858580D651E6662329DE98", 
+            "size": 1612
         }, 
         {
             "filename": "src/assets/Script/config/Chanel.jsc", 
@@ -25,6 +25,11 @@
             "filename": "src/assets/Script/core/EventManager.jsc", 
             "md5": "652A1CFC29763F9519759C95313334F0", 
             "size": 204
+        }, 
+        {
+            "filename": "src/assets/Script/core/StringTools.jsc", 
+            "md5": "B7934B79805E18C0141E26FA8542B64D", 
+            "size": 552
         }, 
         {
             "filename": "src/assets/Script/core/ua.jsc", 
@@ -62,6 +67,11 @@
             "size": 3766
         }, 
         {
+            "filename": "res/import/28/2896f8e8-5acc-41ef-9005-523b8542b2a2.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
+        }, 
+        {
             "filename": "res/import/29/29158224-f8dd-4661-a796-1ffab537140e.json", 
             "md5": "9439272D133C90CACDB640CBC80A9AB0", 
             "size": 189
@@ -77,6 +87,11 @@
             "size": 20029
         }, 
         {
+            "filename": "res/import/2a/2ae021b5-51c4-48de-9b41-a8fd66b77b89.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
+        }, 
+        {
             "filename": "res/import/2c/2c748714-b828-447e-8d99-06e075b58035.json", 
             "md5": "ED66D4C4607AEB688A05DC9E66D790DE", 
             "size": 176
@@ -85,6 +100,11 @@
             "filename": "res/import/2d/2d2f792f-a40c-49bb-a189-ed176a246e49.json", 
             "md5": "27A27F6D6818554373FE6351B1F51C75", 
             "size": 3336
+        }, 
+        {
+            "filename": "res/import/31/310ed514-fd47-4188-9925-f63f19129243.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
         }, 
         {
             "filename": "res/import/31/31bc895a-c003-4566-a9f3-2e54ae1c17dc.json", 
@@ -97,6 +117,11 @@
             "size": 132
         }, 
         {
+            "filename": "res/import/3c/3ca8dd43-9617-40c9-b716-02c385fa0864.json", 
+            "md5": "C78A462C174C27B21C4B3B7E9C2AAE8B", 
+            "size": 1233
+        }, 
+        {
             "filename": "res/import/3d/3d474e80-ec86-41c0-a1c7-367e2e7124d1.json", 
             "md5": "6A0D236BBD23F9A327E70FFA7986C2A2", 
             "size": 633
@@ -107,19 +132,24 @@
             "size": 172
         }, 
         {
+            "filename": "res/import/42/42907f90-4740-41fe-b151-69f9e81a18c0.json", 
+            "md5": "1A7F070C8E042B20F1ED712FDF900721", 
+            "size": 183
+        }, 
+        {
             "filename": "res/import/45/45ea1c29-f07f-4b0c-b802-c079e9b39ad9.json", 
             "md5": "9FAB48284F738399A485559E2277F0F6", 
             "size": 174
         }, 
         {
+            "filename": "res/import/46/462c6748-7da6-46dc-8289-a7008d6df7c2.json", 
+            "md5": "038A603D8DF12DCD4753741CBA8F1420", 
+            "size": 185
+        }, 
+        {
             "filename": "res/import/46/466d4f9b-e5f4-4ea8-85d5-3c6e9a65658a.json", 
             "md5": "63EADAFF286AEE9996EFC46C0108F4FE", 
             "size": 193
-        }, 
-        {
-            "filename": "res/import/4a/4ae6f0d6-7d36-44fa-a868-f7ae34c40ca9.json", 
-            "md5": "1886241D967ED997754029A1DBC7B8EE", 
-            "size": 8451
         }, 
         {
             "filename": "res/import/55/5558c428-a968-4dcb-94ad-b8912afb7c4d.json", 
@@ -128,6 +158,11 @@
         }, 
         {
             "filename": "res/import/58/58fe8245-4714-4141-b689-a4957af08390.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
+        }, 
+        {
+            "filename": "res/import/5a/5ad5c2c3-6a73-4c12-be1c-dab1c4860389.json", 
             "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
             "size": 69
         }, 
@@ -142,8 +177,13 @@
             "size": 69
         }, 
         {
-            "filename": "res/import/6a/6aa0aa6a-ebee-4155-a088-a687a6aadec4.json", 
+            "filename": "res/import/62/62e2c53b-4ef3-4911-8aa7-3bff78038795.json", 
             "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
+        }, 
+        {
+            "filename": "res/import/6a/6aa0aa6a-ebee-4155-a088-a687a6aadec4.json", 
+            "md5": "7D52C765F798FAEB00F7860019EC1FA4", 
             "size": 69
         }, 
         {
@@ -182,9 +222,19 @@
             "size": 1619
         }, 
         {
+            "filename": "res/import/8d/8d7dfff2-775d-46c5-9ed4-6a4fa31decb6.json", 
+            "md5": "9E5FFEEC60DA540136F12B3587C6918D", 
+            "size": 183
+        }, 
+        {
             "filename": "res/import/91/910e66c0-f310-4a44-8391-91bc62a030e5.json", 
             "md5": "7A7F5D49F8EE79DC8016C6663FECB5AE", 
             "size": 3674
+        }, 
+        {
+            "filename": "res/import/91/91d1ac3d-76a5-499e-b04b-523219f9d201.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
         }, 
         {
             "filename": "res/import/9b/9bbda31e-ad49-43c9-aaf2-f7d9896bac69.json", 
@@ -192,9 +242,19 @@
             "size": 178
         }, 
         {
+            "filename": "res/import/9c/9c64cf50-be55-4296-b8f9-ea78de35cf55.json", 
+            "md5": "67C911EE3303606F954F0726C814BA69", 
+            "size": 173
+        }, 
+        {
             "filename": "res/import/9f/9fd83d7e-95de-4154-8c0d-4daab53f5b4d.json", 
             "md5": "18BF0E5F31A45C1D2B21D478922E1B79", 
             "size": 4200
+        }, 
+        {
+            "filename": "res/import/a0/a01ab252-f4f0-45ef-b81b-44e54a48bcd6.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
         }, 
         {
             "filename": "res/import/a1/a1a5301a-2f7e-4b39-9b52-bee80e404e84.json", 
@@ -212,14 +272,24 @@
             "size": 188
         }, 
         {
+            "filename": "res/import/a7/a78641e7-8e7f-465a-8342-6c58d639f892.json", 
+            "md5": "C66F14930C1464615E17B3CE1A8A32C3", 
+            "size": 183
+        }, 
+        {
             "filename": "res/import/a8/a8027877-d8d6-4645-97a0-52d4a0123dba.json", 
             "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
             "size": 69
         }, 
         {
+            "filename": "res/import/aa/aa250ca5-1ff2-46bc-97d8-a5fca63867ac.json", 
+            "md5": "444FC4CC3809E1D9301540975815CB06", 
+            "size": 181
+        }, 
+        {
             "filename": "res/import/ac/ac78b3ac-1484-4cd5-af9c-53b5f88129fb.json", 
-            "md5": "592116F9966C51C2CACF9745A075F88C", 
-            "size": 24242
+            "md5": "6B6953E02FF20713D9548EAB287D08B0", 
+            "size": 26471
         }, 
         {
             "filename": "res/import/b4/b43ff3c2-02bb-4874-81f7-f2dea6970f18.json", 
@@ -232,9 +302,34 @@
             "size": 188
         }, 
         {
+            "filename": "res/import/bb/bb34273e-20cc-458d-92a4-616df296ff59.json", 
+            "md5": "6AD0B09C3ED135D6E21F6295DE2BC0D7", 
+            "size": 183
+        }, 
+        {
+            "filename": "res/import/bd/bdf07867-62ef-4b2a-b63b-ec3386d8ea84.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
+        }, 
+        {
+            "filename": "res/import/be/be9583a1-dad8-4d9c-b2fc-b3ceff4026b3.json", 
+            "md5": "1AEFEE376F2515BC0DEEF5C3CC56F039", 
+            "size": 8361
+        }, 
+        {
+            "filename": "res/import/be/befdfb4c-6796-4520-88e1-07bcbd6f0b73.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
+        }, 
+        {
             "filename": "res/import/c0/c0040c95-c57f-49cd-9cbc-12316b73d0d4.json", 
             "md5": "B0DBD4E5C5FE0C626FFBC059F412C2C2", 
             "size": 831
+        }, 
+        {
+            "filename": "res/import/c0/c082ba6a-f168-4090-9781-b44f0558d247.json", 
+            "md5": "306133D5786614EA80B02CD2B1878120", 
+            "size": 186
         }, 
         {
             "filename": "res/import/c1/c1e9f0c7-96f4-4654-b225-4e10df2c1171.json", 
@@ -247,9 +342,19 @@
             "size": 131
         }, 
         {
+            "filename": "res/import/d0/d0633d4a-649f-491f-8567-f190a1a65885.json", 
+            "md5": "5ED24F0BCF63A2882786B842182BCDCA", 
+            "size": 180
+        }, 
+        {
             "filename": "res/import/d8/d81ec8ad-247c-4e62-aa3c-d35c4193c7af.json", 
             "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
             "size": 69
+        }, 
+        {
+            "filename": "res/import/dd/dd0e6bb7-5c5a-4f69-9956-7f97de09feba.json", 
+            "md5": "8BC7D5AF2D159D7F1AAA2E7BDA5F430F", 
+            "size": 8451
         }, 
         {
             "filename": "res/import/df/dfdfc4b2-6bb4-4826-8f7a-e29a87ed3fb3.json", 
@@ -267,6 +372,11 @@
             "size": 69
         }, 
         {
+            "filename": "res/import/e9/e9cd7e44-db0e-4319-b8f8-5591c0ee39d3.json", 
+            "md5": "8314AC778C00B5FF3167E6829C651BB5", 
+            "size": 186
+        }, 
+        {
             "filename": "res/import/e9/e9ec654c-97a2-4787-9325-e6a10375219a.json", 
             "md5": "21581936ECB29CF3AFB3CAE7706DD7BA", 
             "size": 188
@@ -275,6 +385,11 @@
             "filename": "res/import/ec/eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432.json", 
             "md5": "7F5866BBB3088DE8B6680E4E95B464B7", 
             "size": 163
+        }, 
+        {
+            "filename": "res/import/ee/eedbbb6d-880b-43fd-a0c5-6a5e45b0795a.json", 
+            "md5": "473A4B5EDC3E0BE7E3D2BB1522F9249A", 
+            "size": 69
         }, 
         {
             "filename": "res/import/f0/f0048c10-f03e-4c97-b9d3-3506e1d58952.json", 
@@ -302,6 +417,21 @@
             "size": 82
         }, 
         {
+            "filename": "res/raw-assets/28/2896f8e8-5acc-41ef-9005-523b8542b2a2.png", 
+            "md5": "D9C692EF9232C3BB169641F52BCC3E93", 
+            "size": 42239
+        }, 
+        {
+            "filename": "res/raw-assets/2a/2ae021b5-51c4-48de-9b41-a8fd66b77b89.png", 
+            "md5": "5A3F62549B260EB00336E3FC6E82AABA", 
+            "size": 39684
+        }, 
+        {
+            "filename": "res/raw-assets/31/310ed514-fd47-4188-9925-f63f19129243.png", 
+            "md5": "A8F58D581FB9B6B03A9249F1C314EE0F", 
+            "size": 40601
+        }, 
+        {
             "filename": "res/raw-assets/55/5558c428-a968-4dcb-94ad-b8912afb7c4d.mp3", 
             "md5": "1283DB2545DB20B2F86878B30C51A995", 
             "size": 382553
@@ -312,9 +442,19 @@
             "size": 28117
         }, 
         {
+            "filename": "res/raw-assets/5a/5ad5c2c3-6a73-4c12-be1c-dab1c4860389.png", 
+            "md5": "4C0588053F1150158048436C72B9131B", 
+            "size": 46740
+        }, 
+        {
             "filename": "res/raw-assets/5e/5e7947af-ad65-4145-abb5-b74e2d0ac98c.png", 
             "md5": "F844B269C9480AB81B7964E46AFC70EB", 
             "size": 34214
+        }, 
+        {
+            "filename": "res/raw-assets/62/62e2c53b-4ef3-4911-8aa7-3bff78038795.png", 
+            "md5": "6704DE14C741B9C8A0FA6E6AB5D15499", 
+            "size": 22459
         }, 
         {
             "filename": "res/raw-assets/6a/6aa0aa6a-ebee-4155-a088-a687a6aadec4.png", 
@@ -327,6 +467,16 @@
             "size": 1050
         }, 
         {
+            "filename": "res/raw-assets/91/91d1ac3d-76a5-499e-b04b-523219f9d201.png", 
+            "md5": "A90D04A516A7B9321C71270154758628", 
+            "size": 42907
+        }, 
+        {
+            "filename": "res/raw-assets/a0/a01ab252-f4f0-45ef-b81b-44e54a48bcd6.png", 
+            "md5": "4C52C09BF4DCF98BE989EA8FC2721FFF", 
+            "size": 41620
+        }, 
+        {
             "filename": "res/raw-assets/a8/a8027877-d8d6-4645-97a0-52d4a0123dba.png", 
             "md5": "CEA68F0D7CBA38440224F6F74531E2D8", 
             "size": 82
@@ -337,6 +487,16 @@
             "size": 1114
         }, 
         {
+            "filename": "res/raw-assets/bd/bdf07867-62ef-4b2a-b63b-ec3386d8ea84.png", 
+            "md5": "7DA0987EEDB5B5C73FA97E7CAD592E0C", 
+            "size": 31737
+        }, 
+        {
+            "filename": "res/raw-assets/be/befdfb4c-6796-4520-88e1-07bcbd6f0b73.png", 
+            "md5": "55A48DFC14BC089144DE9FC6FFDEA386", 
+            "size": 34169
+        }, 
+        {
             "filename": "res/raw-assets/d8/d81ec8ad-247c-4e62-aa3c-d35c4193c7af.png", 
             "md5": "CDBC996E9AB38BF90C517C528459810E", 
             "size": 158
@@ -345,6 +505,11 @@
             "filename": "res/raw-assets/e8/e851e89b-faa2-4484-bea6-5c01dd9f06e2.png", 
             "md5": "90CF45D059D0408BEC327F66EAE5764C", 
             "size": 1082
+        }, 
+        {
+            "filename": "res/raw-assets/ee/eedbbb6d-880b-43fd-a0c5-6a5e45b0795a.png", 
+            "md5": "F047A3874F4E2AB430ED71FBFD4CB7A7", 
+            "size": 31690
         }
     ]
 }

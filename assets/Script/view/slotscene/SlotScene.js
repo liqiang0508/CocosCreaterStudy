@@ -61,6 +61,12 @@ cc.Class({
                 }
             }
         })
+
+        var btn_back =  cc.find("UI/btn_back",this.node)
+        ua.darkButton(btn_back,function(){
+
+            cc.director.loadScene("TestScene")
+        })
     },
 
     start () {

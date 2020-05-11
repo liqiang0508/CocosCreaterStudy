@@ -310,6 +310,13 @@ cc.Class({
 
         })
 
+        // btn_goslot
+        var btn_goslot =  cc.find("uipanel/btn_goslot", this.node) 
+        ua.darkButton(btn_goslot,function(){
+            cc.director.loadScene("SlotScene")
+
+        })
+
         //圆形裁剪
         // cc.macro.CLEANUP_IMAGE_CACHE = false;
         // cc.dynamicAtlasManager.enabled = false;//圆角shader必须禁用动态合图不然显示有问题  会导致drawcall上升  或者关闭图片资源的packable
