@@ -59,7 +59,6 @@ Thumbs.db
 .vscode/
 
 
-appinfoiii.json
 build/jsb-default/.cocos-project.json
 build/jsb-default/cocos-project-template.json
 build/jsb-default/main.js
