@@ -1,7 +1,7 @@
 
 var Global = require("Global")
 var VersionManager = require("VersionManager")
-var GameClient = require("GameClient")
+// var GameClient = require("GameClient")
 
 cc.Class({
     extends: cc.Component,

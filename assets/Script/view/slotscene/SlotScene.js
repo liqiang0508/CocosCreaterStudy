@@ -29,34 +29,36 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        var self = this
 
+        this.Slots = new Array()
+        for(let i =1;i<=3;i++)
+        {
+            var slot = cc.find("content/slot"+i,this.node)
+            this.Slots.push(slot)
+        }
         var btn_spin = cc.find("UI/btn_spin",this.node)
-        var slot1 = cc.find("content/slot1",this.node)
+     
         ua.darkButton(btn_spin,function(){
             cc.log("Start spin")
-            var slotcompoent = slot1.getComponent("Slot")
-            if(slotcompoent)
-            {
-                slotcompoent.Spin()
-                var stopIndex = Math.floor(Math.random()*8)
+          
+            for (var i = 0;i<self.Slots.length;i++) {
+                let slot = self.Slots[i]
+              
+                let slotcompoent = slot.getComponent("Slot")
+                if (slotcompoent) {
+                    cc.log(i,slot)
+                    slotcompoent.Spin()
+                    let stopIndex = Math.floor(Math.random() * 8)
 
-                //请求服务器停止点显示什么图片
-                slotcompoent.StopAtIndex(stopIndex,function(){
-                    console.log("stop-")
-                })
-                var path =  "slots/stop_monkey"
-                cc.loader.loadRes(path,function(err,sp){
+                    //请求服务器停止点显示什么图片
+                    slotcompoent.StopAtIndex(stopIndex, function () {
+                        console.log("stop-")
+                    })
 
-                    if(err)
-                    {
-                        cc.log("err==",err)
-                        return 
-                    }
-                    if (sp) {
 
-                        slotcompoent.ItemArray[stopIndex].getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(sp)
-                    }
-                })
+                   
+                }
             }
         })
     },
@@ -65,7 +67,8 @@ cc.Class({
         var slot1 = cc.find("content/slot1",this.node)
         var bg = cc.find("content/bg",this.node)
         bg.height = slot1.height
-
+        bg.width = slot1.width
+       
     },
 
     // update (dt) {},

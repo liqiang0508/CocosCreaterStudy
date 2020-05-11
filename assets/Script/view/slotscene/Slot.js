@@ -86,7 +86,23 @@ cc.Class({
 
     randItemPic()//随机item上面的图片
     {
-        
+        cc.log("randItemPic---")
+        var self = this
+        let name = iconTexture[this.stopIndex];
+        let path = "slots/" + name
+        cc.loader.loadRes(path, function (err, sp) {
+
+            if (err) {
+                cc.log("err==", err)
+                return
+            }
+            if (sp) {
+
+                self.ItemArray[self.stopIndex].getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(sp)
+            }
+        })
+
+
         var child = this.node.children;
         for (var start = 0; start < child.length; start++) {
             if (start!= this.stopIndex )//不等于停止点 随机图片
@@ -275,7 +291,7 @@ cc.Class({
                    
                     this.SpeedY = -Max_Speed;
 
-                    cc.log("达到最高速度",this.SpeedY);
+                    // cc.log("达到最高速度",this.SpeedY);
                     this.randItemPic()
                     this.SlotState =window.SlotState.eWaitSpeedDown;
                 }
@@ -283,7 +299,7 @@ cc.Class({
             }
             else{
                 this.SpeedY = -Max_Speed;
-                cc.log("达到最高速度",this.SpeedY);
+                // cc.log("达到最高速度",this.SpeedY);
                 this.randItemPic()
                 this.SlotState =window.SlotState.eWaitSpeedDown;
             }
@@ -303,7 +319,7 @@ cc.Class({
                 
                 // this.Acceleration = -this.Acceleration;
                 
-                cc.log("等待减速 curIndex=%s this.delta.y=%s this.Acceleration=%s",this.curIndex,this.SpeedY, this.Acceleration);
+                // cc.log("等待减速 curIndex=%s this.delta.y=%s this.Acceleration=%s",this.curIndex,this.SpeedY, this.Acceleration);
                 return;
                 
             }
@@ -373,14 +389,14 @@ cc.Class({
                    
                     this.SpeedY = Max_Speed;
                     this.randItemPic()
-                    cc.log("达到最高速度",this.SpeedY);
+                    // cc.log("达到最高速度",this.SpeedY);
                     this.SlotState =window.SlotState.eWaitSpeedDown;
                 }
                 // cc.log("updateSlots  eSpeedUp",this.delta.y);
             }
             else{
                 this.SpeedY = Max_Speed;
-                cc.log("达到最高速度",this.SpeedY);
+                // cc.log("达到最高速度",this.SpeedY);
                 this.randItemPic()
                 this.SlotState =window.SlotState.eWaitSpeedDown;
             }
@@ -398,7 +414,7 @@ cc.Class({
                 this.Acceleration = -this.SpeedY * this.SpeedY/ (2 * S); 
                 // this.Acceleration = -this.Acceleration;
                 
-                cc.log("等待减速 curIndex=%s this.delta.y=%s this.Acceleration=%s",this.curIndex,this.SpeedY, this.Acceleration);
+                // cc.log("等待减速 curIndex=%s this.delta.y=%s this.Acceleration=%s",this.curIndex,this.SpeedY, this.Acceleration);
                 return;
                 
             }
