@@ -284,7 +284,7 @@ var VersionManager = {
     },
     //包外配置
     parseTempCfg: function () {
-        if(!cc.sys.isNative||this.remoteCfg=null)
+        if(!cc.sys.isNative||this.remoteCfg==null)
         {
             return
         }
