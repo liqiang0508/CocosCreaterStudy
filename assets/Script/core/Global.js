@@ -247,6 +247,16 @@ var Global = {
             }
         })
     },
+    GgetTwoV2Angle:function(vA,vB) {//获得2点的夹角vA起点，vB终点
+        
+        var dx = vB.x - vA.x;
+        var dy = vB.y - vA.y;
+        var dir = cc.v2(dx,dy);
+        var angle = dir.signAngle(cc.v2(0,1))//弧度
+        // var degree = angle / Math.PI * 180;
+        var degree = cc.misc.radiansToDegrees(angle)//转成角度
+        return degree
+    },
     
     Ghotupdateurl:"http://192.168.65.172/hotupversion/configrelease", // 热更新地址
     GgameType:1  // 1正式包 3debug

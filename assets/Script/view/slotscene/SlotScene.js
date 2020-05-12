@@ -74,7 +74,7 @@ cc.Class({
         var bg = cc.find("content/bg",this.node)
         bg.height = slot1.height
         bg.width = slot1.width
-       
+     
     },
 
     // update (dt) {},

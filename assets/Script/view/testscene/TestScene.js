@@ -332,23 +332,31 @@ cc.Class({
         garpgicsnode.on(cc.Node.EventType.TOUCH_START,function(event){
             var touches = event.getTouches();
             var touchLoc = touches[0].getLocation();
-            touchLoc = garpgicsnode.convertToNodeSpaceAR(touchLoc);
-            // cc.log("TOUCH_START===",touchLoc,garpgics)
-            garpgics.moveTo(touchLoc.x,touchLoc.y)
+         
+            touchLoc = sp2.parent.convertToNodeSpaceAR(touchLoc);
+            cc.log(touchLoc)
+            var Angle = Global.GgetTwoV2Angle(sp2.getPosition(),touchLoc)
+            sp2.rotation  = Angle
+    
         })
 
         garpgicsnode.on(cc.Node.EventType.TOUCH_MOVE,function(event){
             var touches = event.getTouches();
             var touchLoc = touches[0].getLocation();
-            touchLoc = garpgicsnode.convertToNodeSpaceAR(touchLoc);
-            // cc.log("TOUCH_MOVE===",touchLoc,garpgics)
-            garpgics.lineTo(touchLoc.x,touchLoc.y)
-            garpgics.stroke();
-          
+            touchLoc = sp2.parent.convertToNodeSpaceAR(touchLoc);
+            cc.log(touchLoc)
+            var Angle = Global.GgetTwoV2Angle(sp2.getPosition(),touchLoc)
+            sp2.rotation  = Angle
         })
+        //画图
 
-    
-
+         //角度测试 2点的角度
+        var winsizeA = cc.view.getVisibleSize()
+        var vA = cc.v2(-winsizeA.width/2,winsizeA.height/2)
+        var vB = cc.v2(winsizeA.width/2,-winsizeA.height/2)
+        var degree = Global.GgetTwoV2Angle(vA,vB)
+        var node = cc.find("uipanel/New Sprite", this.node)
+        node.rotation = degree
 
     },
 
