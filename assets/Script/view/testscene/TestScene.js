@@ -313,7 +313,15 @@ cc.Class({
         // btn_goslot
         var btn_goslot =  cc.find("uipanel/btn_goslot", this.node) 
         ua.darkButton(btn_goslot,function(){
-            cc.director.loadScene("SlotScene")
+            // cc.director.loadScene("SlotScene")
+            var bezier = [cc.v2(-windowSize.width / 2, windowSize.height / 2), cc.v2(0, 0), cc.v2(windowSize.width / 2,windowSize.height / 2)];
+        var bezierTo = cc.bezierTo(2, bezier);
+        btn_goslot.setPosition(cc.v2(-windowSize.width / 2, windowSize.height / 2))
+        var seq = cc.sequence(bezierTo,cc.callFunc(function(){
+
+            btn_goslot.setPosition(cc.v2(-windowSize.width / 2, windowSize.height / 2))
+        }))
+        btn_goslot.runAction(seq)
 
         })
 
@@ -359,6 +367,40 @@ cc.Class({
         var degree = Global.GgetTwoV2Angle(vA,vB)
         var node = cc.find("uipanel/New Sprite", this.node)
         node.angle = -degree
+
+        var windowSize = cc.view.getVisibleSize()
+        garpgicsnode = garpgicsnode.getComponent(cc.Graphics)
+        garpgicsnode.moveTo(-windowSize.width / 2, windowSize.height / 2)
+        garpgicsnode.quadraticCurveTo(0, 0,windowSize.width / 2,windowSize.height / 2)
+        garpgicsnode.stroke()
+        
+        //bezier
+        this.startMove()
+
+      
+
+    },
+    startMove(){
+        var self = this
+        var garpgicsnode = cc.find("garpgicsnode", this.node)
+        var btn_goslot =  cc.find("uipanel/btn_goslot", this.node)
+
+        var windowSize = cc.view.getVisibleSize()
+        // 
+        // var bezier = [cc.v2(0, windowSize.height / 2), cc.v2(300, -windowSize.height / 2), cc.v2(300, 100)];
+        var bezier = [cc.v2(-windowSize.width / 2, windowSize.height / 2), cc.v2(0, 0), cc.v2(windowSize.width / 2,windowSize.height / 2)];
+        var bezierTo = cc.bezierTo(2, bezier);
+
+        btn_goslot.setPosition(cc.v2(-windowSize.width / 2, windowSize.height / 2))
+        
+        var call = cc.callFunc(function(){
+            btn_goslot.stopAllActions()
+            self.startMove()
+        })
+        var seq = cc.sequence(bezierTo,call)
+
+        btn_goslot.runAction(cc.repeatForever(seq))
+
 
     },
 
