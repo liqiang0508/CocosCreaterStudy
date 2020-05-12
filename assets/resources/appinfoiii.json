@@ -1,5 +1,5 @@
 {
-    "scriptVersion": 55, 
+    "scriptVersion": 56, 
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc", 
@@ -8,8 +8,8 @@
         }, 
         {
             "filename": "src/project.jsc", 
-            "md5": "1C31D166C96033037B169327C73802D2", 
-            "size": 62984
+            "md5": "D6D35F451F0683F7D302660B71474EFC", 
+            "size": 63320
         }, 
         {
             "filename": "src/settings.jsc", 
@@ -353,8 +353,8 @@
         }, 
         {
             "filename": "res/import/dd/dd0e6bb7-5c5a-4f69-9956-7f97de09feba.json", 
-            "md5": "8BC7D5AF2D159D7F1AAA2E7BDA5F430F", 
-            "size": 8451
+            "md5": "64B6117A951EA930FA964835FEE776FE", 
+            "size": 12535
         }, 
         {
             "filename": "res/import/df/dfdfc4b2-6bb4-4826-8f7a-e29a87ed3fb3.json", 
