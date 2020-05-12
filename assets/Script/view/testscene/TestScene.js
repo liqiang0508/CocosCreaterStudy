@@ -331,12 +331,13 @@ cc.Class({
   
         garpgicsnode.on(cc.Node.EventType.TOUCH_START,function(event){
             var touches = event.getTouches();
-            var touchLoc = touches[0].getLocation();
-         
+            var touchLoc = touches[0].getLocation();//opengL坐标系。 原点在左下角
+            var touch2 =  touches[0].getLocationInView();//屏幕坐标系  原点在左上角
+
             touchLoc = sp2.parent.convertToNodeSpaceAR(touchLoc);
-            cc.log(touchLoc)
+           
             var Angle = Global.GgetTwoV2Angle(sp2.getPosition(),touchLoc)
-            sp2.rotation  = Angle
+            sp2.angle  = -Angle
     
         })
 
@@ -344,9 +345,10 @@ cc.Class({
             var touches = event.getTouches();
             var touchLoc = touches[0].getLocation();
             touchLoc = sp2.parent.convertToNodeSpaceAR(touchLoc);
-            cc.log(touchLoc)
+            // cc.log(touchLoc)
+           
             var Angle = Global.GgetTwoV2Angle(sp2.getPosition(),touchLoc)
-            sp2.rotation  = Angle
+            sp2.angle  = -Angle
         })
         //画图
 
@@ -356,7 +358,7 @@ cc.Class({
         var vB = cc.v2(winsizeA.width/2,-winsizeA.height/2)
         var degree = Global.GgetTwoV2Angle(vA,vB)
         var node = cc.find("uipanel/New Sprite", this.node)
-        node.rotation = degree
+        node.angle = -degree
 
     },
 
