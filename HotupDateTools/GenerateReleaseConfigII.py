@@ -157,10 +157,11 @@ with open("../../appinfoiii.json","w") as f:#保存md5配置文件
 	f.write(json.dumps(data,indent=4))
 	f.close()
 
+#配置文件移动到热更新资源没了和项目目录
 copyFile("../../appinfoiii.json","../../assets/resources/appinfoiii.json")#生成最新的配置复制到项目中
 copyFile("../../appinfoiii.json","../../hotupversion/Script_"+str(scriptVersion)+"/appinfoiii.json")#配置文件移动到hotupversion文件夹
 
-# move
+# move移动zip包到上一层目录
 moveFile("Script_"+str(scriptVersion)+".zip","../Script_"+str(scriptVersion)+".zip")
 
 os.chdir("../../HotupDateTools")
