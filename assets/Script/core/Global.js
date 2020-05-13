@@ -257,7 +257,18 @@ var Global = {
         var degree = cc.misc.radiansToDegrees(angle)//转成角度
         return degree
     },
-    
+    //判断是不是正确的json
+    isjson:function(str){
+        if (typeof str == 'string') {
+            try {
+                JSON.parse(str);
+                return true;
+            } catch(e) {
+                console.log(e);
+                return false;
+            }
+        }
+    },
     Ghotupdateurl:"http://192.168.65.172/hotupversion/configrelease", // 热更新地址
     GgameType:1  // 1正式包 3debug
 

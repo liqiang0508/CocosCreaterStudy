@@ -28,6 +28,9 @@ if (cc && cc.sys.isNative) {
 // 6:不支持热更新的版本号
 // 7:不支持热更新的渠道
 // 8:强制更新
+// 9:包外json配置不合法
+// 10:远程配置json不合法
+// 11:远程md5-json不合法
 // 100 :更新成功
 var Global = require("Global")
 var VersionManager = {
@@ -58,6 +61,11 @@ var VersionManager = {
             if (data == null) {
                 self.callFunWithState(2, "获取MD5配置文件失败")
                 return
+            }
+            if(!Global.isjson(data))
+            {
+                self.callFunWithState(11, "远程md5-json不合法")
+                return 
             }
             self.remoteMd5Cfg = JSON.parse(data)
             self.comparefiles()
@@ -303,11 +311,24 @@ var VersionManager = {
         var path = GtempCfg
         if (jsb.fileUtils.isFileExist(path)) {
             var data = jsb.fileUtils.getStringFromFile(path)
-            self.localCfg = JSON.parse(data) 
+            if(Global.isjson(data))//判断是不是合法的json
+            {
+                self.localCfg = JSON.parse(data)
+            }else{//包外json配置不合法
+                this.FixGame()//移除热更新相关的东西
+                self.callFunWithState(9, "包外json配置不合法")
+            }
+            
+           
         }
         HttpHelper.sendHttpRequest(this.remoteCfg, function (data) {
             if (data == null) {
                 self.callFunWithState(1, "获取版本配置文件失败")
+                return
+            }
+            if(!Global.isjson(data))//判断是不是合法的json
+            {
+                self.callFunWithState(10, "远程配置json不合法")
                 return
             }
             self.remoteCfg = JSON.parse(data)
