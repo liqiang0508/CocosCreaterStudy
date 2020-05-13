@@ -114,20 +114,20 @@ data["files"] = []
 
 os.chdir("../build/jsb-default")
 
-# walk("src")#生成src的配置
-# walk("res")#生成res的配置
+walk("src")#生成src的配置
+walk("res")#生成res的配置
 os.chdir("../../")
 
-# with open("appinfoiii.json","w") as f:#保存md5配置文件
-# 	f.write(json.dumps(data,indent=4))
-# 	f.close()
+with open("appinfoiii.json","w") as f:#保存md5配置文件
+	f.write(json.dumps(data,indent=4))
+	f.close()
 
-# copyFile("appinfoiii.json","assets/resources/appinfoiii.json")#生成最新的配置复制到项目中
+copyFile("appinfoiii.json","assets/resources/appinfoiii.json")#生成最新的配置复制到项目中
 
 #移动资源到hotupversion文件夹
 copyFileTree("build/jsb-default/src","hotupversion/Script_"+str(scriptVersion)+"/src")#移动到hotupversion文件夹
 copyFileTree("build/jsb-default/res","hotupversion/Script_"+str(scriptVersion)+"/res")#移动到hotupversion文件夹
-# copyFile("appinfoiii.json","hotupversion/Script_"+str(scriptVersion)+"/appinfoiii.json")#配置文件移动到hotupversion文件夹
+copyFile("appinfoiii.json","hotupversion/Script_"+str(scriptVersion)+"/appinfoiii.json")#配置文件移动到hotupversion文件夹
 
 # compress 压缩
 resdir = "hotupversion/Script_"+str(scriptVersion)+"/res"
@@ -151,15 +151,15 @@ ziputils.AddFile("src")
 ziputils.ZipEnd()
 
 # 压缩之后再来生成md5
-walk("src")#生成src的配置
-walk("res")#生成res的配置
-with open("../../appinfoiii.json","w") as f:#保存md5配置文件
-	f.write(json.dumps(data,indent=4))
-	f.close()
+# walk("src")#生成src的配置
+# walk("res")#生成res的配置
+# with open("../../appinfoiii.json","w") as f:#保存md5配置文件
+# 	f.write(json.dumps(data,indent=4))
+# 	f.close()
 
-#配置文件移动到热更新资源没了和项目目录
-copyFile("../../appinfoiii.json","../../assets/resources/appinfoiii.json")#生成最新的配置复制到项目中
-copyFile("../../appinfoiii.json","../../hotupversion/Script_"+str(scriptVersion)+"/appinfoiii.json")#配置文件移动到hotupversion文件夹
+# #配置文件移动到热更新资源没了和项目目录
+# copyFile("../../appinfoiii.json","../../assets/resources/appinfoiii.json")#生成最新的配置复制到项目中
+# copyFile("../../appinfoiii.json","../../hotupversion/Script_"+str(scriptVersion)+"/appinfoiii.json")#配置文件移动到hotupversion文件夹
 
 # move移动zip包到上一层目录
 moveFile("Script_"+str(scriptVersion)+".zip","../Script_"+str(scriptVersion)+".zip")
