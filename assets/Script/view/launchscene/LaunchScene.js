@@ -84,6 +84,10 @@ cc.Class({
     // 5：读取包内配置失败
     // 6:不支持热更新的版本号
     // 7:不支持热更新的渠道
+    // 8:强制更新
+    // 9:包外json配置不合法
+    // 10:远程配置json不合法
+    // 11:远程md5-json不合法
     // 100 :更新成功
         VersionManager.checkUpdate(Global.Ghotupdateurl, function (code,url) {
             self.unSchduleUpdateText()//停止显示update...
@@ -109,7 +113,7 @@ cc.Class({
                     }
                 })
             }
-            else {//热更新error   1 2 3 4 5
+            else {//热更新error 
                 
                 Global.ShowAlert("ErrorCode====="+code,[],function(){
                     self.Reboot()//失败重启

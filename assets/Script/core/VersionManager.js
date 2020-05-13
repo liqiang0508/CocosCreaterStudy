@@ -8,7 +8,7 @@ var GHotUpFolder = ""
 
 var GtempCfg = ""
 
-if (cc && cc.sys.isNative) {
+if (cc && cc.sys.isNative) {//web跑的时候会报错
 
     GtempFolder = jsb.fileUtils.getWritablePath() + "packageTemp/"//热更新临时目录
 
@@ -16,7 +16,7 @@ if (cc && cc.sys.isNative) {
 
     GtempCfg = jsb.fileUtils.getWritablePath() + "config/appinfoiii.json"//包外配置
 
-}
+} 
 
 // stateCode
 // 0:不用更新 
@@ -235,20 +235,9 @@ var VersionManager = {
         Global.GcreateDir(jsb.fileUtils.getWritablePath() + "config")
         Global.GwriteStringToFile(str, GtempCfg)//移动完成后再把远程的配置存在可读写路径下的config目录
         
-
-
-        // var searchPaths = jsb.fileUtils.getSearchPaths();
-        // var newPaths = new Array(GHotUpFolder)
-        // // searchPaths.unshift(GHotUpFolder)
-        // Array.prototype.unshift.apply(searchPaths, newPaths)
-        // console.log("versionmanager===",searchPaths)
-        // cc.sys.localStorage.setItem('HotUpdateSearchPaths', JSON.stringify(searchPaths));
-        // jsb.fileUtils.setSearchPaths(searchPaths);
         this.callFunWithState(100, "更新成功")
-        // this.ReStartGame()
-        
-
     },
+
     //重启
     ReStartGame: function () {
         cc.log("重启***")
@@ -365,33 +354,12 @@ var VersionManager = {
             console.log("远程debug版本号==" + debugscriptVersion)
             console.log("远程版本号==" + remotescriptVersion)
 
-            //debug包 
-            if(Global.GgameType == 3)//每个人都更新 不用判断id在不在debuguid里面  直接判断版本号不相等 就更新
-            {
-
-                if (parseInt(localscriptVersion) != parseInt(remotescriptVersion))//判断版本号
-                {
-                    console.log("走debug包热更新判断")
-                    var baseUrl = self.remoteCfg["baseUrl"]
-                    baseUrl = cc.js.formatStr(baseUrl, remotescriptVersion)
-                    var ConfigFile = self.remoteCfg["configFile"]//远程md5配置字段
-                    var url = baseUrl + ConfigFile//md5 全路径
-                    self.BaseUrl = baseUrl//保存下http://xxxx/script_%s/  后面构造一个文件的下载链接
-                    self.downRemoteMd5(url)
-                    return
-                }
-               
-                self.callFunWithState(0, "不用更新-debug包-本地和远程版本一致:"+localscriptVersion)
-                return
-            }
-
-            //正式包
             if (Global.GIsArrContain(debugUIDs, localId))//先看是不是测试玩家
             {
-                console.log("是测试玩家")
+                // console.log("是测试玩家",parseInt(localscriptVersion) != parseInt(debugscriptVersion))
                 if (parseInt(localscriptVersion) != parseInt(debugscriptVersion)) {
 
-                    console.log("走正式包------测试玩家----热更新判断")
+                    console.log("走测试玩家----热更新")
                     var debugBaseUrl = self.remoteCfg["debugBaseUrl"]
                     debugBaseUrl = cc.js.formatStr(debugBaseUrl, debugscriptVersion)
                     var debugConfigFile = self.remoteCfg["debugConfigFile"]//远程debug md5文件字段
@@ -400,12 +368,18 @@ var VersionManager = {
                     self.downRemoteMd5(url)
                     return
                 }
+                else//是测试玩家 并且本地版本和远程版本号一样
+                {
+                    self.callFunWithState(0, "测试玩家版本和远程一样:"+localscriptVersion)
+                    return
+                }
+                
 
             }
 
             if (parseInt(localscriptVersion) != parseInt(remotescriptVersion))//正式更新判断
             {
-                console.log("走正式的包-------------热更新判断")
+                console.log("走正式----热更新")
                 var baseUrl = self.remoteCfg["baseUrl"]
                 baseUrl = cc.js.formatStr(baseUrl, remotescriptVersion)
                 var ConfigFile = self.remoteCfg["configFile"]//远程md5文件字段
@@ -415,7 +389,7 @@ var VersionManager = {
                 return
             }
 
-            self.callFunWithState(0, "不用更新--正式包-本地和远程版本一致:"+localscriptVersion)
+            self.callFunWithState(0, "不用更新-本地和远程版本一致:"+localscriptVersion)
 
         })
 

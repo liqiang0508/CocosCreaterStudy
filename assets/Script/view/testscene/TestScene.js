@@ -389,7 +389,7 @@ cc.Class({
         
         var call = cc.callFunc(function(){
             btn_goslot.stopAllActions()
-            // self.startMove()
+            self.startMove()
         })
         var seq = cc.sequence(bezierTo,call)
 
