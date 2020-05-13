@@ -236,9 +236,9 @@
     "_opacity": 200,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 151,
+      "g": 73,
+      "b": 73,
       "a": 255
     },
     "_contentSize": {

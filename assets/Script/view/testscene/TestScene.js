@@ -117,13 +117,7 @@ cc.Class({
         cc.log("timeStamp=====",timeStamp,new Date().toLocaleDateString())
         cc.log("timeStamp=====",timeStamp,new Date().toLocaleString())
         cc.log("timeStamp=====",timeStamp,new Date().toLocaleTimeString())
-        // cc.log(window.Save.get("loginid",timeStamp))
-        // var id = window.Save.get("decicesID",timeStamp)
-        // if (id==timeStamp)
-        // {
-        //     window.Save.set("decicesID",timeStamp)
-        // }
-       
+      
         cc.log("DevicesInfo===id",DevicesInfo.getDevicesID(),cc.sys.os)
 
         //show Alert
@@ -395,7 +389,7 @@ cc.Class({
         
         var call = cc.callFunc(function(){
             btn_goslot.stopAllActions()
-            self.startMove()
+            // self.startMove()
         })
         var seq = cc.sequence(bezierTo,call)
 
