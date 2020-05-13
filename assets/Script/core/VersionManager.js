@@ -304,8 +304,9 @@ var VersionManager = {
             {
                 self.localCfg = JSON.parse(data)
             }else{//包外json配置不合法
-                this.FixGame()//移除热更新相关的东西
+                self.FixGame()//移除热更新相关的东西
                 self.callFunWithState(9, "包外json配置不合法")
+                return
             }
             
            
