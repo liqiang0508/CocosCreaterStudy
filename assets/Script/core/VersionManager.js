@@ -241,13 +241,24 @@ var VersionManager = {
         
 
     },
-    //
+    //重启
     ReStartGame: function () {
         cc.log("重启***")
         cc.audioEngine.stopAll();
         cc.game.restart()
 
        
+    },
+
+    //修复游戏
+    FixGame: function () {
+        if (cc.sys.isNative) {
+            jsb.fileUtils.removeDirectory(GHotUpFolder)//删掉热更新目录在创建
+            jsb.fileUtils.createDirectory(GHotUpFolder)
+
+            jsb.fileUtils.removeFile(GtempCfg)//删除包外的热更新配置
+        }
+
     },
 
     callFunWithState: function (state, desc,url) {
@@ -269,7 +280,7 @@ var VersionManager = {
             else {
 
                 self.localCfg = jsonAsset.json
-
+                //尝试读取包外配置
                 self.parseTempCfg()
             };
         });
