@@ -26,7 +26,7 @@ var HttpHelper = {
         if(cc.sys.isNative){
              xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
         }
-        xhr.timeout = 30000;
+        xhr.timeout = 5000;
 
         xhr.send();
     },
@@ -48,7 +48,7 @@ var HttpHelper = {
         if(cc.sys.isNative){
             xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
         }
-        // xhr.timeout = 30000;
+        xhr.timeout = 5000;
         xhr.setRequestHeader("Content-Type","application/json");
         // Uint8Array is an ArrayBufferView
         var _data = JSON.stringify(data)
