@@ -67,13 +67,13 @@ def walk(path):
 	# print "walk======",path
 	for dirpath,dirnames,filenames in os.walk(path):#
 		# print "dirpath=",dirpath
-		for file in filenames:
+		for filename in filenames:
 			if dirpath in IgnorDir:
 				continue
-			if file in IgnorFile:
+			if filename in IgnorFile:
 				continue
 
-			path = os.path.join(dirpath, file)
+			path = os.path.join(dirpath, filename)
 			# print "walk......",path,getFileMd5(path).upper()
 			path = path.replace("\\","/")
 			filedata = OrderedDict()
@@ -146,10 +146,10 @@ resdir = "hotupversion/Script_"+str(scriptVersion)+"/res"
 quality = "20-50"#压缩比
 main = "HotupDateTools\pngquant.exe"
 for dirpath,dirnames,filenames in os.walk(resdir):#压缩目录下的所有文件
-            for file in filenames:
-                    if file.endswith("png"):
-                        print "compressing......",os.path.join(dirpath, file)
-                        cmd = main + " -f --ext .png --quality "+quality+" "+os.path.join(dirpath, file)
+            for filename in filenames:
+                    if filename.endswith("png"):
+                        print "compressing......",os.path.join(dirpath, filename)
+                        cmd = main + " -f --ext .png --quality "+quality+" "+os.path.join(dirpath, filename)
                         print cmd
                         os.popen(cmd)
 
@@ -160,6 +160,7 @@ os.chdir(zipdir)
 ziputils.ZipInit("Script_"+str(scriptVersion)+".zip")
 ziputils.AddFile("res")
 ziputils.AddFile("src")
+ziputils.AddFile("../../appinfoiii.json")#添加配置文件
 ziputils.ZipEnd()
 
 # move

@@ -148,6 +148,7 @@ os.chdir(zipdir)
 ziputils.ZipInit("Script_"+str(scriptVersion)+".zip")
 ziputils.AddFile("res")
 ziputils.AddFile("src")
+ziputils.AddFile("../../appinfoiii.json")#添加配置文件
 ziputils.ZipEnd()
 
 # 压缩之后再来生成md5
