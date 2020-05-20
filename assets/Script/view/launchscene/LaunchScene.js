@@ -107,10 +107,10 @@ cc.Class({
             else if(code == 8)//强制更新
             {
                 Global.ShowAlert("发现新版本"+url,[],function(index){
-                    if(index==1)//打开浏览器
-                    {
-                        cc.sys.openURL(url)
-                    }
+                    cc.log("indx====",index)
+                   
+                    cc.sys.openURL(url)
+                    
                 })
             }
             else {//热更新error 
