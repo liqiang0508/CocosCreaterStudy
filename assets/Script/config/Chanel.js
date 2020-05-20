@@ -19,7 +19,7 @@ else if(cc.sys.isNative&&cc.sys.os == cc.sys.OS_IOS)//ios
 {
     window.DISTRIBUTE_CHANNEL = chanel.IOS_APPSTORE;
 }
-else if(cc.sys.isNative&&cc.sys.os == cc.sys.OS_WINDOWS)//模拟器
+else //其他的都是算模拟器
 {
     window.DISTRIBUTE_CHANNEL = chanel.WIN32;
 }
