@@ -29,7 +29,7 @@ cc.Class({
     },
 
     unSchduleUpdateText(){//取消显示updating...
-        this.Text.node.opacity = 0
+        // this.Text.node.opacity = 0
         Global.gUnSchduleFun(this,this.updateText)
 
     },
@@ -90,8 +90,7 @@ cc.Class({
     // 11:远程md5-json不合法
     // 100 :更新成功
         VersionManager.checkUpdate(Global.Ghotupdateurl, function (code,url) {
-            self.unSchduleUpdateText()//停止显示update...
-            
+
             if (code == 0)//不用更新
             {
                 self.goLoginScene()
@@ -121,8 +120,11 @@ cc.Class({
             }
         }, function (progress,DownedSize,TotalSize) {//下载进度，下载了多少kb ，总下载多少kb  
             cc.log("progress===", progress)
-
-            self.Text.node.opacity = 255
+            if(cc.director.getScheduler().isScheduled(self.updateText,self))
+            {
+                self.unSchduleUpdateText()//停止显示update... 
+            }
+        
             var a = "updateing" + progress + "% ("+DownedSize+"kb/"+TotalSize+"kb)"
             self.Text.string = a//"updateing" + progress + "%    "+DownedSize/1024+"M/"+TotalSize/1024+"M"
         })
