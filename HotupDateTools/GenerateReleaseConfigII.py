@@ -72,6 +72,7 @@ def walk(path):
 			if dirpath in IgnorDir:
 				continue
 			if filename in IgnorFile:
+				print("ignore file ==========",filename)
 				continue
 
 			filename = os.path.join(dirpath, filename)
@@ -94,6 +95,13 @@ def BuildRes():
 	print("BuildRes end**************")
 
 
+def GetAppInfoFileName():#获取appinfoiii的打包后的资源名 然后生成md5的时候排除
+	res = '../assets/resources/appinfoiii.json.meta'
+	with open(res,"r") as f:
+		data= f.read()
+		data = json.loads(data)
+		print data["uuid"]
+		return data["uuid"]+".json"
 
 
 scriptVersion = 0
@@ -107,6 +115,7 @@ if not os.path.exists("../hotupversion"):
 	os.mkdir("../hotupversion")
 
 BuildRes()#先生成编译出来的资源和脚本
+IgnorFile.append(GetAppInfoFileName())#把appinfoiii生成的文件在生成md5里面去掉
 data = OrderedDict()
 scriptVersion = scriptVersion+1#版本号加1 
 data["scriptVersion"] = scriptVersion
