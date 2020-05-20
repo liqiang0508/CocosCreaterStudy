@@ -45,11 +45,13 @@ var VersionManager = {
     checkUpdate: function (url, downcall, progressCall) {
         cc.log("checkUpdate----",url)
         var self = this;
-        this.parseLocalCfg()
+        
 
         this.downcall = downcall;
         this.progressCall = progressCall;
         this.remoteCfg = url
+
+        this.parseLocalCfg()//读取本地配置
 
     },
     //下载远程md5
@@ -247,8 +249,8 @@ var VersionManager = {
        
     },
 
-    //修复游戏
-    FixGame: function () {
+    //移除热更新的临时文件
+    RemoveTemp: function () {
         if (cc.sys.isNative) {
             jsb.fileUtils.removeDirectory(GHotUpFolder)//删掉热更新目录在创建
             jsb.fileUtils.createDirectory(GHotUpFolder)
@@ -269,18 +271,42 @@ var VersionManager = {
     //包内配置
     parseLocalCfg: function () {
         var self = this;
-        cc.loader.loadRes('appinfoiii', function (err, jsonAsset) {
-            if (err) {
-                cc.log("读取包内配置失败" + err);
-                self.callFunWithState(5, "读取包内配置失败，请检查本地配置")
-            }
-            else {
 
-                self.localCfg = jsonAsset.json
-                //尝试读取包外配置
-                self.parseTempCfg()
-            };
-        });
+        var path = GtempCfg
+        if (jsb.fileUtils.isFileExist(path)) {//先看包外是否有配置 包外有先读取包外的
+            console.log("读取包外配置");
+            var data = jsb.fileUtils.getStringFromFile(path)
+            if(Global.isjson(data))//判断是不是合法的json
+            {
+                self.localCfg = JSON.parse(data)
+                 //拉取远程配置
+                self.parseRemoteCfg()
+            }else{//包外json配置不合法
+                self.RemoveTemp()//移除热更新相关的东西
+                self.callFunWithState(9, "包外json配置不合法")
+                return
+            }
+            
+           
+        }
+        else{//读取包内配置
+            console.log("读取包内配置");
+            cc.loader.loadRes('appinfoiii', function (err, jsonAsset) {
+                if (err) {
+                    cc.log("读取包内配置失败" + err);
+                    self.callFunWithState(5, "读取包内配置失败，请检查本地配置")
+                }
+                else {
+    
+                    self.localCfg = jsonAsset.json
+                    //拉取远程配置
+                    self.parseRemoteCfg()
+                };
+            });
+
+        }
+
+      
 
     },
     //获取本地最新脚本版本号
@@ -290,27 +316,14 @@ var VersionManager = {
         
        
     },
-    //包外配置
-    parseTempCfg: function () {
-        if(!cc.sys.isNative||this.remoteCfg==null)
+    //拉取远程配置
+    parseRemoteCfg: function () {
+        if(cc.sys.isNative==false||this.remoteCfg==null)//不是原生
         {
             return
         }
-        var self = this;
-        var path = GtempCfg
-        if (jsb.fileUtils.isFileExist(path)) {
-            var data = jsb.fileUtils.getStringFromFile(path)
-            if(Global.isjson(data))//判断是不是合法的json
-            {
-                self.localCfg = JSON.parse(data)
-            }else{//包外json配置不合法
-                self.FixGame()//移除热更新相关的东西
-                self.callFunWithState(9, "包外json配置不合法")
-                return
-            }
-            
-           
-        }
+        var self = this
+       
         HttpHelper.sendHttpRequest(this.remoteCfg, function (data) {
             if (data == null) {
                 self.callFunWithState(1, "获取版本配置文件失败")
@@ -371,7 +384,7 @@ var VersionManager = {
                 }
                 else//是测试玩家 并且本地版本和远程版本号一样
                 {
-                    self.callFunWithState(0, "测试玩家版本和远程一样:"+localscriptVersion)
+                    self.callFunWithState(0, "测试玩家版本和远程一样")
                     return
                 }
                 
