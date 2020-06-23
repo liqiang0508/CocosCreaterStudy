@@ -12,7 +12,7 @@
   "group-list": [
     "default"
   ],
-  "start-scene": "910e66c0-f310-4a44-8391-91bc62a030e5",
+  "start-scene": "43536003-f356-4b14-a620-6121ae97d44e",
   "design-resolution-width": 750,
   "design-resolution-height": 1334,
   "fit-width": true,
@@ -35,5 +35,8 @@
     "live": {
       "enable": false
     }
-  }
+  },
+  "migrate-history": [
+    "cloud-function"
+  ]
 }

@@ -59,7 +59,7 @@ cc.Class({
 
         }
         else {//web
-            VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
+            VersionManager.getH5ScriptVersion()//直接读取本地配置版本号 便于登录界面右下角展示
             Global.gSchduleOnce(this, function () {
 
                 self.goLoginScene()

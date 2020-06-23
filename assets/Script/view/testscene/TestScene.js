@@ -114,9 +114,9 @@ cc.Class({
 
         var timeStamp = new Date().getTime()//时间戳
 
-        cc.log("timeStamp=====",timeStamp,new Date().toLocaleDateString())
-        cc.log("timeStamp=====",timeStamp,new Date().toLocaleString())
-        cc.log("timeStamp=====",timeStamp,new Date().toLocaleTimeString())
+        cc.log("timeStamp=====",timeStamp,new Date())
+        // cc.log("timeStamp=====",timeStamp,new Date().toLocaleString())
+        // cc.log("timeStamp=====",timeStamp,new Date().toLocaleTimeString())
       
         cc.log("DevicesInfo===id",DevicesInfo.getDevicesID(),cc.sys.os)
 

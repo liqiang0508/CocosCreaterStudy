@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        368.9171662641073,
+        259.79710431128956,
         0,
         0,
         0,
@@ -1173,7 +1173,6 @@
     },
     "_resize": 0,
     "_N$layoutType": 0,
-    "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,
@@ -4999,7 +4998,6 @@
     },
     "_resize": 0,
     "_N$layoutType": 0,
-    "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,

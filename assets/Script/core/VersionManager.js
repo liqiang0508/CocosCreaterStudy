@@ -316,6 +316,21 @@ var VersionManager = {
         
        
     },
+    getH5ScriptVersion:function(){
+        var self = this
+        cc.loader.loadRes('appinfoiii', function (err, jsonAsset) {
+            if (err) {
+                cc.log("读取包内配置失败" + err);
+                self.callFunWithState(5, "读取包内配置失败，请检查本地配置")
+            }
+            else {
+
+                self.localCfg = jsonAsset.json
+                
+            };
+        });
+
+    },
     //拉取远程配置
     parseRemoteCfg: function () {
         if(cc.sys.isNative==false||this.remoteCfg==null)//不是原生
