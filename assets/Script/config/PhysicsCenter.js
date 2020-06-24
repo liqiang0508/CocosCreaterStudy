@@ -6,13 +6,13 @@ cc.Class({
         
         PhysicsManagerEnable: {
             default:false,
-            type:cc.Boolean,
+            // type:cc.Boolean,
             tooltip:"是否开启物理系统"
         },
 
         PhysicsManagerDrawDebug: {
             default:false,
-            type:cc.Boolean,
+            // type:cc.Boolean,
             tooltip:"是否开启物理绘制调试信息"
         },
 
