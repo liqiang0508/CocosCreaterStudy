@@ -28,7 +28,7 @@ window.Sound = {
             volume = parseFloat(volume);
         }
         let id = -1
-        cc.loader.loadRes(resPath, cc.AudioClip, function (err, clip) {
+        cc.resources.load(resPath, cc.AudioClip, function (err, clip) {
             if(err)
             {
                 cc.log(err)
@@ -83,7 +83,7 @@ window.Sound = {
             volume = parseFloat(volume);
         }
         let id = -1
-        cc.loader.loadRes(resPath, cc.AudioClip, function (err, clip) {
+        cc.resources.load(resPath, cc.AudioClip, function (err, clip) {
             if(err)
             {
                 cc.log(err)

@@ -162,7 +162,7 @@ var Global = {
         else //web 直接load
         {
     
-            cc.loader.load(url, function (error, texture) 
+            cc.assetManager.loadRemote(url, function (error, texture) 
             {
                 if (error)
                 {
@@ -277,7 +277,7 @@ var Global = {
 
 if(Global.GgameType==1)//正式包
 {
-    Global.Ghotupdateurl = "http://192.168.65.172/hotupversion/configrelease"
+    Global.Ghotupdateurl = "http://192.168.0.102/hotupversion/configrelease"
 }
 if(Global.GgameType==3)//debug包
 {

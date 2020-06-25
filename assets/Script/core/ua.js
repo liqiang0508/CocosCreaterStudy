@@ -19,7 +19,7 @@ ua.darkButton = function(node,call)
 //加载预制资源
 ua.loadPrefabRes = function(filepath,call)
 {
-    cc.loader.loadRes(filepath, function (err, prefab) {
+    cc.resources.load(filepath, function (err, prefab) {
         if(err)
         {
             cc.error("Load error===="+filepath)
@@ -39,7 +39,7 @@ ua.loadTexture = function(url,call){
 
  
 
-    cc.loader.load(url, function (error, texture) {
+    cc.assetManager.loadRemote(url, function (error, texture) {
         if (error) {
             if (call) {
                 call(null)

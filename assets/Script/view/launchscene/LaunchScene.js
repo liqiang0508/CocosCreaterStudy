@@ -34,7 +34,7 @@ cc.Class({
 
     },
     start() {
-        cc.log("Chanel===",window.DISTRIBUTE_CHANNEL)
+        cc.log("渠道号===",window.DISTRIBUTE_CHANNEL)
         cc.sys.localStorage.setItem('debugId',724001)
         var self = this
         this.count = 0
@@ -46,7 +46,6 @@ cc.Class({
                 cc.log("模拟器不更新")
                 VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
                 self.goLoginScene()
-    
                 return
             }     
             Global.gSchduleFun(this,this.updateText,1,cc.macro.REPEAT_FOREVER,0)//显示update...

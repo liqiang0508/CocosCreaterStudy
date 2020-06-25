@@ -154,7 +154,7 @@ cc.Class({
                 SpriteCom.spriteFrame = new cc.SpriteFrame(tex)
 
                 //加载材质
-                // cc.loader.loadRes("materials/circle_head",cc.Material,function(err,res){
+                // cc.resources.load("materials/circle_head",cc.Material,function(err,res){
 
                 //     if(!err)
                 //     {

@@ -90,7 +90,7 @@ cc.Class({
         var self = this
         let name = iconTexture[this.stopIndex];
         let path = "slots/" + name
-        cc.loader.loadRes(path, function (err, sp) {
+        cc.resources.load(path, function (err, sp) {
 
             if (err) {
                 cc.log("err==", err)
@@ -113,7 +113,7 @@ cc.Class({
                 let name = iconTexture[index];
                 let path = "slots/" + name
                 // cc.log(path)
-                cc.loader.loadRes(path, function (err, sp) {
+                cc.resources.load(path, function (err, sp) {
                     if (err) {
                         cc.log("err==", err)
                         return
@@ -166,7 +166,7 @@ cc.Class({
                 var index = Math.floor(Math.random() * (iconTexture.length ));//random texture
                 var name = iconTexture[index];
                 var path =  "slots/"+name
-                cc.loader.loadRes(path,function(err,sp){
+                cc.resources.load(path,function(err,sp){
 
                     if(err)
                     {
