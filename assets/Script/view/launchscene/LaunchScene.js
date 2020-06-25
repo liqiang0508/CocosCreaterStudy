@@ -63,7 +63,7 @@ cc.Class({
 
                 self.goLoginScene()
 
-            }, 2)
+            }, 0.1)
 
         }
 

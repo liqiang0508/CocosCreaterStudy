@@ -147,12 +147,13 @@ cc.Class({
         //load Tex
         var loadTex = cc.find("uipanel/loadTex", this.node)
         var url = "http://54.179.180.39:8080/CSLServer/img/welcome.png"//"http://tools.itharbors.com/christmas/res/tree.png"
-        url = "http://tools.itharbors.com/christmas/res/tree.png"
-        Global.GloadTexture(url, function (tex) {
+        url = "http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96"
+        Global.GloadPic(url, function (tex) {
             if (tex) {
                 var SpriteCom = loadTex.getComponent(cc.Sprite)
                 SpriteCom.spriteFrame = new cc.SpriteFrame(tex)
-
+                // SpriteCom.sizeMode = cc.Sprite.SizeMode.RAW
+                console.log(loadTex.width)
                 //加载材质
                 // cc.resources.load("materials/circle_head",cc.Material,function(err,res){
 
@@ -297,20 +298,33 @@ cc.Class({
 
         //bundle加载测试
         // btn_goslot
+
+
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
         ua.darkButton(btn_loadbundle, function () {
+            let bundleA = cc.assetManager.getBundle('Testbundle');
+            console.log("bundleA--", bundleA)
+            if (bundleA) {
+                console.log('have already loaded bundle.')
+                var obj = window.SayHello //直接使用window对象或者component
+                if (obj) {
+                    obj.Say()
+                }
+            }
+            else {
+                cc.assetManager.loadBundle('http://192.168.0.102/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log(loaded, total) },
+                    function (err, bundle) {
+                        if (err) {
+                            return console.error(err);
+                        }
+                        console.log('load bundle successfully.', bundle)
+                        var obj = window.SayHello //直接使用window对象或者component
+                        if (obj) {
+                            obj.Say()
+                        }
+                    });
+            }
 
-            cc.assetManager.loadBundle('http://192.168.0.102/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log(loaded, total) },
-                function (err, bundle) {
-                    if (err) {
-                        return console.error(err);
-                    }
-                    console.log('load bundle successfully.', bundle)
-                    var obj = window.SayHello //直接使用window对象或者component
-                    if (obj) {
-                        obj.Say()
-                    }
-                });
         })
 
         // btn_goslot

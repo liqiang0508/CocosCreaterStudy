@@ -125,7 +125,7 @@ var Global = {
         return arr[arr.length-1]
     },
     //load图片  web直接load  原生先缓存在本地
-    GloadTexture:function(url,call){
+    GloadPic:function(url,call){
         var self = this
         if (cc.sys.isNative) //原生先下载
         {
@@ -161,8 +161,7 @@ var Global = {
     
         else //web 直接load
         {
-    
-            cc.assetManager.loadRemote(url, function (error, texture) 
+            cc.assetManager.loadRemote(url,{ext: '.png'}, function (error, texture) 
             {
                 if (error)
                 {

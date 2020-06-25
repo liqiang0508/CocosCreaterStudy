@@ -39,7 +39,7 @@ ua.loadTexture = function(url,call){
 
  
 
-    cc.assetManager.loadRemote(url, function (error, texture) {
+    cc.assetManager.loadRemote(url,{ext: '.png'}, function (error, texture) {
         if (error) {
             if (call) {
                 call(null)
