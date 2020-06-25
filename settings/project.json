@@ -7,7 +7,8 @@
   "excluded-modules": [
     "3D Physics/cannon.js",
     "3D Physics/Builtin",
-    "3D Particle"
+    "3D Particle",
+    "SafeArea"
   ],
   "group-list": [
     "default"
@@ -24,7 +25,7 @@
     "height": 640,
     "width": 960
   },
-  "last-module-event-record-time": 1589785251859,
+  "last-module-event-record-time": 1593055569081,
   "assets-sort-type": "name",
   "facebook": {
     "appID": "",

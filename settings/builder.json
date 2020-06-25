@@ -16,20 +16,29 @@
   "mergeStartScene": false,
   "optimizeHotUpdate": false,
   "md5Cache": false,
-  "encryptJs": true,
+  "encryptJs": false,
   "xxteaKey": "e2ededca-352b-49",
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
+    "REMOTE_SERVER_ROOT": "www.baidu.com",
     "packageName": "org.cocos2d.helloworld"
   },
   "ios": {
+    "REMOTE_SERVER_ROOT": "",
     "packageName": "org.cocos2d.helloworld"
   },
   "mac": {
-    "packageName": "org.cocos2d.helloworld"
+    "REMOTE_SERVER_ROOT": "",
+    "height": 720,
+    "packageName": "org.cocos2d.helloworld",
+    "width": 1280
   },
-  "win32": {},
+  "win32": {
+    "REMOTE_SERVER_ROOT": "",
+    "height": 720,
+    "width": 1280
+  },
   "android-instant": {
     "REMOTE_SERVER_ROOT": "",
     "host": "",
@@ -39,5 +48,8 @@
     "scheme": "https",
     "skipRecord": false
   },
-  "appBundle": false
+  "appBundle": false,
+  "mainCompressionType": "merge_all_json",
+  "mainIsRemote": false,
+  "nativeMd5Cache": false
 }

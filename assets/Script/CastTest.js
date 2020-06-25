@@ -3,6 +3,9 @@
 // Learn Attribute:
 //  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
+
+const { sendHttpRequest } = require("./online/HttpHelper");
+
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 const AIM_LINE_MAX_LENGTH = 1440;
 cc.Class({
@@ -145,6 +148,24 @@ cc.Class({
     start() {
 
         this.node.on('touchstart', this.TouchStart, this)
+        // var say= require("Sayhello")
+        
+        // var a = new say()
+        // a.say()
+        cc.assetManager.loadBundle('Testbundle', {onFileProgress: function (progress) {
+
+            console.log('progress==',progress);
+        }},
+        
+        function (err, bundle) {
+            if (err) {
+                return console.error(err);
+            }
+            console.log('load bundle successfully.');
+            var A = require("Sayhello")
+            A = new A()
+            A.say()
+        });
 
     },
 
