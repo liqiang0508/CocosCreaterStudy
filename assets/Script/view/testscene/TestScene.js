@@ -300,7 +300,7 @@ cc.Class({
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
         ua.darkButton(btn_loadbundle, function () {
 
-            cc.assetManager.loadBundle('http://192.168.0.102/uploadfiles/Testbundle/Testbundle', { onFileProgress: (loaded, total) => console.log(loaded, total) },
+            cc.assetManager.loadBundle('http://192.168.0.102/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log(loaded, total) },
                 function (err, bundle) {
                     if (err) {
                         return console.error(err);

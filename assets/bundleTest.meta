@@ -5,16 +5,20 @@
   "bundleName": "Testbundle",
   "priority": 1,
   "compressionType": {
-    "web-mobile": "default"
+    "web-mobile": "default",
+    "android": "default"
   },
   "optimizeHotUpdate": {
-    "web-mobile": false
+    "web-mobile": false,
+    "android": false
   },
   "inlineSpriteFrames": {
-    "web-mobile": true
+    "web-mobile": true,
+    "android": false
   },
   "isRemoteBundle": {
-    "web-mobile": false
+    "web-mobile": false,
+    "android": true
   },
   "subMetas": {}
 }
