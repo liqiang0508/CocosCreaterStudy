@@ -5,11 +5,14 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-cc.Class({
-    
 
-    say(){
+var SayHello = {}
 
-        console.log("sayHello")
-    }
-});
+SayHello.Say = function(){
+
+    console.log("SayHello=====")
+}
+
+window.SayHello = SayHello
+
+// bundle下面的代码只能用window 或者Component
