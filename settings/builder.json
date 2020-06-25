@@ -21,7 +21,7 @@
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
-    "REMOTE_SERVER_ROOT": "www.baidu.com",
+    "REMOTE_SERVER_ROOT": "http://192.168.0.102/hotupversion",
     "packageName": "org.cocos2d.helloworld"
   },
   "ios": {

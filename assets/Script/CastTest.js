@@ -148,23 +148,19 @@ cc.Class({
     start() {
 
         this.node.on('touchstart', this.TouchStart, this)
-        // var say= require("Sayhello")
-        
-        // var a = new say()
-        // a.say()
-        cc.assetManager.loadBundle('Testbundle', {onFileProgress: function (progress) {
 
-            console.log('progress==',progress);
-        }},
+        cc.assetManager.loadBundle('http://192.168.0.102/hotupversion/remote/Testbundle', {onFileProgress:  (loaded, total)=> console.log(loaded,total)},
         
         function (err, bundle) {
             if (err) {
                 return console.error(err);
             }
-            console.log('load bundle successfully.');
-            var A = require("Sayhello")
-            A = new A()
-            A.say()
+            console.log('load bundle successfully.',bundle)
+
+            // var classA = require("Sayhello")
+            // console.log(classA)
+            // var obj = new Sayhello()
+            // obj.say()
         });
 
     },
