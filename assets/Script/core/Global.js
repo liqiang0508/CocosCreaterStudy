@@ -260,6 +260,19 @@ var Global = {
         })
 
     },
+    ShowChooseUpdate:function(data,call)
+    {
+        ua.loadPrefabRes("prefabs/selectupdate", function (_node) {
+            if (_node) {
+                cc.director.getScene().getChildByName('Canvas').addChild(_node)
+                var chooseupdate = _node.getComponent("chooseupdate")
+                if (chooseupdate) {
+                    chooseupdate.initData(data,call)
+                }
+            }
+        })
+
+    },
     GgetTwoV2Angle:function(vA,vB) {//获得2点的夹角vA起点，vB终点
         
         var dx = vB.x - vA.x;
@@ -283,7 +296,7 @@ var Global = {
         }
     },
     Ghotupdateurl:"http://192.168.65.172/hotupversion/configrelease", // 热更新地址
-    GgameType:1  // 1正式包 3debug
+    GgameType:3  // 1正式包 3debug
 
 }
 
@@ -294,6 +307,7 @@ if(Global.GgameType==1)//正式包
 }
 if(Global.GgameType==3)//debug包
 {
-    Global.Ghotupdateurl = "http://192.168.65.172/hotupversion/configdebug"
+    Global.Ghotupdateurl = "http://192.168.0.102/hotupversion/configdebug"
+    Global.isDebugTest = true
 }
 module.exports = Global;

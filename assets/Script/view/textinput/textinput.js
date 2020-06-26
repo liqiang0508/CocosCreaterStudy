@@ -33,6 +33,7 @@ cc.Class({
     show(call)
     {
         this.call = call
+        this.Editbox.getComponent(cc.EditBox).setFocus()
     },
     onbackpress(){
         this._super()

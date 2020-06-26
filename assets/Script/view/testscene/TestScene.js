@@ -24,9 +24,6 @@ cc.Class({
     },
 
     start() {
-        Global.ShowTextInput(function(text){
-            console.log("获取输入的text====",text)
-        })
         // var sp = cc.find("New Sprite", this.node)
         var searchPaths = "searchPaths--"
         if (cc && cc.sys.isNative) {
