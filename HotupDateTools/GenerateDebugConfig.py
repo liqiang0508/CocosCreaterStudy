@@ -135,7 +135,7 @@ data["files"] = []
 os.chdir("../build/jsb-default")
 
 walk("src")#生成src的配置
-walk("res")#生成res的配置
+walk("assets")#生成res的配置
 os.chdir("../../")
 
 with open("appinfoiii.json","w") as f:#保存md5配置文件
@@ -146,11 +146,11 @@ copyFile("appinfoiii.json","assets/resources/appinfoiii.json")#生成最新的�
 
 #移动资源到hotupversion文件夹
 copyFileTree("build/jsb-default/src","hotupversion/Script_"+str(scriptVersion)+"/src")#移动到hotupversion文件夹
-copyFileTree("build/jsb-default/res","hotupversion/Script_"+str(scriptVersion)+"/res")#移动到hotupversion文件夹
+copyFileTree("build/jsb-default/assets","hotupversion/Script_"+str(scriptVersion)+"/assets")#移动到hotupversion文件夹
 copyFile("appinfoiii.json","hotupversion/Script_"+str(scriptVersion)+"/appinfoiii.json")#配置文件移动到hotupversion文件夹
 
 # compress 压缩
-resdir = "hotupversion/Script_"+str(scriptVersion)+"/res"
+resdir = "hotupversion/Script_"+str(scriptVersion)+"/assets"
 quality = "20-50"#压缩比
 main = "HotupDateTools\pngquant.exe"
 for dirpath,dirnames,filenames in os.walk(resdir):#压缩目录下的所有文件
@@ -166,7 +166,7 @@ for dirpath,dirnames,filenames in os.walk(resdir):#压缩目录下的所有文�
 zipdir = "hotupversion/"+"Script_"+str(scriptVersion)
 os.chdir(zipdir)
 ziputils.ZipInit("Script_"+str(scriptVersion)+".zip")
-ziputils.AddFile("res")
+ziputils.AddFile("assets")
 ziputils.AddFile("src")
 ziputils.AddFile("../../appinfoiii.json")#添加配置文件
 ziputils.ZipEnd()
