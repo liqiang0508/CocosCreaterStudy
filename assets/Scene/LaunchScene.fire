@@ -84,6 +84,9 @@
     "_active": true,
     "_components": [
       {
+        "__id__": 16
+      },
+      {
         "__id__": 17
       },
       {
@@ -91,9 +94,6 @@
       },
       {
         "__id__": 19
-      },
-      {
-        "__id__": 20
       }
     ],
     "_prefab": null,
@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        368.92122542809915,
+        278.4136356697629,
         0,
         0,
         0,
@@ -263,9 +263,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 221,
-      "g": 190,
-      "b": 190,
+      "r": 195,
+      "g": 144,
+      "b": 144,
       "a": 255
     },
     "_contentSize": {
@@ -443,9 +443,6 @@
     "_components": [
       {
         "__id__": 15
-      },
-      {
-        "__id__": 16
       }
     ],
     "_prefab": null,
@@ -574,6 +571,8 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
     "_useOriginalSize": false,
     "_string": "",
     "_N$string": "",
@@ -638,9 +637,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 0,
-      "b": 0,
+      "r": 38,
+      "g": 29,
+      "b": 29,
       "a": 255
     },
     "_contentSize": {
@@ -695,6 +694,8 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
     "_useOriginalSize": false,
     "_string": "LaunchScene",
     "_N$string": "LaunchScene",
@@ -713,38 +714,6 @@
     "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": "d5EVDYPEVI0oUoqaOylqqn"
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 9
-    },
-    "_enabled": false,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "a23235d1-15db-4b95-8439-a2e005bfff91"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": "a4cqEP0H9GE4KVCeEom86z"
   },
   {
     "__type__": "7f436dxylZH4bCxvIF2a+LV",

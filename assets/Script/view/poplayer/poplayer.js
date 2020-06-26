@@ -17,7 +17,7 @@ cc.Class({
     onLoad () {
         this._super()
         var self = this
-        var btnclose = this.node.getChildByName("btn_close")
+        var btnclose = this.node.getChildByName("bg").getChildByName("btn_close")
         ua.darkButton(btnclose,function(){
             self.bClose()
         })

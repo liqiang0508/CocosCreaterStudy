@@ -52,9 +52,9 @@ cc.Class({
 
             Global.gSchduleOnce(this, function () {
 
-                self.goCheckUpdate()//热更新检查
+                self.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
 
-            }, 4)
+            }, 3)
 
         }
         else {//web
@@ -71,7 +71,7 @@ cc.Class({
         
     },
 
-    goCheckUpdate(){//检查热更新
+    goCheckUpdate(url){//检查热更新
         var self = this
 
     // stateCode
@@ -88,7 +88,7 @@ cc.Class({
     // 10:远程配置json不合法
     // 11:远程md5-json不合法
     // 100 :更新成功
-        VersionManager.checkUpdate(Global.Ghotupdateurl, function (code,url) {
+        VersionManager.checkUpdate(url, function (code,url) {
 
             if (code == 0)//不用更新
             {

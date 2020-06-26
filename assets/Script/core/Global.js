@@ -246,6 +246,20 @@ var Global = {
             }
         })
     },
+
+    ShowTextInput:function(call)
+    {
+        ua.loadPrefabRes("prefabs/textinput", function (_node) {
+            if (_node) {
+                cc.director.getScene().getChildByName('Canvas').addChild(_node)
+                var textinput = _node.getComponent("textinput")
+                if (textinput) {
+                    textinput.show(call)
+                }
+            }
+        })
+
+    },
     GgetTwoV2Angle:function(vA,vB) {//获得2点的夹角vA起点，vB终点
         
         var dx = vB.x - vA.x;
