@@ -303,11 +303,11 @@ var Global = {
 
 if(Global.GgameType==1)//正式包
 {
-    Global.Ghotupdateurl = "http://192.168.0.102/hotupversion/configrelease"
+    Global.Ghotupdateurl = "http://192.168.0.103/hotupversion/configrelease"
 }
 if(Global.GgameType==3)//debug包
 {
-    Global.Ghotupdateurl = "http://192.168.0.102/hotupversion/configdebug"
+    Global.Ghotupdateurl = "http://192.168.0.103/hotupversion/configdebug"
     Global.isDebugTest = true
 }
 module.exports = Global;

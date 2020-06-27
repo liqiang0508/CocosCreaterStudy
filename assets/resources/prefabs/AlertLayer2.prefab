@@ -183,7 +183,7 @@
     "_id": ""
   },
   {
-    "__type__": "7f436dxylZH4bCxvIF2a+LV",
+    "__type__": "ee625B2iPdOz4Trq3USAlCq",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -496,6 +496,8 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
     "_useOriginalSize": false,
     "_string": "Yes",
     "_N$string": "Yes",
@@ -905,6 +907,8 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
     "_useOriginalSize": false,
     "_string": "No",
     "_N$string": "No",
@@ -1314,6 +1318,8 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
     "_useOriginalSize": false,
     "_string": "Middle",
     "_N$string": "Middle",
@@ -1584,6 +1590,8 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
     "_useOriginalSize": false,
     "_string": "",
     "_N$string": "",

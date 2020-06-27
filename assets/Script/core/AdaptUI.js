@@ -9,9 +9,16 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     //设置内容成大小
     onLoad() {
-        this.node.setContentSize(cc.sys.getSafeAreaRect() )
-        // this.node.setContentSize(cc.view.getVisibleSize())
-        // if(cc.sys.platform == cc.sys.OS_IOS)
+
+        if(cc.sys.isNative&&cc.sys.os == cc.sys.OS_IOS)
+        {
+            this.node.setContentSize(cc.sys.getSafeAreaRect())
+        }
+        if(cc.sys.isNative&&cc.sys.os == cc.sys.OS_ANDROID)
+        {
+            this.node.setContentSize(cc.view.getVisibleSize())
+        }
+        
        
     },
 

@@ -50,9 +50,9 @@ cc.Class({
             if (window.DISTRIBUTE_CHANNEL == chanel.WIN32)// 自带的模拟器不进行热更新   
             {
                 cc.log("模拟器不更新")
-                // VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
-                // self.goLoginScene()
-                // return
+                VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
+                self.goLoginScene()
+                return
             }
 
             if (Global.isDebugTest){//debug选择热更新地址

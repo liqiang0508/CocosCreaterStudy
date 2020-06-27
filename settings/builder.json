@@ -16,9 +16,9 @@
   "mergeStartScene": false,
   "optimizeHotUpdate": false,
   "md5Cache": false,
-  "encryptJs": false,
+  "encryptJs": true,
   "xxteaKey": "e2ededca-352b-49",
-  "zipCompressJs": true,
+  "zipCompressJs": false,
   "fb-instant-games": {},
   "android": {
     "REMOTE_SERVER_ROOT": "http://192.168.0.102/hotupversion",
@@ -49,7 +49,7 @@
     "skipRecord": false
   },
   "appBundle": false,
-  "mainCompressionType": "merge_all_json",
+  "mainCompressionType": "default",
   "mainIsRemote": false,
   "nativeMd5Cache": false
 }

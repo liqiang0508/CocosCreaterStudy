@@ -28,12 +28,14 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Log;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.view.WindowManager;
 
 import com.casino.game.ApplicationUtil;
 import com.casino.game.PermissionManager;
@@ -49,6 +51,13 @@ public class AppActivity extends Cocos2dxActivity {
         context = getApplication();
         DetectCoverInstall();
         super.onCreate(savedInstanceState);
+        //屏幕适配核心 在AppActivity的onCreate添加  让画布扩充到刘海部分
+        if (Build.VERSION.SDK_INT >= 28) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            WindowManager.LayoutParams lp = getWindow().getAttributes();
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+            getWindow().setAttributes(lp);
+        }
         // Workaround in
         // https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {

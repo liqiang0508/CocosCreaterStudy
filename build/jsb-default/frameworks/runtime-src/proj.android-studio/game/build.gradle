@@ -11,34 +11,30 @@ android {
         versionCode 1
         versionName "1.0"
 
-      /*  externalNativeBuild {
-            ndkBuild {
-                if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
-                    // skip the NDK Build step if PROP_NDK_MODE is none
-                    targets 'cocos2djs'
-                    arguments 'NDK_TOOLCHAIN_VERSION=clang'
-
-                    def module_paths = [project.file("../../../cocos2d-x"),
-                                        project.file("../../../cocos2d-x/cocos"),
-                                        project.file("../../../cocos2d-x/external")]
-                    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                        arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
-                    }
-                    else {
-                        arguments 'NDK_MODULE_PATH=' + module_paths.join(':')
-                    }
-
-                    arguments '-j' + Runtime.runtime.availableProcessors()
-                    abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
-                }
-            }
-        }*/
+//        externalNativeBuild {
+//            ndkBuild {
+//                if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
+//                    // skip the NDK Build step if PROP_NDK_MODE is none
+//                    targets 'cocos2djs'
+//                    arguments 'NDK_TOOLCHAIN_VERSION=clang'
+//
+//                    def module_paths = [project.file("../../../cocos2d-x"),
+//                                        project.file("../../../cocos2d-x/cocos"),
+//                                        project.file("../../../cocos2d-x/external")]
+//                    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+//                        arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
+//                    }
+//                    else {
+//                        arguments 'NDK_MODULE_PATH=' + module_paths.join(':')
+//                    }
+//
+//                    arguments '-j' + Runtime.runtime.availableProcessors()
+//                    abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
+//                }
+//            }
+//        }
     }
-    configurations {
-        all*.exclude group: 'com.android.support.v4', module: 'support-v4'
 
-        all*.exclude group: 'com.android.support.v4', module: 'support-annotations'
-    }
     sourceSets.main {
         java.srcDirs "../src", "src"
         res.srcDirs "../res", 'res'
@@ -46,14 +42,14 @@ android {
         manifest.srcFile "AndroidManifest.xml"
     }
 
-    /*externalNativeBuild {
-        ndkBuild {
-            if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
-                // skip the NDK Build step if PROP_NDK_MODE is none
-                path "jni/Android.mk"
-            }
-        }
-    }*/
+//    externalNativeBuild {
+//        ndkBuild {
+//            if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
+//                // skip the NDK Build step if PROP_NDK_MODE is none
+//                path "jni/Android.mk"
+//            }
+//        }
+//    }
 
     signingConfigs {
 
@@ -79,22 +75,22 @@ android {
                 signingConfig signingConfigs.release
             }
 
-            /*externalNativeBuild {
-                ndkBuild {
-                    arguments 'NDK_DEBUG=0'
-                }
-            }*/
+//            externalNativeBuild {
+//                ndkBuild {
+//                    arguments 'NDK_DEBUG=0'
+//                }
+//            }
         }
 
         debug {
             debuggable true
             jniDebuggable true
             renderscriptDebuggable true
-            externalNativeBuild {
-                ndkBuild {
-                    arguments 'NDK_DEBUG=1'
-                }
-            }
+//            externalNativeBuild {
+//                ndkBuild {
+//                    arguments 'NDK_DEBUG=1'
+//                }
+//            }
         }
     }
 
@@ -108,12 +104,8 @@ android.featureVariants.all { variant ->
         def sourceDir = "${buildDir}/../../../../.."
 
         copy {
-            from "${sourceDir}/res"
-            into "${outputDir}/res"
-        }
-        copy {
-            from "${sourceDir}/subpackages"
-            into "${outputDir}/subpackages"
+            from "${sourceDir}/assets"
+            into "${outputDir}/assets"
         }
 
         copy {
@@ -135,10 +127,12 @@ android.featureVariants.all { variant ->
 }
 
 dependencies {
+    implementation fileTree(dir: '../libs', include: ['*.jar','*.aar'])
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation fileTree(dir: "../../../cocos2d-x/cocos/platform/android/java/libs", include: ['*.jar'])
     implementation 'com.google.android.instantapps:instantapps:1.1.0'
     implementation 'com.google.android.gms:play-services-instantapps:16.0.0'
     implementation project(':libcocos2dx')
     implementation "androidx.core:core-ktx:+"
+
 }

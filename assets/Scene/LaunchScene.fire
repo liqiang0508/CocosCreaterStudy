@@ -75,17 +75,14 @@
         "__id__": 5
       },
       {
-        "__id__": 8
+        "__id__": 9
       },
       {
-        "__id__": 9
+        "__id__": 10
       }
     ],
     "_active": true,
     "_components": [
-      {
-        "__id__": 16
-      },
       {
         "__id__": 17
       },
@@ -94,6 +91,9 @@
       },
       {
         "__id__": 19
+      },
+      {
+        "__id__": 20
       }
     ],
     "_prefab": null,
@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        278.4136356697629,
+        291.8505610753558,
         0,
         0,
         0,
@@ -257,6 +257,9 @@
       },
       {
         "__id__": 7
+      },
+      {
+        "__id__": 8
       }
     ],
     "_prefab": null,
@@ -367,6 +370,16 @@
     "_id": "a2MYn8U6dFW645uL/TVcqG"
   },
   {
+    "__type__": "ee625B2iPdOz4Trq3USAlCq",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 5
+    },
+    "_enabled": true,
+    "_id": "c5v1nvxztMULSqvRBUEJY5"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "content",
     "_objFlags": 0,
@@ -433,16 +446,16 @@
     },
     "_children": [
       {
-        "__id__": 10
+        "__id__": 11
       },
       {
-        "__id__": 13
+        "__id__": 14
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 15
+        "__id__": 16
       }
     ],
     "_prefab": null,
@@ -498,16 +511,16 @@
     "_name": "progreeText",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 9
+      "__id__": 10
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 12
       },
       {
-        "__id__": 12
+        "__id__": 13
       }
     ],
     "_prefab": null,
@@ -521,7 +534,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
+      "width": 75,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -533,8 +546,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        355.049,
-        -620.784,
+        375,
+        -641.8,
         0,
         0,
         0,
@@ -563,7 +576,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 10
+      "__id__": 11
     },
     "_enabled": true,
     "_materials": [
@@ -574,8 +587,8 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "",
-    "_N$string": "",
+    "_string": "啊大大",
+    "_N$string": "啊大大",
     "_fontSize": 25,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -597,16 +610,16 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 10
+      "__id__": 11
     },
     "_enabled": true,
     "alignMode": 1,
     "_target": null,
     "_alignFlags": 36,
     "_left": 0,
-    "_right": 19.951000000000022,
+    "_right": 0,
     "_top": 0,
-    "_bottom": 21.015999999999963,
+    "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -624,13 +637,13 @@
     "_name": "text",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 9
+      "__id__": 10
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 14
+        "__id__": 15
       }
     ],
     "_prefab": null,
@@ -686,7 +699,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 13
+      "__id__": 14
     },
     "_enabled": true,
     "_materials": [
@@ -720,7 +733,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 9
+      "__id__": 10
     },
     "_enabled": true,
     "_id": "4cjhFKRrhA2LXooB4g32ar"
@@ -750,8 +763,9 @@
       "__id__": 2
     },
     "_enabled": true,
+    "AimType": 1,
     "Text": {
-      "__id__": 11
+      "__id__": 12
     },
     "_id": "f5JAqi0zRJdLStPOuZ0ya9"
   },
