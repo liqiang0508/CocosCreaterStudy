@@ -6,6 +6,7 @@ var chanel = {
     ANDROID_GOOGLE_PLAY : 3,
 
 }
+window.chanel = chanel
 
 if(cc.sys.isBrowser)//h5
 {

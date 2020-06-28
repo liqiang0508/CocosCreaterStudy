@@ -47,7 +47,7 @@ cc.Class({
 
         if (cc && cc.sys.isNative) {//native 
 
-            if (window.DISTRIBUTE_CHANNEL == chanel.WIN32)// 自带的模拟器不进行热更新   
+            if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32)// 自带的模拟器不进行热更新   
             {
                 cc.log("模拟器不更新")
                 VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
