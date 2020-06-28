@@ -11,8 +11,7 @@ cc.Class({
     onLoad() {
 
         this.node.setContentSize(cc.view.getVisibleSize())
-        // if(cc.sys.platform == cc.sys.OS_IOS)
-       
+   
     },
 
     start() {

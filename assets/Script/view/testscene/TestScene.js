@@ -78,14 +78,14 @@ cc.Class({
             // sp.color = cc.Color.WHITE
         });
 
-
-
-        console.log("winSize", cc.winSize)
-        console.log("getDesignResolutionSize", cc.view.getDesignResolutionSize())
-        console.log("getFrameSize", cc.view.getFrameSize())
-        console.log("getVisibleSizeInPixel", cc.view.getVisibleSizeInPixel())
-        console.log("getVisibleSize", cc.view.getVisibleSize())
-        console.log("getCanvasSize", cc.view.getCanvasSize())
+            //ip5 640*1136
+        console.log("getDevicePixelRatio",cc.view.getDevicePixelRatio())
+        console.log("winSize", cc.winSize.width,cc.winSize.height)
+        console.log("getDesignResolutionSize", cc.view.getDesignResolutionSize().width,cc.view.getDesignResolutionSize().height)
+        console.log("getFrameSize", cc.view.getFrameSize().width,cc.view.getFrameSize().height)
+        console.log("getVisibleSizeInPixel", cc.view.getVisibleSizeInPixel().width, cc.view.getVisibleSizeInPixel().height)
+        console.log("getVisibleSize", cc.view.getVisibleSize().width, cc.view.getVisibleSize().height)
+        console.log("getCanvasSize", cc.view.getCanvasSize().width,cc.view.getCanvasSize().height)
         console.log("cc.sys.getSafeAreaRect()", cc.sys.getSafeAreaRect())
 
 
