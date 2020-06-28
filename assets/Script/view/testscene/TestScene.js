@@ -312,7 +312,7 @@ cc.Class({
                 }
             }
             else {
-                cc.assetManager.loadBundle('http://192.168.0.102/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log(loaded, total) },
+                cc.assetManager.loadBundle('http://192.168.65.172/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log(loaded, total) },
                     function (err, bundle) {
                         if (err) {
                             return console.error(err);
@@ -322,6 +322,15 @@ cc.Class({
                         if (obj) {
                             obj.Say()
                         }
+    
+                        bundle.loadScene('bundlescene', function (err, scene) {
+                            if(err)
+                            {
+                                console.log("load bundle scene error")
+                                return
+                            }
+                            cc.director.runScene(scene);
+                        });
                     });
             }
 
