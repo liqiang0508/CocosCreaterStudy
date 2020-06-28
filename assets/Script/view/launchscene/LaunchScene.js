@@ -76,6 +76,7 @@ cc.Class({
                         Global.ShowTextInput(function(text){
                             if(text.length>0)
                             {
+                                Global.Ghotupdateurl = text
                                 self.goCheckUpdate(text)//热更新检查
                                 layer.bClose()
                             }

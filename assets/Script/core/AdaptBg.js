@@ -6,11 +6,16 @@ cc.Class({
 
     },
     // 适配bg节点
-    // LIFE-CYCLE CALLBACKS:
-    //设置可见区域大小
+
     onLoad() {
 
-        this.node.setContentSize(cc.view.getVisibleSize())
+
+        var size  = cc.view.getVisibleSize()
+
+        var scale = Math.min(this.node.width/size.width,this.node.height/size.height)
+        
+        this.node.scale =  this.node.scale/scale
+       
    
     },
 
