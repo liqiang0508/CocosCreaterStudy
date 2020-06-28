@@ -22,6 +22,7 @@ cc.Class({
             if (self.call)
             {
                 var text = self.Editbox.getComponent(cc.EditBox).string
+                window.Save.set("LastHoturl",text)//记录上次输入的url
                 self.call(text)
             }
             self.bClose()
@@ -33,6 +34,11 @@ cc.Class({
     show(call)
     {
         this.call = call
+        var lasturl = window.Save.get("LastHoturl",null)
+        if  (lasturl)
+        {
+            this.Editbox.getComponent(cc.EditBox).string = lasturl
+        }
         this.Editbox.getComponent(cc.EditBox).setFocus()
     },
     onbackpress(){
