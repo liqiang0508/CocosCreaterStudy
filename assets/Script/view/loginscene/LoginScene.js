@@ -1,7 +1,8 @@
 var VersionManager = require("VersionManager")
 var Global = require("Global")
 var DevicesInfo = require("Devices")
-var BaseComponent = require("BaseComponent")
+var BaseComponent = require("BaseComponent");
+const { ConverToNodePos } = require("../../core/Global");
 cc.Class({
     extends: BaseComponent,
 
@@ -38,6 +39,12 @@ cc.Class({
         }
 
         var gotest = cc.find("uipanel/gotest",this.node)
+        var label = cc.find("uipanel/label",this.node)
+
+        // var worldpos = Global.ConverToWorldPos(label)
+        // var pos = Global.ConverToNodePos(gotest.parent,worldpos)
+        // console.log(cc.winSize/2)
+        // gotest.runAction(cc.moveTo(2,cc.Vec2(cc.winSize.width/2,cc.winSize.height/2)))
         // ua.darkButton(gotest,function(){
         //     self.goTestScene()
         // })
@@ -45,6 +52,14 @@ cc.Class({
         ua.darkButton(gotest,()=>{
 
             this.goTestScene()
+        })
+
+        ua.darkButton(this.node,(event)=>{
+            console.log("getLocation=====",event.getLocation().x,event.getLocation().y)//原点在左下角
+            // var pos = Global.ConverToNodePos(gotest.parent,event.getLocation())
+            // gotest.setPosition(pos)
+            console.log("getLocationInView=====",event.getLocationInView().x,event.getLocationInView().y)//原点在左上角
+            
         })
 
     },
