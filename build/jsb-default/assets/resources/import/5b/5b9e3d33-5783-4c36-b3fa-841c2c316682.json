@@ -1,0 +1,1 @@
+{"__type__":"cc.Material","_name":"circle_head","_effectAsset":{"__uuid__":"f0DsHuE9FGQ75VF/qdOSCE"},"_techniqueData":{"0":{"defines":{"USE_TEXTURE":true,"USE_ALPHA_TEST":false},"props":{"feather":0.5,"radius":0.5,"alphaThreshold":0,"edge":0.5}}}}

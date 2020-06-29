@@ -1,1 +1,1 @@
-{"paths":{},"types":[],"uuids":[],"scenes":{},"redirect":[],"deps":[],"packs":null,"name":"Testbundle","importBase":"import","nativeBase":"native","debug":false,"isZip":false,"encrypted":true}
+{"paths":{},"types":[],"uuids":["63z0sH9SNAjbTZAtwUrBEh","ecpdLyjvZBwrvm+cedCcQy"],"scenes":{"db://assets/bundleTest/bundlescene.fire":0},"redirect":[1,0],"deps":["internal"],"packs":null,"name":"Testbundle","importBase":"import","nativeBase":"native","debug":false,"isZip":false,"encrypted":true}

@@ -7,11 +7,6 @@
 /local/
 /build/jsb-default/frameworks/cocos2d-x
 /build/jsb-default/frameworks/runtime-src/proj.win32/Debug.win32
-/build/jsb-default/res
-/build/jsb-default/src
-/build/jsb-default/assets
-/build/jsb-default/js backups (useful for debugging)
-/build/jsb-default/jsb-adapter
 /hotupversion/
 /build/wechatgame
 
