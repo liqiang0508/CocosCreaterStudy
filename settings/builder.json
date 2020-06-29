@@ -18,7 +18,7 @@
   "md5Cache": false,
   "encryptJs": true,
   "xxteaKey": "e2ededca-352b-49",
-  "zipCompressJs": false,
+  "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
     "REMOTE_SERVER_ROOT": "http://192.168.0.102/hotupversion",
