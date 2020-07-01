@@ -60,3 +60,4 @@ build/jsb-default/.cocos-project.json
 build/jsb-default/cocos-project-template.json
 build/jsb-default/main.js
 build/jsb-default/project.json
+build/jsb-default/frameworks/runtime-src/proj.android-studio/app/.externalNativeBuild/

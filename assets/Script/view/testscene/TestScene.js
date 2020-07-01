@@ -373,6 +373,8 @@ cc.Class({
             var Angle = Global.GgetTwoV2Angle(sp2.getPosition(), touchLoc)
             sp2.angle = -Angle
 
+            garpgics.moveTo(touchLoc.x,touchLoc.y)
+
         })
 
         garpgicsnode.on(cc.Node.EventType.TOUCH_MOVE, function (event) {
@@ -383,6 +385,10 @@ cc.Class({
 
             var Angle = Global.GgetTwoV2Angle(sp2.getPosition(), touchLoc)
             sp2.angle = -Angle
+
+            garpgics.lineTo(touchLoc.x,touchLoc.y)
+            garpgics.stroke()
+
         })
         //画图
 
