@@ -217,8 +217,8 @@ cc.follow = function(t, e) {
 return new cc.Follow(t, e);
 };
 }), {
-"../core/platform/CCClass": 216,
-"../core/utils/misc": 298
+"../core/platform/CCClass": 217,
+"../core/utils/misc": 299
 } ],
 2: [ (function(t, e, i) {
 "use strict";
@@ -2545,8 +2545,8 @@ e.lock = !1;
 };
 0;
 }), {
-"../core/platform/CCClass": 216,
-"../core/platform/js": 236
+"../core/platform/CCClass": 217,
+"../core/platform/js": 237
 } ],
 7: [ (function(t, e, i) {
 "use strict";
@@ -2949,7 +2949,7 @@ d.add(_.func, _.params);
 0;
 e.exports = h;
 }), {
-"../core/utils/binary-search": 291,
+"../core/utils/binary-search": 292,
 "./animation-curves": 11,
 "./playable": 18,
 "./types": 19
@@ -3084,7 +3084,7 @@ return r;
 });
 cc.AnimationClip = e.exports = l;
 }), {
-"../core/utils/binary-search": 291,
+"../core/utils/binary-search": 292,
 "./animation-curves": 11,
 "./motion-path-helper": 17,
 "./types": 19
@@ -3272,7 +3272,7 @@ computeRatioByType: a,
 quickFindIndex: l
 };
 }), {
-"../core/utils/binary-search": 291,
+"../core/utils/binary-search": 292,
 "./bezier": 14,
 "./types": 19
 } ],
@@ -3907,7 +3907,7 @@ Curve: c,
 Bezier: l
 };
 }), {
-"../core/utils/binary-search": 291,
+"../core/utils/binary-search": 292,
 "./animation-curves": 11,
 "./bezier": 14
 } ],
@@ -4318,8 +4318,8 @@ configurable: !0
 e.exports = cc._Audio = l;
 }), {
 "../core/assets/CCAudioClip": 85,
-"../core/event/event-target": 163,
-"../core/platform/CCSys": 225
+"../core/event/event-target": 164,
+"../core/platform/CCSys": 226
 } ],
 21: [ (function(t, e, i) {
 "use strict";
@@ -4682,7 +4682,7 @@ return o;
 };
 e.exports = r;
 }), {
-"../core/utils/misc": 298
+"../core/utils/misc": 299
 } ],
 24: [ (function(t, e, i) {
 "use strict";
@@ -6339,14 +6339,14 @@ i.default = U;
 cc.Light = U;
 e.exports = i.default;
 }), {
-"../../renderer/enums": 338,
+"../../renderer/enums": 339,
 "../../renderer/scene/light": void 0,
 "../components/CCComponent": 127,
-"../platform/CCClassDecorator": 217,
-"../platform/CCEnum": 218,
-"../renderer/index": 247,
-"../value-types": 313,
-"../value-types/color": 312
+"../platform/CCClassDecorator": 218,
+"../platform/CCEnum": 219,
+"../renderer/index": 248,
+"../value-types": 314,
+"../value-types/color": 313
 } ],
 27: [ (function(t, e, i) {
 "use strict";
@@ -6516,8 +6516,8 @@ cc.rotate3DBy = function(t, e, i, n) {
 return new cc.Rotate3DBy(t, e, i, n);
 };
 }), {
-"../value-types/quat": 316,
-"../value-types/vec3": 323
+"../value-types/quat": 317,
+"../value-types/vec3": 324
 } ],
 29: [ (function(t, e, i) {
 "use strict";
@@ -6608,7 +6608,7 @@ default: t
 var o = new n.default(), a = new n.default(), c = new n.default(), l = new n.default(), h = new n.default(), u = new n.default(), _ = new n.default(), f = new n.default(), d = new n.default(), p = new n.default(), m = new n.default(), v = new n.default();
 e.exports = i.default;
 }), {
-"../../value-types/vec3": 323,
+"../../value-types/vec3": 324,
 "./vertex-data": 41
 } ],
 31: [ (function(t, e, i) {
@@ -6689,7 +6689,7 @@ default: t
 var o = cc.v3(0, 0, 0), a = cc.v3(0, 0, 0);
 e.exports = i.default;
 }), {
-"../../value-types/vec3": 323,
+"../../value-types/vec3": 324,
 "./vertex-data": 41
 } ],
 32: [ (function(t, e, i) {
@@ -6824,7 +6824,7 @@ default: t
 var o = new n.default(), a = new n.default();
 e.exports = i.default;
 }), {
-"../../value-types/vec3": 323,
+"../../value-types/vec3": 324,
 "./vertex-data": 41
 } ],
 34: [ (function(t, e, i) {
@@ -6924,7 +6924,7 @@ default: t
 var o = new n.default(), a = new n.default(), c = new n.default(), l = new n.default(), h = new n.default(), u = new n.default(), _ = new n.default();
 e.exports = i.default;
 }), {
-"../../value-types/vec3": 323,
+"../../value-types/vec3": 324,
 "./vertex-data": 41
 } ],
 36: [ (function(t, e, i) {
@@ -7040,7 +7040,7 @@ var S = Math.sqrt(Math.pow(v.x - m.x, 2), Math.pow(v.y - m.y, 2), Math.pow(v.z -
 return new r.default(_, d, p, f, m, v, S);
 };
 }), {
-"../../value-types": 313,
+"../../value-types": 314,
 "./utils": 40,
 "./vertex-data": 41
 } ],
@@ -7058,7 +7058,7 @@ default: t
 var s = [ -.5, -.5, 0, -.5, .5, 0, .5, .5, 0, .5, -.5, 0 ], o = [ 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1 ], a = [ 0, 0, 0, 1, 1, 1, 1, 0 ], c = [ 0, 3, 1, 3, 2, 1 ], l = new r.Vec3(-.5, -.5, 0), h = new r.Vec3(.5, .5, 0), u = Math.sqrt(.5);
 e.exports = i.default;
 }), {
-"../../value-types": 313,
+"../../value-types": 314,
 "./vertex-data": 41
 } ],
 38: [ (function(t, e, i) {
@@ -7089,7 +7089,7 @@ default: t
 })(t("./vertex-data")), r = t("../../value-types");
 e.exports = i.default;
 }), {
-"../../value-types": 313,
+"../../value-types": 314,
 "./vertex-data": 41
 } ],
 39: [ (function(t, e, i) {
@@ -7123,7 +7123,7 @@ default: t
 })(t("./vertex-data")), r = t("../../value-types");
 e.exports = i.default;
 }), {
-"../../value-types": 313,
+"../../value-types": 314,
 "./vertex-data": 41
 } ],
 40: [ (function(t, e, i) {
@@ -7210,7 +7210,7 @@ t.y = e[i + 1];
 t.z = e[i + 2];
 }
 }), {
-"../../value-types/vec3": 323
+"../../value-types/vec3": 324
 } ],
 41: [ (function(t, e, i) {
 "use strict";
@@ -7509,7 +7509,7 @@ return this._model.precomputeJointMatrix ? this._createJointMatrixCurve(t, e) : 
 cc.SkeletonAnimationClip = e.exports = a;
 }), {
 "../../../animation/animation-clip": 10,
-"../../value-types/mat4": 315,
+"../../value-types/mat4": 316,
 "./CCJointMatrixCurve": 42
 } ],
 46: [ (function(t, e, i) {
@@ -7719,10 +7719,10 @@ this._commitJointsData();
 });
 cc.SkinnedMeshRenderer = e.exports = l;
 }), {
-"../../../renderer/enums": 338,
-"../../mesh/CCMeshRenderer": 185,
-"../../renderer/render-flow": 248,
-"../../value-types/mat4": 315,
+"../../../renderer/enums": 339,
+"../../mesh/CCMeshRenderer": 186,
+"../../renderer/render-flow": 249,
+"../../value-types/mat4": 316,
 "./CCSkeleton": 43
 } ],
 47: [ (function(t, e, i) {
@@ -7750,8 +7750,8 @@ i.default = o;
 cc.Assembler.register(r, o);
 e.exports = i.default;
 }), {
-"../../mesh/mesh-renderer": 188,
-"../../renderer/render-flow": 248,
+"../../mesh/mesh-renderer": 189,
+"../../renderer/render-flow": 249,
 "./CCSkinnedMeshRenderer": 46
 } ],
 48: [ (function(t, e, i) {
@@ -7876,7 +7876,7 @@ cc.game.config.showFPS = !!t;
 };
 }), {
 "../../DebugInfos": void 0,
-"./platform/utils": 239
+"./platform/utils": 240
 } ],
 49: [ (function(t, e, i) {
 "use strict";
@@ -8200,11 +8200,11 @@ e.exports = cc.director;
 "./CCGame": 50,
 "./CCScheduler": 54,
 "./component-scheduler": 121,
-"./event-manager": 161,
-"./event/event-target": 163,
-"./node-activator": 189,
-"./platform/CCObject": 222,
-"./renderer": 247
+"./event-manager": 162,
+"./event/event-target": 164,
+"./node-activator": 190,
+"./platform/CCObject": 223,
+"./renderer": 248
 } ],
 50: [ (function(t, e, i) {
 "use strict";
@@ -8504,10 +8504,10 @@ cc.js.addon(a, n.prototype);
 cc.game = e.exports = a;
 }), {
 "../audio/CCAudioEngine": 21,
-"../core/renderer/utils/dynamic-atlas/manager": 250,
+"../core/renderer/utils/dynamic-atlas/manager": 251,
 "./CCDebug": 48,
-"./event/event-target": 163,
-"./renderer/index.js": 247
+"./event/event-target": 164,
+"./renderer/index.js": 248
 } ],
 51: [ (function(t, e, i) {
 "use strict";
@@ -9982,17 +9982,17 @@ var pt = cc.Class(dt), mt = pt.prototype;
 h.getset(mt, "position", mt.getPosition, mt.setPosition, !1, !0);
 cc.Node = e.exports = pt;
 }), {
-"./event-manager": 161,
-"./event/event": 164,
-"./event/event-target": 163,
-"./platform/CCMacro": 221,
-"./platform/js": 236,
-"./renderer/render-flow": 248,
-"./utils/affine-transform": 289,
-"./utils/base-node": 290,
-"./utils/prefab-helper": 301,
-"./utils/trans-pool": 307,
-"./value-types": 313
+"./event-manager": 162,
+"./event/event": 165,
+"./event/event-target": 164,
+"./platform/CCMacro": 222,
+"./platform/js": 237,
+"./renderer/render-flow": 249,
+"./utils/affine-transform": 290,
+"./utils/base-node": 291,
+"./utils/prefab-helper": 302,
+"./utils/trans-pool": 308,
+"./value-types": 314
 } ],
 52: [ (function(t, e, i) {
 "use strict";
@@ -10088,7 +10088,7 @@ cc.js.getset(s.prototype, "position", s.prototype.getPosition, s.prototype.setPo
 cc.PrivateNode = e.exports = s;
 }), {
 "./CCNode": 51,
-"./renderer/render-flow": 248
+"./renderer/render-flow": 249
 } ],
 53: [ (function(t, e, i) {
 "use strict";
@@ -10595,8 +10595,8 @@ cc.Scheduler.PRIORITY_SYSTEM = 1 << 31;
 cc.Scheduler.PRIORITY_NON_SYSTEM = cc.Scheduler.PRIORITY_SYSTEM + 1;
 e.exports = cc.Scheduler;
 }), {
-"./platform/id-generater": 232,
-"./platform/js": 236
+"./platform/id-generater": 233,
+"./platform/js": 237
 } ],
 55: [ (function(t, e, i) {
 "use strict";
@@ -11051,7 +11051,7 @@ this._map = null;
 };
 e.exports = r;
 }), {
-"../platform/js": 236
+"../platform/js": 237
 } ],
 59: [ (function(t, e, i) {
 "use strict";
@@ -11202,7 +11202,7 @@ this.assetInfos.destroy();
 0;
 e.exports = a;
 }), {
-"../platform/js": 236,
+"../platform/js": 237,
 "./cache": 58,
 "./helper": 71,
 "./utilities": 83
@@ -11276,7 +11276,7 @@ return i;
 };
 e.exports = s;
 }), {
-"../platform/js": 236,
+"../platform/js": 237,
 "./cache": 58
 } ],
 61: [ (function(t, e, i) {
@@ -11618,7 +11618,7 @@ r && o.tryRelease(r);
 };
 }), {
 "../CCDirector": 49,
-"../platform/js": 236,
+"../platform/js": 237,
 "./depend-util": 60,
 "./downloader": 67,
 "./releaseManager": 78,
@@ -11660,8 +11660,8 @@ cc.deserialize.Details.pool.put(o);
 return s;
 };
 }), {
-"../platform/deserialize": 231,
-"../platform/js": 236,
+"../platform/deserialize": 232,
+"../platform/js": 237,
 "./helper": 71
 } ],
 63: [ (function(t, e, i) {
@@ -11973,9 +11973,9 @@ default: T
 e.exports = O;
 }), {
 "../CCDebug": 48,
-"../platform/CCSys": 225,
-"../platform/js": 236,
-"../platform/utils": 239,
+"../platform/CCSys": 226,
+"../platform/js": 237,
+"../platform/utils": 240,
 "./cache": 58,
 "./download-dom-audio": 63,
 "./download-dom-image": 64,
@@ -12286,7 +12286,7 @@ return i;
 };
 e.exports = f;
 }), {
-"../utils/text-utils": 305
+"../utils/text-utils": 306
 } ],
 71: [ (function(t, e, i) {
 "use strict";
@@ -12320,7 +12320,7 @@ return t;
 };
 e.exports = r;
 }), {
-"../utils/decode-uuid": 293,
+"../utils/decode-uuid": 294,
 "./shared": 80
 } ],
 72: [ (function(t, e, i) {
@@ -12562,7 +12562,7 @@ h ? l.onComplete(null, h) : l.onComplete(new Error("can not retrieve data from p
 };
 e.exports = l;
 }), {
-"../platform/js": 236,
+"../platform/js": 237,
 "./cache": 58,
 "./downloader": 67,
 "./shared": 80
@@ -12683,9 +12683,9 @@ import: p.parseImport
 };
 e.exports = p;
 }), {
-"../platform/CCSAXParser": 223,
-"../platform/CCSys": 225,
-"../platform/js": 236,
+"../platform/CCSAXParser": 224,
+"../platform/CCSys": 226,
+"../platform/js": 237,
 "./cache": 58,
 "./deserialize": 62,
 "./helper": 71,
@@ -13450,7 +13450,7 @@ t && c(t, e, i);
 e.exports = l;
 }), {
 "../assets/CCAsset": 84,
-"../platform/utils": 239,
+"../platform/utils": 240,
 "./depend-util": 60,
 "./helper": 71,
 "./shared": 80
@@ -13555,7 +13555,7 @@ if (Array.isArray(t)) for (var n = 0, s = t.length; n < s; n++) r(t[n], e); else
 }
 e.exports = cc.Asset;
 }), {
-"../platform/CCObject": 222
+"../platform/CCObject": 223
 } ],
 85: [ (function(t, e, i) {
 "use strict";
@@ -13641,7 +13641,7 @@ this._super();
 cc.AudioClip = o;
 e.exports = o;
 }), {
-"../event/event-target": 163,
+"../event/event-target": 164,
 "./CCAsset": 84
 } ],
 86: [ (function(t, e, i) {
@@ -13844,7 +13844,7 @@ this._super();
 cc.Prefab = e.exports = r;
 cc.js.obsolete(cc, "cc._Prefab", "Prefab");
 }), {
-"../platform/instantiate-jit": 234
+"../platform/instantiate-jit": 235
 } ],
 92: [ (function(t, e, i) {
 "use strict";
@@ -13928,8 +13928,8 @@ this._framebuffer = null;
 });
 cc.RenderTexture = e.exports = a;
 }), {
-"../../renderer/gfx": 339,
-"../renderer": 247,
+"../../renderer/gfx": 340,
+"../renderer": 248,
 "./CCTexture2D": 99
 } ],
 93: [ (function(t, e, i) {
@@ -14361,8 +14361,8 @@ cc.SpriteFrame = s;
 e.exports = s;
 }), {
 "../assets/CCAsset": 84,
-"../event/event-target": 163,
-"../utils/texture-util": 306
+"../event/event-target": 164,
+"../utils/texture-util": 307
 } ],
 97: [ (function(t, e, i) {
 "use strict";
@@ -14864,12 +14864,12 @@ cc.error(t.message);
 });
 cc.Texture2D = e.exports = p;
 }), {
-"../../renderer/gfx": 339,
+"../../renderer/gfx": 340,
 "../assets/CCAsset": 84,
-"../event/event-target": 163,
-"../platform/CCClass": 216,
-"../platform/id-generater": 232,
-"../renderer": 247
+"../event/event-target": 164,
+"../platform/CCClass": 217,
+"../platform/id-generater": 233,
+"../renderer": 248
 } ],
 100: [ (function(t, e, i) {
 "use strict";
@@ -15126,7 +15126,7 @@ i.default = l;
 cc.Material = c;
 e.exports = i.default;
 }), {
-"../../utils/texture-util": 306,
+"../../utils/texture-util": 307,
 "../CCAsset": 84,
 "../CCTexture2D": 99,
 "./CCEffectAsset": 101
@@ -15272,7 +15272,7 @@ i.default = a;
 cc.EffectBase = a;
 e.exports = i.default;
 }), {
-"../../../renderer/core/pass": 336
+"../../../renderer/core/pass": 337
 } ],
 104: [ (function(t, e, i) {
 "use strict";
@@ -15335,10 +15335,10 @@ return i;
 }
 0;
 }), {
-"../../../renderer/core/pass": 336,
-"../../../renderer/core/technique": 337,
-"../../../renderer/enums": 338,
-"../../../renderer/types": 343,
+"../../../renderer/core/pass": 337,
+"../../../renderer/core/technique": 338,
+"../../../renderer/enums": 339,
+"../../../renderer/types": 344,
 "./effect": 106
 } ],
 105: [ (function(t, e, i) {
@@ -15439,7 +15439,7 @@ i.default = h;
 cc.EffectVariant = h;
 e.exports = i.default;
 }), {
-"../../../renderer/murmurhash2_gc": 342,
+"../../../renderer/murmurhash2_gc": 343,
 "./effect-base": 103,
 "./utils": 110
 } ],
@@ -15601,7 +15601,7 @@ var c = a;
 i.default = c;
 e.exports = i.default;
 }), {
-"../../utils/pool": 300,
+"../../utils/pool": 301,
 "./utils": 110
 } ],
 109: [ (function(t, e, i) {
@@ -15720,7 +15720,7 @@ serializeUniforms: o
 i.default = a;
 e.exports = i.default;
 }), {
-"../../../renderer/enums": 338
+"../../../renderer/enums": 339
 } ],
 111: [ (function(t, e, i) {
 "use strict";
@@ -16344,11 +16344,11 @@ e.exports = cc.Camera = C;
 }), {
 "../../renderer/scene/camera": void 0,
 "../CCGame": 50,
-"../geom-utils": 171,
-"../renderer/index": 247,
-"../renderer/render-flow": 248,
-"../utils/affine-transform": 289,
-"../value-types": 313
+"../geom-utils": 172,
+"../renderer/index": 248,
+"../renderer/render-flow": 249,
+"../utils/affine-transform": 290,
+"../value-types": 314
 } ],
 113: [ (function(t, e, i) {
 "use strict";
@@ -16697,7 +16697,7 @@ this._enabledDebugDraw = t;
 cc.CollisionManager = e.exports = l;
 }), {
 "../CCNode": 51,
-"../value-types/vec2": 322,
+"../value-types/vec2": 323,
 "./CCContact": 117
 } ],
 117: [ (function(t, e, i) {
@@ -17071,10 +17071,10 @@ this._startForNewComps();
 });
 e.exports = y;
 }), {
-"./platform/CCClass": 216,
-"./platform/CCObject": 222,
-"./platform/js": 236,
-"./utils/misc": 298
+"./platform/CCClass": 217,
+"./platform/CCObject": 223,
+"./platform/js": 237,
+"./utils/misc": 299
 } ],
 122: [ (function(t, e, i) {
 "use strict";
@@ -17319,8 +17319,8 @@ cc.Animation = e.exports = l;
 }), {
 "../../animation/animation-animator": 9,
 "../../animation/animation-clip": 10,
-"../event/event-target": 163,
-"../platform/js": 236,
+"../event/event-target": 164,
+"../platform/js": 237,
 "./CCComponent": 127
 } ],
 123: [ (function(t, e, i) {
@@ -17481,7 +17481,7 @@ return this.audio.getDuration();
 cc.AudioSource = e.exports = o;
 }), {
 "../assets/CCAudioClip": 85,
-"../utils/misc": 298,
+"../utils/misc": 299,
 "./CCComponent": 127
 } ],
 124: [ (function(t, e, i) {
@@ -17965,7 +17965,7 @@ this._switchGrayMaterial(e, this._sprite);
 });
 cc.Button = e.exports = a;
 }), {
-"../utils/gray-sprite-state": 295,
+"../utils/gray-sprite-state": 296,
 "./CCComponent": 127
 } ],
 126: [ (function(t, e, i) {
@@ -18198,9 +18198,9 @@ n && "number" == typeof n && (t._executionOrder = n);
 c.prototype.__scriptUuid = "";
 cc.Component = e.exports = c;
 }), {
-"../platform/CCObject": 222,
-"../platform/id-generater": 232,
-"../platform/js": 236
+"../platform/CCObject": 223,
+"../platform/id-generater": 233,
+"../platform/js": 237
 } ],
 128: [ (function(t, e, i) {
 "use strict";
@@ -18660,9 +18660,9 @@ this.enableUnderline = !!t;
 cc.Label = e.exports = u;
 }), {
 "../assets/material/CCMaterial": 102,
-"../platform/CCMacro": 221,
-"../renderer/utils/label/label-frame": 252,
-"../utils/blend-func": 292,
+"../platform/CCMacro": 222,
+"../renderer/utils/label/label-frame": 253,
+"../utils/blend-func": 293,
 "./CCRenderComponent": 138
 } ],
 130: [ (function(t, e, i) {
@@ -19469,13 +19469,13 @@ this.node._renderFlag &= ~(h.FLAG_RENDER | h.FLAG_UPDATE_RENDER_DATA | h.FLAG_PO
 });
 cc.Mask = e.exports = v;
 }), {
-"../../renderer/gfx": 339,
+"../../renderer/gfx": 340,
 "../assets/material/material-variant": 109,
-"../graphics/graphics": 179,
-"../renderer/render-flow": 248,
-"../utils/misc": 298,
-"../value-types/mat4": 315,
-"../value-types/vec2": 322,
+"../graphics/graphics": 180,
+"../renderer/render-flow": 249,
+"../utils/misc": 299,
+"../value-types/mat4": 316,
+"../value-types/vec2": 323,
 "./CCRenderComponent": 138
 } ],
 134: [ (function(t, e, i) {
@@ -19592,7 +19592,7 @@ this._assembler && this._assembler.update(this, t);
 });
 cc.MotionStreak = e.exports = s;
 }), {
-"../../core/utils/blend-func": 292,
+"../../core/utils/blend-func": 293,
 "../components/CCRenderComponent": 138
 } ],
 135: [ (function(t, e, i) {
@@ -20108,7 +20108,7 @@ Mode: s
 });
 cc.ProgressBar = e.exports = o;
 }), {
-"../utils/misc": 298,
+"../utils/misc": 299,
 "./CCComponent": 127
 } ],
 138: [ (function(t, e, i) {
@@ -20246,9 +20246,9 @@ cc.RenderComponent = e.exports = u;
 }), {
 "../assets/material/CCMaterial": 102,
 "../assets/material/material-variant": 109,
-"../renderer/assembler": 244,
-"../renderer/render-flow": 248,
-"../value-types": 313,
+"../renderer/assembler": 245,
+"../renderer/render-flow": 249,
+"../value-types": 314,
 "./CCComponent": 127
 } ],
 139: [ (function(t, e, i) {
@@ -20783,12 +20783,49 @@ h.put(this._labelSegments[t]);
 });
 cc.RichText = e.exports = u;
 }), {
-"../platform/CCMacro": 221,
-"../platform/js": 236,
-"../utils/html-text-parser": 296,
-"../utils/text-utils": 305
+"../platform/CCMacro": 222,
+"../platform/js": 237,
+"../utils/html-text-parser": 297,
+"../utils/text-utils": 306
 } ],
 140: [ (function(t, e, i) {
+"use strict";
+var n = t("./CCWidget"), r = cc.Class({
+name: "cc.SafeArea",
+extends: t("./CCComponent"),
+editor: !1,
+onEnable: function() {
+this.updateArea();
+cc.view.on("canvas-resize", this.updateArea, this);
+},
+onDisable: function() {
+cc.view.off("canvas-resize", this.updateArea, this);
+},
+updateArea: function() {
+var t = this.node.getComponent(n);
+if (t) {
+0;
+t.updateAlignment();
+var e = this.node.position, i = this.node.getAnchorPoint();
+t.isAlignTop = t.isAlignBottom = t.isAlignLeft = t.isAlignRight = !0;
+var r = cc.winSize.width, s = cc.winSize.height, o = cc.sys.getSafeAreaRect();
+t.top = s - o.y - o.height;
+t.bottom = o.y;
+t.left = o.x;
+t.right = r - o.x - o.width;
+t.updateAlignment();
+var a = this.node.position, c = i.x - (a.x - e.x) / this.node.width, l = i.y - (a.y - e.y) / this.node.height;
+this.node.setAnchorPoint(c, l);
+t.enabled = !0;
+}
+}
+});
+cc.SafeArea = e.exports = r;
+}), {
+"./CCComponent": 127,
+"./CCWidget": 150
+} ],
+141: [ (function(t, e, i) {
 "use strict";
 var n = t("../utils/misc"), r = (t("./CCComponent"), cc.Enum({
 HORIZONTAL: 0,
@@ -20965,10 +21002,10 @@ this._processAutoHide(t);
 });
 cc.Scrollbar = e.exports = s;
 }), {
-"../utils/misc": 298,
+"../utils/misc": 299,
 "./CCComponent": 127
 } ],
-141: [ (function(t, e, i) {
+142: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCNode").EventType, r = cc.v2(), s = cc.v2(), o = function(t) {
 return (t -= 1) * t * t * t * t + 1;
@@ -21703,9 +21740,9 @@ this._autoScrolling && this._processAutoScrolling(t);
 cc.ScrollView = e.exports = h;
 }), {
 "../CCNode": 51,
-"./CCViewGroup": 148
+"./CCViewGroup": 149
 } ],
-142: [ (function(t, e, i) {
+143: [ (function(t, e, i) {
 "use strict";
 var n = t("../utils/misc"), r = t("./CCComponent"), s = cc.Enum({
 Horizontal: 0,
@@ -21831,10 +21868,10 @@ this.handle.node.position = this.handle.node.parent.convertToNodeSpaceAR(e);
 });
 cc.Slider = e.exports = o;
 }), {
-"../utils/misc": 298,
+"../utils/misc": 299,
 "./CCComponent": 127
 } ],
-143: [ (function(t, e, i) {
+144: [ (function(t, e, i) {
 "use strict";
 var n = t("../utils/misc"), r = (t("../CCNode").EventType, t("./CCRenderComponent")), s = t("../utils/blend-func"), o = cc.Enum({
 SIMPLE: 0,
@@ -22048,11 +22085,11 @@ i.once("load", this._applySpriteSize, this);
 cc.Sprite = e.exports = h;
 }), {
 "../CCNode": 51,
-"../utils/blend-func": 292,
-"../utils/misc": 298,
+"../utils/blend-func": 293,
+"../utils/misc": 299,
 "./CCRenderComponent": 138
 } ],
-144: [ (function(t, e, i) {
+145: [ (function(t, e, i) {
 "use strict";
 var n = cc.Enum({
 NONE: 0,
@@ -22110,9 +22147,9 @@ _validateTargetInDEV: function() {}
 });
 cc.StudioWidget = e.exports = l;
 }), {
-"../utils/prefab-helper": 301
+"../utils/prefab-helper": 302
 } ],
-145: [ (function(t, e, i) {
+146: [ (function(t, e, i) {
 "use strict";
 var n = t("../utils/gray-sprite-state"), r = cc.Class({
 name: "cc.Toggle",
@@ -22216,12 +22253,12 @@ var t = this.node.parent;
 return cc.Node.isNode(t) ? t.getComponent(cc.ToggleContainer) : null;
 }));
 }), {
-"../platform/js": 236,
-"../utils/gray-sprite-state": 295,
+"../platform/js": 237,
+"../utils/gray-sprite-state": 296,
 "./CCButton": 125,
-"./CCToggleGroup": 147
+"./CCToggleGroup": 148
 } ],
-146: [ (function(t, e, i) {
+147: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 name: "cc.ToggleContainer",
@@ -22277,9 +22314,9 @@ return t.getComponent(cc.Toggle);
 }));
 cc.ToggleContainer = e.exports = n;
 }), {
-"../platform/js": 236
+"../platform/js": 237
 } ],
-147: [ (function(t, e, i) {
+148: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 name: "cc.ToggleGroup",
@@ -22337,9 +22374,9 @@ return n;
 }));
 e.exports = n;
 }), {
-"../platform/js": 236
+"../platform/js": 237
 } ],
-148: [ (function(t, e, i) {
+149: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 name: "cc.ViewGroup",
@@ -22349,7 +22386,7 @@ cc.ViewGroup = e.exports = n;
 }), {
 "./CCComponent": 127
 } ],
-149: [ (function(t, e, i) {
+150: [ (function(t, e, i) {
 "use strict";
 var n = t("../base-ui/CCWidgetManager"), r = n.AlignMode, s = n._AlignFlags, o = s.TOP, a = s.MID, c = s.BOT, l = s.LEFT, h = s.CENTER, u = s.RIGHT, _ = o | c, f = l | u, d = cc.Class({
 name: "cc.Widget",
@@ -22641,7 +22678,7 @@ cc.Widget = e.exports = d;
 "../base-ui/CCWidgetManager": 111,
 "./CCComponent": 127
 } ],
-150: [ (function(t, e, i) {
+151: [ (function(t, e, i) {
 "use strict";
 var n = t("../../platform/CCMacro"), r = t("../editbox/EditBoxImplBase"), s = t("../CCLabel"), o = t("./types"), a = o.InputMode, c = o.InputFlag, l = o.KeyboardReturnType;
 function h(t) {
@@ -23076,13 +23113,13 @@ this._impl && this._impl.update();
 cc.EditBox = e.exports = _;
 cc.sys.isBrowser && t("./WebEditBoxImpl");
 }), {
-"../../platform/CCMacro": 221,
+"../../platform/CCMacro": 222,
 "../CCLabel": 129,
-"../editbox/EditBoxImplBase": 151,
-"./WebEditBoxImpl": 152,
-"./types": 154
+"../editbox/EditBoxImplBase": 152,
+"./WebEditBoxImpl": 153,
+"./types": 155
 } ],
-151: [ (function(t, e, i) {
+152: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 ctor: function() {
@@ -23109,7 +23146,7 @@ endEditing: function() {}
 });
 e.exports = n;
 }), {} ],
-152: [ (function(t, e, i) {
+153: [ (function(t, e, i) {
 "use strict";
 var n = (function(t) {
 return t && t.__esModule ? t : {
@@ -23488,14 +23525,14 @@ e.onClick = null;
 }
 });
 }), {
-"../../platform/CCMacro": 221,
-"../../platform/utils": 239,
-"../../value-types/mat4": 315,
+"../../platform/CCMacro": 222,
+"../../platform/utils": 240,
+"../../value-types/mat4": 316,
 "../CCLabel": 129,
-"./tabIndexUtil": 153,
-"./types": 154
+"./tabIndexUtil": 154,
+"./types": 155
 } ],
-153: [ (function(t, e, i) {
+154: [ (function(t, e, i) {
 "use strict";
 e.exports = {
 _tabIndexList: [],
@@ -23522,7 +23559,7 @@ n && n._delegate._tabIndex >= 0 && n.setFocus(!0);
 }
 };
 }), {} ],
-154: [ (function(t, e, i) {
+155: [ (function(t, e, i) {
 "use strict";
 var n = cc.Enum({
 DEFAULT: 0,
@@ -23553,7 +23590,7 @@ InputMode: r,
 InputFlag: s
 };
 }), {} ],
-155: [ (function(t, e, i) {
+156: [ (function(t, e, i) {
 "use strict";
 t("./CCComponent");
 t("./CCComponentEventHandler");
@@ -23587,21 +23624,21 @@ e.exports = s;
 "./CCPageViewIndicator": 136,
 "./CCProgressBar": 137,
 "./CCRichText": 139,
-"./CCSafeArea": void 0,
-"./CCScrollBar": 140,
-"./CCScrollView": 141,
-"./CCSlider": 142,
-"./CCSprite": 143,
-"./CCToggle": 145,
-"./CCToggleContainer": 146,
-"./CCToggleGroup": 147,
-"./CCWidget": 149,
+"./CCSafeArea": 140,
+"./CCScrollBar": 141,
+"./CCScrollView": 142,
+"./CCSlider": 143,
+"./CCSprite": 144,
+"./CCToggle": 146,
+"./CCToggleContainer": 147,
+"./CCToggleGroup": 148,
+"./CCWidget": 150,
 "./SwanSubContextView": void 0,
 "./WXSubContextView": void 0,
-"./editbox/CCEditBox": 150,
-"./missing-script": 156
+"./editbox/CCEditBox": 151,
+"./missing-script": 157
 } ],
-156: [ (function(t, e, i) {
+157: [ (function(t, e, i) {
 "use strict";
 var n = cc.js, r = t("../utils/misc").BUILTIN_CLASSID_RE, s = cc.Class({
 name: "cc.MissingClass",
@@ -23650,9 +23687,9 @@ cc.warnID(4600, this.node.name);
 });
 cc._MissingScript = e.exports = o;
 }), {
-"../utils/misc": 298
+"../utils/misc": 299
 } ],
-157: [ (function(t, e, i) {
+158: [ (function(t, e, i) {
 "use strict";
 var n = cc.js;
 t("../event/event");
@@ -23805,9 +23842,9 @@ cc.Event.EventAcceleration = a;
 cc.Event.EventKeyboard = c;
 e.exports = cc.Event;
 }), {
-"../event/event": 164
+"../event/event": 165
 } ],
-158: [ (function(t, e, i) {
+159: [ (function(t, e, i) {
 "use strict";
 var n = t("../platform/js");
 cc.EventListener = function(t, e, i) {
@@ -24063,9 +24100,9 @@ return i;
 };
 e.exports = cc.EventListener;
 }), {
-"../platform/js": 236
+"../platform/js": 237
 } ],
-159: [ (function(t, e, i) {
+160: [ (function(t, e, i) {
 "use strict";
 var n = t("../platform/js");
 t("./CCEventListener");
@@ -24611,10 +24648,10 @@ return a;
 }));
 e.exports = cc.internal.eventManager = a;
 }), {
-"../platform/js": 236,
-"./CCEventListener": 158
+"../platform/js": 237,
+"./CCEventListener": 159
 } ],
-160: [ (function(t, e, i) {
+161: [ (function(t, e, i) {
 "use strict";
 cc.Touch = function(t, e, i) {
 this._lastModified = 0;
@@ -24676,7 +24713,7 @@ this._prevPoint = void 0 === e ? cc.v2(t.x, t.y) : cc.v2(t || 0, e || 0);
 }
 };
 }), {} ],
-161: [ (function(t, e, i) {
+162: [ (function(t, e, i) {
 "use strict";
 t("./CCEvent");
 t("./CCTouch");
@@ -24685,12 +24722,12 @@ var n = t("./CCEventManager");
 e.exports = n;
 0;
 }), {
-"./CCEvent": 157,
-"./CCEventListener": 158,
-"./CCEventManager": 159,
-"./CCTouch": 160
+"./CCEvent": 158,
+"./CCEventListener": 159,
+"./CCEventManager": 160,
+"./CCTouch": 161
 } ],
-162: [ (function(t, e, i) {
+163: [ (function(t, e, i) {
 "use strict";
 var n = cc.js, r = t("../platform/callbacks-invoker");
 function s() {
@@ -24718,9 +24755,9 @@ n.containCanceled && n.purgeCanceled();
 e.exports = s;
 0;
 }), {
-"../platform/callbacks-invoker": 229
+"../platform/callbacks-invoker": 230
 } ],
-163: [ (function(t, e, i) {
+164: [ (function(t, e, i) {
 "use strict";
 var n = t("../platform/js"), r = t("../platform/callbacks-invoker"), s = n.array.fastRemove;
 function o() {
@@ -24766,10 +24803,10 @@ this.emit(t.type, t);
 };
 cc.EventTarget = e.exports = o;
 }), {
-"../platform/callbacks-invoker": 229,
-"../platform/js": 236
+"../platform/callbacks-invoker": 230,
+"../platform/js": 237
 } ],
-164: [ (function(t, e, i) {
+165: [ (function(t, e, i) {
 "use strict";
 var n = t("../platform/js");
 cc.Event = function(t, e) {
@@ -24845,21 +24882,21 @@ return i;
 cc.Event.EventCustom = r;
 e.exports = cc.Event;
 }), {
-"../platform/js": 236
+"../platform/js": 237
 } ],
-165: [ (function(t, e, i) {
+166: [ (function(t, e, i) {
 "use strict";
 t("./event");
 t("./event-listeners");
 t("./event-target");
 t("./system-event");
 }), {
-"./event": 164,
-"./event-listeners": 162,
-"./event-target": 163,
-"./system-event": 166
+"./event": 165,
+"./event-listeners": 163,
+"./event-target": 164,
+"./system-event": 167
 } ],
-166: [ (function(t, e, i) {
+167: [ (function(t, e, i) {
 "use strict";
 var n = t("../event/event-target"), r = t("../event-manager"), s = t("../platform/CCInputManager"), o = cc.Enum({
 KEY_DOWN: "keydown",
@@ -24923,11 +24960,11 @@ c && t === o.DEVICEMOTION && r.removeListener(c);
 cc.SystemEvent = e.exports = l;
 cc.systemEvent = new cc.SystemEvent();
 }), {
-"../event-manager": 161,
-"../event/event-target": 163,
-"../platform/CCInputManager": 220
+"../event-manager": 162,
+"../event/event-target": 164,
+"../platform/CCInputManager": 221
 } ],
-167: [ (function(t, e, i) {
+168: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -24994,11 +25031,11 @@ return t;
 i.default = u;
 e.exports = i.default;
 }), {
-"../value-types/mat3": 314,
-"../value-types/vec3": 323,
-"./enums": 169
+"../value-types/mat3": 315,
+"../value-types/vec3": 324,
+"./enums": 170
 } ],
-168: [ (function(t, e, i) {
+169: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.point_plane = _;
@@ -25046,9 +25083,9 @@ function _(t, e) {
 return n.Vec3.dot(e.n, t) - e.d;
 }
 }), {
-"../value-types": 313
+"../value-types": 314
 } ],
-169: [ (function(t, e, i) {
+170: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -25065,7 +25102,7 @@ SHAPE_FRUSTUM_ACCURATE: 256
 };
 e.exports = i.default;
 }), {} ],
-170: [ (function(t, e, i) {
+171: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -25195,11 +25232,11 @@ s.default.fromPoints(e.planes[0], e.vertices[7], e.vertices[5], e.vertices[6]);
 })();
 e.exports = i.default;
 }), {
-"../value-types": 313,
-"./enums": 169,
-"./plane": 175
+"../value-types": 314,
+"./enums": 170,
+"./plane": 176
 } ],
-171: [ (function(t, e, i) {
+172: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 var n = {
@@ -25246,19 +25283,19 @@ default: t
 }
 cc.geomUtils = e.exports;
 }), {
-"./aabb": 167,
-"./distance": 168,
-"./enums": 169,
-"./frustum": 170,
-"./intersect": 172,
-"./line": 173,
-"./obb": 174,
-"./plane": 175,
-"./ray": 176,
-"./sphere": 177,
-"./triangle": 178
+"./aabb": 168,
+"./distance": 169,
+"./enums": 170,
+"./frustum": 171,
+"./intersect": 173,
+"./line": 174,
+"./obb": 175,
+"./plane": 176,
+"./ray": 177,
+"./sphere": 178,
+"./triangle": 179
 } ],
-172: [ (function(t, e, i) {
+173: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -25773,16 +25810,16 @@ var W = j;
 i.default = W;
 e.exports = i.default;
 }), {
-"../../renderer/gfx": 339,
-"../../renderer/memop/recycle-pool": 340,
-"../value-types": 313,
-"./aabb": 167,
-"./distance": 168,
-"./enums": 169,
-"./ray": 176,
-"./triangle": 178
+"../../renderer/gfx": 340,
+"../../renderer/memop/recycle-pool": 341,
+"../value-types": 314,
+"./aabb": 168,
+"./distance": 169,
+"./enums": 170,
+"./ray": 177,
+"./triangle": 179
 } ],
-173: [ (function(t, e, i) {
+174: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -25842,10 +25879,10 @@ return t;
 i.default = s;
 e.exports = i.default;
 }), {
-"../value-types": 313,
-"./enums": 169
+"../value-types": 314,
+"./enums": 170
 } ],
-174: [ (function(t, e, i) {
+175: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -25960,10 +25997,10 @@ return t;
 i.default = u;
 e.exports = i.default;
 }), {
-"../value-types": 313,
-"./enums": 169
+"../value-types": 314,
+"./enums": 170
 } ],
-175: [ (function(t, e, i) {
+176: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -26034,10 +26071,10 @@ return t;
 i.default = l;
 e.exports = i.default;
 }), {
-"../value-types": 313,
-"./enums": 169
+"../value-types": 314,
+"./enums": 170
 } ],
-176: [ (function(t, e, i) {
+177: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -26101,10 +26138,10 @@ return t;
 i.default = s;
 e.exports = i.default;
 }), {
-"../value-types": 313,
-"./enums": 169
+"../value-types": 314,
+"./enums": 170
 } ],
-177: [ (function(t, e, i) {
+178: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -26175,10 +26212,10 @@ return t;
 i.default = o;
 e.exports = i.default;
 }), {
-"../value-types": 313,
-"./enums": 169
+"../value-types": 314,
+"./enums": 170
 } ],
-178: [ (function(t, e, i) {
+179: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -26234,10 +26271,10 @@ return t;
 i.default = o;
 e.exports = i.default;
 }), {
-"../value-types/vec3": 323,
-"./enums": 169
+"../value-types/vec3": 324,
+"./enums": 170
 } ],
-179: [ (function(t, e, i) {
+180: [ (function(t, e, i) {
 "use strict";
 var n = t("../components/CCRenderComponent"), r = t("../assets/material/CCMaterial"), s = t("./types"), o = s.LineCap, a = s.LineJoin, c = cc.Class({
 name: "cc.Graphics",
@@ -26385,10 +26422,10 @@ cc.Graphics.Helper = t("./helper");
 }), {
 "../assets/material/CCMaterial": 102,
 "../components/CCRenderComponent": 138,
-"./helper": 180,
-"./types": 182
+"./helper": 181,
+"./types": 183
 } ],
-180: [ (function(t, e, i) {
+181: [ (function(t, e, i) {
 "use strict";
 var n = t("./types").PointFlags, r = Math.PI, s = Math.min, o = Math.max, a = Math.cos, c = Math.sin, l = Math.abs, h = Math.sign, u = .5522847493;
 e.exports = {
@@ -26451,15 +26488,15 @@ t(e, S, T, A, b, y, g, h, u, _ + 1, f);
 }
 };
 }), {
-"./types": 182
+"./types": 183
 } ],
-181: [ (function(t, e, i) {
+182: [ (function(t, e, i) {
 "use strict";
 t("./graphics");
 }), {
-"./graphics": 179
+"./graphics": 180
 } ],
-182: [ (function(t, e, i) {
+183: [ (function(t, e, i) {
 "use strict";
 var n = cc.Enum({
 BUTT: 0,
@@ -26481,7 +26518,7 @@ LineJoin: r,
 PointFlags: s
 };
 }), {} ],
-183: [ (function(t, e, i) {
+184: [ (function(t, e, i) {
 "use strict";
 t("./platform");
 t("./assets");
@@ -26508,14 +26545,14 @@ t("./base-ui/CCWidgetManager");
 "./camera/CCCamera": 112,
 "./collider": 120,
 "./collider/CCIntersection": 118,
-"./components": 155,
-"./geom-utils": 171,
-"./graphics": 181,
-"./mesh": 186,
-"./physics": 201,
-"./platform": 233
+"./components": 156,
+"./geom-utils": 172,
+"./graphics": 182,
+"./mesh": 187,
+"./physics": 202,
+"./platform": 234
 } ],
-184: [ (function(t, e, i) {
+185: [ (function(t, e, i) {
 "use strict";
 s(t("../../renderer/core/input-assembler"));
 var n = s(t("../../renderer/gfx")), r = t("./mesh-data");
@@ -26753,13 +26790,13 @@ return !0;
 });
 cc.Mesh = e.exports = f;
 }), {
-"../../renderer/core/input-assembler": 335,
-"../../renderer/gfx": 339,
-"../event/event-target": 163,
-"../renderer": 247,
-"./mesh-data": 187
+"../../renderer/core/input-assembler": 336,
+"../../renderer/gfx": 340,
+"../event/event-target": 164,
+"../renderer": 248,
+"./mesh-data": 188
 } ],
-185: [ (function(t, e, i) {
+186: [ (function(t, e, i) {
 "use strict";
 var n = o(t("../../renderer/gfx")), r = (o(t("../../renderer/core/input-assembler")), 
 o(t("../geom-utils/aabb"))), s = (o(t("../value-types/vec3")), o(t("../value-types/mat4")), 
@@ -26920,29 +26957,29 @@ _checkBacth: function() {}
 });
 cc.MeshRenderer = e.exports = _;
 }), {
-"../../renderer/core/input-assembler": 335,
-"../../renderer/gfx": 339,
+"../../renderer/core/input-assembler": 336,
+"../../renderer/gfx": 340,
 "../assets/material/CCMaterial": 102,
 "../assets/material/material-variant": 109,
 "../components/CCRenderComponent": 138,
-"../geom-utils/aabb": 167,
-"../renderer": 247,
-"../renderer/render-flow": 248,
-"../value-types/mat4": 315,
-"../value-types/vec3": 323,
-"./CCMesh": 184
+"../geom-utils/aabb": 168,
+"../renderer": 248,
+"../renderer/render-flow": 249,
+"../value-types/mat4": 316,
+"../value-types/vec3": 324,
+"./CCMesh": 185
 } ],
-186: [ (function(t, e, i) {
+187: [ (function(t, e, i) {
 "use strict";
 t("./CCMesh");
 t("./CCMeshRenderer");
 t("./mesh-renderer");
 }), {
-"./CCMesh": 184,
-"./CCMeshRenderer": 185,
-"./mesh-renderer": 188
+"./CCMesh": 185,
+"./CCMeshRenderer": 186,
+"./mesh-renderer": 189
 } ],
-187: [ (function(t, e, i) {
+188: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.MeshData = c;
@@ -27039,9 +27076,9 @@ return this.uint16IData;
 return this.iData;
 };
 }), {
-"../../renderer/gfx": 339
+"../../renderer/gfx": 340
 } ],
-188: [ (function(t, e, i) {
+189: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -27132,12 +27169,12 @@ i.default = h;
 n.default.register(c, h);
 e.exports = i.default;
 }), {
-"../../renderer/gfx": 339,
-"../renderer/assembler": 244,
-"../value-types/vec3": 323,
-"./CCMeshRenderer": 185
+"../../renderer/gfx": 340,
+"../renderer/assembler": 245,
+"../value-types/vec3": 324,
+"./CCMeshRenderer": 186
 } ],
-189: [ (function(t, e, i) {
+190: [ (function(t, e, i) {
 "use strict";
 var n = t("./component-scheduler"), r = t("./platform/CCObject").Flags, s = t("./platform/js"), o = r.IsPreloadStarted, a = r.IsOnLoadStarted, c = r.IsOnLoadCalled, l = r.Deactivating, h = cc.Class({
 extends: n.LifeCycleInvoker,
@@ -27277,11 +27314,11 @@ resetComp: !1
 e.exports = m;
 }), {
 "./component-scheduler": 121,
-"./platform/CCObject": 222,
-"./platform/js": 236,
-"./utils/misc": 298
+"./platform/CCObject": 223,
+"./platform/js": 237,
+"./utils/misc": 299
 } ],
-190: [ (function(t, e, i) {
+191: [ (function(t, e, i) {
 "use strict";
 var n = t("./CCPhysicsTypes").PTM_RATIO, r = t("./CCPhysicsTypes").ContactType, s = [], o = [ cc.v2(), cc.v2() ], a = new b2.WorldManifold(), c = {
 points: [],
@@ -27454,9 +27491,9 @@ return this._b2contact.ResetRestitution();
 f.ContactType = r;
 cc.PhysicsContact = e.exports = f;
 }), {
-"./CCPhysicsTypes": 192
+"./CCPhysicsTypes": 193
 } ],
-191: [ (function(t, e, i) {
+192: [ (function(t, e, i) {
 "use strict";
 var n = t("./CCPhysicsTypes"), r = n.ContactType, s = n.BodyType, o = n.RayCastType, a = n.DrawBits, c = n.PTM_RATIO, l = (n.ANGLE_TO_PHYSICS_ANGLE, 
 n.PHYSICS_ANGLE_TO_ANGLE), h = t("./utils").convertToNodeRotation, u = t("./platform/CCPhysicsDebugDraw"), _ = new b2.AABB(), f = new b2.Vec2(), d = new b2.Vec2(), p = cc.v2(), m = cc.Class({
@@ -27741,11 +27778,11 @@ this._world && this._world.SetGravity(new b2.Vec2(t.x / c, t.y / c));
 }));
 cc.PhysicsManager = e.exports = m;
 }), {
-"./CCPhysicsTypes": 192,
-"./platform/CCPhysicsDebugDraw": 213,
-"./utils": 215
+"./CCPhysicsTypes": 193,
+"./platform/CCPhysicsDebugDraw": 214,
+"./utils": 216
 } ],
-192: [ (function(t, e, i) {
+193: [ (function(t, e, i) {
 "use strict";
 var n = cc.Enum({
 Static: 0,
@@ -27776,7 +27813,7 @@ ANGLE_TO_PHYSICS_ANGLE: -Math.PI / 180,
 PHYSICS_ANGLE_TO_ANGLE: -180 / Math.PI
 };
 }), {} ],
-193: [ (function(t, e, i) {
+194: [ (function(t, e, i) {
 "use strict";
 function n(t, e) {
 var i = e.length;
@@ -27919,7 +27956,7 @@ ForceCounterClockWise: _,
 IsCounterClockWise: f
 };
 }), {} ],
-194: [ (function(t, e, i) {
+195: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCNode").EventType, r = t("./CCPhysicsTypes").PTM_RATIO, s = t("./CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE, o = t("./CCPhysicsTypes").PHYSICS_ANGLE_TO_ANGLE, a = t("./utils").getWorldRotation, c = t("./CCPhysicsTypes").BodyType, l = new b2.Vec2(), h = new b2.Vec2(), u = cc.Vec2.ZERO, _ = cc.Class({
 name: "cc.RigidBody",
@@ -28301,10 +28338,10 @@ return this._b2Body;
 cc.RigidBody = e.exports = _;
 }), {
 "../CCNode": 51,
-"./CCPhysicsTypes": 192,
-"./utils": 215
+"./CCPhysicsTypes": 193,
+"./utils": 216
 } ],
-195: [ (function(t, e, i) {
+196: [ (function(t, e, i) {
 "use strict";
 var n = t("../../../external/box2d/box2d");
 window.b2 = {};
@@ -28314,9 +28351,9 @@ b2[s] = n[r];
 }
 b2.maxPolygonVertices = 8;
 }), {
-"../../../external/box2d/box2d": 373
+"../../../external/box2d/box2d": 374
 } ],
-196: [ (function(t, e, i) {
+197: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = cc.Class({
 name: "cc.PhysicsBoxCollider",
@@ -28334,9 +28371,9 @@ return c;
 });
 cc.PhysicsBoxCollider = e.exports = r;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-197: [ (function(t, e, i) {
+198: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = cc.Class({
 name: "cc.PhysicsChainCollider",
@@ -28373,9 +28410,9 @@ resetPointsByContour: !1
 });
 cc.PhysicsChainCollider = e.exports = r;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-198: [ (function(t, e, i) {
+199: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = cc.Class({
 name: "cc.PhysicsCircleCollider",
@@ -28394,9 +28431,9 @@ return o;
 });
 cc.PhysicsCircleCollider = e.exports = r;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-199: [ (function(t, e, i) {
+200: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = t("../utils").getWorldScale, s = cc.Class({
 name: "cc.PhysicsCollider",
@@ -28548,10 +28585,10 @@ return u;
 });
 cc.PhysicsCollider = e.exports = s;
 }), {
-"../CCPhysicsTypes": 192,
-"../utils": 215
+"../CCPhysicsTypes": 193,
+"../utils": 216
 } ],
-200: [ (function(t, e, i) {
+201: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = t("../CCPolygonSeparator"), s = cc.Class({
 name: "cc.PhysicsPolygonCollider",
@@ -28588,10 +28625,10 @@ return e;
 });
 cc.PhysicsPolygonCollider = e.exports = s;
 }), {
-"../CCPhysicsTypes": 192,
-"../CCPolygonSeparator": 193
+"../CCPhysicsTypes": 193,
+"../CCPolygonSeparator": 194
 } ],
-201: [ (function(t, e, i) {
+202: [ (function(t, e, i) {
 "use strict";
 t("./box2d-adapter");
 t("./CCPhysicsManager");
@@ -28615,29 +28652,29 @@ t("./platform/CCPhysicsContactListner");
 t("./platform/CCPhysicsAABBQueryCallback");
 t("./platform/CCPhysicsRayCastCallback");
 }), {
-"./CCPhysicsContact": 190,
-"./CCPhysicsManager": 191,
-"./CCRigidBody": 194,
-"./box2d-adapter": 195,
-"./collider/CCPhysicsBoxCollider": 196,
-"./collider/CCPhysicsChainCollider": 197,
-"./collider/CCPhysicsCircleCollider": 198,
-"./collider/CCPhysicsCollider": 199,
-"./collider/CCPhysicsPolygonCollider": 200,
-"./joint/CCDistanceJoint": 202,
-"./joint/CCJoint": 203,
-"./joint/CCMotorJoint": 204,
-"./joint/CCMouseJoint": 205,
-"./joint/CCPrismaticJoint": 206,
-"./joint/CCRevoluteJoint": 207,
-"./joint/CCRopeJoint": 208,
-"./joint/CCWeldJoint": 209,
-"./joint/CCWheelJoint": 210,
-"./platform/CCPhysicsAABBQueryCallback": 211,
-"./platform/CCPhysicsContactListner": 212,
-"./platform/CCPhysicsRayCastCallback": 214
+"./CCPhysicsContact": 191,
+"./CCPhysicsManager": 192,
+"./CCRigidBody": 195,
+"./box2d-adapter": 196,
+"./collider/CCPhysicsBoxCollider": 197,
+"./collider/CCPhysicsChainCollider": 198,
+"./collider/CCPhysicsCircleCollider": 199,
+"./collider/CCPhysicsCollider": 200,
+"./collider/CCPhysicsPolygonCollider": 201,
+"./joint/CCDistanceJoint": 203,
+"./joint/CCJoint": 204,
+"./joint/CCMotorJoint": 205,
+"./joint/CCMouseJoint": 206,
+"./joint/CCPrismaticJoint": 207,
+"./joint/CCRevoluteJoint": 208,
+"./joint/CCRopeJoint": 209,
+"./joint/CCWeldJoint": 210,
+"./joint/CCWheelJoint": 211,
+"./platform/CCPhysicsAABBQueryCallback": 212,
+"./platform/CCPhysicsContactListner": 213,
+"./platform/CCPhysicsRayCastCallback": 215
 } ],
-202: [ (function(t, e, i) {
+203: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = cc.Class({
 name: "cc.DistanceJoint",
@@ -28690,9 +28727,9 @@ return t;
 });
 cc.DistanceJoint = e.exports = r;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-203: [ (function(t, e, i) {
+204: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = cc.Class({
 name: "cc.Joint",
@@ -28789,9 +28826,9 @@ return this.body && this.body._getBody() && this.connectedBody && this.connected
 });
 cc.Joint = e.exports = r;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-204: [ (function(t, e, i) {
+205: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = t("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE, s = cc.Class({
 name: "cc.MotorJoint",
@@ -28878,9 +28915,9 @@ return t;
 });
 cc.MotorJoint = e.exports = s;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-205: [ (function(t, e, i) {
+206: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = new b2.Vec2(), s = cc.Class({
 name: "cc.MouseJoint",
@@ -29012,9 +29049,9 @@ this.target = t ? t.getScreenToWorldPoint(this._pressPoint) : this._pressPoint;
 });
 cc.MouseJoint = e.exports = s;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-206: [ (function(t, e, i) {
+207: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = t("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE, s = cc.Class({
 name: "cc.PrismaticJoint",
@@ -29085,9 +29122,9 @@ return t;
 });
 cc.PrismaticJoint = e.exports = s;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-207: [ (function(t, e, i) {
+208: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = t("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE, s = t("../CCPhysicsTypes").PHYSICS_ANGLE_TO_ANGLE, o = cc.Class({
 name: "cc.RevoluteJoint",
@@ -29173,9 +29210,9 @@ return t;
 });
 cc.RevoluteJoint = e.exports = o;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-208: [ (function(t, e, i) {
+209: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = cc.Class({
 name: "cc.RopeJoint",
@@ -29204,9 +29241,9 @@ return t;
 });
 cc.RopeJoint = e.exports = r;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-209: [ (function(t, e, i) {
+210: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = t("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE, s = cc.Class({
 name: "cc.WeldJoint",
@@ -29252,9 +29289,9 @@ return t;
 });
 cc.WeldJoint = e.exports = s;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-210: [ (function(t, e, i) {
+211: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = t("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE, s = cc.Class({
 name: "cc.WheelJoint",
@@ -29336,9 +29373,9 @@ return t;
 });
 cc.WheelJoint = e.exports = s;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-211: [ (function(t, e, i) {
+212: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").BodyType;
 function r() {
@@ -29371,9 +29408,9 @@ return this._fixtures;
 };
 cc.PhysicsAABBQueryCallback = e.exports = r;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-212: [ (function(t, e, i) {
+213: [ (function(t, e, i) {
 "use strict";
 function n() {
 this._contactFixtures = [];
@@ -29420,7 +29457,7 @@ cc.js.array.remove(this._contactFixtures, t);
 };
 cc.PhysicsContactListener = e.exports = n;
 }), {} ],
-213: [ (function(t, e, i) {
+214: [ (function(t, e, i) {
 "use strict";
 var n = t("../CCPhysicsTypes").PTM_RATIO, r = cc.v2(), s = cc.Color.GREEN, o = cc.Color.RED;
 function a(t) {
@@ -29525,9 +29562,9 @@ this._xf = this._dxf;
 });
 e.exports = a;
 }), {
-"../CCPhysicsTypes": 192
+"../CCPhysicsTypes": 193
 } ],
-214: [ (function(t, e, i) {
+215: [ (function(t, e, i) {
 "use strict";
 function n() {
 this._type = 0;
@@ -29571,7 +29608,7 @@ return this._fractions;
 };
 cc.PhysicsRayCastCallback = e.exports = n;
 }), {} ],
-215: [ (function(t, e, i) {
+216: [ (function(t, e, i) {
 "use strict";
 e.exports = {
 getWorldRotation: function(t) {
@@ -29599,7 +29636,7 @@ return e;
 }
 };
 }), {} ],
-216: [ (function(t, e, i) {
+217: [ (function(t, e, i) {
 "use strict";
 var n = t("./js"), r = t("./CCEnum"), s = t("./utils"), o = (s.isPlainEmptyObj_DEV, 
 s.cloneable_DEV, t("./attribute")), a = o.DELIMETER, c = t("./preprocess-class");
@@ -29966,14 +30003,14 @@ getDefault: p
 };
 0;
 }), {
-"./CCEnum": 218,
-"./attribute": 228,
-"./js": 236,
-"./preprocess-class": 237,
-"./requiring-frame": 238,
-"./utils": 239
+"./CCEnum": 219,
+"./attribute": 229,
+"./js": 237,
+"./preprocess-class": 238,
+"./requiring-frame": 239,
+"./utils": 240
 } ],
-217: [ (function(t, e, i) {
+218: [ (function(t, e, i) {
 "use strict";
 t("./CCClass");
 var n = t("./preprocess-class"), r = t("./js"), s = "__ccclassCache__";
@@ -30117,12 +30154,12 @@ i && (a(i, "proto").mixins = t);
 }
 };
 }), {
-"./CCClass": 216,
-"./js": 236,
-"./preprocess-class": 237,
-"./utils": 239
+"./CCClass": 217,
+"./js": 237,
+"./preprocess-class": 238,
+"./utils": 240
 } ],
-218: [ (function(t, e, i) {
+219: [ (function(t, e, i) {
 "use strict";
 var n = t("./js");
 function r(t) {
@@ -30162,9 +30199,9 @@ return e;
 };
 e.exports = cc.Enum = r;
 }), {
-"./js": 236
+"./js": 237
 } ],
-219: [ (function(t, e, i) {
+220: [ (function(t, e, i) {
 "use strict";
 var n, r = t("../event-manager"), s = t("./CCInputManager");
 cc.Acceleration = function(t, e, i, n) {
@@ -30264,10 +30301,10 @@ o.y = -o.y;
 }
 };
 }), {
-"../event-manager": 161,
-"./CCInputManager": 220
+"../event-manager": 162,
+"./CCInputManager": 221
 } ],
-220: [ (function(t, e, i) {
+221: [ (function(t, e, i) {
 "use strict";
 var n = t("./CCMacro"), r = t("./CCSys"), s = t("../event-manager"), o = n.TOUCH_TIMEOUT, a = cc.v2(), c = {
 _mousePressed: !1,
@@ -30585,11 +30622,11 @@ this._accelCurTime += t;
 };
 e.exports = cc.internal.inputManager = c;
 }), {
-"../event-manager": 161,
-"./CCMacro": 221,
-"./CCSys": 225
+"../event-manager": 162,
+"./CCMacro": 222,
+"./CCSys": 226
 } ],
-221: [ (function(t, e, i) {
+222: [ (function(t, e, i) {
 "use strict";
 cc.macro = {
 RAD: Math.PI / 180,
@@ -30789,7 +30826,7 @@ BOTTOM: 2
 });
 e.exports = cc.macro;
 }), {} ],
-222: [ (function(t, e, i) {
+223: [ (function(t, e, i) {
 "use strict";
 var n = t("./js"), r = t("./CCClass"), s = 1;
 function o() {
@@ -30923,10 +30960,10 @@ return "object" == typeof t ? !(!t || t._objFlags & (e ? 4 | s : s)) : "undefine
 0;
 cc.Object = e.exports = o;
 }), {
-"./CCClass": 216,
-"./js": 236
+"./CCClass": 217,
+"./js": 237
 } ],
-223: [ (function(t, e, i) {
+224: [ (function(t, e, i) {
 "use strict";
 var n = t("../platform/js");
 cc.SAXParser = function() {
@@ -30997,9 +31034,9 @@ saxParser: cc.saxParser,
 plistParser: cc.plistParser
 };
 }), {
-"../platform/js": 236
+"../platform/js": 237
 } ],
-224: [ (function(t, e, i) {
+225: [ (function(t, e, i) {
 "use strict";
 cc.screen = {
 _supportsFullScreen: !1,
@@ -31099,7 +31136,7 @@ once: !0
 };
 cc.screen.init();
 }), {} ],
-225: [ (function(t, e, i) {
+226: [ (function(t, e, i) {
 "use strict";
 var n, r = "qgame" === (n = window._CCSettings ? _CCSettings.platform : void 0), s = "quickgame" === n, o = "huawei" === n, a = "jkw-game" === n, c = "qtt-game" === n, l = "undefined" == typeof window ? global : window;
 var h = cc && cc.sys ? cc.sys : (function() {
@@ -31290,7 +31327,7 @@ return t;
 })();
 e.exports = h;
 }), {} ],
-226: [ (function(t, e, i) {
+227: [ (function(t, e, i) {
 "use strict";
 var n = t("../event/event-target"), r = t("../platform/js"), s = t("../renderer");
 t("../platform/CCClass");
@@ -31886,12 +31923,12 @@ cc.view = new c();
 cc.winSize = cc.size();
 e.exports = cc.view;
 }), {
-"../event/event-target": 163,
-"../platform/CCClass": 216,
-"../platform/js": 236,
-"../renderer": 247
+"../event/event-target": 164,
+"../platform/CCClass": 217,
+"../platform/js": 237,
+"../renderer": 248
 } ],
-227: [ (function(t, e, i) {
+228: [ (function(t, e, i) {
 "use strict";
 cc.visibleRect = {
 topLeft: cc.v2(0, 0),
@@ -31928,7 +31965,7 @@ this.right.y = r + i / 2;
 }
 };
 }), {} ],
-228: [ (function(t, e, i) {
+229: [ (function(t, e, i) {
 "use strict";
 var n = t("./js"), r = (t("./utils").isPlainEmptyObj_DEV, "$_$");
 function s(t, e) {
@@ -31980,11 +32017,11 @@ getObjTypeChecker_ET: !1,
 ScriptUuid: {}
 };
 }), {
-"./CCClass": 216,
-"./js": 236,
-"./utils": 239
+"./CCClass": 217,
+"./js": 237,
+"./utils": 240
 } ],
-229: [ (function(t, e, i) {
+230: [ (function(t, e, i) {
 "use strict";
 var n = t("./js"), r = n.array.fastRemoveAt;
 function s() {}
@@ -32150,9 +32187,9 @@ o.containCanceled && o.purgeCanceled();
 0;
 e.exports = u;
 }), {
-"./js": 236
+"./js": 237
 } ],
-230: [ (function(t, e, i) {
+231: [ (function(t, e, i) {
 "use strict";
 function n(t, e) {
 for (var i = 0; i < e.length; i++) {
@@ -32168,7 +32205,7 @@ return e.join("");
 }
 };
 }), {} ],
-231: [ (function(t, e, i) {
+232: [ (function(t, e, i) {
 "use strict";
 var n = t("./js"), r = t("./attribute"), s = t("./CCClass"), o = t("../utils/misc"), a = function() {
 this.uuidList = [];
@@ -32400,12 +32437,12 @@ cc.deserialize.reportMissingClass = function(t) {
 cc.warnID(5302, t);
 };
 }), {
-"../utils/misc": 298,
-"./CCClass": 216,
-"./attribute": 228,
-"./js": 236
+"../utils/misc": 299,
+"./CCClass": 217,
+"./attribute": 229,
+"./js": 237
 } ],
-232: [ (function(t, e, i) {
+233: [ (function(t, e, i) {
 "use strict";
 var n = ".";
 function r(t) {
@@ -32418,7 +32455,7 @@ return this.prefix + ++this.id;
 r.global = new r("global");
 e.exports = r;
 }), {} ],
-233: [ (function(t, e, i) {
+234: [ (function(t, e, i) {
 "use strict";
 t("./js");
 t("./CCClass");
@@ -32434,21 +32471,21 @@ t("./CCSys");
 t("./CCMacro");
 t("./CCVisibleRect");
 }), {
-"./CCClass": 216,
-"./CCClassDecorator": 217,
-"./CCEnum": 218,
-"./CCMacro": 221,
-"./CCObject": 222,
-"./CCSys": 225,
-"./CCVisibleRect": 227,
-"./callbacks-invoker": 229,
-"./deserialize": 231,
-"./instantiate": 235,
-"./instantiate-jit": 234,
-"./js": 236,
-"./requiring-frame": 238
+"./CCClass": 217,
+"./CCClassDecorator": 218,
+"./CCEnum": 219,
+"./CCMacro": 222,
+"./CCObject": 223,
+"./CCSys": 226,
+"./CCVisibleRect": 228,
+"./callbacks-invoker": 230,
+"./deserialize": 232,
+"./instantiate": 236,
+"./instantiate-jit": 235,
+"./js": 237,
+"./requiring-frame": 239
 } ],
-234: [ (function(t, e, i) {
+235: [ (function(t, e, i) {
 "use strict";
 var n = t("./CCObject"), r = n.Flags.Destroyed, s = n.Flags.PersistentMask, o = t("./attribute"), a = t("./js"), c = t("./CCClass"), l = t("./compiler"), h = o.DELIMETER + "default", u = c.IDENTIFIER_RE, _ = c.escapeForJS, f = "var ", d = "o", p = "t", m = {
 "cc.Node": "cc.Node",
@@ -32715,13 +32752,13 @@ equalsToDefault: A
 };
 0;
 }), {
-"./CCClass": 216,
-"./CCObject": 222,
-"./attribute": 228,
-"./compiler": 230,
-"./js": 236
+"./CCClass": 217,
+"./CCObject": 223,
+"./attribute": 229,
+"./compiler": 231,
+"./js": 237
 } ],
-235: [ (function(t, e, i) {
+236: [ (function(t, e, i) {
 "use strict";
 var n = t("./CCObject"), r = t("../value-types/value-type"), s = n.Flags.Destroyed, o = n.Flags.PersistentMask, a = t("./utils").isDomNode, c = t("./js");
 function l(t, e) {
@@ -32842,12 +32879,12 @@ l._clone = u;
 cc.instantiate = l;
 e.exports = l;
 }), {
-"../value-types/value-type": 321,
-"./CCObject": 222,
-"./js": 236,
-"./utils": 239
+"../value-types/value-type": 322,
+"./CCObject": 223,
+"./js": 237,
+"./utils": 240
 } ],
-236: [ (function(t, e, i) {
+237: [ (function(t, e, i) {
 "use strict";
 var n = new (t("./id-generater"))("TmpCId.");
 function r(t, e) {
@@ -33198,10 +33235,10 @@ o.Pool = p;
 cc.js = o;
 e.exports = o;
 }), {
-"../utils/mutable-forward-iterator": 299,
-"./id-generater": 232
+"../utils/mutable-forward-iterator": 300,
+"./id-generater": 233
 } ],
-237: [ (function(t, e, i) {
+238: [ (function(t, e, i) {
 "use strict";
 var n = t("./js"), r = t("./attribute"), s = {
 default: {},
@@ -33284,11 +33321,11 @@ return !1;
 return !0;
 };
 }), {
-"./CCClass": 216,
-"./attribute": 228,
-"./js": 236
+"./CCClass": 217,
+"./attribute": 229,
+"./js": 237
 } ],
-238: [ (function(t, e, i) {
+239: [ (function(t, e, i) {
 "use strict";
 var n = [];
 cc._RF = {
@@ -33318,7 +33355,7 @@ return n[n.length - 1];
 };
 0;
 }), {} ],
-239: [ (function(t, e, i) {
+240: [ (function(t, e, i) {
 "use strict";
 t("./js");
 e.exports = {
@@ -33346,9 +33383,9 @@ t(e, i);
 0;
 0;
 }), {
-"./js": 236
+"./js": 237
 } ],
-240: [ (function(t, e, i) {
+241: [ (function(t, e, i) {
 "use strict";
 t("./platform/js");
 t("./value-types");
@@ -33369,20 +33406,20 @@ t("./event-manager");
 "./CCDirector": 49,
 "./CCScheduler": 54,
 "./asset-manager": 72,
-"./event": 165,
-"./event-manager": 161,
-"./platform/CCInputExtension": 219,
-"./platform/CCInputManager": 220,
-"./platform/CCMacro": 221,
-"./platform/CCScreen": 224,
-"./platform/CCSys": 225,
-"./platform/CCView": 226,
-"./platform/js": 236,
-"./renderer": 247,
-"./utils": 297,
-"./value-types": 313
+"./event": 166,
+"./event-manager": 162,
+"./platform/CCInputExtension": 220,
+"./platform/CCInputManager": 221,
+"./platform/CCMacro": 222,
+"./platform/CCScreen": 225,
+"./platform/CCSys": 226,
+"./platform/CCView": 227,
+"./platform/js": 237,
+"./renderer": 248,
+"./utils": 298,
+"./value-types": 314
 } ],
-241: [ (function(t, e, i) {
+242: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -33504,12 +33541,12 @@ colorOffset: 4
 cc.Assembler2D = u;
 e.exports = i.default;
 }), {
-"../value-types": 313,
-"./assembler": 244,
-"./utils/dynamic-atlas/manager": 250,
-"./webgl/render-data": 286
+"../value-types": 314,
+"./assembler": 245,
+"./utils/dynamic-atlas/manager": 251,
+"./webgl/render-data": 287
 } ],
-242: [ (function(t, e, i) {
+243: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -33550,10 +33587,10 @@ var c = a;
 i.default = c;
 e.exports = i.default;
 }), {
-"../value-types/vec3": 323,
-"./webgl/vertex-format": 287
+"../value-types/vec3": 324,
+"./webgl/vertex-format": 288
 } ],
-243: [ (function(t, e, i) {
+244: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -33620,9 +33657,9 @@ var c = a;
 i.default = c;
 e.exports = i.default;
 }), {
-"../utils/pool": 300
+"../utils/pool": 301
 } ],
-244: [ (function(t, e, i) {
+245: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -33668,10 +33705,10 @@ t._assembler = n;
 cc.Assembler = s;
 e.exports = i.default;
 }), {
-"./assembler-pool": 243,
-"./webgl/vertex-format": 287
+"./assembler-pool": 244,
+"./webgl/vertex-format": 288
 } ],
-245: [ (function(t, e, i) {
+246: [ (function(t, e, i) {
 "use strict";
 var n = function(t) {
 var e;
@@ -33724,7 +33761,7 @@ return this._stats.drawcalls;
 };
 e.exports = n;
 }), {} ],
-246: [ (function(t, e, i) {
+247: [ (function(t, e, i) {
 "use strict";
 var n = function(t, e) {
 this._device = t;
@@ -33751,7 +33788,7 @@ this._image = null;
 };
 e.exports = n;
 }), {} ],
-247: [ (function(t, e, i) {
+248: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -33851,18 +33888,18 @@ this._forward.clear();
 i.default = c;
 e.exports = i.default;
 }), {
-"../../renderer/core/input-assembler": 335,
-"../../renderer/core/pass": 336,
-"../../renderer/gfx": 339,
+"../../renderer/core/input-assembler": 336,
+"../../renderer/core/pass": 337,
+"../../renderer/gfx": 340,
 "../../renderer/renderers/forward-renderer": void 0,
 "../../renderer/scene/scene": void 0,
 "./canvas": void 0,
-"./canvas/Device": 245,
-"./canvas/Texture2D": 246,
-"./webgl/assemblers": 259,
+"./canvas/Device": 246,
+"./canvas/Texture2D": 247,
+"./webgl/assemblers": 260,
 "./webgl/model-batcher": void 0
 } ],
-248: [ (function(t, e, i) {
+249: [ (function(t, e, i) {
 "use strict";
 var n, r, s = 0, o = 1 << s++, a = 1 << s++, c = 1 << s++, l = 1 << s++, h = c | l, u = 1 << s++, _ = 1 << s++, f = 1 << s++, d = _ | f, p = 1 << s++, m = 1 << s++, v = 1 << s++, y = 1 << s++, g = 0;
 function x() {
@@ -34061,7 +34098,7 @@ x.FLAG_POST_RENDER = v;
 x.FLAG_FINAL = y;
 e.exports = cc.RenderFlow = x;
 }), {} ],
-249: [ (function(t, e, i) {
+250: [ (function(t, e, i) {
 "use strict";
 var n = t("../../../assets/CCRenderTexture"), r = 2;
 function s(t, e) {
@@ -34160,7 +34197,7 @@ e.exports = s;
 }), {
 "../../../assets/CCRenderTexture": 92
 } ],
-250: [ (function(t, e, i) {
+251: [ (function(t, e, i) {
 "use strict";
 var n = t("./atlas"), r = [], s = -1, o = 5, a = 2048, c = 512, l = !0;
 function h() {
@@ -34249,9 +34286,9 @@ if (this.enabled) for (var t = 0; t <= s; t++) r[t].update();
 };
 e.exports = cc.dynamicAtlasManager = f;
 }), {
-"./atlas": 249
+"./atlas": 250
 } ],
-251: [ (function(t, e, i) {
+252: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -34612,12 +34649,12 @@ i.default = N;
 e.exports = i.default;
 }), {
 "../../../components/CCLabel": 129,
-"../../../platform/CCMacro": 221,
-"../../../utils/text-utils": 305,
-"../../assembler-2d": 241,
-"../utils": 255
+"../../../platform/CCMacro": 222,
+"../../../utils/text-utils": 306,
+"../../assembler-2d": 242,
+"../utils": 256
 } ],
-252: [ (function(t, e, i) {
+253: [ (function(t, e, i) {
 "use strict";
 function n() {
 this._rect = null;
@@ -34675,7 +34712,7 @@ i[7] = c;
 };
 e.exports = n;
 }), {} ],
-253: [ (function(t, e, i) {
+254: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -34885,11 +34922,11 @@ e.exports = i.default;
 "../../../components/CCComponent": 127,
 "../../../components/CCLabel": 129,
 "../../../components/CCLabelOutline": 130,
-"../../../utils/text-utils": 305,
-"../../webgl/assemblers/label/2d/bmfont": 260,
-"../utils": 255
+"../../../utils/text-utils": 306,
+"../../webgl/assemblers/label/2d/bmfont": 261,
+"../utils": 256
 } ],
-254: [ (function(t, e, i) {
+255: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -35184,12 +35221,12 @@ e.exports = i.default;
 "../../../components/CCLabel": 129,
 "../../../components/CCLabelOutline": 130,
 "../../../components/CCLabelShadow": 131,
-"../../../platform/CCMacro": 221,
-"../../../utils/text-utils": 305,
-"../../assembler-2d": 241,
-"../utils": 255
+"../../../platform/CCMacro": 222,
+"../../../utils/text-utils": 306,
+"../../assembler-2d": 242,
+"../utils": 256
 } ],
-255: [ (function(t, e, i) {
+256: [ (function(t, e, i) {
 "use strict";
 var n = t("./dynamic-atlas/manager"), r = cc.Color.WHITE, s = {
 fontAtlas: null,
@@ -35226,9 +35263,9 @@ return "Arial";
 shareLabelInfo: s
 };
 }), {
-"./dynamic-atlas/manager": 250
+"./dynamic-atlas/manager": 251
 } ],
-256: [ (function(t, e, i) {
+257: [ (function(t, e, i) {
 "use strict";
 cc.Graphics.earcut = e.exports = n;
 function n(t, e, i) {
@@ -35581,7 +35618,7 @@ i.holes.push(n);
 return i;
 };
 }), {} ],
-257: [ (function(t, e, i) {
+258: [ (function(t, e, i) {
 "use strict";
 var n = t("../../../../graphics/helper"), r = t("../../../../graphics/types").PointFlags, s = cc.Graphics.Point = cc.Class({
 name: "cc.GraphicsPoint",
@@ -35716,10 +35753,10 @@ a.push(r);
 cc.Graphics._Impl = a;
 e.exports = a;
 }), {
-"../../../../graphics/helper": 180,
-"../../../../graphics/types": 182
+"../../../../graphics/helper": 181,
+"../../../../graphics/types": 183
 } ],
-258: [ (function(t, e, i) {
+259: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -36082,16 +36119,16 @@ i.default = w;
 n.default.register(cc.Graphics, w);
 e.exports = i.default;
 }), {
-"../../../../../renderer/core/input-assembler": 335,
-"../../../../graphics/graphics": 179,
-"../../../../graphics/types": 182,
-"../../../assembler": 244,
-"../../../index": 247,
-"../../mesh-buffer": 284,
-"./earcut": 256,
-"./impl": 257
+"../../../../../renderer/core/input-assembler": 336,
+"../../../../graphics/graphics": 180,
+"../../../../graphics/types": 183,
+"../../../assembler": 245,
+"../../../index": 248,
+"../../mesh-buffer": 285,
+"./earcut": 257,
+"./impl": 258
 } ],
-259: [ (function(t, e, i) {
+260: [ (function(t, e, i) {
 "use strict";
 cc.assemblers = {};
 t("./sprite");
@@ -36100,13 +36137,13 @@ t("./graphics");
 t("./label");
 t("./motion-streak");
 }), {
-"./graphics": 258,
-"./label": 267,
-"./mask-assembler": 268,
-"./motion-streak": 269,
-"./sprite": 282
+"./graphics": 259,
+"./label": 268,
+"./mask-assembler": 269,
+"./motion-streak": 270,
+"./sprite": 283
 } ],
-260: [ (function(t, e, i) {
+261: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -36215,9 +36252,9 @@ default: t
 i.default = s;
 e.exports = i.default;
 }), {
-"../../../../utils/label/bmfont": 251
+"../../../../utils/label/bmfont": 252
 } ],
-261: [ (function(t, e, i) {
+262: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -36249,11 +36286,11 @@ return e;
 i.default = o;
 e.exports = i.default;
 }), {
-"../../../../../platform/js": 236,
-"../../../../utils/label/letter-font": 253,
-"./bmfont": 260
+"../../../../../platform/js": 237,
+"../../../../utils/label/letter-font": 254,
+"./bmfont": 261
 } ],
-262: [ (function(t, e, i) {
+263: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -36551,7 +36588,7 @@ e.exports = i.default;
 "../../../../../components/CCLabelOutline": 130,
 "../../../../../components/CCLabelShadow": 131
 } ],
-263: [ (function(t, e, i) {
+264: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -36604,9 +36641,9 @@ i.default = a;
 e.exports = i.default;
 }), {
 "../../../../../components/CCLabelShadow": 131,
-"../../../../utils/label/ttf": 254
+"../../../../utils/label/ttf": 255
 } ],
-264: [ (function(t, e, i) {
+265: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -36641,11 +36678,11 @@ r[o + 2] = c.z;
 });
 e.exports = i.default;
 }), {
-"../../../../../value-types/vec3": 323,
-"../../../../assembler-3d": 242,
-"../2d/bmfont": 260
+"../../../../../value-types/vec3": 324,
+"../../../../assembler-3d": 243,
+"../2d/bmfont": 261
 } ],
-265: [ (function(t, e, i) {
+266: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -36680,11 +36717,11 @@ r[o + 2] = c.z;
 });
 e.exports = i.default;
 }), {
-"../../../../../value-types/vec3": 323,
-"../../../../assembler-3d": 242,
-"../2d/letter": 261
+"../../../../../value-types/vec3": 324,
+"../../../../assembler-3d": 243,
+"../2d/letter": 262
 } ],
-266: [ (function(t, e, i) {
+267: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -36704,10 +36741,10 @@ i.default = s;
 cc.js.mixin(s.prototype, r);
 e.exports = i.default;
 }), {
-"../../../../assembler-3d": 242,
-"../2d/ttf": 263
+"../../../../assembler-3d": 243,
+"../2d/ttf": 264
 } ],
-267: [ (function(t, e, i) {
+268: [ (function(t, e, i) {
 "use strict";
 var n = u(t("../../../assembler")), r = u(t("../../../../components/CCLabel")), s = u(t("./2d/ttf")), o = u(t("./2d/bmfont")), a = u(t("./2d/letter")), c = u(t("./3d/ttf")), l = u(t("./3d/bmfont")), h = u(t("./3d/letter"));
 function u(t) {
@@ -36752,16 +36789,16 @@ NativeTTF: _
 });
 }), {
 "../../../../components/CCLabel": 129,
-"../../../assembler": 244,
-"./2d/bmfont": 260,
-"./2d/letter": 261,
-"./2d/nativeTTF": 262,
-"./2d/ttf": 263,
-"./3d/bmfont": 264,
-"./3d/letter": 265,
-"./3d/ttf": 266
+"../../../assembler": 245,
+"./2d/bmfont": 261,
+"./2d/letter": 262,
+"./2d/nativeTTF": 263,
+"./2d/ttf": 264,
+"./3d/bmfont": 265,
+"./3d/letter": 266,
+"./3d/ttf": 267
 } ],
-268: [ (function(t, e, i) {
+269: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.MaskAssembler = void 0;
@@ -36866,15 +36903,15 @@ return e;
 i.MaskAssembler = C;
 n.default.register(s, C);
 }), {
-"../../../../renderer/gfx": 339,
+"../../../../renderer/gfx": 340,
 "../../../components/CCMask": 133,
-"../../assembler": 244,
-"../../render-flow": 248,
-"../vertex-format": 287,
-"./graphics": 258,
-"./sprite/2d/simple": 273
+"../../assembler": 245,
+"../../render-flow": 249,
+"../vertex-format": 288,
+"./graphics": 259,
+"./sprite/2d/simple": 274
 } ],
-269: [ (function(t, e, i) {
+270: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -36995,10 +37032,10 @@ u.register(s, u);
 e.exports = i.default;
 }), {
 "../../../components/CCMotionStreak": 134,
-"../../assembler-2d": 241,
-"../../render-flow": 248
+"../../assembler-2d": 242,
+"../../render-flow": 249
 } ],
-270: [ (function(t, e, i) {
+271: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37116,10 +37153,10 @@ return e;
 i.default = o;
 e.exports = i.default;
 }), {
-"../../../../../components/CCSprite": 143,
-"../../../../assembler-2d": 241
+"../../../../../components/CCSprite": 144,
+"../../../../assembler-2d": 242
 } ],
-271: [ (function(t, e, i) {
+272: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37199,9 +37236,9 @@ default: t
 i.default = r;
 e.exports = i.default;
 }), {
-"../../../../assembler-2d": 241
+"../../../../assembler-2d": 242
 } ],
-272: [ (function(t, e, i) {
+273: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37415,9 +37452,9 @@ return e;
 i.default = v;
 e.exports = i.default;
 }), {
-"../../../../assembler-2d": 241
+"../../../../assembler-2d": 242
 } ],
-273: [ (function(t, e, i) {
+274: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37477,9 +37514,9 @@ default: t
 i.default = r;
 e.exports = i.default;
 }), {
-"../../../../assembler-2d": 241
+"../../../../assembler-2d": 242
 } ],
-274: [ (function(t, e, i) {
+275: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37565,9 +37602,9 @@ indicesCount: 54
 });
 e.exports = i.default;
 }), {
-"../../../../assembler-2d": 241
+"../../../../assembler-2d": 242
 } ],
-275: [ (function(t, e, i) {
+276: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37705,9 +37742,9 @@ default: t
 i.default = r;
 e.exports = i.default;
 }), {
-"../../../../assembler-2d": 241
+"../../../../assembler-2d": 242
 } ],
-276: [ (function(t, e, i) {
+277: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37727,10 +37764,10 @@ i.default = s;
 cc.js.mixin(s.prototype, r);
 e.exports = i.default;
 }), {
-"../../../../assembler-3d": 242,
-"../2d/bar-filled": 270
+"../../../../assembler-3d": 243,
+"../2d/bar-filled": 271
 } ],
-277: [ (function(t, e, i) {
+278: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37766,11 +37803,11 @@ r[l + 2] = a.z;
 });
 e.exports = i.default;
 }), {
-"../../../../../value-types/vec3": 323,
-"../../../../assembler-3d": 242,
-"../2d/mesh": 271
+"../../../../../value-types/vec3": 324,
+"../../../../assembler-3d": 243,
+"../2d/mesh": 272
 } ],
-278: [ (function(t, e, i) {
+279: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37805,11 +37842,11 @@ r[o + 2] = c.z;
 });
 e.exports = i.default;
 }), {
-"../../../../../value-types/vec3": 323,
-"../../../../assembler-3d": 242,
-"../2d/radial-filled": 272
+"../../../../../value-types/vec3": 324,
+"../../../../assembler-3d": 243,
+"../2d/radial-filled": 273
 } ],
-279: [ (function(t, e, i) {
+280: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37829,10 +37866,10 @@ i.default = s;
 cc.js.mixin(s.prototype, r);
 e.exports = i.default;
 }), {
-"../../../../assembler-3d": 242,
-"../2d/simple": 273
+"../../../../assembler-3d": 243,
+"../2d/simple": 274
 } ],
-280: [ (function(t, e, i) {
+281: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37869,11 +37906,11 @@ r[_ + 2] = c.z;
 });
 e.exports = i.default;
 }), {
-"../../../../../value-types/vec3": 323,
-"../../../../assembler-3d": 242,
-"../2d/sliced": 274
+"../../../../../value-types/vec3": 324,
+"../../../../assembler-3d": 243,
+"../2d/sliced": 275
 } ],
-281: [ (function(t, e, i) {
+282: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -37923,11 +37960,11 @@ d += 24;
 });
 e.exports = i.default;
 }), {
-"../../../../../value-types/vec3": 323,
-"../../../../assembler-3d": 242,
-"../2d/tiled": 275
+"../../../../../value-types/vec3": 324,
+"../../../../assembler-3d": 243,
+"../2d/tiled": 276
 } ],
-282: [ (function(t, e, i) {
+283: [ (function(t, e, i) {
 "use strict";
 var n = v(t("../../../assembler")), r = t("../../../../components/CCSprite"), s = v(t("./2d/simple")), o = v(t("./2d/sliced")), a = v(t("./2d/tiled")), c = v(t("./2d/radial-filled")), l = v(t("./2d/bar-filled")), h = v(t("./2d/mesh")), u = v(t("./3d/simple")), _ = v(t("./3d/sliced")), f = v(t("./3d/tiled")), d = v(t("./3d/radial-filled")), p = v(t("./3d/bar-filled")), m = v(t("./3d/mesh"));
 function v(t) {
@@ -37971,22 +38008,22 @@ Mesh3D: m.default
 };
 n.default.register(cc.Sprite, y);
 }), {
-"../../../../components/CCSprite": 143,
-"../../../assembler": 244,
-"./2d/bar-filled": 270,
-"./2d/mesh": 271,
-"./2d/radial-filled": 272,
-"./2d/simple": 273,
-"./2d/sliced": 274,
-"./2d/tiled": 275,
-"./3d/bar-filled": 276,
-"./3d/mesh": 277,
-"./3d/radial-filled": 278,
-"./3d/simple": 279,
-"./3d/sliced": 280,
-"./3d/tiled": 281
+"../../../../components/CCSprite": 144,
+"../../../assembler": 245,
+"./2d/bar-filled": 271,
+"./2d/mesh": 272,
+"./2d/radial-filled": 273,
+"./2d/simple": 274,
+"./2d/sliced": 275,
+"./2d/tiled": 276,
+"./3d/bar-filled": 277,
+"./3d/mesh": 278,
+"./3d/radial-filled": 279,
+"./3d/simple": 280,
+"./3d/sliced": 281,
+"./3d/tiled": 282
 } ],
-283: [ (function(t, e, i) {
+284: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -38047,7 +38084,7 @@ i.default = n;
 cc.FlexBuffer = n;
 e.exports = i.default;
 }), {} ],
-284: [ (function(t, e, i) {
+285: [ (function(t, e, i) {
 "use strict";
 var n = (function(t) {
 return t && t.__esModule ? t : {
@@ -38196,9 +38233,9 @@ this.indiceStart = this.indiceOffset;
 });
 cc.MeshBuffer = e.exports = r;
 }), {
-"../../../renderer/gfx": 339
+"../../../renderer/gfx": 340
 } ],
-285: [ (function(t, e, i) {
+286: [ (function(t, e, i) {
 "use strict";
 var n = t("./mesh-buffer"), r = cc.Class({
 name: "cc.QuadBuffer",
@@ -38236,9 +38273,9 @@ this._fillQuadBuffer();
 });
 cc.QuadBuffer = e.exports = r;
 }), {
-"./mesh-buffer": 284
+"./mesh-buffer": 285
 } ],
-286: [ (function(t, e, i) {
+287: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = s;
@@ -38299,10 +38336,10 @@ t[n++] = r + 2;
 cc.RenderData = s;
 e.exports = i.default;
 }), {
-"./flex-buffer": 283,
-"./vertex-format": 287
+"./flex-buffer": 284,
+"./vertex-format": 288
 } ],
-287: [ (function(t, e, i) {
+288: [ (function(t, e, i) {
 "use strict";
 var n = (function(t) {
 return t && t.__esModule ? t : {
@@ -38401,9 +38438,9 @@ vfmtPosColor: c,
 vfmtPos: l
 };
 }), {
-"../../../renderer/gfx": 339
+"../../../renderer/gfx": 340
 } ],
-288: [ (function(t, e, i) {
+289: [ (function(t, e, i) {
 "use strict";
 t("../platform/CCSys");
 var n = /(\.[^\.\/\?\\]*)(\?.*)?$/, r = /((.*)(\/|\\|\\\\))?(.*?\..*$)?/, s = /[^\.\/]+\/\.\.\//;
@@ -38469,9 +38506,9 @@ return t.replace(/[\/\\]$/, "");
 };
 e.exports = cc.path;
 }), {
-"../platform/CCSys": 225
+"../platform/CCSys": 226
 } ],
-289: [ (function(t, e, i) {
+290: [ (function(t, e, i) {
 "use strict";
 var n = function(t, e, i, n, r, s) {
 this.a = t;
@@ -38581,7 +38618,7 @@ n.y = f + p + u;
 };
 cc.AffineTransform = e.exports = n;
 }), {} ],
-290: [ (function(t, e, i) {
+291: [ (function(t, e, i) {
 "use strict";
 var n = t("../platform/CCObject").Flags, r = t("./misc"), s = t("../platform/js"), o = t("../platform/id-generater"), a = t("../event-manager"), c = t("../renderer/render-flow"), l = n.Destroying, h = n.DontDestroy, u = n.Deactivating, _ = new o("Node");
 function f(t) {
@@ -38991,14 +39028,14 @@ r.propertyDefine(y, [ "parent", "name", "children", "childrenCount" ], {});
 0;
 cc._BaseNode = e.exports = y;
 }), {
-"../event-manager": 161,
-"../platform/CCObject": 222,
-"../platform/id-generater": 232,
-"../platform/js": 236,
-"../renderer/render-flow": 248,
-"./misc": 298
+"../event-manager": 162,
+"../platform/CCObject": 223,
+"../platform/id-generater": 233,
+"../platform/js": 237,
+"../renderer/render-flow": 249,
+"./misc": 299
 } ],
-291: [ (function(t, e, i) {
+292: [ (function(t, e, i) {
 "use strict";
 var n = 1e-6;
 e.exports = {
@@ -39014,7 +39051,7 @@ return ~i;
 }
 };
 }), {} ],
-292: [ (function(t, e, i) {
+293: [ (function(t, e, i) {
 "use strict";
 var n = t("../components/CCRenderComponent"), r = t("../platform/CCMacro").BlendFactor, s = t("../../renderer/gfx"), o = cc.Class({
 properties: {
@@ -39072,11 +39109,11 @@ t.setBlend(!0, s.BLEND_FUNC_ADD, this._srcBlendFactor, this._dstBlendFactor, s.B
 });
 e.exports = cc.BlendFunc = o;
 }), {
-"../../renderer/gfx": 339,
+"../../renderer/gfx": 340,
 "../components/CCRenderComponent": 138,
-"../platform/CCMacro": 221
+"../platform/CCMacro": 222
 } ],
-293: [ (function(t, e, i) {
+294: [ (function(t, e, i) {
 "use strict";
 var n = t("./misc").BASE64_VALUES, r = "0123456789abcdef".split(""), s = [ "", "", "", "" ], o = s.concat(s, "-", s, "-", s, "-", s, "-", s, s, s), a = o.map((function(t, e) {
 return "-" === t ? NaN : e;
@@ -39095,9 +39132,9 @@ return o.join("");
 };
 0;
 }), {
-"./misc": 298
+"./misc": 299
 } ],
-294: [ (function(t, e, i) {
+295: [ (function(t, e, i) {
 "use strict";
 cc.find = e.exports = function(t, e) {
 if (null == t) {
@@ -39128,7 +39165,7 @@ if (!n) return null;
 return n;
 };
 }), {} ],
-295: [ (function(t, e, i) {
+296: [ (function(t, e, i) {
 "use strict";
 var n = (function(t) {
 return t && t.__esModule ? t : {
@@ -39181,7 +39218,7 @@ e.exports = s;
 "../assets/material/CCMaterial": 102,
 "../assets/material/material-variant": 109
 } ],
-296: [ (function(t, e, i) {
+297: [ (function(t, e, i) {
 "use strict";
 var n = /^(click)(\s)*=|(param)(\s)*=/, r = /(\s)*src(\s)*=|(\s)*height(\s)*=|(\s)*width(\s)*=|(\s)*align(\s)*=|(\s)*offset(\s)*=|(\s)*click(\s)*=|(\s)*param(\s)*=/, s = function() {
 this._parsedObject = {};
@@ -39382,19 +39419,19 @@ return t;
 0;
 e.exports = s;
 }), {} ],
-297: [ (function(t, e, i) {
+298: [ (function(t, e, i) {
 "use strict";
 t("./CCPath");
 t("./profiler/CCProfiler");
 t("./find");
 t("./mutable-forward-iterator");
 }), {
-"./CCPath": 288,
-"./find": 294,
-"./mutable-forward-iterator": 299,
-"./profiler/CCProfiler": 302
+"./CCPath": 289,
+"./find": 295,
+"./mutable-forward-iterator": 300,
+"./profiler/CCProfiler": 303
 } ],
-298: [ (function(t, e, i) {
+299: [ (function(t, e, i) {
 "use strict";
 var n = t("../platform/js"), r = {
 propertyDefine: function(t, e, i) {
@@ -39460,9 +39497,9 @@ return t * cc.macro.DEG;
 };
 cc.misc = e.exports = r;
 }), {
-"../platform/js": 236
+"../platform/js": 237
 } ],
-299: [ (function(t, e, i) {
+300: [ (function(t, e, i) {
 "use strict";
 function n(t) {
 this.i = 0;
@@ -39492,7 +39529,7 @@ this.array.push(t);
 };
 e.exports = n;
 }), {} ],
-300: [ (function(t, e, i) {
+301: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -39515,7 +39552,7 @@ cc.pool[t] = e;
 };
 e.exports = i.default;
 }), {} ],
-301: [ (function(t, e, i) {
+302: [ (function(t, e, i) {
 "use strict";
 cc._PrefabInfo = cc.Class({
 name: "cc.PrefabInfo",
@@ -39560,7 +39597,7 @@ t._prefab = null;
 }
 };
 }), {} ],
-302: [ (function(t, e, i) {
+303: [ (function(t, e, i) {
 "use strict";
 var n = t("../../platform/CCMacro"), r = t("./perf-counter"), s = !1, o = 15, a = null, c = null, l = null;
 function h() {
@@ -39689,10 +39726,10 @@ s = !0;
 }
 };
 }), {
-"../../platform/CCMacro": 221,
-"./perf-counter": 304
+"../../platform/CCMacro": 222,
+"./perf-counter": 305
 } ],
-303: [ (function(t, e, i) {
+304: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 name: "cc.Counter",
@@ -39742,7 +39779,7 @@ return this._opts.below && this._value < this._opts.below || this._opts.over && 
 });
 e.exports = n;
 }), {} ],
-304: [ (function(t, e, i) {
+305: [ (function(t, e, i) {
 "use strict";
 var n = t("./counter"), r = cc.Class({
 name: "cc.PerfCounter",
@@ -39774,9 +39811,9 @@ this._average(this._value);
 });
 e.exports = r;
 }), {
-"./counter": 303
+"./counter": 304
 } ],
-305: [ (function(t, e, i) {
+306: [ (function(t, e, i) {
 "use strict";
 var n = 0;
 0;
@@ -39939,9 +39976,9 @@ return r;
 };
 cc.textUtils = e.exports = a;
 }), {
-"../platform/js": 236
+"../platform/js": 237
 } ],
-306: [ (function(t, e, i) {
+307: [ (function(t, e, i) {
 "use strict";
 var n = t("../assets/CCTexture2D"), r = {
 loadImage: function(t, e, i) {
@@ -39980,17 +40017,17 @@ e.exports = r;
 }), {
 "../assets/CCTexture2D": 99
 } ],
-307: [ (function(t, e, i) {
+308: [ (function(t, e, i) {
 "use strict";
 var n = t("./node-unit"), r = t("./node-mem-pool");
 e.exports = {
 NodeMemPool: new r(n)
 };
 }), {
-"./node-mem-pool": 309,
-"./node-unit": 310
+"./node-mem-pool": 310,
+"./node-unit": 311
 } ],
-308: [ (function(t, e, i) {
+309: [ (function(t, e, i) {
 "use strict";
 var n = function(t) {
 this._unitClass = t;
@@ -40051,7 +40088,7 @@ return e;
 };
 e.exports = n;
 }), {} ],
-309: [ (function(t, e, i) {
+310: [ (function(t, e, i) {
 "use strict";
 var n = t("./mem-pool"), r = function(t) {
 n.call(this, t);
@@ -40071,9 +40108,9 @@ this._nativeMemPool.removeNodeData(t);
 };
 e.exports = r;
 }), {
-"./mem-pool": 308
+"./mem-pool": 309
 } ],
-310: [ (function(t, e, i) {
+311: [ (function(t, e, i) {
 "use strict";
 var n = t("../../value-types/utils"), r = Uint32Array, s = 10 * n.FLOAT_BYTES, o = 16 * n.FLOAT_BYTES, a = 16 * n.FLOAT_BYTES, c = Uint32Array, l = Uint32Array, h = Int32Array, u = Uint8Array, _ = Uint8Array, f = Uint32Array, d = 2 * n.FLOAT_BYTES, p = t("./unit-base"), m = function(t, e) {
 p.call(this, t, e);
@@ -40111,10 +40148,10 @@ m.prototype = new t();
 })();
 e.exports = m;
 }), {
-"../../value-types/utils": 320,
-"./unit-base": 311
+"../../value-types/utils": 321,
+"./unit-base": 312
 } ],
-311: [ (function(t, e, i) {
+312: [ (function(t, e, i) {
 "use strict";
 var n = function(t, e, i) {
 i = i || 128;
@@ -40180,7 +40217,7 @@ t + n != this._contentNum && cc.error("total num error", "calc total num:", a, "
 };
 e.exports = n;
 }), {} ],
-312: [ (function(t, e, i) {
+313: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -40610,11 +40647,11 @@ return "object" == typeof t ? new h(t.r, t.g, t.b, t.a) : new h(t, e, i, n);
 };
 e.exports = i.default;
 }), {
-"../platform/CCClass": 216,
-"../utils/misc": 298,
-"./value-type": 321
+"../platform/CCClass": 217,
+"../utils/misc": 299,
+"./value-type": 322
 } ],
-313: [ (function(t, e, i) {
+314: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 var n = {
@@ -40661,19 +40698,19 @@ default: t
 }
 cc.math = e.exports;
 }), {
-"./color": 312,
-"./mat3": 314,
-"./mat4": 315,
-"./quat": 316,
-"./rect": 317,
-"./size": 318,
-"./trs": 319,
-"./utils": 320,
-"./vec2": 322,
-"./vec3": 323,
-"./vec4": 324
+"./color": 313,
+"./mat3": 315,
+"./mat4": 316,
+"./quat": 317,
+"./rect": 318,
+"./size": 319,
+"./trs": 320,
+"./utils": 321,
+"./vec2": 323,
+"./vec3": 324,
+"./vec4": 325
 } ],
-314: [ (function(t, e, i) {
+315: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -41061,10 +41098,10 @@ s.IDENTITY = Object.freeze(new s());
 cc.Mat3 = s;
 e.exports = i.default;
 }), {
-"../value-types/utils": 320,
-"./vec3": 323
+"../value-types/utils": 321,
+"./vec3": 324
 } ],
-315: [ (function(t, e, i) {
+316: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -42184,14 +42221,14 @@ return m;
 cc.Mat4 = E;
 e.exports = i.default;
 }), {
-"../platform/CCClass": 216,
-"./mat3": 314,
-"./quat": 316,
-"./utils": 320,
-"./value-type": 321,
-"./vec3": 323
+"../platform/CCClass": 217,
+"./mat3": 315,
+"./quat": 317,
+"./utils": 321,
+"./value-type": 322,
+"./vec3": 324
 } ],
-316: [ (function(t, e, i) {
+317: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -42622,13 +42659,13 @@ return new d(t, e, i, n);
 cc.Quat = d;
 e.exports = i.default;
 }), {
-"../platform/CCClass": 216,
-"./mat3": 314,
-"./utils": 320,
-"./value-type": 321,
-"./vec3": 323
+"../platform/CCClass": 217,
+"./mat3": 315,
+"./utils": 321,
+"./value-type": 322,
+"./vec3": 324
 } ],
-317: [ (function(t, e, i) {
+318: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -42822,12 +42859,12 @@ return new u(t, e, i, n);
 };
 e.exports = i.default;
 }), {
-"../platform/CCClass": 216,
-"./size": 318,
-"./value-type": 321,
-"./vec2": 322
+"../platform/CCClass": 217,
+"./size": 319,
+"./value-type": 322,
+"./vec2": 323
 } ],
-318: [ (function(t, e, i) {
+319: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -42915,10 +42952,10 @@ return new l(t, e);
 cc.Size = l;
 e.exports = i.default;
 }), {
-"../platform/CCClass": 216,
-"./value-type": 321
+"../platform/CCClass": 217,
+"./value-type": 322
 } ],
-319: [ (function(t, e, i) {
+320: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -43013,9 +43050,9 @@ i.default = s;
 cc.Trs = s;
 e.exports = i.default;
 }), {
-"./quat": 316
+"./quat": 317
 } ],
-320: [ (function(t, e, i) {
+321: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.equals = function(t, e) {
@@ -43088,7 +43125,7 @@ function u(t, e) {
 return t - Math.floor(t / e) * e;
 }
 }), {} ],
-321: [ (function(t, e, i) {
+322: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -43125,9 +43162,9 @@ n.default.setClassName("cc.ValueType", r);
 cc.ValueType = r;
 e.exports = i.default;
 }), {
-"../platform/js": 236
+"../platform/js": 237
 } ],
-322: [ (function(t, e, i) {
+323: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -43548,12 +43585,12 @@ return new f(t, e);
 cc.Vec2 = f;
 e.exports = i.default;
 }), {
-"../platform/CCClass": 216,
-"../utils/misc": 298,
-"./utils": 320,
-"./value-type": 321
+"../platform/CCClass": 217,
+"../utils/misc": 299,
+"./utils": 321,
+"./value-type": 322
 } ],
-323: [ (function(t, e, i) {
+324: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -44092,13 +44129,13 @@ return new p(t, e, i);
 cc.Vec3 = p;
 e.exports = i.default;
 }), {
-"../platform/CCClass": 216,
-"../utils/misc": 298,
-"./utils": 320,
-"./value-type": 321,
-"./vec2": 322
+"../platform/CCClass": 217,
+"../utils/misc": 299,
+"./utils": 321,
+"./value-type": 322,
+"./vec2": 323
 } ],
-324: [ (function(t, e, i) {
+325: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.v4 = p;
@@ -44606,15 +44643,15 @@ return new d(t, e, i, n);
 cc.v4 = p;
 cc.Vec4 = d;
 }), {
-"../platform/CCClass": 216,
-"./utils": 320,
-"./value-type": 321
+"../platform/CCClass": 217,
+"./utils": 321,
+"./value-type": 322
 } ],
-325: [ (function(t, e, i) {
+326: [ (function(t, e, i) {
 "use strict";
 cc.js;
 }), {} ],
-326: [ (function(t, e, i) {
+327: [ (function(t, e, i) {
 "use strict";
 t("./core/CCGame");
 t("./actions");
@@ -44622,7 +44659,7 @@ t("./actions");
 "./actions": 7,
 "./core/CCGame": 50
 } ],
-327: [ (function(t, e, i) {
+328: [ (function(t, e, i) {
 "use strict";
 var n = t("../compression/zlib.min"), r = t("../core/CCDebug"), s = function(t) {
 var e, i, n, s, o, a, c, l, h, u, _, f, d;
@@ -44895,7 +44932,7 @@ e.exports = s;
 "../compression/zlib.min": 25,
 "../core/CCDebug": 48
 } ],
-328: [ (function(t, e, i) {
+329: [ (function(t, e, i) {
 "use strict";
 var n = t("../core/assets/CCAsset"), r = t("../core/assets/CCSpriteFrame"), s = cc.Class({
 name: "cc.ParticleAsset",
@@ -44912,7 +44949,7 @@ cc.ParticleAsset = e.exports = s;
 "../core/assets/CCAsset": 84,
 "../core/assets/CCSpriteFrame": 96
 } ],
-329: [ (function(t, e, i) {
+330: [ (function(t, e, i) {
 "use strict";
 var n = t("../core/platform/CCMacro"), r = t("./CCParticleAsset"), s = t("../core/components/CCRenderComponent"), o = t("../compression/ZipUtils"), a = t("./CCPNGReader"), c = t("./CCTIFFReader"), l = t("../core/utils/texture-util"), h = (t("../core/renderer/render-flow"), 
 t("./particle-simulator")), u = (t("../core/assets/material/CCMaterial"), t("../core/utils/blend-func"));
@@ -45375,17 +45412,17 @@ cc.ParticleSystem = e.exports = m;
 "../compression/ZipUtils": 22,
 "../core/assets/material/CCMaterial": 102,
 "../core/components/CCRenderComponent": 138,
-"../core/platform/CCMacro": 221,
-"../core/renderer/render-flow": 248,
-"../core/utils/blend-func": 292,
-"../core/utils/texture-util": 306,
-"./CCPNGReader": 327,
-"./CCParticleAsset": 328,
-"./CCTIFFReader": 330,
-"./particle-simulator": 332,
+"../core/platform/CCMacro": 222,
+"../core/renderer/render-flow": 249,
+"../core/utils/blend-func": 293,
+"../core/utils/texture-util": 307,
+"./CCPNGReader": 328,
+"./CCParticleAsset": 329,
+"./CCTIFFReader": 331,
+"./particle-simulator": 333,
 "fire-url": void 0
 } ],
-330: [ (function(t, e, i) {
+331: [ (function(t, e, i) {
 "use strict";
 var n = t("../core/CCDebug"), r = {
 _littleEndian: !1,
@@ -45746,19 +45783,19 @@ e.exports = r;
 }), {
 "../core/CCDebug": 48
 } ],
-331: [ (function(t, e, i) {
+332: [ (function(t, e, i) {
 "use strict";
 t("./CCParticleAsset");
 t("./CCParticleSystem");
 t("./particle-simulator");
 t("./particle-system-assembler");
 }), {
-"./CCParticleAsset": 328,
-"./CCParticleSystem": 329,
-"./particle-simulator": 332,
-"./particle-system-assembler": 333
+"./CCParticleAsset": 329,
+"./CCParticleSystem": 330,
+"./particle-simulator": 333,
+"./particle-system-assembler": 334
 } ],
-332: [ (function(t, e, i) {
+333: [ (function(t, e, i) {
 "use strict";
 var n = t("../core/platform/js"), r = t("../core/utils/misc"), s = cc.v2(0, 0), o = cc.v2(), a = cc.v2(), c = cc.v2(), l = cc.v2(), h = function() {
 this.pos = cc.v2(0, 0);
@@ -46026,10 +46063,10 @@ e._finishedSimulation();
 };
 e.exports = _;
 }), {
-"../core/platform/js": 236,
-"../core/utils/misc": 298
+"../core/platform/js": 237,
+"../core/utils/misc": 299
 } ],
-333: [ (function(t, e, i) {
+334: [ (function(t, e, i) {
 "use strict";
 var n = s(t("../core/renderer/assembler")), r = s(t("../renderer/core/input-assembler"));
 function s(t) {
@@ -46076,14 +46113,14 @@ return e;
 n.default.register(a, u);
 e.exports = u;
 }), {
-"../core/renderer/": 247,
-"../core/renderer/assembler": 244,
-"../core/renderer/webgl/quad-buffer": 285,
-"../core/renderer/webgl/vertex-format": 287,
-"../renderer/core/input-assembler": 335,
-"./CCParticleSystem": 329
+"../core/renderer/": 248,
+"../core/renderer/assembler": 245,
+"../core/renderer/webgl/quad-buffer": 286,
+"../core/renderer/webgl/vertex-format": 288,
+"../renderer/core/input-assembler": 336,
+"./CCParticleSystem": 330
 } ],
-334: [ (function(t, e, i) {
+335: [ (function(t, e, i) {
 "use strict";
 var n, r, s, o = 512, a = 513, c = 514, l = 515, h = 516, u = 517, _ = 518, f = 519, d = 32774, p = 32778, m = 32779, v = 0, y = 1, g = 768, x = 769, C = 774, A = 775, b = 770, S = 771, T = 772, w = 773, E = 32769, B = 32770, M = 32771, I = 32772, D = 776, P = 7680, R = 7681, L = 7682, V = 34055, O = 7683, N = 34056, F = 5386, z = 0, G = 1028, k = 1029;
 (function(t) {
@@ -46732,7 +46769,7 @@ UniformBinding: bt
 };
 e.exports = Dt;
 }), {} ],
-335: [ (function(t, e, i) {
+336: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -46775,9 +46812,9 @@ return t;
 i.default = o;
 e.exports = i.default;
 }), {
-"../gfx": 339
+"../gfx": 340
 } ],
-336: [ (function(t, e, i) {
+337: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -46949,11 +46986,11 @@ return t;
 i.default = a;
 e.exports = i.default;
 }), {
-"../../core/value-types/value-type": 321,
-"../enums": 338,
-"../gfx": 339
+"../../core/value-types/value-type": 322,
+"../enums": 339,
+"../gfx": 340
 } ],
-337: [ (function(t, e, i) {
+338: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -46996,7 +47033,7 @@ return t;
 i.default = s;
 e.exports = i.default;
 }), {} ],
-338: [ (function(t, e, i) {
+339: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -47038,9 +47075,9 @@ BUFFER_VIEW_FLOAT32: 6
 i.default = r;
 e.exports = i.default;
 }), {
-"./build/mappings": 334
+"./build/mappings": 335
 } ],
-339: [ (function(t, e, i) {
+340: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -47062,7 +47099,7 @@ e.exports = i.default;
 "./vertex-buffer": void 0,
 "./vertex-format": void 0
 } ],
-340: [ (function(t, e, i) {
+341: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -47131,9 +47168,9 @@ i.default = o;
 cc.RecyclePool = o;
 e.exports = i.default;
 }), {
-"./timsort": 341
+"./timsort": 342
 } ],
-341: [ (function(t, e, i) {
+342: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = function(t, e, i, r) {
@@ -47517,7 +47554,7 @@ return t;
 })();
 e.exports = i.default;
 }), {} ],
-342: [ (function(t, e, i) {
+343: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = function(t, e) {
@@ -47543,7 +47580,7 @@ return (r ^= r >>> 15) >>> 0;
 };
 e.exports = i.default;
 }), {} ],
-343: [ (function(t, e, i) {
+344: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.getInspectorProps = function(t) {
@@ -47624,11 +47661,11 @@ Boolean: "boolean"
 };
 }), {
 "../core/assets/CCTexture2D": 99,
-"../core/value-types": 313,
-"./enums": 338,
+"../core/value-types": 314,
+"./enums": 339,
 "./gfx/texture-2d": void 0
 } ],
-344: [ (function(t, e, i) {
+345: [ (function(t, e, i) {
 "use strict";
 var n = t("../compression/ZipUtils"), r = t("../compression/zlib.min"), s = t("../core/platform/js");
 t("../core/platform/CCSAXParser");
@@ -48223,10 +48260,10 @@ cc.TMXLayerInfo.ATTRIB_ZLIB = 8;
 }), {
 "../compression/ZipUtils": 22,
 "../compression/zlib.min": 25,
-"../core/platform/CCSAXParser": 223,
-"../core/platform/js": 236
+"../core/platform/CCSAXParser": 224,
+"../core/platform/js": 237
 } ],
-345: [ (function(t, e, i) {
+346: [ (function(t, e, i) {
 "use strict";
 var n = t("../core/value-types"), r = (function(t) {
 return t && t.__esModule ? t : {
@@ -48956,10 +48993,10 @@ cc.TiledLayer = e.exports = d;
 "../core/assets/material/CCMaterial": 102,
 "../core/assets/material/material-variant": 109,
 "../core/components/CCRenderComponent": 138,
-"../core/renderer/render-flow": 248,
-"../core/value-types": 313
+"../core/renderer/render-flow": 249,
+"../core/value-types": 314
 } ],
-346: [ (function(t, e, i) {
+347: [ (function(t, e, i) {
 "use strict";
 t("./CCTMXXMLParser");
 t("./CCTiledMapAsset");
@@ -49325,13 +49362,13 @@ cc.errorID(7203);
 return [];
 }), !1);
 }), {
-"./CCTMXXMLParser": 344,
-"./CCTiledLayer": 345,
-"./CCTiledMapAsset": 347,
-"./CCTiledObjectGroup": 349,
-"./CCTiledTile": 350
+"./CCTMXXMLParser": 345,
+"./CCTiledLayer": 346,
+"./CCTiledMapAsset": 348,
+"./CCTiledObjectGroup": 350,
+"./CCTiledTile": 351
 } ],
-347: [ (function(t, e, i) {
+348: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 name: "cc.TiledMapAsset",
@@ -49363,7 +49400,7 @@ createNode: !1
 cc.TiledMapAsset = n;
 e.exports = n;
 }), {} ],
-348: [ (function(t, e, i) {
+349: [ (function(t, e, i) {
 "use strict";
 var n = (function(t) {
 return t && t.__esModule ? t : {
@@ -49403,9 +49440,9 @@ this._offset = 0;
 });
 cc.TiledMapRenderDataList = e.exports = r;
 }), {
-"../renderer/core/input-assembler": 335
+"../renderer/core/input-assembler": 336
 } ],
-349: [ (function(t, e, i) {
+350: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 name: "cc.TiledObjectGroup",
@@ -49542,7 +49579,7 @@ H.test(X) && !g[X] && q.destroy();
 });
 cc.TiledObjectGroup = e.exports = n;
 }), {} ],
-350: [ (function(t, e, i) {
+351: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 name: "cc.TiledTile",
@@ -49614,19 +49651,19 @@ this._layer.setTiledTileAt(t, e, this);
 });
 cc.TiledTile = e.exports = n;
 }), {} ],
-351: [ (function(t, e, i) {
+352: [ (function(t, e, i) {
 "use strict";
 t("./CCTiledMap");
 t("./CCTiledMapRenderDataList");
 t("./tiledmap-buffer");
 t("./tmx-layer-assembler");
 }), {
-"./CCTiledMap": 346,
-"./CCTiledMapRenderDataList": 348,
-"./tiledmap-buffer": 352,
-"./tmx-layer-assembler": 353
+"./CCTiledMap": 347,
+"./CCTiledMapRenderDataList": 349,
+"./tiledmap-buffer": 353,
+"./tmx-layer-assembler": 354
 } ],
-352: [ (function(t, e, i) {
+353: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 name: "cc.TiledMapBuffer",
@@ -49647,9 +49684,9 @@ this._dirty = !0;
 });
 cc.TiledMapBuffer = e.exports = n;
 }), {
-"../core/renderer/webgl/quad-buffer": 285
+"../core/renderer/webgl/quad-buffer": 286
 } ],
-353: [ (function(t, e, i) {
+354: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -49934,15 +49971,15 @@ i.default = N;
 n.default.register(o, N);
 e.exports = i.default;
 }), {
-"../core/renderer/": 247,
-"../core/renderer/assembler": 244,
-"../core/renderer/render-flow": 248,
-"../core/renderer/webgl/vertex-format": 287,
-"../core/value-types": 313,
-"./CCTiledLayer": 345,
-"./CCTiledMap": 346
+"../core/renderer/": 248,
+"../core/renderer/assembler": 245,
+"../core/renderer/render-flow": 249,
+"../core/renderer/webgl/vertex-format": 288,
+"../core/value-types": 314,
+"./CCTiledLayer": 346,
+"./CCTiledMap": 347
 } ],
-354: [ (function(t, e, i) {
+355: [ (function(t, e, i) {
 "use strict";
 var n = t("./video-player-impl"), r = n.EventType, s = cc.Enum({
 REMOTE: 0,
@@ -50186,9 +50223,9 @@ return !!this._impl && this._impl.isPlaying();
 });
 cc.VideoPlayer = e.exports = o;
 }), {
-"./video-player-impl": 355
+"./video-player-impl": 356
 } ],
-355: [ (function(t, e, i) {
+356: [ (function(t, e, i) {
 "use strict";
 var n = t("../core/platform/utils"), r = t("../core/platform/CCSys"), s = t("../core/platform/CCMacro"), o = {
 HAVE_NOTHING: 0,
@@ -50562,11 +50599,11 @@ h.innerHTML = ".cocosVideo:-moz-full-screen{transform:matrix(1,0,0,1,0,0) !impor
 document.head.appendChild(h);
 e.exports = c;
 }), {
-"../core/platform/CCMacro": 221,
-"../core/platform/CCSys": 225,
-"../core/platform/utils": 239
+"../core/platform/CCMacro": 222,
+"../core/platform/CCSys": 226,
+"../core/platform/utils": 240
 } ],
-356: [ (function(t, e, i) {
+357: [ (function(t, e, i) {
 "use strict";
 var n = t("./webview-impl"), r = n.EventType;
 function s() {}
@@ -50654,9 +50691,9 @@ this._impl && this._impl.evaluateJS(t);
 });
 cc.WebView = e.exports = o;
 }), {
-"./webview-impl": 357
+"./webview-impl": 358
 } ],
-357: [ (function(t, e, i) {
+358: [ (function(t, e, i) {
 "use strict";
 var n = t("../core/platform/utils"), r = t("../core/platform/CCSys"), s = cc.mat4(), o = cc.Class({
 name: "WebViewImpl",
@@ -50898,10 +50935,10 @@ r.os === r.OS_IOS && (a.enableDiv = !0);
 r.isMobile ? r.browserType === r.BROWSER_TYPE_FIREFOX && (a.enableBG = !0) : r.browserType === r.BROWSER_TYPE_IE && (a.closeHistory = !0);
 e.exports = o;
 }), {
-"../core/platform/CCSys": 225,
-"../core/platform/utils": 239
+"../core/platform/CCSys": 226,
+"../core/platform/utils": 240
 } ],
-358: [ (function(t, e, i) {
+359: [ (function(t, e, i) {
 "use strict";
 t("./cocos2d/core");
 t("./cocos2d/animation");
@@ -50918,20 +50955,20 @@ t("./cocos2d/deprecated");
 }), {
 "./cocos2d/actions": 7,
 "./cocos2d/animation": 16,
-"./cocos2d/core": 183,
-"./cocos2d/core/components/CCStudioComponent": 144,
-"./cocos2d/deprecated": 325,
-"./cocos2d/particle": 331,
-"./cocos2d/particle/CCParticleAsset": 328,
-"./cocos2d/tilemap": 351,
-"./cocos2d/tilemap/CCTiledMapAsset": 347,
-"./cocos2d/videoplayer/CCVideoPlayer": 354,
-"./cocos2d/webview/CCWebView": 356,
-"./extensions/ccpool/CCNodePool": 359,
-"./extensions/dragonbones": 364,
-"./extensions/spine": 368
+"./cocos2d/core": 184,
+"./cocos2d/core/components/CCStudioComponent": 145,
+"./cocos2d/deprecated": 326,
+"./cocos2d/particle": 332,
+"./cocos2d/particle/CCParticleAsset": 329,
+"./cocos2d/tilemap": 352,
+"./cocos2d/tilemap/CCTiledMapAsset": 348,
+"./cocos2d/videoplayer/CCVideoPlayer": 355,
+"./cocos2d/webview/CCWebView": 357,
+"./extensions/ccpool/CCNodePool": 360,
+"./extensions/dragonbones": 365,
+"./extensions/spine": 369
 } ],
-359: [ (function(t, e, i) {
+360: [ (function(t, e, i) {
 "use strict";
 cc.NodePool = function(t) {
 this.poolHandlerComp = t;
@@ -50966,7 +51003,7 @@ return e;
 };
 e.exports = cc.NodePool;
 }), {} ],
-360: [ (function(t, e, i) {
+361: [ (function(t, e, i) {
 "use strict";
 var n = t("../../cocos2d/core/components/CCRenderComponent"), r = t("../../cocos2d/core/event/event-target"), s = t("../../cocos2d/core/graphics/graphics"), o = t("../../cocos2d/core/renderer/render-flow").FLAG_POST_RENDER, a = t("./ArmatureCache"), c = t("./AttachUtil"), l = cc.Enum({
 default: -1
@@ -51384,13 +51421,13 @@ return this._armature;
 e.exports = dragonBones.ArmatureDisplay = _;
 }), {
 "../../cocos2d/core/components/CCRenderComponent": 138,
-"../../cocos2d/core/event/event-target": 163,
-"../../cocos2d/core/graphics/graphics": 179,
-"../../cocos2d/core/renderer/render-flow": 248,
+"../../cocos2d/core/event/event-target": 164,
+"../../cocos2d/core/graphics/graphics": 180,
+"../../cocos2d/core/renderer/render-flow": 249,
 "./ArmatureCache": void 0,
-"./AttachUtil": 361
+"./AttachUtil": 362
 } ],
-361: [ (function(t, e, i) {
+362: [ (function(t, e, i) {
 "use strict";
 var n = (function(t) {
 return t && t.__esModule ? t : {
@@ -51676,10 +51713,10 @@ e.length = 0;
 });
 e.exports = dragonBones.AttachUtil = c;
 }), {
-"../../cocos2d/core/renderer/render-flow": 248,
-"../../cocos2d/core/value-types/mat4": 315
+"../../cocos2d/core/renderer/render-flow": 249,
+"../../cocos2d/core/value-types/mat4": 316
 } ],
-362: [ (function(t, e, i) {
+363: [ (function(t, e, i) {
 "use strict";
 var n = !1, r = cc.Class({
 name: "dragonBones.DragonBonesAsset",
@@ -51749,7 +51786,7 @@ dragonBones.DragonBonesAsset = e.exports = r;
 }), {
 "./ArmatureCache": void 0
 } ],
-363: [ (function(t, e, i) {
+364: [ (function(t, e, i) {
 "use strict";
 var n = cc.Class({
 name: "dragonBones.DragonBonesAtlasAsset",
@@ -51806,7 +51843,7 @@ dragonBones.DragonBonesAtlasAsset = e.exports = n;
 }), {
 "./ArmatureCache": void 0
 } ],
-364: [ (function(t, e, i) {
+365: [ (function(t, e, i) {
 "use strict";
 var n = "undefined" == typeof window ? global : window;
 0;
@@ -51898,17 +51935,17 @@ t("./webgl-assembler");
 }
 }), {
 "./ArmatureCache": void 0,
-"./ArmatureDisplay": 360,
+"./ArmatureDisplay": 361,
 "./CCArmatureDisplay": void 0,
 "./CCFactory": void 0,
 "./CCSlot": void 0,
 "./CCTextureData": void 0,
-"./DragonBonesAsset": 362,
-"./DragonBonesAtlasAsset": 363,
+"./DragonBonesAsset": 363,
+"./DragonBonesAtlasAsset": 364,
 "./lib/dragonBones": void 0,
-"./webgl-assembler": 365
+"./webgl-assembler": 366
 } ],
-365: [ (function(t, e, i) {
+366: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -52140,12 +52177,12 @@ i.default = W;
 n.default.register(N, W);
 e.exports = i.default;
 }), {
-"../../cocos2d/core/renderer/assembler": 244,
-"../../cocos2d/core/renderer/render-flow": 248,
-"../../cocos2d/core/value-types/mat4": 315,
-"./ArmatureDisplay": 360
+"../../cocos2d/core/renderer/assembler": 245,
+"../../cocos2d/core/renderer/render-flow": 249,
+"../../cocos2d/core/value-types/mat4": 316,
+"./ArmatureDisplay": 361
 } ],
-366: [ (function(t, e, i) {
+367: [ (function(t, e, i) {
 "use strict";
 var n = (function(t) {
 return t && t.__esModule ? t : {
@@ -52395,10 +52432,10 @@ e.length = 0;
 });
 e.exports = sp.AttachUtil = c;
 }), {
-"../../cocos2d/core/renderer/render-flow": 248,
-"../../cocos2d/core/value-types/mat4": 315
+"../../cocos2d/core/renderer/render-flow": 249,
+"../../cocos2d/core/value-types/mat4": 316
 } ],
-367: [ (function(t, e, i) {
+368: [ (function(t, e, i) {
 "use strict";
 var n = t("./track-entry-listeners"), r = t("../../cocos2d/core/components/CCRenderComponent"), s = t("./lib/spine"), o = t("../../cocos2d/core/graphics/graphics"), a = t("../../cocos2d/core/renderer/render-flow").FLAG_POST_RENDER, c = t("./skeleton-cache"), l = t("./AttachUtil"), h = cc.Enum({
 default: -1
@@ -52990,14 +53027,14 @@ this.isAnimationCached() && cc.warn("Debug bones or slots is invalid in cached m
 e.exports = sp.Skeleton;
 }), {
 "../../cocos2d/core/components/CCRenderComponent": 138,
-"../../cocos2d/core/graphics/graphics": 179,
-"../../cocos2d/core/renderer/render-flow": 248,
-"./AttachUtil": 366,
+"../../cocos2d/core/graphics/graphics": 180,
+"../../cocos2d/core/renderer/render-flow": 249,
+"./AttachUtil": 367,
 "./lib/spine": void 0,
 "./skeleton-cache": void 0,
-"./track-entry-listeners": 372
+"./track-entry-listeners": 373
 } ],
-368: [ (function(t, e, i) {
+369: [ (function(t, e, i) {
 "use strict";
 var n = "undefined" == typeof window ? global : window, r = !0;
 n.spine || (r = !1);
@@ -53035,14 +53072,14 @@ t("./Skeleton");
 t("./spine-assembler");
 }
 }), {
-"./Skeleton": 367,
+"./Skeleton": 368,
 "./lib/spine": void 0,
-"./skeleton-data": 369,
-"./skeleton-texture": 370,
-"./spine-assembler": 371,
+"./skeleton-data": 370,
+"./skeleton-texture": 371,
+"./spine-assembler": 372,
 "./vertex-effect-delegate": void 0
 } ],
-369: [ (function(t, e, i) {
+370: [ (function(t, e, i) {
 "use strict";
 var n = !1, r = cc.Class({
 name: "sp.SkeletonData",
@@ -53176,7 +53213,7 @@ sp.SkeletonData = e.exports = r;
 }), {
 "./skeleton-cache": void 0
 } ],
-370: [ (function(t, e, i) {
+371: [ (function(t, e, i) {
 "use strict";
 sp.SkeletonTexture = cc.Class({
 name: "sp.SkeletonTexture",
@@ -53198,7 +53235,7 @@ this._texture && this._texture.setWrapMode(t, e);
 dispose: function() {}
 });
 }), {} ],
-371: [ (function(t, e, i) {
+372: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
@@ -53593,13 +53630,13 @@ i.default = St;
 n.default.register(A, St);
 e.exports = i.default;
 }), {
-"../../cocos2d/core/renderer/assembler": 244,
-"../../cocos2d/core/renderer/render-flow": 248,
-"../../cocos2d/core/renderer/webgl/vertex-format": 287,
-"./Skeleton": 367,
+"../../cocos2d/core/renderer/assembler": 245,
+"../../cocos2d/core/renderer/render-flow": 249,
+"../../cocos2d/core/renderer/webgl/vertex-format": 288,
+"./Skeleton": 368,
 "./lib/spine": void 0
 } ],
-372: [ (function(t, e, i) {
+373: [ (function(t, e, i) {
 "use strict";
 var n = function() {
 this.start = null;
@@ -53615,7 +53652,7 @@ return t.listener;
 };
 e.exports = n;
 }), {} ],
-373: [ (function(t, e, i) {
+374: [ (function(t, e, i) {
 "use strict";
 (function(t, n) {
 "object" == typeof i && "undefined" != typeof e ? n(i) : "function" == typeof define && define.amd ? define([ "exports" ], n) : n((void 0).box2d = {});
@@ -66368,7 +66405,7 @@ value: !0
 });
 }));
 }), {} ],
-374: [ (function(t, e, i) {
+375: [ (function(t, e, i) {
 "use strict";
 var n = "undefined" == typeof window ? global : window;
 n.cc = n.cc || {};
@@ -66387,20 +66424,20 @@ t("./extends");
 0;
 e.exports = n.cc;
 }), {
-"./cocos2d": 326,
-"./cocos2d/core/predefine": 240,
-"./extends": 358,
+"./cocos2d": 327,
+"./cocos2d/core/predefine": 241,
+"./extends": 359,
 "./package": void 0,
-"./polyfill/array": 376,
-"./polyfill/array-buffer": 375,
-"./polyfill/misc": 377,
-"./polyfill/number": 378,
-"./polyfill/object": 379,
-"./polyfill/string": 380,
+"./polyfill/array": 377,
+"./polyfill/array-buffer": 376,
+"./polyfill/misc": 378,
+"./polyfill/number": 379,
+"./polyfill/object": 380,
+"./polyfill/string": 381,
 "./polyfill/typescript": void 0,
-"./predefine": 381
+"./predefine": 382
 } ],
-375: [ (function(t, e, i) {
+376: [ (function(t, e, i) {
 "use strict";
 if (!ArrayBuffer.isView) {
 var n = Object.getPrototypeOf(Int8Array);
@@ -66413,7 +66450,7 @@ return e === Float64Array || e === Float32Array || e === Uint8Array || e === Uin
 };
 }
 }), {} ],
-376: [ (function(t, e, i) {
+377: [ (function(t, e, i) {
 "use strict";
 Array.isArray || (Array.isArray = function(t) {
 return "[object Array]" === Object.prototype.toString.call(t);
@@ -66428,7 +66465,7 @@ Array.prototype.includes || (Array.prototype.includes = function(t) {
 return -1 !== this.indexOf(t);
 });
 }), {} ],
-377: [ (function(t, e, i) {
+378: [ (function(t, e, i) {
 "use strict";
 Math.sign || (Math.sign = function(t) {
 return 0 === (t = +t) || isNaN(t) ? t : t > 0 ? 1 : -1;
@@ -66448,12 +66485,12 @@ var e = r[t], i = n.now() - e;
 console.log(t + ": " + i + "ms");
 };
 }), {} ],
-378: [ (function(t, e, i) {
+379: [ (function(t, e, i) {
 "use strict";
 Number.parseFloat = Number.parseFloat || parseFloat;
 Number.parseInt = Number.parseInt || parseInt;
 }), {} ],
-379: [ (function(t, e, i) {
+380: [ (function(t, e, i) {
 "use strict";
 Object.assign || (Object.assign = function(t, e) {
 return cc.js.mixin(t, e);
@@ -66468,7 +66505,7 @@ e[r] = Object.getOwnPropertyDescriptor(t, r);
 return e;
 });
 }), {} ],
-380: [ (function(t, e, i) {
+381: [ (function(t, e, i) {
 "use strict";
 String.prototype.startsWith || (String.prototype.startsWith = function(t, e) {
 e = e || 0;
@@ -66484,7 +66521,7 @@ String.prototype.trimLeft || (String.prototype.trimLeft = function() {
 return this.replace(/^\s+/, "");
 });
 }), {} ],
-381: [ (function(t, e, i) {
+382: [ (function(t, e, i) {
 "use strict";
 var n = "undefined" == typeof window ? global : window;
 function r(t, e) {
@@ -66524,4 +66561,4 @@ s("CC_QQPLAY", l);
 0;
 n.CocosEngine = cc.ENGINE_VERSION = "2.4.0";
 }), {} ]
-}, {}, [ 374 ]);
+}, {}, [ 375 ]);

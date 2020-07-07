@@ -11,7 +11,7 @@ cc.Class({
     onLoad() {
 
        
-        this.node.setContentSize(cc.sys.getSafeAreaRect())
+        
             
         
         
@@ -20,7 +20,7 @@ cc.Class({
     },
 
     start() {
-
+        this.node.setContentSize(cc.sys.getSafeAreaRect())
     },
 
 });

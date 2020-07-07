@@ -30,11 +30,11 @@ cc._RF.push(t, "ee625B2iPdOz4Trq3USAlCq", "AdaptBg");
 cc.Class({
 extends: cc.Component,
 properties: {},
-onLoad: function() {
+onLoad: function() {},
+start: function() {
 var e = cc.view.getVisibleSize(), t = Math.min(this.node.width / e.width, this.node.height / e.height);
 this.node.scale = this.node.scale / t;
-},
-start: function() {}
+}
 });
 cc._RF.pop();
 }, {} ],
@@ -64,10 +64,10 @@ cc._RF.push(t, "7f436dxylZH4bCxvIF2a+LV", "AdaptUI");
 cc.Class({
 extends: cc.Component,
 properties: {},
-onLoad: function() {
+onLoad: function() {},
+start: function() {
 this.node.setContentSize(cc.sys.getSafeAreaRect());
-},
-start: function() {}
+}
 });
 cc._RF.pop();
 }, {} ],
