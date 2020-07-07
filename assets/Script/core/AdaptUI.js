@@ -10,13 +10,10 @@ cc.Class({
     //设置内容成大小
     onLoad() {
 
-        this.node.setContentSize(cc.view.getVisibleSize())
-    
-        if(cc.sys.isNative&&cc.sys.os == cc.sys.OS_IOS)
-        {
-            this.node.setContentSize(cc.sys.getSafeAreaRect())
+       
+        this.node.setContentSize(cc.sys.getSafeAreaRect())
             
-        }
+        
         
         
        

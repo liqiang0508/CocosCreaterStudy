@@ -65,8 +65,7 @@ cc.Class({
 extends: cc.Component,
 properties: {},
 onLoad: function() {
-this.node.setContentSize(cc.view.getVisibleSize());
-cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS && this.node.setContentSize(cc.sys.getSafeAreaRect());
+this.node.setContentSize(cc.sys.getSafeAreaRect());
 },
 start: function() {}
 });
@@ -2786,9 +2785,9 @@ return !1;
 Ghotupdateurl: "http://192.168.65.172/hotupversion/configrelease",
 GgameType: 3
 };
-1 == n.GgameType && (n.Ghotupdateurl = "http://192.168.0.103/hotupversion/configrelease");
+1 == n.GgameType && (n.Ghotupdateurl = "http://192.168.65.172/hotupversion/configrelease");
 if (3 == n.GgameType) {
-n.Ghotupdateurl = "http://192.168.0.103/hotupversion/configdebug";
+n.Ghotupdateurl = "http://192.168.65.172/hotupversion/configdebug";
 n.isDebugTest = !0;
 }
 t.exports = n;
@@ -3030,6 +3029,7 @@ LoginScene: [ function(e, t, _) {
 "use strict";
 cc._RF.push(t, "43150sdB6ZHSKFTTRw2QZE7", "LoginScene");
 var n = e("VersionManager"), i = e("Global"), o = e("Devices"), T = e("BaseComponent");
+e("../../core/Global").ConverToNodePos;
 cc.Class({
 extends: T,
 properties: {
@@ -3049,8 +3049,13 @@ var e = this;
 1 == i.GgameType && (this.VersionText.string = o.getAppVersion() + "(R" + n.getScriptVersion() + ")");
 3 == i.GgameType && (this.VersionText.string = o.getAppVersion() + "(D" + n.getScriptVersion() + ")");
 var t = cc.find("uipanel/gotest", this.node);
+cc.find("uipanel/label", this.node);
 ua.darkButton(t, function() {
 e.goTestScene();
+});
+ua.darkButton(this.node, function(e) {
+console.log("getLocation=====", e.getLocation().x, e.getLocation().y);
+console.log("getLocationInView=====", e.getLocationInView().x, e.getLocationInView().y);
 });
 },
 goTestScene: function() {
@@ -3059,6 +3064,7 @@ cc.director.loadScene("TestScene");
 });
 cc._RF.pop();
 }, {
+"../../core/Global": "Global",
 BaseComponent: "BaseComponent",
 Devices: "Devices",
 Global: "Global",
@@ -3978,26 +3984,28 @@ ua.darkButton(V, function() {
 cc.director.loadScene("SlotScene");
 });
 cc.find("content/sp1", this.node).getComponent(cc.RenderComponent).getMaterial(0);
-var y = cc.find("garpgicsnode", this.node);
-y.getComponent(cc.Graphics);
+var y = cc.find("garpgicsnode", this.node), U = y.getComponent(cc.Graphics);
 y.on(cc.Node.EventType.TOUCH_START, function(e) {
 var t = e.getTouches(), _ = t[0].getLocation();
 t[0].getLocationInView();
 _ = E.parent.convertToNodeSpaceAR(_);
 var n = S.GgetTwoV2Angle(E.getPosition(), _);
 E.angle = -n;
+U.moveTo(_.x, _.y);
 });
 y.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
 var t = e.getTouches()[0].getLocation();
 t = E.parent.convertToNodeSpaceAR(t);
 var _ = S.GgetTwoV2Angle(E.getPosition(), t);
 E.angle = -_;
+U.lineTo(t.x, t.y);
+U.stroke();
 });
-var U = cc.view.getVisibleSize(), H = cc.v2(-U.width / 2, U.height / 2), F = cc.v2(U.width / 2, -U.height / 2), w = S.GgetTwoV2Angle(H, F);
-cc.find("uipanel/New Sprite", this.node).angle = -w;
-var v = cc.view.getVisibleSize();
-(y = y.getComponent(cc.Graphics)).moveTo(-v.width / 2, v.height / 2);
-y.quadraticCurveTo(0, 0, v.width / 2, v.height / 2);
+var H = cc.view.getVisibleSize(), F = cc.v2(-H.width / 2, H.height / 2), w = cc.v2(H.width / 2, -H.height / 2), v = S.GgetTwoV2Angle(F, w);
+cc.find("uipanel/New Sprite", this.node).angle = -v;
+var G = cc.view.getVisibleSize();
+(y = y.getComponent(cc.Graphics)).moveTo(-G.width / 2, G.height / 2);
+y.quadraticCurveTo(0, 0, G.width / 2, G.height / 2);
 y.stroke();
 },
 startMove: function() {
@@ -5275,7 +5283,7 @@ this._super();
 },
 onLoad: function() {
 this._super();
-var e = this, t = this.node.getChildByName("panel").getChildByName("btn_done");
+var e = this, t = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("btn_done");
 ua.darkButton(t, function() {
 if (e.call) {
 var t = e.Editbox.getComponent(cc.EditBox).string;
@@ -5284,7 +5292,7 @@ e.call(t);
 }
 e.bClose();
 });
-this.Editbox = this.node.getChildByName("panel").getChildByName("EditBox");
+this.Editbox = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("EditBox");
 },
 show: function(e) {
 this.call = e;

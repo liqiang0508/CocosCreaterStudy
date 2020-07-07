@@ -17,7 +17,7 @@ cc.Class({
     onLoad () {
         this._super()
         var self = this
-        var btndone = this.node.getChildByName("panel").getChildByName("btn_done")
+        var btndone = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("btn_done")
         ua.darkButton(btndone,function(){
             if (self.call)
             {
@@ -28,7 +28,7 @@ cc.Class({
             self.bClose()
         })
 
-        this.Editbox = this.node.getChildByName("panel").getChildByName("EditBox")
+        this.Editbox = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("EditBox")
         
     },
     show(call)
