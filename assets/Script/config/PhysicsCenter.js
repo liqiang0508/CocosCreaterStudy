@@ -28,8 +28,8 @@ cc.Class({
 
     onLoad () {
 
-        console.log("onLoad", this.PhysicsManagerEnable, )
-       
+        console.log("onLoad", this.PhysicsManagerEnable)
+        // cc.director.getCollisionManager().enabled = true;
         cc.director.getPhysicsManager().enabled = this.PhysicsManagerEnable;
 
         if (this.PhysicsManagerEnable)

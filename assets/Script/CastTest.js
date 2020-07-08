@@ -54,11 +54,19 @@ cc.Class({
     },
     onLoad() {
 
-        this.graphic_line.node.on(cc.Node.EventType.TOUCH_START, this.onTouchStart, this);
-        this.graphic_line.node.on(cc.Node.EventType.TOUCH_MOVE, this.onTouchMove, this);
-        this.graphic_line.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this);
-        this.graphic_line.node.on(cc.Node.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
-
+        // this.graphic_line.node.on(cc.Node.EventType.TOUCH_START, this.onTouchStart, this);
+        // this.graphic_line.node.on(cc.Node.EventType.TOUCH_MOVE, this.onTouchMove, this);
+        // this.graphic_line.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this);
+        // this.graphic_line.node.on(cc.Node.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
+        var self = this
+        this.img = cc.find("img",this.node)
+        window.EventManager.on(this.node,"gameover",function(){
+            console.log("game over====")
+        })
+        ua.darkButton(this.node,function(){
+            
+            self.img.getComponent("ball").tap()
+        })
 
     },
 
@@ -153,5 +161,35 @@ cc.Class({
 
     },
 
-    // update (dt) {},
+    update (dt) {
+      
+
+    },
+
+    // 只在两个碰撞体开始接触时被调用一次
+    onBeginContact (contact, selfCollider, otherCollider) {
+        console.log("onBeginContact")
+    },
+
+    // 只在两个碰撞体结束接触时被调用一次
+    onEndContact (contact, selfCollider, otherCollider) {
+        console.log("onEndContact")
+    },
+
+    // 每次将要处理碰撞体接触逻辑时被调用
+    onPreSolve (contact, selfCollider, otherCollider) {
+        console.log("onPreSolve")
+        
+    },
+
+    // 每次处理完碰撞体接触逻辑时被调用
+    onPostSolve (contact, selfCollider, otherCollider) {
+        console.log("onPostSolve")
+    },
+
+    onCollisionEnter: function (other, self) {
+        console.log("onCollisionEnter")
+    }
+
+
 });
