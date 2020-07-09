@@ -1,0 +1,45 @@
+var BaseComponent = require("BaseComponent")
+cc.Class({
+    extends:BaseComponent,
+
+    properties: {
+        // foo: {
+        //     // ATTRIBUTES:
+        //     default: null,        // The default value will be used only when the component attaching
+        //                           // to a node for the first time
+        //     type: cc.SpriteFrame, // optional, default is typeof default
+        //     serializable: true,   // optional, default is true
+        // },
+        // bar: {
+        //     get () {
+        //         return this._bar;
+        //     },
+        //     set (value) {
+        //         this._bar = value;
+        //     }
+        // },
+    },
+
+    // LIFE-CYCLE CALLBACKS:
+
+    // onLoad () {},
+
+    start () {
+        this.btn_back = cc.find("uipanel/btn_back",this.node)
+        ua.darkButton(this.btn_back,function(){
+
+            cc.director.loadScene("TestScene")
+        })
+    },
+
+    // update (dt) {},
+
+    onLoad () {
+
+        this._super()
+    },
+
+    onDestroy(){
+        this._super()
+    },
+});

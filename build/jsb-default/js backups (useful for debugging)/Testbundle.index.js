@@ -1,38 +1,62 @@
-window.__require = function r(e, o, n) {
-function t(u, l) {
-if (!o[u]) {
-if (!e[u]) {
-var f = u.split("/");
-f = f[f.length - 1];
-if (!e[f]) {
-var a = "function" == typeof __require && __require;
-if (!l && a) return a(f, !0);
-if (i) return i(f, !0);
-throw new Error("Cannot find module '" + u + "'");
+window.__require = function e(n, t, o) {
+function r(c, u) {
+if (!t[c]) {
+if (!n[c]) {
+var a = c.split("/");
+a = a[a.length - 1];
+if (!n[a]) {
+var s = "function" == typeof __require && __require;
+if (!u && s) return s(a, !0);
+if (i) return i(a, !0);
+throw new Error("Cannot find module '" + c + "'");
 }
-u = f;
+c = a;
 }
-var c = o[u] = {
+var l = t[c] = {
 exports: {}
 };
-e[u][0].call(c.exports, function(r) {
-return t(e[u][1][r] || r);
-}, c, c.exports, r, e, o, n);
+n[c][0].call(l.exports, function(e) {
+return r(n[c][1][e] || e);
+}, l, l.exports, e, n, t, o);
 }
-return o[u].exports;
+return t[c].exports;
 }
-for (var i = "function" == typeof __require && __require, u = 0; u < n.length; u++) t(n[u]);
-return t;
+for (var i = "function" == typeof __require && __require, c = 0; c < o.length; c++) r(o[c]);
+return r;
 }({
-Sayhello: [ function(r, e, o) {
+Sayhello: [ function(e, n, t) {
 "use strict";
-cc._RF.push(e, "699a2Lmh39MiI9FoGib7Ek3", "Sayhello");
-var n = {
+cc._RF.push(n, "699a2Lmh39MiI9FoGib7Ek3", "Sayhello");
+var o = {
 Say: function() {
 console.log("SayHello=====");
 }
 };
-window.SayHello = n;
+window.SayHello = o;
 cc._RF.pop();
-}, {} ]
-}, {}, [ "Sayhello" ]);
+}, {} ],
+bundleScene: [ function(e, n, t) {
+"use strict";
+cc._RF.push(n, "8b80aQyaQZI1LngX975F7G3", "bundleScene");
+var o = e("BaseComponent");
+cc.Class({
+extends: o,
+properties: {},
+start: function() {
+this.btn_back = cc.find("uipanel/btn_back", this.node);
+ua.darkButton(this.btn_back, function() {
+cc.director.loadScene("TestScene");
+});
+},
+onLoad: function() {
+this._super();
+},
+onDestroy: function() {
+this._super();
+}
+});
+cc._RF.pop();
+}, {
+BaseComponent: void 0
+} ]
+}, {}, [ "Sayhello", "bundleScene" ]);

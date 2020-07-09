@@ -1,10 +1,10 @@
 {
-    "scriptVersion": 67, 
+    "scriptVersion": 68, 
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc", 
-            "md5": "871EAA5940196E2CE691448D4863E429", 
-            "size": 393468
+            "md5": "16AAB545C435DB98944DAA6E3EFD3517", 
+            "size": 393716
         }, 
         {
             "filename": "src/settings.jsc", 
@@ -138,8 +138,8 @@
         }, 
         {
             "filename": "assets/main/index.jsc", 
-            "md5": "2ED152E768FBCD317DC237E5042CC80D", 
-            "size": 65564
+            "md5": "0734925FA71933A67B69ABB58672F457", 
+            "size": 65840
         }, 
         {
             "filename": "assets/main/import/23/2335bd42-26a9-441a-b92e-8d482d3c7f28.json", 
@@ -158,8 +158,8 @@
         }, 
         {
             "filename": "assets/main/import/43/43536003-f356-4b14-a620-6121ae97d44e.json", 
-            "md5": "6FF600F11F5D4110AED1C618A4338A09", 
-            "size": 4182
+            "md5": "9BDA3CE051C0486E2046193ECF072735", 
+            "size": 3654
         }, 
         {
             "filename": "assets/main/import/58/58fe8245-4714-4141-b689-a4957af08390.json", 
@@ -173,8 +173,8 @@
         }, 
         {
             "filename": "assets/main/import/7e/7ecab21f-96fc-40c4-9a24-6f0532744388.json", 
-            "md5": "D150CFF81E2253D87BF7B54C74773B81", 
-            "size": 5321
+            "md5": "D73391A92A7EA8346BB3AAEC2DDBCEDC", 
+            "size": 5377
         }, 
         {
             "filename": "assets/main/import/7f/7ff66ea4-0a20-4930-bf86-b9fd6696a3d1.json", 
@@ -183,8 +183,8 @@
         }, 
         {
             "filename": "assets/main/import/91/910e66c0-f310-4a44-8391-91bc62a030e5.json", 
-            "md5": "62319F729EBC2B9F7C2D475FC47AD8BF", 
-            "size": 2806
+            "md5": "2D75D68D48336A6A3A69D1AA97A819FC", 
+            "size": 2807
         }, 
         {
             "filename": "assets/main/import/98/98e14349-5a77-4ae5-8ba6-7e3bc5f92aea.json", 
@@ -243,8 +243,8 @@
         }, 
         {
             "filename": "assets/resources/import/1f/1f3a5e73-40d7-48d0-a644-b067d78a0b2b.json", 
-            "md5": "2990B356FE5019347D1BBA71B6E4EDD1", 
-            "size": 6866
+            "md5": "2B0DB09FD8BFB7A6B33CF5CE49D8D438", 
+            "size": 7198
         }, 
         {
             "filename": "assets/resources/import/28/2896f8e8-5acc-41ef-9005-523b8542b2a2.json", 

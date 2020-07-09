@@ -269,7 +269,6 @@ KeypadDispatch: "KeypadDispatch"
 CastTest: [ function(e, t, _) {
 "use strict";
 cc._RF.push(t, "27518R8AWdKgbFqyhaZ2dB+", "CastTest");
-e("./online/HttpHelper").sendHttpRequest;
 cc.Class({
 extends: cc.Component,
 properties: {
@@ -281,10 +280,19 @@ default: null
 },
 onEnable: function() {},
 onLoad: function() {
-this.graphic_line.node.on(cc.Node.EventType.TOUCH_START, this.onTouchStart, this);
-this.graphic_line.node.on(cc.Node.EventType.TOUCH_MOVE, this.onTouchMove, this);
-this.graphic_line.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this);
-this.graphic_line.node.on(cc.Node.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
+var e = this;
+this.img = cc.find("img", this.node);
+window.EventManager.on(this.node, "gameover", function() {
+console.log("game over====");
+});
+ua.darkButton(this.node, function(t) {
+var _ = cc.instantiate(e.img);
+e.node.addChild(_);
+var n = t.getTouches(), i = n[0].getLocation();
+n[0].getLocationInView();
+i = _.parent.convertToNodeSpaceAR(i);
+_.setPosition(i);
+});
 },
 onTouchStart: function(e) {
 this.graphic_line.clear();
@@ -325,14 +333,26 @@ _.addSelf(n);
 this.graphic_line.circle(_.x, _.y, 6);
 }
 },
-start: function() {
-this.node.on("touchstart", this.TouchStart, this);
+start: function() {},
+update: function(e) {},
+onBeginContact: function(e, t, _) {
+console.log("onBeginContact");
+},
+onEndContact: function(e, t, _) {
+console.log("onEndContact");
+},
+onPreSolve: function(e, t, _) {
+console.log("onPreSolve");
+},
+onPostSolve: function(e, t, _) {
+console.log("onPostSolve");
+},
+onCollisionEnter: function(e, t) {
+console.log("onCollisionEnter");
 }
 });
 cc._RF.pop();
-}, {
-"./online/HttpHelper": "HttpHelper"
-} ],
+}, {} ],
 Chanel: [ function(e, t, _) {
 "use strict";
 cc._RF.push(t, "15547fdAgdMZo3lwC1nVArs", "Chanel");
@@ -1623,7 +1643,7 @@ return e;
 };
 function E(e, t, _, n) {
 if ("number" == typeof t) throw new TypeError('"value" argument must not be a number');
-return "undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer ? A(e, t, _, n) : "string" == typeof t ? c(e, t, _) : N(e, t);
+return "undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer ? A(e, t, _, n) : "string" == typeof t ? c(e, t, _) : d(e, t);
 }
 r.from = function(e, t, _) {
 return E(null, e, t, _);
@@ -1662,7 +1682,7 @@ return a(null, e);
 function c(e, t, _) {
 "string" == typeof _ && "" !== _ || (_ = "utf8");
 if (!r.isEncoding(_)) throw new TypeError('"encoding" must be a valid string encoding');
-var n = 0 | d(t, _), i = (e = S(e, n)).write(t, _);
+var n = 0 | N(t, _), i = (e = S(e, n)).write(t, _);
 i !== n && (e = e.slice(0, i));
 return e;
 }
@@ -1680,7 +1700,7 @@ t = void 0 === _ && void 0 === n ? new Uint8Array(t) : void 0 === n ? new Uint8A
 r.TYPED_ARRAY_SUPPORT ? (e = t).__proto__ = r.prototype : e = I(e, t);
 return e;
 }
-function N(e, t) {
+function d(e, t) {
 if (r.isBuffer(t)) {
 var _ = 0 | C(t.length);
 if (0 === (e = S(e, _)).length) return e;
@@ -1746,7 +1766,7 @@ i += T.length;
 }
 return n;
 };
-function d(e, t) {
+function N(e, t) {
 if (r.isBuffer(e)) return e.length;
 if ("undefined" != typeof ArrayBuffer && "function" == typeof ArrayBuffer.isView && (ArrayBuffer.isView(e) || e instanceof ArrayBuffer)) return e.byteLength;
 "string" != typeof e && (e = "" + e);
@@ -1781,7 +1801,7 @@ t = ("" + t).toLowerCase();
 n = !0;
 }
 }
-r.byteLength = d;
+r.byteLength = N;
 function h(e, t, _) {
 var n = !1;
 (void 0 === t || t < 0) && (t = 0);
@@ -1821,7 +1841,7 @@ n = !0;
 }
 }
 r.prototype._isBuffer = !0;
-function O(e, t, _) {
+function l(e, t, _) {
 var n = e[t];
 e[t] = e[_];
 e[_] = n;
@@ -1829,15 +1849,15 @@ e[_] = n;
 r.prototype.swap16 = function() {
 var e = this.length;
 if (e % 2 != 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
-for (var t = 0; t < e; t += 2) O(this, t, t + 1);
+for (var t = 0; t < e; t += 2) l(this, t, t + 1);
 return this;
 };
 r.prototype.swap32 = function() {
 var e = this.length;
 if (e % 4 != 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
 for (var t = 0; t < e; t += 4) {
-O(this, t, t + 3);
-O(this, t + 1, t + 2);
+l(this, t, t + 3);
+l(this, t + 1, t + 2);
 }
 return this;
 };
@@ -1845,10 +1865,10 @@ r.prototype.swap64 = function() {
 var e = this.length;
 if (e % 8 != 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
 for (var t = 0; t < e; t += 8) {
-O(this, t, t + 7);
-O(this, t + 1, t + 6);
-O(this, t + 2, t + 5);
-O(this, t + 3, t + 4);
+l(this, t, t + 7);
+l(this, t + 1, t + 6);
+l(this, t + 2, t + 5);
+l(this, t + 3, t + 4);
 }
 return this;
 };
@@ -1890,7 +1910,7 @@ break;
 }
 return o < T ? -1 : T < o ? 1 : 0;
 };
-function l(e, t, _, n, i) {
+function O(e, t, _, n, i) {
 if (0 === e.length) return -1;
 if ("string" == typeof _) {
 n = _;
@@ -1951,10 +1971,10 @@ r.prototype.includes = function(e, t, _) {
 return -1 !== this.indexOf(e, t, _);
 };
 r.prototype.indexOf = function(e, t, _) {
-return l(this, e, t, _, !0);
+return O(this, e, t, _, !0);
 };
 r.prototype.lastIndexOf = function(e, t, _) {
-return l(this, e, t, _, !1);
+return O(this, e, t, _, !1);
 };
 function D(e, t, _, n) {
 _ = Number(_) || 0;
@@ -1976,10 +1996,10 @@ return Z(z(t, e.length - _), e, _, n);
 function f(e, t, _, n) {
 return Z(q(t), e, _, n);
 }
-function M(e, t, _, n) {
+function P(e, t, _, n) {
 return f(e, t, _, n);
 }
-function P(e, t, _, n) {
+function M(e, t, _, n) {
 return Z(J(t), e, _, n);
 }
 function m(e, t, _, n) {
@@ -2022,10 +2042,10 @@ return f(this, e, t, _);
 
 case "latin1":
 case "binary":
-return M(this, e, t, _);
+return P(this, e, t, _);
 
 case "base64":
-return P(this, e, t, _);
+return M(this, e, t, _);
 
 case "ucs2":
 case "ucs-2":
@@ -3857,15 +3877,15 @@ c: 2
 });
 var I = "1234567890", A = n.encryptToString("Hello World! 你好，中国🇨🇳-----！", I);
 console.log("encrypt_data=", A);
-var N = n.decryptToString(A, I);
-console.log("decrypt_data==", N);
+var d = n.decryptToString(A, I);
+console.log("decrypt_data==", d);
 cc.log("window.DISTRIBUTE_CHANNEL ==", window.DISTRIBUTE_CHANNEL, cc.sys.isNative, cc.sys.os);
 i.init("zh");
 cc.log("i18n===", i.t("STR_COREPLAY_BUTTON_FOLD"));
 var C = e("ConstantItem");
 cc.log(C[1]);
-var d = new Date().getTime();
-cc.log("timeStamp=====", d, new Date());
+var N = new Date().getTime();
+cc.log("timeStamp=====", N, new Date());
 cc.log("DevicesInfo===id", T.getDevicesID(), cc.sys.os);
 var h = cc.find("uipanel/btn_Alert", this.node);
 ua.darkButton(h, function(e) {
@@ -3873,15 +3893,15 @@ S.ShowAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
 cc.log("click==", e);
 });
 });
-var O = cc.find("uipanel/btn_showWaiting", this.node);
-ua.darkButton(O, function(e) {
+var l = cc.find("uipanel/btn_showWaiting", this.node);
+ua.darkButton(l, function(e) {
 _.showWiat(!0);
 setTimeout(function() {
 _.showWiat(!1);
 }, 3e3);
 });
-var l = cc.find("uipanel/btn_EventTest", this.node);
-ua.darkButton(l, function(e) {
+var O = cc.find("uipanel/btn_EventTest", this.node);
+ua.darkButton(O, function(e) {
 EventManager.dispatchEvent(_.node, RefreshInfo, {
 name: "Lee123"
 });
@@ -3928,13 +3948,13 @@ r.cancel();
 cc.log("取消录音");
 }, this);
 EventManager.on(this.node, RefreshInfo, this.EventTest);
-var M = cc.find("uipanel/btn_fps", this.node);
-ua.darkButton(M, function() {
+var P = cc.find("uipanel/btn_fps", this.node);
+ua.darkButton(P, function() {
 console.log("setDisplayStats-", !cc.debug.isDisplayStats());
 cc.debug.setDisplayStats(!cc.debug.isDisplayStats());
 });
-var P = cc.find("uipanel/btn_showpopLayer", this.node);
-ua.darkButton(P, function() {
+var M = cc.find("uipanel/btn_showpopLayer", this.node);
+ua.darkButton(M, function() {
 ua.loadPrefabRes("prefabs/poplayer", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
@@ -3960,11 +3980,13 @@ m.isGray = !m.isGray;
 var g = cc.find("uipanel/btn_loadbundle", this.node);
 ua.darkButton(g, function() {
 var e = cc.assetManager.getBundle("Testbundle");
-console.log("bundleA--", e);
 if (e) {
 console.log("have already loaded bundle.");
 var t = window.SayHello;
 t && t.Say();
+e.loadScene("bundlescene", function(e, t) {
+e ? console.log("load bundle scene error") : cc.director.runScene(t);
+});
 } else cc.assetManager.loadBundle("http://192.168.65.172/hotupversion/remote/Testbundle", {
 onFileProgress: function(e, t) {
 return console.log(e, t);
@@ -4357,6 +4379,40 @@ jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDirectory(e);
 });
 c = new c();
 t.exports = c;
+cc._RF.pop();
+}, {} ],
+ball: [ function(e, t, _) {
+"use strict";
+cc._RF.push(t, "cf9a69rTylNR4vuXlstck3D", "ball");
+cc.Class({
+extends: cc.Component,
+properties: {},
+onLoad: function() {},
+tap: function() {
+var e = this.node.getComponent(cc.RigidBody);
+console.log("ball tap====", e);
+e.applyForceToCenter(new cc.Vec2(0, 6e5), !0);
+},
+start: function() {
+console.log("start", this.node.y);
+},
+printlog: function() {
+this.node.getComponent(cc.RigidBody).linearVelocity;
+},
+onBeginContact: function(e, t, _) {
+console.log("ball onBeginContact");
+},
+onEndContact: function(e, t, _) {
+console.log("ball onEndContact");
+},
+onPreSolve: function(e, t, _) {
+console.log("ball onPreSolve");
+},
+onPostSolve: function(e, t, _) {
+console.log("ball onPostSolve");
+},
+update: function(e) {}
+});
 cc._RF.pop();
 }, {} ],
 chooseupdate: [ function(e, t, _) {
@@ -5111,7 +5167,7 @@ this.phrases = {};
 this.extend(e.phrases || {});
 this.currentLocale = e.locale || "en";
 this.allowMissing = !!e.allowMissing;
-this.warn = e.warn || N;
+this.warn = e.warn || d;
 }
 _.VERSION = "1.0.0";
 _.prototype.locale = function(e) {
@@ -5222,7 +5278,7 @@ e = t.call(e, new RegExp("%\\{" + n + "\\}", "g"), i);
 }
 return e;
 }
-function N(t) {
+function d(t) {
 e.console && e.console.warn && e.console.warn("WARNING: " + t);
 }
 function C(e) {
@@ -6157,7 +6213,7 @@ function A(e, t) {
 "string" == typeof t && (t = R(t));
 return void 0 === e || null === e || 0 === e.length ? e : o(E(T(e, !0), T(r(t), !1)), !1);
 }
-function N(e, t) {
+function d(e, t) {
 "string" == typeof e && (e = new n(e, "base64"));
 "string" == typeof t && (t = R(t));
 return void 0 === e || null === e || 0 === e.length ? e : o(s(T(e, !1), T(r(t), !1)), !0);
@@ -6178,11 +6234,11 @@ return new n(A(e, t)).toString("base64");
 }
 },
 decrypt: {
-value: N
+value: d
 },
 decryptToString: {
 value: function(e, t) {
-return I(N(e, t));
+return I(d(e, t));
 }
 }
 });
@@ -6845,4 +6901,4 @@ STR_MESS_EVALUATION_CONTENT: "因为您对于我们游戏的支持与评价，�
 };
 cc._RF.pop();
 }, {} ]
-}, {}, [ "CastTest", "VoiceNative", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "Save", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "LabelLocalized", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);
+}, {}, [ "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "Save", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "LabelLocalized", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);

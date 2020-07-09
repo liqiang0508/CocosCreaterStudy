@@ -303,13 +303,21 @@ cc.Class({
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
         ua.darkButton(btn_loadbundle, function () {
             let bundleA = cc.assetManager.getBundle('Testbundle');
-            console.log("bundleA--", bundleA)
+            
             if (bundleA) {
                 console.log('have already loaded bundle.')
                 var obj = window.SayHello //直接使用window对象或者component
                 if (obj) {
                     obj.Say()
                 }
+                bundleA.loadScene('bundlescene', function (err, scene) {
+                    if(err)
+                    {
+                        console.log("load bundle scene error")
+                        return
+                    }
+                    cc.director.runScene(scene);
+                });
             }
             else {
                 cc.assetManager.loadBundle('http://192.168.65.172/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log(loaded, total) },
