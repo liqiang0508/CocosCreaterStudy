@@ -1,12 +1,4 @@
-// Learn cc.Class:
-//  - https://docs.cocos.com/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
 
-const { sendHttpRequest } = require("./online/HttpHelper");
-
-//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 const AIM_LINE_MAX_LENGTH = 1440;
 cc.Class({
     extends: cc.Component,
@@ -63,9 +55,17 @@ cc.Class({
         window.EventManager.on(this.node,"gameover",function(){
             console.log("game over====")
         })
-        ua.darkButton(this.node,function(){
+        ua.darkButton(this.node,function(event){
             
-            self.img.getComponent("ball").tap()
+            var node = cc.instantiate(self.img)
+            self.node.addChild(node)
+
+            var touches = event.getTouches();
+            var touchLoc = touches[0].getLocation();//opengL坐标系。 原点在左下角
+            var touch2 = touches[0].getLocationInView();//屏幕坐标系  原点在左上角
+            touchLoc = node.parent.convertToNodeSpaceAR(touchLoc);
+            node.setPosition(touchLoc)
+           
         })
 
     },
@@ -155,7 +155,7 @@ cc.Class({
 
     start() {
 
-        this.node.on('touchstart', this.TouchStart, this)
+      
 
         
 

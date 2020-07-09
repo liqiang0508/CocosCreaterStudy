@@ -1,4 +1,4 @@
-var Eve
+
 
 cc.Class({
     extends: cc.Component,
