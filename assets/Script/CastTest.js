@@ -1,4 +1,5 @@
 
+
 const AIM_LINE_MAX_LENGTH = 1440;
 cc.Class({
     extends: cc.Component,
@@ -52,6 +53,9 @@ cc.Class({
         // this.graphic_line.node.on(cc.Node.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
         var self = this
         this.img = cc.find("img",this.node)
+        this.img.setPosition(cc.v2(0,0))
+        this.img.getComponent(cc.RigidBody).linearVelocity = cc.v2(0,-200)
+
         window.EventManager.on(this.node,"gameover",function(){
             console.log("game over====")
         })

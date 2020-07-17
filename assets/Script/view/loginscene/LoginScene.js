@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: Lee
+ * @Date: 2020-04-16 10:31:57
+ * @LastEditTime: 2020-07-17 14:43:58
+ */ 
 var VersionManager = require("VersionManager")
 var Global = require("Global")
 var DevicesInfo = require("Devices")

@@ -23,6 +23,7 @@ cc.Class({
 
     },
 
+  
     start() {
         // var sp = cc.find("New Sprite", this.node)
         var searchPaths = "searchPaths--"
@@ -153,7 +154,7 @@ cc.Class({
                 var SpriteCom = loadTex.getComponent(cc.Sprite)
                 SpriteCom.spriteFrame = new cc.SpriteFrame(tex)
                 // SpriteCom.sizeMode = cc.Sprite.SizeMode.RAW
-                console.log(loadTex.width)
+                // console.log(loadTex.width)
                 //加载材质
                 // cc.resources.load("materials/circle_head",cc.Material,function(err,res){
 
@@ -320,7 +321,7 @@ cc.Class({
                 });
             }
             else {
-                cc.assetManager.loadBundle('http://192.168.65.172/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log(loaded, total) },
+                cc.assetManager.loadBundle('http://192.168.65.172/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log("bundle progress==",loaded, total) },
                     function (err, bundle) {
                         if (err) {
                             return console.error(err);
