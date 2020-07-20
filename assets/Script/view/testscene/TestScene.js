@@ -321,7 +321,7 @@ cc.Class({
                 });
             }
             else {
-                cc.assetManager.loadBundle('http://192.168.65.172/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log("bundle progress==",loaded, total) },
+                cc.assetManager.loadBundle('http://192.168.65.172/hotupversion/remote/Testbundle', {version: 'fbc07', onFileProgress: (loaded, total) => console.log("bundle progress==",loaded, total) },
                     function (err, bundle) {
                         if (err) {
                             return console.error(err);
