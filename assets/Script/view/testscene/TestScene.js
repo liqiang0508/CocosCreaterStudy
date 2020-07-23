@@ -321,26 +321,25 @@ cc.Class({
                 });
             }
             else {
-                cc.assetManager.loadBundle('http://192.168.65.172/hotupversion/remote/Testbundle', {version: 'fbc07', onFileProgress: (loaded, total) => console.log("bundle progress==",loaded, total) },
-                    function (err, bundle) {
+                Global.gLoadBUndle('http://192.168.65.172/hotupversion/remote/Testbundle', { version: 'fbc07', onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    console.log('load bundle successfully.', bundle)
+                    var obj = window.SayHello //直接使用window对象或者component
+                    if (obj) {
+                        obj.Say()
+                    }
+
+                    bundle.loadScene('bundlescene', function (err, scene) {
                         if (err) {
-                            return console.error(err);
+                            console.log("load bundle scene error")
+                            return
                         }
-                        console.log('load bundle successfully.', bundle)
-                        var obj = window.SayHello //直接使用window对象或者component
-                        if (obj) {
-                            obj.Say()
-                        }
-    
-                        bundle.loadScene('bundlescene', function (err, scene) {
-                            if(err)
-                            {
-                                console.log("load bundle scene error")
-                                return
-                            }
-                            cc.director.runScene(scene);
-                        });
+                        cc.director.runScene(scene);
                     });
+                })
+                
             }
 
         })

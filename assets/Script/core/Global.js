@@ -295,6 +295,14 @@ var Global = {
             }
         }
     },
+    gLoadBUndle:function(url,option,complete){
+        cc.assetManager.loadBundle(url,option,function(err,bundle){
+            if (complete)
+            {
+                complete(err,bundle)
+            }
+        })
+    },
     Ghotupdateurl:"http://192.168.65.172/hotupversion/configrelease", // 热更新地址
     GgameType:1  // 1正式包 3debug
 
