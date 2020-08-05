@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: Lee
+ * @Date: 2020-07-31 09:11:45
+ * @LastEditTime: 2020-07-31 14:36:04
+ */ 
 
 cc.Class({
     extends: cc.Component,
@@ -30,6 +37,7 @@ cc.Class({
         this._wsiSendBinary.binaryType = "arraybuffer";
         this._wsiSendBinary.onopen = function(evt) {
             cc.log("websocket  open")
+           
             self._wsiSendBinary.send(JSON.stringify({ "funcName":"auth","uid": Number(new Date())}))
             self._wsiSendBinary.send(JSON.stringify({ "funcName":"enterroom","roomid": 444}))
         };

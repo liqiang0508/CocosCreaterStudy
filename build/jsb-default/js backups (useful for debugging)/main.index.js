@@ -5,19 +5,19 @@ if (!t[T]) {
 var r = T.split("/");
 r = r[r.length - 1];
 if (!t[r]) {
-var E = "function" == typeof __require && __require;
-if (!S && E) return E(r, !0);
+var s = "function" == typeof __require && __require;
+if (!S && s) return s(r, !0);
 if (o) return o(r, !0);
 throw new Error("Cannot find module '" + T + "'");
 }
 T = r;
 }
-var s = _[T] = {
+var E = _[T] = {
 exports: {}
 };
-t[T][0].call(s.exports, function(e) {
+t[T][0].call(E.exports, function(e) {
 return i(t[T][1][e] || e);
-}, s, s.exports, e, t, _, n);
+}, E, E.exports, e, t, _, n);
 }
 return _[T].exports;
 }
@@ -186,7 +186,7 @@ cc.Class({
 extends: cc.Component,
 properties: {
 AimType: {
-default: 1,
+default: 0,
 override: !0,
 tooltip: "弹出动画  1:弹出 2:渐变"
 }
@@ -282,6 +282,8 @@ onEnable: function() {},
 onLoad: function() {
 var e = this;
 this.img = cc.find("img", this.node);
+this.img.setPosition(cc.v2(0, 0));
+this.img.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -200);
 window.EventManager.on(this.node, "gameover", function() {
 console.log("game over====");
 });
@@ -316,8 +318,8 @@ var o = i[0], T = o.point;
 this.drawAimLine(e, T);
 var S = T.sub(e).mag();
 this._cur_length += S;
-var r = o.normal, E = t, s = E.sub(r.mul(2 * E.dot(r)));
-this.drawRayCast(T, s);
+var r = o.normal, s = t, E = s.sub(r.mul(2 * s.dot(r)));
+this.drawRayCast(T, E);
 } else this.drawAimLine(e, n);
 }
 },
@@ -1532,11 +1534,11 @@ DevicesWeb: "DevicesWeb"
 1: [ function(e, t, _) {
 "use strict";
 _.byteLength = function(e) {
-var t = E(e), _ = t[0], n = t[1];
+var t = s(e), _ = t[0], n = t[1];
 return 3 * (_ + n) / 4 - n;
 };
 _.toByteArray = function(e) {
-var t, _, n = E(e), T = n[0], S = n[1], r = new o(s(e, T, S)), R = 0, a = S > 0 ? T - 4 : T;
+var t, _, n = s(e), T = n[0], S = n[1], r = new o(E(e, T, S)), R = 0, a = S > 0 ? T - 4 : T;
 for (_ = 0; _ < a; _ += 4) {
 t = i[e.charCodeAt(_)] << 18 | i[e.charCodeAt(_ + 1)] << 12 | i[e.charCodeAt(_ + 2)] << 6 | i[e.charCodeAt(_ + 3)];
 r[R++] = t >> 16 & 255;
@@ -1571,14 +1573,14 @@ i[T.charCodeAt(S)] = S;
 }
 i["-".charCodeAt(0)] = 62;
 i["_".charCodeAt(0)] = 63;
-function E(e) {
+function s(e) {
 var t = e.length;
 if (t % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
 var _ = e.indexOf("=");
 -1 === _ && (_ = t);
 return [ _, _ === t ? 0 : 4 - _ % 4 ];
 }
-function s(e, t, _) {
+function E(e, t, _) {
 return 3 * (t + _) / 4 - _;
 }
 function R(e) {
@@ -1634,19 +1636,19 @@ if ("number" == typeof e) {
 if ("string" == typeof t) throw new Error("If encoding is specified then the first argument must be a string");
 return a(this, e);
 }
-return E(this, e, t, _);
+return s(this, e, t, _);
 }
 r.poolSize = 8192;
 r._augment = function(e) {
 e.__proto__ = r.prototype;
 return e;
 };
-function E(e, t, _, n) {
+function s(e, t, _, n) {
 if ("number" == typeof t) throw new TypeError('"value" argument must not be a number');
-return "undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer ? A(e, t, _, n) : "string" == typeof t ? c(e, t, _) : d(e, t);
+return "undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer ? d(e, t, _, n) : "string" == typeof t ? c(e, t, _) : A(e, t);
 }
 r.from = function(e, t, _) {
-return E(null, e, t, _);
+return s(null, e, t, _);
 };
 if (r.TYPED_ARRAY_SUPPORT) {
 r.prototype.__proto__ = Uint8Array.prototype;
@@ -1656,20 +1658,20 @@ value: null,
 configurable: !0
 });
 }
-function s(e) {
+function E(e) {
 if ("number" != typeof e) throw new TypeError('"size" argument must be a number');
 if (e < 0) throw new RangeError('"size" argument must not be negative');
 }
 function R(e, t, _, n) {
-s(t);
+E(t);
 return t <= 0 ? S(e, t) : void 0 !== _ ? "string" == typeof n ? S(e, t).fill(_, n) : S(e, t).fill(_) : S(e, t);
 }
 r.alloc = function(e, t, _) {
 return R(null, e, t, _);
 };
 function a(e, t) {
-s(t);
-e = S(e, t < 0 ? 0 : 0 | C(t));
+E(t);
+e = S(e, t < 0 ? 0 : 0 | N(t));
 if (!r.TYPED_ARRAY_SUPPORT) for (var _ = 0; _ < t; ++_) e[_] = 0;
 return e;
 }
@@ -1682,17 +1684,17 @@ return a(null, e);
 function c(e, t, _) {
 "string" == typeof _ && "" !== _ || (_ = "utf8");
 if (!r.isEncoding(_)) throw new TypeError('"encoding" must be a valid string encoding');
-var n = 0 | N(t, _), i = (e = S(e, n)).write(t, _);
+var n = 0 | C(t, _), i = (e = S(e, n)).write(t, _);
 i !== n && (e = e.slice(0, i));
 return e;
 }
 function I(e, t) {
-var _ = t.length < 0 ? 0 : 0 | C(t.length);
+var _ = t.length < 0 ? 0 : 0 | N(t.length);
 e = S(e, _);
 for (var n = 0; n < _; n += 1) e[n] = 255 & t[n];
 return e;
 }
-function A(e, t, _, n) {
+function d(e, t, _, n) {
 t.byteLength;
 if (_ < 0 || t.byteLength < _) throw new RangeError("'offset' is out of bounds");
 if (t.byteLength < _ + (n || 0)) throw new RangeError("'length' is out of bounds");
@@ -1700,9 +1702,9 @@ t = void 0 === _ && void 0 === n ? new Uint8Array(t) : void 0 === n ? new Uint8A
 r.TYPED_ARRAY_SUPPORT ? (e = t).__proto__ = r.prototype : e = I(e, t);
 return e;
 }
-function d(e, t) {
+function A(e, t) {
 if (r.isBuffer(t)) {
-var _ = 0 | C(t.length);
+var _ = 0 | N(t.length);
 if (0 === (e = S(e, _)).length) return e;
 t.copy(e, 0, 0, _);
 return e;
@@ -1713,7 +1715,7 @@ if ("Buffer" === t.type && o(t.data)) return I(e, t.data);
 }
 throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.");
 }
-function C(e) {
+function N(e) {
 if (e >= T()) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + T().toString(16) + " bytes");
 return 0 | e;
 }
@@ -1766,7 +1768,7 @@ i += T.length;
 }
 return n;
 };
-function N(e, t) {
+function C(e, t) {
 if (r.isBuffer(e)) return e.length;
 if ("undefined" != typeof ArrayBuffer && "function" == typeof ArrayBuffer.isView && (ArrayBuffer.isView(e) || e instanceof ArrayBuffer)) return e.byteLength;
 "string" != typeof e && (e = "" + e);
@@ -1801,7 +1803,7 @@ t = ("" + t).toLowerCase();
 n = !0;
 }
 }
-r.byteLength = N;
+r.byteLength = C;
 function h(e, t, _) {
 var n = !1;
 (void 0 === t || t < 0) && (t = 0);
@@ -1903,9 +1905,9 @@ _ >>>= 0;
 n >>>= 0;
 i >>>= 0;
 if (this === e) return 0;
-for (var o = i - n, T = _ - t, S = Math.min(o, T), E = this.slice(n, i), s = e.slice(t, _), R = 0; R < S; ++R) if (E[R] !== s[R]) {
-o = E[R];
-T = s[R];
+for (var o = i - n, T = _ - t, S = Math.min(o, T), s = this.slice(n, i), E = e.slice(t, _), R = 0; R < S; ++R) if (s[R] !== E[R]) {
+o = s[R];
+T = E[R];
 break;
 }
 return o < T ? -1 : T < o ? 1 : 0;
@@ -1943,22 +1945,22 @@ S /= 2;
 r /= 2;
 _ /= 2;
 }
-function E(e, t) {
+function s(e, t) {
 return 1 === T ? e[t] : e.readUInt16BE(t * T);
 }
 if (i) {
-var s = -1;
-for (o = _; o < S; o++) if (E(e, o) === E(t, -1 === s ? 0 : o - s)) {
--1 === s && (s = o);
-if (o - s + 1 === r) return s * T;
+var E = -1;
+for (o = _; o < S; o++) if (s(e, o) === s(t, -1 === E ? 0 : o - E)) {
+-1 === E && (E = o);
+if (o - E + 1 === r) return E * T;
 } else {
--1 !== s && (o -= o - s);
-s = -1;
+-1 !== E && (o -= o - E);
+E = -1;
 }
 } else {
 _ + r > S && (_ = S - r);
 for (o = _; o >= 0; o--) {
-for (var R = !0, a = 0; a < r; a++) if (E(e, o + a) !== E(t, a)) {
+for (var R = !0, a = 0; a < r; a++) if (s(e, o + a) !== s(t, a)) {
 R = !1;
 break;
 }
@@ -2073,7 +2075,7 @@ _ = Math.min(e.length, _);
 for (var n = [], i = t; i < _; ) {
 var o = e[i], T = null, S = o > 239 ? 4 : o > 223 ? 3 : o > 191 ? 2 : 1;
 if (i + S <= _) {
-var r, E, s, R;
+var r, s, E, R;
 switch (S) {
 case 1:
 o < 128 && (T = o);
@@ -2085,15 +2087,15 @@ break;
 
 case 3:
 r = e[i + 1];
-E = e[i + 2];
-128 == (192 & r) && 128 == (192 & E) && (R = (15 & o) << 12 | (63 & r) << 6 | 63 & E) > 2047 && (R < 55296 || R > 57343) && (T = R);
+s = e[i + 2];
+128 == (192 & r) && 128 == (192 & s) && (R = (15 & o) << 12 | (63 & r) << 6 | 63 & s) > 2047 && (R < 55296 || R > 57343) && (T = R);
 break;
 
 case 4:
 r = e[i + 1];
-E = e[i + 2];
-s = e[i + 3];
-128 == (192 & r) && 128 == (192 & E) && 128 == (192 & s) && (R = (15 & o) << 18 | (63 & r) << 12 | (63 & E) << 6 | 63 & s) > 65535 && R < 1114112 && (T = R);
+s = e[i + 2];
+E = e[i + 3];
+128 == (192 & r) && 128 == (192 & s) && 128 == (192 & E) && (R = (15 & o) << 18 | (63 & r) << 12 | (63 & s) << 6 | 63 & E) > 65535 && R < 1114112 && (T = R);
 }
 }
 if (null === T) {
@@ -2580,29 +2582,29 @@ return "[object Array]" == n.call(e);
 }, {} ],
 4: [ function(e, t, _) {
 _.read = function(e, t, _, n, i) {
-var o, T, S = 8 * i - n - 1, r = (1 << S) - 1, E = r >> 1, s = -7, R = _ ? i - 1 : 0, a = _ ? -1 : 1, c = e[t + R];
+var o, T, S = 8 * i - n - 1, r = (1 << S) - 1, s = r >> 1, E = -7, R = _ ? i - 1 : 0, a = _ ? -1 : 1, c = e[t + R];
 R += a;
-o = c & (1 << -s) - 1;
-c >>= -s;
-s += S;
-for (;s > 0; o = 256 * o + e[t + R], R += a, s -= 8) ;
-T = o & (1 << -s) - 1;
-o >>= -s;
-s += n;
-for (;s > 0; T = 256 * T + e[t + R], R += a, s -= 8) ;
-if (0 === o) o = 1 - E; else {
+o = c & (1 << -E) - 1;
+c >>= -E;
+E += S;
+for (;E > 0; o = 256 * o + e[t + R], R += a, E -= 8) ;
+T = o & (1 << -E) - 1;
+o >>= -E;
+E += n;
+for (;E > 0; T = 256 * T + e[t + R], R += a, E -= 8) ;
+if (0 === o) o = 1 - s; else {
 if (o === r) return T ? NaN : Infinity * (c ? -1 : 1);
 T += Math.pow(2, n);
-o -= E;
+o -= s;
 }
 return (c ? -1 : 1) * T * Math.pow(2, o - n);
 };
 _.write = function(e, t, _, n, i, o) {
-var T, S, r, E = 8 * o - i - 1, s = (1 << E) - 1, R = s >> 1, a = 23 === i ? Math.pow(2, -24) - Math.pow(2, -77) : 0, c = n ? 0 : o - 1, I = n ? 1 : -1, A = t < 0 || 0 === t && 1 / t < 0 ? 1 : 0;
+var T, S, r, s = 8 * o - i - 1, E = (1 << s) - 1, R = E >> 1, a = 23 === i ? Math.pow(2, -24) - Math.pow(2, -77) : 0, c = n ? 0 : o - 1, I = n ? 1 : -1, d = t < 0 || 0 === t && 1 / t < 0 ? 1 : 0;
 t = Math.abs(t);
 if (isNaN(t) || Infinity === t) {
 S = isNaN(t) ? 1 : 0;
-T = s;
+T = E;
 } else {
 T = Math.floor(Math.log(t) / Math.LN2);
 if (t * (r = Math.pow(2, -T)) < 1) {
@@ -2613,9 +2615,9 @@ if ((t += T + R >= 1 ? a / r : a * Math.pow(2, 1 - R)) * r >= 2) {
 T++;
 r /= 2;
 }
-if (T + R >= s) {
+if (T + R >= E) {
 S = 0;
-T = s;
+T = E;
 } else if (T + R >= 1) {
 S = (t * r - 1) * Math.pow(2, i);
 T += R;
@@ -2626,9 +2628,9 @@ T = 0;
 }
 for (;i >= 8; e[_ + c] = 255 & S, c += I, S /= 256, i -= 8) ;
 T = T << i | S;
-E += i;
-for (;E > 0; e[_ + c] = 255 & T, c += I, T /= 256, E -= 8) ;
-e[_ + c - I] |= 128 * A;
+s += i;
+for (;s > 0; e[_ + c] = 255 & T, c += I, T /= 256, s -= 8) ;
+e[_ + c - I] |= 128 * d;
 };
 }, {} ],
 GameClient: [ function(e, t, _) {
@@ -2801,6 +2803,11 @@ return !0;
 console.log(e);
 return !1;
 }
+},
+gLoadBUndle: function(e, t, _) {
+cc.assetManager.loadBundle(e, t, function(e, t) {
+_ && _(e, t);
+});
 },
 Ghotupdateurl: "http://192.168.65.172/hotupversion/configrelease",
 GgameType: 3
@@ -3825,9 +3832,9 @@ cc._RF.pop();
 TestScene: [ function(e, t, _) {
 "use strict";
 cc._RF.push(t, "43e41jtsGxORJ0f6gUlDaqj", "TestScene");
-var n = e("xxtea"), i = e("i18n"), o = e("Package"), T = e("Devices"), S = e("Global"), r = e("VoiceNative"), E = e("BaseComponent");
+var n = e("xxtea"), i = e("i18n"), o = e("Package"), T = e("Devices"), S = e("Global"), r = e("VoiceNative"), s = e("BaseComponent");
 cc.Class({
-extends: E,
+extends: s,
 properties: {},
 onLoad: function() {
 this._super();
@@ -3838,30 +3845,30 @@ var t = "searchPaths--";
 cc && cc.sys.isNative && (t = jsb.fileUtils.getSearchPaths());
 var _ = this;
 console.log("test scene  strart", t);
-var E = cc.find("uipanel/New Sprite", this.node), s = cc.find("content/sp4", this.node), R = S.ConverToWorldPos(E), a = S.ConverToNodePos(s.parent, R);
-this.sp4OldPos = s.getPosition();
-s.IsOriginPos = !0;
+var s = cc.find("uipanel/New Sprite", this.node), E = cc.find("content/sp4", this.node), R = S.ConverToWorldPos(s), a = S.ConverToNodePos(E.parent, R);
+this.sp4OldPos = E.getPosition();
+E.IsOriginPos = !0;
 var c = cc.find("uipanel/btn_posconvert", this.node);
 ua.darkButton(c, function() {
-if (!(s.getNumberOfRunningActions() > 0)) {
-if (1 == s.IsOriginPos) {
+if (!(E.getNumberOfRunningActions() > 0)) {
+if (1 == E.IsOriginPos) {
 var e = cc.moveTo(1, a).easing(cc.easeSineOut());
-s.runAction(e);
+E.runAction(e);
 } else {
 e = cc.moveTo(1, _.sp4OldPos).easing(cc.easeSineOut());
-s.runAction(e);
+E.runAction(e);
 }
-s.IsOriginPos = !s.IsOriginPos;
+E.IsOriginPos = !E.IsOriginPos;
 }
 });
-E.on(cc.Node.EventType.TOUCH_START, function(e) {
-E.opacity = 150;
+s.on(cc.Node.EventType.TOUCH_START, function(e) {
+s.opacity = 150;
 });
-E.on(cc.Node.EventType.TOUCH_END, function(e) {
-E.opacity = 255;
+s.on(cc.Node.EventType.TOUCH_END, function(e) {
+s.opacity = 255;
 });
-E.on(cc.Node.EventType.TOUCH_CANCEL, function(e) {
-E.opacity = 255;
+s.on(cc.Node.EventType.TOUCH_CANCEL, function(e) {
+s.opacity = 255;
 });
 console.log("getDevicePixelRatio", cc.view.getDevicePixelRatio());
 console.log("winSize", cc.winSize.width, cc.winSize.height);
@@ -3875,17 +3882,17 @@ o.biuldReq("Hello", {
 a: 1,
 c: 2
 });
-var I = "1234567890", A = n.encryptToString("Hello World! 你好，中国🇨🇳-----！", I);
-console.log("encrypt_data=", A);
-var d = n.decryptToString(A, I);
-console.log("decrypt_data==", d);
+var I = "1234567890", d = n.encryptToString("Hello World! 你好，中国🇨🇳-----！", I);
+console.log("encrypt_data=", d);
+var A = n.decryptToString(d, I);
+console.log("decrypt_data==", A);
 cc.log("window.DISTRIBUTE_CHANNEL ==", window.DISTRIBUTE_CHANNEL, cc.sys.isNative, cc.sys.os);
 i.init("zh");
 cc.log("i18n===", i.t("STR_COREPLAY_BUTTON_FOLD"));
-var C = e("ConstantItem");
-cc.log(C[1]);
-var N = new Date().getTime();
-cc.log("timeStamp=====", N, new Date());
+var N = e("ConstantItem");
+cc.log(N[1]);
+var C = new Date().getTime();
+cc.log("timeStamp=====", C, new Date());
 cc.log("DevicesInfo===id", T.getDevicesID(), cc.sys.os);
 var h = cc.find("uipanel/btn_Alert", this.node);
 ua.darkButton(h, function(e) {
@@ -3911,7 +3918,6 @@ u = "http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC
 S.GloadPic(u, function(e) {
 if (e) {
 D.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e);
-console.log(D.width);
 }
 });
 var p = null, f = (_ = this, cc.find("uipanel/btn_Speech", this.node));
@@ -3987,9 +3993,9 @@ t && t.Say();
 e.loadScene("bundlescene", function(e, t) {
 e ? console.log("load bundle scene error") : cc.director.runScene(t);
 });
-} else cc.assetManager.loadBundle("http://192.168.65.172/hotupversion/remote/Testbundle", {
+} else S.gLoadBUndle("http://192.168.65.172/hotupversion/remote/Testbundle", {
 onFileProgress: function(e, t) {
-return console.log(e, t);
+return console.log("bundle progress==", e, t);
 }
 }, function(e, t) {
 if (e) return console.error(e);
@@ -4010,16 +4016,16 @@ var y = cc.find("garpgicsnode", this.node), U = y.getComponent(cc.Graphics);
 y.on(cc.Node.EventType.TOUCH_START, function(e) {
 var t = e.getTouches(), _ = t[0].getLocation();
 t[0].getLocationInView();
-_ = E.parent.convertToNodeSpaceAR(_);
-var n = S.GgetTwoV2Angle(E.getPosition(), _);
-E.angle = -n;
+_ = s.parent.convertToNodeSpaceAR(_);
+var n = S.GgetTwoV2Angle(s.getPosition(), _);
+s.angle = -n;
 U.moveTo(_.x, _.y);
 });
 y.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
 var t = e.getTouches()[0].getLocation();
-t = E.parent.convertToNodeSpaceAR(t);
-var _ = S.GgetTwoV2Angle(E.getPosition(), t);
-E.angle = -_;
+t = s.parent.convertToNodeSpaceAR(t);
+var _ = S.GgetTwoV2Angle(s.getPosition(), t);
+s.angle = -_;
 U.lineTo(t.x, t.y);
 U.stroke();
 });
@@ -4067,7 +4073,7 @@ o = jsb.fileUtils.getWritablePath() + "packageTemp/";
 T = jsb.fileUtils.getWritablePath() + "package/";
 S = jsb.fileUtils.getWritablePath() + "config/appinfoiii.json";
 }
-var r = e("Global"), E = {
+var r = e("Global"), s = {
 remoteCfg: null,
 remoteMd5Cfg: "",
 localCfg: "",
@@ -4093,29 +4099,29 @@ t.comparefiles();
 },
 comparefiles: function() {
 for (var e = this.localCfg.files, t = this.remoteMd5Cfg.files, _ = new Array(), n = {}, i = {}, o = 0; o < e.length; o++) {
-var T = (E = e[o]).filename, S = E.md5, r = E.size;
+var T = (s = e[o]).filename, S = s.md5, r = s.size;
 n[T] = {
 md5: S,
 fileSize: r
 };
 }
 for (o = 0; o < t.length; o++) {
-var E;
-T = (E = t[o]).filename, S = E.md5, r = E.size;
+var s;
+T = (s = t[o]).filename, S = s.md5, r = s.size;
 i[T] = {
 md5: S,
 fileSize: r
 };
 }
-for (var s in i) {
-var R = i[s], a = R.md5;
+for (var E in i) {
+var R = i[E], a = R.md5;
 r = R.fileSize;
-n[s] ? a != n[s].md5 && _.push({
-fileName: s,
+n[E] ? a != n[E].md5 && _.push({
+fileName: E,
 md5: a,
 fileSize: r
 }) : _.push({
-fileName: s,
+fileName: E,
 md5: a,
 fileSize: r
 });
@@ -4131,16 +4137,16 @@ if (0 != e.length) {
 var t = this, _ = e;
 t.DownIndex = 0;
 (function e(n) {
-var i = t.BaseUrl, S = _[n].fileName, E = _[n].fileSize, s = i + S, R = o + S, a = T + S, c = o + r.GgetDirByUrl(S), I = T + r.GgetDirByUrl(S);
+var i = t.BaseUrl, S = _[n].fileName, s = _[n].fileSize, E = i + S, R = o + S, a = T + S, c = o + r.GgetDirByUrl(S), I = T + r.GgetDirByUrl(S);
 r.GcreateDir(c);
 r.GcreateDir(I);
 _[n].tempfile = R;
 _[n].realfile = a;
-cc.log("下载=====", s);
-r.GDownFile(s, function(n) {
+cc.log("下载=====", E);
+r.GDownFile(E, function(n) {
 if (n) {
 r.GwriteDataToFile(n, R);
-t.downedSize = t.downedSize + E;
+t.downedSize = t.downedSize + s;
 if (t.DownIndex < _.length - 1) {
 t.DownIndex = t.DownIndex + 1;
 t.progressCall && t.progressCall(Math.floor(t.DownIndex / _.length * 100), (t.downedSize / 1e3).toFixed(1), (t.totalDownSize / 1e3).toFixed(1));
@@ -4150,7 +4156,7 @@ t.progressCall && t.progressCall(Math.floor(100), (t.downedSize / 1e3).toFixed(1
 cc.log("下载完成***");
 t.MoveFiles(_);
 }
-} else t.callFunWithState(3, "下载单个文件失败=" + s);
+} else t.callFunWithState(3, "下载单个文件失败=" + E);
 });
 })(t.DownIndex);
 } else this.MoveDone();
@@ -4159,9 +4165,9 @@ MoveFiles: function(e) {
 this.moveStep = 0;
 var t = this;
 (function _(n) {
-var i = e[n].tempfile, o = e[n].realfile, E = r.GgetDataFromFile(i);
-if (E) {
-r.GwriteDataToFile(E, o);
+var i = e[n].tempfile, o = e[n].realfile, s = r.GgetDataFromFile(i);
+if (s) {
+r.GwriteDataToFile(s, o);
 if (t.moveStep < e.length - 1) {
 t.moveStep = t.moveStep + 1;
 _(t.moveStep);
@@ -4242,12 +4248,12 @@ var e = this;
 n.sendHttpRequest(this.remoteCfg, function(t) {
 if (null != t) if (r.isjson(t)) {
 e.remoteCfg = JSON.parse(t);
-var _ = e.localCfg.scriptVersion, n = e.remoteCfg.scriptVersion, o = e.remoteCfg.debugScriptVersion, T = e.remoteCfg.supportBinarys, S = e.remoteCfg.forcedBinaryVersions, E = e.remoteCfg.channels, s = e.remoteCfg.debugUIDs, R = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], a = cc.sys.localStorage.getItem("debugId");
-if (r.GIsArrContain(E, window.DISTRIBUTE_CHANNEL)) if (r.GIsArrContain(T, i.getAppVersion())) if (r.GIsArrContain(S, i.getAppVersion())) e.callFunWithState(8, "强制更新", R); else {
+var _ = e.localCfg.scriptVersion, n = e.remoteCfg.scriptVersion, o = e.remoteCfg.debugScriptVersion, T = e.remoteCfg.supportBinarys, S = e.remoteCfg.forcedBinaryVersions, s = e.remoteCfg.channels, E = e.remoteCfg.debugUIDs, R = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], a = cc.sys.localStorage.getItem("debugId");
+if (r.GIsArrContain(s, window.DISTRIBUTE_CHANNEL)) if (r.GIsArrContain(T, i.getAppVersion())) if (r.GIsArrContain(S, i.getAppVersion())) e.callFunWithState(8, "强制更新", R); else {
 console.log("本地脚本号==" + _);
 console.log("远程debug版本号==" + o);
 console.log("远程版本号==" + n);
-if (r.GIsArrContain(s, a)) {
+if (r.GIsArrContain(E, a)) {
 if (parseInt(_) != parseInt(o)) {
 console.log("走测试玩家----热更新");
 var c = e.remoteCfg.debugBaseUrl, I = (c = cc.js.formatStr(c, o)) + e.remoteCfg.debugConfigFile;
@@ -4258,9 +4264,9 @@ return;
 e.callFunWithState(0, "测试玩家版本和远程一样");
 } else if (parseInt(_) == parseInt(n)) e.callFunWithState(0, "不用更新-本地和远程版本一致:" + _); else {
 console.log("走正式----热更新");
-var A = e.remoteCfg.baseUrl;
-I = (A = cc.js.formatStr(A, n)) + e.remoteCfg.configFile;
-e.BaseUrl = A;
+var d = e.remoteCfg.baseUrl;
+I = (d = cc.js.formatStr(d, n)) + e.remoteCfg.configFile;
+e.BaseUrl = d;
 e.downRemoteMd5(I);
 }
 } else e.callFunWithState(6, "不支持热更新的2进制版本号" + i.getAppVersion()); else e.callFunWithState(7, "不支持热更新的渠道号" + window.DISTRIBUTE_CHANNEL);
@@ -4269,7 +4275,7 @@ e.downRemoteMd5(I);
 }
 }
 };
-t.exports = E;
+t.exports = s;
 cc._RF.pop();
 }, {
 Devices: "Devices",
@@ -4286,10 +4292,10 @@ var t = Math.floor(e / n) + i, _ = e % n + i;
 return String.fromCharCode(t) + String.fromCharCode(_);
 }
 for (var T = {}, S = {}, r = 0; r < 256; ++r) {
-var E = null, s = r + 1;
-E = s >= i ? o(s) : String.fromCharCode(s);
-T[r] = E;
-S[E] = r;
+var s = null, E = r + 1;
+s = E >= i ? o(E) : String.fromCharCode(E);
+T[r] = s;
+S[s] = r;
 }
 function R(e) {
 var t = "", _ = e.length;
@@ -4379,6 +4385,65 @@ jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDirectory(e);
 });
 c = new c();
 t.exports = c;
+cc._RF.pop();
+}, {} ],
+WsTest: [ function(e, t, _) {
+"use strict";
+cc._RF.push(t, "e5e9fObFGlLQbIbtk/t0ooz", "WsTest");
+cc.Class({
+extends: cc.Component,
+properties: {},
+start: function() {
+var e = this;
+this._wsiSendBinary = new WebSocket("ws://127.0.0.1:9001");
+this._wsiSendBinary.binaryType = "arraybuffer";
+this._wsiSendBinary.onopen = function(t) {
+cc.log("websocket  open");
+e._wsiSendBinary.send(JSON.stringify({
+funcName: "auth",
+uid: Number(new Date())
+}));
+e._wsiSendBinary.send(JSON.stringify({
+funcName: "enterroom",
+roomid: 444
+}));
+};
+this._wsiSendBinary.onmessage = function(t) {
+cc.log("websocket  onmessage", t.data);
+var _ = JSON.parse(t.data);
+"chatText" == _.funcName && e.addText(_.txt);
+};
+this._wsiSendBinary.onerror = function(e) {
+cc.log("websocket  onerror");
+};
+this._wsiSendBinary.onclose = function(e) {
+cc.log("websocket  onclose");
+};
+var t = cc.find("uipanel/sendbtn", this.node);
+ua.darkButton(t, function(t) {
+cc.log("send");
+e.sendText();
+});
+},
+sendText: function() {
+var e = cc.find("uipanel/Edit", this.node).getComponent(cc.EditBox), t = e.string;
+cc.log("txt==", t);
+this._wsiSendBinary.send(JSON.stringify({
+funcName: "chatText",
+txt: t
+}));
+e.string = "";
+},
+addText: function(e) {
+var t = cc.find("uipanel/scrollview", this.node), _ = cc.instantiate(cc.find("uipanel/item", this.node));
+_.getComponent(cc.Label).string = e;
+_.x = 0;
+_.active = !0;
+var n = t.getComponent(cc.ScrollView);
+n.content.addChild(_);
+n.scrollToBottom(.5);
+}
+});
 cc._RF.pop();
 }, {} ],
 ball: [ function(e, t, _) {
@@ -5167,7 +5232,7 @@ this.phrases = {};
 this.extend(e.phrases || {});
 this.currentLocale = e.locale || "en";
 this.allowMissing = !!e.allowMissing;
-this.warn = e.warn || d;
+this.warn = e.warn || A;
 }
 _.VERSION = "1.0.0";
 _.prototype.locale = function(e) {
@@ -5207,8 +5272,8 @@ this.warn('Missing translation for key: "' + e + '"');
 n = e;
 }
 if ("string" == typeof _) {
-t = C(t);
-n = A(n = s(_, this.currentLocale, t.smart_count), t);
+t = N(t);
+n = d(n = E(_, this.currentLocale, t.smart_count), t);
 }
 return n;
 };
@@ -5255,12 +5320,12 @@ for (n in _) i[_[n]] = t;
 return i;
 }
 var r = /^\s+|\s+$/g;
-function E(e) {
+function s(e) {
 return t.call(e, r, "");
 }
-function s(e, t, _) {
+function E(e, t, _) {
 var n;
-return null != _ && e ? E((n = e.split(i))[a(t, _)] || n[0]) : e;
+return null != _ && e ? s((n = e.split(i))[a(t, _)] || n[0]) : e;
 }
 function R(e) {
 var t = S(T);
@@ -5270,7 +5335,7 @@ function a(e, t) {
 return o[R(e)](t);
 }
 var c = /\$/g, I = "$$$$";
-function A(e, _) {
+function d(e, _) {
 for (var n in _) if ("_" !== n && _.hasOwnProperty(n)) {
 var i = _[n];
 "string" == typeof i && (i = t.call(_[n], c, I));
@@ -5278,10 +5343,10 @@ e = t.call(e, new RegExp("%\\{" + n + "\\}", "g"), i);
 }
 return e;
 }
-function d(t) {
+function A(t) {
 e.console && e.console.warn && e.console.warn("WARNING: " + t);
 }
-function C(e) {
+function N(e) {
 var t = {};
 for (var _ in e) t[_] = e[_];
 return t;
@@ -6058,11 +6123,11 @@ e = t;
 }
 return e;
 }
-function E(e, t) {
-var _, n, o, T, r, E, s = e.length, R = s - 1;
+function s(e, t) {
+var _, n, o, T, r, s, E = e.length, R = E - 1;
 n = e[R];
 o = 0;
-for (E = 0 | Math.floor(6 + 52 / s); E > 0; --E) {
+for (s = 0 | Math.floor(6 + 52 / E); s > 0; --s) {
 T = (o += i) >>> 2 & 3;
 for (r = 0; r < R; ++r) {
 _ = e[r + 1];
@@ -6073,16 +6138,16 @@ n = e[R] += S(o, _, n, r, T, t);
 }
 return e;
 }
-function s(e, t) {
-var _, n, o, T, r, E = e.length, s = E - 1;
+function E(e, t) {
+var _, n, o, T, r, s = e.length, E = s - 1;
 _ = e[0];
-for (o = Math.floor(6 + 52 / E) * i; 0 !== o; o -= i) {
+for (o = Math.floor(6 + 52 / s) * i; 0 !== o; o -= i) {
 T = o >>> 2 & 3;
-for (r = s; r > 0; --r) {
+for (r = E; r > 0; --r) {
 n = e[r - 1];
 _ = e[r] -= S(o, _, n, r, T, t);
 }
-n = e[s];
+n = e[E];
 _ = e[0] -= S(o, _, n, r, T, t);
 }
 return e;
@@ -6195,9 +6260,9 @@ default:
 throw new Error("Bad UTF-8 encoding 0x" + S.toString(16));
 }
 if (i >= 32766) {
-var E = i + 1;
-_.push(String.fromCharCode.apply(String, n.subarray(0, E)));
-t -= E;
+var s = i + 1;
+_.push(String.fromCharCode.apply(String, n.subarray(0, s)));
+t -= s;
 i = -1;
 }
 }
@@ -6208,15 +6273,15 @@ function I(e) {
 var t = e.length;
 return 0 === t ? "" : t < 32767 ? a(e, t) : c(e, t);
 }
-function A(e, t) {
+function d(e, t) {
 "string" == typeof e && (e = R(e));
 "string" == typeof t && (t = R(t));
-return void 0 === e || null === e || 0 === e.length ? e : o(E(T(e, !0), T(r(t), !1)), !1);
+return void 0 === e || null === e || 0 === e.length ? e : o(s(T(e, !0), T(r(t), !1)), !1);
 }
-function d(e, t) {
+function A(e, t) {
 "string" == typeof e && (e = new n(e, "base64"));
 "string" == typeof t && (t = R(t));
-return void 0 === e || null === e || 0 === e.length ? e : o(s(T(e, !1), T(r(t), !1)), !0);
+return void 0 === e || null === e || 0 === e.length ? e : o(E(T(e, !1), T(r(t), !1)), !0);
 }
 t.exports = Object.create(null, {
 toBytes: {
@@ -6226,19 +6291,19 @@ toString: {
 value: I
 },
 encrypt: {
-value: A
+value: d
 },
 encryptToString: {
 value: function(e, t) {
-return new n(A(e, t)).toString("base64");
+return new n(d(e, t)).toString("base64");
 }
 },
 decrypt: {
-value: d
+value: A
 },
 decryptToString: {
 value: function(e, t) {
-return I(d(e, t));
+return I(A(e, t));
 }
 }
 });
@@ -6901,4 +6966,4 @@ STR_MESS_EVALUATION_CONTENT: "因为您对于我们游戏的支持与评价，�
 };
 cc._RF.pop();
 }, {} ]
-}, {}, [ "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "Save", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "LabelLocalized", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);
+}, {}, [ "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "Save", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "WsTest", "LabelLocalized", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);

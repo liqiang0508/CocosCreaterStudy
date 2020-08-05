@@ -10728,7 +10728,7 @@ return e.getAssetInfo(t._uuid);
 s && (r.bundle = s.name);
 }
 this.loadAny(r, e, (function(e, n) {
-e ? cc.error(e.message, e.stack) : t._nativeAsset = n;
+e ? cc.error(e.message, e.stack) : !t._nativeAsset && (t._nativeAsset = n);
 i && i(e);
 }));
 }
@@ -11215,7 +11215,8 @@ init: function() {
 this._depends.clear();
 },
 getNativeDep: function(t) {
-return this._depends.has(t) ? this._depends.get(t).nativeDep : null;
+var e = this._depends.get(t);
+return e ? e.nativeDep && Object.assign({}, e.nativeDep) : null;
 },
 getDeps: function(t) {
 return this._depends.has(t) ? this._depends.get(t).deps : [];
@@ -11759,7 +11760,7 @@ e = s.options, i = s.onComplete;
 if (r[t]) return i && i(null);
 var o = document, a = document.createElement("script");
 "file:" !== window.location.protocol && (a.crossOrigin = "anonymous");
-a.async = void 0 === e.isAsync || e.isAsync;
+a.async = e.async;
 a.src = t;
 function c() {
 a.parentNode.removeChild(a);
@@ -13317,7 +13318,7 @@ bundle: a && a.name
 }
 if (h && l.nativeDep) {
 a && (l.nativeDep.bundle = a.name);
-r.push(l.nativeDep);
+r.push(Object.assign({}, l.nativeDep));
 }
 } else {
 o = !!e.asyncLoadAssets || o && !l.preventDeferredLoadDependents;
@@ -13334,7 +13335,7 @@ bundle: a && a.name
 }
 if (h && !o && !l.preventPreloadNativeObject && l.nativeDep) {
 a && (l.nativeDep.bundle = a.name);
-r.push(l.nativeDep);
+r.push(Object.assign({}, l.nativeDep));
 }
 }
 } catch (t) {
@@ -13426,15 +13427,14 @@ onProgress: e,
 onComplete: i
 };
 },
-checkCircleReference: function(t, e, i, n) {
-n || (n = Object.create(null));
-var r = i[e];
-if (!r || n[e]) return !1;
-n[e] = !0;
-var s = !1, o = r.content && r.content.__depends__;
+checkCircleReference: function(t, e, i, r) {
+r || (r = Object.create(null));
+if (!i[e] || r[e]) return !1;
+r[e] = !0;
+var s = !1, o = n.getDeps(e);
 if (o) for (var a = 0, c = o.length; a < c; a++) {
 var h = o[a];
-if (h.uuid === t || l.checkCircleReference(t, h.uuid, i, n)) {
+if (h === t || l.checkCircleReference(t, h, i, r)) {
 s = !0;
 break;
 }
@@ -14493,7 +14493,7 @@ get: function() {
 return this._image;
 },
 set: function(t) {
-t._data ? this.initWithData(t._data, this._format, t.width, t.height) : this.initWithElement(t);
+t._compressed && t._data ? this.initWithData(t._data, this._format, t.width, t.height) : this.initWithElement(t);
 },
 override: !0
 },
@@ -18636,8 +18636,9 @@ t && t.setProperty("texture", this._frame._texture);
 o.prototype._updateMaterial.call(this);
 }
 },
+_forceUseCanvas: !1,
 _nativeTTF: function() {
-return !!this._assembler && !!this._assembler._updateTTFMaterial;
+return !this._forceUseCanvas && !!this._assembler && !!this._assembler._updateTTFMaterial;
 },
 _forceUpdateRenderData: function() {
 this.setVertsDirty();
@@ -20273,6 +20274,7 @@ n || (n = i.addComponent(cc.Label));
 n.string = "";
 n.horizontalAlign = a.LEFT;
 n.verticalAlign = c.CENTER;
+n._forceUseCanvas = !0;
 return i;
 };
 var u = cc.Class({
@@ -23595,17 +23597,16 @@ InputFlag: s
 t("./CCComponent");
 t("./CCComponentEventHandler");
 t("./missing-script");
-var n = t("./WXSubContextView"), r = t("./SwanSubContextView");
-n || (n = cc.Class({
-name: "cc.WXSubContextView",
+var n = t("./SubContextView");
+if (!n) {
+n = cc.Class({
+name: "cc.SubContextView",
 extends: cc.Component
-}));
-r || (r = cc.Class({
-name: "cc.SwanSubContextView",
-extends: cc.Component
-}));
-var s = [ t("./CCSprite"), t("./CCWidget"), t("./CCCanvas"), t("./CCAudioSource"), t("./CCAnimation"), t("./CCButton"), t("./CCLabel"), t("./CCProgressBar"), t("./CCMask"), t("./CCScrollBar"), t("./CCScrollView"), t("./CCPageViewIndicator"), t("./CCPageView"), t("./CCSlider"), t("./CCLayout"), t("./editbox/CCEditBox"), t("./CCLabelOutline"), t("./CCLabelShadow"), t("./CCRichText"), t("./CCToggleContainer"), t("./CCToggleGroup"), t("./CCToggle"), t("./CCBlockInputEvents"), t("./CCMotionStreak"), t("./CCSafeArea"), n, r ];
-e.exports = s;
+});
+cc.SubContextView = cc.WXSubContextView = cc.SwanSubContextView = n;
+}
+var r = [ t("./CCSprite"), t("./CCWidget"), t("./CCCanvas"), t("./CCAudioSource"), t("./CCAnimation"), t("./CCButton"), t("./CCLabel"), t("./CCProgressBar"), t("./CCMask"), t("./CCScrollBar"), t("./CCScrollView"), t("./CCPageViewIndicator"), t("./CCPageView"), t("./CCSlider"), t("./CCLayout"), t("./editbox/CCEditBox"), t("./CCLabelOutline"), t("./CCLabelShadow"), t("./CCRichText"), t("./CCToggleContainer"), t("./CCToggleGroup"), t("./CCToggle"), t("./CCBlockInputEvents"), t("./CCMotionStreak"), t("./CCSafeArea"), n ];
+e.exports = r;
 }), {
 "./CCAnimation": 122,
 "./CCAudioSource": 123,
@@ -23633,8 +23634,7 @@ e.exports = s;
 "./CCToggleContainer": 147,
 "./CCToggleGroup": 148,
 "./CCWidget": 150,
-"./SwanSubContextView": void 0,
-"./WXSubContextView": void 0,
+"./SubContextView": void 0,
 "./editbox/CCEditBox": 151,
 "./missing-script": 157
 } ],
@@ -30668,7 +30668,7 @@ CLEANUP_IMAGE_CACHE: !1,
 SHOW_MESH_WIREFRAME: !1,
 SHOW_MESH_NORMAL: !1,
 ENABLE_MULTI_TOUCH: !0,
-ALLOW_IMAGE_BITMAP: !0
+ALLOW_IMAGE_BITMAP: !cc.sys.isMobile
 };
 Object.defineProperty(cc.macro, "ROTATE_ACTION_CCW", {
 set: function(t) {
@@ -31138,8 +31138,8 @@ cc.screen.init();
 }), {} ],
 226: [ (function(t, e, i) {
 "use strict";
-var n, r = "qgame" === (n = window._CCSettings ? _CCSettings.platform : void 0), s = "quickgame" === n, o = "huawei" === n, a = "jkw-game" === n, c = "qtt-game" === n, l = "undefined" == typeof window ? global : window;
-var h = cc && cc.sys ? cc.sys : (function() {
+var n, r = "qgame" === (n = window._CCSettings ? _CCSettings.platform : void 0), s = "quickgame" === n, o = "huawei" === n, a = "jkw-game" === n, c = "qtt-game" === n, l = "link-sure" === n, h = "undefined" == typeof window ? global : window;
+var u = cc && cc.sys ? cc.sys : (function() {
 cc.sys = {};
 var t = cc.sys;
 t.LANGUAGE_ENGLISH = "en";
@@ -31203,14 +31203,10 @@ t.ALIPAY_GAME = 113;
 t.WECHAT_GAME_SUB = 114;
 t.BAIDU_GAME_SUB = 115;
 t.QTT_GAME = 116;
+t.BYTEDANCE_GAME = 117;
+t.BYTEDANCE_GAME_SUB = 118;
+t.LINKSURE = 119;
 t.BROWSER_TYPE_WECHAT = "wechat";
-t.BROWSER_TYPE_WECHAT_GAME = "wechatgame";
-t.BROWSER_TYPE_WECHAT_GAME_SUB = "wechatgamesub";
-t.BROWSER_TYPE_BAIDU_GAME = "baidugame";
-t.BROWSER_TYPE_BAIDU_GAME_SUB = "baidugamesub";
-t.BROWSER_TYPE_XIAOMI_GAME = "xiaomigame";
-t.BROWSER_TYPE_ALIPAY_GAME = "alipaygame";
-t.BROWSER_TYPE_QQ_PLAY = "qqplay";
 t.BROWSER_TYPE_ANDROID = "androidbrowser";
 t.BROWSER_TYPE_IE = "ie";
 t.BROWSER_TYPE_EDGE = "edge";
@@ -31248,9 +31244,9 @@ t.getSafeAreaRect = function() {
 var t = cc.view.getVisibleSize();
 return cc.rect(0, 0, t.width, t.height);
 };
-if (l.__globalAdapter && l.__globalAdapter.adaptSys) l.__globalAdapter.adaptSys(t); else {
+if (h.__globalAdapter && h.__globalAdapter.adaptSys) h.__globalAdapter.adaptSys(t); else {
 var e, i;
-e = r ? t.VIVO_GAME : s ? t.OPPO_GAME : o ? t.HUAWEI_GAME : a ? t.JKW_GAME : c ? t.QTT_GAME : __getPlatform();
+e = r ? t.VIVO_GAME : s ? t.OPPO_GAME : o ? t.HUAWEI_GAME : a ? t.JKW_GAME : c ? t.QTT_GAME : l ? t.LINKSURE : __getPlatform();
 t.platform = e;
 t.isMobile = e === t.ANDROID || e === t.IPAD || e === t.IPHONE || e === t.WP8 || e === t.TIZEN || e === t.BLACKBERRY || e === t.XIAOMI_GAME || r || s || o || a || c;
 t.os = __getOS();
@@ -31261,10 +31257,10 @@ t.osVersion = __getOSVersion();
 t.osMainVersion = parseInt(t.osVersion);
 t.browserType = null;
 t.browserVersion = null;
-var n, h = window.innerWidth, u = window.innerHeight, _ = window.devicePixelRatio || 1;
+var n, u = window.innerWidth, _ = window.innerHeight, f = window.devicePixelRatio || 1;
 t.windowPixelResolution = {
-width: _ * h,
-height: _ * u
+width: f * u,
+height: f * _
 };
 t.localStorage = window.localStorage;
 n = t.capabilities = {
@@ -31325,7 +31321,7 @@ return Date.now ? Date.now() : +new Date();
 };
 return t;
 })();
-e.exports = h;
+e.exports = u;
 }), {} ],
 227: [ (function(t, e, i) {
 "use strict";
@@ -36776,7 +36772,7 @@ this.pool.length >= 32 || this.pool.push(t);
 n.default.register(cc.Label, {
 getConstructor: function(t) {
 var e = t.node.is3DNode, i = e ? c.default : s.default;
-t.font instanceof cc.BitmapFont ? i = e ? l.default : o.default : t.cacheMode === r.default.CacheMode.CHAR && (!e && jsb.LabelRenderer && t.font instanceof cc.TTFFont ? i = _ : cc.sys.browserType === cc.sys.BROWSER_TYPE_WECHAT_GAME_SUB ? cc.warn("sorry, subdomain does not support CHAR mode currently!") : i = e ? h.default : a.default);
+t.font instanceof cc.BitmapFont ? i = e ? l.default : o.default : t.cacheMode === r.default.CacheMode.CHAR && (!e && jsb.LabelRenderer && t.font instanceof cc.TTFFont && !t._forceUseCanvas ? i = _ : cc.sys.platform === cc.sys.WECHAT_GAME_SUB ? cc.warn("sorry, subdomain does not support CHAR mode currently!") : i = e ? h.default : a.default);
 return i;
 },
 TTF: s.default,
@@ -39662,7 +39658,7 @@ r.horizontalAlign = cc.Label.HorizontalAlign.RIGHT;
 r.fontSize = o;
 r.lineHeight = o;
 i.parent = c;
-if (cc.sys.browserType !== cc.sys.BROWSER_TYPE_BAIDU_GAME_SUB && cc.sys.browserType !== cc.sys.BROWSER_TYPE_WECHAT_GAME_SUB) {
+if (cc.sys.platform !== cc.sys.BAIDU_GAME_SUB && cc.sys.platform !== cc.sys.WECHAT_GAME_SUB) {
 e.cacheMode = cc.Label.CacheMode.CHAR;
 r.cacheMode = cc.Label.CacheMode.CHAR;
 }
@@ -66559,6 +66555,6 @@ s("CC_WECHATGAMESUB", a);
 s("CC_WECHATGAME", c);
 s("CC_QQPLAY", l);
 0;
-n.CocosEngine = cc.ENGINE_VERSION = "2.4.0";
+n.CocosEngine = cc.ENGINE_VERSION = "2.4.2";
 }), {} ]
 }, {}, [ 375 ]);

@@ -53,7 +53,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 
     FileUtils::getInstance()->addSearchPath(tDir + "package/src/",true);
-    FileUtils::getInstance()->addSearchPath(tDir + "package/res/",true);
+    FileUtils::getInstance()->addSearchPath(tDir + "package/assets/",true);
     FileUtils::getInstance()->addSearchPath(tDir + "package/",true);
 
 

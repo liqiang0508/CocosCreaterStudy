@@ -16,12 +16,11 @@
 #   public *;
 #}
 
+-keep public class com.casino.** { *; }
+-dontwarn  com.casino.**
 # Proguard Cocos2d-x-lite for release
 -keep public class org.cocos2dx.** { *; }
 -dontwarn org.cocos2dx.**
-
--keep public class com.casino.** { *; }
--dontwarn com.casino.**
 
 # Proguard Apache HTTP for release
 -keep class org.apache.http.** { *; }
@@ -46,7 +45,3 @@
 # keep anysdk for release. you can comment if you are not using anysdk
 -keep public class com.anysdk.** { *; }
 -dontwarn com.anysdk.**
-
-
-
-
