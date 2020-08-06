@@ -67,6 +67,7 @@ properties: {},
 onLoad: function() {},
 start: function() {
 var e = cc.sys.getSafeAreaRect();
+cc.view.getVisibleSize();
 this.node.setContentSize(cc.size(e.width, e.height));
 }
 });
@@ -3087,7 +3088,7 @@ console.log("getLocationInView=====", e.getLocationInView().x, e.getLocationInVi
 });
 },
 goTestScene: function() {
-cc.director.loadScene("TestScene");
+cc.director.loadScene("getSafeArea");
 }
 });
 cc._RF.pop();
