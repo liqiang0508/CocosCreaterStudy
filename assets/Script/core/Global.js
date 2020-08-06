@@ -304,7 +304,7 @@ var Global = {
         })
     },
     Ghotupdateurl:"http://192.168.65.172/hotupversion/configrelease", // 热更新地址
-    GgameType:1  // 1正式包 3debug
+    GgameType:3  // 1正式包 3debug 
 
 }
 

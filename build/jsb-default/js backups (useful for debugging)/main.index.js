@@ -66,7 +66,8 @@ extends: cc.Component,
 properties: {},
 onLoad: function() {},
 start: function() {
-this.node.setContentSize(cc.sys.getSafeAreaRect());
+var e = cc.sys.getSafeAreaRect();
+this.node.setContentSize(cc.size(e.width, e.height));
 }
 });
 cc._RF.pop();

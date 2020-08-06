@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: Lee
+ * @Date: 2020-04-13 09:55:17
+ * @LastEditTime: 2020-08-06 10:36:59
+ */
 
 cc.Class({
     extends: cc.Component,
@@ -20,7 +27,12 @@ cc.Class({
     },
 
     start() {
-        this.node.setContentSize(cc.sys.getSafeAreaRect())
+        var safezize = cc.sys.getSafeAreaRect()
+        // // var screensize = cc.view.getVisibleSize()
+        // // cc.log("safezize",safezize.width,safezize.height)
+        // // cc.log("screensize",screensize.width,screensize.height)
+        // // var h = screensize.height-(screensize.height-safezize.height)*2
+        this.node.setContentSize(cc.size(safezize.width,safezize.height))
     },
 
 });
