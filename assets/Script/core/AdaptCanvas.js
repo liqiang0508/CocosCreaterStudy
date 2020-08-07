@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: Lee
+ * @Date: 2020-04-13 09:55:17
+ * @LastEditTime: 2020-08-07 09:02:00
+ */
 
 cc.Class({
     extends: cc.Component,
@@ -30,6 +37,7 @@ cc.Class({
             cc.Canvas.instance.fitWidth = true
 
         }
+    
        
     },
 

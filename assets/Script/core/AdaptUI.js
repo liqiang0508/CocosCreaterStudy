@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-13 09:55:17
- * @LastEditTime: 2020-08-06 17:31:37
+ * @LastEditTime: 2020-08-07 08:58:45
  */
 
 cc.Class({
@@ -32,7 +32,7 @@ cc.Class({
         // cc.log("safezize",safezize.width,safezize.height)
         // cc.log("screensize",screensize.width,screensize.height)
         // var h = screensize.height-(screensize.height-safezize.height)*2
-        this.node.setContentSize(cc.size(safezize.width,safezize.height))
+        // this.node.setContentSize(cc.size(safezize.width,safezize.height))
     },
 
 });
