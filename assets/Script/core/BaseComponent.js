@@ -68,7 +68,14 @@ cc.Class({
     },
 
     ExtAni(call)//退出动画
-    {
+    {   
+        if (this.AimType == 0) {//默认没动画
+        
+            if (call) {
+                call()
+            }
+        }
+
         if (this.AimType == 1) {//弹出方式
             var act1 = cc.spawn(cc.scaleTo(0.1, 0.7), cc.fadeTo(0.08, 0))
             var act2 = cc.callFunc(function () {

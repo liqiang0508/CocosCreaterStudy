@@ -192,7 +192,7 @@
       "array": [
         0,
         0,
-        418.2902700278839,
+        418.53383967269826,
         0,
         0,
         0,
@@ -5417,7 +5417,7 @@
       "width": 750,
       "height": 1334
     },
-    "_fitWidth": true,
+    "_fitWidth": false,
     "_fitHeight": false,
     "_id": "3ft+ibpoFC/79HORYwx8WM"
   },
