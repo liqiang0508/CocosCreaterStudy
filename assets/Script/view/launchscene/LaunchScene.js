@@ -175,11 +175,14 @@ cc.Class({
 
     },
     Reboot() {//重启
-        Global.gSchduleOnce(this, function () {
+        // Global.gSchduleOnce(this, function () {
 
-            VersionManager.ReStartGame()
+        //     VersionManager.ReStartGame()
 
-        }, 2)
+        // }, 2)
+        this.scheduleOnce(()=>{
+            Global.gReBoot()
+        },2)
 
     },
     goTestScene() {

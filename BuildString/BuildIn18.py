@@ -19,20 +19,21 @@ workbook = xlrd.open_workbook(xmlfile) #读取excel文件
 # Langue = []
 # Langue = workbook.sheets()[0].row(0)[1:]
 # print Langue
-print  workbook.sheets()[0].row(0)
+# print  workbook.sheets()[0].row(0)
 data = workbook.sheets()[0].row(0)  #读取第一行有几种语言
 Langue=[]
 for l in (data):
 	if l.value !='':
-		print  data.index(l),l.value.lower()
+		pass
+		# print  data.index(l),l.value.lower()
 	# if l.
 		Langue.append(l.value.lower())
 
 Langue = Langue[1:]#去掉第一个ID
 
-print "after",Langue 
+# print "after",Langue 
 for langue in Langue: #把语言存起来遍历生成xml文件
-	print "\ncurlangue==="+langue+"\n"
+	# print "\ncurlangue==="+langue+"\n"
 	if langue=='':
 		break
 	

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-07 15:30:49
- * @LastEditTime: 2020-08-07 17:50:05
+ * @LastEditTime: 2020-08-10 11:08:24
  */
 // Learn TypeScript:
 //  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
@@ -36,6 +36,7 @@ export default class Testts extends cc.Component {
         var b = a(66666666)
         cc.log(typeof(b))
         cc.log(this.addSum(1,2,3))
+        cc.log(cc.ENGINE_VERSION)
 
     }
 
