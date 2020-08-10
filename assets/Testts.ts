@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-07 15:30:49
- * @LastEditTime: 2020-08-07 17:06:47
+ * @LastEditTime: 2020-08-07 17:50:05
  */
 // Learn TypeScript:
 //  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
@@ -35,9 +35,20 @@ export default class Testts extends cc.Component {
         var a = (x:number):string=>{cc.log(x); return x.toString()}
         var b = a(66666666)
         cc.log(typeof(b))
+        cc.log(this.addSum(1,2,3))
 
     }
 
-   
+    addSum(...arg):number{
+        var total:number = 0
+        for (const n of arg) {
+            total = total+n
+        }
+        return total
+    }
+
+    Hello():cc.Vec2{
+        return cc.v2(0,0)
+    }
     // update (dt) {}
 }
