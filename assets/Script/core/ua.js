@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: Lee
+ * @Date: 2020-04-15 09:27:48
+ * @LastEditTime: 2020-08-10 15:56:44
+ */
 var ua = {}
 
 
@@ -34,24 +41,5 @@ ua.loadPrefabRes = function(filepath,call)
     })
 }
 
-//下载pic
-ua.loadTexture = function(url,call){
-
- 
-
-    cc.assetManager.loadRemote(url,{ext: '.png'}, function (error, texture) {
-        if (error) {
-            if (call) {
-                call(null)
-            }
-            return
-        }
-        else {
-            call(texture)
-        }
-
-    })
-    
-}
 
 window.ua = ua;

@@ -136,7 +136,7 @@ var Global = {
             if (jsb.fileUtils.isFileExist(localpath))//存在
             {
                 
-                ua.loadTexture(localpath,function(tex){
+                self.loadTexture(localpath,function(tex){
 
                     if(call){
                         call(tex)
@@ -147,7 +147,7 @@ var Global = {
 
                 self.GDownFile(url, function (data) {
                     self.GwriteDataToFile(data, localpath)
-                    ua.loadTexture(localpath, function (tex) {
+                    self.loadTexture(localpath, function (tex) {
 
                         if (call) {
                             call(tex)
@@ -179,6 +179,26 @@ var Global = {
             })
         }
 
+    },
+    
+    //下载pic
+    loadTexture:function(url,call){
+
+    
+
+        cc.assetManager.loadRemote(url,{ext: '.png'}, function (error, texture) {
+            if (error) {
+                if (call) {
+                    call(null)
+                }
+                return
+            }
+            else {
+                call(texture)
+            }
+
+        })
+        
     },
     //下载文件
     GDownFile:function (url, call) {
