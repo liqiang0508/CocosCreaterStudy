@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-12 11:09:31
- * @LastEditTime: 2020-08-12 14:58:40
+ * @LastEditTime: 2020-08-12 16:37:03
  */
 
 
@@ -47,15 +47,13 @@ cc.Class({
             {
                 return
             }
-            if (this.CliclCall)
+            if (this.ClickCall)
             {
-                this.CliclCall()
+                this.ClickCall()
             }
             this.node.removeFromParent()
             this.node.destroy()
         })
-
-        
     },
 
     onDestroy(){
@@ -63,7 +61,7 @@ cc.Class({
         this.node.targetOff(this)
     },
     setClickCall(call){
-        this.CliclCall = call
+        this.ClickCall = call
     },
     update (dt) {
       
