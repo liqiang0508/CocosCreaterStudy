@@ -297,6 +297,10 @@ cc.Class({
 
         })
 
+        var btn_bubble = cc.find("uipanel/btn_bubble", this.node)
+        ua.darkButton(btn_bubble,()=>{
+            cc.director.loadScene("bubbleScene")
+        })
         //bundle加载测试
         // btn_goslot
 
