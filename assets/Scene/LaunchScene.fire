@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        489.5885177238246,
+        489.3043531382079,
         0,
         0,
         0,
@@ -326,10 +326,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "98e14349-5a77-4ae5-8ba6-7e3bc5f92aea"
+      "__uuid__": "f0bad9ea-5b43-4d90-95a0-85bb3bf4bc99"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 2,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -338,7 +338,7 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": true,
+    "_isTrimmedMode": false,
     "_atlas": null,
     "_id": "0dOOlqthFJVZqqqTJsdJ3Q"
   },
@@ -612,7 +612,7 @@
     "node": {
       "__id__": 9
     },
-    "_enabled": true,
+    "_enabled": false,
     "_materials": [
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"

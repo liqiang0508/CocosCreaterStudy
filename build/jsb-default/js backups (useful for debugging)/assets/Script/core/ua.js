@@ -5,22 +5,15 @@ o && o(e);
 });
 },
 loadPrefabRes: function(e, o) {
-cc.resources.load(e, function(n, a) {
-if (n) {
+cc.resources.load(e, function(c, a) {
+if (c) {
 cc.error("Load error====" + e);
 o(void 0);
 } else {
-var c = cc.instantiate(a);
-o(c);
+var n = cc.instantiate(a);
+o(n);
 cc.loader.setAutoRelease(e, !0);
 }
-});
-},
-loadTexture: function(e, o) {
-cc.assetManager.loadRemote(e, {
-ext: ".png"
-}, function(e, n) {
-e ? o && o(null) : o(n);
 });
 }
 };
