@@ -267,6 +267,116 @@ cc._RF.pop();
 }, {
 KeypadDispatch: "KeypadDispatch"
 } ],
+BubbleScene: [ function(e, _, t) {
+"use strict";
+cc._RF.push(_, "056f1Xf3tBLE5KzIZKhSnU6", "BubbleScene");
+var T = e("BaseComponent");
+cc.Class({
+extends: T,
+properties: {},
+start: function() {
+window.GameState = 0;
+this.content = cc.find("content", this.node);
+this.scoreText = cc.find("uipanel/scoretxt", this.node);
+this.ball = cc.find("ball", this.node);
+this.schedule(this.CreateBubble, 1);
+this.Score = 0;
+var e = cc.find("uipanel/btn_pause", this.node);
+ua.darkButton(e, function() {
+0 == window.GameState ? window.GameState = 1 : window.GameState = 0;
+});
+},
+addScore: function() {
+this.Score = this.Score + 1;
+this.scoreText.getComponent(cc.Label).string = "Score:" + this.Score;
+cc.tween(this.scoreText).to(.08, {
+scale: 1.1
+}).to(.05, {
+scale: .8
+}).to(.05, {
+scale: 1
+}).start();
+},
+CreateBubble: function() {
+var e = this;
+if (1 != window.GameState) {
+var _ = cc.instantiate(this.ball);
+_.active = !0;
+_.getComponent("Bubble").setClickCall(function() {
+e.addScore();
+});
+this.content.addChild(_);
+_.x = 0;
+_.y = 0;
+}
+}
+});
+cc._RF.pop();
+}, {
+BaseComponent: "BaseComponent"
+} ],
+Bubble: [ function(e, _, t) {
+"use strict";
+cc._RF.push(_, "588d51xwI9Hoqya8KILiGGJ", "Bubble");
+cc.Class({
+extends: cc.Component,
+properties: {
+life: {
+type: cc.Integer,
+default: 5
+}
+},
+start: function() {
+var e = this;
+this.Speed = cc.v2(1e3 * Math.random() - 500, 1e3 * Math.random() - 500);
+this.ScreenSize = cc.view.getVisibleSize();
+ua.ClickNode(this.node, function() {
+if (1 != window.GameState) {
+e.CliclCall && e.CliclCall();
+e.node.removeFromParent();
+e.node.destroy();
+}
+});
+},
+onDestroy: function() {
+this.node.targetOff(this);
+},
+setClickCall: function(e) {
+this.CliclCall = e;
+},
+update: function(e) {
+if (1 != window.GameState) {
+this.node.x = this.node.x + this.Speed.x * e;
+this.node.y = this.node.y + this.Speed.y * e;
+if (this.node.x <= -(this.ScreenSize.width / 2 - this.node.width / 2)) {
+this.node.x = -(this.ScreenSize.width / 2 - this.node.width / 2);
+this.Speed.x = -this.Speed.x;
+this.life = this.life - 1;
+}
+if (this.node.x >= this.ScreenSize.width / 2 - this.node.width / 2) {
+this.node.x = this.ScreenSize.width / 2 - this.node.width / 2;
+this.Speed.x = -this.Speed.x;
+this.life = this.life - 1;
+}
+if (this.node.y <= -(this.ScreenSize.height / 2 - this.node.height / 2)) {
+this.node.y = -(this.ScreenSize.height / 2 - this.node.height / 2);
+this.Speed.y = -this.Speed.y;
+this.life = this.life - 1;
+}
+if (this.node.y >= this.ScreenSize.height / 2 - this.node.height / 2) {
+this.node.y = this.ScreenSize.height / 2 - this.node.height / 2;
+this.Speed.y = -this.Speed.y;
+this.life = this.life - 1;
+}
+if (0 == this.life) {
+this.node.removeFromParent();
+this.node.destroy();
+}
+}
+}
+});
+cc._RF.pop();
+}, {} ],
 CastTest: [ function(e, _, t) {
 "use strict";
 cc._RF.push(_, "27518R8AWdKgbFqyhaZ2dB+", "CastTest");
@@ -1784,7 +1894,7 @@ return t;
 case "utf8":
 case "utf-8":
 case void 0:
-return X(e).length;
+return z(e).length;
 
 case "ucs2":
 case "ucs-2":
@@ -1799,7 +1909,7 @@ case "base64":
 return J(e).length;
 
 default:
-if (T) return X(e).length;
+if (T) return z(e).length;
 _ = ("" + _).toLowerCase();
 T = !0;
 }
@@ -1994,10 +2104,10 @@ e[t + i] = o;
 return i;
 }
 function p(e, _, t, T) {
-return Z(X(_, e.length - t), e, t, T);
+return Z(z(_, e.length - t), e, t, T);
 }
 function f(e, _, t, T) {
-return Z(z(_), e, t, T);
+return Z(X(_), e, t, T);
 }
 function M(e, _, t, T) {
 return f(e, _, t, T);
@@ -2309,7 +2419,7 @@ this[_ + 1] = 255 & e;
 } else B(this, e, _, !1);
 return _ + 2;
 };
-function Y(e, _, t, T) {
+function b(e, _, t, T) {
 _ < 0 && (_ = 4294967295 + _ + 1);
 for (var S = 0, n = Math.min(e.length - t, 4); S < n; ++S) e[t + S] = _ >>> 8 * (T ? S : 3 - S) & 255;
 }
@@ -2322,7 +2432,7 @@ this[_ + 3] = e >>> 24;
 this[_ + 2] = e >>> 16;
 this[_ + 1] = e >>> 8;
 this[_] = 255 & e;
-} else Y(this, e, _, !0);
+} else b(this, e, _, !0);
 return _ + 4;
 };
 E.prototype.writeUInt32BE = function(e, _, t) {
@@ -2334,7 +2444,7 @@ this[_] = e >>> 24;
 this[_ + 1] = e >>> 16;
 this[_ + 2] = e >>> 8;
 this[_ + 3] = 255 & e;
-} else Y(this, e, _, !1);
+} else b(this, e, _, !1);
 return _ + 4;
 };
 E.prototype.writeIntLE = function(e, _, t, T) {
@@ -2405,7 +2515,7 @@ this[_] = 255 & e;
 this[_ + 1] = e >>> 8;
 this[_ + 2] = e >>> 16;
 this[_ + 3] = e >>> 24;
-} else Y(this, e, _, !0);
+} else b(this, e, _, !0);
 return _ + 4;
 };
 E.prototype.writeInt32BE = function(e, _, t) {
@@ -2418,15 +2528,15 @@ this[_] = e >>> 24;
 this[_ + 1] = e >>> 16;
 this[_ + 2] = e >>> 8;
 this[_ + 3] = 255 & e;
-} else Y(this, e, _, !1);
+} else b(this, e, _, !1);
 return _ + 4;
 };
-function b(e, _, t, T, S, n) {
+function Y(e, _, t, T, S, n) {
 if (t + T > e.length) throw new RangeError("Index out of range");
 if (t < 0) throw new RangeError("Index out of range");
 }
 function W(e, _, t, T, n) {
-n || b(e, 0, t, 4);
+n || Y(e, 0, t, 4);
 S.write(e, _, t, T, 23, 4);
 return t + 4;
 }
@@ -2437,7 +2547,7 @@ E.prototype.writeFloatBE = function(e, _, t) {
 return W(this, e, _, !1, t);
 };
 function K(e, _, t, T, n) {
-n || b(e, 0, t, 8);
+n || Y(e, 0, t, 8);
 S.write(e, _, t, T, 52, 8);
 return t + 8;
 }
@@ -2488,7 +2598,7 @@ t = void 0 === t ? this.length : t >>> 0;
 e || (e = 0);
 var n;
 if ("number" == typeof e) for (n = _; n < t; ++n) this[n] = e; else {
-var i = E.isBuffer(e) ? e : X(new E(e, T).toString()), o = i.length;
+var i = E.isBuffer(e) ? e : z(new E(e, T).toString()), o = i.length;
 for (n = 0; n < t - _; ++n) this[n + _] = i[n % o];
 }
 return this;
@@ -2505,7 +2615,7 @@ return e.trim ? e.trim() : e.replace(/^\s+|\s+$/g, "");
 function j(e) {
 return e < 16 ? "0" + e.toString(16) : e.toString(16);
 }
-function X(e, _) {
+function z(e, _) {
 _ = _ || Infinity;
 for (var t, T = e.length, S = null, n = [], i = 0; i < T; ++i) {
 if ((t = e.charCodeAt(i)) > 55295 && t < 57344) {
@@ -2546,7 +2656,7 @@ n.push(t >> 18 | 240, t >> 12 & 63 | 128, t >> 6 & 63 | 128, 63 & t | 128);
 }
 return n;
 }
-function z(e) {
+function X(e) {
 for (var _ = [], t = 0; t < e.length; ++t) _.push(255 & e.charCodeAt(t));
 return _;
 }
@@ -3994,8 +4104,12 @@ e.setMaterial(0, t);
 }
 L.isGray = !L.isGray;
 });
-var m = cc.find("uipanel/btn_loadbundle", this.node);
+var m = cc.find("uipanel/btn_bubble", this.node);
 ua.darkButton(m, function() {
+cc.director.loadScene("bubbleScene");
+});
+var g = cc.find("uipanel/btn_loadbundle", this.node);
+ua.darkButton(g, function() {
 var e = cc.assetManager.getBundle("Testbundle");
 if (e) {
 console.log("have already loaded bundle.");
@@ -4018,34 +4132,34 @@ e ? console.log("load bundle scene error") : cc.director.runScene(_);
 });
 });
 });
-var g = cc.find("uipanel/btn_goslot", this.node);
-ua.darkButton(g, function() {
+var U = cc.find("uipanel/btn_goslot", this.node);
+ua.darkButton(U, function() {
 cc.director.loadScene("SlotScene");
 });
 cc.find("content/sp1", this.node).getComponent(cc.RenderComponent).getMaterial(0);
-var U = cc.find("garpgicsnode", this.node), H = U.getComponent(cc.Graphics);
-U.on(cc.Node.EventType.TOUCH_START, function(e) {
+var H = cc.find("garpgicsnode", this.node), y = H.getComponent(cc.Graphics);
+H.on(cc.Node.EventType.TOUCH_START, function(e) {
 var _ = e.getTouches(), t = _[0].getLocation();
 _[0].getLocationInView();
 t = R.parent.convertToNodeSpaceAR(t);
 var T = o.GgetTwoV2Angle(R.getPosition(), t);
 R.angle = -T;
-H.moveTo(t.x, t.y);
+y.moveTo(t.x, t.y);
 });
-U.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
+H.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
 var _ = e.getTouches()[0].getLocation();
 _ = R.parent.convertToNodeSpaceAR(_);
 var t = o.GgetTwoV2Angle(R.getPosition(), _);
 R.angle = -t;
-H.lineTo(_.x, _.y);
-H.stroke();
+y.lineTo(_.x, _.y);
+y.stroke();
 });
-var y = cc.view.getVisibleSize(), F = cc.v2(-y.width / 2, y.height / 2), G = cc.v2(y.width / 2, -y.height / 2), w = o.GgetTwoV2Angle(F, G);
-cc.find("uipanel/New Sprite", this.node).angle = -w;
-var v = cc.view.getVisibleSize();
-(U = U.getComponent(cc.Graphics)).moveTo(-v.width / 2, v.height / 2);
-U.quadraticCurveTo(0, 0, v.width / 2, v.height / 2);
-U.stroke();
+var F = cc.view.getVisibleSize(), G = cc.v2(-F.width / 2, F.height / 2), w = cc.v2(F.width / 2, -F.height / 2), v = o.GgetTwoV2Angle(G, w);
+cc.find("uipanel/New Sprite", this.node).angle = -v;
+var B = cc.view.getVisibleSize();
+(H = H.getComponent(cc.Graphics)).moveTo(-B.width / 2, B.height / 2);
+H.quadraticCurveTo(0, 0, B.width / 2, B.height / 2);
+H.stroke();
 },
 startMove: function() {
 var e = this, _ = (cc.find("garpgicsnode", this.node), cc.find("uipanel/btn_goslot", this.node)), t = cc.view.getVisibleSize(), T = [ cc.v2(-t.width / 2, t.height / 2), cc.v2(0, 0), cc.v2(t.width / 2, t.height / 2) ], S = cc.bezierTo(2, T);
@@ -7699,4 +7813,4 @@ STR_MESS_EVALUATION_CONTENT: "因为您对于我们游戏的支持与评价，�
 };
 cc._RF.pop();
 }, {} ]
-}, {}, [ "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "Save", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "WsTest", "Testts", "LabelLocalized", "ch", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);
+}, {}, [ "Bubble", "BubbleScene", "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "Save", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "WsTest", "Testts", "LabelLocalized", "ch", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);

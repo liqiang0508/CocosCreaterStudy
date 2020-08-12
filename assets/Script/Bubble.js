@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-12 11:09:31
- * @LastEditTime: 2020-08-12 14:31:12
+ * @LastEditTime: 2020-08-12 14:58:40
  */
 
 
@@ -28,7 +28,7 @@ cc.Class({
         // },
         life:{
 
-            type:Number,
+            type:cc.Integer,
             default:5
         }
     },
@@ -42,7 +42,11 @@ cc.Class({
         this.Speed = cc.v2(Math.random()*1000-500,Math.random()*1000-500)
         this.ScreenSize = cc.view.getVisibleSize()
 
-        ua.darkButton(this.node,()=>{
+        ua.ClickNode(this.node,()=>{
+            if (window.GameState==1)//暂停
+            {
+                return
+            }
             if (this.CliclCall)
             {
                 this.CliclCall()
@@ -54,6 +58,10 @@ cc.Class({
         
     },
 
+    onDestroy(){
+
+        this.node.targetOff(this)
+    },
     setClickCall(call){
         this.CliclCall = call
     },
@@ -61,7 +69,6 @@ cc.Class({
       
         if (window.GameState==1)//暂停
         {
-            // cc.log("return ")
             return
         }
         // cc.log("update")

@@ -5,9 +5,9 @@
  * @Date: 2020-08-12 13:56:57
  * @LastEditTime: 2020-08-12 14:32:38
  */
-
+var BaseComponent = require("BaseComponent")
 cc.Class({
-    extends: cc.Component,
+    extends:BaseComponent,
 
     properties: {
         // foo: {
