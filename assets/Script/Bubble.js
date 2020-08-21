@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-12 11:09:31
- * @LastEditTime: 2020-08-12 16:37:03
+ * @LastEditTime: 2020-08-14 09:30:01
  */
 
 
@@ -26,7 +26,7 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        life:{
+        life:{//泡泡生命，碰撞几次屏幕边缘 就销毁
 
             type:cc.Integer,
             default:5
