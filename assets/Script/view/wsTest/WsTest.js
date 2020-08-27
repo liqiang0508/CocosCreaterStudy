@@ -3,9 +3,9 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-07-31 09:11:45
- * @LastEditTime: 2020-07-31 14:36:04
+ * @LastEditTime: 2020-08-27 10:37:02
  */ 
-
+let Ws = require("Ws")
 cc.Class({
     extends: cc.Component,
 
@@ -33,41 +33,51 @@ cc.Class({
 
     start () {
         var self  = this
-        this._wsiSendBinary = new WebSocket("ws://127.0.0.1:9001");
-        this._wsiSendBinary.binaryType = "arraybuffer";
-        this._wsiSendBinary.onopen = function(evt) {
-            cc.log("websocket  open")
-           
-            self._wsiSendBinary.send(JSON.stringify({ "funcName":"auth","uid": Number(new Date())}))
-            self._wsiSendBinary.send(JSON.stringify({ "funcName":"enterroom","roomid": 444}))
-        };
-
-        this._wsiSendBinary.onmessage = function(evt) {
-            cc.log("websocket  onmessage",evt.data)
-            var data = JSON.parse(evt.data)
-            var funcName = data["funcName"]
-            if (funcName == "chatText")
-            {
-                self.addText(data["txt"])
-            }
-
-
-        };
-
-        this._wsiSendBinary.onerror = function(evt) {
-            cc.log("websocket  onerror")
-        };
-
-        this._wsiSendBinary.onclose = function(evt) {
-            cc.log("websocket  onclose")
-        }
-        
-        var sendbtn = cc.find("uipanel/sendbtn",this.node)
-        ua.darkButton(sendbtn,function(event){
-            cc.log("send")
-            
-            self.sendText()
+        var ws_obj = new Ws()
+        ws_obj.connect("127.0.0.1",9001)
+        ws_obj.setOpenCall((evt)=>{
+            cc.log("连接成功")
         })
+
+        ws_obj.setOnMessageCall((evt)=>{
+            cc.log("消息来了")
+        })
+        
+        // this._wsiSendBinary = new WebSocket("ws://127.0.0.1:9001");
+        // this._wsiSendBinary.binaryType = "arraybuffer";
+        // this._wsiSendBinary.onopen = function(evt) {
+        //     cc.log("websocket  open")
+           
+        //     self._wsiSendBinary.send(JSON.stringify({ "funcName":"auth","uid": Number(new Date())}))
+        //     self._wsiSendBinary.send(JSON.stringify({ "funcName":"enterroom","roomid": 444}))
+        // };
+
+        // this._wsiSendBinary.onmessage = function(evt) {
+        //     cc.log("websocket  onmessage",evt.data)
+        //     var data = JSON.parse(evt.data)
+        //     var funcName = data["funcName"]
+        //     if (funcName == "chatText")
+        //     {
+        //         self.addText(data["txt"])
+        //     }
+
+
+        // };
+
+        // this._wsiSendBinary.onerror = function(evt) {
+        //     cc.log("websocket  onerror")
+        // };
+
+        // this._wsiSendBinary.onclose = function(evt) {
+        //     cc.log("websocket  onclose")
+        // }
+        
+        // var sendbtn = cc.find("uipanel/sendbtn",this.node)
+        // ua.darkButton(sendbtn,function(event){
+        //     cc.log("send")
+            
+        //     self.sendText()
+        // })
     },
 
     sendText(){

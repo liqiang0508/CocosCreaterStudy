@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-13 09:55:17
- * @LastEditTime: 2020-08-07 09:02:00
+ * @LastEditTime: 2020-08-27 11:13:36
  */
 
 cc.Class({
@@ -16,6 +16,18 @@ cc.Class({
     // Canvas的适配
 
     onLoad () {
+        
+        this.resize()
+    
+        cc.find('Canvas').on('resize',this.resize.bind(this));
+       
+    },
+
+    start () {
+
+    },
+
+    resize () {
         var designSize = cc.view.getDesignResolutionSize()//设计尺寸
         var realSize = cc.view.getVisibleSize()//可见尺寸
 
@@ -37,12 +49,6 @@ cc.Class({
             cc.Canvas.instance.fitWidth = true
 
         }
-    
-       
-    },
-
-    start () {
-
-    },
+    }
 
 });

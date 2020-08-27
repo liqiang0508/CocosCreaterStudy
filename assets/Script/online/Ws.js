@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-26 13:57:33
- * @LastEditTime: 2020-08-26 14:21:37
+ * @LastEditTime: 2020-08-26 14:24:24
  */
 // ws基础类
 cc.Class({
@@ -62,11 +62,11 @@ cc.Class({
 
     },
 
-    send(data){
-        if (this._wsiSendBinary&&this._wsiSendBinary.readyState === WebSocket.OPEN) {
+    send(data) {
+        if (this._wsiSendBinary && this._wsiSendBinary.readyState === WebSocket.OPEN) {
 
             this._wsiSendBinary.send(data)
-        }else{
+        } else {
             cc.log("WS 断开连接")
         }
     }
