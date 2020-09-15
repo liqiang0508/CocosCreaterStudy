@@ -387,6 +387,12 @@ cc.Class({
 
             garpgics.moveTo(touchLoc.x,touchLoc.y)
 
+            // 2点的向量
+            var v = sp2.getPosition().subSelf(touchLoc).normalizeSelf()
+            cc.log("v===",v)
+
+
+
         })
 
         garpgicsnode.on(cc.Node.EventType.TOUCH_MOVE, function (event) {

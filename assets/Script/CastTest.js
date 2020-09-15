@@ -54,21 +54,34 @@ cc.Class({
         var self = this
         this.img = cc.find("img",this.node)
         this.img.setPosition(cc.v2(0,0))
-        this.img.getComponent(cc.RigidBody).linearVelocity = cc.v2(0,-200)
+        // this.img.getComponent(cc.RigidBody).linearVelocity = cc.v2(0,-200)
 
         window.EventManager.on(this.node,"gameover",function(){
             console.log("game over====")
         })
+        var firebtn = cc.find("uipanel/firebtn",this.node)
+        ua.darkButton(firebtn,(event)=>{
+            cc.log("firebtn*****vec",self.forceVec)
+            var force = cc.v2(self.forceVec.x,self.forceVec.y).mul(600000)
+            cc.log("firebtn*****force",force)
+            this.img.getComponent(cc.RigidBody).applyForceToCenter(force)
+        })
         ua.darkButton(this.node,function(event){
             
-            var node = cc.instantiate(self.img)
-            self.node.addChild(node)
+            // var node = cc.instantiate(self.img)
+            // self.node.addChild(node)
 
             var touches = event.getTouches();
             var touchLoc = touches[0].getLocation();//opengL坐标系。 原点在左下角
-            var touch2 = touches[0].getLocationInView();//屏幕坐标系  原点在左上角
-            touchLoc = node.parent.convertToNodeSpaceAR(touchLoc);
-            node.setPosition(touchLoc)
+            // var touch2 = touches[0].getLocationInView();//屏幕坐标系  原点在左上角
+            // touchLoc = node.parent.convertToNodeSpaceAR(touchLoc);
+            // node.setPosition(touchLoc)
+            touchLoc =  self.img.parent.convertToNodeSpaceAR(touchLoc);
+            var v = self.img.getPosition().subSelf(touchLoc).normalizeSelf()
+            cc.log("v===",v)
+            self.forceVec = v
+
+            
            
         })
 
