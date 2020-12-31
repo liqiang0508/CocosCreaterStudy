@@ -36,7 +36,7 @@ cc.Class({
     },
 
     initView(data) {
-        var self = this
+        // var self = this
         this.tiptext.getComponent(cc.Label).string = data["tips"]
         var items = data["items"]
         for (let index in items) {
@@ -47,12 +47,19 @@ cc.Class({
             var textNode = item.getChildByName("text")
             textNode.getComponent(cc.Label).string = items[index]["text"]
 
-            ua.darkButton(item, function () {
+            // ua.darkButton(item, function () {
                
-                if (self.call) {
-                    self.call(index,self)
+            //     if (self.call) {
+            //         self.call(index,self)
+            //     }
+            //     // self.bClose()
+            // })
+            ua.darkButton(item,  ()=> {
+               
+                if (this.call) {
+                    this.call(index,this)
                 }
-                // self.bClose()
+               
             })
         };
 

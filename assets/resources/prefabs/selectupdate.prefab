@@ -110,9 +110,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 220,
-      "g": 132,
-      "b": 68,
+      "r": 121,
+      "g": 97,
+      "b": 80,
       "a": 255
     },
     "_contentSize": {
@@ -233,7 +233,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "热更新地址选择",
     "_N$string": "热更新地址选择",
     "_fontSize": 30,
@@ -293,9 +292,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 189,
-      "g": 107,
-      "b": 93,
+      "r": 141,
+      "g": 84,
+      "b": 74,
       "a": 255
     },
     "_contentSize": {
@@ -340,7 +339,7 @@
   {
     "__type__": "cc.Node",
     "_name": "scrollBar",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 6
     },
@@ -1033,7 +1032,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "",
     "_N$string": "",
     "_fontSize": 35,
@@ -1178,7 +1176,7 @@
     "asset": {
       "__uuid__": "5c4c3845-cbd2-455e-b416-5eac0d17c93e"
     },
-    "fileId": "8bYSILn1ZNWIamQIW6AlIX",
+    "fileId": "",
     "sync": false
   }
 ]

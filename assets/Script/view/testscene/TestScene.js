@@ -327,6 +327,7 @@ cc.Class({
             else {
                 Global.gLoadBUndle('http://192.168.65.172/hotupversion/remote/Testbundle', {  onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
                     if (err) {
+                        console.log("Load bundle error")
                         return console.error(err);
                     }
                     console.log('load bundle successfully.', bundle)
