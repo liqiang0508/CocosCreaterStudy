@@ -116,7 +116,7 @@ var Global = {
     },
     //load图片  web直接load  原生先缓存在本地
     GloadPic: function (url, call) {
-        var self = this
+
         if (cc.sys.isNative) //原生先下载
         {
             var picPath = jsb.fileUtils.getWritablePath() + "PicTemp/"
@@ -126,7 +126,7 @@ var Global = {
             if (jsb.fileUtils.isFileExist(localpath))//存在
             {
 
-                self.loadTexture(localpath, function (tex) {
+                this.loadTexture(localpath, function (tex) {
 
                     if (call) {
                         call(tex)
@@ -135,9 +135,9 @@ var Global = {
             }
             else {//不存在
 
-                self.GDownFile(url, function (data) {
-                    self.GwriteDataToFile(data, localpath)
-                    self.loadTexture(localpath, function (tex) {
+                this.GDownFile(url,  (data)=> {
+                    this.GwriteDataToFile(data, localpath)
+                    this.loadTexture(localpath, function (tex) {
 
                         if (call) {
                             call(tex)

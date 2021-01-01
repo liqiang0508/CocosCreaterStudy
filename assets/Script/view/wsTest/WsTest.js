@@ -10,29 +10,14 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+       
     },
 
-    // LIFE-CYCLE CALLBACKS:
+    
 
     // onLoad () {},
 
     start () {
-        var self  = this
         var ws_obj = new Ws()
         ws_obj.connect("127.0.0.1",9001)
         ws_obj.setOpenCall((evt)=>{
@@ -43,41 +28,7 @@ cc.Class({
             cc.log("消息来了")
         })
         
-        // this._wsiSendBinary = new WebSocket("ws://127.0.0.1:9001");
-        // this._wsiSendBinary.binaryType = "arraybuffer";
-        // this._wsiSendBinary.onopen = function(evt) {
-        //     cc.log("websocket  open")
-           
-        //     self._wsiSendBinary.send(JSON.stringify({ "funcName":"auth","uid": Number(new Date())}))
-        //     self._wsiSendBinary.send(JSON.stringify({ "funcName":"enterroom","roomid": 444}))
-        // };
-
-        // this._wsiSendBinary.onmessage = function(evt) {
-        //     cc.log("websocket  onmessage",evt.data)
-        //     var data = JSON.parse(evt.data)
-        //     var funcName = data["funcName"]
-        //     if (funcName == "chatText")
-        //     {
-        //         self.addText(data["txt"])
-        //     }
-
-
-        // };
-
-        // this._wsiSendBinary.onerror = function(evt) {
-        //     cc.log("websocket  onerror")
-        // };
-
-        // this._wsiSendBinary.onclose = function(evt) {
-        //     cc.log("websocket  onclose")
-        // }
         
-        // var sendbtn = cc.find("uipanel/sendbtn",this.node)
-        // ua.darkButton(sendbtn,function(event){
-        //     cc.log("send")
-            
-        //     self.sendText()
-        // })
     },
 
     sendText(){

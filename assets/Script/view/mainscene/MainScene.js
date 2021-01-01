@@ -56,21 +56,7 @@ cc.Class({
     onLoad: function () {
        
 
-        // this.num = 0;
-        // var self = this
-        // this.label.string = this.text;
-        // var Text = this.node.getChildByName("label")
-        // // Text.getComponent(cc.Label).string = "LoL"
-
-        // this.call = function () {
-        //     self.num = self.num + 1;
-        //     console.log("delay**" + self.num)
-        //     if (self.num == 5) {
-        //         console.log("gUnSchduleFun**" + self.num)
-        //         Global.gUnSchduleFun(self,self.call)
-        //     }
-        // }
-        // Global.gSchduleFun(this, this.call, 1)
+      
 
 
     },

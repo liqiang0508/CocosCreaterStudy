@@ -29,7 +29,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        var self = this
+     
 
         this.Slots = new Array()
         for(let i =1;i<=3;i++)
@@ -39,11 +39,11 @@ cc.Class({
         }
         var btn_spin = cc.find("UI/btn_spin",this.node)
      
-        ua.darkButton(btn_spin,function(){
+        ua.darkButton(btn_spin,()=>{
             cc.log("Start spin")
           
-            for (var i = 0;i<self.Slots.length;i++) {
-                let slot = self.Slots[i]
+            for (var i = 0;i<this.Slots.length;i++) {
+                let slot = this.Slots[i]
               
                 let slotcompoent = slot.getComponent("Slot")
                 if (slotcompoent) {

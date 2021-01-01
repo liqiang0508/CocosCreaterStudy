@@ -12,7 +12,6 @@ cc.Class({
 
     
     showWiat(b){//显示菊花转之类的
-        var self = this
         if(b)
         {
             ua.loadPrefabRes("prefabs/rotateLoading",function(node)
@@ -54,12 +53,12 @@ cc.Class({
 
     bClose()
     {   
-        var self = this
-        this.ExtAni(function(){
-            if(self.node)
+       
+        this.ExtAni(()=>{
+            if(this.node)
             {
-                self.node.destroy()
-                self.node.removeFromParent()
+                this.node.destroy()
+                this.node.removeFromParent()
                
             }
 

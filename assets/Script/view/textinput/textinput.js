@@ -16,16 +16,16 @@ cc.Class({
     },
     onLoad () {
         this._super()
-        var self = this
+  
         var btndone = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("btn_done")
-        ua.darkButton(btndone,function(){
-            if (self.call)
+        ua.darkButton(btndone,()=>{
+            if (this.call)
             {
-                var text = self.Editbox.getComponent(cc.EditBox).string
+                var text = this.Editbox.getComponent(cc.EditBox).string
                 window.Save.set("LastHoturl",text)//记录上次输入的url
-                self.call(text)
+                this.call(text)
             }
-            self.bClose()
+            this.bClose()
         })
 
         this.Editbox = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("EditBox")

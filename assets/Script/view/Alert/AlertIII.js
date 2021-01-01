@@ -4,21 +4,6 @@ cc.Class({
     extends: BaseComponent,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
         AimType:{
             default:1,
             override:true
@@ -30,7 +15,7 @@ cc.Class({
     },
     onLoad () {
         this._super()
-        var self = this
+        
         
         var text = this.node.getChildByName("bg").getChildByName("text")
         text.getComponent(cc.Label).string = "LOL"
@@ -43,17 +28,17 @@ cc.Class({
         this.btn_no = btn_no
         this.btn_middle = btn_middle
 
-        ua.darkButton(btn_middle, function () {
-            self.BtnCall(2)
-            self.bClose()
+        ua.darkButton(btn_middle,  () =>{
+            this.BtnCall(2)
+            this.bClose()
         })
-        ua.darkButton(btnyes, function () {
-            self.BtnCall(1)
-            self.bClose()
+        ua.darkButton(btnyes, () =>{
+            this.BtnCall(1)
+            this.bClose()
         })
-        ua.darkButton(btn_no, function () {
-            self.BtnCall(0)
-            self.bClose()
+        ua.darkButton(btn_no, () =>{
+            this.BtnCall(0)
+            this.bClose()
 
         })
 
@@ -134,15 +119,7 @@ cc.Class({
 
     },
     
-    // bClose()
-    // {
-    //     if(this.node)
-    //     {
-    //         this.node.destroy()
-    //         this.node.removeFromParent()
-           
-    //     }
-    // },
+    
 
     start () {
 
