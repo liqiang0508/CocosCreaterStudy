@@ -25,14 +25,14 @@ cc.Class({
 
   
     start() {
-        // var sp = cc.find("New Sprite", this.node)
+        
         var searchPaths = "searchPaths--"
         if (cc && cc.sys.isNative) {
             searchPaths = jsb.fileUtils.getSearchPaths();
         }
 
         var self = this
-        console.log("test scene  strart", searchPaths)
+       
 
         // 坐标转换
         var sp2 = cc.find("uipanel/New Sprite", this.node)
@@ -80,43 +80,43 @@ cc.Class({
         });
 
             //ip5 640*1136
-        console.log("getDevicePixelRatio",cc.view.getDevicePixelRatio())
-        console.log("winSize", cc.winSize.width,cc.winSize.height)
-        console.log("getDesignResolutionSize", cc.view.getDesignResolutionSize().width,cc.view.getDesignResolutionSize().height)
-        console.log("getFrameSize", cc.view.getFrameSize().width,cc.view.getFrameSize().height)
-        console.log("getVisibleSizeInPixel", cc.view.getVisibleSizeInPixel().width, cc.view.getVisibleSizeInPixel().height)
-        console.log("getVisibleSize", cc.view.getVisibleSize().width, cc.view.getVisibleSize().height)
-        console.log("getCanvasSize", cc.view.getCanvasSize().width,cc.view.getCanvasSize().height)
-        console.log("cc.sys.getSafeAreaRect()", cc.sys.getSafeAreaRect())
+        // console.log("getDevicePixelRatio",cc.view.getDevicePixelRatio())
+        // console.log("winSize", cc.winSize.width,cc.winSize.height)
+        // console.log("getDesignResolutionSize", cc.view.getDesignResolutionSize().width,cc.view.getDesignResolutionSize().height)
+        // console.log("getFrameSize", cc.view.getFrameSize().width,cc.view.getFrameSize().height)
+        // console.log("getVisibleSizeInPixel", cc.view.getVisibleSizeInPixel().width, cc.view.getVisibleSizeInPixel().height)
+        // console.log("getVisibleSize", cc.view.getVisibleSize().width, cc.view.getVisibleSize().height)
+        // console.log("getCanvasSize", cc.view.getCanvasSize().width,cc.view.getCanvasSize().height)
+        // console.log("cc.sys.getSafeAreaRect()", cc.sys.getSafeAreaRect())
 
 
 
         //Package
-        var data = Package.biuldReq("Hello", { a: 1, c: 2 })
+        // var data = Package.biuldReq("Hello", { a: 1, c: 2 })
 
-        //xxtea
-        var str = "Hello World! 你好，中国🇨🇳-----！";
-        var key = "1234567890";
-        var encrypt_data = xxtea.encryptToString(str, key);
-        console.log("encrypt_data=", encrypt_data);
-        var decrypt_data = xxtea.decryptToString(encrypt_data, key);
-        console.log("decrypt_data==", decrypt_data);
+        // //xxtea
+        // var str = "Hello World! 你好，中国🇨🇳-----！";
+        // var key = "1234567890";
+        // var encrypt_data = xxtea.encryptToString(str, key);
+        // console.log("encrypt_data=", encrypt_data);
+        // var decrypt_data = xxtea.decryptToString(encrypt_data, key);
+        // console.log("decrypt_data==", decrypt_data);
 
         //some test
-        cc.log("window.DISTRIBUTE_CHANNEL ==", window.DISTRIBUTE_CHANNEL, cc.sys.isNative, cc.sys.os)
-        i18n.init("zh")
-        cc.log("i18n===", i18n.t("STR_COREPLAY_BUTTON_FOLD"))
+        // cc.log("window.DISTRIBUTE_CHANNEL ==", window.DISTRIBUTE_CHANNEL, cc.sys.isNative, cc.sys.os)
+        // i18n.init("zh")
+        // cc.log("i18n===", i18n.t("STR_COREPLAY_BUTTON_FOLD"))
 
-        var ConstantItem = require("ConstantItem")
-        cc.log(ConstantItem[1])
+        // var ConstantItem = require("ConstantItem")
+        // cc.log(ConstantItem[1])
 
-        var timeStamp = new Date().getTime()//时间戳
+        // var timeStamp = new Date().getTime()//时间戳
 
-        cc.log("timeStamp=====", timeStamp, new Date())
-        // cc.log("timeStamp=====",timeStamp,new Date().toLocaleString())
-        // cc.log("timeStamp=====",timeStamp,new Date().toLocaleTimeString())
+        // cc.log("timeStamp=====", timeStamp, new Date())
+        // // cc.log("timeStamp=====",timeStamp,new Date().toLocaleString())
+        // // cc.log("timeStamp=====",timeStamp,new Date().toLocaleTimeString())
 
-        cc.log("DevicesInfo===id", DevicesInfo.getDevicesID(), cc.sys.os)
+        // cc.log("DevicesInfo===id", DevicesInfo.getDevicesID(), cc.sys.os)
 
         //show Alert
         var showAlertIII = cc.find("uipanel/btn_Alert", this.node)

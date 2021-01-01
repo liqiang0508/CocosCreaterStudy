@@ -44,7 +44,7 @@ ua.loadPrefabRes = function(filepath,call)
     cc.resources.load(filepath, function (err, prefab) {
         if(err)
         {
-            cc.error("Load error===="+filepath)
+            cc.error("ua.loadPrefabRes error===="+filepath)
             call(undefined)
         }
         else

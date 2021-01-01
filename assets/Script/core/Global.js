@@ -328,7 +328,7 @@ var Global = {
 
         cc.game.restart()
     },
-    Ghotupdateurl:"http://192.168.65.172/hotupversion/configrelease", // 热更新地址
+    Ghotupdateurl:"xxx", // 热更新地址
     GgameType:3  // 1正式包 3debug 
 
 }
@@ -345,3 +345,4 @@ if(Global.GgameType==3)//debug包
     Global.isDebugTest = true
 }
 module.exports = Global;
+// window.Global = Global;

@@ -28,15 +28,15 @@ export default class Testts extends cc.Component {
     // onLoad () {}
 
     start () {
-        cc.log("test ts Start"+this.text)
-        var data = xxtea.encryptToString("adadjaojdaj","poker")
-        console.log("encrypt_data=", data);
+        // cc.log("test ts Start"+this.text)
+        // var data = xxtea.encryptToString("adadjaojdaj","poker")
+        // console.log("encrypt_data=", data);
 
-        var a = (x:number):string=>{cc.log(x); return x.toString()}
-        var b = a(66666666)
-        cc.log(typeof(b))
-        cc.log(this.addSum(1,2,3))
-        cc.log(cc.ENGINE_VERSION)
+        // var a = (x:number):string=>{cc.log(x); return x.toString()}
+        // var b = a(66666666)
+        // cc.log(typeof(b))
+        // cc.log(this.addSum(1,2,3))
+        // cc.log(cc.ENGINE_VERSION)
 
     }
 

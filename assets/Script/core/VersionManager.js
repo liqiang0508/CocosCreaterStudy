@@ -56,21 +56,21 @@ var VersionManager = {
     },
     //下载远程md5
     downRemoteMd5: function (url) {
-        var self = this
+        
         cc.log("下载远程md5,", url)
 
-        HttpHelper.sendHttpRequest(url, function (data) {
+        HttpHelper.sendHttpRequest(url,  (data)=> {
             if (data == null) {
-                self.callFunWithState(2, "获取MD5配置文件失败")
+                this.callFunWithState(2, "获取MD5配置文件失败")
                 return
             }
             if(!Global.isjson(data))
             {
-                self.callFunWithState(11, "远程md5-json不合法")
+                this.callFunWithState(11, "远程md5-json不合法")
                 return 
             }
-            self.remoteMd5Cfg = JSON.parse(data)
-            self.comparefiles()
+            this.remoteMd5Cfg = JSON.parse(data)
+            this.comparefiles()
 
         })
 
@@ -263,7 +263,7 @@ var VersionManager = {
     callFunWithState: function (state, desc,url) {
         
         if (this.downcall) {
-            console.log(desc+":"+state)
+            console.log(desc+": 状态码="+state)
             this.downcall(state,url)
         }
     },
@@ -399,7 +399,7 @@ var VersionManager = {
                 }
                 else//是测试玩家 并且本地版本和远程版本号一样
                 {
-                    self.callFunWithState(0, "测试玩家版本和远程一样")
+                    self.callFunWithState(0, "测试玩家版本和远程一样，不用更新")
                     return
                 }
                 

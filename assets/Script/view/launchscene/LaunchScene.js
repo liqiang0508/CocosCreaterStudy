@@ -42,7 +42,6 @@ cc.Class({
         
         cc.log("渠道号===", window.DISTRIBUTE_CHANNEL)
         cc.sys.localStorage.setItem('debugId', 724001)
-        var self = this
         this.count = 0
 
         if (cc && cc.sys.isNative) {//native 
@@ -51,7 +50,7 @@ cc.Class({
             {
                 // cc.log("模拟器不更新")
                 // VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
-                // self.goLoginScene()
+                // this.goLoginScene()
                 // return
             }
             if (Global.isDebugTest){//debug选择热更新地址
@@ -62,25 +61,25 @@ cc.Class({
                         { "text": "手动输入热更新地址" }
                     ]
                 }
-                Global.ShowChooseUpdate(data, function (index,layer) {
+                Global.ShowChooseUpdate(data,  (index,layer)=>{
         
                     console.log("点击了", index)
                     if (index == 0)
                     {
-                        self.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
+                        this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
                         layer.bClose()
                     }
                     if (index == 1)//手动输入地址
                     {
-                        Global.ShowTextInput(function(text){
+                        Global.ShowTextInput((text)=>{
                             if(text.length>0)
                             {
                                 Global.Ghotupdateurl = text
-                                self.goCheckUpdate(text)//热更新检查
+                                this.goCheckUpdate(text)//热更新检查
                                 layer.bClose()
                             }
                             else{
-                                console.log("no text")
+                                console.log("请输入自定义的热更新地址")
                             }
                            
                         })
@@ -90,9 +89,9 @@ cc.Class({
             }
             else{//正式不选择
 
-                Global.gSchduleOnce(this, function () {
+                Global.gSchduleOnce(this,  ()=> {
 
-                    self.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
+                    this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
     
                 }, 3)
             }
@@ -103,9 +102,9 @@ cc.Class({
         }
         else {//web
             VersionManager.getH5ScriptVersion()//直接读取本地配置版本号 便于登录界面右下角展示
-            Global.gSchduleOnce(this, function () {
+            Global.gSchduleOnce(this,  ()=> {
 
-                self.goLoginScene()
+                this.goLoginScene()
 
             }, 0.1)
 
@@ -116,7 +115,7 @@ cc.Class({
     },
 
     goCheckUpdate(url) {//检查热更新
-        var self = this
+      
 
         // stateCode
         // 0:不用更新 
@@ -132,53 +131,47 @@ cc.Class({
         // 10:远程配置json不合法
         // 11:远程md5-json不合法
         // 100 :更新成功
-        VersionManager.checkUpdate(url, function (code, url) {
+        VersionManager.checkUpdate(url,  (code, shopUrl)=> {
 
             if (code == 0)//不用更新
             {
-                self.goLoginScene()
+                this.goLoginScene()
             }
             else if (code == 100) {//热更新成功
 
-                self.Reboot()
+                this.Reboot()
             }
             else if (code == 6 || code == 7) {//不支持的热更新的版本号,渠道号  ，直接进登录界面
 
-                self.goLoginScene()
+                this.goLoginScene()
             }
-            else if (code == 8)//强制更新
+            else if (code == 8)//强制更新 打开商店链接
             {
-                Global.ShowAlert("发现新版本" + url, [], function (index) {
-                    cc.log("indx====", index)
-
-                    cc.sys.openURL(url)
+                Global.ShowAlert("发现新版本" + shopUrl, [],  (index)=> {
+                    cc.sys.openURL(shopUrl)
 
                 })
             }
             else {//热更新error 
 
                 Global.ShowAlert("ErrorCode=====" + code, [], function () {
-                    // self.Reboot()//失败重启
-                    self.goLoginScene()
+                    self.Reboot()//失败重启
+                    // this.goLoginScene()
                 })
             }
-        }, function (progress, DownedSize, TotalSize) {//下载进度，下载了多少kb ，总下载多少kb  
+        },  (progress, DownedSize, TotalSize)=> {//下载进度，下载了多少kb ，总下载多少kb  
             cc.log("progress===", progress)
-            if (cc.director.getScheduler().isScheduled(self.updateText, self)) {
-                self.unSchduleUpdateText()//停止显示update... 
+            if (cc.director.getScheduler().isScheduled(this.updateText, this)) {
+                this.unSchduleUpdateText()//停止显示update... 
             }
 
             var a = "updateing" + progress + "% (" + DownedSize + "kb/" + TotalSize + "kb)"
-            self.Text.string = a//"updateing" + progress + "%    "+DownedSize/1024+"M/"+TotalSize/1024+"M"
+            this.Text.string = a//"updateing" + progress + "%    "+DownedSize/1024+"M/"+TotalSize/1024+"M"
         })
 
     },
     Reboot() {//重启
-        // Global.gSchduleOnce(this, function () {
-
-        //     VersionManager.ReStartGame()
-
-        // }, 2)
+       
         this.scheduleOnce(()=>{
             Global.gReBoot()
         },2)
@@ -191,15 +184,7 @@ cc.Class({
     },
     goLoginScene() {
 
-        var self = this
-        Global.gSchduleOnce(this, function () {
-
-            cc.director.loadScene("LoginScene", function () {
-                // var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
-                // Text.getComponent(cc.Label).string = "updated2"
-            })
-
-        }, 2)
+        cc.director.loadScene("LoginScene")
 
     },
 
