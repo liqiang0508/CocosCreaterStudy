@@ -55,7 +55,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
        
-        //Global.sayHello()
+
         // this.num = 0;
         // var self = this
         // this.label.string = this.text;

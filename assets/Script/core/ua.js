@@ -9,49 +9,42 @@ var ua = {}
 
 
 //点击事件
-ua.darkButton = function(node,call)
-{
-    node.on(cc.Node.EventType.TOUCH_END,function(event){
-        if(call)
-        {
+ua.darkButton = function (node, call) {
+    node.on(cc.Node.EventType.TOUCH_END, function (event) {
+        if (call) {
             call(event)
-            
+
         }
 
     })
 
-    
+
 }
 
 //点击事件
-ua.ClickNode = function(node,call)
-{
-    node.on(cc.Node.EventType.TOUCH_START,function(event){
-        if(call)
-        {
+ua.ClickNode = function (node, call) {
+    node.on(cc.Node.EventType.TOUCH_START, function (event) {
+        if (call) {
             call(event)
-            
+
         }
 
     })
 
-    
+
 }
 
 //加载预制资源
-ua.loadPrefabRes = function(filepath,call)
-{
+ua.loadPrefabRes = function (filepath, call) {
     cc.resources.load(filepath, function (err, prefab) {
-        if(err)
-        {
-            cc.error("ua.loadPrefabRes error===="+filepath)
+        if (err) {
+            cc.error("ua.loadPrefabRes error====" + filepath)
             call(undefined)
         }
-        else
-        {    
+        else {
             var newNode = cc.instantiate(prefab);
             call(newNode)
-            cc.loader.setAutoRelease(filepath,true)
+            cc.loader.setAutoRelease(filepath, true)
         }
     })
 }

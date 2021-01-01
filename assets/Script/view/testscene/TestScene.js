@@ -23,16 +23,14 @@ cc.Class({
 
     },
 
-  
+
     start() {
-        
+
         var searchPaths = "searchPaths--"
         if (cc && cc.sys.isNative) {
             searchPaths = jsb.fileUtils.getSearchPaths();
         }
 
-        var self = this
-       
 
         // 坐标转换
         var sp2 = cc.find("uipanel/New Sprite", this.node)
@@ -44,7 +42,7 @@ cc.Class({
         sp4.IsOriginPos = true
         //btn_posconvert
         var btn_posconvert = cc.find("uipanel/btn_posconvert", this.node)
-        ua.darkButton(btn_posconvert, function () {
+        ua.darkButton(btn_posconvert, () => {
             if (sp4.getNumberOfRunningActions() > 0) {
                 return
             }
@@ -54,7 +52,7 @@ cc.Class({
                 sp4.runAction(ac)
             }
             else {
-                var ac = cc.moveTo(1, self.sp4OldPos).easing(cc.easeSineOut())
+                var ac = cc.moveTo(1, this.sp4OldPos).easing(cc.easeSineOut())
                 sp4.runAction(ac)
             }
             sp4.IsOriginPos = !sp4.IsOriginPos
@@ -79,7 +77,7 @@ cc.Class({
             // sp.color = cc.Color.WHITE
         });
 
-            //ip5 640*1136
+        //ip5 640*1136
         // console.log("getDevicePixelRatio",cc.view.getDevicePixelRatio())
         // console.log("winSize", cc.winSize.width,cc.winSize.height)
         // console.log("getDesignResolutionSize", cc.view.getDesignResolutionSize().width,cc.view.getDesignResolutionSize().height)
@@ -132,16 +130,16 @@ cc.Class({
 
         //btn_showWaiting菊花转
         var btn_showWaiting = cc.find("uipanel/btn_showWaiting", this.node)
-        ua.darkButton(btn_showWaiting, function (event) {
-            self.showWiat(true)
-            setTimeout(function () {
-                self.showWiat(false)
+        ua.darkButton(btn_showWaiting, (event) => {
+            this.showWiat(true)
+            setTimeout(() => {
+                this.showWiat(false)
             }, 3000)
         })
         //btn_EventTest
         var btn_EventTest = cc.find("uipanel/btn_EventTest", this.node)
-        ua.darkButton(btn_EventTest, function (event) {
-            EventManager.dispatchEvent(self.node, RefreshInfo, { "name": "Lee123" })
+        ua.darkButton(btn_EventTest, (event) => {
+            EventManager.dispatchEvent(this.node, RefreshInfo, { "name": "Lee123" })
         })
 
 
@@ -175,17 +173,17 @@ cc.Class({
         })
 
         var lastTouchTime = null;
-        var self = this
+
         //btn_Speech
         var btn_Speech = cc.find("uipanel/btn_Speech", this.node)
-        btn_Speech.on(cc.Node.EventType.TOUCH_START, function () {
+        btn_Speech.on(cc.Node.EventType.TOUCH_START, () => {
             lastTouchTime = Date.now()
             cc.log("开始录音")
-            self.SpeechFile = Date.now() + ".amr"
-            voiceNative.prepare(self.SpeechFile);
+            this.SpeechFile = Date.now() + ".amr"
+            voiceNative.prepare(this.SpeechFile);
         }, this)
 
-        btn_Speech.on(cc.Node.EventType.TOUCH_END, function () {
+        btn_Speech.on(cc.Node.EventType.TOUCH_END, () => {
 
             cc.log("结束录音")
             if (Date.now() - lastTouchTime < 1000) {
@@ -213,13 +211,13 @@ cc.Class({
                     // console.log("begin time。。。。。  " + lastTouchTime);
                     console.log("record time。。。。。  " + time);
                     // 读取录音文件
-                    var msgStr = voiceNative.getVoiceData(self.SpeechFile);
+                    var msgStr = voiceNative.getVoiceData(this.SpeechFile);
                     console.log("sound data。。。。。  " + msgStr);
                     if (msgStr) {
                         //本地测试测试
                         setTimeout(function () {
                             // 间隔两秒播放录音
-                            var msgfile = self.SpeechFile;
+                            var msgfile = this.SpeechFile;
                             voiceNative.play(msgfile);
                             // 到这里结束
                             //voiceNative.writeVoice 根据msgStr 文件  和命名 把后端发送过来的语音存放本地
@@ -298,7 +296,7 @@ cc.Class({
         })
 
         var btn_bubble = cc.find("uipanel/btn_bubble", this.node)
-        ua.darkButton(btn_bubble,()=>{
+        ua.darkButton(btn_bubble, () => {
             cc.director.loadScene("bubbleScene")
         })
         //bundle加载测试
@@ -308,7 +306,7 @@ cc.Class({
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
         ua.darkButton(btn_loadbundle, function () {
             let bundleA = cc.assetManager.getBundle('Testbundle');
-            
+
             if (bundleA) {
                 console.log('have already loaded bundle.')
                 var obj = window.SayHello //直接使用window对象或者component
@@ -316,8 +314,7 @@ cc.Class({
                     obj.Say()
                 }
                 bundleA.loadScene('bundlescene', function (err, scene) {
-                    if(err)
-                    {
+                    if (err) {
                         console.log("load bundle scene error")
                         return
                     }
@@ -325,7 +322,7 @@ cc.Class({
                 });
             }
             else {
-                Global.gLoadBUndle('http://192.168.65.172/hotupversion/remote/Testbundle', {  onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
+                Global.gLoadBUndle('http://192.168.65.172/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
                     if (err) {
                         console.log("Load bundle error")
                         return console.error(err);
@@ -344,7 +341,7 @@ cc.Class({
                         cc.director.runScene(scene);
                     });
                 })
-                
+
             }
 
         })
@@ -386,14 +383,11 @@ cc.Class({
             var Angle = Global.GgetTwoV2Angle(sp2.getPosition(), touchLoc)
             sp2.angle = -Angle
 
-            garpgics.moveTo(touchLoc.x,touchLoc.y)
+            garpgics.moveTo(touchLoc.x, touchLoc.y)
 
             // 2点的向量
             var v = sp2.getPosition().subSelf(touchLoc).normalizeSelf()
-            cc.log("v===",v)
-
-
-
+           
         })
 
         garpgicsnode.on(cc.Node.EventType.TOUCH_MOVE, function (event) {
@@ -405,7 +399,7 @@ cc.Class({
             var Angle = Global.GgetTwoV2Angle(sp2.getPosition(), touchLoc)
             sp2.angle = -Angle
 
-            garpgics.lineTo(touchLoc.x,touchLoc.y)
+            garpgics.lineTo(touchLoc.x, touchLoc.y)
             garpgics.stroke()
 
         })
@@ -432,7 +426,7 @@ cc.Class({
 
     },
     startMove() {
-        var self = this
+
         var garpgicsnode = cc.find("garpgicsnode", this.node)
         var btn_goslot = cc.find("uipanel/btn_goslot", this.node)
 
@@ -444,9 +438,9 @@ cc.Class({
 
         btn_goslot.setPosition(cc.v2(-windowSize.width / 2, windowSize.height / 2))
 
-        var call = cc.callFunc(function () {
+        var call = cc.callFunc(() => {
             btn_goslot.stopAllActions()
-            self.startMove()
+            this.startMove()
         })
         var seq = cc.sequence(bezierTo, call)
 
