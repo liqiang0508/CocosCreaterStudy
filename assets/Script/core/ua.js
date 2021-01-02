@@ -34,20 +34,7 @@ ua.ClickNode = function (node, call) {
 
 }
 
-//加载预制资源
-ua.loadPrefabRes = function (filepath, call) {
-    cc.resources.load(filepath, function (err, prefab) {
-        if (err) {
-            cc.error("ua.loadPrefabRes error====" + filepath)
-            call(undefined)
-        }
-        else {
-            var newNode = cc.instantiate(prefab);
-            call(newNode)
-            cc.loader.setAutoRelease(filepath, true)
-        }
-    })
-}
+
 
 
 window.ua = ua;

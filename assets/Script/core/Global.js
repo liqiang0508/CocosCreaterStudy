@@ -236,7 +236,7 @@ var Global = {
 
     ShowAlert: function (str, btninfo, call) {
 
-        ua.loadPrefabRes("prefabs/AlertLayer2", function (_node) {
+        this.gLoadPrefabRes("prefabs/AlertLayer2", function (_node) {
             if (_node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(_node)
                 var AlertIII = _node.getComponent("AlertIII")
@@ -252,7 +252,7 @@ var Global = {
     },
 
     ShowTextInput: function (call) {
-        ua.loadPrefabRes("prefabs/textinput", function (_node) {
+        this.gLoadPrefabRes("prefabs/textinput", function (_node) {
             if (_node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(_node)
                 var textinput = _node.getComponent("textinput")
@@ -264,7 +264,7 @@ var Global = {
 
     },
     ShowChooseUpdate: function (data, call) {
-        ua.loadPrefabRes("prefabs/selectupdate", function (_node) {
+        this.gLoadPrefabRes("prefabs/selectupdate", function (_node) {
             if (_node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(_node)
                 var chooseupdate = _node.getComponent("chooseupdate")
@@ -301,6 +301,20 @@ var Global = {
         cc.assetManager.loadBundle(url, option, function (err, bundle) {
             if (complete) {
                 complete(err, bundle)
+            }
+        })
+    },
+    // 加载prefab
+    gLoadPrefabRes:function(filepath,call){
+        cc.resources.load(filepath, function (err, prefab) {
+            if (err) {
+                cc.error("ua.loadPrefabRes error====" + filepath)
+                call(undefined)
+            }
+            else {
+                var newNode = cc.instantiate(prefab);
+                call(newNode)
+                cc.loader.setAutoRelease(filepath, true)
             }
         })
     },

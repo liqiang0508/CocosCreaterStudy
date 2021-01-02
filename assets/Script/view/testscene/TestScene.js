@@ -263,7 +263,8 @@ cc.Class({
         //btn_showpopLayer
         var btn_showpopLayer = cc.find("uipanel/btn_showpopLayer", this.node)
         ua.darkButton(btn_showpopLayer, function () {
-            ua.loadPrefabRes("prefabs/poplayer", function (prefabNode) {
+    
+            Global.gLoadPrefabRes("prefabs/poplayer", function (prefabNode) {
                 if (prefabNode) {
                     cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
                     var com = prefabNode.getComponent("poplayer")

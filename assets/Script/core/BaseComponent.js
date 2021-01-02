@@ -1,4 +1,5 @@
-var KeypadDispatch = require("KeypadDispatch")
+var KeypadDispatch = require("KeypadDispatch");
+const Global = require("Global");
 cc.Class({
     extends: cc.Component,
 
@@ -14,7 +15,7 @@ cc.Class({
     showWiat(b){//显示菊花转之类的
         if(b)
         {
-            ua.loadPrefabRes("prefabs/rotateLoading",function(node)
+            Global.gLoadPrefabRes("prefabs/rotateLoading",function(node)
             {
                 if (node)
                 {
