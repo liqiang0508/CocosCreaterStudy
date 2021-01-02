@@ -2937,7 +2937,7 @@ gReBoot: function() {
 cc.game.restart();
 },
 Ghotupdateurl: "xxx",
-GgameType: 1
+GgameType: 3
 };
 if (1 == t.GgameType) {
 t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configrelease";

@@ -324,7 +324,7 @@ var Global = {
         cc.game.restart()
     },
     Ghotupdateurl: "xxx", // 热更新地址
-    GgameType: 1  // 1正式包 3debug 
+    GgameType:1  // 1正式包 3debug 
 
 }
 

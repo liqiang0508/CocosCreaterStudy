@@ -1,5 +1,5 @@
 {
-    "scriptVersion": 111, 
+    "scriptVersion": 112, 
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc", 
@@ -138,7 +138,7 @@
         }, 
         {
             "filename": "assets/main/index.jsc", 
-            "md5": "3D62AF61F76F0281D6F0B5AA69BEE763", 
+            "md5": "5D5D961A3D8EF5E9D0EEEBADA1EA08DA", 
             "size": 78048
         }, 
         {
