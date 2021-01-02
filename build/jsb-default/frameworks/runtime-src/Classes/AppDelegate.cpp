@@ -32,7 +32,7 @@
 #include "cocos/scripting/js-bindings/jswrapper/SeApi.h"
 #include "cocos/scripting/js-bindings/event/EventDispatcher.h"
 #include "cocos/scripting/js-bindings/manual/jsb_classtype.hpp"
-#include "CCFileUtils.h"
+#include "platform/CCFileUtils.h"
 USING_NS_CC;
 
 AppDelegate::AppDelegate(int width, int height) : Application("Cocos Game", width, height)
