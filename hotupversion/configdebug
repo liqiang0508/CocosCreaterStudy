@@ -17,10 +17,7 @@
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [
     "-----------",
-    "975780",
-    "930912",
     "724001",
-    "264138",
     "-----------"
   ],
 
@@ -50,10 +47,10 @@
     "-----------"
   ],
   "binaryUrl": [
-    "www.baidu0.com",
-    "www.baidu1.com",
-    "www.baidu2.com",
-    "www.baidu3.com"
+    "https://www.baidu.com/",
+    "https://www.baidu.com/",
+    "https://www.baidu.com/",
+    "https://www.baidu.com/"
   ],
 
 
