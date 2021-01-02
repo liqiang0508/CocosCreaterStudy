@@ -190,7 +190,7 @@ buffer: 2
 BaseComponent: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "8e980PYoChFa6X8R9XVV7PJ", "BaseComponent");
-var t = e("KeypadDispatch");
+var t = e("KeypadDispatch"), T = e("Global");
 cc.Class({
 extends: cc.Component,
 properties: {
@@ -201,7 +201,7 @@ tooltip: "弹出动画  1:弹出 2:渐变"
 }
 },
 showWiat: function(e) {
-if (e) ua.loadPrefabRes("prefabs/rotateLoading", function(e) {
+if (e) T.gLoadPrefabRes("prefabs/rotateLoading", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
 e.setName("rotateLoading");
@@ -274,6 +274,7 @@ this.node.runAction(n);
 });
 cc._RF.pop();
 }, {
+Global: "Global",
 KeypadDispatch: "KeypadDispatch"
 } ],
 BubbleScene: [ function(e, _) {
@@ -2874,7 +2875,7 @@ ConverToNodePos: function(e, _) {
 return e.convertToNodeSpaceAR(_);
 },
 ShowAlert: function(e, _, t) {
-ua.loadPrefabRes("prefabs/AlertLayer2", function(T) {
+this.gLoadPrefabRes("prefabs/AlertLayer2", function(T) {
 if (T) {
 cc.director.getScene().getChildByName("Canvas").addChild(T);
 var S = T.getComponent("AlertIII");
@@ -2885,7 +2886,7 @@ t && t(e);
 });
 },
 ShowTextInput: function(e) {
-ua.loadPrefabRes("prefabs/textinput", function(_) {
+this.gLoadPrefabRes("prefabs/textinput", function(_) {
 if (_) {
 cc.director.getScene().getChildByName("Canvas").addChild(_);
 var t = _.getComponent("textinput");
@@ -2894,7 +2895,7 @@ t && t.show(e);
 });
 },
 ShowChooseUpdate: function(e, _) {
-ua.loadPrefabRes("prefabs/selectupdate", function(t) {
+this.gLoadPrefabRes("prefabs/selectupdate", function(t) {
 if (t) {
 cc.director.getScene().getChildByName("Canvas").addChild(t);
 var T = t.getComponent("chooseupdate");
@@ -2918,6 +2919,18 @@ return !1;
 gLoadBUndle: function(e, _, t) {
 cc.assetManager.loadBundle(e, _, function(e, _) {
 t && t(e, _);
+});
+},
+gLoadPrefabRes: function(e, _) {
+cc.resources.load(e, function(t, T) {
+if (t) {
+cc.error("ua.loadPrefabRes error====" + e);
+_(void 0);
+} else {
+var S = cc.instantiate(T);
+_(S);
+cc.loader.setAutoRelease(e, !0);
+}
 });
 },
 gReBoot: function() {
@@ -3953,6 +3966,9 @@ onLoad: function() {
 this._super();
 T.init();
 },
+onDestroy: function() {
+this._super();
+},
 start: function() {
 var e = this;
 cc && cc.sys.isNative && jsb.fileUtils.getSearchPaths();
@@ -4045,7 +4061,7 @@ cc.debug.setDisplayStats(!cc.debug.isDisplayStats());
 });
 var N = cc.find("uipanel/btn_showpopLayer", this.node);
 ua.darkButton(N, function() {
-ua.loadPrefabRes("prefabs/poplayer", function(e) {
+t.gLoadPrefabRes("prefabs/poplayer", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
 var _ = e.getComponent("poplayer");
@@ -4140,9 +4156,6 @@ _.runAction(cc.repeatForever(i));
 EventTest: function(e) {
 e.stopPropagation();
 t.ShowAlert("事件传来的参数" + JSON.stringify(e.detail), []);
-},
-onDestroy: function() {
-this._super();
 }
 });
 cc._RF.pop();
