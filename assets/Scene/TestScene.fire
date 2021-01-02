@@ -87,6 +87,9 @@
     "_active": true,
     "_components": [
       {
+        "__id__": 114
+      },
+      {
         "__id__": 115
       },
       {
@@ -97,12 +100,6 @@
       },
       {
         "__id__": 118
-      },
-      {
-        "__id__": 119
-      },
-      {
-        "__id__": 120
       }
     ],
     "_prefab": null,
@@ -192,7 +189,7 @@
       "array": [
         0,
         0,
-        372.3840701429957,
+        359.4005425705421,
         0,
         0,
         0,
@@ -1113,36 +1110,31 @@
     "_id": "98PKJ+ecpOKr7m3dPigzI3"
   },
   {
-    "__type__": "cc.Layout",
+    "__type__": "cc.Widget",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 8
     },
     "_enabled": true,
-    "_layoutSize": {
-      "__type__": "cc.Size",
-      "width": 750,
-      "height": 1334
-    },
-    "_resize": 0,
-    "_N$layoutType": 0,
-    "_N$cellSize": {
-      "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
-    },
-    "_N$startAxis": 0,
-    "_N$paddingLeft": 0,
-    "_N$paddingRight": 0,
-    "_N$paddingTop": 0,
-    "_N$paddingBottom": 0,
-    "_N$spacingX": 0,
-    "_N$spacingY": 0,
-    "_N$verticalDirection": 1,
-    "_N$horizontalDirection": 0,
-    "_N$affectedByScale": false,
-    "_id": "32m7XePfFP/o97fQhqMmB2"
+    "alignMode": 1,
+    "_target": null,
+    "_alignFlags": 45,
+    "_left": 0,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 0,
+    "_verticalCenter": 0,
+    "_horizontalCenter": 0,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
+    "_isAbsHorizontalCenter": true,
+    "_isAbsVerticalCenter": true,
+    "_originalWidth": 750,
+    "_originalHeight": 1334,
+    "_id": "e037PbR2REGJ0QAAYbSV3q"
   },
   {
     "__type__": "cc.Node",
@@ -1297,9 +1289,6 @@
       },
       {
         "__id__": 113
-      },
-      {
-        "__id__": 114
       }
     ],
     "_prefab": null,
@@ -1686,7 +1675,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "showAlert",
     "_N$string": "showAlert",
     "_fontSize": 20,
@@ -2152,7 +2140,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "SpeechTest",
     "_N$string": "SpeechTest",
     "_fontSize": 20,
@@ -2526,7 +2513,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "EventTest",
     "_N$string": "EventTest",
     "_fontSize": 20,
@@ -2900,7 +2886,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "Show/Hide  fps",
     "_N$string": "Show/Hide  fps",
     "_fontSize": 20,
@@ -3274,7 +3259,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "ShowLayer",
     "_N$string": "ShowLayer",
     "_fontSize": 20,
@@ -3648,7 +3632,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "坐标转换",
     "_N$string": "坐标转换",
     "_fontSize": 20,
@@ -4022,7 +4005,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "置灰/复原",
     "_N$string": "置灰/复原",
     "_fontSize": 20,
@@ -4396,7 +4378,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "显示菊花转",
     "_N$string": "显示菊花转",
     "_fontSize": 20,
@@ -4770,7 +4751,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "SlotScene",
     "_N$string": "SlotScene",
     "_fontSize": 20,
@@ -5144,7 +5124,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "loadbundle",
     "_N$string": "loadbundle",
     "_fontSize": 20,
@@ -5518,7 +5497,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "打泡泡",
     "_N$string": "打泡泡",
     "_fontSize": 20,
@@ -5745,16 +5723,6 @@
     "_id": "54RtAbpd1MfKIXUb2Ds+hG"
   },
   {
-    "__type__": "7f436dxylZH4bCxvIF2a+LV",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 28
-    },
-    "_enabled": true,
-    "_id": "22xn48Z8pH6oJi7xO2kfPE"
-  },
-  {
     "__type__": "cc.Widget",
     "_name": "",
     "_objFlags": 0,
@@ -5845,16 +5813,6 @@
     "_enabled": true,
     "AimType": 1,
     "_id": "e041/n9opBspf1UYUSMA2k"
-  },
-  {
-    "__type__": "3d5f7WCRqhE5bZ5is2EOwx6",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_id": "cdv5qlEVdAMrtgyQoUiUfA"
   },
   {
     "__type__": "cc.SafeArea",
