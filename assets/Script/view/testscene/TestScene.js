@@ -23,6 +23,9 @@ cc.Class({
 
     },
 
+    onDestroy() {
+        this._super()
+    },
 
     start() {
 
@@ -468,8 +471,6 @@ cc.Class({
         Global.ShowAlert("事件传来的参数" + JSON.stringify(event.detail), [])
     },
 
-    onDestroy() {
-        this._super()
-    }
+   
     // update (dt) {},
 });
