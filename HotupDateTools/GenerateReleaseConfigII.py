@@ -91,7 +91,9 @@ def BuildRes():
 	# projectPath = os.getcwd()
 	projectPath = os.path.abspath(os.path.join(os.getcwd(), "../"))
 	encodekey = projectConfig.Key
-	os.system("CocosCreator.exe.lnk  --build platform=android;debug=false;template=default;xxteaKey="+encodekey+" --path "+projectPath)
+	ExePath = projectConfig.CocosCreatorExePath
+	buildcmd = ExePath+"  --build platform=android;debug=false;template=default;xxteaKey="+encodekey+" --path "+projectPath
+	os.system(buildcmd)
 	print("BuildRes end**************")
 
 

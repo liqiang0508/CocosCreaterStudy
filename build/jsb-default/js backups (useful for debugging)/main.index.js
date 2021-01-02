@@ -12,19 +12,19 @@ throw new Error("Cannot find module '" + i + "'");
 }
 i = E;
 }
-var s = t[i] = {
+var r = t[i] = {
 exports: {}
 };
-_[i][0].call(s.exports, function(e) {
+_[i][0].call(r.exports, function(e) {
 return S(_[i][1][e] || e);
-}, s, s.exports, e, _, t, T);
+}, r, r.exports, e, _, t, T);
 }
 return t[i].exports;
 }
 for (var n = "function" == typeof __require && __require, i = 0; i < T.length; i++) S(T[i]);
 return S;
 }({
-AdaptBg: [ function(e, _, t) {
+AdaptBg: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "ee625B2iPdOz4Trq3USAlCq", "AdaptBg");
 cc.Class({
@@ -42,7 +42,7 @@ this.node.scale = this.node.scale / _;
 });
 cc._RF.pop();
 }, {} ],
-AdaptCanvas: [ function(e, _, t) {
+AdaptCanvas: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "3d5f7WCRqhE5bZ5is2EOwx6", "AdaptCanvas");
 cc.Class({
@@ -66,7 +66,7 @@ cc.Canvas.instance.fitWidth = !0;
 });
 cc._RF.pop();
 }, {} ],
-AdaptUI: [ function(e, _, t) {
+AdaptUI: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "7f436dxylZH4bCxvIF2a+LV", "AdaptUI");
 cc.Class({
@@ -79,12 +79,12 @@ cc.sys.getSafeAreaRect(), cc.view.getVisibleSize();
 });
 cc._RF.pop();
 }, {} ],
-AlertIII: [ function(e, _, t) {
+AlertIII: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "fcc45vfYNtImpD7O5BXoNrL", "AlertIII");
-var T = e("BaseComponent");
+var t = e("BaseComponent");
 cc.Class({
-extends: T,
+extends: t,
 properties: {
 AimType: {
 default: 1,
@@ -95,8 +95,9 @@ onDestroy: function() {
 this._super();
 },
 onLoad: function() {
+var e = this;
 this._super();
-var e = this, _ = this.node.getChildByName("bg").getChildByName("text");
+var _ = this.node.getChildByName("bg").getChildByName("text");
 _.getComponent(cc.Label).string = "LOL";
 this.text = _;
 var t = this.node.getChildByName("bg").getChildByName("btn_yes"), T = this.node.getChildByName("bg").getChildByName("btn_no"), S = this.node.getChildByName("bg").getChildByName("btn_middle");
@@ -170,26 +171,26 @@ cc._RF.pop();
 }, {
 BaseComponent: "BaseComponent"
 } ],
-Base64Tool: [ function(e, _, t) {
+Base64Tool: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "04561E7wzpHiKoMn1wok8WB", "Base64Tool");
-var T = e("buffer").Buffer, S = {
+var t = e("buffer").Buffer, T = {
 encode: function(e) {
-return new T(e).toString("base64");
+return new t(e).toString("base64");
 },
 decode: function(e) {
-return new T(e, "base64").toString();
+return new t(e, "base64").toString();
 }
 };
-_.exports = S;
+_.exports = T;
 cc._RF.pop();
 }, {
 buffer: 2
 } ],
-BaseComponent: [ function(e, _, t) {
+BaseComponent: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "8e980PYoChFa6X8R9XVV7PJ", "BaseComponent");
-var T = e("KeypadDispatch");
+var t = e("KeypadDispatch");
 cc.Class({
 extends: cc.Component,
 properties: {
@@ -211,12 +212,12 @@ _ && _.removeFromParent();
 }
 },
 onLoad: function() {
-T.getInstance().add(this);
+t.getInstance().add(this);
 },
 start: function() {},
 onDestroy: function() {
 this.node.targetOff(this);
-T.getInstance().remove();
+t.getInstance().remove();
 },
 show: function() {
 this.EnterAni();
@@ -275,12 +276,12 @@ cc._RF.pop();
 }, {
 KeypadDispatch: "KeypadDispatch"
 } ],
-BubbleScene: [ function(e, _, t) {
+BubbleScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "056f1Xf3tBLE5KzIZKhSnU6", "BubbleScene");
-var T = e("BaseComponent");
+var t = e("BaseComponent");
 cc.Class({
-extends: T,
+extends: t,
 properties: {},
 start: function() {
 window.GameState = 0;
@@ -323,7 +324,7 @@ cc._RF.pop();
 }, {
 BaseComponent: "BaseComponent"
 } ],
-Bubble: [ function(e, _, t) {
+Bubble: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "588d51xwI9Hoqya8KILiGGJ", "Bubble");
 cc.Class({
@@ -385,7 +386,7 @@ this.node.destroy();
 });
 cc._RF.pop();
 }, {} ],
-CastTest: [ function(e, _, t) {
+CastTest: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "27518R8AWdKgbFqyhaZ2dB+", "CastTest");
 cc.Class({
@@ -399,23 +400,28 @@ default: null
 },
 onEnable: function() {},
 onLoad: function() {
-var e = this;
+var e = this, _ = this;
 this.img = cc.find("img", this.node);
 this.img.setPosition(cc.v2(0, 0));
-this.img.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -200);
 window.EventManager.on(this.node, "gameover", function() {
 console.log("game over====");
 });
-ua.darkButton(this.node, function(_) {
-var t = cc.instantiate(e.img);
-e.node.addChild(t);
-var T = _.getTouches(), S = T[0].getLocation();
-T[0].getLocationInView();
-S = t.parent.convertToNodeSpaceAR(S);
-t.setPosition(S);
+var t = cc.find("uipanel/firebtn", this.node);
+ua.darkButton(t, function() {
+cc.log("firebtn*****vec", _.forceVec);
+var t = cc.v2(_.forceVec.x, _.forceVec.y).mul(6e5);
+cc.log("firebtn*****force", t);
+e.img.getComponent(cc.RigidBody).applyForceToCenter(t);
+});
+ua.darkButton(this.node, function(e) {
+var t = e.getTouches()[0].getLocation();
+t = _.img.parent.convertToNodeSpaceAR(t);
+var T = _.img.getPosition().subSelf(t).normalizeSelf();
+cc.log("v===", T);
+_.forceVec = T;
 });
 },
-onTouchStart: function(e) {
+onTouchStart: function() {
 this.graphic_line.clear();
 },
 onTouchMove: function(e) {
@@ -425,7 +431,7 @@ var _ = e.getStartLocation(), t = e.getLocation();
 this.drawRayCast(_, t.subSelf(_).normalizeSelf());
 this.graphic_line.stroke();
 },
-onTouchEnd: function(e) {
+onTouchEnd: function() {
 this.graphic_line.clear();
 },
 drawRayCast: function(e, _) {
@@ -437,8 +443,8 @@ var n = S[0], i = n.point;
 this.drawAimLine(e, i);
 var o = i.sub(e).mag();
 this._cur_length += o;
-var E = n.normal, R = _, s = R.sub(E.mul(2 * R.dot(E)));
-this.drawRayCast(i, s);
+var E = n.normal, R = _, r = R.sub(E.mul(2 * R.dot(E)));
+this.drawRayCast(i, r);
 } else this.drawAimLine(e, T);
 }
 },
@@ -455,1201 +461,1134 @@ this.graphic_line.circle(t.x, t.y, 6);
 }
 },
 start: function() {},
-update: function(e) {},
-onBeginContact: function(e, _, t) {
+update: function() {},
+onBeginContact: function() {
 console.log("onBeginContact");
 },
-onEndContact: function(e, _, t) {
+onEndContact: function() {
 console.log("onEndContact");
 },
-onPreSolve: function(e, _, t) {
+onPreSolve: function() {
 console.log("onPreSolve");
 },
-onPostSolve: function(e, _, t) {
+onPostSolve: function() {
 console.log("onPostSolve");
 },
-onCollisionEnter: function(e, _) {
+onCollisionEnter: function() {
 console.log("onCollisionEnter");
 }
 });
 cc._RF.pop();
 }, {} ],
-Chanel: [ function(e, _, t) {
+Chanel: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "15547fdAgdMZo3lwC1nVArs", "Chanel");
-var T = {
+var t = {
 WIN32: 0,
 IOS_APPSTORE: 1,
 H5: 2,
 ANDROID_GOOGLE_PLAY: 3
 };
-window.chanel = T;
-cc.sys.isBrowser ? window.DISTRIBUTE_CHANNEL = T.H5 : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? window.DISTRIBUTE_CHANNEL = T.ANDROID_GOOGLE_PLAY : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS ? window.DISTRIBUTE_CHANNEL = T.IOS_APPSTORE : window.DISTRIBUTE_CHANNEL = T.WIN32;
+window.chanel = t;
+cc.sys.isBrowser ? window.DISTRIBUTE_CHANNEL = t.H5 : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? window.DISTRIBUTE_CHANNEL = t.ANDROID_GOOGLE_PLAY : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS ? window.DISTRIBUTE_CHANNEL = t.IOS_APPSTORE : window.DISTRIBUTE_CHANNEL = t.WIN32;
 cc._RF.pop();
 }, {} ],
-ConstantItem: [ function(e, _, t) {
+ConstantItem: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "597b04MNS9KfIVJ0rR+fn0e", "ConstantItem");
-var T = {
+var t = {
 1: {}
 };
-T[1].ID = 1;
-T[1].Name = "钻石包_1";
-T[1].Type = 0;
-T[1].PriceType = 2;
-T[1].Price = 35;
-T[1].PriceBeforeDiscount = 0;
-T[1].Time = 0;
-T[1].StorePosition = 1101;
-T[1].InfoVersion = 0;
-T[1].AddGem = 6;
-T[1].AddInteractiveItem = 0;
-T[1].AddSpeechItem = 0;
-T[1].DiscountBuyItem = 0;
-T[1].AddChip = 0;
-T[1].MinRandomChip = 0;
-T[1].MaxRandomChip = 0;
-T[2] = {};
-T[2].ID = 2;
-T[2].Name = "钻石包_2";
-T[2].Type = 0;
-T[2].PriceType = 2;
-T[2].Price = 175;
-T[2].PriceBeforeDiscount = 0;
-T[2].Time = 0;
-T[2].StorePosition = 1102;
-T[2].InfoVersion = 0;
-T[2].AddGem = 31;
-T[2].AddInteractiveItem = 0;
-T[2].AddSpeechItem = 0;
-T[2].DiscountBuyItem = 0;
-T[2].AddChip = 0;
-T[2].MinRandomChip = 0;
-T[2].MaxRandomChip = 0;
-T[3] = {};
-T[3].ID = 3;
-T[3].Name = "钻石包_3";
-T[3].Type = 0;
-T[3].PriceType = 2;
-T[3].Price = 699;
-T[3].PriceBeforeDiscount = 0;
-T[3].Time = 0;
-T[3].StorePosition = 1103;
-T[3].InfoVersion = 0;
-T[3].AddGem = 132;
-T[3].AddInteractiveItem = 0;
-T[3].AddSpeechItem = 0;
-T[3].DiscountBuyItem = 0;
-T[3].AddChip = 0;
-T[3].MinRandomChip = 0;
-T[3].MaxRandomChip = 0;
-T[4] = {};
-T[4].ID = 4;
-T[4].Name = "钻石包_4";
-T[4].Type = 0;
-T[4].PriceType = 2;
-T[4].Price = 1750;
-T[4].PriceBeforeDiscount = 0;
-T[4].Time = 0;
-T[4].StorePosition = 1104;
-T[4].InfoVersion = 0;
-T[4].AddGem = 336;
-T[4].AddInteractiveItem = 0;
-T[4].AddSpeechItem = 0;
-T[4].DiscountBuyItem = 0;
-T[4].AddChip = 0;
-T[4].MinRandomChip = 0;
-T[4].MaxRandomChip = 0;
-T[5] = {};
-T[5].ID = 5;
-T[5].Name = "钻石包_5";
-T[5].Type = 0;
-T[5].PriceType = 2;
-T[5].Price = 3500;
-T[5].PriceBeforeDiscount = 0;
-T[5].Time = 0;
-T[5].StorePosition = 1105;
-T[5].InfoVersion = 0;
-T[5].AddGem = 690;
-T[5].AddInteractiveItem = 0;
-T[5].AddSpeechItem = 0;
-T[5].DiscountBuyItem = 0;
-T[5].AddChip = 0;
-T[5].MinRandomChip = 0;
-T[5].MaxRandomChip = 0;
-T[6] = {};
-T[6].ID = 6;
-T[6].Name = "周卡";
-T[6].Type = 7;
-T[6].PriceType = 2;
-T[6].Price = 175;
-T[6].PriceBeforeDiscount = 0;
-T[6].Time = 168;
-T[6].StorePosition = 0;
-T[6].InfoVersion = 0;
-T[6].AddGem = 15;
-T[6].AddInteractiveItem = 0;
-T[6].AddSpeechItem = 0;
-T[6].DiscountBuyItem = 0;
-T[6].AddChip = 0;
-T[6].MinRandomChip = 0;
-T[6].MaxRandomChip = 0;
-T[7] = {};
-T[7].ID = 7;
-T[7].Name = "月卡";
-T[7].Type = 7;
-T[7].PriceType = 2;
-T[7].Price = 699;
-T[7].PriceBeforeDiscount = 0;
-T[7].Time = 720;
-T[7].StorePosition = 0;
-T[7].InfoVersion = 0;
-T[7].AddGem = 100;
-T[7].AddInteractiveItem = 0;
-T[7].AddSpeechItem = 0;
-T[7].DiscountBuyItem = 0;
-T[7].AddChip = 0;
-T[7].MinRandomChip = 0;
-T[7].MaxRandomChip = 0;
-T[16] = {};
-T[16].ID = 16;
-T[16].Name = "互动道具包_1";
-T[16].Type = 0;
-T[16].PriceType = 0;
-T[16].Price = 1e3;
-T[16].PriceBeforeDiscount = 0;
-T[16].Time = 0;
-T[16].StorePosition = 2104;
-T[16].InfoVersion = 0;
-T[16].AddGem = 0;
-T[16].AddInteractiveItem = 25;
-T[16].AddSpeechItem = 0;
-T[16].DiscountBuyItem = 0;
-T[16].AddChip = 0;
-T[16].MinRandomChip = 0;
-T[16].MaxRandomChip = 0;
-T[17] = {};
-T[17].ID = 17;
-T[17].Name = "互动道具包_2";
-T[17].Type = 0;
-T[17].PriceType = 0;
-T[17].Price = 6e3;
-T[17].PriceBeforeDiscount = 0;
-T[17].Time = 0;
-T[17].StorePosition = 2105;
-T[17].InfoVersion = 0;
-T[17].AddGem = 0;
-T[17].AddInteractiveItem = 150;
-T[17].AddSpeechItem = 0;
-T[17].DiscountBuyItem = 0;
-T[17].AddChip = 0;
-T[17].MinRandomChip = 0;
-T[17].MaxRandomChip = 0;
-T[18] = {};
-T[18].ID = 18;
-T[18].Name = "互动道具包_3";
-T[18].Type = 0;
-T[18].PriceType = 0;
-T[18].Price = 24e3;
-T[18].PriceBeforeDiscount = 0;
-T[18].Time = 0;
-T[18].StorePosition = 2106;
-T[18].InfoVersion = 0;
-T[18].AddGem = 0;
-T[18].AddInteractiveItem = 660;
-T[18].AddSpeechItem = 0;
-T[18].DiscountBuyItem = 0;
-T[18].AddChip = 0;
-T[18].MinRandomChip = 0;
-T[18].MaxRandomChip = 0;
-T[19] = {};
-T[19].ID = 19;
-T[19].Name = "喇叭包_1";
-T[19].Type = 0;
-T[19].PriceType = 0;
-T[19].Price = 2500;
-T[19].PriceBeforeDiscount = 0;
-T[19].Time = 0;
-T[19].StorePosition = 2101;
-T[19].InfoVersion = 0;
-T[19].AddGem = 0;
-T[19].AddInteractiveItem = 0;
-T[19].AddSpeechItem = 25;
-T[19].DiscountBuyItem = 0;
-T[19].AddChip = 0;
-T[19].MinRandomChip = 0;
-T[19].MaxRandomChip = 0;
-T[20] = {};
-T[20].ID = 20;
-T[20].Name = "喇叭包_2";
-T[20].Type = 0;
-T[20].PriceType = 0;
-T[20].Price = 15e3;
-T[20].PriceBeforeDiscount = 0;
-T[20].Time = 0;
-T[20].StorePosition = 2102;
-T[20].InfoVersion = 0;
-T[20].AddGem = 0;
-T[20].AddInteractiveItem = 0;
-T[20].AddSpeechItem = 150;
-T[20].DiscountBuyItem = 0;
-T[20].AddChip = 0;
-T[20].MinRandomChip = 0;
-T[20].MaxRandomChip = 0;
-T[21] = {};
-T[21].ID = 21;
-T[21].Name = "喇叭包_3";
-T[21].Type = 0;
-T[21].PriceType = 0;
-T[21].Price = 6e4;
-T[21].PriceBeforeDiscount = 0;
-T[21].Time = 0;
-T[21].StorePosition = 2103;
-T[21].InfoVersion = 0;
-T[21].AddGem = 0;
-T[21].AddInteractiveItem = 0;
-T[21].AddSpeechItem = 600;
-T[21].DiscountBuyItem = 0;
-T[21].AddChip = 0;
-T[21].MinRandomChip = 0;
-T[21].MaxRandomChip = 0;
-T[22] = {};
-T[22].ID = 22;
-T[22].Name = "喇叭包_4";
-T[22].Type = 0;
-T[22].PriceType = 1;
-T[22].Price = 10;
-T[22].PriceBeforeDiscount = 0;
-T[22].Time = 0;
-T[22].StorePosition = 2107;
-T[22].InfoVersion = 0;
-T[22].AddGem = 0;
-T[22].AddInteractiveItem = 0;
-T[22].AddSpeechItem = 1;
-T[22].DiscountBuyItem = 0;
-T[22].AddChip = 0;
-T[22].MinRandomChip = 0;
-T[22].MaxRandomChip = 0;
-T[4004] = {};
-T[4004].ID = 4004;
-T[4004].Name = "饮品_鲜榨果汁";
-T[4004].Type = 4;
-T[4004].PriceType = 0;
-T[4004].Price = 3500;
-T[4004].PriceBeforeDiscount = 0;
-T[4004].Time = 24;
-T[4004].StorePosition = 4101;
-T[4004].InfoVersion = 0;
-T[4004].AddGem = 0;
-T[4004].AddInteractiveItem = 0;
-T[4004].AddSpeechItem = 0;
-T[4004].DiscountBuyItem = 0;
-T[4004].AddChip = 0;
-T[4004].MinRandomChip = 0;
-T[4004].MaxRandomChip = 0;
-T[4009] = {};
-T[4009].ID = 4009;
-T[4009].Name = "饮品_鸡尾酒（血腥玛丽）";
-T[4009].Type = 4;
-T[4009].PriceType = 0;
-T[4009].Price = 3500;
-T[4009].PriceBeforeDiscount = 0;
-T[4009].Time = 24;
-T[4009].StorePosition = 4102;
-T[4009].InfoVersion = 0;
-T[4009].AddGem = 0;
-T[4009].AddInteractiveItem = 0;
-T[4009].AddSpeechItem = 0;
-T[4009].DiscountBuyItem = 0;
-T[4009].AddChip = 0;
-T[4009].MinRandomChip = 0;
-T[4009].MaxRandomChip = 0;
-T[4013] = {};
-T[4013].ID = 4013;
-T[4013].Name = "美食_棒棒糖";
-T[4013].Type = 4;
-T[4013].PriceType = 0;
-T[4013].Price = 4500;
-T[4013].PriceBeforeDiscount = 0;
-T[4013].Time = 24;
-T[4013].StorePosition = 4105;
-T[4013].InfoVersion = 0;
-T[4013].AddGem = 0;
-T[4013].AddInteractiveItem = 0;
-T[4013].AddSpeechItem = 0;
-T[4013].DiscountBuyItem = 0;
-T[4013].AddChip = 0;
-T[4013].MinRandomChip = 0;
-T[4013].MaxRandomChip = 0;
-T[4014] = {};
-T[4014].ID = 4014;
-T[4014].Name = "美食_提拉米苏";
-T[4014].Type = 4;
-T[4014].PriceType = 0;
-T[4014].Price = 5500;
-T[4014].PriceBeforeDiscount = 0;
-T[4014].Time = 24;
-T[4014].StorePosition = 4107;
-T[4014].InfoVersion = 0;
-T[4014].AddGem = 0;
-T[4014].AddInteractiveItem = 0;
-T[4014].AddSpeechItem = 0;
-T[4014].DiscountBuyItem = 0;
-T[4014].AddChip = 0;
-T[4014].MinRandomChip = 0;
-T[4014].MaxRandomChip = 0;
-T[4019] = {};
-T[4019].ID = 4019;
-T[4019].Name = "美食_冰淇林";
-T[4019].Type = 4;
-T[4019].PriceType = 0;
-T[4019].Price = 5500;
-T[4019].PriceBeforeDiscount = 0;
-T[4019].Time = 24;
-T[4019].StorePosition = 4106;
-T[4019].InfoVersion = 0;
-T[4019].AddGem = 0;
-T[4019].AddInteractiveItem = 0;
-T[4019].AddSpeechItem = 0;
-T[4019].DiscountBuyItem = 0;
-T[4019].AddChip = 0;
-T[4019].MinRandomChip = 0;
-T[4019].MaxRandomChip = 0;
-T[4023] = {};
-T[4023].ID = 4023;
-T[4023].Name = "烟_雪茄";
-T[4023].Type = 4;
-T[4023].PriceType = 0;
-T[4023].Price = 4500;
-T[4023].PriceBeforeDiscount = 0;
-T[4023].Time = 24;
-T[4023].StorePosition = 4103;
-T[4023].InfoVersion = 0;
-T[4023].AddGem = 0;
-T[4023].AddInteractiveItem = 0;
-T[4023].AddSpeechItem = 0;
-T[4023].DiscountBuyItem = 0;
-T[4023].AddChip = 0;
-T[4023].MinRandomChip = 0;
-T[4023].MaxRandomChip = 0;
-T[4024] = {};
-T[4024].ID = 4024;
-T[4024].Name = "烟_烟斗";
-T[4024].Type = 4;
-T[4024].PriceType = 0;
-T[4024].Price = 4500;
-T[4024].PriceBeforeDiscount = 0;
-T[4024].Time = 24;
-T[4024].StorePosition = 4104;
-T[4024].InfoVersion = 0;
-T[4024].AddGem = 0;
-T[4024].AddInteractiveItem = 0;
-T[4024].AddSpeechItem = 0;
-T[4024].DiscountBuyItem = 0;
-T[4024].AddChip = 0;
-T[4024].MinRandomChip = 0;
-T[4024].MaxRandomChip = 0;
-T[4027] = {};
-T[4027].ID = 4027;
-T[4027].Name = "吉祥物_招财猫";
-T[4027].Type = 4;
-T[4027].PriceType = 0;
-T[4027].Price = 6500;
-T[4027].PriceBeforeDiscount = 0;
-T[4027].Time = 24;
-T[4027].StorePosition = 4108;
-T[4027].InfoVersion = 0;
-T[4027].AddGem = 0;
-T[4027].AddInteractiveItem = 0;
-T[4027].AddSpeechItem = 0;
-T[4027].DiscountBuyItem = 0;
-T[4027].AddChip = 0;
-T[4027].MinRandomChip = 0;
-T[4027].MaxRandomChip = 0;
-T[4029] = {};
-T[4029].ID = 4029;
-T[4029].Name = "吉祥物_忠犬";
-T[4029].Type = 4;
-T[4029].PriceType = 0;
-T[4029].Price = 6500;
-T[4029].PriceBeforeDiscount = 0;
-T[4029].Time = 24;
-T[4029].StorePosition = 4109;
-T[4029].InfoVersion = 0;
-T[4029].AddGem = 0;
-T[4029].AddInteractiveItem = 0;
-T[4029].AddSpeechItem = 0;
-T[4029].DiscountBuyItem = 0;
-T[4029].AddChip = 0;
-T[4029].MinRandomChip = 0;
-T[4029].MaxRandomChip = 0;
-T[4031] = {};
-T[4031].ID = 4031;
-T[4031].Name = "吉祥物_晴天娃娃";
-T[4031].Type = 4;
-T[4031].PriceType = 0;
-T[4031].Price = 7500;
-T[4031].PriceBeforeDiscount = 0;
-T[4031].Time = 24;
-T[4031].StorePosition = 4110;
-T[4031].InfoVersion = 0;
-T[4031].AddGem = 0;
-T[4031].AddInteractiveItem = 0;
-T[4031].AddSpeechItem = 0;
-T[4031].DiscountBuyItem = 0;
-T[4031].AddChip = 0;
-T[4031].MinRandomChip = 0;
-T[4031].MaxRandomChip = 0;
-T[4038] = {};
-T[4038].ID = 4038;
-T[4038].Name = "饰品_手链";
-T[4038].Type = 4;
-T[4038].PriceType = 0;
-T[4038].Price = 7500;
-T[4038].PriceBeforeDiscount = 0;
-T[4038].Time = 24;
-T[4038].StorePosition = 4112;
-T[4038].InfoVersion = 0;
-T[4038].AddGem = 0;
-T[4038].AddInteractiveItem = 0;
-T[4038].AddSpeechItem = 0;
-T[4038].DiscountBuyItem = 0;
-T[4038].AddChip = 0;
-T[4038].MinRandomChip = 0;
-T[4038].MaxRandomChip = 0;
-T[4039] = {};
-T[4039].ID = 4039;
-T[4039].Name = "饰品_铃铛";
-T[4039].Type = 4;
-T[4039].PriceType = 0;
-T[4039].Price = 7500;
-T[4039].PriceBeforeDiscount = 0;
-T[4039].Time = 24;
-T[4039].StorePosition = 4111;
-T[4039].InfoVersion = 0;
-T[4039].AddGem = 0;
-T[4039].AddInteractiveItem = 0;
-T[4039].AddSpeechItem = 0;
-T[4039].DiscountBuyItem = 0;
-T[4039].AddChip = 0;
-T[4039].MinRandomChip = 0;
-T[4039].MaxRandomChip = 0;
-T[5001] = {};
-T[5001].ID = 5001;
-T[5001].Name = "VIP（白银）";
-T[5001].Type = 5;
-T[5001].PriceType = 0;
-T[5001].Price = 0;
-T[5001].PriceBeforeDiscount = 0;
-T[5001].Time = 0;
-T[5001].StorePosition = 0;
-T[5001].InfoVersion = 0;
-T[5001].AddGem = 0;
-T[5001].AddInteractiveItem = 0;
-T[5001].AddSpeechItem = 0;
-T[5001].DiscountBuyItem = 100;
-T[5001].AddChip = 0;
-T[5001].MinRandomChip = 0;
-T[5001].MaxRandomChip = 0;
-T[5002] = {};
-T[5002].ID = 5002;
-T[5002].Name = "VIP（黄金）";
-T[5002].Type = 5;
-T[5002].PriceType = 0;
-T[5002].Price = 0;
-T[5002].PriceBeforeDiscount = 0;
-T[5002].Time = 0;
-T[5002].StorePosition = 0;
-T[5002].InfoVersion = 0;
-T[5002].AddGem = 0;
-T[5002].AddInteractiveItem = 0;
-T[5002].AddSpeechItem = 0;
-T[5002].DiscountBuyItem = 95;
-T[5002].AddChip = 0;
-T[5002].MinRandomChip = 0;
-T[5002].MaxRandomChip = 0;
-T[5003] = {};
-T[5003].ID = 5003;
-T[5003].Name = "VIP（蓝钻）";
-T[5003].Type = 5;
-T[5003].PriceType = 0;
-T[5003].Price = 0;
-T[5003].PriceBeforeDiscount = 0;
-T[5003].Time = 0;
-T[5003].StorePosition = 0;
-T[5003].InfoVersion = 0;
-T[5003].AddGem = 0;
-T[5003].AddInteractiveItem = 0;
-T[5003].AddSpeechItem = 0;
-T[5003].DiscountBuyItem = 90;
-T[5003].AddChip = 0;
-T[5003].MinRandomChip = 0;
-T[5003].MaxRandomChip = 0;
-T[5004] = {};
-T[5004].ID = 5004;
-T[5004].Name = "VIP（黑钻）";
-T[5004].Type = 5;
-T[5004].PriceType = 0;
-T[5004].Price = 0;
-T[5004].PriceBeforeDiscount = 0;
-T[5004].Time = 0;
-T[5004].StorePosition = 0;
-T[5004].InfoVersion = 0;
-T[5004].AddGem = 0;
-T[5004].AddInteractiveItem = 0;
-T[5004].AddSpeechItem = 0;
-T[5004].DiscountBuyItem = 80;
-T[5004].AddChip = 0;
-T[5004].MinRandomChip = 0;
-T[5004].MaxRandomChip = 0;
-T[5005] = {};
-T[5005].ID = 5005;
-T[5005].Name = "VIP（至尊）";
-T[5005].Type = 5;
-T[5005].PriceType = 0;
-T[5005].Price = 0;
-T[5005].PriceBeforeDiscount = 0;
-T[5005].Time = 0;
-T[5005].StorePosition = 0;
-T[5005].InfoVersion = 0;
-T[5005].AddGem = 0;
-T[5005].AddInteractiveItem = 0;
-T[5005].AddSpeechItem = 0;
-T[5005].DiscountBuyItem = 70;
-T[5005].AddChip = 0;
-T[5005].MinRandomChip = 0;
-T[5005].MaxRandomChip = 0;
-T[6001] = {};
-T[6001].ID = 6001;
-T[6001].Name = "互动道具";
-T[6001].Type = 6;
-T[6001].PriceType = 0;
-T[6001].Price = 0;
-T[6001].PriceBeforeDiscount = 0;
-T[6001].Time = 0;
-T[6001].StorePosition = 0;
-T[6001].InfoVersion = 0;
-T[6001].AddGem = 0;
-T[6001].AddInteractiveItem = 0;
-T[6001].AddSpeechItem = 0;
-T[6001].DiscountBuyItem = 0;
-T[6001].AddChip = 0;
-T[6001].MinRandomChip = 0;
-T[6001].MaxRandomChip = 0;
-T[6002] = {};
-T[6002].ID = 6002;
-T[6002].Name = "语音聊天道具";
-T[6002].Type = 6;
-T[6002].PriceType = 0;
-T[6002].Price = 0;
-T[6002].PriceBeforeDiscount = 0;
-T[6002].Time = 0;
-T[6002].StorePosition = 0;
-T[6002].InfoVersion = 0;
-T[6002].AddGem = 0;
-T[6002].AddInteractiveItem = 0;
-T[6002].AddSpeechItem = 0;
-T[6002].DiscountBuyItem = 0;
-T[6002].AddChip = 0;
-T[6002].MinRandomChip = 0;
-T[6002].MaxRandomChip = 0;
-T[6003] = {};
-T[6003].ID = 6003;
-T[6003].Name = "踢人卡";
-T[6003].Type = 6;
-T[6003].PriceType = 0;
-T[6003].Price = 0;
-T[6003].PriceBeforeDiscount = 0;
-T[6003].Time = 0;
-T[6003].StorePosition = 0;
-T[6003].InfoVersion = 0;
-T[6003].AddGem = 0;
-T[6003].AddInteractiveItem = 0;
-T[6003].AddSpeechItem = 0;
-T[6003].DiscountBuyItem = 0;
-T[6003].AddChip = 0;
-T[6003].MinRandomChip = 0;
-T[6003].MaxRandomChip = 0;
-T[6004] = {};
-T[6004].ID = 6004;
-T[6004].Name = "锁房卡";
-T[6004].Type = 6;
-T[6004].PriceType = 0;
-T[6004].Price = 0;
-T[6004].PriceBeforeDiscount = 0;
-T[6004].Time = 0;
-T[6004].StorePosition = 0;
-T[6004].InfoVersion = 0;
-T[6004].AddGem = 0;
-T[6004].AddInteractiveItem = 0;
-T[6004].AddSpeechItem = 0;
-T[6004].DiscountBuyItem = 0;
-T[6004].AddChip = 0;
-T[6004].MinRandomChip = 0;
-T[6004].MaxRandomChip = 0;
-T[6005] = {};
-T[6005].ID = 6005;
-T[6005].Name = "全服大喇叭";
-T[6005].Type = 6;
-T[6005].PriceType = 0;
-T[6005].Price = 0;
-T[6005].PriceBeforeDiscount = 0;
-T[6005].Time = 0;
-T[6005].StorePosition = 0;
-T[6005].InfoVersion = 0;
-T[6005].AddGem = 0;
-T[6005].AddInteractiveItem = 0;
-T[6005].AddSpeechItem = 0;
-T[6005].DiscountBuyItem = 0;
-T[6005].AddChip = 0;
-T[6005].MinRandomChip = 0;
-T[6005].MaxRandomChip = 0;
-T[7001] = {};
-T[7001].ID = 7001;
-T[7001].Name = "小月卡";
-T[7001].Type = 7;
-T[7001].PriceType = 1;
-T[7001].Price = 30;
-T[7001].PriceBeforeDiscount = 0;
-T[7001].Time = 720;
-T[7001].StorePosition = 0;
-T[7001].InfoVersion = 0;
-T[7001].AddGem = 0;
-T[7001].AddInteractiveItem = 0;
-T[7001].AddSpeechItem = 0;
-T[7001].DiscountBuyItem = 0;
-T[7001].AddChip = 1e6;
-T[7001].MinRandomChip = 15e4;
-T[7001].MaxRandomChip = 2e5;
-T[8001] = {};
-T[8001].ID = 8001;
-T[8001].Name = "小小兵";
-T[8001].Type = 8;
-T[8001].PriceType = 0;
-T[8001].Price = 5e4;
-T[8001].PriceBeforeDiscount = 0;
-T[8001].Time = 72;
-T[8001].StorePosition = 3109;
-T[8001].InfoVersion = 0;
-T[8001].AddGem = 0;
-T[8001].AddInteractiveItem = 0;
-T[8001].AddSpeechItem = 0;
-T[8001].DiscountBuyItem = 0;
-T[8001].AddChip = 0;
-T[8001].MinRandomChip = 0;
-T[8001].MaxRandomChip = 0;
-T[8007] = {};
-T[8007].ID = 8007;
-T[8007].Name = "海盗";
-T[8007].Type = 8;
-T[8007].PriceType = 0;
-T[8007].Price = 5e4;
-T[8007].PriceBeforeDiscount = 0;
-T[8007].Time = 72;
-T[8007].StorePosition = 3110;
-T[8007].InfoVersion = 0;
-T[8007].AddGem = 0;
-T[8007].AddInteractiveItem = 0;
-T[8007].AddSpeechItem = 0;
-T[8007].DiscountBuyItem = 0;
-T[8007].AddChip = 0;
-T[8007].MinRandomChip = 0;
-T[8007].MaxRandomChip = 0;
-T[8003] = {};
-T[8003].ID = 8003;
-T[8003].Name = "钢铁人";
-T[8003].Type = 8;
-T[8003].PriceType = 0;
-T[8003].Price = 5e4;
-T[8003].PriceBeforeDiscount = 0;
-T[8003].Time = 72;
-T[8003].StorePosition = 3111;
-T[8003].InfoVersion = 0;
-T[8003].AddGem = 0;
-T[8003].AddInteractiveItem = 0;
-T[8003].AddSpeechItem = 0;
-T[8003].DiscountBuyItem = 0;
-T[8003].AddChip = 0;
-T[8003].MinRandomChip = 0;
-T[8003].MaxRandomChip = 0;
-T[8004] = {};
-T[8004].ID = 8004;
-T[8004].Name = "奇异博士";
-T[8004].Type = 8;
-T[8004].PriceType = 0;
-T[8004].Price = 5e4;
-T[8004].PriceBeforeDiscount = 0;
-T[8004].Time = 72;
-T[8004].StorePosition = 3112;
-T[8004].InfoVersion = 0;
-T[8004].AddGem = 0;
-T[8004].AddInteractiveItem = 0;
-T[8004].AddSpeechItem = 0;
-T[8004].DiscountBuyItem = 0;
-T[8004].AddChip = 0;
-T[8004].MinRandomChip = 0;
-T[8004].MaxRandomChip = 0;
-T[8021] = {};
-T[8021].ID = 8021;
-T[8021].Name = "熊本熊";
-T[8021].Type = 8;
-T[8021].PriceType = 0;
-T[8021].Price = 5e4;
-T[8021].PriceBeforeDiscount = 0;
-T[8021].Time = 72;
-T[8021].StorePosition = 3108;
-T[8021].InfoVersion = 0;
-T[8021].AddGem = 0;
-T[8021].AddInteractiveItem = 0;
-T[8021].AddSpeechItem = 0;
-T[8021].DiscountBuyItem = 0;
-T[8021].AddChip = 0;
-T[8021].MinRandomChip = 0;
-T[8021].MaxRandomChip = 0;
-T[8022] = {};
-T[8022].ID = 8022;
-T[8022].Name = "托尼乔巴";
-T[8022].Type = 8;
-T[8022].PriceType = 0;
-T[8022].Price = 5e4;
-T[8022].PriceBeforeDiscount = 0;
-T[8022].Time = 72;
-T[8022].StorePosition = 3103;
-T[8022].InfoVersion = 0;
-T[8022].AddGem = 0;
-T[8022].AddInteractiveItem = 0;
-T[8022].AddSpeechItem = 0;
-T[8022].DiscountBuyItem = 0;
-T[8022].AddChip = 0;
-T[8022].MinRandomChip = 0;
-T[8022].MaxRandomChip = 0;
-T[8023] = {};
-T[8023].ID = 8023;
-T[8023].Name = "美少女战士";
-T[8023].Type = 8;
-T[8023].PriceType = 0;
-T[8023].Price = 5e4;
-T[8023].PriceBeforeDiscount = 0;
-T[8023].Time = 72;
-T[8023].StorePosition = 3104;
-T[8023].InfoVersion = 0;
-T[8023].AddGem = 0;
-T[8023].AddInteractiveItem = 0;
-T[8023].AddSpeechItem = 0;
-T[8023].DiscountBuyItem = 0;
-T[8023].AddChip = 0;
-T[8023].MinRandomChip = 0;
-T[8023].MaxRandomChip = 0;
-T[8024] = {};
-T[8024].ID = 8024;
-T[8024].Name = "小兔子";
-T[8024].Type = 8;
-T[8024].PriceType = 0;
-T[8024].Price = 5e4;
-T[8024].PriceBeforeDiscount = 0;
-T[8024].Time = 72;
-T[8024].StorePosition = 3107;
-T[8024].InfoVersion = 0;
-T[8024].AddGem = 0;
-T[8024].AddInteractiveItem = 0;
-T[8024].AddSpeechItem = 0;
-T[8024].DiscountBuyItem = 0;
-T[8024].AddChip = 0;
-T[8024].MinRandomChip = 0;
-T[8024].MaxRandomChip = 0;
-T[8025] = {};
-T[8025].ID = 8025;
-T[8025].Name = "猫猫";
-T[8025].Type = 8;
-T[8025].PriceType = 0;
-T[8025].Price = 5e4;
-T[8025].PriceBeforeDiscount = 0;
-T[8025].Time = 72;
-T[8025].StorePosition = 3106;
-T[8025].InfoVersion = 0;
-T[8025].AddGem = 0;
-T[8025].AddInteractiveItem = 0;
-T[8025].AddSpeechItem = 0;
-T[8025].DiscountBuyItem = 0;
-T[8025].AddChip = 0;
-T[8025].MinRandomChip = 0;
-T[8025].MaxRandomChip = 0;
-T[8026] = {};
-T[8026].ID = 8026;
-T[8026].Name = "仓鼠";
-T[8026].Type = 8;
-T[8026].PriceType = 0;
-T[8026].Price = 5e4;
-T[8026].PriceBeforeDiscount = 0;
-T[8026].Time = 72;
-T[8026].StorePosition = 3105;
-T[8026].InfoVersion = 0;
-T[8026].AddGem = 0;
-T[8026].AddInteractiveItem = 0;
-T[8026].AddSpeechItem = 0;
-T[8026].DiscountBuyItem = 0;
-T[8026].AddChip = 0;
-T[8026].MinRandomChip = 0;
-T[8026].MaxRandomChip = 0;
-T[8027] = {};
-T[8027].ID = 8027;
-T[8027].Name = "水灯节free";
-T[8027].Type = 8;
-T[8027].PriceType = 0;
-T[8027].Price = 5e4;
-T[8027].PriceBeforeDiscount = 0;
-T[8027].Time = 168;
-T[8027].StorePosition = 0;
-T[8027].InfoVersion = 0;
-T[8027].AddGem = 0;
-T[8027].AddInteractiveItem = 0;
-T[8027].AddSpeechItem = 0;
-T[8027].DiscountBuyItem = 0;
-T[8027].AddChip = 0;
-T[8027].MinRandomChip = 0;
-T[8027].MaxRandomChip = 0;
-T[8028] = {};
-T[8028].ID = 8028;
-T[8028].Name = "水灯节";
-T[8028].Type = 8;
-T[8028].PriceType = 0;
-T[8028].Price = 1e5;
-T[8028].PriceBeforeDiscount = 0;
-T[8028].Time = 72;
-T[8028].StorePosition = 3113;
-T[8028].InfoVersion = 0;
-T[8028].AddGem = 0;
-T[8028].AddInteractiveItem = 0;
-T[8028].AddSpeechItem = 0;
-T[8028].DiscountBuyItem = 0;
-T[8028].AddChip = 0;
-T[8028].MinRandomChip = 0;
-T[8028].MaxRandomChip = 0;
-T[8029] = {};
-T[8029].ID = 8029;
-T[8029].Name = "黄金";
-T[8029].Type = 8;
-T[8029].PriceType = 0;
-T[8029].Price = 1e5;
-T[8029].PriceBeforeDiscount = 0;
-T[8029].Time = 72;
-T[8029].StorePosition = 3114;
-T[8029].InfoVersion = 0;
-T[8029].AddGem = 0;
-T[8029].AddInteractiveItem = 0;
-T[8029].AddSpeechItem = 0;
-T[8029].DiscountBuyItem = 0;
-T[8029].AddChip = 0;
-T[8029].MinRandomChip = 0;
-T[8029].MaxRandomChip = 0;
-T[8030] = {};
-T[8030].ID = 8030;
-T[8030].Name = "天空";
-T[8030].Type = 8;
-T[8030].PriceType = 0;
-T[8030].Price = 1e5;
-T[8030].PriceBeforeDiscount = 0;
-T[8030].Time = 72;
-T[8030].StorePosition = 3115;
-T[8030].InfoVersion = 0;
-T[8030].AddGem = 0;
-T[8030].AddInteractiveItem = 0;
-T[8030].AddSpeechItem = 0;
-T[8030].DiscountBuyItem = 0;
-T[8030].AddChip = 0;
-T[8030].MinRandomChip = 0;
-T[8030].MaxRandomChip = 0;
-T[8031] = {};
-T[8031].ID = 8031;
-T[8031].Name = "魔卡小樱";
-T[8031].Type = 8;
-T[8031].PriceType = 0;
-T[8031].Price = 1e5;
-T[8031].PriceBeforeDiscount = 0;
-T[8031].Time = 72;
-T[8031].StorePosition = 3116;
-T[8031].InfoVersion = 0;
-T[8031].AddGem = 0;
-T[8031].AddInteractiveItem = 0;
-T[8031].AddSpeechItem = 0;
-T[8031].DiscountBuyItem = 0;
-T[8031].AddChip = 0;
-T[8031].MinRandomChip = 0;
-T[8031].MaxRandomChip = 0;
-T[8032] = {};
-T[8032].ID = 8032;
-T[8032].Name = "可乐罐";
-T[8032].Type = 8;
-T[8032].PriceType = 0;
-T[8032].Price = 1e5;
-T[8032].PriceBeforeDiscount = 0;
-T[8032].Time = 72;
-T[8032].StorePosition = 3117;
-T[8032].InfoVersion = 0;
-T[8032].AddGem = 0;
-T[8032].AddInteractiveItem = 0;
-T[8032].AddSpeechItem = 0;
-T[8032].DiscountBuyItem = 0;
-T[8032].AddChip = 0;
-T[8032].MinRandomChip = 0;
-T[8032].MaxRandomChip = 0;
-T[8033] = {};
-T[8033].ID = 8033;
-T[8033].Name = "Jinglebells";
-T[8033].Type = 8;
-T[8033].PriceType = 0;
-T[8033].Price = 1e5;
-T[8033].PriceBeforeDiscount = 0;
-T[8033].Time = 72;
-T[8033].StorePosition = 0;
-T[8033].InfoVersion = 0;
-T[8033].AddGem = 0;
-T[8033].AddInteractiveItem = 0;
-T[8033].AddSpeechItem = 0;
-T[8033].DiscountBuyItem = 0;
-T[8033].AddChip = 0;
-T[8033].MinRandomChip = 0;
-T[8033].MaxRandomChip = 0;
-T[8034] = {};
-T[8034].ID = 8034;
-T[8034].Name = "圣诞帽";
-T[8034].Type = 8;
-T[8034].PriceType = 0;
-T[8034].Price = 1e5;
-T[8034].PriceBeforeDiscount = 0;
-T[8034].Time = 72;
-T[8034].StorePosition = 0;
-T[8034].InfoVersion = 0;
-T[8034].AddGem = 0;
-T[8034].AddInteractiveItem = 0;
-T[8034].AddSpeechItem = 0;
-T[8034].DiscountBuyItem = 0;
-T[8034].AddChip = 0;
-T[8034].MinRandomChip = 0;
-T[8034].MaxRandomChip = 0;
-T[8035] = {};
-T[8035].ID = 8035;
-T[8035].Name = "元旦节";
-T[8035].Type = 8;
-T[8035].PriceType = 0;
-T[8035].Price = 1e5;
-T[8035].PriceBeforeDiscount = 0;
-T[8035].Time = 72;
-T[8035].StorePosition = 3102;
-T[8035].InfoVersion = 0;
-T[8035].AddGem = 0;
-T[8035].AddInteractiveItem = 0;
-T[8035].AddSpeechItem = 0;
-T[8035].DiscountBuyItem = 0;
-T[8035].AddChip = 0;
-T[8035].MinRandomChip = 0;
-T[8035].MaxRandomChip = 0;
-T[8036] = {};
-T[8036].ID = 8036;
-T[8036].Name = "宋干节";
-T[8036].Type = 8;
-T[8036].PriceType = 0;
-T[8036].Price = 1e4;
-T[8036].PriceBeforeDiscount = 0;
-T[8036].Time = 168;
-T[8036].StorePosition = 3101;
-T[8036].InfoVersion = 0;
-T[8036].AddGem = 0;
-T[8036].AddInteractiveItem = 0;
-T[8036].AddSpeechItem = 0;
-T[8036].DiscountBuyItem = 0;
-T[8036].AddChip = 0;
-T[8036].MinRandomChip = 0;
-T[8036].MaxRandomChip = 0;
-T[8037] = {};
-T[8037].ID = 8037;
-T[8037].Name = "四周年";
-T[8037].Type = 8;
-T[8037].PriceType = 0;
-T[8037].Price = 1e4;
-T[8037].PriceBeforeDiscount = 0;
-T[8037].Time = 1e3;
-T[8037].StorePosition = 0;
-T[8037].InfoVersion = 0;
-T[8037].AddGem = 0;
-T[8037].AddInteractiveItem = 0;
-T[8037].AddSpeechItem = 0;
-T[8037].DiscountBuyItem = 0;
-T[8037].AddChip = 0;
-T[8037].MinRandomChip = 0;
-T[8037].MaxRandomChip = 0;
-T[8038] = {};
-T[8038].ID = 8038;
-T[8038].Name = "万圣节男";
-T[8038].Type = 8;
-T[8038].PriceType = 0;
-T[8038].Price = 1e4;
-T[8038].PriceBeforeDiscount = 0;
-T[8038].Time = 168;
-T[8038].StorePosition = 0;
-T[8038].InfoVersion = 0;
-T[8038].AddGem = 0;
-T[8038].AddInteractiveItem = 0;
-T[8038].AddSpeechItem = 0;
-T[8038].DiscountBuyItem = 0;
-T[8038].AddChip = 0;
-T[8038].MinRandomChip = 0;
-T[8038].MaxRandomChip = 0;
-T[8039] = {};
-T[8039].ID = 8039;
-T[8039].Name = "万圣节女";
-T[8039].Type = 8;
-T[8039].PriceType = 0;
-T[8039].Price = 1e4;
-T[8039].PriceBeforeDiscount = 0;
-T[8039].Time = 168;
-T[8039].StorePosition = 0;
-T[8039].InfoVersion = 0;
-T[8039].AddGem = 0;
-T[8039].AddInteractiveItem = 0;
-T[8039].AddSpeechItem = 0;
-T[8039].DiscountBuyItem = 0;
-T[8039].AddChip = 0;
-T[8039].MinRandomChip = 0;
-T[8039].MaxRandomChip = 0;
-T[8040] = {};
-T[8040].ID = 8040;
-T[8040].Name = "dummy皮肤";
-T[8040].Type = 8;
-T[8040].PriceType = 0;
-T[8040].Price = 1e4;
-T[8040].PriceBeforeDiscount = 0;
-T[8040].Time = 168;
-T[8040].StorePosition = 0;
-T[8040].InfoVersion = 0;
-T[8040].AddGem = 0;
-T[8040].AddInteractiveItem = 0;
-T[8040].AddSpeechItem = 0;
-T[8040].DiscountBuyItem = 0;
-T[8040].AddChip = 0;
-T[8040].MinRandomChip = 0;
-T[8040].MaxRandomChip = 0;
-T[8041] = {};
-T[8041].ID = 8041;
-T[8041].Name = "圣诞动态皮肤";
-T[8041].Type = 8;
-T[8041].PriceType = 0;
-T[8041].Price = 1e4;
-T[8041].PriceBeforeDiscount = 0;
-T[8041].Time = 168;
-T[8041].StorePosition = 0;
-T[8041].InfoVersion = 0;
-T[8041].AddGem = 0;
-T[8041].AddInteractiveItem = 0;
-T[8041].AddSpeechItem = 0;
-T[8041].DiscountBuyItem = 0;
-T[8041].AddChip = 0;
-T[8041].MinRandomChip = 0;
-T[8041].MaxRandomChip = 0;
-T[8042] = {};
-T[8042].ID = 8042;
-T[8042].Name = "2020年";
-T[8042].Type = 8;
-T[8042].PriceType = 0;
-T[8042].Price = 1e5;
-T[8042].PriceBeforeDiscount = 0;
-T[8042].Time = 72;
-T[8042].StorePosition = 3100;
-T[8042].InfoVersion = 0;
-T[8042].AddGem = 0;
-T[8042].AddInteractiveItem = 0;
-T[8042].AddSpeechItem = 0;
-T[8042].DiscountBuyItem = 0;
-T[8042].AddChip = 0;
-T[8042].MinRandomChip = 0;
-T[8042].MaxRandomChip = 0;
-T[8043] = {};
-T[8043].ID = 8043;
-T[8043].Name = "2020春节活动皮肤";
-T[8043].Type = 8;
-T[8043].PriceType = 0;
-T[8043].Price = 1e5;
-T[8043].PriceBeforeDiscount = 0;
-T[8043].Time = 168;
-T[8043].StorePosition = 0;
-T[8043].InfoVersion = 0;
-T[8043].AddGem = 0;
-T[8043].AddInteractiveItem = 0;
-T[8043].AddSpeechItem = 0;
-T[8043].DiscountBuyItem = 0;
-T[8043].AddChip = 0;
-T[8043].MinRandomChip = 0;
-T[8043].MaxRandomChip = 0;
-_.exports = T;
+t[1].ID = 1;
+t[1].Name = "钻石包_1";
+t[1].Type = 0;
+t[1].PriceType = 2;
+t[1].Price = 35;
+t[1].PriceBeforeDiscount = 0;
+t[1].Time = 0;
+t[1].StorePosition = 1101;
+t[1].InfoVersion = 0;
+t[1].AddGem = 6;
+t[1].AddInteractiveItem = 0;
+t[1].AddSpeechItem = 0;
+t[1].DiscountBuyItem = 0;
+t[1].AddChip = 0;
+t[1].MinRandomChip = 0;
+t[1].MaxRandomChip = 0;
+t[2] = {};
+t[2].ID = 2;
+t[2].Name = "钻石包_2";
+t[2].Type = 0;
+t[2].PriceType = 2;
+t[2].Price = 175;
+t[2].PriceBeforeDiscount = 0;
+t[2].Time = 0;
+t[2].StorePosition = 1102;
+t[2].InfoVersion = 0;
+t[2].AddGem = 31;
+t[2].AddInteractiveItem = 0;
+t[2].AddSpeechItem = 0;
+t[2].DiscountBuyItem = 0;
+t[2].AddChip = 0;
+t[2].MinRandomChip = 0;
+t[2].MaxRandomChip = 0;
+t[3] = {};
+t[3].ID = 3;
+t[3].Name = "钻石包_3";
+t[3].Type = 0;
+t[3].PriceType = 2;
+t[3].Price = 699;
+t[3].PriceBeforeDiscount = 0;
+t[3].Time = 0;
+t[3].StorePosition = 1103;
+t[3].InfoVersion = 0;
+t[3].AddGem = 132;
+t[3].AddInteractiveItem = 0;
+t[3].AddSpeechItem = 0;
+t[3].DiscountBuyItem = 0;
+t[3].AddChip = 0;
+t[3].MinRandomChip = 0;
+t[3].MaxRandomChip = 0;
+t[4] = {};
+t[4].ID = 4;
+t[4].Name = "钻石包_4";
+t[4].Type = 0;
+t[4].PriceType = 2;
+t[4].Price = 1750;
+t[4].PriceBeforeDiscount = 0;
+t[4].Time = 0;
+t[4].StorePosition = 1104;
+t[4].InfoVersion = 0;
+t[4].AddGem = 336;
+t[4].AddInteractiveItem = 0;
+t[4].AddSpeechItem = 0;
+t[4].DiscountBuyItem = 0;
+t[4].AddChip = 0;
+t[4].MinRandomChip = 0;
+t[4].MaxRandomChip = 0;
+t[5] = {};
+t[5].ID = 5;
+t[5].Name = "钻石包_5";
+t[5].Type = 0;
+t[5].PriceType = 2;
+t[5].Price = 3500;
+t[5].PriceBeforeDiscount = 0;
+t[5].Time = 0;
+t[5].StorePosition = 1105;
+t[5].InfoVersion = 0;
+t[5].AddGem = 690;
+t[5].AddInteractiveItem = 0;
+t[5].AddSpeechItem = 0;
+t[5].DiscountBuyItem = 0;
+t[5].AddChip = 0;
+t[5].MinRandomChip = 0;
+t[5].MaxRandomChip = 0;
+t[6] = {};
+t[6].ID = 6;
+t[6].Name = "周卡";
+t[6].Type = 7;
+t[6].PriceType = 2;
+t[6].Price = 175;
+t[6].PriceBeforeDiscount = 0;
+t[6].Time = 168;
+t[6].StorePosition = 0;
+t[6].InfoVersion = 0;
+t[6].AddGem = 15;
+t[6].AddInteractiveItem = 0;
+t[6].AddSpeechItem = 0;
+t[6].DiscountBuyItem = 0;
+t[6].AddChip = 0;
+t[6].MinRandomChip = 0;
+t[6].MaxRandomChip = 0;
+t[7] = {};
+t[7].ID = 7;
+t[7].Name = "月卡";
+t[7].Type = 7;
+t[7].PriceType = 2;
+t[7].Price = 699;
+t[7].PriceBeforeDiscount = 0;
+t[7].Time = 720;
+t[7].StorePosition = 0;
+t[7].InfoVersion = 0;
+t[7].AddGem = 100;
+t[7].AddInteractiveItem = 0;
+t[7].AddSpeechItem = 0;
+t[7].DiscountBuyItem = 0;
+t[7].AddChip = 0;
+t[7].MinRandomChip = 0;
+t[7].MaxRandomChip = 0;
+t[16] = {};
+t[16].ID = 16;
+t[16].Name = "互动道具包_1";
+t[16].Type = 0;
+t[16].PriceType = 0;
+t[16].Price = 1e3;
+t[16].PriceBeforeDiscount = 0;
+t[16].Time = 0;
+t[16].StorePosition = 2104;
+t[16].InfoVersion = 0;
+t[16].AddGem = 0;
+t[16].AddInteractiveItem = 25;
+t[16].AddSpeechItem = 0;
+t[16].DiscountBuyItem = 0;
+t[16].AddChip = 0;
+t[16].MinRandomChip = 0;
+t[16].MaxRandomChip = 0;
+t[17] = {};
+t[17].ID = 17;
+t[17].Name = "互动道具包_2";
+t[17].Type = 0;
+t[17].PriceType = 0;
+t[17].Price = 6e3;
+t[17].PriceBeforeDiscount = 0;
+t[17].Time = 0;
+t[17].StorePosition = 2105;
+t[17].InfoVersion = 0;
+t[17].AddGem = 0;
+t[17].AddInteractiveItem = 150;
+t[17].AddSpeechItem = 0;
+t[17].DiscountBuyItem = 0;
+t[17].AddChip = 0;
+t[17].MinRandomChip = 0;
+t[17].MaxRandomChip = 0;
+t[18] = {};
+t[18].ID = 18;
+t[18].Name = "互动道具包_3";
+t[18].Type = 0;
+t[18].PriceType = 0;
+t[18].Price = 24e3;
+t[18].PriceBeforeDiscount = 0;
+t[18].Time = 0;
+t[18].StorePosition = 2106;
+t[18].InfoVersion = 0;
+t[18].AddGem = 0;
+t[18].AddInteractiveItem = 660;
+t[18].AddSpeechItem = 0;
+t[18].DiscountBuyItem = 0;
+t[18].AddChip = 0;
+t[18].MinRandomChip = 0;
+t[18].MaxRandomChip = 0;
+t[19] = {};
+t[19].ID = 19;
+t[19].Name = "喇叭包_1";
+t[19].Type = 0;
+t[19].PriceType = 0;
+t[19].Price = 2500;
+t[19].PriceBeforeDiscount = 0;
+t[19].Time = 0;
+t[19].StorePosition = 2101;
+t[19].InfoVersion = 0;
+t[19].AddGem = 0;
+t[19].AddInteractiveItem = 0;
+t[19].AddSpeechItem = 25;
+t[19].DiscountBuyItem = 0;
+t[19].AddChip = 0;
+t[19].MinRandomChip = 0;
+t[19].MaxRandomChip = 0;
+t[20] = {};
+t[20].ID = 20;
+t[20].Name = "喇叭包_2";
+t[20].Type = 0;
+t[20].PriceType = 0;
+t[20].Price = 15e3;
+t[20].PriceBeforeDiscount = 0;
+t[20].Time = 0;
+t[20].StorePosition = 2102;
+t[20].InfoVersion = 0;
+t[20].AddGem = 0;
+t[20].AddInteractiveItem = 0;
+t[20].AddSpeechItem = 150;
+t[20].DiscountBuyItem = 0;
+t[20].AddChip = 0;
+t[20].MinRandomChip = 0;
+t[20].MaxRandomChip = 0;
+t[21] = {};
+t[21].ID = 21;
+t[21].Name = "喇叭包_3";
+t[21].Type = 0;
+t[21].PriceType = 0;
+t[21].Price = 6e4;
+t[21].PriceBeforeDiscount = 0;
+t[21].Time = 0;
+t[21].StorePosition = 2103;
+t[21].InfoVersion = 0;
+t[21].AddGem = 0;
+t[21].AddInteractiveItem = 0;
+t[21].AddSpeechItem = 600;
+t[21].DiscountBuyItem = 0;
+t[21].AddChip = 0;
+t[21].MinRandomChip = 0;
+t[21].MaxRandomChip = 0;
+t[22] = {};
+t[22].ID = 22;
+t[22].Name = "喇叭包_4";
+t[22].Type = 0;
+t[22].PriceType = 1;
+t[22].Price = 10;
+t[22].PriceBeforeDiscount = 0;
+t[22].Time = 0;
+t[22].StorePosition = 2107;
+t[22].InfoVersion = 0;
+t[22].AddGem = 0;
+t[22].AddInteractiveItem = 0;
+t[22].AddSpeechItem = 1;
+t[22].DiscountBuyItem = 0;
+t[22].AddChip = 0;
+t[22].MinRandomChip = 0;
+t[22].MaxRandomChip = 0;
+t[4004] = {};
+t[4004].ID = 4004;
+t[4004].Name = "饮品_鲜榨果汁";
+t[4004].Type = 4;
+t[4004].PriceType = 0;
+t[4004].Price = 3500;
+t[4004].PriceBeforeDiscount = 0;
+t[4004].Time = 24;
+t[4004].StorePosition = 4101;
+t[4004].InfoVersion = 0;
+t[4004].AddGem = 0;
+t[4004].AddInteractiveItem = 0;
+t[4004].AddSpeechItem = 0;
+t[4004].DiscountBuyItem = 0;
+t[4004].AddChip = 0;
+t[4004].MinRandomChip = 0;
+t[4004].MaxRandomChip = 0;
+t[4009] = {};
+t[4009].ID = 4009;
+t[4009].Name = "饮品_鸡尾酒（血腥玛丽）";
+t[4009].Type = 4;
+t[4009].PriceType = 0;
+t[4009].Price = 3500;
+t[4009].PriceBeforeDiscount = 0;
+t[4009].Time = 24;
+t[4009].StorePosition = 4102;
+t[4009].InfoVersion = 0;
+t[4009].AddGem = 0;
+t[4009].AddInteractiveItem = 0;
+t[4009].AddSpeechItem = 0;
+t[4009].DiscountBuyItem = 0;
+t[4009].AddChip = 0;
+t[4009].MinRandomChip = 0;
+t[4009].MaxRandomChip = 0;
+t[4013] = {};
+t[4013].ID = 4013;
+t[4013].Name = "美食_棒棒糖";
+t[4013].Type = 4;
+t[4013].PriceType = 0;
+t[4013].Price = 4500;
+t[4013].PriceBeforeDiscount = 0;
+t[4013].Time = 24;
+t[4013].StorePosition = 4105;
+t[4013].InfoVersion = 0;
+t[4013].AddGem = 0;
+t[4013].AddInteractiveItem = 0;
+t[4013].AddSpeechItem = 0;
+t[4013].DiscountBuyItem = 0;
+t[4013].AddChip = 0;
+t[4013].MinRandomChip = 0;
+t[4013].MaxRandomChip = 0;
+t[4014] = {};
+t[4014].ID = 4014;
+t[4014].Name = "美食_提拉米苏";
+t[4014].Type = 4;
+t[4014].PriceType = 0;
+t[4014].Price = 5500;
+t[4014].PriceBeforeDiscount = 0;
+t[4014].Time = 24;
+t[4014].StorePosition = 4107;
+t[4014].InfoVersion = 0;
+t[4014].AddGem = 0;
+t[4014].AddInteractiveItem = 0;
+t[4014].AddSpeechItem = 0;
+t[4014].DiscountBuyItem = 0;
+t[4014].AddChip = 0;
+t[4014].MinRandomChip = 0;
+t[4014].MaxRandomChip = 0;
+t[4019] = {};
+t[4019].ID = 4019;
+t[4019].Name = "美食_冰淇林";
+t[4019].Type = 4;
+t[4019].PriceType = 0;
+t[4019].Price = 5500;
+t[4019].PriceBeforeDiscount = 0;
+t[4019].Time = 24;
+t[4019].StorePosition = 4106;
+t[4019].InfoVersion = 0;
+t[4019].AddGem = 0;
+t[4019].AddInteractiveItem = 0;
+t[4019].AddSpeechItem = 0;
+t[4019].DiscountBuyItem = 0;
+t[4019].AddChip = 0;
+t[4019].MinRandomChip = 0;
+t[4019].MaxRandomChip = 0;
+t[4023] = {};
+t[4023].ID = 4023;
+t[4023].Name = "烟_雪茄";
+t[4023].Type = 4;
+t[4023].PriceType = 0;
+t[4023].Price = 4500;
+t[4023].PriceBeforeDiscount = 0;
+t[4023].Time = 24;
+t[4023].StorePosition = 4103;
+t[4023].InfoVersion = 0;
+t[4023].AddGem = 0;
+t[4023].AddInteractiveItem = 0;
+t[4023].AddSpeechItem = 0;
+t[4023].DiscountBuyItem = 0;
+t[4023].AddChip = 0;
+t[4023].MinRandomChip = 0;
+t[4023].MaxRandomChip = 0;
+t[4024] = {};
+t[4024].ID = 4024;
+t[4024].Name = "烟_烟斗";
+t[4024].Type = 4;
+t[4024].PriceType = 0;
+t[4024].Price = 4500;
+t[4024].PriceBeforeDiscount = 0;
+t[4024].Time = 24;
+t[4024].StorePosition = 4104;
+t[4024].InfoVersion = 0;
+t[4024].AddGem = 0;
+t[4024].AddInteractiveItem = 0;
+t[4024].AddSpeechItem = 0;
+t[4024].DiscountBuyItem = 0;
+t[4024].AddChip = 0;
+t[4024].MinRandomChip = 0;
+t[4024].MaxRandomChip = 0;
+t[4027] = {};
+t[4027].ID = 4027;
+t[4027].Name = "吉祥物_招财猫";
+t[4027].Type = 4;
+t[4027].PriceType = 0;
+t[4027].Price = 6500;
+t[4027].PriceBeforeDiscount = 0;
+t[4027].Time = 24;
+t[4027].StorePosition = 4108;
+t[4027].InfoVersion = 0;
+t[4027].AddGem = 0;
+t[4027].AddInteractiveItem = 0;
+t[4027].AddSpeechItem = 0;
+t[4027].DiscountBuyItem = 0;
+t[4027].AddChip = 0;
+t[4027].MinRandomChip = 0;
+t[4027].MaxRandomChip = 0;
+t[4029] = {};
+t[4029].ID = 4029;
+t[4029].Name = "吉祥物_忠犬";
+t[4029].Type = 4;
+t[4029].PriceType = 0;
+t[4029].Price = 6500;
+t[4029].PriceBeforeDiscount = 0;
+t[4029].Time = 24;
+t[4029].StorePosition = 4109;
+t[4029].InfoVersion = 0;
+t[4029].AddGem = 0;
+t[4029].AddInteractiveItem = 0;
+t[4029].AddSpeechItem = 0;
+t[4029].DiscountBuyItem = 0;
+t[4029].AddChip = 0;
+t[4029].MinRandomChip = 0;
+t[4029].MaxRandomChip = 0;
+t[4031] = {};
+t[4031].ID = 4031;
+t[4031].Name = "吉祥物_晴天娃娃";
+t[4031].Type = 4;
+t[4031].PriceType = 0;
+t[4031].Price = 7500;
+t[4031].PriceBeforeDiscount = 0;
+t[4031].Time = 24;
+t[4031].StorePosition = 4110;
+t[4031].InfoVersion = 0;
+t[4031].AddGem = 0;
+t[4031].AddInteractiveItem = 0;
+t[4031].AddSpeechItem = 0;
+t[4031].DiscountBuyItem = 0;
+t[4031].AddChip = 0;
+t[4031].MinRandomChip = 0;
+t[4031].MaxRandomChip = 0;
+t[4038] = {};
+t[4038].ID = 4038;
+t[4038].Name = "饰品_手链";
+t[4038].Type = 4;
+t[4038].PriceType = 0;
+t[4038].Price = 7500;
+t[4038].PriceBeforeDiscount = 0;
+t[4038].Time = 24;
+t[4038].StorePosition = 4112;
+t[4038].InfoVersion = 0;
+t[4038].AddGem = 0;
+t[4038].AddInteractiveItem = 0;
+t[4038].AddSpeechItem = 0;
+t[4038].DiscountBuyItem = 0;
+t[4038].AddChip = 0;
+t[4038].MinRandomChip = 0;
+t[4038].MaxRandomChip = 0;
+t[4039] = {};
+t[4039].ID = 4039;
+t[4039].Name = "饰品_铃铛";
+t[4039].Type = 4;
+t[4039].PriceType = 0;
+t[4039].Price = 7500;
+t[4039].PriceBeforeDiscount = 0;
+t[4039].Time = 24;
+t[4039].StorePosition = 4111;
+t[4039].InfoVersion = 0;
+t[4039].AddGem = 0;
+t[4039].AddInteractiveItem = 0;
+t[4039].AddSpeechItem = 0;
+t[4039].DiscountBuyItem = 0;
+t[4039].AddChip = 0;
+t[4039].MinRandomChip = 0;
+t[4039].MaxRandomChip = 0;
+t[5001] = {};
+t[5001].ID = 5001;
+t[5001].Name = "VIP（白银）";
+t[5001].Type = 5;
+t[5001].PriceType = 0;
+t[5001].Price = 0;
+t[5001].PriceBeforeDiscount = 0;
+t[5001].Time = 0;
+t[5001].StorePosition = 0;
+t[5001].InfoVersion = 0;
+t[5001].AddGem = 0;
+t[5001].AddInteractiveItem = 0;
+t[5001].AddSpeechItem = 0;
+t[5001].DiscountBuyItem = 100;
+t[5001].AddChip = 0;
+t[5001].MinRandomChip = 0;
+t[5001].MaxRandomChip = 0;
+t[5002] = {};
+t[5002].ID = 5002;
+t[5002].Name = "VIP（黄金）";
+t[5002].Type = 5;
+t[5002].PriceType = 0;
+t[5002].Price = 0;
+t[5002].PriceBeforeDiscount = 0;
+t[5002].Time = 0;
+t[5002].StorePosition = 0;
+t[5002].InfoVersion = 0;
+t[5002].AddGem = 0;
+t[5002].AddInteractiveItem = 0;
+t[5002].AddSpeechItem = 0;
+t[5002].DiscountBuyItem = 95;
+t[5002].AddChip = 0;
+t[5002].MinRandomChip = 0;
+t[5002].MaxRandomChip = 0;
+t[5003] = {};
+t[5003].ID = 5003;
+t[5003].Name = "VIP（蓝钻）";
+t[5003].Type = 5;
+t[5003].PriceType = 0;
+t[5003].Price = 0;
+t[5003].PriceBeforeDiscount = 0;
+t[5003].Time = 0;
+t[5003].StorePosition = 0;
+t[5003].InfoVersion = 0;
+t[5003].AddGem = 0;
+t[5003].AddInteractiveItem = 0;
+t[5003].AddSpeechItem = 0;
+t[5003].DiscountBuyItem = 90;
+t[5003].AddChip = 0;
+t[5003].MinRandomChip = 0;
+t[5003].MaxRandomChip = 0;
+t[5004] = {};
+t[5004].ID = 5004;
+t[5004].Name = "VIP（黑钻）";
+t[5004].Type = 5;
+t[5004].PriceType = 0;
+t[5004].Price = 0;
+t[5004].PriceBeforeDiscount = 0;
+t[5004].Time = 0;
+t[5004].StorePosition = 0;
+t[5004].InfoVersion = 0;
+t[5004].AddGem = 0;
+t[5004].AddInteractiveItem = 0;
+t[5004].AddSpeechItem = 0;
+t[5004].DiscountBuyItem = 80;
+t[5004].AddChip = 0;
+t[5004].MinRandomChip = 0;
+t[5004].MaxRandomChip = 0;
+t[5005] = {};
+t[5005].ID = 5005;
+t[5005].Name = "VIP（至尊）";
+t[5005].Type = 5;
+t[5005].PriceType = 0;
+t[5005].Price = 0;
+t[5005].PriceBeforeDiscount = 0;
+t[5005].Time = 0;
+t[5005].StorePosition = 0;
+t[5005].InfoVersion = 0;
+t[5005].AddGem = 0;
+t[5005].AddInteractiveItem = 0;
+t[5005].AddSpeechItem = 0;
+t[5005].DiscountBuyItem = 70;
+t[5005].AddChip = 0;
+t[5005].MinRandomChip = 0;
+t[5005].MaxRandomChip = 0;
+t[6001] = {};
+t[6001].ID = 6001;
+t[6001].Name = "互动道具";
+t[6001].Type = 6;
+t[6001].PriceType = 0;
+t[6001].Price = 0;
+t[6001].PriceBeforeDiscount = 0;
+t[6001].Time = 0;
+t[6001].StorePosition = 0;
+t[6001].InfoVersion = 0;
+t[6001].AddGem = 0;
+t[6001].AddInteractiveItem = 0;
+t[6001].AddSpeechItem = 0;
+t[6001].DiscountBuyItem = 0;
+t[6001].AddChip = 0;
+t[6001].MinRandomChip = 0;
+t[6001].MaxRandomChip = 0;
+t[6002] = {};
+t[6002].ID = 6002;
+t[6002].Name = "语音聊天道具";
+t[6002].Type = 6;
+t[6002].PriceType = 0;
+t[6002].Price = 0;
+t[6002].PriceBeforeDiscount = 0;
+t[6002].Time = 0;
+t[6002].StorePosition = 0;
+t[6002].InfoVersion = 0;
+t[6002].AddGem = 0;
+t[6002].AddInteractiveItem = 0;
+t[6002].AddSpeechItem = 0;
+t[6002].DiscountBuyItem = 0;
+t[6002].AddChip = 0;
+t[6002].MinRandomChip = 0;
+t[6002].MaxRandomChip = 0;
+t[6003] = {};
+t[6003].ID = 6003;
+t[6003].Name = "踢人卡";
+t[6003].Type = 6;
+t[6003].PriceType = 0;
+t[6003].Price = 0;
+t[6003].PriceBeforeDiscount = 0;
+t[6003].Time = 0;
+t[6003].StorePosition = 0;
+t[6003].InfoVersion = 0;
+t[6003].AddGem = 0;
+t[6003].AddInteractiveItem = 0;
+t[6003].AddSpeechItem = 0;
+t[6003].DiscountBuyItem = 0;
+t[6003].AddChip = 0;
+t[6003].MinRandomChip = 0;
+t[6003].MaxRandomChip = 0;
+t[6004] = {};
+t[6004].ID = 6004;
+t[6004].Name = "锁房卡";
+t[6004].Type = 6;
+t[6004].PriceType = 0;
+t[6004].Price = 0;
+t[6004].PriceBeforeDiscount = 0;
+t[6004].Time = 0;
+t[6004].StorePosition = 0;
+t[6004].InfoVersion = 0;
+t[6004].AddGem = 0;
+t[6004].AddInteractiveItem = 0;
+t[6004].AddSpeechItem = 0;
+t[6004].DiscountBuyItem = 0;
+t[6004].AddChip = 0;
+t[6004].MinRandomChip = 0;
+t[6004].MaxRandomChip = 0;
+t[6005] = {};
+t[6005].ID = 6005;
+t[6005].Name = "全服大喇叭";
+t[6005].Type = 6;
+t[6005].PriceType = 0;
+t[6005].Price = 0;
+t[6005].PriceBeforeDiscount = 0;
+t[6005].Time = 0;
+t[6005].StorePosition = 0;
+t[6005].InfoVersion = 0;
+t[6005].AddGem = 0;
+t[6005].AddInteractiveItem = 0;
+t[6005].AddSpeechItem = 0;
+t[6005].DiscountBuyItem = 0;
+t[6005].AddChip = 0;
+t[6005].MinRandomChip = 0;
+t[6005].MaxRandomChip = 0;
+t[7001] = {};
+t[7001].ID = 7001;
+t[7001].Name = "小月卡";
+t[7001].Type = 7;
+t[7001].PriceType = 1;
+t[7001].Price = 30;
+t[7001].PriceBeforeDiscount = 0;
+t[7001].Time = 720;
+t[7001].StorePosition = 0;
+t[7001].InfoVersion = 0;
+t[7001].AddGem = 0;
+t[7001].AddInteractiveItem = 0;
+t[7001].AddSpeechItem = 0;
+t[7001].DiscountBuyItem = 0;
+t[7001].AddChip = 1e6;
+t[7001].MinRandomChip = 15e4;
+t[7001].MaxRandomChip = 2e5;
+t[8001] = {};
+t[8001].ID = 8001;
+t[8001].Name = "小小兵";
+t[8001].Type = 8;
+t[8001].PriceType = 0;
+t[8001].Price = 5e4;
+t[8001].PriceBeforeDiscount = 0;
+t[8001].Time = 72;
+t[8001].StorePosition = 3109;
+t[8001].InfoVersion = 0;
+t[8001].AddGem = 0;
+t[8001].AddInteractiveItem = 0;
+t[8001].AddSpeechItem = 0;
+t[8001].DiscountBuyItem = 0;
+t[8001].AddChip = 0;
+t[8001].MinRandomChip = 0;
+t[8001].MaxRandomChip = 0;
+t[8007] = {};
+t[8007].ID = 8007;
+t[8007].Name = "海盗";
+t[8007].Type = 8;
+t[8007].PriceType = 0;
+t[8007].Price = 5e4;
+t[8007].PriceBeforeDiscount = 0;
+t[8007].Time = 72;
+t[8007].StorePosition = 3110;
+t[8007].InfoVersion = 0;
+t[8007].AddGem = 0;
+t[8007].AddInteractiveItem = 0;
+t[8007].AddSpeechItem = 0;
+t[8007].DiscountBuyItem = 0;
+t[8007].AddChip = 0;
+t[8007].MinRandomChip = 0;
+t[8007].MaxRandomChip = 0;
+t[8003] = {};
+t[8003].ID = 8003;
+t[8003].Name = "钢铁人";
+t[8003].Type = 8;
+t[8003].PriceType = 0;
+t[8003].Price = 5e4;
+t[8003].PriceBeforeDiscount = 0;
+t[8003].Time = 72;
+t[8003].StorePosition = 3111;
+t[8003].InfoVersion = 0;
+t[8003].AddGem = 0;
+t[8003].AddInteractiveItem = 0;
+t[8003].AddSpeechItem = 0;
+t[8003].DiscountBuyItem = 0;
+t[8003].AddChip = 0;
+t[8003].MinRandomChip = 0;
+t[8003].MaxRandomChip = 0;
+t[8004] = {};
+t[8004].ID = 8004;
+t[8004].Name = "奇异博士";
+t[8004].Type = 8;
+t[8004].PriceType = 0;
+t[8004].Price = 5e4;
+t[8004].PriceBeforeDiscount = 0;
+t[8004].Time = 72;
+t[8004].StorePosition = 3112;
+t[8004].InfoVersion = 0;
+t[8004].AddGem = 0;
+t[8004].AddInteractiveItem = 0;
+t[8004].AddSpeechItem = 0;
+t[8004].DiscountBuyItem = 0;
+t[8004].AddChip = 0;
+t[8004].MinRandomChip = 0;
+t[8004].MaxRandomChip = 0;
+t[8021] = {};
+t[8021].ID = 8021;
+t[8021].Name = "熊本熊";
+t[8021].Type = 8;
+t[8021].PriceType = 0;
+t[8021].Price = 5e4;
+t[8021].PriceBeforeDiscount = 0;
+t[8021].Time = 72;
+t[8021].StorePosition = 3108;
+t[8021].InfoVersion = 0;
+t[8021].AddGem = 0;
+t[8021].AddInteractiveItem = 0;
+t[8021].AddSpeechItem = 0;
+t[8021].DiscountBuyItem = 0;
+t[8021].AddChip = 0;
+t[8021].MinRandomChip = 0;
+t[8021].MaxRandomChip = 0;
+t[8022] = {};
+t[8022].ID = 8022;
+t[8022].Name = "托尼乔巴";
+t[8022].Type = 8;
+t[8022].PriceType = 0;
+t[8022].Price = 5e4;
+t[8022].PriceBeforeDiscount = 0;
+t[8022].Time = 72;
+t[8022].StorePosition = 3103;
+t[8022].InfoVersion = 0;
+t[8022].AddGem = 0;
+t[8022].AddInteractiveItem = 0;
+t[8022].AddSpeechItem = 0;
+t[8022].DiscountBuyItem = 0;
+t[8022].AddChip = 0;
+t[8022].MinRandomChip = 0;
+t[8022].MaxRandomChip = 0;
+t[8023] = {};
+t[8023].ID = 8023;
+t[8023].Name = "美少女战士";
+t[8023].Type = 8;
+t[8023].PriceType = 0;
+t[8023].Price = 5e4;
+t[8023].PriceBeforeDiscount = 0;
+t[8023].Time = 72;
+t[8023].StorePosition = 3104;
+t[8023].InfoVersion = 0;
+t[8023].AddGem = 0;
+t[8023].AddInteractiveItem = 0;
+t[8023].AddSpeechItem = 0;
+t[8023].DiscountBuyItem = 0;
+t[8023].AddChip = 0;
+t[8023].MinRandomChip = 0;
+t[8023].MaxRandomChip = 0;
+t[8024] = {};
+t[8024].ID = 8024;
+t[8024].Name = "小兔子";
+t[8024].Type = 8;
+t[8024].PriceType = 0;
+t[8024].Price = 5e4;
+t[8024].PriceBeforeDiscount = 0;
+t[8024].Time = 72;
+t[8024].StorePosition = 3107;
+t[8024].InfoVersion = 0;
+t[8024].AddGem = 0;
+t[8024].AddInteractiveItem = 0;
+t[8024].AddSpeechItem = 0;
+t[8024].DiscountBuyItem = 0;
+t[8024].AddChip = 0;
+t[8024].MinRandomChip = 0;
+t[8024].MaxRandomChip = 0;
+t[8025] = {};
+t[8025].ID = 8025;
+t[8025].Name = "猫猫";
+t[8025].Type = 8;
+t[8025].PriceType = 0;
+t[8025].Price = 5e4;
+t[8025].PriceBeforeDiscount = 0;
+t[8025].Time = 72;
+t[8025].StorePosition = 3106;
+t[8025].InfoVersion = 0;
+t[8025].AddGem = 0;
+t[8025].AddInteractiveItem = 0;
+t[8025].AddSpeechItem = 0;
+t[8025].DiscountBuyItem = 0;
+t[8025].AddChip = 0;
+t[8025].MinRandomChip = 0;
+t[8025].MaxRandomChip = 0;
+t[8026] = {};
+t[8026].ID = 8026;
+t[8026].Name = "仓鼠";
+t[8026].Type = 8;
+t[8026].PriceType = 0;
+t[8026].Price = 5e4;
+t[8026].PriceBeforeDiscount = 0;
+t[8026].Time = 72;
+t[8026].StorePosition = 3105;
+t[8026].InfoVersion = 0;
+t[8026].AddGem = 0;
+t[8026].AddInteractiveItem = 0;
+t[8026].AddSpeechItem = 0;
+t[8026].DiscountBuyItem = 0;
+t[8026].AddChip = 0;
+t[8026].MinRandomChip = 0;
+t[8026].MaxRandomChip = 0;
+t[8027] = {};
+t[8027].ID = 8027;
+t[8027].Name = "水灯节free";
+t[8027].Type = 8;
+t[8027].PriceType = 0;
+t[8027].Price = 5e4;
+t[8027].PriceBeforeDiscount = 0;
+t[8027].Time = 168;
+t[8027].StorePosition = 0;
+t[8027].InfoVersion = 0;
+t[8027].AddGem = 0;
+t[8027].AddInteractiveItem = 0;
+t[8027].AddSpeechItem = 0;
+t[8027].DiscountBuyItem = 0;
+t[8027].AddChip = 0;
+t[8027].MinRandomChip = 0;
+t[8027].MaxRandomChip = 0;
+t[8028] = {};
+t[8028].ID = 8028;
+t[8028].Name = "水灯节";
+t[8028].Type = 8;
+t[8028].PriceType = 0;
+t[8028].Price = 1e5;
+t[8028].PriceBeforeDiscount = 0;
+t[8028].Time = 72;
+t[8028].StorePosition = 3113;
+t[8028].InfoVersion = 0;
+t[8028].AddGem = 0;
+t[8028].AddInteractiveItem = 0;
+t[8028].AddSpeechItem = 0;
+t[8028].DiscountBuyItem = 0;
+t[8028].AddChip = 0;
+t[8028].MinRandomChip = 0;
+t[8028].MaxRandomChip = 0;
+t[8029] = {};
+t[8029].ID = 8029;
+t[8029].Name = "黄金";
+t[8029].Type = 8;
+t[8029].PriceType = 0;
+t[8029].Price = 1e5;
+t[8029].PriceBeforeDiscount = 0;
+t[8029].Time = 72;
+t[8029].StorePosition = 3114;
+t[8029].InfoVersion = 0;
+t[8029].AddGem = 0;
+t[8029].AddInteractiveItem = 0;
+t[8029].AddSpeechItem = 0;
+t[8029].DiscountBuyItem = 0;
+t[8029].AddChip = 0;
+t[8029].MinRandomChip = 0;
+t[8029].MaxRandomChip = 0;
+t[8030] = {};
+t[8030].ID = 8030;
+t[8030].Name = "天空";
+t[8030].Type = 8;
+t[8030].PriceType = 0;
+t[8030].Price = 1e5;
+t[8030].PriceBeforeDiscount = 0;
+t[8030].Time = 72;
+t[8030].StorePosition = 3115;
+t[8030].InfoVersion = 0;
+t[8030].AddGem = 0;
+t[8030].AddInteractiveItem = 0;
+t[8030].AddSpeechItem = 0;
+t[8030].DiscountBuyItem = 0;
+t[8030].AddChip = 0;
+t[8030].MinRandomChip = 0;
+t[8030].MaxRandomChip = 0;
+t[8031] = {};
+t[8031].ID = 8031;
+t[8031].Name = "魔卡小樱";
+t[8031].Type = 8;
+t[8031].PriceType = 0;
+t[8031].Price = 1e5;
+t[8031].PriceBeforeDiscount = 0;
+t[8031].Time = 72;
+t[8031].StorePosition = 3116;
+t[8031].InfoVersion = 0;
+t[8031].AddGem = 0;
+t[8031].AddInteractiveItem = 0;
+t[8031].AddSpeechItem = 0;
+t[8031].DiscountBuyItem = 0;
+t[8031].AddChip = 0;
+t[8031].MinRandomChip = 0;
+t[8031].MaxRandomChip = 0;
+t[8032] = {};
+t[8032].ID = 8032;
+t[8032].Name = "可乐罐";
+t[8032].Type = 8;
+t[8032].PriceType = 0;
+t[8032].Price = 1e5;
+t[8032].PriceBeforeDiscount = 0;
+t[8032].Time = 72;
+t[8032].StorePosition = 3117;
+t[8032].InfoVersion = 0;
+t[8032].AddGem = 0;
+t[8032].AddInteractiveItem = 0;
+t[8032].AddSpeechItem = 0;
+t[8032].DiscountBuyItem = 0;
+t[8032].AddChip = 0;
+t[8032].MinRandomChip = 0;
+t[8032].MaxRandomChip = 0;
+t[8033] = {};
+t[8033].ID = 8033;
+t[8033].Name = "Jinglebells";
+t[8033].Type = 8;
+t[8033].PriceType = 0;
+t[8033].Price = 1e5;
+t[8033].PriceBeforeDiscount = 0;
+t[8033].Time = 72;
+t[8033].StorePosition = 0;
+t[8033].InfoVersion = 0;
+t[8033].AddGem = 0;
+t[8033].AddInteractiveItem = 0;
+t[8033].AddSpeechItem = 0;
+t[8033].DiscountBuyItem = 0;
+t[8033].AddChip = 0;
+t[8033].MinRandomChip = 0;
+t[8033].MaxRandomChip = 0;
+t[8034] = {};
+t[8034].ID = 8034;
+t[8034].Name = "圣诞帽";
+t[8034].Type = 8;
+t[8034].PriceType = 0;
+t[8034].Price = 1e5;
+t[8034].PriceBeforeDiscount = 0;
+t[8034].Time = 72;
+t[8034].StorePosition = 0;
+t[8034].InfoVersion = 0;
+t[8034].AddGem = 0;
+t[8034].AddInteractiveItem = 0;
+t[8034].AddSpeechItem = 0;
+t[8034].DiscountBuyItem = 0;
+t[8034].AddChip = 0;
+t[8034].MinRandomChip = 0;
+t[8034].MaxRandomChip = 0;
+t[8035] = {};
+t[8035].ID = 8035;
+t[8035].Name = "元旦节";
+t[8035].Type = 8;
+t[8035].PriceType = 0;
+t[8035].Price = 1e5;
+t[8035].PriceBeforeDiscount = 0;
+t[8035].Time = 72;
+t[8035].StorePosition = 3102;
+t[8035].InfoVersion = 0;
+t[8035].AddGem = 0;
+t[8035].AddInteractiveItem = 0;
+t[8035].AddSpeechItem = 0;
+t[8035].DiscountBuyItem = 0;
+t[8035].AddChip = 0;
+t[8035].MinRandomChip = 0;
+t[8035].MaxRandomChip = 0;
+t[8036] = {};
+t[8036].ID = 8036;
+t[8036].Name = "宋干节";
+t[8036].Type = 8;
+t[8036].PriceType = 0;
+t[8036].Price = 1e4;
+t[8036].PriceBeforeDiscount = 0;
+t[8036].Time = 168;
+t[8036].StorePosition = 3101;
+t[8036].InfoVersion = 0;
+t[8036].AddGem = 0;
+t[8036].AddInteractiveItem = 0;
+t[8036].AddSpeechItem = 0;
+t[8036].DiscountBuyItem = 0;
+t[8036].AddChip = 0;
+t[8036].MinRandomChip = 0;
+t[8036].MaxRandomChip = 0;
+t[8037] = {};
+t[8037].ID = 8037;
+t[8037].Name = "四周年";
+t[8037].Type = 8;
+t[8037].PriceType = 0;
+t[8037].Price = 1e4;
+t[8037].PriceBeforeDiscount = 0;
+t[8037].Time = 1e3;
+t[8037].StorePosition = 0;
+t[8037].InfoVersion = 0;
+t[8037].AddGem = 0;
+t[8037].AddInteractiveItem = 0;
+t[8037].AddSpeechItem = 0;
+t[8037].DiscountBuyItem = 0;
+t[8037].AddChip = 0;
+t[8037].MinRandomChip = 0;
+t[8037].MaxRandomChip = 0;
+t[8038] = {};
+t[8038].ID = 8038;
+t[8038].Name = "万圣节男";
+t[8038].Type = 8;
+t[8038].PriceType = 0;
+t[8038].Price = 1e4;
+t[8038].PriceBeforeDiscount = 0;
+t[8038].Time = 168;
+t[8038].StorePosition = 0;
+t[8038].InfoVersion = 0;
+t[8038].AddGem = 0;
+t[8038].AddInteractiveItem = 0;
+t[8038].AddSpeechItem = 0;
+t[8038].DiscountBuyItem = 0;
+t[8038].AddChip = 0;
+t[8038].MinRandomChip = 0;
+t[8038].MaxRandomChip = 0;
+t[8039] = {};
+t[8039].ID = 8039;
+t[8039].Name = "万圣节女";
+t[8039].Type = 8;
+t[8039].PriceType = 0;
+t[8039].Price = 1e4;
+t[8039].PriceBeforeDiscount = 0;
+t[8039].Time = 168;
+t[8039].StorePosition = 0;
+t[8039].InfoVersion = 0;
+t[8039].AddGem = 0;
+t[8039].AddInteractiveItem = 0;
+t[8039].AddSpeechItem = 0;
+t[8039].DiscountBuyItem = 0;
+t[8039].AddChip = 0;
+t[8039].MinRandomChip = 0;
+t[8039].MaxRandomChip = 0;
+t[8040] = {};
+t[8040].ID = 8040;
+t[8040].Name = "dummy皮肤";
+t[8040].Type = 8;
+t[8040].PriceType = 0;
+t[8040].Price = 1e4;
+t[8040].PriceBeforeDiscount = 0;
+t[8040].Time = 168;
+t[8040].StorePosition = 0;
+t[8040].InfoVersion = 0;
+t[8040].AddGem = 0;
+t[8040].AddInteractiveItem = 0;
+t[8040].AddSpeechItem = 0;
+t[8040].DiscountBuyItem = 0;
+t[8040].AddChip = 0;
+t[8040].MinRandomChip = 0;
+t[8040].MaxRandomChip = 0;
+t[8041] = {};
+t[8041].ID = 8041;
+t[8041].Name = "圣诞动态皮肤";
+t[8041].Type = 8;
+t[8041].PriceType = 0;
+t[8041].Price = 1e4;
+t[8041].PriceBeforeDiscount = 0;
+t[8041].Time = 168;
+t[8041].StorePosition = 0;
+t[8041].InfoVersion = 0;
+t[8041].AddGem = 0;
+t[8041].AddInteractiveItem = 0;
+t[8041].AddSpeechItem = 0;
+t[8041].DiscountBuyItem = 0;
+t[8041].AddChip = 0;
+t[8041].MinRandomChip = 0;
+t[8041].MaxRandomChip = 0;
+t[8042] = {};
+t[8042].ID = 8042;
+t[8042].Name = "2020年";
+t[8042].Type = 8;
+t[8042].PriceType = 0;
+t[8042].Price = 1e5;
+t[8042].PriceBeforeDiscount = 0;
+t[8042].Time = 72;
+t[8042].StorePosition = 3100;
+t[8042].InfoVersion = 0;
+t[8042].AddGem = 0;
+t[8042].AddInteractiveItem = 0;
+t[8042].AddSpeechItem = 0;
+t[8042].DiscountBuyItem = 0;
+t[8042].AddChip = 0;
+t[8042].MinRandomChip = 0;
+t[8042].MaxRandomChip = 0;
+t[8043] = {};
+t[8043].ID = 8043;
+t[8043].Name = "2020春节活动皮肤";
+t[8043].Type = 8;
+t[8043].PriceType = 0;
+t[8043].Price = 1e5;
+t[8043].PriceBeforeDiscount = 0;
+t[8043].Time = 168;
+t[8043].StorePosition = 0;
+t[8043].InfoVersion = 0;
+t[8043].AddGem = 0;
+t[8043].AddInteractiveItem = 0;
+t[8043].AddSpeechItem = 0;
+t[8043].DiscountBuyItem = 0;
+t[8043].AddChip = 0;
+t[8043].MinRandomChip = 0;
+t[8043].MaxRandomChip = 0;
+_.exports = t;
 cc._RF.pop();
 }, {} ],
-DevicesAndroid: [ function(e, _, t) {
-"use strict";
-cc._RF.push(_, "76007bwrn9IE5i9lxVbGD0F", "DevicesAndroid");
-var T = "com/casino/game/ApplicationUtil", S = {
-getDevicesID: function() {
-return jsb.reflection.callStaticMethod(T, "getDeviceIdentifier", "()Ljava/lang/String;");
-},
-getAppVersion: function() {
-return jsb.reflection.callStaticMethod(T, "getApplicationVersion", "()Ljava/lang/String;");
-}
-};
-_.exports = S;
-cc._RF.pop();
-}, {} ],
-DevicesIos: [ function(e, _, t) {
-"use strict";
-cc._RF.push(_, "6e0f94nMBRI+ZIyjS7/Emyg", "DevicesIos");
-var T = {
-getDevicesID: function() {
-cc.log("TODO DevicesIos getDevicesID");
-return "123";
-},
-getAppVersion: function() {
-cc.log("TODO DevicesIos getAppVersion");
-return "1.3.0";
-}
-};
-_.exports = T;
-cc._RF.pop();
-}, {} ],
-DevicesWeb: [ function(e, _, t) {
-"use strict";
-cc._RF.push(_, "1f7d1OvDdhKb6+AnPj2Q80P", "DevicesWeb");
-var T = {
-getDevicesID: function() {
-var e = new Date().getTime(), _ = window.Save.get("decicesID", e);
-_ == e && window.Save.set("decicesID", e);
-return _;
-},
-getAppVersion: function() {
-return "1.3.0";
-}
-};
-_.exports = T;
-cc._RF.pop();
-}, {} ],
-Devices: [ function(e, _, t) {
-"use strict";
-cc._RF.push(_, "cd548Gn7o1Afas1wT6k6Lak", "Devices");
-var T = {
-instance: void 0,
-getDevicesID: function() {
-return this.instance.getDevicesID();
-},
-getAppVersion: function() {
-return this.instance.getAppVersion();
-}
-};
-T.instance = e("DevicesWeb");
-cc.sys.isBrowser ? T.instance = e("DevicesWeb") : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? T.instance = e("DevicesAndroid") : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS && (T.instance = e("DevicesIos"));
-_.exports = T;
-cc._RF.pop();
-}, {
-DevicesAndroid: "DevicesAndroid",
-DevicesIos: "DevicesIos",
-DevicesWeb: "DevicesWeb"
-} ],
 1: [ function(e, _, t) {
 "use strict";
 t.byteLength = function(e) {
@@ -1657,26 +1596,26 @@ var _ = R(e), t = _[0], T = _[1];
 return 3 * (t + T) / 4 - T;
 };
 t.toByteArray = function(e) {
-var _, t, T = R(e), i = T[0], o = T[1], E = new n(s(e, i, o)), r = 0, I = o > 0 ? i - 4 : i;
+var _, t, T = R(e), i = T[0], o = T[1], E = new n(r(0, i, o)), s = 0, I = o > 0 ? i - 4 : i;
 for (t = 0; t < I; t += 4) {
 _ = S[e.charCodeAt(t)] << 18 | S[e.charCodeAt(t + 1)] << 12 | S[e.charCodeAt(t + 2)] << 6 | S[e.charCodeAt(t + 3)];
-E[r++] = _ >> 16 & 255;
-E[r++] = _ >> 8 & 255;
-E[r++] = 255 & _;
+E[s++] = _ >> 16 & 255;
+E[s++] = _ >> 8 & 255;
+E[s++] = 255 & _;
 }
 if (2 === o) {
 _ = S[e.charCodeAt(t)] << 2 | S[e.charCodeAt(t + 1)] >> 4;
-E[r++] = 255 & _;
+E[s++] = 255 & _;
 }
 if (1 === o) {
 _ = S[e.charCodeAt(t)] << 10 | S[e.charCodeAt(t + 1)] << 4 | S[e.charCodeAt(t + 2)] >> 2;
-E[r++] = _ >> 8 & 255;
-E[r++] = 255 & _;
+E[s++] = _ >> 8 & 255;
+E[s++] = 255 & _;
 }
 return E;
 };
 t.fromByteArray = function(e) {
-for (var _, t = e.length, S = t % 3, n = [], i = 0, o = t - S; i < o; i += 16383) n.push(I(e, i, i + 16383 > o ? o : i + 16383));
+for (var _, t = e.length, S = t % 3, n = [], i = 0, o = t - S; i < o; i += 16383) n.push(s(e, i, i + 16383 > o ? o : i + 16383));
 if (1 === S) {
 _ = e[t - 1];
 n.push(T[_ >> 2] + T[_ << 4 & 63] + "==");
@@ -1699,18 +1638,15 @@ var t = e.indexOf("=");
 -1 === t && (t = _);
 return [ t, t === _ ? 0 : 4 - t % 4 ];
 }
-function s(e, _, t) {
+function r(e, _, t) {
 return 3 * (_ + t) / 4 - t;
 }
-function r(e) {
-return T[e >> 18 & 63] + T[e >> 12 & 63] + T[e >> 6 & 63] + T[63 & e];
+function s(e, _, t) {
+for (var S, n, i = [], o = _; o < t; o += 3) {
+S = (e[o] << 16 & 16711680) + (e[o + 1] << 8 & 65280) + (255 & e[o + 2]);
+i.push(T[(n = S) >> 18 & 63] + T[n >> 12 & 63] + T[n >> 6 & 63] + T[63 & n]);
 }
-function I(e, _, t) {
-for (var T, S = [], n = _; n < t; n += 3) {
-T = (e[n] << 16 & 16711680) + (e[n + 1] << 8 & 65280) + (255 & e[n + 2]);
-S.push(r(T));
-}
-return S.join("");
+return i.join("");
 }
 }, {} ],
 2: [ function(e, _, t) {
@@ -1777,19 +1713,19 @@ value: null,
 configurable: !0
 });
 }
-function s(e) {
+function r(e) {
 if ("number" != typeof e) throw new TypeError('"size" argument must be a number');
 if (e < 0) throw new RangeError('"size" argument must not be negative');
 }
-function r(e, _, t, T) {
-s(_);
+function s(e, _, t, T) {
+r(_);
 return _ <= 0 ? o(e, _) : void 0 !== t ? "string" == typeof T ? o(e, _).fill(t, T) : o(e, _).fill(t) : o(e, _);
 }
 E.alloc = function(e, _, t) {
-return r(null, e, _, t);
+return s(null, e, _, t);
 };
 function I(e, _) {
-s(_);
+r(_);
 e = o(e, _ < 0 ? 0 : 0 | A(_));
 if (!E.TYPED_ARRAY_SUPPORT) for (var t = 0; t < _; ++t) e[t] = 0;
 return e;
@@ -1829,9 +1765,10 @@ _.copy(e, 0, 0, t);
 return e;
 }
 if (_) {
-if ("undefined" != typeof ArrayBuffer && _.buffer instanceof ArrayBuffer || "length" in _) return "number" != typeof _.length || $(_.length) ? o(e, 0) : c(e, _);
+if ("undefined" != typeof ArrayBuffer && _.buffer instanceof ArrayBuffer || "length" in _) return "number" != typeof _.length || (T = _.length) != T ? o(e, 0) : c(e, _);
 if ("Buffer" === _.type && n(_.data)) return c(e, _.data);
 }
+var T;
 throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.");
 }
 function A(e) {
@@ -1902,7 +1839,7 @@ return t;
 case "utf8":
 case "utf-8":
 case void 0:
-return z(e).length;
+return j(e).length;
 
 case "ucs2":
 case "ucs-2":
@@ -1914,10 +1851,10 @@ case "hex":
 return t >>> 1;
 
 case "base64":
-return J(e).length;
+return q(e).length;
 
 default:
-if (T) return z(e).length;
+if (T) return j(e).length;
 _ = ("" + _).toLowerCase();
 T = !0;
 }
@@ -2019,14 +1956,10 @@ if (_ < 0 || t > e.length || T < 0 || S > this.length) throw new RangeError("out
 if (T >= S && _ >= t) return 0;
 if (T >= S) return -1;
 if (_ >= t) return 1;
-_ >>>= 0;
-t >>>= 0;
-T >>>= 0;
-S >>>= 0;
 if (this === e) return 0;
-for (var n = S - T, i = t - _, o = Math.min(n, i), R = this.slice(T, S), s = e.slice(_, t), r = 0; r < o; ++r) if (R[r] !== s[r]) {
-n = R[r];
-i = s[r];
+for (var n = (S >>>= 0) - (T >>>= 0), i = (t >>>= 0) - (_ >>>= 0), o = Math.min(n, i), R = this.slice(T, S), r = e.slice(_, t), s = 0; s < o; ++s) if (R[s] !== r[s]) {
+n = R[s];
+i = r[s];
 break;
 }
 return n < i ? -1 : i < n ? 1 : 0;
@@ -2068,22 +2001,22 @@ function R(e, _) {
 return 1 === i ? e[_] : e.readUInt16BE(_ * i);
 }
 if (S) {
-var s = -1;
-for (n = t; n < o; n++) if (R(e, n) === R(_, -1 === s ? 0 : n - s)) {
--1 === s && (s = n);
-if (n - s + 1 === E) return s * i;
+var r = -1;
+for (n = t; n < o; n++) if (R(e, n) === R(_, -1 === r ? 0 : n - r)) {
+-1 === r && (r = n);
+if (n - r + 1 === E) return r * i;
 } else {
--1 !== s && (n -= n - s);
-s = -1;
+-1 !== r && (n -= n - r);
+r = -1;
 }
 } else {
 t + E > o && (t = o - E);
 for (n = t; n >= 0; n--) {
-for (var r = !0, I = 0; I < E; I++) if (R(e, n + I) !== R(_, I)) {
-r = !1;
+for (var s = !0, I = 0; I < E; I++) if (R(e, n + I) !== R(_, I)) {
+s = !1;
 break;
 }
-if (r) return n;
+if (s) return n;
 }
 }
 return -1;
@@ -2112,19 +2045,19 @@ e[t + i] = o;
 return i;
 }
 function p(e, _, t, T) {
-return Z(z(_, e.length - t), e, t, T);
+return J(j(_, e.length - t), e, t, T);
 }
 function f(e, _, t, T) {
-return Z(X(_), e, t, T);
+return J(X(_), e, t, T);
 }
 function M(e, _, t, T) {
 return f(e, _, t, T);
 }
 function P(e, _, t, T) {
-return Z(J(_), e, t, T);
+return J(q(_), e, t, T);
 }
 function L(e, _, t, T) {
-return Z(q(_, e.length - t), e, t, T);
+return J(z(_, e.length - t), e, t, T);
 }
 E.prototype.write = function(e, _, t, T) {
 if (void 0 === _) {
@@ -2194,27 +2127,27 @@ t = Math.min(e.length, t);
 for (var T = [], S = _; S < t; ) {
 var n = e[S], i = null, o = n > 239 ? 4 : n > 223 ? 3 : n > 191 ? 2 : 1;
 if (S + o <= t) {
-var E, R, s, r;
+var E, R, r, s;
 switch (o) {
 case 1:
 n < 128 && (i = n);
 break;
 
 case 2:
-128 == (192 & (E = e[S + 1])) && (r = (31 & n) << 6 | 63 & E) > 127 && (i = r);
+128 == (192 & (E = e[S + 1])) && (s = (31 & n) << 6 | 63 & E) > 127 && (i = s);
 break;
 
 case 3:
 E = e[S + 1];
 R = e[S + 2];
-128 == (192 & E) && 128 == (192 & R) && (r = (15 & n) << 12 | (63 & E) << 6 | 63 & R) > 2047 && (r < 55296 || r > 57343) && (i = r);
+128 == (192 & E) && 128 == (192 & R) && (s = (15 & n) << 12 | (63 & E) << 6 | 63 & R) > 2047 && (s < 55296 || s > 57343) && (i = s);
 break;
 
 case 4:
 E = e[S + 1];
 R = e[S + 2];
-s = e[S + 3];
-128 == (192 & E) && 128 == (192 & R) && 128 == (192 & s) && (r = (15 & n) << 18 | (63 & E) << 12 | (63 & R) << 6 | 63 & s) > 65535 && r < 1114112 && (i = r);
+r = e[S + 3];
+128 == (192 & E) && 128 == (192 & R) && 128 == (192 & r) && (s = (15 & n) << 18 | (63 & E) << 12 | (63 & R) << 6 | 63 & r) > 65535 && s < 1114112 && (i = s);
 }
 }
 if (null === i) {
@@ -2250,11 +2183,11 @@ for (var S = _; S < t; ++S) T += String.fromCharCode(e[S]);
 return T;
 }
 function F(e, _, t) {
-var T = e.length;
+var T, S = e.length;
 (!_ || _ < 0) && (_ = 0);
-(!t || t < 0 || t > T) && (t = T);
-for (var S = "", n = _; n < t; ++n) S += j(e[n]);
-return S;
+(!t || t < 0 || t > S) && (t = S);
+for (var n = "", i = _; i < t; ++i) n += (T = e[i]) < 16 ? "0" + T.toString(16) : T.toString(16);
+return n;
 }
 function G(e, _, t) {
 for (var T = e.slice(_, t), S = "", n = 0; n < T.length; n += 2) S += String.fromCharCode(T[n] + 256 * T[n + 1]);
@@ -2262,10 +2195,8 @@ return S;
 }
 E.prototype.slice = function(e, _) {
 var t, T = this.length;
-e = ~~e;
-_ = void 0 === _ ? T : ~~_;
-e < 0 ? (e += T) < 0 && (e = 0) : e > T && (e = T);
-_ < 0 ? (_ += T) < 0 && (_ = 0) : _ > T && (_ = T);
+(e = ~~e) < 0 ? (e += T) < 0 && (e = 0) : e > T && (e = T);
+(_ = void 0 === _ ? T : ~~_) < 0 ? (_ += T) < 0 && (_ = 0) : _ > T && (_ = T);
 _ < e && (_ = e);
 if (E.TYPED_ARRAY_SUPPORT) (t = this.subarray(e, _)).__proto__ = E.prototype; else {
 var S = _ - e;
@@ -2375,9 +2306,7 @@ E.prototype.writeUIntLE = function(e, _, t, T) {
 e = +e;
 _ |= 0;
 t |= 0;
-if (!T) {
-v(this, e, _, t, Math.pow(2, 8 * t) - 1, 0);
-}
+T || v(this, e, _, t, Math.pow(2, 8 * t) - 1, 0);
 var S = 1, n = 0;
 this[_] = 255 & e;
 for (;++n < t && (S *= 256); ) this[_ + n] = e / S & 255;
@@ -2387,9 +2316,7 @@ E.prototype.writeUIntBE = function(e, _, t, T) {
 e = +e;
 _ |= 0;
 t |= 0;
-if (!T) {
-v(this, e, _, t, Math.pow(2, 8 * t) - 1, 0);
-}
+T || v(this, e, _, t, Math.pow(2, 8 * t) - 1, 0);
 var S = t - 1, n = 1;
 this[_ + S] = 255 & e;
 for (;--S >= 0 && (n *= 256); ) this[_ + S] = e / n & 255;
@@ -2539,7 +2466,7 @@ this[_ + 3] = 255 & e;
 } else b(this, e, _, !1);
 return _ + 4;
 };
-function Y(e, _, t, T, S, n) {
+function Y(e, _, t, T) {
 if (t + T > e.length) throw new RangeError("Index out of range");
 if (t < 0) throw new RangeError("Index out of range");
 }
@@ -2606,7 +2533,7 @@ t = void 0 === t ? this.length : t >>> 0;
 e || (e = 0);
 var n;
 if ("number" == typeof e) for (n = _; n < t; ++n) this[n] = e; else {
-var i = E.isBuffer(e) ? e : z(new E(e, T).toString()), o = i.length;
+var i = E.isBuffer(e) ? e : j(new E(e, T).toString()), o = i.length;
 for (n = 0; n < t - _; ++n) this[n + _] = i[n % o];
 }
 return this;
@@ -2620,10 +2547,7 @@ return e;
 function k(e) {
 return e.trim ? e.trim() : e.replace(/^\s+|\s+$/g, "");
 }
-function j(e) {
-return e < 16 ? "0" + e.toString(16) : e.toString(16);
-}
-function z(e, _) {
+function j(e, _) {
 _ = _ || Infinity;
 for (var t, T = e.length, S = null, n = [], i = 0; i < T; ++i) {
 if ((t = e.charCodeAt(i)) > 55295 && t < 57344) {
@@ -2668,7 +2592,7 @@ function X(e) {
 for (var _ = [], t = 0; t < e.length; ++t) _.push(255 & e.charCodeAt(t));
 return _;
 }
-function q(e, _) {
+function z(e, _) {
 for (var t, T, S, n = [], i = 0; i < e.length && !((_ -= 2) < 0); ++i) {
 T = (t = e.charCodeAt(i)) >> 8;
 S = t % 256;
@@ -2677,15 +2601,12 @@ n.push(T);
 }
 return n;
 }
-function J(e) {
+function q(e) {
 return T.toByteArray(x(e));
 }
-function Z(e, _, t, T) {
+function J(e, _, t, T) {
 for (var S = 0; S < T && !(S + t >= _.length || S >= e.length); ++S) _[S + t] = e[S];
 return S;
-}
-function $(e) {
-return e != e;
 }
 }).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
 }, {
@@ -2693,24 +2614,24 @@ return e != e;
 ieee754: 4,
 isarray: 3
 } ],
-3: [ function(e, _, t) {
-var T = {}.toString;
+3: [ function(e, _) {
+var t = {}.toString;
 _.exports = Array.isArray || function(e) {
-return "[object Array]" == T.call(e);
+return "[object Array]" == t.call(e);
 };
 }, {} ],
 4: [ function(e, _, t) {
 t.read = function(e, _, t, T, S) {
-var n, i, o = 8 * S - T - 1, E = (1 << o) - 1, R = E >> 1, s = -7, r = t ? S - 1 : 0, I = t ? -1 : 1, a = e[_ + r];
-r += I;
-n = a & (1 << -s) - 1;
-a >>= -s;
-s += o;
-for (;s > 0; n = 256 * n + e[_ + r], r += I, s -= 8) ;
-i = n & (1 << -s) - 1;
-n >>= -s;
-s += T;
-for (;s > 0; i = 256 * i + e[_ + r], r += I, s -= 8) ;
+var n, i, o = 8 * S - T - 1, E = (1 << o) - 1, R = E >> 1, r = -7, s = t ? S - 1 : 0, I = t ? -1 : 1, a = e[_ + s];
+s += I;
+n = a & (1 << -r) - 1;
+a >>= -r;
+r += o;
+for (;r > 0; n = 256 * n + e[_ + s], s += I, r -= 8) ;
+i = n & (1 << -r) - 1;
+n >>= -r;
+r += T;
+for (;r > 0; i = 256 * i + e[_ + s], s += I, r -= 8) ;
 if (0 === n) n = 1 - R; else {
 if (n === E) return i ? NaN : Infinity * (a ? -1 : 1);
 i += Math.pow(2, T);
@@ -2719,29 +2640,29 @@ n -= R;
 return (a ? -1 : 1) * i * Math.pow(2, n - T);
 };
 t.write = function(e, _, t, T, S, n) {
-var i, o, E, R = 8 * n - S - 1, s = (1 << R) - 1, r = s >> 1, I = 23 === S ? Math.pow(2, -24) - Math.pow(2, -77) : 0, a = T ? 0 : n - 1, c = T ? 1 : -1, N = _ < 0 || 0 === _ && 1 / _ < 0 ? 1 : 0;
+var i, o, E, R = 8 * n - S - 1, r = (1 << R) - 1, s = r >> 1, I = 23 === S ? Math.pow(2, -24) - Math.pow(2, -77) : 0, a = T ? 0 : n - 1, c = T ? 1 : -1, N = _ < 0 || 0 === _ && 1 / _ < 0 ? 1 : 0;
 _ = Math.abs(_);
 if (isNaN(_) || Infinity === _) {
 o = isNaN(_) ? 1 : 0;
-i = s;
+i = r;
 } else {
 i = Math.floor(Math.log(_) / Math.LN2);
 if (_ * (E = Math.pow(2, -i)) < 1) {
 i--;
 E *= 2;
 }
-if ((_ += i + r >= 1 ? I / E : I * Math.pow(2, 1 - r)) * E >= 2) {
+if ((_ += i + s >= 1 ? I / E : I * Math.pow(2, 1 - s)) * E >= 2) {
 i++;
 E /= 2;
 }
-if (i + r >= s) {
+if (i + s >= r) {
 o = 0;
-i = s;
-} else if (i + r >= 1) {
+i = r;
+} else if (i + s >= 1) {
 o = (_ * E - 1) * Math.pow(2, S);
-i += r;
+i += s;
 } else {
-o = _ * Math.pow(2, r - 1) * Math.pow(2, S);
+o = _ * Math.pow(2, s - 1) * Math.pow(2, S);
 i = 0;
 }
 }
@@ -2752,39 +2673,106 @@ for (;R > 0; e[t + a] = 255 & i, a += c, i /= 256, R -= 8) ;
 e[t + a - c] |= 128 * N;
 };
 }, {} ],
-GameClient: [ function(e, _, t) {
+DevicesAndroid: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "76007bwrn9IE5i9lxVbGD0F", "DevicesAndroid");
+var t = "com/casino/game/ApplicationUtil", T = {
+getDevicesID: function() {
+return jsb.reflection.callStaticMethod(t, "getDeviceIdentifier", "()Ljava/lang/String;");
+},
+getAppVersion: function() {
+return jsb.reflection.callStaticMethod(t, "getApplicationVersion", "()Ljava/lang/String;");
+}
+};
+_.exports = T;
+cc._RF.pop();
+}, {} ],
+DevicesIos: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "6e0f94nMBRI+ZIyjS7/Emyg", "DevicesIos");
+var t = {
+getDevicesID: function() {
+cc.log("TODO DevicesIos getDevicesID");
+return "123";
+},
+getAppVersion: function() {
+cc.log("TODO DevicesIos getAppVersion");
+return "1.3.0";
+}
+};
+_.exports = t;
+cc._RF.pop();
+}, {} ],
+DevicesWeb: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "1f7d1OvDdhKb6+AnPj2Q80P", "DevicesWeb");
+var t = {
+getDevicesID: function() {
+var e = new Date().getTime(), _ = window.Save.get("decicesID", e);
+_ == e && window.Save.set("decicesID", e);
+return _;
+},
+getAppVersion: function() {
+return "1.3.0";
+}
+};
+_.exports = t;
+cc._RF.pop();
+}, {} ],
+Devices: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "cd548Gn7o1Afas1wT6k6Lak", "Devices");
+var t = {
+instance: void 0,
+getDevicesID: function() {
+return this.instance.getDevicesID();
+},
+getAppVersion: function() {
+return this.instance.getAppVersion();
+}
+};
+t.instance = e("DevicesWeb");
+cc.sys.isBrowser ? t.instance = e("DevicesWeb") : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? t.instance = e("DevicesAndroid") : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS && (t.instance = e("DevicesIos"));
+_.exports = t;
+cc._RF.pop();
+}, {
+DevicesAndroid: "DevicesAndroid",
+DevicesIos: "DevicesIos",
+DevicesWeb: "DevicesWeb"
+} ],
+GameClient: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "7790f7DHIlN/LJdV2QxtWlg", "GameClient");
-var T = e("OnlineWS"), S = {
+var t = e("OnlineWS"), T = {
 initData: function() {
 cc.log("GameClient initData***");
 },
-connect: function(e, _, t) {
-this.ws = new T();
+connect: function(e, _, T) {
+this.ws = new t();
 this.ws.connect(e, _);
 this.ws.setConnectCall(function() {
-t && t();
+T && T();
 });
 },
 getConnectState: function() {
 return !!this.ws && this.ws.getWsState();
 }
 };
-_.exports = S;
+_.exports = T;
 cc._RF.pop();
 }, {
 OnlineWS: "OnlineWS"
 } ],
-Global: [ function(e, _, t) {
+Global: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "b5395s9nXxHJIO9wugo2HKF", "Global");
-var T = {
+var t = {
 sayHello: function() {
 console.log("Global sayehello");
 },
 gSchduleFun: function(e, _, t, T, S) {
-void 0 == T && (T = cc.macro.REPEAT_FOREVER);
-void 0 == S && (S = 0);
+null == T && (T = cc.macro.REPEAT_FOREVER);
+null == S && (S = 0);
 cc.director.getScheduler().schedule(_, e, t, T, S, !1);
 },
 gSchduleOnce: function(e, _, t) {
@@ -2796,10 +2784,10 @@ gUnSchduleFun: function(e, _) {
 cc.director.getScheduler().unschedule(_, e);
 },
 gPreloadScene: function(e, _, t) {
-cc.director.preloadScene(e, function(e, t, T) {
-var S = Math.floor(100 * (e / t).toFixed(2));
-_ && _(S);
-}, function(_, T) {
+cc.director.preloadScene(e, function(e, t) {
+var T = Math.floor(100 * (e / t).toFixed(2));
+_ && _(T);
+}, function(_) {
 t && t(e, _);
 });
 },
@@ -2811,10 +2799,7 @@ if (T == _ || T == toString(_)) return !0;
 return !1;
 },
 GgetDataFromFile: function(e) {
-if (cc.sys.isNative) {
-return jsb.fileUtils.getDataFromFile(e);
-}
-return null;
+return cc.sys.isNative ? jsb.fileUtils.getDataFromFile(e) : null;
 },
 GwriteStringToFile: function(e, _) {
 cc.sys.isNative && jsb.fileUtils.writeStringToFile(e, _);
@@ -2831,7 +2816,7 @@ if (_.length > 1) for (var T = 0; T < _.length - 1; T++) {
 var S = _[T];
 t = 0 == T ? S : t + "/" + S;
 } else t = _[0];
-return t += "/";
+return t + "/";
 },
 GgetFileNameByUrl: function(e) {
 var _ = e.split("/");
@@ -2843,9 +2828,9 @@ if (cc.sys.isNative) {
 var T = jsb.fileUtils.getWritablePath() + "PicTemp/";
 this.GcreateDir(T);
 var S = T + this.GgetFileNameByUrl(e);
-jsb.fileUtils.isFileExist(S) ? t.loadTexture(S, function(e) {
+jsb.fileUtils.isFileExist(S) ? this.loadTexture(S, function(e) {
 _ && _(e);
-}) : t.GDownFile(e, function(e) {
+}) : this.GDownFile(e, function(e) {
 t.GwriteDataToFile(e, S);
 t.loadTexture(S, function(e) {
 _ && _(e);
@@ -2938,27 +2923,30 @@ t && t(e, _);
 gReBoot: function() {
 cc.game.restart();
 },
-Ghotupdateurl: "http://192.168.65.172/hotupversion/configrelease",
+Ghotupdateurl: "xxx",
 GgameType: 3
 };
-1 == T.GgameType && (T.Ghotupdateurl = "http://192.168.65.172/hotupversion/configrelease");
-if (3 == T.GgameType) {
-T.Ghotupdateurl = "http://192.168.65.172/hotupversion/configdebug";
-T.isDebugTest = !0;
+if (1 == t.GgameType) {
+t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configrelease";
+t.isDebugTest = !1;
 }
-_.exports = T;
+if (3 == t.GgameType) {
+t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configdebug";
+t.isDebugTest = !0;
+}
+_.exports = t;
 cc._RF.pop();
 }, {} ],
-HttpHelper: [ function(e, _, t) {
+HttpHelper: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "163fcvJNjZDzY673ehl7bYi", "HttpHelper");
-var T = {
+var t = {
 sendHttpRequest: function(e, _) {
 var t = cc.loader.getXMLHttpRequest();
 t.onreadystatechange = function() {
 4 == t.readyState && t.status >= 200 && t.status < 300 && _ && _(t.responseText);
 };
-t.onerror = function(e) {
+t.onerror = function() {
 cc.log(" xhr.onerror*******");
 _(null);
 };
@@ -2985,13 +2973,13 @@ console.log("_data", S);
 T.send(S);
 }
 };
-_.exports = T;
+_.exports = t;
 cc._RF.pop();
 }, {} ],
-KeypadDispatch: [ function(e, _, t) {
+KeypadDispatch: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "c37c1GBpUhDCoCJcFdLsA1S", "KeypadDispatch");
-var T = e("Global"), S = cc.Class({
+var t = e("Global"), T = cc.Class({
 properties: {
 Stacks: {
 default: [],
@@ -3011,7 +2999,7 @@ onbackkeyup: function() {
 if (1 != this.Stacks.length) {
 var e = this.Stacks[this.Stacks.length - 1];
 e && e.onbackpress && e.onbackpress();
-} else T.ShowAlert("exit game?", [ "yes", "no" ], function(e) {
+} else t.ShowAlert("exit game?", [ "yes", "no" ], function(e) {
 1 == e && cc.game.end();
 });
 },
@@ -3029,20 +3017,20 @@ onDestroy: function() {
 cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 }
 });
-S._instance = null;
-S.getInstance = function() {
-S._instance || (S._instance = new S());
-return S._instance;
+T._instance = null;
+T.getInstance = function() {
+T._instance || (T._instance = new T());
+return T._instance;
 };
-_.exports = S;
+_.exports = T;
 cc._RF.pop();
 }, {
 Global: "Global"
 } ],
-LabelLocalized: [ function(e, _, t) {
+LabelLocalized: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "e4f88adp3hERoJ48DZ2PSAl", "LabelLocalized");
-var T = e("i18n");
+var t = e("i18n");
 cc.Class({
 extends: cc.Label,
 properties: {
@@ -3061,7 +3049,7 @@ string: {
 override: !0,
 tooltip: "Here shows the localized string of Text Key",
 get: function() {
-return T.t(this.textKey);
+return t.t(this.textKey);
 },
 set: function(e) {
 this.textKey = e;
@@ -3073,12 +3061,12 @@ cc._RF.pop();
 }, {
 i18n: "i18n"
 } ],
-LaunchScene: [ function(e, _, t) {
+LaunchScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "a7016SMIJVNQrZxjzWJyjKM", "LaunchScene");
-var T = e("Global"), S = e("VersionManager"), n = e("BaseComponent");
+var t = e("Global"), T = e("VersionManager"), S = e("BaseComponent");
 cc.Class({
-extends: n,
+extends: S,
 properties: {
 Text: {
 default: null,
@@ -3095,67 +3083,64 @@ this._super();
 updateText: function() {
 this.count = this.count + 1;
 this.count = this.count % 4;
-this.Text.string = "Updating" + T.StrTime(".", this.count);
+this.Text.string = "Updating" + t.StrTime(".", this.count);
 },
 unSchduleUpdateText: function() {
-T.gUnSchduleFun(this, this.updateText);
+t.gUnSchduleFun(this, this.updateText);
 },
 start: function() {
+var e = this;
 cc.log("渠道号===", window.DISTRIBUTE_CHANNEL);
 cc.sys.localStorage.setItem("debugId", 724001);
-var e = this;
 this.count = 0;
 if (cc && cc.sys.isNative) {
 if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32) {
-cc.log("模拟器不更新");
-S.parseLocalCfg();
-e.goLoginScene();
+cc.log("模拟器不热更新");
+T.parseLocalCfg();
+this.goLoginScene();
 return;
 }
-if (T.isDebugTest) {
-T.ShowChooseUpdate({
+t.isDebugTest ? t.ShowChooseUpdate({
 tips: "热更新选择",
 items: [ {
 text: "默认热更新地址"
 }, {
 text: "手动输入热更新地址"
 } ]
-}, function(_, t) {
+}, function(_, T) {
 console.log("点击了", _);
 if (0 == _) {
-e.goCheckUpdate(T.Ghotupdateurl);
-t.bClose();
+e.goCheckUpdate(t.Ghotupdateurl);
+T.bClose();
 }
-1 == _ && T.ShowTextInput(function(_) {
+1 == _ && t.ShowTextInput(function(_) {
 if (_.length > 0) {
-T.Ghotupdateurl = _;
+t.Ghotupdateurl = _;
 e.goCheckUpdate(_);
-t.bClose();
-} else console.log("no text");
+T.bClose();
+} else console.log("请输入自定义的热更新地址");
 });
-});
-} else T.gSchduleOnce(this, function() {
-e.goCheckUpdate(T.Ghotupdateurl);
+}) : t.gSchduleOnce(this, function() {
+e.goCheckUpdate(t.Ghotupdateurl);
 }, 3);
-T.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0);
+t.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0);
 } else {
-S.getH5ScriptVersion();
-T.gSchduleOnce(this, function() {
+T.getH5ScriptVersion();
+t.gSchduleOnce(this, function() {
 e.goLoginScene();
 }, .1);
 }
 },
 goCheckUpdate: function(e) {
 var _ = this;
-S.checkUpdate(e, function(e, t) {
-0 == e ? _.goLoginScene() : 100 == e ? _.Reboot() : 6 == e || 7 == e ? _.goLoginScene() : 8 == e ? T.ShowAlert("发现新版本" + t, [], function(e) {
-cc.log("indx====", e);
-cc.sys.openURL(t);
-}) : T.ShowAlert("ErrorCode=====" + e, [], function() {
-_.goLoginScene();
+T.checkUpdate(e, function(e, T) {
+0 == e ? _.goLoginScene() : 100 == e ? _.Reboot() : 6 == e || 7 == e ? _.goLoginScene() : 8 == e ? t.ShowAlert("发现新版本" + T, [], function() {
+cc.sys.openURL(T);
+}) : t.ShowAlert("ErrorCode=====" + e, [], function() {
+_.Reboot();
 });
 }, function(e, t, T) {
-cc.log("progress===", e);
+cc.log("load progress===", e);
 cc.director.getScheduler().isScheduled(_.updateText, _) && _.unSchduleUpdateText();
 var S = "updateing" + e + "% (" + t + "kb/" + T + "kb)";
 _.Text.string = S;
@@ -3163,16 +3148,14 @@ _.Text.string = S;
 },
 Reboot: function() {
 this.scheduleOnce(function() {
-T.gReBoot();
+t.gReBoot();
 }, 2);
 },
 goTestScene: function() {
 cc.director.loadScene("TestScene");
 },
 goLoginScene: function() {
-T.gSchduleOnce(this, function() {
-cc.director.loadScene("LoginScene", function() {});
-}, 2);
+cc.director.loadScene("LoginScene");
 }
 });
 cc._RF.pop();
@@ -3181,13 +3164,13 @@ BaseComponent: "BaseComponent",
 Global: "Global",
 VersionManager: "VersionManager"
 } ],
-LoginScene: [ function(e, _, t) {
+LoginScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "43150sdB6ZHSKFTTRw2QZE7", "LoginScene");
-var T = e("VersionManager"), S = e("Global"), n = e("Devices"), i = e("BaseComponent");
+var t = e("VersionManager"), T = e("Global"), S = e("Devices"), n = e("BaseComponent");
 e("../../core/Global").ConverToNodePos;
 cc.Class({
-extends: i,
+extends: n,
 properties: {
 VersionText: {
 default: null,
@@ -3202,8 +3185,8 @@ this._super();
 },
 start: function() {
 var e = this;
-1 == S.GgameType && (this.VersionText.string = n.getAppVersion() + "(R" + T.getScriptVersion() + ")");
-3 == S.GgameType && (this.VersionText.string = n.getAppVersion() + "(D" + T.getScriptVersion() + ")");
+1 == T.GgameType && (this.VersionText.string = S.getAppVersion() + "(R" + t.getScriptVersion() + ")");
+3 == T.GgameType && (this.VersionText.string = S.getAppVersion() + "(D" + t.getScriptVersion() + ")");
 var _ = cc.find("uipanel/gotest", this.node);
 cc.find("uipanel/label", this.node);
 ua.darkButton(_, function() {
@@ -3226,11 +3209,11 @@ Devices: "Devices",
 Global: "Global",
 VersionManager: "VersionManager"
 } ],
-MainScene: [ function(e, _, t) {
+MainScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "280c3rsZJJKnZ9RqbALVwtK", "MainScene");
 e("Global"), e("Base64Tool");
-var T = e("Devices");
+var t = e("Devices");
 cc.Class({
 extends: cc.Component,
 properties: {},
@@ -3243,7 +3226,7 @@ e = JSON.parse(e);
 cc.log("data==", e.args.show_env);
 }
 });
-cc.director.getScene().getChildByName("Canvas").getChildByName("label").getComponent(cc.Label).string = "设备版本号：" + T.getAppVersion() + "\nchanle" + window.DISTRIBUTE_CHANNEL;
+cc.director.getScene().getChildByName("Canvas").getChildByName("label").getComponent(cc.Label).string = "设备版本号：" + t.getAppVersion() + "\nchanle" + window.DISTRIBUTE_CHANNEL;
 },
 launchFullScreen: function(e) {
 if (e.requestFullScreen) e.requestFullScreen(); else if (e.mozRequestFullScreen) e.mozRequestFullScreen(); else if (e.webkitRequestFullScreen) e.webkitRequestFullScreen(); else {
@@ -3252,7 +3235,7 @@ e.msRequestFullscreen();
 }
 },
 onLoad: function() {},
-update: function(e) {}
+update: function() {}
 });
 cc._RF.pop();
 }, {
@@ -3262,36 +3245,36 @@ GameClient: "GameClient",
 Global: "Global",
 HttpHelper: "HttpHelper"
 } ],
-OnlineWS: [ function(e, _, t) {
+OnlineWS: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "88503myvH9CnIObyoxlBC25", "OnlineWS");
-var T = e("buffer").Buffer;
+var t = e("buffer").Buffer;
 cc.Class({
 ctor: function() {
 this.bclientClose = !1;
 },
-connect: function(_, t) {
+connect: function(_, T) {
 this.netData = new Array();
 this.callbackMap = new Map();
 var S = e("Onlinedef"), n = this;
-this._wsiSendBinary = null == _ ? new WebSocket("ws://" + S.hos + ":" + S.port + "//") : new WebSocket("ws://" + _ + ":" + t + "//");
-cc.log("-连接--------", _ + ":" + t);
+this._wsiSendBinary = null == _ ? new WebSocket("ws://" + S.hos + ":" + S.port + "//") : new WebSocket("ws://" + _ + ":" + T + "//");
+cc.log("-连接--------", _ + ":" + T);
 this._wsiSendBinary.binaryType = "arraybuffer";
-this._wsiSendBinary.onopen = function(e) {
+this._wsiSendBinary.onopen = function() {
 cc.log("网络连接成功");
 n.reportConnectSuc();
 };
 this._wsiSendBinary.onmessage = function(_) {
 n.arrayU8ToU16Array(new Uint8Array(_.data));
-var t = new T(_.data, "utf8"), S = e("Package").ParseStrToPackage(t.toString());
+var T = new t(_.data, "utf8"), S = e("Package").ParseStrToPackage(T.toString());
 cc.log("onmessage--33333333333333.........-", S);
 n.callLocalFun(S.m_header_name, S.m_json);
 };
-this._wsiSendBinary.onerror = function(e) {
+this._wsiSendBinary.onerror = function() {
 cc.log("网络错误");
 n.reportOnlineOff("网络错误");
 };
-this._wsiSendBinary.onclose = function(e) {
+this._wsiSendBinary.onclose = function() {
 n._wsiSendBinary = null;
 cc.log("网络已经断开");
 n.reportOnlineOff("网络已经断开");
@@ -3302,7 +3285,7 @@ addHead: function(e) {
 return e;
 },
 addLocalCallback: function(e, _) {
-null != e && null != _ && void 0 != _ && this.callbackMap.set(e, _);
+null != e && null != _ && null != _ && this.callbackMap.set(e, _);
 },
 arrayU8ToU16Array: function(e) {
 for (var _ = "", t = 0, T = 0, S = 0; S < e.length; S++) {
@@ -3373,7 +3356,7 @@ return null != this._wsiSendBinary && this._wsiSendBinary.readyState === WebSock
 onLoad: function() {},
 callLocalFun: function(e, _) {
 var t = this.callbackMap.get(e);
-if (void 0 != t) {
+if (null != t) {
 cc.log("=========OnlineWs===heart==", e);
 t(_);
 }
@@ -3414,7 +3397,7 @@ Onlinedef: "Onlinedef",
 Package: "Package",
 buffer: 2
 } ],
-Onlinedef: [ function(e, _, t) {
+Onlinedef: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "57b1eEV+nBLkozPyr6HImkN", "Onlinedef");
 _.exports = {
@@ -3423,10 +3406,10 @@ port: "80"
 };
 cc._RF.pop();
 }, {} ],
-Package: [ function(e, _, t) {
+Package: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "328a3iqtbhCEafyBWl8EuDx", "Package");
-var T = e("buffer").Buffer;
+var t = e("buffer").Buffer;
 cc.Class({
 properties: {
 m_game_name: "AP2",
@@ -3468,13 +3451,13 @@ return t;
 encode: function() {
 var e = this.m_game_name + " " + this.m_proto_type + " " + this.m_version, _ = "";
 this.m_header_uid = 0;
-for (var t in this) if (t.indexOf("header") > 0) {
-var S = t.lastIndexOf("_"), n = t.substr(S + 1);
-"m_header_ext_data" == t && (n = "ext-data");
-_ += n + ":" + this[t] + "\n";
+for (var T in this) if (T.indexOf("header") > 0) {
+var S = T.lastIndexOf("_"), n = T.substr(S + 1);
+"m_header_ext_data" == T && (n = "ext-data");
+_ += n + ":" + this[T] + "\n";
 }
 var i = JSON.stringify(this.m_json);
-1 == this.m_header_type && (i = new T(i + "\n").toString("base64"));
+1 == this.m_header_type && (i = new t(i + "\n").toString("base64"));
 return e + "\n" + _ + "\n" + i + "\n";
 },
 ParseProto: function(e) {
@@ -3506,10 +3489,10 @@ for (var T = e.lastIndexOf(_), S = 0; S < t - 1; S++) T = e.lastIndexOf(_, T - 1
 return T;
 },
 ParseJson: function(e) {
-var _ = this.lastIndexOf(e, "\n", 2), t = e.substr(_ + 1, e.length - _ - 2);
-1 == this.m_header_type && (t = new T(t, "base64").toString());
-t = JSON.parse(t);
-this.m_json = t;
+var _ = this.lastIndexOf(e, "\n", 2), T = e.substr(_ + 1, e.length - _ - 2);
+1 == this.m_header_type && (T = new t(T, "base64").toString());
+T = JSON.parse(T);
+this.m_json = T;
 },
 ctor: function() {
 this.bclientClose = !1;
@@ -3520,7 +3503,7 @@ cc._RF.pop();
 Package: "Package",
 buffer: 2
 } ],
-PhysicsCenter: [ function(e, _, t) {
+PhysicsCenter: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "8b2c803BjFI/ZRhXMTnBd1H", "PhysicsCenter");
 cc.Class({
@@ -3549,7 +3532,7 @@ console.log("物理测试");
 });
 cc._RF.pop();
 }, {} ],
-Save: [ function(e, _, t) {
+Save: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "2e2b04XOU5KEb80xlTHT7LI", "Save");
 window.Save = {
@@ -3564,7 +3547,7 @@ return t;
 };
 cc._RF.pop();
 }, {} ],
-SlotScene: [ function(e, _, t) {
+SlotScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "52728dRoZdOio+6APtNJstt", "SlotScene");
 cc.Class({
@@ -3605,7 +3588,7 @@ _.width = e.width;
 });
 cc._RF.pop();
 }, {} ],
-Slot: [ function(e, _, t) {
+Slot: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "5374dvKetxDEoT2sKdzOV9Z", "Slot");
 e("buffer").Buffer;
@@ -3617,7 +3600,7 @@ eWaitSpeedDown: 3,
 eSpeedDown: 4,
 eKickBack: 5
 };
-var T = [ "stop_banana", "stop_begemot", "stop_cocktail", "stop_crocodile", "stop_kakadu", "stop_lion", "stop_man", "stop_monkey" ];
+var t = [ "stop_banana", "stop_begemot", "stop_cocktail", "stop_crocodile", "stop_kakadu", "stop_lion", "stop_man", "stop_monkey" ];
 cc.Class({
 extends: cc.Component,
 properties: {
@@ -3660,12 +3643,12 @@ this.schedule(this.update1, 1 / 60);
 },
 randItemPic: function() {
 cc.log("randItemPic---");
-var e = this, _ = "slots/" + T[this.stopIndex];
+var e = this, _ = "slots/" + t[this.stopIndex];
 cc.resources.load(_, function(_, t) {
 _ ? cc.log("err==", _) : t && (e.ItemArray[e.stopIndex].getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(t));
 });
-for (var t = this.node.children, S = 0; S < t.length; S++) S != this.stopIndex && function() {
-var e = t[S], _ = Math.floor(Math.random() * T.length), n = "slots/" + T[_];
+for (var T = this.node.children, S = 0; S < T.length; S++) S != this.stopIndex && function() {
+var e = T[S], _ = Math.floor(Math.random() * t.length), n = "slots/" + t[_];
 cc.resources.load(n, function(_, t) {
 _ ? cc.log("err==", _) : t && (e.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(t));
 });
@@ -3681,18 +3664,18 @@ S.x = 0;
 S.tag = _;
 0 == e.movedirection ? S.y = e.node.height / 2 - S.height * _ - S.height / 2 - e.space * (_ + 1) : S.y = -e.node.height / 2 + S.height * _ + S.height / 2 + e.space * (_ + 1);
 S.getChildByName("text").getComponent(cc.Label).string = _;
-var t = S.getComponent(cc.Sprite);
-if (t) {
-n = Math.floor(Math.random() * T.length);
-i = "slots/" + T[n];
+var T = S.getComponent(cc.Sprite);
+if (T) {
+n = Math.floor(Math.random() * t.length);
+i = "slots/" + t[n];
 cc.resources.load(i, function(e, _) {
-e ? cc.log("err==", e) : _ && (t.spriteFrame = new cc.SpriteFrame(_));
+e ? cc.log("err==", e) : _ && (T.spriteFrame = new cc.SpriteFrame(_));
 });
 }
 e.ItemArray.push(S);
-}, t = 0; t < 8; t++) {
+}, T = 0; T < 8; T++) {
 var S, n, i;
-_(t);
+_(T);
 }
 this.item.height = this.ItemArray[0].height;
 },
@@ -3764,7 +3747,7 @@ this.updateItem(this.SpeedY);
 } else {
 this.resetPosY();
 this.SlotState = window.SlotState.eSpeedDown;
-var t = 3 * this.ItemArray.length * this.space + 3 * this.ItemArray.length * this.item.height + 25 + 10;
+var t = 3 * this.ItemArray.length * this.space + 3 * this.ItemArray.length * this.item.height + 35;
 this.Acceleration = this.SpeedY * this.SpeedY / (2 * t);
 }
 },
@@ -3802,7 +3785,7 @@ this.updateItem(this.SpeedY);
 } else {
 this.resetPosY();
 this.SlotState = window.SlotState.eSpeedDown;
-var t = 3 * this.ItemArray.length * this.space + 3 * this.ItemArray.length * this.item.height + 25 + 10;
+var t = 3 * this.ItemArray.length * this.space + 3 * this.ItemArray.length * this.item.height + 35;
 this.Acceleration = -this.SpeedY * this.SpeedY / (2 * t);
 }
 },
@@ -3856,7 +3839,7 @@ cc._RF.pop();
 }, {
 buffer: 2
 } ],
-Sound: [ function(e, _, t) {
+Sound: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "e3c22Dpi01Gp4EerFjvIKH0", "Sound");
 window.Sound = {
@@ -3864,10 +3847,10 @@ audioId: {},
 backGroundResPath: {},
 _playEffect: function(e, _, t, T, S) {
 var n = this;
-if (!(S && void 0 != n.audioId[e] && n.audioId[e].length > 0)) {
-void 0 == n.audioId[e] && (n.audioId[e] = []);
-void 0 == _ && (_ = !1);
-void 0 == t && (t = 1);
+if (!(S && null != n.audioId[e] && n.audioId[e].length > 0)) {
+null == n.audioId[e] && (n.audioId[e] = []);
+null == _ && (_ = !1);
+null == t && (t = 1);
 "number" != typeof t && (t = parseFloat(t));
 var i = -1;
 cc.resources.load(e, cc.AudioClip, function(e, T) {
@@ -3886,10 +3869,10 @@ return i;
 },
 playMusic: function(e, _, t, T, S) {
 var n = this;
-if (!(S && void 0 != n.audioId[e] && n.audioId[e].length > 0)) {
-void 0 == n.audioId[e] && (n.audioId[e] = []);
-void 0 == _ && (_ = !1);
-void 0 == t && (t = 1);
+if (!(S && null != n.audioId[e] && n.audioId[e].length > 0)) {
+null == n.audioId[e] && (n.audioId[e] = []);
+null == _ && (_ = !1);
+null == t && (t = 1);
 "number" != typeof t && (t = parseFloat(t));
 cc.resources.load(e, cc.AudioClip, function(e, T) {
 if (e) cc.log(e); else {
@@ -3928,7 +3911,7 @@ window.Save.set("Sound_Voice_Volume", e);
 },
 setBackGroundVolume: function(e) {
 window.Save.set("Sound_BackGround_Volume", e);
-for (var _ in this.backGroundResPath) if ("string" == typeof this.backGroundResPath[_] && void 0 != this.audioId[_] && this.audioId[_].length > 0) {
+for (var _ in this.backGroundResPath) if ("string" == typeof this.backGroundResPath[_] && null != this.audioId[_] && this.audioId[_].length > 0) {
 this.audioId[_][0];
 cc.audioEngine.setMusicVolume(e / 100);
 }
@@ -3944,7 +3927,7 @@ this.backGroundResPath = {};
 this.curPlayBgSound = void 0;
 },
 stop: function(e) {
-if (void 0 != this.audioId[e] && 0 != this.audioId[e].length) {
+if (null != this.audioId[e] && 0 != this.audioId[e].length) {
 for (var _ = 0; _ < this.audioId[e].length; _++) {
 var t = this.audioId[e].pop();
 cc.audioEngine.stop(t);
@@ -3958,138 +3941,110 @@ MainBg: "sound/bgm_main"
 };
 cc._RF.pop();
 }, {} ],
-TestScene: [ function(e, _, t) {
+TestScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "43e41jtsGxORJ0f6gUlDaqj", "TestScene");
-var T = e("xxtea"), S = e("i18n"), n = e("Package"), i = e("Devices"), o = e("Global"), E = e("VoiceNative"), R = e("BaseComponent");
+e("xxtea"), e("i18n"), e("Package"), e("Devices");
+var t = e("Global"), T = e("VoiceNative"), S = e("BaseComponent");
 cc.Class({
-extends: R,
+extends: S,
 properties: {},
 onLoad: function() {
 this._super();
-E.init();
+T.init();
 },
 start: function() {
-var _ = "searchPaths--";
-cc && cc.sys.isNative && (_ = jsb.fileUtils.getSearchPaths());
-var t = this;
-console.log("test scene  strart", _);
-var R = cc.find("uipanel/New Sprite", this.node), s = cc.find("content/sp4", this.node), r = o.ConverToWorldPos(R), I = o.ConverToNodePos(s.parent, r);
-this.sp4OldPos = s.getPosition();
-s.IsOriginPos = !0;
-var a = cc.find("uipanel/btn_posconvert", this.node);
-ua.darkButton(a, function() {
-if (!(s.getNumberOfRunningActions() > 0)) {
-if (1 == s.IsOriginPos) {
-var e = cc.moveTo(1, I).easing(cc.easeSineOut());
-s.runAction(e);
+var e = this;
+cc && cc.sys.isNative && jsb.fileUtils.getSearchPaths();
+var _ = cc.find("uipanel/New Sprite", this.node), S = cc.find("content/sp4", this.node), n = t.ConverToWorldPos(_), i = t.ConverToNodePos(S.parent, n);
+this.sp4OldPos = S.getPosition();
+S.IsOriginPos = !0;
+var o = cc.find("uipanel/btn_posconvert", this.node);
+ua.darkButton(o, function() {
+if (!(S.getNumberOfRunningActions() > 0)) {
+if (1 == S.IsOriginPos) {
+var _ = cc.moveTo(1, i).easing(cc.easeSineOut());
+S.runAction(_);
 } else {
-e = cc.moveTo(1, t.sp4OldPos).easing(cc.easeSineOut());
-s.runAction(e);
+_ = cc.moveTo(1, e.sp4OldPos).easing(cc.easeSineOut());
+S.runAction(_);
 }
-s.IsOriginPos = !s.IsOriginPos;
+S.IsOriginPos = !S.IsOriginPos;
 }
 });
-R.on(cc.Node.EventType.TOUCH_START, function(e) {
-R.opacity = 150;
+_.on(cc.Node.EventType.TOUCH_START, function() {
+_.opacity = 150;
 });
-R.on(cc.Node.EventType.TOUCH_END, function(e) {
-R.opacity = 255;
+_.on(cc.Node.EventType.TOUCH_END, function() {
+_.opacity = 255;
 });
-R.on(cc.Node.EventType.TOUCH_CANCEL, function(e) {
-R.opacity = 255;
+_.on(cc.Node.EventType.TOUCH_CANCEL, function() {
+_.opacity = 255;
 });
-console.log("getDevicePixelRatio", cc.view.getDevicePixelRatio());
-console.log("winSize", cc.winSize.width, cc.winSize.height);
-console.log("getDesignResolutionSize", cc.view.getDesignResolutionSize().width, cc.view.getDesignResolutionSize().height);
-console.log("getFrameSize", cc.view.getFrameSize().width, cc.view.getFrameSize().height);
-console.log("getVisibleSizeInPixel", cc.view.getVisibleSizeInPixel().width, cc.view.getVisibleSizeInPixel().height);
-console.log("getVisibleSize", cc.view.getVisibleSize().width, cc.view.getVisibleSize().height);
-console.log("getCanvasSize", cc.view.getCanvasSize().width, cc.view.getCanvasSize().height);
-console.log("cc.sys.getSafeAreaRect()", cc.sys.getSafeAreaRect());
-n.biuldReq("Hello", {
-a: 1,
-c: 2
-});
-var c = "1234567890", N = T.encryptToString("Hello World! 你好，中国🇨🇳-----！", c);
-console.log("encrypt_data=", N);
-var C = T.decryptToString(N, c);
-console.log("decrypt_data==", C);
-cc.log("window.DISTRIBUTE_CHANNEL ==", window.DISTRIBUTE_CHANNEL, cc.sys.isNative, cc.sys.os);
-S.init("zh");
-cc.log("i18n===", S.t("STR_COREPLAY_BUTTON_FOLD"));
-var A = e("ConstantItem");
-cc.log(A[1]);
-var O = new Date().getTime();
-cc.log("timeStamp=====", O, new Date());
-cc.log("DevicesInfo===id", i.getDevicesID(), cc.sys.os);
-var d = cc.find("uipanel/btn_Alert", this.node);
-ua.darkButton(d, function(e) {
-o.ShowAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
+var E = cc.find("uipanel/btn_Alert", this.node);
+ua.darkButton(E, function() {
+t.ShowAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
 cc.log("click==", e);
 });
 });
-var h = cc.find("uipanel/btn_showWaiting", this.node);
-ua.darkButton(h, function(e) {
-t.showWiat(!0);
+var R = cc.find("uipanel/btn_showWaiting", this.node);
+ua.darkButton(R, function() {
+e.showWiat(!0);
 setTimeout(function() {
-t.showWiat(!1);
+e.showWiat(!1);
 }, 3e3);
 });
-var l = cc.find("uipanel/btn_EventTest", this.node);
-ua.darkButton(l, function(e) {
-EventManager.dispatchEvent(t.node, RefreshInfo, {
+var r = cc.find("uipanel/btn_EventTest", this.node);
+ua.darkButton(r, function() {
+EventManager.dispatchEvent(e.node, RefreshInfo, {
 name: "Lee123"
 });
 });
-var D, u = cc.find("uipanel/loadTex", this.node);
-D = "http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96";
-o.GloadPic(D, function(e) {
-if (e) {
-u.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e);
-}
+var s = cc.find("uipanel/loadTex", this.node);
+t.GloadPic("http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96", function(e) {
+e && (s.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
 });
-var p = null, f = (t = this, cc.find("uipanel/btn_Speech", this.node));
-f.on(cc.Node.EventType.TOUCH_START, function() {
-p = Date.now();
+var I = null, a = cc.find("uipanel/btn_Speech", this.node);
+a.on(cc.Node.EventType.TOUCH_START, function() {
+I = Date.now();
 cc.log("开始录音");
-t.SpeechFile = Date.now() + ".amr";
-E.prepare(t.SpeechFile);
+e.SpeechFile = Date.now() + ".amr";
+T.prepare(e.SpeechFile);
 }, this);
-f.on(cc.Node.EventType.TOUCH_END, function() {
+a.on(cc.Node.EventType.TOUCH_END, function() {
 cc.log("结束录音");
-if (Date.now() - p < 1e3) {
-E.cancel();
+if (Date.now() - I < 1e3) {
+T.cancel();
 cc.log("时间小于一秒");
-o.ShowAlert("时间小于一秒", [ "Yes" ], function(e) {});
-} else if (Date.now() - p > 8e3) {
-E.cancel();
-o.ShowAlert("录音时间大于8s", [ "Yes" ], function(e) {});
-} else if (null != p) {
-E.release();
-var e = Date.now() - p;
-console.log("record time。。。。。  " + e);
-var _ = E.getVoiceData(t.SpeechFile);
-console.log("sound data。。。。。  " + _);
-_ && setTimeout(function() {
-var e = t.SpeechFile;
-E.play(e);
-E.writeVoice(e, _);
+t.ShowAlert("时间小于一秒", [ "Yes" ], function() {});
+} else if (Date.now() - I > 8e3) {
+T.cancel();
+t.ShowAlert("录音时间大于8s", [ "Yes" ], function() {});
+} else if (null != I) {
+T.release();
+var _ = Date.now() - I;
+console.log("record time。。。。。  " + _);
+var S = T.getVoiceData(e.SpeechFile);
+console.log("sound data。。。。。  " + S);
+S && setTimeout(function() {
+var _ = e.SpeechFile;
+T.play(_);
+T.writeVoice(_, S);
 }, 2e3);
 }
 }, this);
-f.on(cc.Node.EventType.TOUCH_CANCEL, function() {
-E.cancel();
+a.on(cc.Node.EventType.TOUCH_CANCEL, function() {
+T.cancel();
 cc.log("取消录音");
 }, this);
 EventManager.on(this.node, RefreshInfo, this.EventTest);
-var M = cc.find("uipanel/btn_fps", this.node);
-ua.darkButton(M, function() {
+var c = cc.find("uipanel/btn_fps", this.node);
+ua.darkButton(c, function() {
 console.log("setDisplayStats-", !cc.debug.isDisplayStats());
 cc.debug.setDisplayStats(!cc.debug.isDisplayStats());
 });
-var P = cc.find("uipanel/btn_showpopLayer", this.node);
-ua.darkButton(P, function() {
+var N = cc.find("uipanel/btn_showpopLayer", this.node);
+ua.darkButton(N, function() {
 ua.loadPrefabRes("prefabs/poplayer", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
@@ -4098,26 +4053,26 @@ _ && _.show();
 }
 });
 });
-var L = cc.find("content/sp3", this.node);
-L.isGray = !1;
-var V = cc.find("uipanel/btn_GrayRenderCom", this.node);
-ua.darkButton(V, function() {
-var e = L.getComponent(cc.Sprite);
-if (0 == L.isGray) {
+var C = cc.find("content/sp3", this.node);
+C.isGray = !1;
+var A = cc.find("uipanel/btn_GrayRenderCom", this.node);
+ua.darkButton(A, function() {
+var e = C.getComponent(cc.Sprite);
+if (0 == C.isGray) {
 var _ = cc.MaterialVariant.createWithBuiltin("2d-gray-sprite");
 e.setMaterial(0, _);
 } else {
 var t = cc.MaterialVariant.createWithBuiltin("2d-sprite");
 e.setMaterial(0, t);
 }
-L.isGray = !L.isGray;
+C.isGray = !C.isGray;
 });
-var m = cc.find("uipanel/btn_bubble", this.node);
-ua.darkButton(m, function() {
+var O = cc.find("uipanel/btn_bubble", this.node);
+ua.darkButton(O, function() {
 cc.director.loadScene("bubbleScene");
 });
-var g = cc.find("uipanel/btn_loadbundle", this.node);
-ua.darkButton(g, function() {
+var d = cc.find("uipanel/btn_loadbundle", this.node);
+ua.darkButton(d, function() {
 var e = cc.assetManager.getBundle("Testbundle");
 if (e) {
 console.log("have already loaded bundle.");
@@ -4126,12 +4081,15 @@ _ && _.Say();
 e.loadScene("bundlescene", function(e, _) {
 e ? console.log("load bundle scene error") : cc.director.runScene(_);
 });
-} else o.gLoadBUndle("http://192.168.65.172/hotupversion/remote/Testbundle", {
+} else t.gLoadBUndle("http://192.168.65.172/hotupversion/remote/Testbundle", {
 onFileProgress: function(e, _) {
 return console.log("bundle progress==", e, _);
 }
 }, function(e, _) {
-if (e) return console.error(e);
+if (e) {
+console.log("Load bundle error");
+return console.error(e);
+}
 console.log("load bundle successfully.", _);
 var t = window.SayHello;
 t && t.Say();
@@ -4140,34 +4098,35 @@ e ? console.log("load bundle scene error") : cc.director.runScene(_);
 });
 });
 });
-var U = cc.find("uipanel/btn_goslot", this.node);
-ua.darkButton(U, function() {
+var h = cc.find("uipanel/btn_goslot", this.node);
+ua.darkButton(h, function() {
 cc.director.loadScene("SlotScene");
 });
 cc.find("content/sp1", this.node).getComponent(cc.RenderComponent).getMaterial(0);
-var H = cc.find("garpgicsnode", this.node), y = H.getComponent(cc.Graphics);
-H.on(cc.Node.EventType.TOUCH_START, function(e) {
-var _ = e.getTouches(), t = _[0].getLocation();
-_[0].getLocationInView();
-t = R.parent.convertToNodeSpaceAR(t);
-var T = o.GgetTwoV2Angle(R.getPosition(), t);
-R.angle = -T;
-y.moveTo(t.x, t.y);
+var l = cc.find("garpgicsnode", this.node), D = l.getComponent(cc.Graphics);
+l.on(cc.Node.EventType.TOUCH_START, function(e) {
+var T = e.getTouches(), S = T[0].getLocation();
+T[0].getLocationInView();
+S = _.parent.convertToNodeSpaceAR(S);
+var n = t.GgetTwoV2Angle(_.getPosition(), S);
+_.angle = -n;
+D.moveTo(S.x, S.y);
+_.getPosition().subSelf(S).normalizeSelf();
 });
-H.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
-var _ = e.getTouches()[0].getLocation();
-_ = R.parent.convertToNodeSpaceAR(_);
-var t = o.GgetTwoV2Angle(R.getPosition(), _);
-R.angle = -t;
-y.lineTo(_.x, _.y);
-y.stroke();
+l.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
+var T = e.getTouches()[0].getLocation();
+T = _.parent.convertToNodeSpaceAR(T);
+var S = t.GgetTwoV2Angle(_.getPosition(), T);
+_.angle = -S;
+D.lineTo(T.x, T.y);
+D.stroke();
 });
-var F = cc.view.getVisibleSize(), G = cc.v2(-F.width / 2, F.height / 2), w = cc.v2(F.width / 2, -F.height / 2), v = o.GgetTwoV2Angle(G, w);
-cc.find("uipanel/New Sprite", this.node).angle = -v;
-var B = cc.view.getVisibleSize();
-(H = H.getComponent(cc.Graphics)).moveTo(-B.width / 2, B.height / 2);
-H.quadraticCurveTo(0, 0, B.width / 2, B.height / 2);
-H.stroke();
+var u = cc.view.getVisibleSize(), p = cc.v2(-u.width / 2, u.height / 2), f = cc.v2(u.width / 2, -u.height / 2), M = t.GgetTwoV2Angle(p, f);
+cc.find("uipanel/New Sprite", this.node).angle = -M;
+var P = cc.view.getVisibleSize();
+(l = l.getComponent(cc.Graphics)).moveTo(-P.width / 2, P.height / 2);
+l.quadraticCurveTo(0, 0, P.width / 2, P.height / 2);
+l.stroke();
 },
 startMove: function() {
 var e = this, _ = (cc.find("garpgicsnode", this.node), cc.find("uipanel/btn_goslot", this.node)), t = cc.view.getVisibleSize(), T = [ cc.v2(-t.width / 2, t.height / 2), cc.v2(0, 0), cc.v2(t.width / 2, t.height / 2) ], S = cc.bezierTo(2, T);
@@ -4180,7 +4139,7 @@ _.runAction(cc.repeatForever(i));
 },
 EventTest: function(e) {
 e.stopPropagation();
-o.ShowAlert("事件传来的参数" + JSON.stringify(e.detail), []);
+t.ShowAlert("事件传来的参数" + JSON.stringify(e.detail), []);
 },
 onDestroy: function() {
 this._super();
@@ -4189,7 +4148,6 @@ this._super();
 cc._RF.pop();
 }, {
 BaseComponent: "BaseComponent",
-ConstantItem: "ConstantItem",
 Devices: "Devices",
 Global: "Global",
 Package: "Package",
@@ -4203,7 +4161,7 @@ cc._RF.push(_, "5a00cnrQ/9L/Y0QWJw10Tsi", "Testts");
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-var T = cc._decorator, S = T.ccclass, n = T.property, i = e("./Script/core/xxtea.js"), o = function(e) {
+var T = cc._decorator, S = T.ccclass, n = T.property, i = function(e) {
 __extends(_, e);
 function _() {
 var _ = null !== e && e.apply(this, arguments) || this;
@@ -4211,22 +4169,12 @@ _.label = null;
 _.text = "hello";
 return _;
 }
-_.prototype.start = function() {
-cc.log("test ts Start" + this.text);
-var e = i.encryptToString("adadjaojdaj", "poker");
-console.log("encrypt_data=", e);
-var _ = function(e) {
-cc.log(e);
-return e.toString();
-}(66666666);
-cc.log(typeof _);
-cc.log(this.addSum(1, 2, 3));
-cc.log(cc.ENGINE_VERSION);
-};
+_.prototype.start = function() {};
 _.prototype.addSum = function() {
 for (var e = [], _ = 0; _ < arguments.length; _++) e[_] = arguments[_];
 for (var t = 0, T = 0, S = e; T < S.length; T++) {
-t += S[T];
+var n = S[T];
+t += n;
 }
 return t;
 };
@@ -4235,23 +4183,21 @@ return cc.v2(0, 0);
 };
 __decorate([ n(cc.Label) ], _.prototype, "label", void 0);
 __decorate([ n ], _.prototype, "text", void 0);
-return _ = __decorate([ S ], _);
+return __decorate([ S ], _);
 }(cc.Component);
-t.default = o;
+t.default = i;
 cc._RF.pop();
-}, {
-"./Script/core/xxtea.js": "xxtea"
-} ],
-VersionManager: [ function(e, _, t) {
+}, {} ],
+VersionManager: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "5cca3EkU1NJZ4QUch/IWwni", "VersionManager");
-var T = e("HttpHelper"), S = e("Devices"), n = "", i = "", o = "";
+var t = e("HttpHelper"), T = e("Devices"), S = "", n = "", i = "";
 if (cc && cc.sys.isNative) {
-n = jsb.fileUtils.getWritablePath() + "packageTemp/";
-i = jsb.fileUtils.getWritablePath() + "package/";
-o = jsb.fileUtils.getWritablePath() + "config/appinfoiii.json";
+S = jsb.fileUtils.getWritablePath() + "packageTemp/";
+n = jsb.fileUtils.getWritablePath() + "package/";
+i = jsb.fileUtils.getWritablePath() + "config/appinfoiii.json";
 }
-var E = e("Global"), R = {
+var o = e("Global"), E = {
 remoteCfg: null,
 remoteMd5Cfg: "",
 localCfg: "",
@@ -4268,8 +4214,8 @@ this.parseLocalCfg();
 downRemoteMd5: function(e) {
 var _ = this;
 cc.log("下载远程md5,", e);
-T.sendHttpRequest(e, function(e) {
-if (null != e) if (E.isjson(e)) {
+t.sendHttpRequest(e, function(e) {
+if (null != e) if (o.isjson(e)) {
 _.remoteMd5Cfg = JSON.parse(e);
 _.comparefiles();
 } else _.callFunWithState(11, "远程md5-json不合法"); else _.callFunWithState(2, "获取MD5配置文件失败");
@@ -4291,15 +4237,15 @@ md5: o,
 fileSize: E
 };
 }
-for (var s in S) {
-var r = S[s], I = r.md5;
-E = r.fileSize;
-T[s] ? I != T[s].md5 && t.push({
-fileName: s,
+for (var r in S) {
+var s = S[r], I = s.md5;
+E = s.fileSize;
+T[r] ? I != T[r].md5 && t.push({
+fileName: r,
 md5: I,
 fileSize: E
 }) : t.push({
-fileName: s,
+fileName: r,
 md5: I,
 fileSize: E
 });
@@ -4315,15 +4261,15 @@ if (0 != e.length) {
 var _ = this, t = e;
 _.DownIndex = 0;
 (function e(T) {
-var S = _.BaseUrl, o = t[T].fileName, R = t[T].fileSize, s = S + o, r = n + o, I = i + o, a = n + E.GgetDirByUrl(o), c = i + E.GgetDirByUrl(o);
-E.GcreateDir(a);
-E.GcreateDir(c);
-t[T].tempfile = r;
+var i = _.BaseUrl, E = t[T].fileName, R = t[T].fileSize, r = i + E, s = S + E, I = n + E, a = S + o.GgetDirByUrl(E), c = n + o.GgetDirByUrl(E);
+o.GcreateDir(a);
+o.GcreateDir(c);
+t[T].tempfile = s;
 t[T].realfile = I;
-cc.log("下载=====", s);
-E.GDownFile(s, function(T) {
+cc.log("下载=====", r);
+o.GDownFile(r, function(T) {
 if (T) {
-E.GwriteDataToFile(T, r);
+o.GwriteDataToFile(T, s);
 _.downedSize = _.downedSize + R;
 if (_.DownIndex < t.length - 1) {
 _.DownIndex = _.DownIndex + 1;
@@ -4334,7 +4280,7 @@ _.progressCall && _.progressCall(Math.floor(100), (_.downedSize / 1e3).toFixed(1
 cc.log("下载完成***");
 _.MoveFiles(t);
 }
-} else _.callFunWithState(3, "下载单个文件失败=" + s);
+} else _.callFunWithState(3, "下载单个文件失败=" + r);
 });
 })(_.DownIndex);
 } else this.MoveDone();
@@ -4343,17 +4289,17 @@ MoveFiles: function(e) {
 this.moveStep = 0;
 var _ = this;
 (function t(T) {
-var S = e[T].tempfile, n = e[T].realfile, R = E.GgetDataFromFile(S);
+var S = e[T].tempfile, E = e[T].realfile, R = o.GgetDataFromFile(S);
 if (R) {
-E.GwriteDataToFile(R, n);
+o.GwriteDataToFile(R, E);
 if (_.moveStep < e.length - 1) {
 _.moveStep = _.moveStep + 1;
 t(_.moveStep);
 } else _.MoveDone();
 } else {
-jsb.fileUtils.removeDirectory(i);
-jsb.fileUtils.createDirectory(i);
-jsb.fileUtils.removeFile(o);
+jsb.fileUtils.removeDirectory(n);
+jsb.fileUtils.createDirectory(n);
+jsb.fileUtils.removeFile(i);
 _.callFunWithState(4, "移动文件失败" + S);
 }
 })(this.moveStep);
@@ -4361,8 +4307,8 @@ _.callFunWithState(4, "移动文件失败" + S);
 MoveDone: function() {
 cc.log("移动成功****");
 var e = JSON.stringify(this.remoteMd5Cfg, null, 4);
-E.GcreateDir(jsb.fileUtils.getWritablePath() + "config");
-E.GwriteStringToFile(e, o);
+o.GcreateDir(jsb.fileUtils.getWritablePath() + "config");
+o.GwriteStringToFile(e, i);
 this.callFunWithState(100, "更新成功");
 },
 ReStartGame: function() {
@@ -4372,23 +4318,23 @@ cc.game.restart();
 },
 RemoveTemp: function() {
 if (cc.sys.isNative) {
-jsb.fileUtils.removeDirectory(i);
-jsb.fileUtils.createDirectory(i);
-jsb.fileUtils.removeFile(o);
+jsb.fileUtils.removeDirectory(n);
+jsb.fileUtils.createDirectory(n);
+jsb.fileUtils.removeFile(i);
 }
 },
 callFunWithState: function(e, _, t) {
 if (this.downcall) {
-console.log(_ + ":" + e);
+console.log(_ + ": 状态码=" + e);
 this.downcall(e, t);
 }
 },
 parseLocalCfg: function() {
-var e = this, _ = o;
+var e = this, _ = i;
 if (jsb.fileUtils.isFileExist(_)) {
 console.log("读取包外配置");
 var t = jsb.fileUtils.getStringFromFile(_);
-if (!E.isjson(t)) {
+if (!o.isjson(t)) {
 e.RemoveTemp();
 e.callFunWithState(9, "包外json配置不合法");
 return;
@@ -4423,15 +4369,15 @@ e.callFunWithState(5, "读取包内配置失败，请检查本地配置");
 parseRemoteCfg: function() {
 if (0 != cc.sys.isNative && null != this.remoteCfg) {
 var e = this;
-T.sendHttpRequest(this.remoteCfg, function(_) {
-if (null != _) if (E.isjson(_)) {
+t.sendHttpRequest(this.remoteCfg, function(_) {
+if (null != _) if (o.isjson(_)) {
 e.remoteCfg = JSON.parse(_);
-var t = e.localCfg.scriptVersion, T = e.remoteCfg.scriptVersion, n = e.remoteCfg.debugScriptVersion, i = e.remoteCfg.supportBinarys, o = e.remoteCfg.forcedBinaryVersions, R = e.remoteCfg.channels, s = e.remoteCfg.debugUIDs, r = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], I = cc.sys.localStorage.getItem("debugId");
-if (E.GIsArrContain(R, window.DISTRIBUTE_CHANNEL)) if (E.GIsArrContain(i, S.getAppVersion())) if (E.GIsArrContain(o, S.getAppVersion())) e.callFunWithState(8, "强制更新", r); else {
+var t = e.localCfg.scriptVersion, S = e.remoteCfg.scriptVersion, n = e.remoteCfg.debugScriptVersion, i = e.remoteCfg.supportBinarys, E = e.remoteCfg.forcedBinaryVersions, R = e.remoteCfg.channels, r = e.remoteCfg.debugUIDs, s = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], I = cc.sys.localStorage.getItem("debugId");
+if (o.GIsArrContain(R, window.DISTRIBUTE_CHANNEL)) if (o.GIsArrContain(i, T.getAppVersion())) if (o.GIsArrContain(E, T.getAppVersion())) e.callFunWithState(8, "强制更新", s); else {
 console.log("本地脚本号==" + t);
 console.log("远程debug版本号==" + n);
-console.log("远程版本号==" + T);
-if (E.GIsArrContain(s, I)) {
+console.log("远程版本号==" + S);
+if (o.GIsArrContain(r, I)) {
 if (parseInt(t) != parseInt(n)) {
 console.log("走测试玩家----热更新");
 var a = e.remoteCfg.debugBaseUrl, c = (a = cc.js.formatStr(a, n)) + e.remoteCfg.debugConfigFile;
@@ -4439,54 +4385,54 @@ e.BaseUrl = a;
 e.downRemoteMd5(c);
 return;
 }
-e.callFunWithState(0, "测试玩家版本和远程一样");
-} else if (parseInt(t) == parseInt(T)) e.callFunWithState(0, "不用更新-本地和远程版本一致:" + t); else {
+e.callFunWithState(0, "测试玩家版本和远程一样，不用更新");
+} else if (parseInt(t) == parseInt(S)) e.callFunWithState(0, "不用更新-本地和远程版本一致:" + t); else {
 console.log("走正式----热更新");
 var N = e.remoteCfg.baseUrl;
-c = (N = cc.js.formatStr(N, T)) + e.remoteCfg.configFile;
+c = (N = cc.js.formatStr(N, S)) + e.remoteCfg.configFile;
 e.BaseUrl = N;
 e.downRemoteMd5(c);
 }
-} else e.callFunWithState(6, "不支持热更新的2进制版本号" + S.getAppVersion()); else e.callFunWithState(7, "不支持热更新的渠道号" + window.DISTRIBUTE_CHANNEL);
+} else e.callFunWithState(6, "不支持热更新的2进制版本号" + T.getAppVersion()); else e.callFunWithState(7, "不支持热更新的渠道号" + window.DISTRIBUTE_CHANNEL);
 } else e.callFunWithState(10, "远程配置json不合法"); else e.callFunWithState(1, "获取版本配置文件失败");
 });
 }
 }
 };
-_.exports = R;
+_.exports = E;
 cc._RF.pop();
 }, {
 Devices: "Devices",
 Global: "Global",
 HttpHelper: "HttpHelper"
 } ],
-VoiceNative: [ function(e, _, t) {
+VoiceNative: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "6659eBg8ldPA6/b57j6ol8I", "VoiceNative");
-var T = 12, S = 128 - T;
-function n(e) {
-e -= S;
-var _ = Math.floor(e / T) + S, t = e % T + S;
-return String.fromCharCode(_) + String.fromCharCode(t);
+var t = 12, T = 128 - t;
+function S(e) {
+e -= T;
+var _ = Math.floor(e / t) + T, S = e % t + T;
+return String.fromCharCode(_) + String.fromCharCode(S);
 }
-for (var i = {}, o = {}, E = 0; E < 256; ++E) {
-var R = null, s = E + 1;
-R = s >= S ? n(s) : String.fromCharCode(s);
-i[E] = R;
-o[R] = E;
+for (var n = {}, i = {}, o = 0; o < 256; ++o) {
+var E, R = o + 1;
+E = R >= T ? S(R) : String.fromCharCode(R);
+n[o] = E;
+i[E] = o;
 }
 function r(e) {
 var _ = "", t = e.length;
 cc.log("encode, len=" + t + ", data=" + e);
-var T = t >> 16 & 255, S = t >> 8 & 255, n = 255 & t;
-_ += i[t >> 24 & 255];
-_ += i[T];
-_ += i[S];
-_ += i[n];
-for (var o = 0; o < e.length; ++o) _ += i[e[o]];
+var T = t >> 16 & 255, S = t >> 8 & 255, i = 255 & t;
+_ += n[t >> 24 & 255];
+_ += n[T];
+_ += n[S];
+_ += n[i];
+for (var o = 0; o < e.length; ++o) _ += n[e[o]];
 return _;
 }
-var I = "com/casino/game/VoiceRecorder", a = cc.Class({
+var s = "com/casino/game/VoiceRecorder", I = cc.Class({
 extends: cc.Component,
 properties: {
 _voiceMediaPath: null
@@ -4502,19 +4448,19 @@ prepare: function(e) {
 if (cc.sys.isNative) {
 cc.audioEngine.pauseAll();
 this.clearCache(e);
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(I, "prepare", "(Ljava/lang/String;)V", e) : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "prepareRecord:", e));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(s, "prepare", "(Ljava/lang/String;)V", e) : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "prepareRecord:", e));
 }
 },
 release: function() {
 if (cc.sys.isNative) {
 cc.audioEngine.resumeAll();
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(I, "release", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "finishRecord"));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(s, "release", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "finishRecord"));
 }
 },
 cancel: function() {
 if (cc.sys.isNative) {
 cc.audioEngine.resumeAll();
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(I, "cancel", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "cancelRecord"));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(s, "cancel", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "cancelRecord"));
 }
 },
 writeVoice: function(e, _) {
@@ -4545,9 +4491,7 @@ if (cc.sys.isNative) {
 var _ = this._voiceMediaPath + e;
 console.log("VoiceNative getVoiceData:" + _);
 var t = jsb.fileUtils.getDataFromFile(_);
-if (t) {
-return t;
-}
+if (t) return t;
 }
 return null;
 },
@@ -4555,30 +4499,30 @@ getDataString: function(e) {
 return r(e);
 },
 setStorageDir: function(e) {
-if (cc.sys.isNative) if (cc.sys.os == cc.sys.OS_ANDROID) jsb.reflection.callStaticMethod(I, "setStorageDir", "(Ljava/lang/String;)V", e); else if (cc.sys.os == cc.sys.OS_IOS) {
+if (cc.sys.isNative) if (cc.sys.os == cc.sys.OS_ANDROID) jsb.reflection.callStaticMethod(s, "setStorageDir", "(Ljava/lang/String;)V", e); else if (cc.sys.os == cc.sys.OS_IOS) {
 jsb.reflection.callStaticMethod("VoiceSDK", "setStorageDir:", e);
 jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDirectory(e);
 }
 }
 });
-a = new a();
-_.exports = a;
+I = new I();
+_.exports = I;
 cc._RF.pop();
 }, {} ],
-WsTest: [ function(e, _, t) {
+WsTest: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "e5e9fObFGlLQbIbtk/t0ooz", "WsTest");
-var T = e("Ws");
+var t = e("Ws");
 cc.Class({
 extends: cc.Component,
 properties: {},
 start: function() {
-var e = new T();
+var e = new t();
 e.connect("127.0.0.1", 9001);
-e.setOpenCall(function(e) {
+e.setOpenCall(function() {
 cc.log("连接成功");
 });
-e.setOnMessageCall(function(e) {
+e.setOnMessageCall(function() {
 cc.log("消息来了");
 });
 },
@@ -4605,7 +4549,7 @@ cc._RF.pop();
 }, {
 Ws: "Ws"
 } ],
-Ws: [ function(e, _, t) {
+Ws: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "5f755kjtT1EEbid5p4qY0Vw", "Ws");
 cc.Class({
@@ -4614,7 +4558,7 @@ this._wsiSendBinary = new WebSocket("ws://" + e + ":" + _ + "//");
 this._wsiSendBinary.binaryType = "arraybuffer";
 },
 setOpenCall: function(e) {
-this._wsiSendBinary && (this._wsiSendBinary.onopen = function(_) {
+this._wsiSendBinary && (this._wsiSendBinary.onopen = function() {
 e && e();
 });
 },
@@ -4639,7 +4583,7 @@ this._wsiSendBinary && this._wsiSendBinary.readyState === WebSocket.OPEN ? this.
 });
 cc._RF.pop();
 }, {} ],
-ball: [ function(e, _, t) {
+ball: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "cf9a69rTylNR4vuXlstck3D", "ball");
 cc.Class({
@@ -4657,28 +4601,28 @@ console.log("start", this.node.y);
 printlog: function() {
 this.node.getComponent(cc.RigidBody).linearVelocity;
 },
-onBeginContact: function(e, _, t) {
+onBeginContact: function() {
 console.log("ball onBeginContact");
 },
-onEndContact: function(e, _, t) {
+onEndContact: function() {
 console.log("ball onEndContact");
 },
-onPreSolve: function(e, _, t) {
+onPreSolve: function() {
 console.log("ball onPreSolve");
 },
-onPostSolve: function(e, _, t) {
+onPostSolve: function() {
 console.log("ball onPostSolve");
 },
-update: function(e) {}
+update: function() {}
 });
 cc._RF.pop();
 }, {} ],
-chooseupdate: [ function(e, _, t) {
+chooseupdate: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "5a10feVxjlCLr90Fw2jtkf1", "chooseupdate");
-var T = e("BaseComponent");
+var t = e("BaseComponent");
 cc.Class({
-extends: T,
+extends: t,
 properties: {
 AimType: {
 default: 1,
@@ -4699,20 +4643,20 @@ this.call = _;
 this.initView(e);
 },
 initView: function(e) {
-var _ = this, t = this;
+var _ = this;
 this.tiptext.getComponent(cc.Label).string = e.tips;
-var T = e.items, S = function(e) {
-i = cc.instantiate(_.item);
-_.content.addChild(i);
-i.active = !0;
-i.getChildByName("text").getComponent(cc.Label).string = T[e].text;
-ua.darkButton(i, function() {
-t.call && t.call(e, t);
+var t = e.items, T = function(e) {
+n = cc.instantiate(_.item);
+_.content.addChild(n);
+n.active = !0;
+n.getChildByName("text").getComponent(cc.Label).string = t[e].text;
+ua.darkButton(n, function() {
+_.call && _.call(e, _);
 });
 };
-for (var n in T) {
-var i;
-S(n);
+for (var S in t) {
+var n;
+T(S);
 }
 },
 onbackpress: function() {
@@ -4724,7 +4668,7 @@ cc._RF.pop();
 }, {
 BaseComponent: "BaseComponent"
 } ],
-ch: [ function(e, _, t) {
+ch: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "2d2c7B6fVVH4p3u1YQFpkXF", "ch");
 _.exports = {
@@ -5379,7 +5323,7 @@ STR_MESS_EVALUATION_CONTENT: "因为您对于我们游戏的支持与评价，�
 };
 cc._RF.pop();
 }, {} ],
-en: [ function(e, _, t) {
+en: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "45e5cQaRXhIbLRP7QZnXbpz", "en");
 _.exports = {
@@ -6034,22 +5978,22 @@ STR_MESS_EVALUATION_CONTENT: "Due to your support and rating of our game, %d fre
 };
 cc._RF.pop();
 }, {} ],
-i18n: [ function(e, _, t) {
+i18n: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "93789C/shtIL6entYsZPjee", "i18n");
-var T = e("polyglot"), S = cc.sys.language;
-"zh" !== S && (S = "en");
-var n = e(S), i = new T({
-phrases: n,
+var t = e("polyglot"), T = cc.sys.language;
+"zh" !== T && (T = "en");
+var S = e(T), n = new t({
+phrases: S,
 allowMissing: !0
 });
 _.exports = {
 init: function(_) {
-n = e(S = _);
-i.replace(n);
+S = e(T = _);
+n.replace(S);
 },
 t: function(e, _) {
-return i.t(e, _);
+return n.t(e, _);
 }
 };
 cc._RF.pop();
@@ -6072,7 +6016,7 @@ this.phrases = {};
 this.extend(e.phrases || {});
 this.currentLocale = e.locale || "en";
 this.allowMissing = !!e.allowMissing;
-this.warn = e.warn || N;
+this.warn = e.warn || c;
 }
 t.VERSION = "1.0.0";
 t.prototype.locale = function(e) {
@@ -6112,8 +6056,8 @@ this.warn('Missing translation for key: "' + e + '"');
 T = e;
 }
 if ("string" == typeof t) {
-_ = C(_);
-T = c(T = R(t, this.currentLocale, _.smart_count), _);
+_ = N(_);
+T = a(T = E(t, this.currentLocale, _.smart_count), _);
 }
 return T;
 };
@@ -6121,7 +6065,7 @@ t.prototype.has = function(e) {
 return e in this.phrases;
 };
 var T = "||||", S = {
-chinese: function(e) {
+chinese: function() {
 return 0;
 },
 german: function(e) {
@@ -6160,33 +6104,30 @@ for (T in t) S[t[T]] = _;
 return S;
 }
 var o = /^\s+|\s+$/g;
-function E(e) {
-return _.call(e, o, "");
+function E(e, t, S) {
+var n, i;
+return null != S && e ? (i = (n = e.split(T))[r(t, S)] || n[0], _.call(i, o, "")) : e;
 }
-function R(e, _, t) {
-var S;
-return null != t && e ? E((S = e.split(T))[r(_, t)] || S[0]) : e;
-}
-function s(e) {
+function R(e) {
 var _ = i(n);
 return _[e] || _.en;
 }
 function r(e, _) {
-return S[s(e)](_);
+return S[R(e)](_);
 }
-var I = /\$/g, a = "$$$$";
-function c(e, t) {
+var s = /\$/g, I = "$$$$";
+function a(e, t) {
 for (var T in t) if ("_" !== T && t.hasOwnProperty(T)) {
 var S = t[T];
-"string" == typeof S && (S = _.call(t[T], I, a));
+"string" == typeof S && (S = _.call(t[T], s, I));
 e = _.call(e, new RegExp("%\\{" + T + "\\}", "g"), S);
 }
 return e;
 }
-function N(_) {
+function c(_) {
 e.console && e.console.warn && e.console.warn("WARNING: " + _);
 }
-function C(e) {
+function N(e) {
 var _ = {};
 for (var t in e) _[t] = e[t];
 return _;
@@ -6196,12 +6137,12 @@ return t;
 cc._RF.pop();
 }).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
 }, {} ],
-poplayer: [ function(e, _, t) {
+poplayer: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "a7524VdX5NCHaVy3DcwaMB3", "poplayer");
-var T = e("BaseComponent");
+var t = e("BaseComponent");
 cc.Class({
-extends: T,
+extends: t,
 properties: {
 AimType: {
 default: 1,
@@ -6212,8 +6153,9 @@ onDestroy: function() {
 this._super();
 },
 onLoad: function() {
+var e = this;
 this._super();
-var e = this, _ = this.node.getChildByName("bg").getChildByName("btn_close");
+var _ = this.node.getChildByName("bg").getChildByName("btn_close");
 ua.darkButton(_, function() {
 e.bClose();
 });
@@ -6227,12 +6169,12 @@ cc._RF.pop();
 }, {
 BaseComponent: "BaseComponent"
 } ],
-textinput: [ function(e, _, t) {
+textinput: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "0043b7TOBhKiYqrFXaldTiM", "textinput");
-var T = e("BaseComponent");
+var t = e("BaseComponent");
 cc.Class({
-extends: T,
+extends: t,
 properties: {
 AimType: {
 default: 2,
@@ -6243,8 +6185,9 @@ onDestroy: function() {
 this._super();
 },
 onLoad: function() {
+var e = this;
 this._super();
-var e = this, _ = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("btn_done");
+var _ = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("btn_done");
 ua.darkButton(_, function() {
 if (e.call) {
 var _ = e.Editbox.getComponent(cc.EditBox).string;
@@ -6270,7 +6213,7 @@ cc._RF.pop();
 }, {
 BaseComponent: "BaseComponent"
 } ],
-th: [ function(e, _, t) {
+th: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "8500782U4xMr4qYmU3oN13C", "th");
 _.exports = {
@@ -6925,17 +6868,17 @@ STR_MESS_EVALUATION_CONTENT: "เพราะว่าคุณได้ให�
 };
 cc._RF.pop();
 }, {} ],
-use_reversed_rotateBy: [ function(e, _, t) {
+use_reversed_rotateBy: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "a261fWUgbhIiYQZHN4wUmEx", "use_reversed_rotateBy");
 cc.RotateBy._reverse = !0;
 cc._RF.pop();
 }, {} ],
-xxtea: [ function(e, _, t) {
+xxtea: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "639b6ohfOFGqbHyT0ZVfBTi", "xxtea");
-var T = e("buffer").Buffer, S = 2654435769;
-function n(e, _) {
+var t = e("buffer").Buffer, T = 2654435769;
+function S(e, _) {
 var t = e.length, T = t << 2;
 if (_) {
 var S = e[t - 1];
@@ -6945,17 +6888,17 @@ T = S;
 for (var n = new Uint8Array(T), i = 0; i < T; ++i) n[i] = e[i >> 2] >> ((3 & i) << 3);
 return n;
 }
-function i(e, _) {
+function n(e, _) {
 var t, T = e.length, S = T >> 2;
 0 != (3 & T) && ++S;
 _ ? (t = new Uint32Array(S + 1))[S] = T : t = new Uint32Array(S);
 for (var n = 0; n < T; ++n) t[n >> 2] |= e[n] << ((3 & n) << 3);
 return t;
 }
-function o(e, _, t, T, S, n) {
+function i(e, _, t, T, S, n) {
 return (t >>> 5 ^ _ << 2) + (_ >>> 3 ^ t << 4) ^ (e ^ _) + (n[3 & T ^ S] ^ t);
 }
-function E(e) {
+function o(e) {
 if (e.length < 16) {
 var _ = new Uint8Array(16);
 _.set(e);
@@ -6963,32 +6906,32 @@ e = _;
 }
 return e;
 }
-function R(e, _) {
-var t, T, n, i, E, R, s = e.length, r = s - 1;
-T = e[r];
+function E(e, _) {
+var t, S, n, o, E, R, r = e.length, s = r - 1;
+S = e[s];
 n = 0;
-for (R = 0 | Math.floor(6 + 52 / s); R > 0; --R) {
-i = (n += S) >>> 2 & 3;
-for (E = 0; E < r; ++E) {
+for (R = 0 | Math.floor(6 + 52 / r); R > 0; --R) {
+o = (n += T) >>> 2 & 3;
+for (E = 0; E < s; ++E) {
 t = e[E + 1];
-T = e[E] += o(n, t, T, E, i, _);
+S = e[E] += i(n, t, S, E, o, _);
 }
 t = e[0];
-T = e[r] += o(n, t, T, E, i, _);
+S = e[s] += i(n, t, S, E, o, _);
 }
 return e;
 }
-function s(e, _) {
-var t, T, n, i, E, R = e.length, s = R - 1;
+function R(e, _) {
+var t, S, n, o, E, R = e.length, r = R - 1;
 t = e[0];
-for (n = Math.floor(6 + 52 / R) * S; 0 !== n; n -= S) {
-i = n >>> 2 & 3;
-for (E = s; E > 0; --E) {
-T = e[E - 1];
-t = e[E] -= o(n, t, T, E, i, _);
+for (n = Math.floor(6 + 52 / R) * T; 0 !== n; n -= T) {
+o = n >>> 2 & 3;
+for (E = r; E > 0; --E) {
+S = e[E - 1];
+t = e[E] -= i(n, t, S, E, o, _);
 }
-T = e[s];
-t = e[0] -= o(n, t, T, E, i, _);
+S = e[r];
+t = e[0] -= i(n, t, S, E, o, _);
 }
 return e;
 }
@@ -7021,7 +6964,7 @@ t[T++] = 128 | 63 & n;
 }
 return t.subarray(0, T);
 }
-function I(e, _) {
+function s(e, _) {
 for (var t = new Uint16Array(_), T = 0, S = 0, n = e.length; T < _ && S < n; T++) {
 var i = e[S++];
 switch (i >> 4) {
@@ -7062,7 +7005,7 @@ throw new Error("Bad UTF-8 encoding 0x" + i.toString(16));
 T < _ && (t = t.subarray(0, T));
 return String.fromCharCode.apply(String, t);
 }
-function a(e, _) {
+function I(e, _) {
 for (var t = [], T = new Uint16Array(32768), S = 0, n = 0, i = e.length; S < _ && n < i; S++) {
 var o = e[n++];
 switch (o >> 4) {
@@ -7109,41 +7052,41 @@ S = -1;
 S > 0 && t.push(String.fromCharCode.apply(String, T.subarray(0, S)));
 return t.join("");
 }
-function c(e) {
+function a(e) {
 var _ = e.length;
-return 0 === _ ? "" : _ < 32767 ? I(e, _) : a(e, _);
+return 0 === _ ? "" : _ < 32767 ? s(e, _) : I(e, _);
 }
-function N(e, _) {
+function c(e, _) {
 "string" == typeof e && (e = r(e));
 "string" == typeof _ && (_ = r(_));
-return void 0 === e || null === e || 0 === e.length ? e : n(R(i(e, !0), i(E(_), !1)), !1);
+return null == e || 0 === e.length ? e : S(E(n(e, !0), n(o(_), !1)), !1);
 }
-function C(e, _) {
-"string" == typeof e && (e = new T(e, "base64"));
+function N(e, _) {
+"string" == typeof e && (e = new t(e, "base64"));
 "string" == typeof _ && (_ = r(_));
-return void 0 === e || null === e || 0 === e.length ? e : n(s(i(e, !1), i(E(_), !1)), !0);
+return null == e || 0 === e.length ? e : S(R(n(e, !1), n(o(_), !1)), !0);
 }
 _.exports = Object.create(null, {
 toBytes: {
 value: r
 },
 toString: {
-value: c
+value: a
 },
 encrypt: {
-value: N
+value: c
 },
 encryptToString: {
 value: function(e, _) {
-return new T(N(e, _)).toString("base64");
+return new t(c(e, _)).toString("base64");
 }
 },
 decrypt: {
-value: C
+value: N
 },
 decryptToString: {
 value: function(e, _) {
-return c(C(e, _));
+return a(N(e, _));
 }
 }
 });
@@ -7151,7 +7094,7 @@ cc._RF.pop();
 }, {
 buffer: 2
 } ],
-zh: [ function(e, _, t) {
+zh: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "a6b10GfdmNMvoO9FiRQgmv1", "zh");
 _.exports = {

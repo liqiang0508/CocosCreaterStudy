@@ -1,23 +1,23 @@
 var ua = {
-darkButton: function(o, e) {
-o.on(cc.Node.EventType.TOUCH_END, function(o) {
-e && e(o);
+darkButton: function(e, o) {
+e.on(cc.Node.EventType.TOUCH_END, function(e) {
+o && o(e);
 });
 },
-ClickNode: function(o, e) {
-o.on(cc.Node.EventType.TOUCH_START, function(o) {
-e && e(o);
+ClickNode: function(e, o) {
+e.on(cc.Node.EventType.TOUCH_START, function(e) {
+o && o(e);
 });
 },
-loadPrefabRes: function(o, e) {
-cc.resources.load(o, function(c, n) {
+loadPrefabRes: function(e, o) {
+cc.resources.load(e, function(c, n) {
 if (c) {
-cc.error("Load error====" + o);
-e(void 0);
+cc.error("ua.loadPrefabRes error====" + e);
+o(void 0);
 } else {
-var t = cc.instantiate(n);
-e(t);
-cc.loader.setAutoRelease(o, !0);
+var a = cc.instantiate(n);
+o(a);
+cc.loader.setAutoRelease(e, !0);
 }
 });
 }

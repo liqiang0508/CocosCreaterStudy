@@ -8,11 +8,11 @@
   ],
 
 
-  "scriptVersion":100,
+  "scriptVersion":107,
   "baseUrl": "http://192.168.0.102/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
 
-  "debugScriptVersion": 100,
+  "debugScriptVersion": 107,
   "debugBaseUrl": "http://192.168.0.102/hotupversion/Script_%s/",
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [

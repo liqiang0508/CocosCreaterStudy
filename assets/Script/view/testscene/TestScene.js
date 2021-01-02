@@ -215,7 +215,7 @@ cc.Class({
                     console.log("sound data。。。。。  " + msgStr);
                     if (msgStr) {
                         //本地测试测试
-                        setTimeout(function () {
+                        setTimeout( () =>{
                             // 间隔两秒播放录音
                             var msgfile = this.SpeechFile;
                             voiceNative.play(msgfile);

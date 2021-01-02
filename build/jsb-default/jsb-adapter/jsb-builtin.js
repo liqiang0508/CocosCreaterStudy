@@ -5032,33 +5032,7 @@ function inject() {
   window.TouchEvent = require('./TouchEvent');
   window.MouseEvent = require('./MouseEvent');
   window.KeyboardEvent = require('./KeyboardEvent');
-  window.DeviceMotionEvent = require('./DeviceMotionEvent');
-  var ROTATION_0 = 0;
-  var ROTATION_90 = 1;
-  var ROTATION_180 = 2;
-  var ROTATION_270 = 3;
-  var orientation = 0;
-  var rotation = jsb.device.getDeviceRotation();
-
-  switch (rotation) {
-    case ROTATION_90:
-      orientation = 90;
-      break;
-
-    case ROTATION_180:
-      orientation = 180;
-      break;
-
-    case ROTATION_270:
-      orientation = -90;
-      break;
-
-    default:
-      break;
-  } //FIXME: The value needs to be updated when device orientation changes.
-
-
-  window.orientation = orientation; // window.devicePixelRatio is readonly
+  window.DeviceMotionEvent = require('./DeviceMotionEvent'); // window.devicePixelRatio is readonly
 
   Object.defineProperty(window, "devicePixelRatio", {
     get: function get() {
@@ -5070,6 +5044,19 @@ function inject() {
     enumerable: true,
     configurable: true
   });
+
+  window.addEventListener = function (eventName, listener, options) {
+    window.__canvas.addEventListener(eventName, listener, options);
+  };
+
+  window.removeEventListener = function (eventName, listener, options) {
+    window.__canvas.removeEventListener(eventName, listener, options);
+  };
+
+  window.dispatchEvent = function (event) {
+    window.__canvas.dispatchEvent(event);
+  };
+
   window.screen = {
     availTop: 0,
     availLeft: 0,
@@ -5086,20 +5073,48 @@ function inject() {
       type: 'portrait-primary' // portrait-primary, portrait-secondary, landscape-primary, landscape-secondary
 
     },
-    onorientationchange: function onorientationchange(event) {}
+    //screen orientation enum
+    SCREEN_ORIENTATION: {
+      ROTATION_0: 0,
+      ROTATION_90: 1,
+      ROTATION_180: 2,
+      ROTATION_270: 3
+    },
+    onOrientationChanged: function onOrientationChanged(event) {
+      switch (event.rotation) {
+        case window.screen.SCREEN_ORIENTATION.ROTATION_0:
+          window.orientation = 0;
+          break;
+
+        case window.screen.SCREEN_ORIENTATION.ROTATION_90:
+          window.orientation = 90;
+          break;
+
+        case window.screen.SCREEN_ORIENTATION.ROTATION_180:
+          window.orientation = 180;
+          break;
+
+        case window.screen.SCREEN_ORIENTATION.ROTATION_270:
+          window.orientation = -90;
+          break;
+
+        default:
+          break;
+      } // emit resize consistent with web behavior
+
+
+      var resizeEvent = new Event('orientationchange');
+      window.dispatchEvent(resizeEvent);
+    }
   };
 
-  window.addEventListener = function (eventName, listener, options) {
-    window.__canvas.addEventListener(eventName, listener, options);
+  jsb.onOrientationChanged = function (event) {
+    window.screen.onOrientationChanged(event);
   };
 
-  window.removeEventListener = function (eventName, listener, options) {
-    window.__canvas.removeEventListener(eventName, listener, options);
-  };
-
-  window.dispatchEvent = function (event) {
-    window.__canvas.dispatchEvent(event);
-  };
+  window.screen.onOrientationChanged({
+    rotation: jsb.device.getDeviceRotation()
+  });
 
   window.getComputedStyle = function (element) {
     return {
@@ -9311,8 +9326,8 @@ try {
       object['$$' + key] = value;
     };
   }
-} catch (e) {} //ie8
-//if(typeof require == 'function'){
+} catch (e) {//ie8
+} //if(typeof require == 'function'){
 
 
 exports.DOMImplementation = DOMImplementation;

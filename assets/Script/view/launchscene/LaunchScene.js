@@ -48,7 +48,7 @@ cc.Class({
 
             if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32)// 自带的模拟器不进行热更新   
             {
-                cc.log("模拟器不更新")
+                cc.log("模拟器不热更新")
                 VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
                 this.goLoginScene()
                 return
@@ -154,13 +154,13 @@ cc.Class({
             }
             else {//热更新error 
 
-                Global.ShowAlert("ErrorCode=====" + code, [], function () {
-                    self.Reboot()//失败重启
-                    // this.goLoginScene()
+                Global.ShowAlert("ErrorCode=====" + code, [],  ()=> {
+                    this.Reboot()//失败重启
+      
                 })
             }
         },  (progress, DownedSize, TotalSize)=> {//下载进度，下载了多少kb ，总下载多少kb  
-            cc.log("progress===", progress)
+            cc.log("load progress===", progress)
             if (cc.director.getScheduler().isScheduled(this.updateText, this)) {
                 this.unSchduleUpdateText()//停止显示update... 
             }

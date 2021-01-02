@@ -4,13 +4,11 @@ package com.casino.game;
 
 import java.io.IOException;
 
-import org.cocos2dx.javascript.AppActivity;
-import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
-
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
-import android.util.Log;
+
+import org.cocos2dx.javascript.AppActivity;
 
 public class VoicePlayer {
 

@@ -24,23 +24,23 @@ return t[c].exports;
 for (var i = "function" == typeof __require && __require, c = 0; c < o.length; c++) r(o[c]);
 return r;
 }({
-Sayhello: [ function(e, n, t) {
+Sayhello: [ function(e, n) {
 "use strict";
 cc._RF.push(n, "699a2Lmh39MiI9FoGib7Ek3", "Sayhello");
-var o = {
+var t = {
 Say: function() {
 console.log("SayHello=====");
 }
 };
-window.SayHello = o;
+window.SayHello = t;
 cc._RF.pop();
 }, {} ],
-bundleScene: [ function(e, n, t) {
+bundleScene: [ function(e, n) {
 "use strict";
 cc._RF.push(n, "8b80aQyaQZI1LngX975F7G3", "bundleScene");
-var o = e("BaseComponent");
+var t = e("BaseComponent");
 cc.Class({
-extends: o,
+extends: t,
 properties: {},
 start: function() {
 this.btn_back = cc.find("uipanel/btn_back", this.node);

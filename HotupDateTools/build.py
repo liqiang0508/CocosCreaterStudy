@@ -4,12 +4,13 @@ import os
 import projectConfig
 print("build Start**************")
 projectPath = os.path.abspath(os.path.join(os.getcwd(), "../"))# os.getcwd()
-print projectPath
-key = projectConfig.Key
-os.system("CocosCreator.exe.lnk  --build platform=android;debug=false;template=default;xxteaKey="+key+" --path "+projectPath)
 
-# test = os.path.join(projectPath,"build/jsb-default")
-# print test
+key = projectConfig.Key
+CocosCreatorExePath = "D:/CocosDashboard/resources/.editors/Creator/2.4.3/CocosCreator.exe"
+buildcmd = CocosCreatorExePath+"  --build platform=android;debug=false;template=default;xxteaKey="+key+" --path "+projectPath
+# print buildcmd
+os.system(buildcmd)
+
 
 print("build End****************")
 os.system("pause")

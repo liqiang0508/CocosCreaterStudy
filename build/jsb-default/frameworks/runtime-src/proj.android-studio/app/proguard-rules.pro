@@ -15,7 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
-
+-ignorewarnings #升级到v2.4.3到包release警告报错
 -keep public class com.casino.** { *; }
 -dontwarn  com.casino.**
 # Proguard Cocos2d-x-lite for release

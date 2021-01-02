@@ -3,9 +3,9 @@ package com.casino.game;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
-import android.util.Log;
+
 import android.media.MediaRecorder;
-import android.os.Environment;
+
 import org.cocos2dx.javascript.AppActivity;
 
 public class VoiceRecorder {

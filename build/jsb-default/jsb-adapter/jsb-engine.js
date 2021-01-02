@@ -218,19 +218,24 @@ cc.Assembler2D.prototype.updateWorldVerts = function (comp) {
   var vl = local[0],
       vr = local[2],
       vb = local[1],
-      vt = local[3]; // left bottom
+      vt = local[3];
+  var floatsPerVert = this.floatsPerVert;
+  var vertexOffset = 0; // left bottom
 
-  verts[0] = vl;
-  verts[1] = vb; // right bottom
+  verts[vertexOffset] = vl;
+  verts[vertexOffset + 1] = vb;
+  vertexOffset += floatsPerVert; // right bottom
 
-  verts[5] = vr;
-  verts[6] = vb; // left top
+  verts[vertexOffset] = vr;
+  verts[vertexOffset + 1] = vb;
+  vertexOffset += floatsPerVert; // left top
 
-  verts[10] = vl;
-  verts[11] = vt; // right top
+  verts[vertexOffset] = vl;
+  verts[vertexOffset + 1] = vt;
+  vertexOffset += floatsPerVert; // right top
 
-  verts[15] = vr;
-  verts[16] = vt;
+  verts[vertexOffset] = vr;
+  verts[vertexOffset + 1] = vt;
 };
 
 var _updateColor = cc.Assembler2D.prototype.updateColor;
@@ -1258,6 +1263,8 @@ require('./jsb-reflection.js');
 
 require('./jsb-assets-manager.js');
 
+require('./jsb-safearea.js');
+
 if (CC_NATIVERENDERER) {
   require('./jsb-effect.js');
 
@@ -1313,7 +1320,7 @@ if (CC_NATIVERENDERER) {
   });
 }
 
-},{"./assemblers/assembler-2d.js":2,"./assemblers/assembler-3d.js":3,"./assemblers/assembler.js":4,"./assemblers/graphics-assembler.js":5,"./assemblers/label/index.js":10,"./assemblers/mask-assembler.js":11,"./assemblers/mesh-renderer.js":12,"./assemblers/motion-streak.js":13,"./assemblers/particle-3d-assembler.js":14,"./assemblers/sprite/index.js":26,"./jsb-assets-manager.js":28,"./jsb-audio.js":29,"./jsb-dragonbones.js":31,"./jsb-editbox.js":32,"./jsb-effect-variant.js":33,"./jsb-effect.js":34,"./jsb-game.js":36,"./jsb-loader.js":37,"./jsb-particle.js":38,"./jsb-reflection.js":39,"./jsb-skin-mesh.js":40,"./jsb-spine-skeleton.js":41,"./jsb-sys.js":42,"./jsb-tiledmap.js":43,"./jsb-videoplayer.js":44,"./jsb-webview.js":45,"./scene/camera.js":46,"./scene/light.js":47,"./scene/mesh-buffer.js":48,"./scene/node-proxy.js":49,"./scene/node.js":50,"./scene/quad-buffer.js":51,"./scene/render-data.js":52,"./scene/render-flow.js":53}],28:[function(require,module,exports){
+},{"./assemblers/assembler-2d.js":2,"./assemblers/assembler-3d.js":3,"./assemblers/assembler.js":4,"./assemblers/graphics-assembler.js":5,"./assemblers/label/index.js":10,"./assemblers/mask-assembler.js":11,"./assemblers/mesh-renderer.js":12,"./assemblers/motion-streak.js":13,"./assemblers/particle-3d-assembler.js":14,"./assemblers/sprite/index.js":26,"./jsb-assets-manager.js":28,"./jsb-audio.js":29,"./jsb-dragonbones.js":31,"./jsb-editbox.js":32,"./jsb-effect-variant.js":33,"./jsb-effect.js":34,"./jsb-game.js":36,"./jsb-loader.js":37,"./jsb-particle.js":38,"./jsb-reflection.js":39,"./jsb-safearea.js":40,"./jsb-skin-mesh.js":41,"./jsb-spine-skeleton.js":42,"./jsb-sys.js":43,"./jsb-tiledmap.js":44,"./jsb-videoplayer.js":45,"./jsb-webview.js":46,"./scene/camera.js":47,"./scene/light.js":48,"./scene/mesh-buffer.js":49,"./scene/node-proxy.js":50,"./scene/node.js":51,"./scene/quad-buffer.js":52,"./scene/render-data.js":53,"./scene/render-flow.js":54}],28:[function(require,module,exports){
 "use strict";
 
 /*
@@ -1401,6 +1408,8 @@ if (jsb.AssetsManager) {
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+var cacheManager = require('./jsb-cache-manager');
+
 var Audio = cc._Audio = function (src) {
   this.src = src;
   this.volume = 1;
@@ -1510,7 +1519,7 @@ var handleVolume = function handleVolume(volume) {
         audioFilePath = clip._nativeAsset;
       } else {
         // audio delay loading
-        clip._nativeAsset = audioFilePath = clip.nativeUrl;
+        clip._nativeAsset = audioFilePath = cacheManager.getCache(clip.nativeUrl) || clip.nativeUrl;
         clip.loaded = true;
       }
     }
@@ -1642,7 +1651,7 @@ var handleVolume = function handleVolume(volume) {
   };
 })(Audio.prototype, jsb.AudioEngine);
 
-},{}],30:[function(require,module,exports){
+},{"./jsb-cache-manager":30}],30:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -1690,9 +1699,10 @@ var cacheManager = {
   deleteInterval: 500,
   writeFileInterval: 2000,
   cachedFiles: null,
-  version: '1.0',
+  version: '1.1',
   getCache: function getCache(url) {
-    return this.cachedFiles.has(url) ? this.cachedFiles.get(url).url : '';
+    this.updateLastTime(url);
+    return this.cachedFiles.has(url) ? "".concat(this.cacheDir, "/").concat(this.cachedFiles.get(url).url) : '';
   },
   getTemp: function getTemp(url) {
     return '';
@@ -1702,7 +1712,7 @@ var cacheManager = {
     var cacheFilePath = this.cacheDir + '/' + this.cachedFileName;
     var result = readJsonSync(cacheFilePath);
 
-    if (result instanceof Error || !result.version) {
+    if (result instanceof Error || !result.version || result.version !== this.version) {
       if (!(result instanceof Error)) rmdirSync(this.cacheDir, true);
       this.cachedFiles = new cc.AssetManager.Cache();
       makeDirSync(this.cacheDir, true);
@@ -1775,6 +1785,8 @@ var cacheManager = {
     });
   },
   clearLRU: function clearLRU() {
+    var _this2 = this;
+
     if (cleaning) return;
     cleaning = true;
     var caches = [];
@@ -1783,7 +1795,7 @@ var cacheManager = {
       if (val.bundle === 'internal') return;
       caches.push({
         originUrl: key,
-        url: val.url,
+        url: _this2.getCache(key),
         lastTime: val.lastTime
       });
     });
@@ -1791,6 +1803,7 @@ var cacheManager = {
       return a.lastTime - b.lastTime;
     });
     caches.length = Math.floor(this.cachedFiles.count / 3);
+    if (caches.length === 0) return;
 
     for (var i = 0, l = caches.length; i < l; i++) {
       this.cachedFiles.remove(caches[i].originUrl);
@@ -1813,7 +1826,8 @@ var cacheManager = {
   },
   removeCache: function removeCache(url) {
     if (this.cachedFiles.has(url)) {
-      var path = this.cachedFiles.remove(url).url;
+      var path = this.getCache(url);
+      this.cachedFiles.remove(url);
       this.writeCacheFile(function () {
         deleteFile(path);
       });
@@ -1854,6 +1868,8 @@ var _constants = require("constants");
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+var cacheManager = require('./jsb-cache-manager');
+
 (function () {
   if (window.dragonBones === undefined || window.middleware === undefined) return;
   if (dragonBones.DragonBonesAtlasAsset === undefined) return; // dragonbones global time scale.
@@ -2170,7 +2186,7 @@ var _constants = require("constants");
     if (this.dragonBonesJson) {
       filePath = this.dragonBonesJson;
     } else {
-      filePath = this.nativeUrl;
+      filePath = cacheManager.getCache(this.nativeUrl) || this.nativeUrl;
     }
 
     this._factory.parseDragonBonesDataByPath(filePath, armatureKey);
@@ -2266,12 +2282,12 @@ var _constants = require("constants");
         this.animationName = '';
       }
 
+      var oldArmature = this._armature;
+
       if (this._armature) {
         if (!this.isAnimationCached()) {
           this._factory.remove(this._armature);
         }
-
-        this._armature.dispose();
 
         this._armature = null;
       }
@@ -2279,6 +2295,10 @@ var _constants = require("constants");
       this._nativeDisplay = null;
 
       this._refresh();
+
+      if (oldArmature && oldArmature != this._armature) {
+        oldArmature.dispose();
+      }
 
       if (this._armature && !this.isAnimationCached()) {
         this._factory.add(this._armature);
@@ -2597,7 +2617,7 @@ var _constants = require("constants");
   };
 })();
 
-},{"constants":1}],32:[function(require,module,exports){
+},{"./jsb-cache-manager":30,"constants":1}],32:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -2788,6 +2808,11 @@ var _constants = require("constants");
       var dpr = cc.view._devicePixelRatio;
       node.getWorldMatrix(worldMat);
       var camera = cc.Camera.findCamera(node);
+
+      if (!camera) {
+        return new cc.Rect();
+      }
+
       camera.getWorldToScreenMatrix2D(cameraMat);
       cc.Mat4.multiply(cameraMat, cameraMat, worldMat);
       var contentSize = node._contentSize;
@@ -2980,51 +3005,51 @@ Object.assign(EffectBase.prototype, {
  THE SOFTWARE.
  ****************************************************************************/
 var fs = jsb.fileUtils;
-var jsb_downloader = new jsb.Downloader({
-  countOfMaxProcessingTasks: 32,
-  timeoutInSeconds: 10,
-  tempFileNameSuffix: '.tmp'
-});
+var jsb_downloader = null;
 var downloading = new cc.AssetManager.Cache();
-var tempDir = fs.getWritablePath() + '/temp';
-!fs.isDirectoryExist(tempDir) && fs.createDirectory(tempDir);
-jsb_downloader.setOnFileTaskSuccess(function (task) {
-  if (!downloading.has(task.requestURL)) return;
-
-  var _downloading$remove = downloading.remove(task.requestURL),
-      onComplete = _downloading$remove.onComplete;
-
-  onComplete && onComplete(null, task.storagePath);
-});
-jsb_downloader.setOnTaskError(function (task, errorCode, errorCodeInternal, errorStr) {
-  if (!downloading.has(task.requestURL)) return;
-
-  var _downloading$remove2 = downloading.remove(task.requestURL),
-      onComplete = _downloading$remove2.onComplete;
-
-  if (task.storagePath) {
-    fsUtils.deleteFile(task.storagePath);
-  }
-
-  cc.error(errorStr, errorCode);
-  onComplete(new Error(errorStr), null);
-});
-jsb_downloader.setOnTaskProgress(function (task, bytesReceived, totalBytesReceived, totalBytesExpected) {
-  if (!downloading.has(task.requestURL)) return;
-
-  var _downloading$get = downloading.get(task.requestURL),
-      onProgress = _downloading$get.onProgress;
-
-  onProgress && onProgress(totalBytesReceived, totalBytesExpected);
-});
+var tempDir = '';
 var fsUtils = {
   fs: fs,
+  initJsbDownloader: function initJsbDownloader(jsbDownloaderMaxTasks, jsbDownloaderTimeout) {
+    jsb_downloader = new jsb.Downloader({
+      countOfMaxProcessingTasks: jsbDownloaderMaxTasks || 32,
+      timeoutInSeconds: jsbDownloaderTimeout || 30,
+      tempFileNameSuffix: '.tmp'
+    });
+    tempDir = fsUtils.getUserDataPath() + '/temp';
+    !fs.isDirectoryExist(tempDir) && fs.createDirectory(tempDir);
+    jsb_downloader.setOnFileTaskSuccess(function (task) {
+      if (!downloading.has(task.requestURL)) return;
+
+      var _downloading$remove = downloading.remove(task.requestURL),
+          onComplete = _downloading$remove.onComplete;
+
+      onComplete && onComplete(null, task.storagePath);
+    });
+    jsb_downloader.setOnTaskError(function (task, errorCode, errorCodeInternal, errorStr) {
+      if (!downloading.has(task.requestURL)) return;
+
+      var _downloading$remove2 = downloading.remove(task.requestURL),
+          onComplete = _downloading$remove2.onComplete;
+
+      cc.error("Download file failed: path: ".concat(task.requestURL, " message: ").concat(errorStr, ", ").concat(errorCode));
+      onComplete(new Error(errorStr), null);
+    });
+    jsb_downloader.setOnTaskProgress(function (task, bytesReceived, totalBytesReceived, totalBytesExpected) {
+      if (!downloading.has(task.requestURL)) return;
+
+      var _downloading$get = downloading.get(task.requestURL),
+          onProgress = _downloading$get.onProgress;
+
+      onProgress && onProgress(totalBytesReceived, totalBytesExpected);
+    });
+  },
   getUserDataPath: function getUserDataPath() {
-    return fs.getWritablePath();
+    return fs.getWritablePath().replace(/[\/\\]*$/, '');
   },
   checkFsValid: function checkFsValid() {
     if (!fs) {
-      console.warn('can not get the file system!');
+      cc.warn('can not get the file system!');
       return false;
     }
 
@@ -3036,6 +3061,7 @@ var fsUtils = {
     if (result === true) {
       onComplete && onComplete(null);
     } else {
+      cc.warn("Delete file failed: path: ".concat(filePath));
       onComplete && onComplete(new Error('delete file failed'));
     }
   },
@@ -3050,67 +3076,71 @@ var fsUtils = {
   },
   saveFile: function saveFile(srcPath, destPath, onComplete) {
     var err = null;
+    var result = fs.writeDataToFile(fs.getDataFromFile(srcPath), destPath);
+    fs.removeFile(srcPath);
 
-    try {
-      fs.writeDataToFile(fs.getDataFromFile(srcPath), destPath);
-      fs.removeFile(srcPath);
-    } catch (e) {
-      err = e;
+    if (!result) {
+      err = new Error("Save file failed: path: ".concat(srcPath));
+      cc.warn(err.message);
     }
 
     onComplete && onComplete(err);
   },
   copyFile: function copyFile(srcPath, destPath, onComplete) {
     var err = null;
+    var result = fs.writeDataToFile(fs.getDataFromFile(srcPath), destPath);
 
-    try {
-      fs.writeDataToFile(fs.getDataFromFile(srcPath), destPath);
-    } catch (e) {
-      err = e;
+    if (!result) {
+      err = new Error("Copy file failed: path: ".concat(srcPath));
+      cc.warn(err.message);
     }
 
     onComplete && onComplete(err);
   },
   writeFile: function writeFile(path, data, encoding, onComplete) {
+    var result = null;
     var err = null;
 
-    try {
-      if (encoding === 'utf-8' || encoding === 'utf8') {
-        fs.writeStringToFile(data, path);
-      } else {
-        fs.writeDataToFile(filePath);
-      }
-    } catch (e) {
-      err = e;
+    if (encoding === 'utf-8' || encoding === 'utf8') {
+      result = fs.writeStringToFile(data, path);
+    } else {
+      result = fs.writeDataToFile(data, path);
+    }
+
+    if (!result) {
+      err = new Error("Write file failed: path: ".concat(path));
+      cc.warn(err.message);
     }
 
     onComplete && onComplete(err);
   },
   writeFileSync: function writeFileSync(path, data, encoding) {
-    try {
-      if (encoding === 'utf-8' || encoding === 'utf8') {
-        fs.writeStringToFile(data, path);
-      } else {
-        fs.writeDataToFile(filePath);
-      }
+    var result = null;
 
-      return null;
-    } catch (e) {
-      return e;
+    if (encoding === 'utf-8' || encoding === 'utf8') {
+      result = fs.writeStringToFile(data, path);
+    } else {
+      result = fs.writeDataToFile(data, path);
+    }
+
+    if (!result) {
+      cc.warn("Write file failed: path: ".concat(path));
+      return new Error("Write file failed: path: ".concat(path));
     }
   },
   readFile: function readFile(filePath, encoding, onComplete) {
     var content = null,
         err = null;
 
-    try {
-      if (encoding === 'utf-8' || encoding === 'utf8') {
-        content = fs.getStringFromFile(filePath);
-      } else {
-        content = fs.getDataFromFile(filePath);
-      }
-    } catch (e) {
-      err = e;
+    if (encoding === 'utf-8' || encoding === 'utf8') {
+      content = fs.getStringFromFile(filePath);
+    } else {
+      content = fs.getDataFromFile(filePath);
+    }
+
+    if (!content) {
+      err = new Error("Read file failed: path: ".concat(filePath));
+      cc.warn(err.message);
     }
 
     onComplete && onComplete(err, content);
@@ -3122,7 +3152,8 @@ var fsUtils = {
     try {
       files = fs.listFiles(filePath);
     } catch (e) {
-      err = e;
+      cc.warn("Read dir failed: path: ".concat(filePath, " message: ").concat(e.message));
+      err = new Error(e.message);
     }
 
     onComplete && onComplete(err, files);
@@ -3141,7 +3172,7 @@ var fsUtils = {
         try {
           out = JSON.parse(text);
         } catch (e) {
-          cc.warn('Read json failed: ' + e.message);
+          cc.warn("Read json failed: path: ".concat(filePath, " message: ").concat(e.message));
           err = new Error(e.message);
         }
       }
@@ -3154,25 +3185,24 @@ var fsUtils = {
       var str = fs.getStringFromFile(path);
       return JSON.parse(str);
     } catch (e) {
-      cc.warn('Read json failed: ' + e.message);
+      cc.warn("Read json failed: path: ".concat(path, " message: ").concat(e.message));
       return new Error(e.message);
     }
   },
   makeDirSync: function makeDirSync(path, recursive) {
-    try {
-      fs.createDirectory(path);
-      return null;
-    } catch (e) {
-      cc.warn('Make directory failed: ' + e.message);
-      return new Error(e.message);
+    var result = fs.createDirectory(path);
+
+    if (!result) {
+      cc.warn("Make directory failed: path: ".concat(path));
+      return new Error("Make directory failed: path: ".concat(path));
     }
   },
   rmdirSync: function rmdirSync(dirPath, recursive) {
-    try {
-      fs.removeDirectory(dirPath);
-    } catch (e) {
-      cc.warn('rm directory failed: ' + e.message);
-      return new Error(e.message);
+    var result = fs.removeDirectory(dirPath);
+
+    if (!result) {
+      cc.warn("rm directory failed: path: ".concat(dirPath));
+      return new Error("rm directory failed: path: ".concat(dirPath));
     }
   },
   exists: function exists(filePath, onComplete) {
@@ -3218,8 +3248,14 @@ cc.game.restart = function () {
 
   cc.Object._deferredDestroy();
 
+  cc.game.pause();
+
   __restartVM();
 };
+
+jsb.onError(function (location, message, stack) {
+  console.error(location, message, stack);
+});
 
 jsb.onPause = function () {
   cc.game.emit(cc.game.EVENT_HIDE);
@@ -3229,33 +3265,11 @@ jsb.onResume = function () {
   cc.game.emit(cc.game.EVENT_SHOW);
 };
 
-function resize(size) {
-  // size should be the css style
-  size.width /= cc.view._devicePixelRatio;
-  size.height /= cc.view._devicePixelRatio;
-  window.resize(size.width, size.height);
-}
-
 jsb.onResize = function (size) {
-  if (size.width === 0 || size.height === 0) return; // getSafeAreaEdge is asynchronous on iOS, so callback later is required
-
-  if (CC_JSB && cc.sys.os === cc.sys.OS_IOS) {
-    var edges = jsb.Device.getSafeAreaEdge();
-    var hasSafeArea = edges.x > 0 || edges.y > 0 || edges.z > 0 || edges.w > 0;
-
-    if (hasSafeArea) {
-      setTimeout(function () {
-        if (cc.Vec4.strictEquals(edges, jsb.Device.getSafeAreaEdge())) {
-          setTimeout(resize, 200, size);
-        } else {
-          resize(size);
-        }
-      }, 0);
-      return;
-    }
-  }
-
-  resize(size);
+  if (size.width === 0 || size.height === 0) return;
+  size.width /= window.devicePixelRatio;
+  size.height /= window.devicePixelRatio;
+  window.resize(size.width, size.height);
 };
 
 },{}],37:[function(require,module,exports){
@@ -3292,7 +3306,9 @@ var _require = require('./jsb-fs-utils'),
     downloadFile = _require.downloadFile,
     readText = _require.readText,
     readArrayBuffer = _require.readArrayBuffer,
-    readJson = _require.readJson;
+    readJson = _require.readJson,
+    getUserDataPath = _require.getUserDataPath,
+    initJsbDownloader = _require.initJsbDownloader;
 
 var REGEX = /^\w+:\/\/.*/;
 var downloader = cc.assetManager.downloader;
@@ -3309,6 +3325,8 @@ presets['bundle'].maxRequestsPerFrame = 64;
 var suffix = 0;
 var REMOTE_SERVER_ROOT = '';
 var remoteBundles = {};
+var failureMap = {};
+var maxRetryCountFromBreakpoint = 5;
 var loadedScripts = {};
 
 function downloadScript(url, options, onComplete) {
@@ -3343,19 +3361,36 @@ function download(url, func, options, onFileProgress, onComplete) {
   } else {
     var time = Date.now();
     var storagePath = '';
+    var failureRecord = failureMap[url];
 
-    if (options.__cacheBundleRoot__) {
-      storagePath = "".concat(cacheManager.cacheDir, "/").concat(options.__cacheBundleRoot__, "/").concat(time).concat(suffix++).concat(cc.path.extname(url));
+    if (failureRecord) {
+      storagePath = failureRecord.storagePath;
+    } else if (options.__cacheBundleRoot__) {
+      storagePath = "".concat(options.__cacheBundleRoot__, "/").concat(time).concat(suffix++).concat(cc.path.extname(url));
     } else {
-      storagePath = "".concat(cacheManager.cacheDir, "/").concat(time).concat(suffix++).concat(cc.path.extname(url));
+      storagePath = "".concat(time).concat(suffix++).concat(cc.path.extname(url));
     }
 
-    downloadFile(url, storagePath, options.header, onFileProgress, function (err, path) {
+    downloadFile(url, "".concat(cacheManager.cacheDir, "/").concat(storagePath), options.header, onFileProgress, function (err, path) {
       if (err) {
+        if (failureRecord) {
+          failureRecord.retryCount++;
+
+          if (failureRecord.retryCount >= maxRetryCountFromBreakpoint) {
+            delete failureMap[url];
+          }
+        } else {
+          failureMap[url] = {
+            retryCount: 0,
+            storagePath: storagePath
+          };
+        }
+
         onComplete(err, null);
         return;
       }
 
+      delete failureMap[url];
       func(path, options, function (err, data) {
         if (!err) {
           cacheManager.cacheFile(url, storagePath, options.__cacheBundleRoot__);
@@ -3377,11 +3412,11 @@ function transformUrl(url, options) {
         url: url
       };
     } else {
-      var cache = cacheManager.cachedFiles.get(url);
+      var cache = cacheManager.getCache(url);
 
       if (cache) {
         inCache = true;
-        url = cache.url;
+        url = cache;
       }
     }
   } else {
@@ -3447,7 +3482,7 @@ function downloadBundle(nameOrUrl, options, onComplete) {
   var version = options.version || cc.assetManager.downloader.bundleVers[bundleName];
   var url;
 
-  if (REGEX.test(nameOrUrl)) {
+  if (REGEX.test(nameOrUrl) || nameOrUrl.startsWith(getUserDataPath())) {
     url = nameOrUrl;
     cacheManager.makeBundleFolder(bundleName);
   } else {
@@ -3623,6 +3658,7 @@ cc.assetManager.init = function (options) {
   });
   REMOTE_SERVER_ROOT = options.server || '';
   if (REMOTE_SERVER_ROOT && !REMOTE_SERVER_ROOT.endsWith('/')) REMOTE_SERVER_ROOT += '/';
+  initJsbDownloader(options.jsbDownloaderMaxTasks, options.jsbDownloaderTimeout);
   cacheManager.init();
 };
 
@@ -3941,6 +3977,41 @@ if (window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID) {
 },{}],40:[function(require,module,exports){
 "use strict";
 
+var SafeArea = cc.SafeArea;
+
+if (SafeArea) {
+  var _onEnable = SafeArea.prototype.onEnable;
+  var _onDisable = SafeArea.prototype.onDisable;
+  Object.assign(SafeArea.prototype, {
+    onEnable: function onEnable() {
+      _onEnable.call(this);
+
+      this._adaptSafeAreaChangeWithThis = this.adaptSafeAreaChange.bind(this);
+      this._updateAreaWithThis = this.adaptSafeAreaChange.bind(this);
+      window.addEventListener('orientationchange', this._adaptSafeAreaChangeWithThis);
+      window.addEventListener('safearea-change', this._updateAreaWithThis);
+    },
+    onDisable: function onDisable() {
+      _onDisable.call(this);
+
+      window.removeEventListener('orientationchange', this._adaptSafeAreaChangeWithThis);
+      window.removeEventListener('safearea-change', this._updateAreaWithThis);
+    },
+    adaptSafeAreaChange: function adaptSafeAreaChange() {
+      var _this = this;
+
+      if (CC_JSB && (cc.sys.os === cc.sys.OS_IOS || cc.sys.os === cc.sys.OS_ANDROID)) {
+        setTimeout(function () {
+          _this.updateArea();
+        }, 200);
+      }
+    }
+  });
+}
+
+},{}],41:[function(require,module,exports){
+"use strict";
+
 (function () {
   if (!cc.SkinnedMeshRenderer) return;
   var SkinnedMeshAssembler = cc.SkinnedMeshRenderer.__assembler__.prototype;
@@ -3952,7 +4023,7 @@ if (window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID) {
   });
 })();
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -3979,6 +4050,8 @@ if (window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID) {
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+var cacheManager = require('./jsb-cache-manager');
+
 (function () {
   if (window.sp === undefined || window.spine === undefined || window.middleware === undefined) return;
   sp.VertexEffectDelegate = spine.VertexEffectDelegate;
@@ -4061,6 +4134,8 @@ if (window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID) {
 
     if (skeletonCache) {
       this._skeletonCache = skeletonCache;
+      this.width = this._skeletonCache.getWidth();
+      this.height = this._skeletonCache.getHeight();
       return;
     }
 
@@ -4103,7 +4178,7 @@ if (window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID) {
     if (this.skeletonJsonStr) {
       filePath = this.skeletonJsonStr;
     } else {
-      filePath = this.nativeUrl;
+      filePath = cacheManager.getCache(this.nativeUrl) || this.nativeUrl;
     }
 
     this._skeletonCache = spine.initSkeletonData(uuid, filePath, atlasText, jsbTextures, this.scale);
@@ -4839,7 +4914,7 @@ if (window.JavascriptJavaBridge && cc.sys.os == cc.sys.OS_ANDROID) {
   };
 })();
 
-},{}],42:[function(require,module,exports){
+},{"./jsb-cache-manager":30}],43:[function(require,module,exports){
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
@@ -4898,7 +4973,7 @@ sys.getSafeAreaRect = function () {
   return cc.rect(leftBottom.x, leftBottom.y, rightTop.x - leftBottom.x, rightTop.y - leftBottom.y);
 };
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -5093,7 +5168,7 @@ sys.getSafeAreaRect = function () {
   }, renderer.TiledMapAssembler.prototype);
 })();
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -5151,6 +5226,10 @@ sys.getSafeAreaRect = function () {
       self._loadedmeta = true;
 
       self._dispatchEvent(_impl.EventType.META_LOADED);
+
+      if (self._playing) {
+        self._video.play();
+      }
     };
 
     cbs.ended = function () {
@@ -5331,12 +5410,6 @@ sys.getSafeAreaRect = function () {
 
       video.addEventListener(_impl._polyfill.event, cb);
     }
-
-    if (_impl._polyfill.autoplayAfterOperation && this.isPlaying()) {
-      setTimeout(function () {
-        video.play();
-      }, 20);
-    }
   };
 
   _p.isPlaying = function () {
@@ -5439,6 +5512,13 @@ sys.getSafeAreaRect = function () {
 
   _p.updateMatrix = function (node) {
     if (!this._video || !this._visible) return;
+
+    var camera = cc.Camera.findCamera(node)._camera;
+
+    if (!camera) {
+      return;
+    }
+
     node.getWorldMatrix(_worldMat);
 
     if (!this._forceUpdate && this._m00 === _worldMat.m[0] && this._m01 === _worldMat.m[1] && this._m04 === _worldMat.m[4] && this._m05 === _worldMat.m[5] && this._m12 === _worldMat.m[12] && this._m13 === _worldMat.m[13] && this._w === node._contentSize.width && this._h === node._contentSize.height) {
@@ -5454,9 +5534,6 @@ sys.getSafeAreaRect = function () {
     this._m13 = _worldMat.m[13];
     this._w = node._contentSize.width;
     this._h = node._contentSize.height;
-
-    var camera = cc.Camera.findCamera(node)._camera;
-
     var canvas_width = cc.game.canvas.width;
     var canvas_height = cc.game.canvas.height;
     var ap = node._anchorPoint; // Vectors in node space
@@ -5512,7 +5589,7 @@ sys.getSafeAreaRect = function () {
   });
 })();
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -5823,6 +5900,13 @@ sys.getSafeAreaRect = function () {
 
   _p.updateMatrix = function (node) {
     if (!this._iframe || !this._visible) return;
+
+    var camera = cc.Camera.findCamera(node)._camera;
+
+    if (!camera) {
+      return;
+    }
+
     node.getWorldMatrix(_worldMat);
 
     if (this._m00 === _worldMat.m[0] && this._m01 === _worldMat.m[1] && this._m04 === _worldMat.m[4] && this._m05 === _worldMat.m[5] && this._m12 === _worldMat.m[12] && this._m13 === _worldMat.m[13] && this._w === node._contentSize.width && this._h === node._contentSize.height) {
@@ -5838,9 +5922,6 @@ sys.getSafeAreaRect = function () {
     this._m13 = _worldMat.m[13];
     this._w = node._contentSize.width;
     this._h = node._contentSize.height;
-
-    var camera = cc.Camera.findCamera(node)._camera;
-
     var canvas_width = cc.game.canvas.width;
     var canvas_height = cc.game.canvas.height;
     var ap = node._anchorPoint; // Vectors in node space
@@ -5860,7 +5941,7 @@ sys.getSafeAreaRect = function () {
   };
 })();
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -5897,7 +5978,7 @@ cc.js.mixin(nativeCameraProto, {
   }
 });
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -5934,7 +6015,7 @@ cc.js.mixin(nativeLightProto, {
   }
 });
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -6114,7 +6195,7 @@ cc.js.mixin(nativeLightProto, {
   };
 })();
 
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -6234,7 +6315,7 @@ cc.js.mixin(renderer.NodeProxy.prototype, {
   }
 });
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /****************************************************************************
  Copyright (c) 2018 Xiamen Yaji Software Co., Ltd.
 
@@ -6299,7 +6380,7 @@ cc.PrivateNode.prototype._posDirty = function (sendEvent) {
   }
 };
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************
@@ -6362,7 +6443,7 @@ cc.PrivateNode.prototype._posDirty = function (sendEvent) {
   };
 })();
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 "use strict";
 
 var proto = cc.RenderData.prototype;
@@ -6397,7 +6478,7 @@ proto.updateMeshRange = function (verticesCount, indicesCount) {
   this._nativeAssembler.updateIndicesRange(0, 0, indicesCount);
 };
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 "use strict";
 
 /****************************************************************************

@@ -1,1 +1,1 @@
-{"__type__":"cc.SpriteFrame","content":{"name":"stop_begemot","texture":"be/ftMZ5ZFIIjhB7y9bwtz","rect":[7,14,247,244],"offset":[0.5,-6],"originalSize":[260,260],"capInsets":[0,0,0,0]}}
+[1,["be/ftMZ5ZFIIjhB7y9bwtz"],["_textureSetter"],["cc.SpriteFrame"],0,[{"name":"stop_begemot","rect":[7,14,247,244],"offset":[0.5,-6],"originalSize":[260,260],"capInsets":[0,0,0,0]}],[0],0,[0],[0],[0]]

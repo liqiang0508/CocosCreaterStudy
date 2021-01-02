@@ -5,7 +5,7 @@ t && t(n);
 });
 },
 off: function(n, e, t) {
-n.off(e, function(n) {
+n.off(e, function() {
 t && t();
 });
 },

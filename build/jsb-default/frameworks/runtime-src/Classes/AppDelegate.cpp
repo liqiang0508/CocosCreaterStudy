@@ -32,9 +32,9 @@
 #include "cocos/scripting/js-bindings/jswrapper/SeApi.h"
 #include "cocos/scripting/js-bindings/event/EventDispatcher.h"
 #include "cocos/scripting/js-bindings/manual/jsb_classtype.hpp"
-
+#include "CCFileUtils.h"
 USING_NS_CC;
-using namespace std;
+
 AppDelegate::AppDelegate(int width, int height) : Application("Cocos Game", width, height)
 {
 }
@@ -46,7 +46,7 @@ AppDelegate::~AppDelegate()
 bool AppDelegate::applicationDidFinishLaunching()
 {
     //packages path
-    string tDir = FileUtils::getInstance()->getWritablePath();
+    std::string tDir = FileUtils::getInstance()->getWritablePath();
     FileUtils::getInstance()->createDirectory(tDir + "package/");
     FileUtils::getInstance()->createDirectory(tDir + "packageTemp/");
     FileUtils::getInstance()->createDirectory(tDir + "config/");
@@ -55,7 +55,6 @@ bool AppDelegate::applicationDidFinishLaunching()
     FileUtils::getInstance()->addSearchPath(tDir + "package/src/",true);
     FileUtils::getInstance()->addSearchPath(tDir + "package/assets/",true);
     FileUtils::getInstance()->addSearchPath(tDir + "package/",true);
-
 
     se::ScriptEngine* se = se::ScriptEngine::getInstance();
 
@@ -69,7 +68,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     se->setExceptionCallback([](const char* location, const char* message, const char* stack){
         // Send exception information to server like Tencent Bugly.
-
+        cocos2d::log("\nUncaught Exception:\n - location :  %s\n - msg : %s\n - detail : \n      %s\n", location, message, stack);
     });
 
     jsb_register_all_modules();

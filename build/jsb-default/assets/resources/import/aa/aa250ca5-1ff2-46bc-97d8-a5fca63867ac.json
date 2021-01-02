@@ -1,1 +1,1 @@
-{"__type__":"cc.SpriteFrame","content":{"name":"stop_man","texture":"ee27ttiAtD/aDFal5FsHla","rect":[14,9,240,249],"offset":[4,-3.5],"originalSize":[260,260],"capInsets":[0,0,0,0]}}
+[1,["ee27ttiAtD/aDFal5FsHla"],["_textureSetter"],["cc.SpriteFrame"],0,[{"name":"stop_man","rect":[14,9,240,249],"offset":[4,-3.5],"originalSize":[260,260],"capInsets":[0,0,0,0]}],[0],0,[0],[0],[0]]

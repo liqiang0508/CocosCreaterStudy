@@ -5,9 +5,10 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 //import android.support.v4.app.ContextCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.app.ActivityCompat;
+
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
 
 /**
  * Created by Lee on 18/12/29.

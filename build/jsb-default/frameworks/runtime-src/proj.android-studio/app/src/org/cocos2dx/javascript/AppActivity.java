@@ -27,16 +27,14 @@ package org.cocos2dx.javascript;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
-import android.util.Log;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Bundle;
+
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.view.View;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.casino.game.ApplicationUtil;
@@ -51,7 +49,9 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onCreate(Bundle savedInstanceState) {
         activity = this;
         context = getApplication();
+        super.onCreate(savedInstanceState);
         DetectCoverInstall();
+
         //屏幕适配核心 在AppActivity的onCreate添加  让画布扩充到刘海部分
         if (Build.VERSION.SDK_INT >= 28) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -59,9 +59,6 @@ public class AppActivity extends Cocos2dxActivity {
             lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
             getWindow().setAttributes(lp);
         }
-        super.onCreate(savedInstanceState);
-        //屏幕适配核心 在AppActivity的onCreate添加  让画布扩充到刘海部分
-
         // Workaround in
         // https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
@@ -73,7 +70,6 @@ public class AppActivity extends Cocos2dxActivity {
         }
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.getInstance().init(this);
-
         Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
         Log.i("bbbbbbbbb===",b+"");
         if(!b)//没有权限
@@ -87,97 +83,6 @@ public class AppActivity extends Cocos2dxActivity {
             }
         }
 
-    }
-
-
-
-    public void DetectCoverInstall()//覆盖安装的话先删掉的热更新目录
-    {
-
-        SharedPreferences perference = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
-        String appVersion = ApplicationUtil.getApplicationVersion();
-        if(!appVersion.equalsIgnoreCase(perference.getString("resource_app_version", "0.0.0")))//当前app 版本不等于存的版本号。肯定是覆盖安装
-        {
-            String dataDir = getApplication().getFilesDir().getAbsolutePath();
-            File packageFile = new File(dataDir+"/package");
-            File ConfigFolder = new File(dataDir+"/config");
-            if (packageFile.exists())
-            {
-                deleteDirectory(dataDir+"/package");
-                packageFile = new File(dataDir+"/package");
-                packageFile.mkdir();
-            }
-            if (ConfigFolder.exists())
-            {
-                deleteDirectory(dataDir+"/config");
-                ConfigFolder = new File(dataDir+"/config");
-                ConfigFolder.mkdir();
-            }
-        }
-
-        SharedPreferences.Editor editor = perference.edit();
-        editor.putString("resource_app_version", appVersion);//存下当前版本号
-        editor.commit();
-
-    }
-
-    public  boolean deleteDirectory(String dir) {
-        // 如果dir不以文件分隔符结尾，自动添加文件分隔符
-        if (!dir.endsWith(File.separator))
-            dir = dir + File.separator;
-        File dirFile = new File(dir);
-        // 如果dir对应的文件不存在，或者不是一个目录，则退出
-        if ((!dirFile.exists()) || (!dirFile.isDirectory())) {
-            System.out.println("删除目录失败：" + dir + "不存在！");
-            return false;
-        }
-        // 用于标识是否删除成功
-        boolean flag = true;
-        // 删除文件夹中的所有文件包括子目录
-        File[] files = dirFile.listFiles();
-        for (int i = 0; i < files.length; i++) {
-            // 删除子文件
-            if (files[i].isFile()) {
-                flag = delFile(files[i].getAbsolutePath());
-                if (!flag)
-                    break;
-            }
-            // 删除子目录
-            else if (files[i].isDirectory()) {
-                flag = deleteDirectory(files[i]
-                        .getAbsolutePath());
-                if (!flag)
-                    break;
-            }
-        }
-        if (!flag) {
-            System.out.println("删除目录失败！");
-            return false;
-        }
-        // 删除当前目录
-        if (dirFile.delete()) {
-            System.out.println("删除目录" + dir + "成功！");
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public  boolean delFile(String path) {
-        if (path != null) {
-            File file = new File(path);
-            if (file.exists()) {
-                if (file.delete())
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     @Override
@@ -271,34 +176,102 @@ public class AppActivity extends Cocos2dxActivity {
         super.onStart();
     }
 
-    public static int getGameChanel()
-    {
-        int chanel = 3;
-        return chanel;
-    }
 
-    public static int getLoginChanel()
+    public void DetectCoverInstall()//覆盖安装的话先删掉的热更新目录
     {
-        int loginChanelID = 3;
-        return loginChanelID;
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
-    {
-        Log.i("AppActivity","onRequestPermissionsResult"+requestCode);
 
-        if (requestCode == 1)//record audio
+        SharedPreferences perference = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
+        String appVersion = ApplicationUtil.getApplicationVersion();
+        if(!appVersion.equalsIgnoreCase(perference.getString("resource_app_version", "0.0.0")))//当前app 版本不等于存的版本号。肯定是覆盖安装
         {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)//同意了授权
+            String dataDir = getApplication().getFilesDir().getAbsolutePath();
+            File packageFile = new File(dataDir+"/package");
+            File ConfigFolder = new File(dataDir+"/config");
+            if (packageFile.exists())
             {
-                Log.i("AppActivity","Yes  Audio");
-
-            } else
+                deleteDirectory(dataDir+"/package");
+                packageFile = new File(dataDir+"/package");
+                packageFile.mkdir();
+            }
+            if (ConfigFolder.exists())
             {
-                Log.i("AppActivity","No  Audio");
+                deleteDirectory(dataDir+"/config");
+                ConfigFolder = new File(dataDir+"/config");
+                ConfigFolder.mkdir();
             }
         }
 
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        SharedPreferences.Editor editor = perference.edit();
+        editor.putString("resource_app_version", appVersion);//存下当前版本号
+        editor.commit();
+
     }
+
+    public  boolean deleteDirectory(String dir) {
+        // 如果dir不以文件分隔符结尾，自动添加文件分隔符
+        if (!dir.endsWith(File.separator))
+            dir = dir + File.separator;
+        File dirFile = new File(dir);
+        // 如果dir对应的文件不存在，或者不是一个目录，则退出
+        if ((!dirFile.exists()) || (!dirFile.isDirectory())) {
+            System.out.println("删除目录失败：" + dir + "不存在！");
+            return false;
+        }
+        // 用于标识是否删除成功
+        boolean flag = true;
+        // 删除文件夹中的所有文件包括子目录
+        File[] files = dirFile.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            // 删除子文件
+            if (files[i].isFile()) {
+                flag = delFile(files[i].getAbsolutePath());
+                if (!flag)
+                    break;
+            }
+            // 删除子目录
+            else if (files[i].isDirectory()) {
+                flag = deleteDirectory(files[i]
+                        .getAbsolutePath());
+                if (!flag)
+                    break;
+            }
+        }
+        if (!flag) {
+            System.out.println("删除目录失败！");
+            return false;
+        }
+        // 删除当前目录
+        if (dirFile.delete()) {
+            System.out.println("删除目录" + dir + "成功！");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public  boolean delFile(String path) {
+        if (path != null) {
+            File file = new File(path);
+            if (file.exists()) {
+                if (file.delete())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static int getGameChanel(){
+
+        return 1;
+    }
+    public static int getLoginChanel(){
+
+        return 1;
+    }
+
 }
