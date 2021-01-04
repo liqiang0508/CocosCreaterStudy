@@ -1590,6 +1590,321 @@ t[8043].MaxRandomChip = 0;
 _.exports = t;
 cc._RF.pop();
 }, {} ],
+DevicesAndroid: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "76007bwrn9IE5i9lxVbGD0F", "DevicesAndroid");
+var t = "com/casino/game/ApplicationUtil", T = {
+getDevicesID: function() {
+return jsb.reflection.callStaticMethod(t, "getDeviceIdentifier", "()Ljava/lang/String;");
+},
+getAppVersion: function() {
+return jsb.reflection.callStaticMethod(t, "getApplicationVersion", "()Ljava/lang/String;");
+}
+};
+_.exports = T;
+cc._RF.pop();
+}, {} ],
+DevicesIos: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "6e0f94nMBRI+ZIyjS7/Emyg", "DevicesIos");
+var t = {
+getDevicesID: function() {
+cc.log("TODO DevicesIos getDevicesID");
+return "123";
+},
+getAppVersion: function() {
+cc.log("TODO DevicesIos getAppVersion");
+return "1.3.0";
+}
+};
+_.exports = t;
+cc._RF.pop();
+}, {} ],
+DevicesWeb: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "1f7d1OvDdhKb6+AnPj2Q80P", "DevicesWeb");
+var t = {
+getDevicesID: function() {
+var e = new Date().getTime(), _ = window.Save.get("decicesID", e);
+_ == e && window.Save.set("decicesID", e);
+return _;
+},
+getAppVersion: function() {
+return "1.3.0";
+}
+};
+_.exports = t;
+cc._RF.pop();
+}, {} ],
+Devices: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "cd548Gn7o1Afas1wT6k6Lak", "Devices");
+var t = {
+instance: void 0,
+getDevicesID: function() {
+return this.instance.getDevicesID();
+},
+getAppVersion: function() {
+return this.instance.getAppVersion();
+}
+};
+t.instance = e("DevicesWeb");
+cc.sys.isBrowser ? t.instance = e("DevicesWeb") : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? t.instance = e("DevicesAndroid") : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS && (t.instance = e("DevicesIos"));
+_.exports = t;
+cc._RF.pop();
+}, {
+DevicesAndroid: "DevicesAndroid",
+DevicesIos: "DevicesIos",
+DevicesWeb: "DevicesWeb"
+} ],
+GameClient: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "7790f7DHIlN/LJdV2QxtWlg", "GameClient");
+var t = e("OnlineWS"), T = {
+initData: function() {
+cc.log("GameClient initData***");
+},
+connect: function(e, _, T) {
+this.ws = new t();
+this.ws.connect(e, _);
+this.ws.setConnectCall(function() {
+T && T();
+});
+},
+getConnectState: function() {
+return !!this.ws && this.ws.getWsState();
+}
+};
+_.exports = T;
+cc._RF.pop();
+}, {
+OnlineWS: "OnlineWS"
+} ],
+Global: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "b5395s9nXxHJIO9wugo2HKF", "Global");
+var t = {
+sayHello: function() {
+console.log("Global sayehello");
+},
+gSchduleFun: function(e, _, t, T, S) {
+null == T && (T = cc.macro.REPEAT_FOREVER);
+null == S && (S = 0);
+cc.director.getScheduler().schedule(_, e, t, T, S, !1);
+},
+gSchduleOnce: function(e, _, t) {
+e.scheduleOnce(function() {
+_();
+}, t);
+},
+gUnSchduleFun: function(e, _) {
+cc.director.getScheduler().unschedule(_, e);
+},
+gPreloadScene: function(e, _, t) {
+cc.director.preloadScene(e, function(e, t) {
+var T = Math.floor(100 * (e / t).toFixed(2));
+_ && _(T);
+}, function(_) {
+t && t(e, _);
+});
+},
+GIsArrContain: function(e, _) {
+for (var t in e) {
+var T = e[t];
+if (T == _ || T == toString(_)) return !0;
+}
+return !1;
+},
+GgetDataFromFile: function(e) {
+return cc.sys.isNative ? jsb.fileUtils.getDataFromFile(e) : null;
+},
+GwriteStringToFile: function(e, _) {
+cc.sys.isNative && jsb.fileUtils.writeStringToFile(e, _);
+},
+GwriteDataToFile: function(e, _) {
+cc.sys.isNative && jsb.fileUtils.writeDataToFile(new Uint8Array(e), _);
+},
+GcreateDir: function(e) {
+cc.sys.isNative && (jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDirectory(e));
+},
+GgetDirByUrl: function(e) {
+var _ = e.split("/"), t = "";
+if (_.length > 1) for (var T = 0; T < _.length - 1; T++) {
+var S = _[T];
+t = 0 == T ? S : t + "/" + S;
+} else t = _[0];
+return t + "/";
+},
+GgetFileNameByUrl: function(e) {
+var _ = e.split("/");
+return _[_.length - 1];
+},
+GloadPic: function(e, _) {
+var t = this;
+if (cc.sys.isNative) {
+var T = jsb.fileUtils.getWritablePath() + "PicTemp/";
+this.GcreateDir(T);
+var S = T + this.GgetFileNameByUrl(e);
+jsb.fileUtils.isFileExist(S) ? this.loadTexture(S, function(e) {
+_ && _(e);
+}) : this.GDownFile(e, function(e) {
+t.GwriteDataToFile(e, S);
+t.loadTexture(S, function(e) {
+_ && _(e);
+});
+});
+} else cc.assetManager.loadRemote(e, {
+ext: ".png"
+}, function(e, t) {
+e ? _ && _(null) : _(t);
+});
+},
+loadTexture: function(e, _) {
+cc.assetManager.loadRemote(e, {
+ext: ".png"
+}, function(e, t) {
+e ? _ && _(null) : _(t);
+});
+},
+GDownFile: function(e, _) {
+if (cc.sys.isNative) {
+var t = new XMLHttpRequest();
+t.responseType = "arraybuffer";
+t.open("GET", e, !0);
+t.onreadystatechange = function() {
+if (4 === t.readyState && t.status >= 200) {
+var e = t.response;
+_(e);
+} else _(null);
+};
+t.send();
+}
+},
+StrTime: function(e, _) {
+for (var t = "", T = 0; T < _; T++) t += e;
+return t;
+},
+ConverToWorldPos: function(e) {
+return e.parent.convertToWorldSpaceAR(e.getPosition());
+},
+ConverToNodePos: function(e, _) {
+return e.convertToNodeSpaceAR(_);
+},
+ShowAlert: function(e, _, t) {
+this.gLoadPrefabRes("prefabs/AlertLayer2", function(T) {
+if (T) {
+cc.director.getScene().getChildByName("Canvas").addChild(T);
+var S = T.getComponent("AlertIII");
+S && S.showAlert(e, _, function(e) {
+t && t(e);
+});
+}
+});
+},
+ShowTextInput: function(e) {
+this.gLoadPrefabRes("prefabs/textinput", function(_) {
+if (_) {
+cc.director.getScene().getChildByName("Canvas").addChild(_);
+var t = _.getComponent("textinput");
+t && t.show(e);
+}
+});
+},
+ShowChooseUpdate: function(e, _) {
+this.gLoadPrefabRes("prefabs/selectupdate", function(t) {
+if (t) {
+cc.director.getScene().getChildByName("Canvas").addChild(t);
+var T = t.getComponent("chooseupdate");
+T && T.initData(e, _);
+}
+});
+},
+GgetTwoV2Angle: function(e, _) {
+var t = _.x - e.x, T = _.y - e.y, S = cc.v2(t, T).signAngle(cc.v2(0, 1));
+return cc.misc.radiansToDegrees(S);
+},
+isjson: function(e) {
+if ("string" == typeof e) try {
+JSON.parse(e);
+return !0;
+} catch (e) {
+console.log(e);
+return !1;
+}
+},
+gLoadBUndle: function(e, _, t) {
+cc.assetManager.loadBundle(e, _, function(e, _) {
+t && t(e, _);
+});
+},
+gLoadPrefabRes: function(e, _) {
+cc.resources.load(e, function(t, T) {
+if (t) {
+cc.error("ua.loadPrefabRes error====" + e);
+_(void 0);
+} else {
+var S = cc.instantiate(T);
+_(S);
+cc.loader.setAutoRelease(e, !0);
+}
+});
+},
+gReBoot: function() {
+cc.game.restart();
+},
+Ghotupdateurl: "xxx",
+GgameType: 1
+};
+if (1 == t.GgameType) {
+t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configrelease";
+t.isDebugTest = !1;
+}
+if (3 == t.GgameType) {
+t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configdebug";
+t.isDebugTest = !0;
+}
+_.exports = t;
+cc._RF.pop();
+}, {} ],
+HttpHelper: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "163fcvJNjZDzY673ehl7bYi", "HttpHelper");
+var t = {
+sendHttpRequest: function(e, _) {
+var t = cc.loader.getXMLHttpRequest();
+t.onreadystatechange = function() {
+4 == t.readyState && t.status >= 200 && t.status < 300 && _ && _(t.responseText);
+};
+t.onerror = function() {
+cc.log(" xhr.onerror*******");
+_(null);
+};
+t.ontimeout = function() {
+cc.log(" xhr.ontimeout*******");
+_(null);
+};
+t.open("GET", e, !0);
+cc.sys.isNative && t.setRequestHeader("Accept-Encoding", "gzip, deflate");
+t.timeout = 5e3;
+t.send();
+},
+sendHttpPost: function(e, _, t) {
+var T = cc.loader.getXMLHttpRequest();
+T.onreadystatechange = function() {
+4 == T.readyState && T.status >= 200 && T.status < 300 && t && t(T.responseText);
+};
+T.open("POST", e);
+cc.sys.isNative && T.setRequestHeader("Accept-Encoding", "gzip, deflate");
+T.timeout = 5e3;
+T.setRequestHeader("Content-Type", "application/json");
+var S = JSON.stringify(_);
+console.log("_data", S);
+T.send(S);
+}
+};
+_.exports = t;
+cc._RF.pop();
+}, {} ],
 1: [ function(e, _, t) {
 "use strict";
 t.byteLength = function(e) {
@@ -2673,321 +2988,6 @@ R += S;
 for (;R > 0; e[t + a] = 255 & i, a += c, i /= 256, R -= 8) ;
 e[t + a - c] |= 128 * N;
 };
-}, {} ],
-DevicesAndroid: [ function(e, _) {
-"use strict";
-cc._RF.push(_, "76007bwrn9IE5i9lxVbGD0F", "DevicesAndroid");
-var t = "com/casino/game/ApplicationUtil", T = {
-getDevicesID: function() {
-return jsb.reflection.callStaticMethod(t, "getDeviceIdentifier", "()Ljava/lang/String;");
-},
-getAppVersion: function() {
-return jsb.reflection.callStaticMethod(t, "getApplicationVersion", "()Ljava/lang/String;");
-}
-};
-_.exports = T;
-cc._RF.pop();
-}, {} ],
-DevicesIos: [ function(e, _) {
-"use strict";
-cc._RF.push(_, "6e0f94nMBRI+ZIyjS7/Emyg", "DevicesIos");
-var t = {
-getDevicesID: function() {
-cc.log("TODO DevicesIos getDevicesID");
-return "123";
-},
-getAppVersion: function() {
-cc.log("TODO DevicesIos getAppVersion");
-return "1.3.0";
-}
-};
-_.exports = t;
-cc._RF.pop();
-}, {} ],
-DevicesWeb: [ function(e, _) {
-"use strict";
-cc._RF.push(_, "1f7d1OvDdhKb6+AnPj2Q80P", "DevicesWeb");
-var t = {
-getDevicesID: function() {
-var e = new Date().getTime(), _ = window.Save.get("decicesID", e);
-_ == e && window.Save.set("decicesID", e);
-return _;
-},
-getAppVersion: function() {
-return "1.3.0";
-}
-};
-_.exports = t;
-cc._RF.pop();
-}, {} ],
-Devices: [ function(e, _) {
-"use strict";
-cc._RF.push(_, "cd548Gn7o1Afas1wT6k6Lak", "Devices");
-var t = {
-instance: void 0,
-getDevicesID: function() {
-return this.instance.getDevicesID();
-},
-getAppVersion: function() {
-return this.instance.getAppVersion();
-}
-};
-t.instance = e("DevicesWeb");
-cc.sys.isBrowser ? t.instance = e("DevicesWeb") : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? t.instance = e("DevicesAndroid") : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS && (t.instance = e("DevicesIos"));
-_.exports = t;
-cc._RF.pop();
-}, {
-DevicesAndroid: "DevicesAndroid",
-DevicesIos: "DevicesIos",
-DevicesWeb: "DevicesWeb"
-} ],
-GameClient: [ function(e, _) {
-"use strict";
-cc._RF.push(_, "7790f7DHIlN/LJdV2QxtWlg", "GameClient");
-var t = e("OnlineWS"), T = {
-initData: function() {
-cc.log("GameClient initData***");
-},
-connect: function(e, _, T) {
-this.ws = new t();
-this.ws.connect(e, _);
-this.ws.setConnectCall(function() {
-T && T();
-});
-},
-getConnectState: function() {
-return !!this.ws && this.ws.getWsState();
-}
-};
-_.exports = T;
-cc._RF.pop();
-}, {
-OnlineWS: "OnlineWS"
-} ],
-Global: [ function(e, _) {
-"use strict";
-cc._RF.push(_, "b5395s9nXxHJIO9wugo2HKF", "Global");
-var t = {
-sayHello: function() {
-console.log("Global sayehello");
-},
-gSchduleFun: function(e, _, t, T, S) {
-null == T && (T = cc.macro.REPEAT_FOREVER);
-null == S && (S = 0);
-cc.director.getScheduler().schedule(_, e, t, T, S, !1);
-},
-gSchduleOnce: function(e, _, t) {
-e.scheduleOnce(function() {
-_();
-}, t);
-},
-gUnSchduleFun: function(e, _) {
-cc.director.getScheduler().unschedule(_, e);
-},
-gPreloadScene: function(e, _, t) {
-cc.director.preloadScene(e, function(e, t) {
-var T = Math.floor(100 * (e / t).toFixed(2));
-_ && _(T);
-}, function(_) {
-t && t(e, _);
-});
-},
-GIsArrContain: function(e, _) {
-for (var t in e) {
-var T = e[t];
-if (T == _ || T == toString(_)) return !0;
-}
-return !1;
-},
-GgetDataFromFile: function(e) {
-return cc.sys.isNative ? jsb.fileUtils.getDataFromFile(e) : null;
-},
-GwriteStringToFile: function(e, _) {
-cc.sys.isNative && jsb.fileUtils.writeStringToFile(e, _);
-},
-GwriteDataToFile: function(e, _) {
-cc.sys.isNative && jsb.fileUtils.writeDataToFile(new Uint8Array(e), _);
-},
-GcreateDir: function(e) {
-cc.sys.isNative && (jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDirectory(e));
-},
-GgetDirByUrl: function(e) {
-var _ = e.split("/"), t = "";
-if (_.length > 1) for (var T = 0; T < _.length - 1; T++) {
-var S = _[T];
-t = 0 == T ? S : t + "/" + S;
-} else t = _[0];
-return t + "/";
-},
-GgetFileNameByUrl: function(e) {
-var _ = e.split("/");
-return _[_.length - 1];
-},
-GloadPic: function(e, _) {
-var t = this;
-if (cc.sys.isNative) {
-var T = jsb.fileUtils.getWritablePath() + "PicTemp/";
-this.GcreateDir(T);
-var S = T + this.GgetFileNameByUrl(e);
-jsb.fileUtils.isFileExist(S) ? this.loadTexture(S, function(e) {
-_ && _(e);
-}) : this.GDownFile(e, function(e) {
-t.GwriteDataToFile(e, S);
-t.loadTexture(S, function(e) {
-_ && _(e);
-});
-});
-} else cc.assetManager.loadRemote(e, {
-ext: ".png"
-}, function(e, t) {
-e ? _ && _(null) : _(t);
-});
-},
-loadTexture: function(e, _) {
-cc.assetManager.loadRemote(e, {
-ext: ".png"
-}, function(e, t) {
-e ? _ && _(null) : _(t);
-});
-},
-GDownFile: function(e, _) {
-if (cc.sys.isNative) {
-var t = new XMLHttpRequest();
-t.responseType = "arraybuffer";
-t.open("GET", e, !0);
-t.onreadystatechange = function() {
-if (4 === t.readyState && t.status >= 200) {
-var e = t.response;
-_(e);
-} else _(null);
-};
-t.send();
-}
-},
-StrTime: function(e, _) {
-for (var t = "", T = 0; T < _; T++) t += e;
-return t;
-},
-ConverToWorldPos: function(e) {
-return e.parent.convertToWorldSpaceAR(e.getPosition());
-},
-ConverToNodePos: function(e, _) {
-return e.convertToNodeSpaceAR(_);
-},
-ShowAlert: function(e, _, t) {
-this.gLoadPrefabRes("prefabs/AlertLayer2", function(T) {
-if (T) {
-cc.director.getScene().getChildByName("Canvas").addChild(T);
-var S = T.getComponent("AlertIII");
-S && S.showAlert(e, _, function(e) {
-t && t(e);
-});
-}
-});
-},
-ShowTextInput: function(e) {
-this.gLoadPrefabRes("prefabs/textinput", function(_) {
-if (_) {
-cc.director.getScene().getChildByName("Canvas").addChild(_);
-var t = _.getComponent("textinput");
-t && t.show(e);
-}
-});
-},
-ShowChooseUpdate: function(e, _) {
-this.gLoadPrefabRes("prefabs/selectupdate", function(t) {
-if (t) {
-cc.director.getScene().getChildByName("Canvas").addChild(t);
-var T = t.getComponent("chooseupdate");
-T && T.initData(e, _);
-}
-});
-},
-GgetTwoV2Angle: function(e, _) {
-var t = _.x - e.x, T = _.y - e.y, S = cc.v2(t, T).signAngle(cc.v2(0, 1));
-return cc.misc.radiansToDegrees(S);
-},
-isjson: function(e) {
-if ("string" == typeof e) try {
-JSON.parse(e);
-return !0;
-} catch (e) {
-console.log(e);
-return !1;
-}
-},
-gLoadBUndle: function(e, _, t) {
-cc.assetManager.loadBundle(e, _, function(e, _) {
-t && t(e, _);
-});
-},
-gLoadPrefabRes: function(e, _) {
-cc.resources.load(e, function(t, T) {
-if (t) {
-cc.error("ua.loadPrefabRes error====" + e);
-_(void 0);
-} else {
-var S = cc.instantiate(T);
-_(S);
-cc.loader.setAutoRelease(e, !0);
-}
-});
-},
-gReBoot: function() {
-cc.game.restart();
-},
-Ghotupdateurl: "xxx",
-GgameType: 3
-};
-if (1 == t.GgameType) {
-t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configrelease";
-t.isDebugTest = !1;
-}
-if (3 == t.GgameType) {
-t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configdebug";
-t.isDebugTest = !0;
-}
-_.exports = t;
-cc._RF.pop();
-}, {} ],
-HttpHelper: [ function(e, _) {
-"use strict";
-cc._RF.push(_, "163fcvJNjZDzY673ehl7bYi", "HttpHelper");
-var t = {
-sendHttpRequest: function(e, _) {
-var t = cc.loader.getXMLHttpRequest();
-t.onreadystatechange = function() {
-4 == t.readyState && t.status >= 200 && t.status < 300 && _ && _(t.responseText);
-};
-t.onerror = function() {
-cc.log(" xhr.onerror*******");
-_(null);
-};
-t.ontimeout = function() {
-cc.log(" xhr.ontimeout*******");
-_(null);
-};
-t.open("GET", e, !0);
-cc.sys.isNative && t.setRequestHeader("Accept-Encoding", "gzip, deflate");
-t.timeout = 5e3;
-t.send();
-},
-sendHttpPost: function(e, _, t) {
-var T = cc.loader.getXMLHttpRequest();
-T.onreadystatechange = function() {
-4 == T.readyState && T.status >= 200 && T.status < 300 && t && t(T.responseText);
-};
-T.open("POST", e);
-cc.sys.isNative && T.setRequestHeader("Accept-Encoding", "gzip, deflate");
-T.timeout = 5e3;
-T.setRequestHeader("Content-Type", "application/json");
-var S = JSON.stringify(_);
-console.log("_data", S);
-T.send(S);
-}
-};
-_.exports = t;
-cc._RF.pop();
 }, {} ],
 KeypadDispatch: [ function(e, _) {
 "use strict";
