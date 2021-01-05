@@ -21,7 +21,7 @@ var Global = {
     //schduleonece
     gSchduleOnce: function (component, call, time) {
 
-        component.scheduleOnce( ()=> {
+        component.scheduleOnce(() => {
             call();
         }, time);
     },
@@ -127,15 +127,13 @@ var Global = {
             {
 
                 this.loadTexture(localpath, function (tex) {
-
                     if (call) {
                         call(tex)
                     }
                 })
             }
             else {//不存在
-
-                this.GDownFile(url,  (data)=> {
+                this.GDownFile(url, (data) => {
                     this.GwriteDataToFile(data, localpath)
                     this.loadTexture(localpath, function (tex) {
 
@@ -144,11 +142,8 @@ var Global = {
                         }
                     })
                 })
-
             }
-
         }
-
         else //web 直接load
         {
             cc.assetManager.loadRemote(url, { ext: '.png' }, function (error, texture) {
@@ -169,9 +164,6 @@ var Global = {
 
     //下载pic
     loadTexture: function (url, call) {
-
-
-
         cc.assetManager.loadRemote(url, { ext: '.png' }, function (error, texture) {
             if (error) {
                 if (call) {
@@ -200,7 +192,6 @@ var Global = {
 
                     var data = xhr.response
                     call(data);
-
                 }
                 else {
                     call(null);
@@ -305,7 +296,7 @@ var Global = {
         })
     },
     // 加载prefab
-    gLoadPrefabRes:function(filepath,call){
+    gLoadPrefabRes: function (filepath, call) {
         cc.resources.load(filepath, function (err, prefab) {
             if (err) {
                 cc.error("ua.loadPrefabRes error====" + filepath)
@@ -324,7 +315,7 @@ var Global = {
         cc.game.restart()
     },
     Ghotupdateurl: "xxx", // 热更新地址
-    GgameType:1  // 1正式包 3debug 
+    GgameType: 1  // 1正式包 3debug 
 
 }
 
