@@ -1,5 +1,5 @@
 
-var Global = require("Global")
+// var Global = require("Global")
 var VersionManager = require("VersionManager")
 // var GameClient = require("GameClient")
 var BaseComponent = require("BaseComponent")
@@ -53,12 +53,14 @@ cc.Class({
                 this.goLoginScene()
                 return
             }
+            cc.log("Global.isDebugTest===",Global.isDebugTest)
             if (Global.isDebugTest){//debug选择热更新地址
                 var data = {
                     "tips": "热更新选择",
                     "items": [
                         { "text": "默认热更新地址" },
-                        { "text": "手动输入热更新地址" }
+                        { "text": "手动输入热更新地址" },
+                        { "text": "公司热更新地址" }
                     ]
                 }
                 Global.ShowChooseUpdate(data,  (index,layer)=>{
@@ -69,7 +71,7 @@ cc.Class({
                         this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
                         layer.bClose()
                     }
-                    if (index == 1)//手动输入地址
+                    else if (index == 1)//手动输入地址
                     {
                         Global.ShowTextInput((text)=>{
                             if(text.length>0)
@@ -85,6 +87,13 @@ cc.Class({
                         })
                         
                     }
+                    else if(index ==2) //公司热更新地址
+                    {
+                        Global.Ghotupdateurl = "http://192.168.65.151/hotUpVersion/configdebug"
+                        this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
+                        layer.bClose()
+                    }
+                    
                 })
             }
             else{//正式不选择

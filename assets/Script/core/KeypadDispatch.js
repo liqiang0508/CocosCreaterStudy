@@ -6,7 +6,7 @@
  * @LastEditTime: 2020-08-07 11:03:03
  */
 
-var Global = require("Global")
+// var Global = require("Global")
 //弹出层 按键事件管理 目前针对于安卓返回键关闭一些弹出层
 var KeypadDispatch = cc.Class({
     properties: {

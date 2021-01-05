@@ -190,7 +190,7 @@ buffer: 2
 BaseComponent: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "8e980PYoChFa6X8R9XVV7PJ", "BaseComponent");
-var t = e("KeypadDispatch"), T = e("Global");
+var t = e("KeypadDispatch");
 cc.Class({
 extends: cc.Component,
 properties: {
@@ -201,7 +201,7 @@ tooltip: "弹出动画  1:弹出 2:渐变"
 }
 },
 showWiat: function(e) {
-if (e) T.gLoadPrefabRes("prefabs/rotateLoading", function(e) {
+if (e) Global.gLoadPrefabRes("prefabs/rotateLoading", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
 e.setName("rotateLoading");
@@ -274,7 +274,6 @@ this.node.runAction(n);
 });
 cc._RF.pop();
 }, {
-Global: "Global",
 KeypadDispatch: "KeypadDispatch"
 } ],
 BubbleScene: [ function(e, _) {
@@ -1853,7 +1852,7 @@ gReBoot: function() {
 cc.game.restart();
 },
 Ghotupdateurl: "xxx",
-GgameType: 1
+GgameType: 3
 };
 if (1 == t.GgameType) {
 t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configrelease";
@@ -1863,7 +1862,7 @@ if (3 == t.GgameType) {
 t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configdebug";
 t.isDebugTest = !0;
 }
-_.exports = t;
+window.Global = t;
 cc._RF.pop();
 }, {} ],
 HttpHelper: [ function(e, _) {
@@ -2992,7 +2991,7 @@ e[t + a - c] |= 128 * N;
 KeypadDispatch: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "c37c1GBpUhDCoCJcFdLsA1S", "KeypadDispatch");
-var t = e("Global"), T = cc.Class({
+var t = cc.Class({
 properties: {
 Stacks: {
 default: [],
@@ -3012,7 +3011,7 @@ onbackkeyup: function() {
 if (1 != this.Stacks.length) {
 var e = this.Stacks[this.Stacks.length - 1];
 e && e.onbackpress && e.onbackpress();
-} else t.ShowAlert("exit game?", [ "yes", "no" ], function(e) {
+} else Global.ShowAlert("exit game?", [ "yes", "no" ], function(e) {
 1 == e && cc.game.end();
 });
 },
@@ -3030,16 +3029,14 @@ onDestroy: function() {
 cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 }
 });
-T._instance = null;
-T.getInstance = function() {
-T._instance || (T._instance = new T());
-return T._instance;
+t._instance = null;
+t.getInstance = function() {
+t._instance || (t._instance = new t());
+return t._instance;
 };
-_.exports = T;
+_.exports = t;
 cc._RF.pop();
-}, {
-Global: "Global"
-} ],
+}, {} ],
 LabelLocalized: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "e4f88adp3hERoJ48DZ2PSAl", "LabelLocalized");
@@ -3077,9 +3074,9 @@ i18n: "i18n"
 LaunchScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "a7016SMIJVNQrZxjzWJyjKM", "LaunchScene");
-var t = e("Global"), T = e("VersionManager"), S = e("BaseComponent");
+var t = e("VersionManager"), T = e("BaseComponent");
 cc.Class({
-extends: S,
+extends: T,
 properties: {
 Text: {
 default: null,
@@ -3096,10 +3093,10 @@ this._super();
 updateText: function() {
 this.count = this.count + 1;
 this.count = this.count % 4;
-this.Text.string = "Updating" + t.StrTime(".", this.count);
+this.Text.string = "Updating" + Global.StrTime(".", this.count);
 },
 unSchduleUpdateText: function() {
-t.gUnSchduleFun(this, this.updateText);
+Global.gUnSchduleFun(this, this.updateText);
 },
 start: function() {
 var e = this;
@@ -3109,47 +3106,53 @@ this.count = 0;
 if (cc && cc.sys.isNative) {
 if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32) {
 cc.log("模拟器不热更新");
-T.parseLocalCfg();
+t.parseLocalCfg();
 this.goLoginScene();
 return;
 }
-t.isDebugTest ? t.ShowChooseUpdate({
+cc.log("Global.isDebugTest===", Global.isDebugTest);
+Global.isDebugTest ? Global.ShowChooseUpdate({
 tips: "热更新选择",
 items: [ {
 text: "默认热更新地址"
 }, {
 text: "手动输入热更新地址"
+}, {
+text: "公司热更新地址"
 } ]
-}, function(_, T) {
+}, function(_, t) {
 console.log("点击了", _);
 if (0 == _) {
-e.goCheckUpdate(t.Ghotupdateurl);
-T.bClose();
-}
-1 == _ && t.ShowTextInput(function(_) {
+e.goCheckUpdate(Global.Ghotupdateurl);
+t.bClose();
+} else if (1 == _) Global.ShowTextInput(function(_) {
 if (_.length > 0) {
-t.Ghotupdateurl = _;
+Global.Ghotupdateurl = _;
 e.goCheckUpdate(_);
-T.bClose();
+t.bClose();
 } else console.log("请输入自定义的热更新地址");
-});
-}) : t.gSchduleOnce(this, function() {
-e.goCheckUpdate(t.Ghotupdateurl);
+}); else if (2 == _) {
+Global.Ghotupdateurl = "http://192.168.65.151/hotUpVersion/configdebug";
+e.goCheckUpdate(Global.Ghotupdateurl);
+t.bClose();
+}
+}) : Global.gSchduleOnce(this, function() {
+e.goCheckUpdate(Global.Ghotupdateurl);
 }, 3);
-t.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0);
+Global.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0);
 } else {
-T.getH5ScriptVersion();
-t.gSchduleOnce(this, function() {
+t.getH5ScriptVersion();
+Global.gSchduleOnce(this, function() {
 e.goLoginScene();
 }, .1);
 }
 },
 goCheckUpdate: function(e) {
 var _ = this;
-T.checkUpdate(e, function(e, T) {
-0 == e ? _.goLoginScene() : 100 == e ? _.Reboot() : 6 == e || 7 == e ? _.goLoginScene() : 8 == e ? t.ShowAlert("发现新版本" + T, [], function() {
-cc.sys.openURL(T);
-}) : t.ShowAlert("ErrorCode=====" + e, [], function() {
+t.checkUpdate(e, function(e, t) {
+0 == e ? _.goLoginScene() : 100 == e ? _.Reboot() : 6 == e || 7 == e ? _.goLoginScene() : 8 == e ? Global.ShowAlert("发现新版本" + t, [], function() {
+cc.sys.openURL(t);
+}) : Global.ShowAlert("ErrorCode=====" + e, [], function() {
 _.Reboot();
 });
 }, function(e, t, T) {
@@ -3161,7 +3164,7 @@ _.Text.string = S;
 },
 Reboot: function() {
 this.scheduleOnce(function() {
-t.gReBoot();
+Global.gReBoot();
 }, 2);
 },
 goTestScene: function() {
@@ -3174,16 +3177,14 @@ cc.director.loadScene("LoginScene");
 cc._RF.pop();
 }, {
 BaseComponent: "BaseComponent",
-Global: "Global",
 VersionManager: "VersionManager"
 } ],
 LoginScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "43150sdB6ZHSKFTTRw2QZE7", "LoginScene");
-var t = e("VersionManager"), T = e("Global"), S = e("Devices"), n = e("BaseComponent");
-e("../../core/Global").ConverToNodePos;
+var t = e("VersionManager"), T = e("Devices"), S = e("BaseComponent");
 cc.Class({
-extends: n,
+extends: S,
 properties: {
 VersionText: {
 default: null,
@@ -3198,8 +3199,8 @@ this._super();
 },
 start: function() {
 var e = this;
-1 == T.GgameType && (this.VersionText.string = S.getAppVersion() + "(R" + t.getScriptVersion() + ")");
-3 == T.GgameType && (this.VersionText.string = S.getAppVersion() + "(D" + t.getScriptVersion() + ")");
+1 == Global.GgameType && (this.VersionText.string = T.getAppVersion() + "(R" + t.getScriptVersion() + ")");
+3 == Global.GgameType && (this.VersionText.string = T.getAppVersion() + "(D" + t.getScriptVersion() + ")");
 var _ = cc.find("uipanel/gotest", this.node);
 cc.find("uipanel/label", this.node);
 ua.darkButton(_, function() {
@@ -3216,16 +3217,14 @@ cc.director.loadScene("TestScene");
 });
 cc._RF.pop();
 }, {
-"../../core/Global": "Global",
 BaseComponent: "BaseComponent",
 Devices: "Devices",
-Global: "Global",
 VersionManager: "VersionManager"
 } ],
 MainScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "280c3rsZJJKnZ9RqbALVwtK", "MainScene");
-e("Global"), e("Base64Tool");
+e("Base64Tool");
 var t = e("Devices");
 cc.Class({
 extends: cc.Component,
@@ -3255,7 +3254,6 @@ cc._RF.pop();
 Base64Tool: "Base64Tool",
 Devices: "Devices",
 GameClient: "GameClient",
-Global: "Global",
 HttpHelper: "HttpHelper"
 } ],
 OnlineWS: [ function(e, _) {
@@ -3958,13 +3956,13 @@ TestScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "43e41jtsGxORJ0f6gUlDaqj", "TestScene");
 e("xxtea"), e("i18n"), e("Package"), e("Devices");
-var t = e("Global"), T = e("VoiceNative"), S = e("BaseComponent");
+var t = e("VoiceNative"), T = e("BaseComponent");
 cc.Class({
-extends: S,
+extends: T,
 properties: {},
 onLoad: function() {
 this._super();
-T.init();
+t.init();
 },
 onDestroy: function() {
 this._super();
@@ -3972,20 +3970,20 @@ this._super();
 start: function() {
 var e = this;
 cc && cc.sys.isNative && jsb.fileUtils.getSearchPaths();
-var _ = cc.find("uipanel/New Sprite", this.node), S = cc.find("content/sp4", this.node), n = t.ConverToWorldPos(_), i = t.ConverToNodePos(S.parent, n);
-this.sp4OldPos = S.getPosition();
-S.IsOriginPos = !0;
-var o = cc.find("uipanel/btn_posconvert", this.node);
-ua.darkButton(o, function() {
-if (!(S.getNumberOfRunningActions() > 0)) {
-if (1 == S.IsOriginPos) {
-var _ = cc.moveTo(1, i).easing(cc.easeSineOut());
-S.runAction(_);
+var _ = cc.find("uipanel/New Sprite", this.node), T = cc.find("content/sp4", this.node), S = Global.ConverToWorldPos(_), n = Global.ConverToNodePos(T.parent, S);
+this.sp4OldPos = T.getPosition();
+T.IsOriginPos = !0;
+var i = cc.find("uipanel/btn_posconvert", this.node);
+ua.darkButton(i, function() {
+if (!(T.getNumberOfRunningActions() > 0)) {
+if (1 == T.IsOriginPos) {
+var _ = cc.moveTo(1, n).easing(cc.easeSineOut());
+T.runAction(_);
 } else {
 _ = cc.moveTo(1, e.sp4OldPos).easing(cc.easeSineOut());
-S.runAction(_);
+T.runAction(_);
 }
-S.IsOriginPos = !S.IsOriginPos;
+T.IsOriginPos = !T.IsOriginPos;
 }
 });
 _.on(cc.Node.EventType.TOUCH_START, function() {
@@ -3997,71 +3995,71 @@ _.opacity = 255;
 _.on(cc.Node.EventType.TOUCH_CANCEL, function() {
 _.opacity = 255;
 });
-var E = cc.find("uipanel/btn_Alert", this.node);
-ua.darkButton(E, function() {
-t.ShowAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
+var o = cc.find("uipanel/btn_Alert", this.node);
+ua.darkButton(o, function() {
+Global.ShowAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
 cc.log("click==", e);
 });
 });
-var R = cc.find("uipanel/btn_showWaiting", this.node);
-ua.darkButton(R, function() {
+var E = cc.find("uipanel/btn_showWaiting", this.node);
+ua.darkButton(E, function() {
 e.showWiat(!0);
 setTimeout(function() {
 e.showWiat(!1);
 }, 3e3);
 });
-var r = cc.find("uipanel/btn_EventTest", this.node);
-ua.darkButton(r, function() {
+var R = cc.find("uipanel/btn_EventTest", this.node);
+ua.darkButton(R, function() {
 EventManager.dispatchEvent(e.node, RefreshInfo, {
 name: "Lee123"
 });
 });
-var s = cc.find("uipanel/loadTex", this.node);
-t.GloadPic("http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96", function(e) {
-e && (s.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
+var r = cc.find("uipanel/loadTex", this.node);
+Global.GloadPic("http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96", function(e) {
+e && (r.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
 });
-var I = null, a = cc.find("uipanel/btn_Speech", this.node);
-a.on(cc.Node.EventType.TOUCH_START, function() {
-I = Date.now();
+var s = null, I = cc.find("uipanel/btn_Speech", this.node);
+I.on(cc.Node.EventType.TOUCH_START, function() {
+s = Date.now();
 cc.log("开始录音");
 e.SpeechFile = Date.now() + ".amr";
-T.prepare(e.SpeechFile);
+t.prepare(e.SpeechFile);
 }, this);
-a.on(cc.Node.EventType.TOUCH_END, function() {
+I.on(cc.Node.EventType.TOUCH_END, function() {
 cc.log("结束录音");
-if (Date.now() - I < 1e3) {
-T.cancel();
+if (Date.now() - s < 1e3) {
+t.cancel();
 cc.log("时间小于一秒");
-t.ShowAlert("时间小于一秒", [ "Yes" ], function() {});
-} else if (Date.now() - I > 8e3) {
-T.cancel();
-t.ShowAlert("录音时间大于8s", [ "Yes" ], function() {});
-} else if (null != I) {
-T.release();
-var _ = Date.now() - I;
+Global.ShowAlert("时间小于一秒", [ "Yes" ], function() {});
+} else if (Date.now() - s > 8e3) {
+t.cancel();
+Global.ShowAlert("录音时间大于8s", [ "Yes" ], function() {});
+} else if (null != s) {
+t.release();
+var _ = Date.now() - s;
 console.log("record time。。。。。  " + _);
-var S = T.getVoiceData(e.SpeechFile);
-console.log("sound data。。。。。  " + S);
-S && setTimeout(function() {
+var T = t.getVoiceData(e.SpeechFile);
+console.log("sound data。。。。。  " + T);
+T && setTimeout(function() {
 var _ = e.SpeechFile;
-T.play(_);
-T.writeVoice(_, S);
+t.play(_);
+t.writeVoice(_, T);
 }, 2e3);
 }
 }, this);
-a.on(cc.Node.EventType.TOUCH_CANCEL, function() {
-T.cancel();
+I.on(cc.Node.EventType.TOUCH_CANCEL, function() {
+t.cancel();
 cc.log("取消录音");
 }, this);
 EventManager.on(this.node, RefreshInfo, this.EventTest);
-var c = cc.find("uipanel/btn_fps", this.node);
-ua.darkButton(c, function() {
+var a = cc.find("uipanel/btn_fps", this.node);
+ua.darkButton(a, function() {
 console.log("setDisplayStats-", !cc.debug.isDisplayStats());
 cc.debug.setDisplayStats(!cc.debug.isDisplayStats());
 });
-var N = cc.find("uipanel/btn_showpopLayer", this.node);
-ua.darkButton(N, function() {
-t.gLoadPrefabRes("prefabs/poplayer", function(e) {
+var c = cc.find("uipanel/btn_showpopLayer", this.node);
+ua.darkButton(c, function() {
+Global.gLoadPrefabRes("prefabs/poplayer", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
 var _ = e.getComponent("poplayer");
@@ -4069,26 +4067,26 @@ _ && _.show();
 }
 });
 });
-var C = cc.find("content/sp3", this.node);
-C.isGray = !1;
-var A = cc.find("uipanel/btn_GrayRenderCom", this.node);
-ua.darkButton(A, function() {
-var e = C.getComponent(cc.Sprite);
-if (0 == C.isGray) {
+var N = cc.find("content/sp3", this.node);
+N.isGray = !1;
+var C = cc.find("uipanel/btn_GrayRenderCom", this.node);
+ua.darkButton(C, function() {
+var e = N.getComponent(cc.Sprite);
+if (0 == N.isGray) {
 var _ = cc.MaterialVariant.createWithBuiltin("2d-gray-sprite");
 e.setMaterial(0, _);
 } else {
 var t = cc.MaterialVariant.createWithBuiltin("2d-sprite");
 e.setMaterial(0, t);
 }
-C.isGray = !C.isGray;
+N.isGray = !N.isGray;
 });
-var O = cc.find("uipanel/btn_bubble", this.node);
-ua.darkButton(O, function() {
+var A = cc.find("uipanel/btn_bubble", this.node);
+ua.darkButton(A, function() {
 cc.director.loadScene("bubbleScene");
 });
-var d = cc.find("uipanel/btn_loadbundle", this.node);
-ua.darkButton(d, function() {
+var O = cc.find("uipanel/btn_loadbundle", this.node);
+ua.darkButton(O, function() {
 var e = cc.assetManager.getBundle("Testbundle");
 if (e) {
 console.log("have already loaded bundle.");
@@ -4097,7 +4095,7 @@ _ && _.Say();
 e.loadScene("bundlescene", function(e, _) {
 e ? console.log("load bundle scene error") : cc.director.runScene(_);
 });
-} else t.gLoadBUndle("http://192.168.65.172/hotupversion/remote/Testbundle", {
+} else Global.gLoadBUndle("http://192.168.65.172/hotupversion/remote/Testbundle", {
 onFileProgress: function(e, _) {
 return console.log("bundle progress==", e, _);
 }
@@ -4114,35 +4112,35 @@ e ? console.log("load bundle scene error") : cc.director.runScene(_);
 });
 });
 });
-var h = cc.find("uipanel/btn_goslot", this.node);
-ua.darkButton(h, function() {
+var d = cc.find("uipanel/btn_goslot", this.node);
+ua.darkButton(d, function() {
 cc.director.loadScene("SlotScene");
 });
 cc.find("content/sp1", this.node).getComponent(cc.RenderComponent).getMaterial(0);
-var l = cc.find("garpgicsnode", this.node), D = l.getComponent(cc.Graphics);
-l.on(cc.Node.EventType.TOUCH_START, function(e) {
-var T = e.getTouches(), S = T[0].getLocation();
-T[0].getLocationInView();
-S = _.parent.convertToNodeSpaceAR(S);
-var n = t.GgetTwoV2Angle(_.getPosition(), S);
-_.angle = -n;
-D.moveTo(S.x, S.y);
-_.getPosition().subSelf(S).normalizeSelf();
-});
-l.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
-var T = e.getTouches()[0].getLocation();
+var h = cc.find("garpgicsnode", this.node), l = h.getComponent(cc.Graphics);
+h.on(cc.Node.EventType.TOUCH_START, function(e) {
+var t = e.getTouches(), T = t[0].getLocation();
+t[0].getLocationInView();
 T = _.parent.convertToNodeSpaceAR(T);
-var S = t.GgetTwoV2Angle(_.getPosition(), T);
+var S = Global.GgetTwoV2Angle(_.getPosition(), T);
 _.angle = -S;
-D.lineTo(T.x, T.y);
-D.stroke();
+l.moveTo(T.x, T.y);
+_.getPosition().subSelf(T).normalizeSelf();
 });
-var u = cc.view.getVisibleSize(), p = cc.v2(-u.width / 2, u.height / 2), f = cc.v2(u.width / 2, -u.height / 2), M = t.GgetTwoV2Angle(p, f);
-cc.find("uipanel/New Sprite", this.node).angle = -M;
-var P = cc.view.getVisibleSize();
-(l = l.getComponent(cc.Graphics)).moveTo(-P.width / 2, P.height / 2);
-l.quadraticCurveTo(0, 0, P.width / 2, P.height / 2);
+h.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
+var t = e.getTouches()[0].getLocation();
+t = _.parent.convertToNodeSpaceAR(t);
+var T = Global.GgetTwoV2Angle(_.getPosition(), t);
+_.angle = -T;
+l.lineTo(t.x, t.y);
 l.stroke();
+});
+var D = cc.view.getVisibleSize(), u = cc.v2(-D.width / 2, D.height / 2), p = cc.v2(D.width / 2, -D.height / 2), f = Global.GgetTwoV2Angle(u, p);
+cc.find("uipanel/New Sprite", this.node).angle = -f;
+var M = cc.view.getVisibleSize();
+(h = h.getComponent(cc.Graphics)).moveTo(-M.width / 2, M.height / 2);
+h.quadraticCurveTo(0, 0, M.width / 2, M.height / 2);
+h.stroke();
 },
 startMove: function() {
 var e = this, _ = (cc.find("garpgicsnode", this.node), cc.find("uipanel/btn_goslot", this.node)), t = cc.view.getVisibleSize(), T = [ cc.v2(-t.width / 2, t.height / 2), cc.v2(0, 0), cc.v2(t.width / 2, t.height / 2) ], S = cc.bezierTo(2, T);
@@ -4155,14 +4153,13 @@ _.runAction(cc.repeatForever(i));
 },
 EventTest: function(e) {
 e.stopPropagation();
-t.ShowAlert("事件传来的参数" + JSON.stringify(e.detail), []);
+Global.ShowAlert("事件传来的参数" + JSON.stringify(e.detail), []);
 }
 });
 cc._RF.pop();
 }, {
 BaseComponent: "BaseComponent",
 Devices: "Devices",
-Global: "Global",
 Package: "Package",
 VoiceNative: "VoiceNative",
 i18n: "i18n",
@@ -4210,7 +4207,7 @@ S = jsb.fileUtils.getWritablePath() + "packageTemp/";
 n = jsb.fileUtils.getWritablePath() + "package/";
 i = jsb.fileUtils.getWritablePath() + "config/appinfoiii.json";
 }
-var o = e("Global"), E = {
+var o = {
 remoteCfg: null,
 remoteMd5Cfg: "",
 localCfg: "",
@@ -4228,7 +4225,7 @@ downRemoteMd5: function(e) {
 var _ = this;
 cc.log("下载远程md5,", e);
 t.sendHttpRequest(e, function(e) {
-if (null != e) if (o.isjson(e)) {
+if (null != e) if (Global.isjson(e)) {
 _.remoteMd5Cfg = JSON.parse(e);
 _.comparefiles();
 } else _.callFunWithState(11, "远程md5-json不合法"); else _.callFunWithState(2, "获取MD5配置文件失败");
@@ -4274,16 +4271,16 @@ if (0 != e.length) {
 var _ = this, t = e;
 _.DownIndex = 0;
 (function e(T) {
-var i = _.BaseUrl, E = t[T].fileName, R = t[T].fileSize, r = i + E, s = S + E, I = n + E, a = S + o.GgetDirByUrl(E), c = n + o.GgetDirByUrl(E);
-o.GcreateDir(a);
-o.GcreateDir(c);
-t[T].tempfile = s;
-t[T].realfile = I;
-cc.log("下载=====", r);
-o.GDownFile(r, function(T) {
+var i = _.BaseUrl, o = t[T].fileName, E = t[T].fileSize, R = i + o, r = S + o, s = n + o, I = S + Global.GgetDirByUrl(o), a = n + Global.GgetDirByUrl(o);
+Global.GcreateDir(I);
+Global.GcreateDir(a);
+t[T].tempfile = r;
+t[T].realfile = s;
+cc.log("下载=====", R);
+Global.GDownFile(R, function(T) {
 if (T) {
-o.GwriteDataToFile(T, s);
-_.downedSize = _.downedSize + R;
+Global.GwriteDataToFile(T, r);
+_.downedSize = _.downedSize + E;
 if (_.DownIndex < t.length - 1) {
 _.DownIndex = _.DownIndex + 1;
 _.progressCall && _.progressCall(Math.floor(_.DownIndex / t.length * 100), (_.downedSize / 1e3).toFixed(1), (_.totalDownSize / 1e3).toFixed(1));
@@ -4293,7 +4290,7 @@ _.progressCall && _.progressCall(Math.floor(100), (_.downedSize / 1e3).toFixed(1
 cc.log("下载完成***");
 _.MoveFiles(t);
 }
-} else _.callFunWithState(3, "下载单个文件失败=" + r);
+} else _.callFunWithState(3, "下载单个文件失败=" + R);
 });
 })(_.DownIndex);
 } else this.MoveDone();
@@ -4302,9 +4299,9 @@ MoveFiles: function(e) {
 this.moveStep = 0;
 var _ = this;
 (function t(T) {
-var S = e[T].tempfile, E = e[T].realfile, R = o.GgetDataFromFile(S);
-if (R) {
-o.GwriteDataToFile(R, E);
+var S = e[T].tempfile, o = e[T].realfile, E = Global.GgetDataFromFile(S);
+if (E) {
+Global.GwriteDataToFile(E, o);
 if (_.moveStep < e.length - 1) {
 _.moveStep = _.moveStep + 1;
 t(_.moveStep);
@@ -4320,8 +4317,8 @@ _.callFunWithState(4, "移动文件失败" + S);
 MoveDone: function() {
 cc.log("移动成功****");
 var e = JSON.stringify(this.remoteMd5Cfg, null, 4);
-o.GcreateDir(jsb.fileUtils.getWritablePath() + "config");
-o.GwriteStringToFile(e, i);
+Global.GcreateDir(jsb.fileUtils.getWritablePath() + "config");
+Global.GwriteStringToFile(e, i);
 this.callFunWithState(100, "更新成功");
 },
 ReStartGame: function() {
@@ -4347,7 +4344,7 @@ var e = this, _ = i;
 if (jsb.fileUtils.isFileExist(_)) {
 console.log("读取包外配置");
 var t = jsb.fileUtils.getStringFromFile(_);
-if (!o.isjson(t)) {
+if (!Global.isjson(t)) {
 e.RemoveTemp();
 e.callFunWithState(9, "包外json配置不合法");
 return;
@@ -4383,28 +4380,28 @@ parseRemoteCfg: function() {
 if (0 != cc.sys.isNative && null != this.remoteCfg) {
 var e = this;
 t.sendHttpRequest(this.remoteCfg, function(_) {
-if (null != _) if (o.isjson(_)) {
+if (null != _) if (Global.isjson(_)) {
 e.remoteCfg = JSON.parse(_);
-var t = e.localCfg.scriptVersion, S = e.remoteCfg.scriptVersion, n = e.remoteCfg.debugScriptVersion, i = e.remoteCfg.supportBinarys, E = e.remoteCfg.forcedBinaryVersions, R = e.remoteCfg.channels, r = e.remoteCfg.debugUIDs, s = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], I = cc.sys.localStorage.getItem("debugId");
-if (o.GIsArrContain(R, window.DISTRIBUTE_CHANNEL)) if (o.GIsArrContain(i, T.getAppVersion())) if (o.GIsArrContain(E, T.getAppVersion())) e.callFunWithState(8, "强制更新", s); else {
+var t = e.localCfg.scriptVersion, S = e.remoteCfg.scriptVersion, n = e.remoteCfg.debugScriptVersion, i = e.remoteCfg.supportBinarys, o = e.remoteCfg.forcedBinaryVersions, E = e.remoteCfg.channels, R = e.remoteCfg.debugUIDs, r = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], s = cc.sys.localStorage.getItem("debugId");
+if (Global.GIsArrContain(E, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(i, T.getAppVersion())) if (Global.GIsArrContain(o, T.getAppVersion())) e.callFunWithState(8, "强制更新", r); else {
 console.log("本地脚本号==" + t);
 console.log("远程debug版本号==" + n);
 console.log("远程版本号==" + S);
-if (o.GIsArrContain(r, I)) {
+if (Global.GIsArrContain(R, s)) {
 if (parseInt(t) != parseInt(n)) {
 console.log("走测试玩家----热更新");
-var a = e.remoteCfg.debugBaseUrl, c = (a = cc.js.formatStr(a, n)) + e.remoteCfg.debugConfigFile;
-e.BaseUrl = a;
-e.downRemoteMd5(c);
+var I = e.remoteCfg.debugBaseUrl, a = (I = cc.js.formatStr(I, n)) + e.remoteCfg.debugConfigFile;
+e.BaseUrl = I;
+e.downRemoteMd5(a);
 return;
 }
 e.callFunWithState(0, "测试玩家版本和远程一样，不用更新");
 } else if (parseInt(t) == parseInt(S)) e.callFunWithState(0, "不用更新-本地和远程版本一致:" + t); else {
 console.log("走正式----热更新");
-var N = e.remoteCfg.baseUrl;
-c = (N = cc.js.formatStr(N, S)) + e.remoteCfg.configFile;
-e.BaseUrl = N;
-e.downRemoteMd5(c);
+var c = e.remoteCfg.baseUrl;
+a = (c = cc.js.formatStr(c, S)) + e.remoteCfg.configFile;
+e.BaseUrl = c;
+e.downRemoteMd5(a);
 }
 } else e.callFunWithState(6, "不支持热更新的2进制版本号" + T.getAppVersion()); else e.callFunWithState(7, "不支持热更新的渠道号" + window.DISTRIBUTE_CHANNEL);
 } else e.callFunWithState(10, "远程配置json不合法"); else e.callFunWithState(1, "获取版本配置文件失败");
@@ -4412,11 +4409,10 @@ e.downRemoteMd5(c);
 }
 }
 };
-_.exports = E;
+_.exports = o;
 cc._RF.pop();
 }, {
 Devices: "Devices",
-Global: "Global",
 HttpHelper: "HttpHelper"
 } ],
 VoiceNative: [ function(e, _) {

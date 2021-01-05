@@ -1,7 +1,7 @@
 
 var HttpHelper = require("HttpHelper");
 var DevicesInfo = require("Devices")
-
+// var Global = require("Global")
 var GtempFolder = ""
 
 var GHotUpFolder = ""
@@ -32,7 +32,7 @@ if (cc && cc.sys.isNative) {//web跑的时候会报错
 // 10:远程配置json不合法
 // 11:远程md5-json不合法
 // 100 :更新成功
-var Global = require("Global")
+
 var VersionManager = {
     remoteCfg: null,//远程配置
     remoteMd5Cfg: '',//远程md5

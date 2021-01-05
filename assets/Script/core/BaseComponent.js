@@ -1,5 +1,5 @@
 var KeypadDispatch = require("KeypadDispatch");
-const Global = require("Global");
+// const Global = require("Global");
 cc.Class({
     extends: cc.Component,
 

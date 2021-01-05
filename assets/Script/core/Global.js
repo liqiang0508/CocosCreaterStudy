@@ -340,4 +340,5 @@ if (Global.GgameType == 3)//debug包
     Global.isDebugTest = true
 }
 
-module.exports = Global;
+// module.exports = Global;
+window.Global = Global

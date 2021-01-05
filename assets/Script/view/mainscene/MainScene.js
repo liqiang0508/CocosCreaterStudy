@@ -1,4 +1,4 @@
-var Global = require("Global")
+// var Global = require("Global")
 var Base64Tool = require("Base64Tool")
 var DevicesInfo = require("Devices")
 

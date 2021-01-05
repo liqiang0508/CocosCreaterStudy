@@ -6,10 +6,10 @@
  * @LastEditTime: 2020-09-01 14:38:55
  */ 
 var VersionManager = require("VersionManager")
-var Global = require("Global")
+// var Global = require("Global")
 var DevicesInfo = require("Devices")
 var BaseComponent = require("BaseComponent");
-const { ConverToNodePos } = require("../../core/Global");
+
 cc.Class({
     extends: BaseComponent,
 
