@@ -201,7 +201,7 @@ tooltip: "弹出动画  1:弹出 2:渐变"
 }
 },
 showWiat: function(e) {
-if (e) Global.gLoadPrefabRes("prefabs/rotateLoading", function(e) {
+if (e) UiManager.gLoadPrefabRes("prefabs/rotateLoading", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
 e.setName("rotateLoading");
@@ -1789,35 +1789,6 @@ return e.parent.convertToWorldSpaceAR(e.getPosition());
 ConverToNodePos: function(e, _) {
 return e.convertToNodeSpaceAR(_);
 },
-ShowAlert: function(e, _, t) {
-this.gLoadPrefabRes("prefabs/AlertLayer2", function(n) {
-if (n) {
-cc.director.getScene().getChildByName("Canvas").addChild(n);
-var T = n.getComponent("AlertIII");
-T && T.showAlert(e, _, function(e) {
-t && t(e);
-});
-}
-});
-},
-ShowTextInput: function(e) {
-this.gLoadPrefabRes("prefabs/textinput", function(_) {
-if (_) {
-cc.director.getScene().getChildByName("Canvas").addChild(_);
-var t = _.getComponent("textinput");
-t && t.show(e);
-}
-});
-},
-ShowChooseUpdate: function(e, _) {
-this.gLoadPrefabRes("prefabs/selectupdate", function(t) {
-if (t) {
-cc.director.getScene().getChildByName("Canvas").addChild(t);
-var n = t.getComponent("chooseupdate");
-n && n.initData(e, _);
-}
-});
-},
 GgetTwoV2Angle: function(e, _) {
 var t = _.x - e.x, n = _.y - e.y, T = cc.v2(t, n).signAngle(cc.v2(0, 1));
 return cc.misc.radiansToDegrees(T);
@@ -1839,38 +1810,17 @@ t && t(e, _);
 gGetBundle: function(e) {
 return cc.assetManager.getBundle(e);
 },
-gLoadPrefabRes: function(e, _) {
-cc.resources.load(e, function(t, n) {
-if (t) {
-cc.error("ua.loadPrefabRes error====" + e);
-_(void 0);
-} else {
-var T = cc.instantiate(n);
-_(T);
-cc.loader.setAutoRelease(e, !0);
-}
-});
-},
 gReBoot: function() {
 cc.game.restart();
 },
 gExitGame: function() {
 cc.sys.isNative && cc.game.end();
 },
-gShowLoading: function(e, _) {
-this.gLoadPrefabRes("prefabs/loadinglayer", function(t) {
-if (t) {
-cc.director.getScene().getChildByName("Canvas").addChild(t);
-var n = t.getComponent("LoadingLayer");
-n && n.setCallFun(e, _);
-}
-});
-},
 Ghotupdateurl: "xxx",
 GgameType: 3
 };
 if (1 == t.GgameType) {
-t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configrelease";
+t.Ghotupdateurl = "http://192.168.65.151/hotupversion/configdebug";
 t.isDebugTest = !1;
 }
 if (3 == t.GgameType) {
@@ -2104,7 +2054,7 @@ return "[Circular]";
 default:
 return e;
 }
-}), E = n[t]; t < S; E = n[++t]) l(E) || !f(E) ? i += " " + E : i += " " + o(E);
+}), E = n[t]; t < S; E = n[++t]) d(E) || !f(E) ? i += " " + E : i += " " + o(E);
 return i;
 };
 t.deprecate = function(e, T) {
@@ -2210,23 +2160,23 @@ if (D(_)) return e.stylize(RegExp.prototype.toString.call(_), "regexp");
 if (p(_)) return e.stylize(Date.prototype.toString.call(_), "date");
 if (M(_)) return I(_);
 }
-var R, O = "", l = !1, d = [ "{", "}" ];
+var R, O = "", d = !1, l = [ "{", "}" ];
 if (A(_)) {
-l = !0;
-d = [ "[", "]" ];
+d = !0;
+l = [ "[", "]" ];
 }
 P(_) && (O = " [Function" + (_.name ? ": " + _.name : "") + "]");
 D(_) && (O = " " + RegExp.prototype.toString.call(_));
 p(_) && (O = " " + Date.prototype.toUTCString.call(_));
 M(_) && (O = " " + I(_));
-if (0 === i.length && (!l || 0 == _.length)) return d[0] + O + d[1];
+if (0 === i.length && (!d || 0 == _.length)) return l[0] + O + l[1];
 if (n < 0) return D(_) ? e.stylize(RegExp.prototype.toString.call(_), "regexp") : e.stylize("[Object]", "special");
 e.seen.push(_);
-R = l ? c(e, _, n, o, i) : i.map(function(t) {
-return N(e, _, n, o, t, l);
+R = d ? c(e, _, n, o, i) : i.map(function(t) {
+return N(e, _, n, o, t, d);
 });
 e.seen.pop();
-return C(R, O, d);
+return C(R, O, l);
 }
 function a(e, _) {
 if (u(_)) return e.stylize("undefined", "undefined");
@@ -2234,7 +2184,7 @@ if (h(_)) {
 var t = "'" + JSON.stringify(_).replace(/^"|"$/g, "").replace(/'/g, "\\'").replace(/\\"/g, '"') + "'";
 return e.stylize(t, "string");
 }
-return d(_) ? e.stylize("" + _, "number") : O(_) ? e.stylize("" + _, "boolean") : l(_) ? e.stylize("null", "null") : void 0;
+return l(_) ? e.stylize("" + _, "number") : O(_) ? e.stylize("" + _, "boolean") : d(_) ? e.stylize("null", "null") : void 0;
 }
 function I(e) {
 return "[" + Error.prototype.toString.call(e) + "]";
@@ -2252,7 +2202,7 @@ var i, o, E;
 value: _[T]
 }).get ? o = E.set ? e.stylize("[Getter/Setter]", "special") : e.stylize("[Getter]", "special") : E.set && (o = e.stylize("[Setter]", "special"));
 y(n, T) || (i = "[" + T + "]");
-o || (e.seen.indexOf(E.value) < 0 ? (o = l(t) ? s(e, E.value, null) : s(e, E.value, t - 1)).indexOf("\n") > -1 && (o = S ? o.split("\n").map(function(e) {
+o || (e.seen.indexOf(E.value) < 0 ? (o = d(t) ? s(e, E.value, null) : s(e, E.value, t - 1)).indexOf("\n") > -1 && (o = S ? o.split("\n").map(function(e) {
 return "  " + e;
 }).join("\n").substr(2) : "\n" + o.split("\n").map(function(e) {
 return "   " + e;
@@ -2283,17 +2233,17 @@ function O(e) {
 return "boolean" == typeof e;
 }
 t.isBoolean = O;
-function l(e) {
+function d(e) {
 return null === e;
 }
-t.isNull = l;
+t.isNull = d;
 t.isNullOrUndefined = function(e) {
 return null == e;
 };
-function d(e) {
+function l(e) {
 return "number" == typeof e;
 }
-t.isNumber = d;
+t.isNumber = l;
 function h(e) {
 return "string" == typeof e;
 }
@@ -2629,7 +2579,7 @@ n = !0;
 }
 }
 E.byteLength = O;
-function l(e, _, t) {
+function d(e, _, t) {
 var n = !1;
 (void 0 === _ || _ < 0) && (_ = 0);
 if (_ > this.length) return "";
@@ -2668,7 +2618,7 @@ n = !0;
 }
 }
 E.prototype._isBuffer = !0;
-function d(e, _, t) {
+function l(e, _, t) {
 var n = e[_];
 e[_] = e[t];
 e[t] = n;
@@ -2676,15 +2626,15 @@ e[t] = n;
 E.prototype.swap16 = function() {
 var e = this.length;
 if (e % 2 != 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
-for (var _ = 0; _ < e; _ += 2) d(this, _, _ + 1);
+for (var _ = 0; _ < e; _ += 2) l(this, _, _ + 1);
 return this;
 };
 E.prototype.swap32 = function() {
 var e = this.length;
 if (e % 4 != 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
 for (var _ = 0; _ < e; _ += 4) {
-d(this, _, _ + 3);
-d(this, _ + 1, _ + 2);
+l(this, _, _ + 3);
+l(this, _ + 1, _ + 2);
 }
 return this;
 };
@@ -2692,16 +2642,16 @@ E.prototype.swap64 = function() {
 var e = this.length;
 if (e % 8 != 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
 for (var _ = 0; _ < e; _ += 8) {
-d(this, _, _ + 7);
-d(this, _ + 1, _ + 6);
-d(this, _ + 2, _ + 5);
-d(this, _ + 3, _ + 4);
+l(this, _, _ + 7);
+l(this, _ + 1, _ + 6);
+l(this, _ + 2, _ + 5);
+l(this, _ + 3, _ + 4);
 }
 return this;
 };
 E.prototype.toString = function() {
 var e = 0 | this.length;
-return 0 === e ? "" : 0 === arguments.length ? m(this, 0, e) : l.apply(this, arguments);
+return 0 === e ? "" : 0 === arguments.length ? m(this, 0, e) : d.apply(this, arguments);
 };
 E.prototype.equals = function(e) {
 if (!E.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
@@ -3648,7 +3598,7 @@ onbackkeyup: function() {
 if (1 != this.Stacks.length) {
 var e = this.Stacks[this.Stacks.length - 1];
 e && e.onbackpress && e.onbackpress();
-} else Global.ShowAlert("exit game?", [ "yes", "no" ], function(e) {
+} else UiManager.ShowAlert("exit game?", [ "yes", "no" ], function(e) {
 1 == e && cc.game.end();
 });
 },
@@ -3741,14 +3691,9 @@ cc.log("渠道号===", window.DISTRIBUTE_CHANNEL);
 cc.sys.localStorage.setItem("debugId", 724001);
 this.count = 0;
 if (cc && cc.sys.isNative) {
-if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32) {
-cc.log("模拟器不热更新");
-t.parseLocalCfg();
-this.goLoginScene();
-return;
-}
+window.DISTRIBUTE_CHANNEL, window.chanel.WIN32;
 cc.log("Global.isDebugTest===", Global.isDebugTest);
-Global.isDebugTest ? Global.ShowChooseUpdate({
+Global.isDebugTest ? UiManager.ShowChooseUpdate({
 tips: "热更新选择",
 items: [ {
 text: "默认热更新地址"
@@ -3762,7 +3707,7 @@ console.log("点击了", _);
 if (0 == _) {
 e.goCheckUpdate(Global.Ghotupdateurl);
 t.bClose();
-} else if (1 == _) Global.ShowTextInput(function(_) {
+} else if (1 == _) UiManager.ShowTextInput(function(_) {
 if (_.length > 0) {
 Global.Ghotupdateurl = _;
 e.goCheckUpdate(_);
@@ -3770,7 +3715,9 @@ t.bClose();
 } else {
 console.log("请输入自定义的热更新地址");
 t.bClose();
-Global.ShowAlert("请输入正确自定义的热更新地址", [], function() {});
+UiManager.ShowAlert("请输入正确自定义的热更新地址", [], function() {
+Global.gExitGame();
+});
 }
 }); else if (2 == _) {
 Global.Ghotupdateurl = "http://192.168.65.151/hotupversion/configdebug";
@@ -3789,9 +3736,9 @@ this.goLoginScene();
 goCheckUpdate: function(e) {
 var _ = this;
 t.checkUpdate(e, function(e, t) {
-0 == e ? _.goLoginScene() : 100 == e ? _.Reboot() : 6 == e || 7 == e ? _.goLoginScene() : 8 == e ? Global.ShowAlert("发现新版本" + t, [], function() {
+0 == e ? _.goLoginScene() : 100 == e ? _.Reboot() : 6 == e || 7 == e ? _.goLoginScene() : 8 == e ? UiManager.ShowAlert("发现新版本" + t, [], function() {
 cc.sys.openURL(t);
-}) : Global.ShowAlert("ErrorCode=====" + e, [], function() {
+}) : UiManager.ShowAlert("ErrorCode=====" + e, [], function() {
 _.Reboot();
 });
 }, function(e, t, n) {
@@ -3812,7 +3759,7 @@ cc.director.loadScene("TestScene");
 goLoginScene: function() {
 var e = this;
 Global.gSchduleOnce(this, function() {
-Global.gShowLoading(function(_) {
+UiManager.gShowLoading(function(_) {
 _.updataProgress(30);
 e.scheduleOnce(function() {
 Global.gPreloadScene("LoginScene", null, function() {
@@ -3921,7 +3868,7 @@ console.log("getLocationInView=====", e.getLocationInView().x, e.getLocationInVi
 },
 goTestScene: function() {
 var e = this;
-Global.gShowLoading(function(_) {
+UiManager.gShowLoading(function(_) {
 _.updataProgress(30);
 e.scheduleOnce(function() {
 Global.gPreloadScene("TestScene", null, function() {
@@ -4715,7 +4662,7 @@ _.opacity = 255;
 });
 var o = cc.find("uipanel/btn_Alert", this.node);
 ua.darkButton(o, function() {
-Global.ShowAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
+UiManager.ShowAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
 cc.log("click==", e);
 });
 });
@@ -4748,10 +4695,10 @@ cc.log("结束录音");
 if (Date.now() - s < 1e3) {
 t.cancel();
 cc.log("时间小于一秒");
-Global.ShowAlert("时间小于一秒", [ "Yes" ], function() {});
+UiManager.ShowAlert("时间小于一秒", [ "Yes" ], function() {});
 } else if (Date.now() - s > 8e3) {
 t.cancel();
-Global.ShowAlert("录音时间大于8s", [ "Yes" ], function() {});
+UiManager.ShowAlert("录音时间大于8s", [ "Yes" ], function() {});
 } else if (null != s) {
 t.release();
 var _ = Date.now() - s;
@@ -4777,7 +4724,7 @@ cc.debug.setDisplayStats(!cc.debug.isDisplayStats());
 });
 var c = cc.find("uipanel/btn_showpopLayer", this.node);
 ua.darkButton(c, function() {
-Global.gLoadPrefabRes("prefabs/poplayer", function(e) {
+UiManager.gLoadPrefabRes("prefabs/poplayer", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
 var _ = e.getComponent("poplayer");
@@ -4830,13 +4777,13 @@ e ? console.log("load bundle scene error") : cc.director.runScene(_);
 });
 });
 });
-var l = cc.find("uipanel/btn_goslot", this.node);
-ua.darkButton(l, function() {
+var d = cc.find("uipanel/btn_goslot", this.node);
+ua.darkButton(d, function() {
 cc.director.loadScene("SlotScene");
 });
 cc.find("content/sp1", this.node).getComponent(cc.RenderComponent).getMaterial(0);
-var d = cc.find("garpgicsnode", this.node), h = d.getComponent(cc.Graphics);
-d.on(cc.Node.EventType.TOUCH_START, function(e) {
+var l = cc.find("garpgicsnode", this.node), h = l.getComponent(cc.Graphics);
+l.on(cc.Node.EventType.TOUCH_START, function(e) {
 var t = e.getTouches(), n = t[0].getLocation();
 t[0].getLocationInView();
 n = _.parent.convertToNodeSpaceAR(n);
@@ -4845,7 +4792,7 @@ _.angle = -T;
 h.moveTo(n.x, n.y);
 _.getPosition().subSelf(n).normalizeSelf();
 });
-d.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
+l.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
 var t = e.getTouches()[0].getLocation();
 t = _.parent.convertToNodeSpaceAR(t);
 var n = Global.GgetTwoV2Angle(_.getPosition(), t);
@@ -4856,9 +4803,9 @@ h.stroke();
 var u = cc.view.getVisibleSize(), D = cc.v2(-u.width / 2, u.height / 2), f = cc.v2(u.width / 2, -u.height / 2), p = Global.GgetTwoV2Angle(D, f);
 cc.find("uipanel/New Sprite", this.node).angle = -p;
 var M = cc.view.getVisibleSize();
-(d = d.getComponent(cc.Graphics)).moveTo(-M.width / 2, M.height / 2);
-d.quadraticCurveTo(0, 0, M.width / 2, M.height / 2);
-d.stroke();
+(l = l.getComponent(cc.Graphics)).moveTo(-M.width / 2, M.height / 2);
+l.quadraticCurveTo(0, 0, M.width / 2, M.height / 2);
+l.stroke();
 },
 startMove: function() {
 var e = this, _ = (cc.find("garpgicsnode", this.node), cc.find("uipanel/btn_goslot", this.node)), t = cc.view.getVisibleSize(), n = [ cc.v2(-t.width / 2, t.height / 2), cc.v2(0, 0), cc.v2(t.width / 2, t.height / 2) ], T = cc.bezierTo(2, n);
@@ -4871,7 +4818,7 @@ _.runAction(cc.repeatForever(i));
 },
 EventTest: function(e) {
 e.stopPropagation();
-Global.ShowAlert("事件传来的参数" + JSON.stringify(e.detail), []);
+UiManager.ShowAlert("事件传来的参数" + JSON.stringify(e.detail), []);
 }
 });
 cc._RF.pop();
@@ -4914,6 +4861,68 @@ __decorate([ S ], _.prototype, "text", void 0);
 return __decorate([ T ], _);
 }(cc.Component);
 t.default = i;
+cc._RF.pop();
+}, {} ],
+UiManager: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "cd0b2zknmFE4bimNxTJpdEG", "UiManager");
+var t = {
+gShowLoading: function(e, _) {
+var t = this;
+this.gLoadPrefabRes("prefabs/loadinglayer", function(n) {
+if (n) {
+t.gSceneAddNode(n);
+var T = n.getComponent("LoadingLayer");
+T && T.setCallFun(e, _);
+}
+});
+},
+gSceneAddNode: function(e) {
+cc.director.getScene().getChildByName("Canvas").addChild(e);
+},
+gLoadPrefabRes: function(e, _) {
+cc.resources.load(e, function(t, n) {
+if (t) {
+cc.error("ua.loadPrefabRes error====" + e);
+_(void 0);
+} else {
+var T = cc.instantiate(n);
+_(T);
+cc.loader.setAutoRelease(e, !0);
+}
+});
+},
+ShowAlert: function(e, _, t) {
+this.gLoadPrefabRes("prefabs/AlertLayer2", function(n) {
+if (n) {
+cc.director.getScene().getChildByName("Canvas").addChild(n);
+var T = n.getComponent("AlertIII");
+T && T.showAlert(e, _, function(e) {
+t && t(e);
+});
+}
+});
+},
+ShowTextInput: function(e) {
+this.gLoadPrefabRes("prefabs/textinput", function(_) {
+if (_) {
+cc.director.getScene().getChildByName("Canvas").addChild(_);
+var t = _.getComponent("textinput");
+t && t.show(e);
+}
+});
+},
+ShowChooseUpdate: function(e, _) {
+this.gLoadPrefabRes("prefabs/selectupdate", function(t) {
+if (t) {
+cc.director.getScene().getChildByName("Canvas").addChild(t);
+var n = t.getComponent("chooseupdate");
+n && n.initData(e, _);
+}
+});
+}
+};
+window.UiManager = t;
 cc._RF.pop();
 }, {} ],
 VersionManager: [ function(e, _) {
@@ -8476,4 +8485,4 @@ STR_MESS_EVALUATION_CONTENT: "因为您对于我们游戏的支持与评价，�
 };
 cc._RF.pop();
 }, {} ]
-}, {}, [ "Bubble", "BubbleScene", "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "LoadingLayer", "Save", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Ws", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "WsTest", "Testts", "LabelLocalized", "ch", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);
+}, {}, [ "Bubble", "BubbleScene", "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "LoadingLayer", "Save", "UiManager", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Ws", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "WsTest", "Testts", "LabelLocalized", "ch", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);
