@@ -111,11 +111,8 @@ cc.Class({
         }
         else {//web
             VersionManager.getH5ScriptVersion()//直接读取本地配置版本号 便于登录界面右下角展示
-            Global.gSchduleOnce(this,  ()=> {
-
-                this.goLoginScene()
-
-            }, 0.1)
+            this.goLoginScene()
+           
 
         }
 
@@ -193,7 +190,12 @@ cc.Class({
     },
     goLoginScene() {
 
-        cc.director.loadScene("LoginScene")
+        Global.gSchduleOnce(this,  ()=> {
+
+            cc.director.loadScene("LoginScene")
+
+        }, 1.5)
+       
 
     },
 
