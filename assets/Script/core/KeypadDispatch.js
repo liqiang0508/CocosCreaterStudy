@@ -36,7 +36,7 @@ var KeypadDispatch = cc.Class({
 
         if( this.Stacks.length ==1)//根布局 提示退出游戏
         {
-            Global.ShowAlert("exit game?", ["yes", "no"], function (index) {
+            UiManager.ShowAlert("exit game?", ["yes", "no"], function (index) {
                 if(index==1){
                     cc.game.end()
                 }
@@ -53,14 +53,7 @@ var KeypadDispatch = cc.Class({
                 com.onbackpress()
             }
         }
-        // else
-        // {
-        //     Global.ShowAlert("exit game?", ["yes", "no"], function (index) {
-        //         if(index==1){
-        //             cc.game.end()
-        //         }
-        //     })
-        // }
+        
 
 
     },

@@ -124,7 +124,7 @@ cc.Class({
         ua.darkButton(showAlertIII, function (event) {
 
             // event.currentTarget.active = false
-            Global.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
+            UiManager.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
                 cc.log("click==", index)
             })
 
@@ -192,7 +192,7 @@ cc.Class({
             if (Date.now() - lastTouchTime < 1000) {
                 voiceNative.cancel();
                 cc.log("时间小于一秒");
-                Global.ShowAlert("时间小于一秒", ["Yes"], function (index) {
+                UiManager.ShowAlert("时间小于一秒", ["Yes"], function (index) {
 
                 })
 
@@ -200,7 +200,7 @@ cc.Class({
             else if (Date.now() - lastTouchTime > 8000) {
                 voiceNative.cancel();
 
-                Global.ShowAlert("录音时间大于8s", ["Yes"], function (index) {
+                UiManager.ShowAlert("录音时间大于8s", ["Yes"], function (index) {
 
                 })
             }
@@ -267,7 +267,7 @@ cc.Class({
         var btn_showpopLayer = cc.find("uipanel/btn_showpopLayer", this.node)
         ua.darkButton(btn_showpopLayer, function () {
     
-            Global.gLoadPrefabRes("prefabs/poplayer", function (prefabNode) {
+            UiManager.gLoadPrefabRes("prefabs/poplayer", function (prefabNode) {
                 if (prefabNode) {
                     cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
                     var com = prefabNode.getComponent("poplayer")
@@ -468,7 +468,7 @@ cc.Class({
     EventTest(event) {
 
         event.stopPropagation()
-        Global.ShowAlert("事件传来的参数" + JSON.stringify(event.detail), [])
+        UiManager.ShowAlert("事件传来的参数" + JSON.stringify(event.detail), [])
     },
 
    

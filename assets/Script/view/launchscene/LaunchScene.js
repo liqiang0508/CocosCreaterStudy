@@ -83,9 +83,9 @@ cc.Class({
                             else{
                                 console.log("请输入自定义的热更新地址")
                                 layer.bClose()
-                                Global.ShowAlert("请输入正确自定义的热更新地址", [],  ()=> {
+                                UiManager.ShowAlert("请输入正确自定义的热更新地址", [],  ()=> {
                                     
-                      
+                                    Global.gExitGame()
                                 })
                             }
                            
@@ -158,14 +158,14 @@ cc.Class({
             }
             else if (code == 8)//强制更新 打开商店链接
             {
-                Global.ShowAlert("发现新版本" + shopUrl, [],  (index)=> {
+                UiManager.ShowAlert("发现新版本" + shopUrl, [],  (index)=> {
                     cc.sys.openURL(shopUrl)
 
                 })
             }
             else {//热更新error 
 
-                Global.ShowAlert("ErrorCode=====" + code, [],  ()=> {
+                UiManager.ShowAlert("ErrorCode=====" + code, [],  ()=> {
                     this.Reboot()//失败重启
       
                 })
@@ -196,8 +196,8 @@ cc.Class({
     goLoginScene() {
 
         Global.gSchduleOnce(this,  ()=> {
-            
-            Global.gShowLoading((layer)=>{
+
+            UiManager.gShowLoading((layer)=>{
                 layer.updataProgress(30)
                 this.scheduleOnce(()=>{
                     Global.gPreloadScene("LoginScene",null,()=>{

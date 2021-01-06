@@ -225,47 +225,7 @@ var Global = {
 
     },
 
-    ShowAlert: function (str, btninfo, call) {
-
-        this.gLoadPrefabRes("prefabs/AlertLayer2", function (_node) {
-            if (_node) {
-                cc.director.getScene().getChildByName('Canvas').addChild(_node)
-                var AlertIII = _node.getComponent("AlertIII")
-                if (AlertIII) {
-                    AlertIII.showAlert(str, btninfo, function (index) {
-                        if (call) {
-                            call(index)
-                        }
-                    })
-                }
-            }
-        })
-    },
-
-    ShowTextInput: function (call) {
-        this.gLoadPrefabRes("prefabs/textinput", function (_node) {
-            if (_node) {
-                cc.director.getScene().getChildByName('Canvas').addChild(_node)
-                var textinput = _node.getComponent("textinput")
-                if (textinput) {
-                    textinput.show(call)
-                }
-            }
-        })
-
-    },
-    ShowChooseUpdate: function (data, call) {
-        this.gLoadPrefabRes("prefabs/selectupdate", function (_node) {
-            if (_node) {
-                cc.director.getScene().getChildByName('Canvas').addChild(_node)
-                var chooseupdate = _node.getComponent("chooseupdate")
-                if (chooseupdate) {
-                    chooseupdate.initData(data, call)
-                }
-            }
-        })
-
-    },
+    
     GgetTwoV2Angle: function (vA, vB) {//获得2点的夹角vA起点，vB终点
 
         var dx = vB.x - vA.x;
@@ -302,20 +262,7 @@ var Global = {
         var bundle = cc.assetManager.getBundle(bundlename);
         return bundle
     },
-    // 加载prefab
-    gLoadPrefabRes: function (filepath, call) {
-        cc.resources.load(filepath, function (err, prefab) {
-            if (err) {
-                cc.error("ua.loadPrefabRes error====" + filepath)
-                call(undefined)
-            }
-            else {
-                var newNode = cc.instantiate(prefab);
-                call(newNode)
-                cc.loader.setAutoRelease(filepath, true)
-            }
-        })
-    },
+    
     //重启
     gReBoot: function () {
 
@@ -327,20 +274,6 @@ var Global = {
         {
             cc.game.end()
         }
-    },
-    //显示loadinglayer进度
-    gShowLoading:function(todoCall,endcall){
-
-        this.gLoadPrefabRes("prefabs/loadinglayer",  (_node)=> {
-            if (_node) {
-                cc.director.getScene().getChildByName('Canvas').addChild(_node)
-                var LoadingLayer = _node.getComponent("LoadingLayer")
-                if (LoadingLayer) {
-                    LoadingLayer.setCallFun(todoCall, endcall)
-                }
-            }
-        })
-
     },
     Ghotupdateurl: "xxx", // 热更新地址
     GgameType:1  // 1正式包 3debug 注意1前面不要有空格

@@ -86,7 +86,7 @@ cc.Class({
         //     })
         // }
 
-        Global.gShowLoading((layer)=>{
+        UiManager.gShowLoading((layer)=>{
             layer.updataProgress(30)
             this.scheduleOnce(()=>{
                 Global.gPreloadScene("TestScene",null,()=>{
