@@ -1855,7 +1855,7 @@ gExitGame: function() {
 cc.sys.isNative && cc.game.end();
 },
 Ghotupdateurl: "xxx",
-GgameType: 3
+GgameType: 1
 };
 if (1 == t.GgameType) {
 t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configrelease";
@@ -3218,9 +3218,7 @@ console.log("getLocation=====", e.getLocation().x, e.getLocation().y);
 console.log("getLocationInView=====", e.getLocationInView().x, e.getLocationInView().y);
 });
 },
-goTestScene: function() {
-cc.director.loadScene("TestScene");
-}
+goTestScene: function() {}
 });
 cc._RF.pop();
 }, {

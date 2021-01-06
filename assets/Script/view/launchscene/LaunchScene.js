@@ -196,8 +196,18 @@ cc.Class({
     goLoginScene() {
 
         Global.gSchduleOnce(this,  ()=> {
-
-            cc.director.loadScene("LoginScene")
+            
+            Global.gShowLoading((layer)=>{
+                layer.updataProgress(30)
+                this.scheduleOnce(()=>{
+                    Global.gPreloadScene("LoginScene",null,()=>{
+                        layer.updataProgress(100)
+                    })
+                },2)
+    
+            },(layer)=>{
+                cc.director.loadScene("LoginScene")
+            })
 
         }, 1.5)
        

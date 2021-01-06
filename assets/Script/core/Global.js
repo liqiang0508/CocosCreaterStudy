@@ -288,12 +288,19 @@ var Global = {
             }
         }
     },
+    //加载bundle
     gLoadBUndle: function (url, option, complete) {
-        cc.assetManager.loadBundle(url, option, function (err, bundle) {
+        cc.assetManager.loadBundle(url, option,  (err, bundle)=>{
             if (complete) {
                 complete(err, bundle)
             }
         })
+    },
+    //获取已加载了的bundle
+    gGetBundle:function(bundlename)
+    {
+        var bundle = cc.assetManager.getBundle(bundlename);
+        return bundle
     },
     // 加载prefab
     gLoadPrefabRes: function (filepath, call) {
@@ -320,6 +327,20 @@ var Global = {
         {
             cc.game.end()
         }
+    },
+    //显示loadinglayer进度
+    gShowLoading:function(progressCall,endcall){
+
+        this.gLoadPrefabRes("prefabs/loadinglayer",  (_node)=> {
+            if (_node) {
+                cc.director.getScene().getChildByName('Canvas').addChild(_node)
+                var LoadingLayer = _node.getComponent("LoadingLayer")
+                if (LoadingLayer) {
+                    LoadingLayer.setCallFun(progressCall, endcall)
+                }
+            }
+        })
+
     },
     Ghotupdateurl: "xxx", // 热更新地址
     GgameType:1  // 1正式包 3debug 注意1前面不要有空格
