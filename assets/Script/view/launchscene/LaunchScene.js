@@ -82,6 +82,11 @@ cc.Class({
                             }
                             else{
                                 console.log("请输入自定义的热更新地址")
+                                layer.bClose()
+                                Global.ShowAlert("请输入正确自定义的热更新地址", [],  ()=> {
+                                    
+                      
+                                })
                             }
                            
                         })
@@ -89,7 +94,7 @@ cc.Class({
                     }
                     else if(index ==2) //公司热更新地址
                     {
-                        Global.Ghotupdateurl = "http://192.168.65.151/hotUpVersion/configdebug"
+                        Global.Ghotupdateurl = "http://192.168.65.151/hotupversion/configdebug"
                         this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
                         layer.bClose()
                     }

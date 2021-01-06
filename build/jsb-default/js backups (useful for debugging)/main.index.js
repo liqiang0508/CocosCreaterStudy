@@ -12,12 +12,12 @@ throw new Error("Cannot find module '" + i + "'");
 }
 i = E;
 }
-var r = t[i] = {
+var s = t[i] = {
 exports: {}
 };
-_[i][0].call(r.exports, function(e) {
+_[i][0].call(s.exports, function(e) {
 return S(_[i][1][e] || e);
-}, r, r.exports, e, _, t, T);
+}, s, s.exports, e, _, t, T);
 }
 return t[i].exports;
 }
@@ -443,8 +443,8 @@ var n = S[0], i = n.point;
 this.drawAimLine(e, i);
 var o = i.sub(e).mag();
 this._cur_length += o;
-var E = n.normal, R = _, r = R.sub(E.mul(2 * R.dot(E)));
-this.drawRayCast(i, r);
+var E = n.normal, R = _, s = R.sub(E.mul(2 * R.dot(E)));
+this.drawRayCast(i, s);
 } else this.drawAimLine(e, T);
 }
 },
@@ -1851,6 +1851,9 @@ cc.loader.setAutoRelease(e, !0);
 gReBoot: function() {
 cc.game.restart();
 },
+gExitGame: function() {
+cc.sys.isNative && cc.game.end();
+},
 Ghotupdateurl: "xxx",
 GgameType: 3
 };
@@ -1911,26 +1914,26 @@ var _ = R(e), t = _[0], T = _[1];
 return 3 * (t + T) / 4 - T;
 };
 t.toByteArray = function(e) {
-var _, t, T = R(e), i = T[0], o = T[1], E = new n(r(0, i, o)), s = 0, I = o > 0 ? i - 4 : i;
+var _, t, T = R(e), i = T[0], o = T[1], E = new n(s(0, i, o)), r = 0, I = o > 0 ? i - 4 : i;
 for (t = 0; t < I; t += 4) {
 _ = S[e.charCodeAt(t)] << 18 | S[e.charCodeAt(t + 1)] << 12 | S[e.charCodeAt(t + 2)] << 6 | S[e.charCodeAt(t + 3)];
-E[s++] = _ >> 16 & 255;
-E[s++] = _ >> 8 & 255;
-E[s++] = 255 & _;
+E[r++] = _ >> 16 & 255;
+E[r++] = _ >> 8 & 255;
+E[r++] = 255 & _;
 }
 if (2 === o) {
 _ = S[e.charCodeAt(t)] << 2 | S[e.charCodeAt(t + 1)] >> 4;
-E[s++] = 255 & _;
+E[r++] = 255 & _;
 }
 if (1 === o) {
 _ = S[e.charCodeAt(t)] << 10 | S[e.charCodeAt(t + 1)] << 4 | S[e.charCodeAt(t + 2)] >> 2;
-E[s++] = _ >> 8 & 255;
-E[s++] = 255 & _;
+E[r++] = _ >> 8 & 255;
+E[r++] = 255 & _;
 }
 return E;
 };
 t.fromByteArray = function(e) {
-for (var _, t = e.length, S = t % 3, n = [], i = 0, o = t - S; i < o; i += 16383) n.push(s(e, i, i + 16383 > o ? o : i + 16383));
+for (var _, t = e.length, S = t % 3, n = [], i = 0, o = t - S; i < o; i += 16383) n.push(r(e, i, i + 16383 > o ? o : i + 16383));
 if (1 === S) {
 _ = e[t - 1];
 n.push(T[_ >> 2] + T[_ << 4 & 63] + "==");
@@ -1953,10 +1956,10 @@ var t = e.indexOf("=");
 -1 === t && (t = _);
 return [ t, t === _ ? 0 : 4 - t % 4 ];
 }
-function r(e, _, t) {
+function s(e, _, t) {
 return 3 * (_ + t) / 4 - t;
 }
-function s(e, _, t) {
+function r(e, _, t) {
 for (var S, n, i = [], o = _; o < t; o += 3) {
 S = (e[o] << 16 & 16711680) + (e[o + 1] << 8 & 65280) + (255 & e[o + 2]);
 i.push(T[(n = S) >> 18 & 63] + T[n >> 12 & 63] + T[n >> 6 & 63] + T[63 & n]);
@@ -2028,19 +2031,19 @@ value: null,
 configurable: !0
 });
 }
-function r(e) {
+function s(e) {
 if ("number" != typeof e) throw new TypeError('"size" argument must be a number');
 if (e < 0) throw new RangeError('"size" argument must not be negative');
 }
-function s(e, _, t, T) {
-r(_);
+function r(e, _, t, T) {
+s(_);
 return _ <= 0 ? o(e, _) : void 0 !== t ? "string" == typeof T ? o(e, _).fill(t, T) : o(e, _).fill(t) : o(e, _);
 }
 E.alloc = function(e, _, t) {
-return s(null, e, _, t);
+return r(null, e, _, t);
 };
 function I(e, _) {
-r(_);
+s(_);
 e = o(e, _ < 0 ? 0 : 0 | A(_));
 if (!E.TYPED_ARRAY_SUPPORT) for (var t = 0; t < _; ++t) e[t] = 0;
 return e;
@@ -2272,9 +2275,9 @@ if (T >= S && _ >= t) return 0;
 if (T >= S) return -1;
 if (_ >= t) return 1;
 if (this === e) return 0;
-for (var n = (S >>>= 0) - (T >>>= 0), i = (t >>>= 0) - (_ >>>= 0), o = Math.min(n, i), R = this.slice(T, S), r = e.slice(_, t), s = 0; s < o; ++s) if (R[s] !== r[s]) {
-n = R[s];
-i = r[s];
+for (var n = (S >>>= 0) - (T >>>= 0), i = (t >>>= 0) - (_ >>>= 0), o = Math.min(n, i), R = this.slice(T, S), s = e.slice(_, t), r = 0; r < o; ++r) if (R[r] !== s[r]) {
+n = R[r];
+i = s[r];
 break;
 }
 return n < i ? -1 : i < n ? 1 : 0;
@@ -2316,22 +2319,22 @@ function R(e, _) {
 return 1 === i ? e[_] : e.readUInt16BE(_ * i);
 }
 if (S) {
-var r = -1;
-for (n = t; n < o; n++) if (R(e, n) === R(_, -1 === r ? 0 : n - r)) {
--1 === r && (r = n);
-if (n - r + 1 === E) return r * i;
+var s = -1;
+for (n = t; n < o; n++) if (R(e, n) === R(_, -1 === s ? 0 : n - s)) {
+-1 === s && (s = n);
+if (n - s + 1 === E) return s * i;
 } else {
--1 !== r && (n -= n - r);
-r = -1;
+-1 !== s && (n -= n - s);
+s = -1;
 }
 } else {
 t + E > o && (t = o - E);
 for (n = t; n >= 0; n--) {
-for (var s = !0, I = 0; I < E; I++) if (R(e, n + I) !== R(_, I)) {
-s = !1;
+for (var r = !0, I = 0; I < E; I++) if (R(e, n + I) !== R(_, I)) {
+r = !1;
 break;
 }
-if (s) return n;
+if (r) return n;
 }
 }
 return -1;
@@ -2359,14 +2362,14 @@ e[t + i] = o;
 }
 return i;
 }
-function p(e, _, t, T) {
+function f(e, _, t, T) {
 return J(j(_, e.length - t), e, t, T);
 }
-function f(e, _, t, T) {
+function p(e, _, t, T) {
 return J(X(_), e, t, T);
 }
 function M(e, _, t, T) {
-return f(e, _, t, T);
+return p(e, _, t, T);
 }
 function P(e, _, t, T) {
 return J(q(_), e, t, T);
@@ -2404,10 +2407,10 @@ return u(this, e, _, t);
 
 case "utf8":
 case "utf-8":
-return p(this, e, _, t);
+return f(this, e, _, t);
 
 case "ascii":
-return f(this, e, _, t);
+return p(this, e, _, t);
 
 case "latin1":
 case "binary":
@@ -2442,27 +2445,27 @@ t = Math.min(e.length, t);
 for (var T = [], S = _; S < t; ) {
 var n = e[S], i = null, o = n > 239 ? 4 : n > 223 ? 3 : n > 191 ? 2 : 1;
 if (S + o <= t) {
-var E, R, r, s;
+var E, R, s, r;
 switch (o) {
 case 1:
 n < 128 && (i = n);
 break;
 
 case 2:
-128 == (192 & (E = e[S + 1])) && (s = (31 & n) << 6 | 63 & E) > 127 && (i = s);
+128 == (192 & (E = e[S + 1])) && (r = (31 & n) << 6 | 63 & E) > 127 && (i = r);
 break;
 
 case 3:
 E = e[S + 1];
 R = e[S + 2];
-128 == (192 & E) && 128 == (192 & R) && (s = (15 & n) << 12 | (63 & E) << 6 | 63 & R) > 2047 && (s < 55296 || s > 57343) && (i = s);
+128 == (192 & E) && 128 == (192 & R) && (r = (15 & n) << 12 | (63 & E) << 6 | 63 & R) > 2047 && (r < 55296 || r > 57343) && (i = r);
 break;
 
 case 4:
 E = e[S + 1];
 R = e[S + 2];
-r = e[S + 3];
-128 == (192 & E) && 128 == (192 & R) && 128 == (192 & r) && (s = (15 & n) << 18 | (63 & E) << 12 | (63 & R) << 6 | 63 & r) > 65535 && s < 1114112 && (i = s);
+s = e[S + 3];
+128 == (192 & E) && 128 == (192 & R) && 128 == (192 & s) && (r = (15 & n) << 18 | (63 & E) << 12 | (63 & R) << 6 | 63 & s) > 65535 && r < 1114112 && (i = r);
 }
 }
 if (null === i) {
@@ -2937,16 +2940,16 @@ return "[object Array]" == t.call(e);
 }, {} ],
 4: [ function(e, _, t) {
 t.read = function(e, _, t, T, S) {
-var n, i, o = 8 * S - T - 1, E = (1 << o) - 1, R = E >> 1, r = -7, s = t ? S - 1 : 0, I = t ? -1 : 1, a = e[_ + s];
-s += I;
-n = a & (1 << -r) - 1;
-a >>= -r;
-r += o;
-for (;r > 0; n = 256 * n + e[_ + s], s += I, r -= 8) ;
-i = n & (1 << -r) - 1;
-n >>= -r;
-r += T;
-for (;r > 0; i = 256 * i + e[_ + s], s += I, r -= 8) ;
+var n, i, o = 8 * S - T - 1, E = (1 << o) - 1, R = E >> 1, s = -7, r = t ? S - 1 : 0, I = t ? -1 : 1, a = e[_ + r];
+r += I;
+n = a & (1 << -s) - 1;
+a >>= -s;
+s += o;
+for (;s > 0; n = 256 * n + e[_ + r], r += I, s -= 8) ;
+i = n & (1 << -s) - 1;
+n >>= -s;
+s += T;
+for (;s > 0; i = 256 * i + e[_ + r], r += I, s -= 8) ;
 if (0 === n) n = 1 - R; else {
 if (n === E) return i ? NaN : Infinity * (a ? -1 : 1);
 i += Math.pow(2, T);
@@ -2955,29 +2958,29 @@ n -= R;
 return (a ? -1 : 1) * i * Math.pow(2, n - T);
 };
 t.write = function(e, _, t, T, S, n) {
-var i, o, E, R = 8 * n - S - 1, r = (1 << R) - 1, s = r >> 1, I = 23 === S ? Math.pow(2, -24) - Math.pow(2, -77) : 0, a = T ? 0 : n - 1, c = T ? 1 : -1, N = _ < 0 || 0 === _ && 1 / _ < 0 ? 1 : 0;
+var i, o, E, R = 8 * n - S - 1, s = (1 << R) - 1, r = s >> 1, I = 23 === S ? Math.pow(2, -24) - Math.pow(2, -77) : 0, a = T ? 0 : n - 1, c = T ? 1 : -1, N = _ < 0 || 0 === _ && 1 / _ < 0 ? 1 : 0;
 _ = Math.abs(_);
 if (isNaN(_) || Infinity === _) {
 o = isNaN(_) ? 1 : 0;
-i = r;
+i = s;
 } else {
 i = Math.floor(Math.log(_) / Math.LN2);
 if (_ * (E = Math.pow(2, -i)) < 1) {
 i--;
 E *= 2;
 }
-if ((_ += i + s >= 1 ? I / E : I * Math.pow(2, 1 - s)) * E >= 2) {
+if ((_ += i + r >= 1 ? I / E : I * Math.pow(2, 1 - r)) * E >= 2) {
 i++;
 E /= 2;
 }
-if (i + s >= r) {
+if (i + r >= s) {
 o = 0;
-i = r;
-} else if (i + s >= 1) {
+i = s;
+} else if (i + r >= 1) {
 o = (_ * E - 1) * Math.pow(2, S);
-i += s;
+i += r;
 } else {
-o = _ * Math.pow(2, s - 1) * Math.pow(2, S);
+o = _ * Math.pow(2, r - 1) * Math.pow(2, S);
 i = 0;
 }
 }
@@ -3130,9 +3133,13 @@ if (_.length > 0) {
 Global.Ghotupdateurl = _;
 e.goCheckUpdate(_);
 t.bClose();
-} else console.log("请输入自定义的热更新地址");
+} else {
+console.log("请输入自定义的热更新地址");
+t.bClose();
+Global.ShowAlert("请输入正确自定义的热更新地址", [], function() {});
+}
 }); else if (2 == _) {
-Global.Ghotupdateurl = "http://192.168.65.151/hotUpVersion/configdebug";
+Global.Ghotupdateurl = "http://192.168.65.151/hotupversion/configdebug";
 e.goCheckUpdate(Global.Ghotupdateurl);
 t.bClose();
 }
@@ -3142,9 +3149,7 @@ e.goCheckUpdate(Global.Ghotupdateurl);
 Global.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0);
 } else {
 t.getH5ScriptVersion();
-Global.gSchduleOnce(this, function() {
-e.goLoginScene();
-}, .1);
+this.goLoginScene();
 }
 },
 goCheckUpdate: function(e) {
@@ -3171,7 +3176,9 @@ goTestScene: function() {
 cc.director.loadScene("TestScene");
 },
 goLoginScene: function() {
+Global.gSchduleOnce(this, function() {
 cc.director.loadScene("LoginScene");
+}, 1.5);
 }
 });
 cc._RF.pop();
@@ -4014,29 +4021,29 @@ EventManager.dispatchEvent(e.node, RefreshInfo, {
 name: "Lee123"
 });
 });
-var r = cc.find("uipanel/loadTex", this.node);
+var s = cc.find("uipanel/loadTex", this.node);
 Global.GloadPic("http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96", function(e) {
-e && (r.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
+e && (s.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
 });
-var s = null, I = cc.find("uipanel/btn_Speech", this.node);
+var r = null, I = cc.find("uipanel/btn_Speech", this.node);
 I.on(cc.Node.EventType.TOUCH_START, function() {
-s = Date.now();
+r = Date.now();
 cc.log("开始录音");
 e.SpeechFile = Date.now() + ".amr";
 t.prepare(e.SpeechFile);
 }, this);
 I.on(cc.Node.EventType.TOUCH_END, function() {
 cc.log("结束录音");
-if (Date.now() - s < 1e3) {
+if (Date.now() - r < 1e3) {
 t.cancel();
 cc.log("时间小于一秒");
 Global.ShowAlert("时间小于一秒", [ "Yes" ], function() {});
-} else if (Date.now() - s > 8e3) {
+} else if (Date.now() - r > 8e3) {
 t.cancel();
 Global.ShowAlert("录音时间大于8s", [ "Yes" ], function() {});
-} else if (null != s) {
+} else if (null != r) {
 t.release();
-var _ = Date.now() - s;
+var _ = Date.now() - r;
 console.log("record time。。。。。  " + _);
 var T = t.getVoiceData(e.SpeechFile);
 console.log("sound data。。。。。  " + T);
@@ -4135,8 +4142,8 @@ _.angle = -T;
 l.lineTo(t.x, t.y);
 l.stroke();
 });
-var D = cc.view.getVisibleSize(), u = cc.v2(-D.width / 2, D.height / 2), p = cc.v2(D.width / 2, -D.height / 2), f = Global.GgetTwoV2Angle(u, p);
-cc.find("uipanel/New Sprite", this.node).angle = -f;
+var D = cc.view.getVisibleSize(), u = cc.v2(-D.width / 2, D.height / 2), f = cc.v2(D.width / 2, -D.height / 2), p = Global.GgetTwoV2Angle(u, f);
+cc.find("uipanel/New Sprite", this.node).angle = -p;
 var M = cc.view.getVisibleSize();
 (h = h.getComponent(cc.Graphics)).moveTo(-M.width / 2, M.height / 2);
 h.quadraticCurveTo(0, 0, M.width / 2, M.height / 2);
@@ -4247,15 +4254,15 @@ md5: o,
 fileSize: E
 };
 }
-for (var r in S) {
-var s = S[r], I = s.md5;
-E = s.fileSize;
-T[r] ? I != T[r].md5 && t.push({
-fileName: r,
+for (var s in S) {
+var r = S[s], I = r.md5;
+E = r.fileSize;
+T[s] ? I != T[s].md5 && t.push({
+fileName: s,
 md5: I,
 fileSize: E
 }) : t.push({
-fileName: r,
+fileName: s,
 md5: I,
 fileSize: E
 });
@@ -4271,15 +4278,15 @@ if (0 != e.length) {
 var _ = this, t = e;
 _.DownIndex = 0;
 (function e(T) {
-var i = _.BaseUrl, o = t[T].fileName, E = t[T].fileSize, R = i + o, r = S + o, s = n + o, I = S + Global.GgetDirByUrl(o), a = n + Global.GgetDirByUrl(o);
+var i = _.BaseUrl, o = t[T].fileName, E = t[T].fileSize, R = i + o, s = S + o, r = n + o, I = S + Global.GgetDirByUrl(o), a = n + Global.GgetDirByUrl(o);
 Global.GcreateDir(I);
 Global.GcreateDir(a);
-t[T].tempfile = r;
-t[T].realfile = s;
+t[T].tempfile = s;
+t[T].realfile = r;
 cc.log("下载=====", R);
 Global.GDownFile(R, function(T) {
 if (T) {
-Global.GwriteDataToFile(T, r);
+Global.GwriteDataToFile(T, s);
 _.downedSize = _.downedSize + E;
 if (_.DownIndex < t.length - 1) {
 _.DownIndex = _.DownIndex + 1;
@@ -4382,12 +4389,12 @@ var e = this;
 t.sendHttpRequest(this.remoteCfg, function(_) {
 if (null != _) if (Global.isjson(_)) {
 e.remoteCfg = JSON.parse(_);
-var t = e.localCfg.scriptVersion, S = e.remoteCfg.scriptVersion, n = e.remoteCfg.debugScriptVersion, i = e.remoteCfg.supportBinarys, o = e.remoteCfg.forcedBinaryVersions, E = e.remoteCfg.channels, R = e.remoteCfg.debugUIDs, r = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], s = cc.sys.localStorage.getItem("debugId");
-if (Global.GIsArrContain(E, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(i, T.getAppVersion())) if (Global.GIsArrContain(o, T.getAppVersion())) e.callFunWithState(8, "强制更新", r); else {
+var t = e.localCfg.scriptVersion, S = e.remoteCfg.scriptVersion, n = e.remoteCfg.debugScriptVersion, i = e.remoteCfg.supportBinarys, o = e.remoteCfg.forcedBinaryVersions, E = e.remoteCfg.channels, R = e.remoteCfg.debugUIDs, s = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], r = cc.sys.localStorage.getItem("debugId");
+if (Global.GIsArrContain(E, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(i, T.getAppVersion())) if (Global.GIsArrContain(o, T.getAppVersion())) e.callFunWithState(8, "强制更新", s); else {
 console.log("本地脚本号==" + t);
 console.log("远程debug版本号==" + n);
 console.log("远程版本号==" + S);
-if (Global.GIsArrContain(R, s)) {
+if (Global.GIsArrContain(R, r)) {
 if (parseInt(t) != parseInt(n)) {
 console.log("走测试玩家----热更新");
 var I = e.remoteCfg.debugBaseUrl, a = (I = cc.js.formatStr(I, n)) + e.remoteCfg.debugConfigFile;
@@ -4430,7 +4437,7 @@ E = R >= T ? S(R) : String.fromCharCode(R);
 n[o] = E;
 i[E] = o;
 }
-function r(e) {
+function s(e) {
 var _ = "", t = e.length;
 cc.log("encode, len=" + t + ", data=" + e);
 var T = t >> 16 & 255, S = t >> 8 & 255, i = 255 & t;
@@ -4441,7 +4448,7 @@ _ += n[i];
 for (var o = 0; o < e.length; ++o) _ += n[e[o]];
 return _;
 }
-var s = "com/casino/game/VoiceRecorder", I = cc.Class({
+var r = "com/casino/game/VoiceRecorder", I = cc.Class({
 extends: cc.Component,
 properties: {
 _voiceMediaPath: null
@@ -4457,19 +4464,19 @@ prepare: function(e) {
 if (cc.sys.isNative) {
 cc.audioEngine.pauseAll();
 this.clearCache(e);
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(s, "prepare", "(Ljava/lang/String;)V", e) : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "prepareRecord:", e));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(r, "prepare", "(Ljava/lang/String;)V", e) : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "prepareRecord:", e));
 }
 },
 release: function() {
 if (cc.sys.isNative) {
 cc.audioEngine.resumeAll();
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(s, "release", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "finishRecord"));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(r, "release", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "finishRecord"));
 }
 },
 cancel: function() {
 if (cc.sys.isNative) {
 cc.audioEngine.resumeAll();
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(s, "cancel", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "cancelRecord"));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(r, "cancel", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "cancelRecord"));
 }
 },
 writeVoice: function(e, _) {
@@ -4505,10 +4512,10 @@ if (t) return t;
 return null;
 },
 getDataString: function(e) {
-return r(e);
+return s(e);
 },
 setStorageDir: function(e) {
-if (cc.sys.isNative) if (cc.sys.os == cc.sys.OS_ANDROID) jsb.reflection.callStaticMethod(s, "setStorageDir", "(Ljava/lang/String;)V", e); else if (cc.sys.os == cc.sys.OS_IOS) {
+if (cc.sys.isNative) if (cc.sys.os == cc.sys.OS_ANDROID) jsb.reflection.callStaticMethod(r, "setStorageDir", "(Ljava/lang/String;)V", e); else if (cc.sys.os == cc.sys.OS_IOS) {
 jsb.reflection.callStaticMethod("VoiceSDK", "setStorageDir:", e);
 jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDirectory(e);
 }
@@ -6115,20 +6122,20 @@ return S;
 var o = /^\s+|\s+$/g;
 function E(e, t, S) {
 var n, i;
-return null != S && e ? (i = (n = e.split(T))[r(t, S)] || n[0], _.call(i, o, "")) : e;
+return null != S && e ? (i = (n = e.split(T))[s(t, S)] || n[0], _.call(i, o, "")) : e;
 }
 function R(e) {
 var _ = i(n);
 return _[e] || _.en;
 }
-function r(e, _) {
+function s(e, _) {
 return S[R(e)](_);
 }
-var s = /\$/g, I = "$$$$";
+var r = /\$/g, I = "$$$$";
 function a(e, t) {
 for (var T in t) if ("_" !== T && t.hasOwnProperty(T)) {
 var S = t[T];
-"string" == typeof S && (S = _.call(t[T], s, I));
+"string" == typeof S && (S = _.call(t[T], r, I));
 e = _.call(e, new RegExp("%\\{" + T + "\\}", "g"), S);
 }
 return e;
@@ -6916,35 +6923,35 @@ e = _;
 return e;
 }
 function E(e, _) {
-var t, S, n, o, E, R, r = e.length, s = r - 1;
-S = e[s];
+var t, S, n, o, E, R, s = e.length, r = s - 1;
+S = e[r];
 n = 0;
-for (R = 0 | Math.floor(6 + 52 / r); R > 0; --R) {
+for (R = 0 | Math.floor(6 + 52 / s); R > 0; --R) {
 o = (n += T) >>> 2 & 3;
-for (E = 0; E < s; ++E) {
+for (E = 0; E < r; ++E) {
 t = e[E + 1];
 S = e[E] += i(n, t, S, E, o, _);
 }
 t = e[0];
-S = e[s] += i(n, t, S, E, o, _);
+S = e[r] += i(n, t, S, E, o, _);
 }
 return e;
 }
 function R(e, _) {
-var t, S, n, o, E, R = e.length, r = R - 1;
+var t, S, n, o, E, R = e.length, s = R - 1;
 t = e[0];
 for (n = Math.floor(6 + 52 / R) * T; 0 !== n; n -= T) {
 o = n >>> 2 & 3;
-for (E = r; E > 0; --E) {
+for (E = s; E > 0; --E) {
 S = e[E - 1];
 t = e[E] -= i(n, t, S, E, o, _);
 }
-S = e[r];
+S = e[s];
 t = e[0] -= i(n, t, S, E, o, _);
 }
 return e;
 }
-function r(e) {
+function s(e) {
 for (var _ = e.length, t = new Uint8Array(3 * _), T = 0, S = 0; S < _; S++) {
 var n = e.charCodeAt(S);
 if (n < 128) t[T++] = n; else if (n < 2048) {
@@ -6973,7 +6980,7 @@ t[T++] = 128 | 63 & n;
 }
 return t.subarray(0, T);
 }
-function s(e, _) {
+function r(e, _) {
 for (var t = new Uint16Array(_), T = 0, S = 0, n = e.length; T < _ && S < n; T++) {
 var i = e[S++];
 switch (i >> 4) {
@@ -7063,21 +7070,21 @@ return t.join("");
 }
 function a(e) {
 var _ = e.length;
-return 0 === _ ? "" : _ < 32767 ? s(e, _) : I(e, _);
+return 0 === _ ? "" : _ < 32767 ? r(e, _) : I(e, _);
 }
 function c(e, _) {
-"string" == typeof e && (e = r(e));
-"string" == typeof _ && (_ = r(_));
+"string" == typeof e && (e = s(e));
+"string" == typeof _ && (_ = s(_));
 return null == e || 0 === e.length ? e : S(E(n(e, !0), n(o(_), !1)), !1);
 }
 function N(e, _) {
 "string" == typeof e && (e = new t(e, "base64"));
-"string" == typeof _ && (_ = r(_));
+"string" == typeof _ && (_ = s(_));
 return null == e || 0 === e.length ? e : S(R(n(e, !1), n(o(_), !1)), !0);
 }
 _.exports = Object.create(null, {
 toBytes: {
-value: r
+value: s
 },
 toString: {
 value: a

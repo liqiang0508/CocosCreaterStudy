@@ -314,8 +314,15 @@ var Global = {
 
         cc.game.restart()
     },
+    //退出游戏
+    gExitGame:function(){
+        if(cc.sys.isNative)
+        {
+            cc.game.end()
+        }
+    },
     Ghotupdateurl: "xxx", // 热更新地址
-    GgameType: 1  // 1正式包 3debug 
+    GgameType:1  // 1正式包 3debug 注意1前面不要有空格
 
 }
 
