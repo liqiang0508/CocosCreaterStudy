@@ -329,14 +329,14 @@ var Global = {
         }
     },
     //显示loadinglayer进度
-    gShowLoading:function(progressCall,endcall){
+    gShowLoading:function(todoCall,endcall){
 
         this.gLoadPrefabRes("prefabs/loadinglayer",  (_node)=> {
             if (_node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(_node)
                 var LoadingLayer = _node.getComponent("LoadingLayer")
                 if (LoadingLayer) {
-                    LoadingLayer.setCallFun(progressCall, endcall)
+                    LoadingLayer.setCallFun(todoCall, endcall)
                 }
             }
         })
