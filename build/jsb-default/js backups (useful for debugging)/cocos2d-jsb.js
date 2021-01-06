@@ -31760,16 +31760,16 @@ return e.join("");
 232: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
-i.default = L;
+i.default = V;
 i.unpackJSONs = function(t, e) {
-if (t[0] < 1) throw new Error(cc.debug.getError(5304, t[0]));
-D(t, !0, e);
-P(t);
-for (var i = new V(t[0]), n = t[1], r = t[2], s = t[3], o = t[4], a = t[v], c = 0; c < a.length; ++c) a[c].unshift(i, n, r, s, o);
+if (t[0] < f) throw new Error(cc.debug.getError(5304, t[0]));
+P(t, !0, e);
+R(t);
+for (var i = new O(t[0]), n = t[1], r = t[2], s = t[3], o = t[4], a = t[g], c = 0; c < a.length; ++c) a[c].unshift(i, n, r, s, o);
 return a;
 };
 i.packCustomObjData = function(t, e) {
-return [ 1, f, f, [ t ], f, [ e ], [ 0 ], f, [], [], [] ];
+return [ f, d, d, [ t ], d, [ e ], [ 0 ], d, [], [], [] ];
 };
 i.hasNativeDep = function(t) {
 var e = t[5], i = e[e.length - 1];
@@ -31787,21 +31787,21 @@ return t && t.__esModule ? t : {
 default: t
 };
 }
-var f = 0, d = [ r.default, s.default, o.default, h.default, a.default, c.default, l.default, u.default ];
-function p(t, e) {
+var f = 1, d = 0, p = [ r.default, s.default, o.default, h.default, a.default, c.default, l.default, u.default ];
+function m(t, e) {
 t.x = e[1];
 t.y = e[2];
 t.z = e[3];
 t.w = e[4];
 }
-var m = [ function(t, e) {
+var y = [ function(t, e) {
 t.x = e[1];
 t.y = e[2];
 }, function(t, e) {
 t.x = e[1];
 t.y = e[2];
 t.z = e[3];
-}, p, p, function(t, e) {
+}, m, m, function(t, e) {
 t._val = e[1];
 }, function(t, e) {
 t.width = e[1];
@@ -31813,7 +31813,7 @@ t.width = e[3];
 t.height = e[4];
 }, function(t, e) {
 u.default.fromArray(t, e, 1);
-} ], y = 0, v = 5, g = (function() {
+} ], v = 0, g = 5, x = (function() {
 function t() {
 this.uuidObjList = null;
 this.uuidPropList = null;
@@ -31837,13 +31837,13 @@ this.uuidList.push(i);
 };
 return t;
 })();
-g.pool = new n.default.Pool(function(t) {
+x.pool = new n.default.Pool(function(t) {
 t.reset();
 }, 5);
-g.pool.get = function() {
-return this._get() || new g();
+x.pool.get = function() {
+return this._get() || new x();
 };
-function x(t, e, i) {
+function C(t, e, i) {
 for (var n = t.length - 1, r = 0, s = 3 * t[n]; r < s; r += 3) {
 var o = t[r], a = e[t[r + 2]], c = t[r + 1];
 c >= 0 ? o[i[c]] = a : o[~c] = a;
@@ -31853,127 +31853,127 @@ var l = e[t[r]], h = e[t[r + 2]], u = t[r + 1];
 u >= 0 ? l[i[u]] = h : l[~u] = h;
 }
 }
-function C(t, e) {
+function A(t, e) {
 for (var i = t[4][e[0]], n = i[0], r = new (0, n[0])(), s = n[1], o = n[2], a = i[i.length - 1], c = 1; c < a; ++c) r[s[i[c]]] = e[c];
 for (;c < e.length; ++c) {
 var l = s[i[c]], h = n[i[c] + o];
-(0, E[h])(t, r, l, e[c]);
+(0, B[h])(t, r, l, e[c]);
 }
 return r;
 }
-function A(t, e, i) {
+function b(t, e, i) {
 var r = new e();
 r._deserialize ? r._deserialize(i, t[0]) : cc.errorID(5303, n.default.getClassName(e));
 return r;
 }
-function b(t, e, i, n) {
+function S(t, e, i, n) {
 n >= 0 ? e[i] = t[5][n] : t[7][3 * ~n] = e;
 }
-function S(t) {
+function T(t) {
 return function(e, i, n, r) {
 i[n] = r;
 for (var s = 0; s < r.length; ++s) t(e, r, s, r[s]);
 };
 }
-function T(t, e, i, n) {
+function w(t, e, i, n) {
 e[i] = null;
 t[8][n] = e;
 }
-function w(t, e, i, n) {
-e[i] = C(t, n);
+function E(t, e, i, n) {
+e[i] = A(t, n);
 }
-var E = new Array(13);
-E[0] = function(t, e, i, n) {
+var B = new Array(13);
+B[0] = function(t, e, i, n) {
 e[i] = n;
 };
-E[1] = b;
-E[2] = S(b);
-E[3] = S(T);
-E[4] = w;
-E[5] = function(t, e, i, n) {
-m[n[0]](e[i], n);
+B[1] = S;
+B[2] = T(S);
+B[3] = T(w);
+B[4] = E;
+B[5] = function(t, e, i, n) {
+y[n[0]](e[i], n);
 };
-E[6] = T;
-E[7] = function(t, e, i, n) {
+B[6] = w;
+B[7] = function(t, e, i, n) {
 e[i].set(n);
 };
-E[8] = function(t, e, i, n) {
-var r = new d[n[0]]();
-m[n[0]](r, n);
+B[8] = function(t, e, i, n) {
+var r = new p[n[0]]();
+y[n[0]](r, n);
 e[i] = r;
 };
-E[9] = S(w);
-E[10] = function(t, e, i, n) {
+B[9] = T(E);
+B[10] = function(t, e, i, n) {
 var r = t[3][n[0]];
-e[i] = A(t, r, n[1]);
+e[i] = b(t, r, n[1]);
 };
-E[11] = function(t, e, i, n) {
+B[11] = function(t, e, i, n) {
 var r = n[0];
 e[i] = r;
 for (var s = 1; s < n.length; s += 3) {
 var o = n[s], a = n[s + 1], c = n[s + 2];
-(0, E[a])(t, r, o, c);
+(0, B[a])(t, r, o, c);
 }
 };
-E[12] = function(t, e, i, n) {
+B[12] = function(t, e, i, n) {
 var r = n[0];
 e[i] = r;
 for (var s = 0; s < r.length; ++s) {
 var o = r[s], a = n[s + 1];
-0 !== a && (0, E[a])(t, r, s, o);
+0 !== a && (0, B[a])(t, r, s, o);
 }
 };
-function B(t) {
-var e = t[5], i = t[6], n = 0 === i ? 0 : i.length, r = e[e.length - 1], s = e.length - n;
+function M(t) {
+var e = t[5], i = t[6], n = i === d ? 0 : i.length, r = e[e.length - 1], s = e.length - n;
 if ("number" != typeof r) r = 0; else {
 r < 0 && (r = ~r);
 --s;
 }
-for (var o = 0; o < s; ++o) e[o] = C(t, e[o]);
+for (var o = 0; o < s; ++o) e[o] = A(t, e[o]);
 for (var a = t[3], c = 0; c < n; ++c, ++o) {
 var l = i[c], h = e[o];
 if (l >= 0) {
 var u = a[l];
-e[o] = A(t, u, h);
-} else (0, E[l = ~l])(t, e, o, h);
+e[o] = b(t, u, h);
+} else (0, B[l = ~l])(t, e, o, h);
 }
 return r;
 }
-function M(t, e) {
-t || L.reportMissingClass(e);
+function I(t, e) {
+t || V.reportMissingClass(e);
 return Object;
 }
-function I(t, e, i, n, r, s) {
+function D(t, e, i, n, r, s) {
 var o = t(e);
 if (!o) {
 if (r) {
 i[n] = (function(e, i, n) {
 return function() {
-var r = t(n) || M(s, n);
+var r = t(n) || I(s, n);
 e[i] = r;
 return new r();
 };
 })(i, n, e);
 return;
 }
-o = M(s, e);
+o = I(s, e);
 }
 i[n] = o;
 }
-function D(t, e, i) {
+function P(t, e, i) {
 for (var r = i || n.default._getClassById, s = t[3], o = 0; o < s.length; ++o) {
 var a = s[o];
-"string" != typeof a ? I(r, a[0], a, y, e, i) : I(r, a, s, o, e, i);
+"string" != typeof a ? D(r, a[0], a, v, e, i) : D(r, a, s, o, e, i);
 }
 }
-function P(t) {
+function R(t) {
 var e = t[4];
 if (e) for (var i = t[3], n = 0; n < e.length; ++n) {
 var r = e[n];
 r[0] = i[r[0]];
 }
 }
-function R(t) {
+function L(t) {
 for (var e = t[5], i = t[2], n = t[1], r = t[8], s = t[9], o = t[10], a = 0; a < r.length; ++a) {
 var c = r[a];
 "number" == typeof c && (r[a] = e[c]);
@@ -31986,34 +31986,34 @@ var h = o[a];
 "number" == typeof h && (o[a] = n[h]);
 }
 }
-function L(t, e, i) {
+function V(t, e, i) {
 "string" == typeof t && (t = JSON.parse(t));
 var n = !e;
-(e = e || g.pool.get()).init(t);
+(e = e || x.pool.get()).init(t);
 i = i || {};
 var r = t[0], s = !1;
 if ("object" == typeof r) {
 s = r.preprocessed;
 r = r.version;
 }
-if (r < 1) throw new Error(cc.debug.getError(5304, r));
+if (r < f) throw new Error(cc.debug.getError(5304, r));
 i._version = r;
 i.result = e;
 t[0] = i;
 if (!s) {
-D(t, !1, i.classFinder);
-P(t);
+P(t, !1, i.classFinder);
+R(t);
 }
 cc.game._isCloning = !0;
-var o = t[5], a = B(t);
+var o = t[5], a = M(t);
 cc.game._isCloning = !1;
-t[7] && x(t[7], o, t[2]);
-R(t);
-n && g.pool.put(e);
+t[7] && C(t[7], o, t[2]);
+L(t);
+n && x.pool.put(e);
 return o[a];
 }
-L.Details = g;
-var V = function(t) {
+V.Details = x;
+var O = function(t) {
 this.preprocessed = !0;
 this.version = t;
 };
