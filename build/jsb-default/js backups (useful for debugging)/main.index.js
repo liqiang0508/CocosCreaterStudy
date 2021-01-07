@@ -4770,13 +4770,15 @@ Global.gLoadBundle("http://lee.free.vipnps.vip/hotupversion/remote/bundleScene",
 onFileProgress: function(e, _) {
 return console.log("bundle progress==", e, _);
 }
-}, function(_) {
+}, function(_, t) {
 if (_) {
 console.log("Load bundle error");
 return console.error(_);
 }
 console.log("load bundle successfully.------");
-e.updataProgress(100);
+t.loadScene("bundleScene", function(_) {
+_ ? console.log("load bundle scene error") : e.updataProgress(100);
+});
 });
 }, function() {
 cc.director.loadScene("bundleScene");

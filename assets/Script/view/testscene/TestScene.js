@@ -321,17 +321,23 @@ cc.Class({
                 UiManager.gShowLoading((layer) => {
                     layer.updataProgress(30)
                     var bunldeurl = "http://lee.free.vipnps.vip/hotupversion/remote/bundleScene"
-                    Global.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
+                    Global.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) },  (err, bundle)=>{
                         if (err) {
                             console.log("Load bundle error")
                             return console.error(err);
                         }
                         console.log('load bundle successfully.------')
-                        layer.updataProgress(100)
+                        bundle.loadScene('bundleScene', function (err, scene) {
+                            if (err) {
+                                console.log("load bundle scene error")
+                                return
+                            }
+                            layer.updataProgress(100) 
+                        });
+                        
                     })
 
                 }, (layer) => {
-
                     cc.director.loadScene("bundleScene")
                 })
             }
