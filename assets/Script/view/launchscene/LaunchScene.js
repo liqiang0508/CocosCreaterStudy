@@ -188,11 +188,7 @@ cc.Class({
         },2)
 
     },
-    goTestScene() {
 
-        cc.director.loadScene("TestScene")
-
-    },
     goLoginScene() {
 
         Global.gSchduleOnce(this,  ()=> {
@@ -200,13 +196,13 @@ cc.Class({
             UiManager.gShowLoading((layer)=>{
                 layer.updataProgress(30)
                 this.scheduleOnce(()=>{
-                    Global.gPreloadScene("LoginScene",null,()=>{
+                    UiManager.gPreloadScene("LoginScene",null,()=>{
                         layer.updataProgress(100)
                     })
                 },2)
     
             },(layer)=>{
-                cc.director.loadScene("LoginScene")
+                UiManager.gLoadScene("LoginScene")
             })
 
         }, 1.5)

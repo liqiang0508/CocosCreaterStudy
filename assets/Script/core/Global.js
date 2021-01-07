@@ -30,19 +30,7 @@ var Global = {
         cc.director.getScheduler().unschedule(call, component);
     },
 
-    //preloadscene
-    gPreloadScene: function (sceneName, progressCall, endCall) {
-        cc.director.preloadScene(sceneName, function (completedCount, totalCount, item) {
-            var progress = Math.floor(((completedCount / totalCount).toFixed(2)) * 100)
-            if (progressCall) {
-                progressCall(progress)
-            }
-        }, function (error, asset) {
-            if (endCall) {
-                endCall(sceneName, error)
-            }
-        })
-    },
+   
     // 数组是否包含
     GIsArrContain: function (arr, n) {
         for (var i in arr) {

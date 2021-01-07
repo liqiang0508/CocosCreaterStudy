@@ -301,7 +301,7 @@ cc.Class({
 
         var btn_bubble = cc.find("uipanel/btn_bubble", this.node)
         ua.darkButton(btn_bubble, () => {
-            cc.director.loadScene("bubbleScene")
+            UiManager.gLoadScene("bubbleScene")
         })
         //bundle加载测试
         // btn_goslot
@@ -338,7 +338,7 @@ cc.Class({
                     })
 
                 }, (layer) => {
-                    cc.director.loadScene("bundleScene")
+                    UiManager.gLoadScene("bundleScene")
                 })
             }
             // let bundleA = cc.assetManager.getBundle('Testbundle');

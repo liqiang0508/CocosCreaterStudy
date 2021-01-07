@@ -63,39 +63,25 @@ cc.Class({
 
         })
 
+        cc.director.on("test",(event)=>{
+            cc.log("test event",event)
+        })
+
     },
 
     goTestScene() {
-        // cc.director.loadScene("TestScene")
-
-        // var bundle = Global.gGetBundle("gametest")
-        // if (bundle) {
-        //     cc.log("gametest is loaded")
-        // } 
-        // else 
-        // {
-        //     var bunldeurl = "http://192.168.65.151/hotupversion/remote/gametest"
-        //     Global.gLoadBUndle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
-        //         if (err) {
-        //             console.log("Load bundle error")
-        //             return console.error(err);
-        //         }
-        //         console.log('load bundle successfully.', bundle)
-                
-
-        //     })
-        // }
-
+        var param = {"name":"lee"}
+        cc.director.emit("test",param)
         UiManager.gShowLoading((layer)=>{
             layer.updataProgress(30)
             this.scheduleOnce(()=>{
-                Global.gPreloadScene("TestScene",null,()=>{
+                UiManager.gPreloadScene("TestScene",null,()=>{
                     layer.updataProgress(100)
                 })
             },2)
 
         },(layer)=>{
-            cc.director.loadScene("TestScene")
+            UiManager.gLoadScene("TestScene")
             // layer.bClose()
         })
 

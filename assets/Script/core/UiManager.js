@@ -21,7 +21,24 @@ UiManager.gSceneAddNode = function(node){
 
     cc.director.getScene().getChildByName('Canvas').addChild(node)
 }
+//loadscene
+UiManager.gLoadScene = function (sceneName,onLaunchCall = null) {
+    cc.director.loadScene(sceneName,onLaunchCall)
+}
 
+ //preloadscene
+UiManager.gPreloadScene = function (sceneName, progressCall, endCall) {
+    cc.director.preloadScene(sceneName,  (completedCount, totalCount, item)=> {
+        var progress = Math.floor(((completedCount / totalCount).toFixed(2)) * 100)
+        if (progressCall) {
+            progressCall(progress)
+        }
+    },  (error, asset)=>{
+        if (endCall) {
+            endCall(sceneName, error)
+        }
+    })
+},
 // 加载prefab
 UiManager.gLoadPrefabRes = function (filepath, call) {
     cc.resources.load(filepath, function (err, prefab) {
@@ -36,7 +53,7 @@ UiManager.gLoadPrefabRes = function (filepath, call) {
         }
     })
 }
-
+//显示弹框
 UiManager.ShowAlert = function (str, btninfo, call) {
 
     this.gLoadPrefabRes("prefabs/AlertLayer2", function (_node) {
@@ -53,7 +70,7 @@ UiManager.ShowAlert = function (str, btninfo, call) {
         }
     })
 }
-
+//显示输入
 UiManager.ShowTextInput = function (call) {
     this.gLoadPrefabRes("prefabs/textinput", function (_node) {
         if (_node) {
@@ -66,7 +83,7 @@ UiManager.ShowTextInput = function (call) {
     })
 
 }
-
+//热更新选择弹框
 UiManager.ShowChooseUpdate = function (data, call) {
     this.gLoadPrefabRes("prefabs/selectupdate", function (_node) {
         if (_node) {
