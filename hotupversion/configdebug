@@ -30,7 +30,14 @@
     "3",
     "-----------"
   ],
-
+  "subgames":{
+     "baseUrl":"",
+     "games":{
+        "bundleScene":{
+          "version":1
+        }
+     }
+  },
 
   "supportBinarys": [
     "-----------",

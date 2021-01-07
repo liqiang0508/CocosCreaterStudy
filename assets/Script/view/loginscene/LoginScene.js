@@ -9,7 +9,7 @@ var VersionManager = require("VersionManager")
 // var Global = require("Global")
 var DevicesInfo = require("Devices")
 var BaseComponent = require("BaseComponent");
-
+var SubGameManager = require("SubGameManager")
 cc.Class({
     extends: BaseComponent,
 
@@ -66,6 +66,9 @@ cc.Class({
         cc.director.on("test",(event)=>{
             cc.log("test event",event)
         })
+
+        SubGameManager.Hello()
+        SubGameManager.parseCfgFromData(VersionManager.getSubGameCfg())
 
     },
 

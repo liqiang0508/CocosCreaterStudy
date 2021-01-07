@@ -331,6 +331,12 @@ var VersionManager = {
         });
 
     },
+
+    //获取子游戏配置
+    getSubGameCfg:function(){
+
+        return this.remoteCfg["subgames"]
+    },
     //拉取远程配置
     parseRemoteCfg: function () {
         if(cc.sys.isNative==false||this.remoteCfg==null)//不是原生

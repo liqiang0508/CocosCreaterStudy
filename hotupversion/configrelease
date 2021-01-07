@@ -33,7 +33,14 @@
     "3",
     "-----------"
   ],
-
+  "subgames":{
+     "baseUrl":"http://192.168.0.102/hotupversion/remote",
+     "games":{
+        "bundleScene":{
+          "version":1
+        }
+     }
+  },
 
   "supportBinarys": [
     "-----------",

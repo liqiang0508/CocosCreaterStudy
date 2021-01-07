@@ -1,0 +1,35 @@
+{
+    "scriptVersion": 5, 
+    "files": [
+        {
+            "filename": "bundleScene/config.json", 
+            "md5": "0902DB0E17BD03384B4E71EB87E1E845", 
+            "size": 560
+        }, 
+        {
+            "filename": "bundleScene/index.jsc", 
+            "md5": "5198AC196B20D480011FFC9D2D0212EF", 
+            "size": 320
+        }, 
+        {
+            "filename": "bundleScene/import/49/4938707f-e2ae-4f78-8083-a41c78d9a701.json", 
+            "md5": "CAE704AC9691E9184CE8FF32D7432534", 
+            "size": 212
+        }, 
+        {
+            "filename": "bundleScene/import/a2/a2e5d43c-6492-4091-9d04-37349d67053d.json", 
+            "md5": "7871FC157AF8A1F7EBEF099323476B67", 
+            "size": 78
+        }, 
+        {
+            "filename": "bundleScene/import/a5/a5a393fb-3f7c-4314-b005-80d8c17891e3.json", 
+            "md5": "D1FDDB200CF94978C4AB0E63B2F59B2A", 
+            "size": 2696
+        }, 
+        {
+            "filename": "bundleScene/native/a2/a2e5d43c-6492-4091-9d04-37349d67053d.png", 
+            "md5": "E222E7431B8B706417636C88A798CC73", 
+            "size": 299116
+        }
+    ]
+}

@@ -48,19 +48,19 @@ cc.Class({
 
             if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32)// 自带的模拟器不进行热更新   
             {
-                cc.log("模拟器不热更新")
-                VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
-                this.goLoginScene()
-                return
+                // cc.log("模拟器不热更新")
+                // VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
+                // this.goLoginScene()
+                // return
             }
             cc.log("Global.isDebugTest===",Global.isDebugTest)
             if (Global.isDebugTest){//debug选择热更新地址
                 var data = {
                     "tips": "热更新选择",
                     "items": [
-                        { "text": "默认热更新地址" },//lee.free.vipnps.vip
+                        { "text": "默认热更新地址" },//http://lee.free.vipnps.vip/hotupversion/configdebug
                         { "text": "手动输入热更新地址" },
-                        { "text": "公司热更新地址" }
+                        { "text": "公司热更新地址" }//http://192.168.65.151/hotupversion/configdebug
                     ]
                 }
                 UiManager.ShowChooseUpdate(data,  (index,layer)=>{
