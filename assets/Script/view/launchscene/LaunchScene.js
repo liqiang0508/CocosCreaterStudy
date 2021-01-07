@@ -58,7 +58,7 @@ cc.Class({
                 var data = {
                     "tips": "热更新选择",
                     "items": [
-                        { "text": "默认热更新地址" },
+                        { "text": "默认热更新地址" },//lee.free.vipnps.vip
                         { "text": "手动输入热更新地址" },
                         { "text": "公司热更新地址" }
                     ]

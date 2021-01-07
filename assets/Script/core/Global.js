@@ -283,12 +283,12 @@ var Global = {
 // 根据不同包指定不同的热更新地址
 if (Global.GgameType == 1)//正式包
 {
-    Global.Ghotupdateurl = "http://192.168.65.151/hotupversion/configdebug"
+    Global.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configrelease"
     Global.isDebugTest = false
 }
 if (Global.GgameType == 3)//debug包
 {
-    Global.Ghotupdateurl = "http://192.168.0.102/hotupversion/configdebug"
+    Global.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configdebug"
     Global.isDebugTest = true
 }
 

@@ -1820,11 +1820,11 @@ Ghotupdateurl: "xxx",
 GgameType: 3
 };
 if (1 == t.GgameType) {
-t.Ghotupdateurl = "http://192.168.65.151/hotupversion/configdebug";
+t.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configrelease";
 t.isDebugTest = !1;
 }
 if (3 == t.GgameType) {
-t.Ghotupdateurl = "http://192.168.0.102/hotupversion/configdebug";
+t.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configdebug";
 t.isDebugTest = !0;
 }
 window.Global = t;
