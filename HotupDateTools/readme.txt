@@ -21,6 +21,7 @@
 
 
 三 子游戏更新
+配置subgameCfg.json
 {
     "bundleScene": {
         "version": 5, 每个子游戏版本号
@@ -29,8 +30,12 @@
     "Testbundle": {
         "version": 5, 
         "isupdate": false
+    },
+    "xxx":{
+        ....
     }
 }
 
 每个子游戏的资源为一个bundle
-当里面的资源需要修改的时候，修改上面的isupdate为true，运行buildSubGameCfg.py
+当子游戏的资源修改的时候，修改上面的isupdate为true，运行buildSubGameCfg.py
+生成最新的   子游戏名称_版本号  文件夹

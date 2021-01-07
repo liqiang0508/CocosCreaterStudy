@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+
+#打包 子游戏bundle脚本
+
 import os
 import hashlib
 import json
@@ -106,7 +109,7 @@ for gameFolderName in SubGameFilders:
         continue
 
     foderPath =  os.path.join(remotePath,gameFolderName)#文件夹路径
-    if os.path.exists(foderPath):#打包出来的子游戏文件夹不存在 跳过
+    if os.path.exists(foderPath) == False:#打包出来的子游戏文件夹不存在 跳过
         continue
 
     appinfofile = os.path.join(foderPath,"appinfo.json")#每个小游戏对应的appinfo.json文件
@@ -136,18 +139,19 @@ for gameFolderName in SubGameFilders:
 subGameCfg = json.loads(getFileText(subGameCfgPath))
 for gameFolderName in SubGameFilders:
     src_folder = gameFolderName+"_"+str(subGameCfg[gameFolderName]["version"])
-    
-    print isupdate,gameFolderName
-    if isupdate == True:
-
+    isupdate = subGameCfg[gameFolderName]["isupdate"]#是否下载
+   
+    if isupdate == True:#子游戏需要更新
         os.chdir("../hotupversion/remote")
-        ziputils.ZipInit(src_folder +".zip")
-        ziputils.AddFile(src_folder)
-        ziputils.ZipEnd()
+        if os.path.exists(src_folder):#文件夹存在
+            ziputils.ZipInit(src_folder +".zip")
+            ziputils.AddFile(src_folder)
+            ziputils.ZipEnd()
+            print("ZIP=============>",gameFolderName)
         os.chdir("../../HotupDateTools")
 
 print("buildSubGameCfg ============================end")
 
-
-os.system("start " +"../hotupversion/remote")
+# print os.getcwd()
+os.system("start " +"..\\hotupversion\\remote")
 os.system("pause")
