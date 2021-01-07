@@ -98,17 +98,21 @@ def writeFileText(filepath,text):
 
 remotePath = "../build/jsb-default/remote"
 subGameCfgPath  = projectConfig.subGameCfg_Path#子游戏配置文件
-subGameCfg = json.loads(getFileText(subGameCfgPath))
+subGameCfg = json.loads(getFileText(subGameCfgPath))#子游戏配置数据
 # print subGameCfg
-SubGameFilders = os.listdir(remotePath)#子游戏文件夹
+SubGameFilders = os.listdir(remotePath)#编译出来的子游戏bundle文件夹
 
-for gameFolderName in SubGameFilders:
+for gameFolderName in SubGameFilders:#遍历
+
+    if  subGameCfg.has_key(gameFolderName) == False:#编译后的bundle文件夹不在subgameCfg.json中 跳过
+        print(gameFolderName+"not in subgameCfg file!!!!")
+        continue
 
     isupdate = subGameCfg[gameFolderName]["isupdate"]#是否更新
     if isupdate == False:#不更新的游戏 跳过
         continue
 
-    foderPath =  os.path.join(remotePath,gameFolderName)#文件夹路径
+    foderPath =  os.path.join(remotePath,gameFolderName)#当前bundle文件夹路径
     if os.path.exists(foderPath) == False:#打包出来的子游戏文件夹不存在 跳过
         continue
 
@@ -118,6 +122,7 @@ for gameFolderName in SubGameFilders:
     if os.path.exists(appinfofile):#每次都把 appinfo.json删除
         os.remove(appinfofile)
 
+    #生成md5配置文件
     CfgFile =  OrderedDict()
     subGameCfg[gameFolderName]["version"] = int(subGameCfg[gameFolderName]["version"])+1
     CfgFile["scriptVersion"] = subGameCfg[gameFolderName]["version"]
@@ -126,8 +131,8 @@ for gameFolderName in SubGameFilders:
 
 
     
-    writeFileText(appinfofile,json.dumps(CfgFile,indent=4))#写入每个游戏的配置文件
-    writeFileText(subGameCfgPath,json.dumps(subGameCfg,indent=4))#更新本地的小游戏配置文件 因为版本号加1
+    writeFileText(appinfofile,json.dumps(CfgFile,indent=4))#写入每个游戏的配置文件appinfo.json
+    writeFileText(subGameCfgPath,json.dumps(subGameCfg,indent=4))#更新本地的subgame.json小游戏配置文件 因为版本号加1
 
     src_folder = gameFolderName+"_"+str(subGameCfg[gameFolderName]["version"])# 生成xx_2 加上版本号的文件夹
     targetPath = os.path.join("../hotupversion/remote",src_folder)
@@ -135,9 +140,12 @@ for gameFolderName in SubGameFilders:
     print ("end  ---------------------",gameFolderName)
 
 
-#zip 文件
+#zip 文件夹
 subGameCfg = json.loads(getFileText(subGameCfgPath))
 for gameFolderName in SubGameFilders:
+    if  subGameCfg.has_key(gameFolderName) == False:#编译后的bundle文件夹不在subgameCfg.json中 跳过
+        continue
+
     src_folder = gameFolderName+"_"+str(subGameCfg[gameFolderName]["version"])
     isupdate = subGameCfg[gameFolderName]["isupdate"]#是否下载
    
