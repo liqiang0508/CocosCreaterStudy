@@ -1,0 +1,1 @@
+{"paths":{"0":["res/eightBall_Background_Main",0,1],"1":["res/eightBall_Background_Main",1]},"types":["cc.SpriteFrame","cc.Texture2D"],"uuids":["49OHB/4q5PeICDpBx42acB","a25dQ8ZJJAkZ0ENzSdZwU9"],"scenes":{},"redirect":[0,0,1,0],"deps":["main"],"packs":null,"name":"bundleScene","importBase":"import","nativeBase":"native","debug":false,"isZip":false,"encrypted":true}

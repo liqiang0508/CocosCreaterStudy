@@ -309,44 +309,70 @@ cc.Class({
 
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
         ua.darkButton(btn_loadbundle, function () {
-            let bundleA = cc.assetManager.getBundle('Testbundle');
 
-            if (bundleA) {
-                console.log('have already loaded bundle.')
-                var obj = window.SayHello //直接使用window对象或者component
-                if (obj) {
-                    obj.Say()
-                }
-                bundleA.loadScene('bundlescene', function (err, scene) {
-                    if (err) {
-                        console.log("load bundle scene error")
-                        return
-                    }
-                    cc.director.runScene(scene);
-                });
-            }
-            else {
-                Global.gLoadBUndle('http://192.168.65.172/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
-                    if (err) {
-                        console.log("Load bundle error")
-                        return console.error(err);
-                    }
-                    console.log('load bundle successfully.', bundle)
-                    var obj = window.SayHello //直接使用window对象或者component
-                    if (obj) {
-                        obj.Say()
-                    }
+            var bundle = Global.gGetBundle("bundleScene")
+            if (bundle) {
+                cc.log("bundleScene is loaded")
+            } 
+            else 
+            {
+                
 
-                    bundle.loadScene('bundlescene', function (err, scene) {
+                UiManager.gShowLoading((layer) => {
+                    layer.updataProgress(30)
+                    var bunldeurl = "http://lee.free.vipnps.vip/hotupversion/remote/bundleScene"
+                    Global.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
                         if (err) {
-                            console.log("load bundle scene error")
-                            return
+                            console.log("Load bundle error")
+                            return console.error(err);
                         }
-                        cc.director.runScene(scene);
-                    });
-                })
+                        console.log('load bundle successfully.------')
+                        layer.updataProgress(100)
+                    })
 
+                }, (layer) => {
+
+                    cc.director.loadScene("bundleScene")
+                })
             }
+            // let bundleA = cc.assetManager.getBundle('Testbundle');
+
+            // if (bundleA) {
+            //     console.log('have already loaded bundle.')
+            //     var obj = window.SayHello //直接使用window对象或者component
+            //     if (obj) {
+            //         obj.Say()
+            //     }
+            //     bundleA.loadScene('bundlescene', function (err, scene) {
+            //         if (err) {
+            //             console.log("load bundle scene error")
+            //             return
+            //         }
+            //         cc.director.runScene(scene);
+            //     });
+            // }
+            // else {
+            //     Global.gLoadBUndle('http://192.168.65.172/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
+            //         if (err) {
+            //             console.log("Load bundle error")
+            //             return console.error(err);
+            //         }
+            //         console.log('load bundle successfully.', bundle)
+            //         var obj = window.SayHello //直接使用window对象或者component
+            //         if (obj) {
+            //             obj.Say()
+            //         }
+
+            //         bundle.loadScene('bundlescene', function (err, scene) {
+            //             if (err) {
+            //                 console.log("load bundle scene error")
+            //                 return
+            //             }
+            //             cc.director.runScene(scene);
+            //         });
+            //     })
+
+            // }
 
         })
 

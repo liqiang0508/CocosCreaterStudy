@@ -1802,10 +1802,17 @@ console.log(e);
 return !1;
 }
 },
-gLoadBUndle: function(e, _, t) {
+gLoadBundle: function(e, _, t) {
 cc.assetManager.loadBundle(e, _, function(e, _) {
 t && t(e, _);
 });
+},
+gReleaseBundle: function(e) {
+var _ = this.gGetBundle(e);
+if (_) {
+_.releaseAll();
+cc.assetManager.removeBundle(_);
+}
 },
 gGetBundle: function(e) {
 return cc.assetManager.getBundle(e);
@@ -3691,7 +3698,12 @@ cc.log("渠道号===", window.DISTRIBUTE_CHANNEL);
 cc.sys.localStorage.setItem("debugId", 724001);
 this.count = 0;
 if (cc && cc.sys.isNative) {
-window.DISTRIBUTE_CHANNEL, window.chanel.WIN32;
+if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32) {
+cc.log("模拟器不热更新");
+t.parseLocalCfg();
+this.goLoginScene();
+return;
+}
 cc.log("Global.isDebugTest===", Global.isDebugTest);
 Global.isDebugTest ? UiManager.ShowChooseUpdate({
 tips: "热更新选择",
@@ -4752,29 +4764,22 @@ cc.director.loadScene("bubbleScene");
 });
 var O = cc.find("uipanel/btn_loadbundle", this.node);
 ua.darkButton(O, function() {
-var e = cc.assetManager.getBundle("Testbundle");
-if (e) {
-console.log("have already loaded bundle.");
-var _ = window.SayHello;
-_ && _.Say();
-e.loadScene("bundlescene", function(e, _) {
-e ? console.log("load bundle scene error") : cc.director.runScene(_);
-});
-} else Global.gLoadBUndle("http://192.168.65.172/hotupversion/remote/Testbundle", {
+Global.gGetBundle("bundleScene") ? cc.log("bundleScene is loaded") : UiManager.gShowLoading(function(e) {
+e.updataProgress(30);
+Global.gLoadBundle("http://lee.free.vipnps.vip/hotupversion/remote/bundleScene", {
 onFileProgress: function(e, _) {
 return console.log("bundle progress==", e, _);
 }
-}, function(e, _) {
-if (e) {
+}, function(_) {
+if (_) {
 console.log("Load bundle error");
-return console.error(e);
+return console.error(_);
 }
-console.log("load bundle successfully.", _);
-var t = window.SayHello;
-t && t.Say();
-_.loadScene("bundlescene", function(e, _) {
-e ? console.log("load bundle scene error") : cc.director.runScene(_);
+console.log("load bundle successfully.------");
+e.updataProgress(100);
 });
+}, function() {
+cc.director.loadScene("bundleScene");
 });
 });
 var d = cc.find("uipanel/btn_goslot", this.node);
@@ -5353,6 +5358,39 @@ update: function() {}
 });
 cc._RF.pop();
 }, {} ],
+bundleSceneTest: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "aa93eq7R1lJppNkneqno1br", "bundleSceneTest");
+var t = e("BaseComponent");
+cc.Class({
+extends: t,
+properties: {},
+onLoad: function() {
+this._super();
+},
+onDestroy: function() {
+this._super();
+},
+start: function() {
+var e = this, _ = cc.find("uipanel/btn_exit", this.node);
+ua.darkButton(_, function() {
+UiManager.gShowLoading(function(_) {
+_.updataProgress(30);
+e.scheduleOnce(function() {
+_.updataProgress(100);
+}, 2);
+}, function() {
+cc.director.loadScene("TestScene", function() {
+Global.gReleaseBundle("bundleScene");
+});
+});
+});
+}
+});
+cc._RF.pop();
+}, {
+BaseComponent: "BaseComponent"
+} ],
 chooseupdate: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "5a10feVxjlCLr90Fw2jtkf1", "chooseupdate");
@@ -8485,4 +8523,4 @@ STR_MESS_EVALUATION_CONTENT: "因为您对于我们游戏的支持与评价，�
 };
 cc._RF.pop();
 }, {} ]
-}, {}, [ "Bubble", "BubbleScene", "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "LoadingLayer", "Save", "UiManager", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Ws", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "WsTest", "Testts", "LabelLocalized", "ch", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);
+}, {}, [ "Bubble", "BubbleScene", "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "LoadingLayer", "Save", "UiManager", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Ws", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "bundleSceneTest", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "WsTest", "Testts", "LabelLocalized", "ch", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);

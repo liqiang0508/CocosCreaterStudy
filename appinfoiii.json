@@ -1,14 +1,14 @@
 {
-    "scriptVersion": 125, 
+    "scriptVersion": 127, 
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc", 
-            "md5": "CD49B8550518AE05EA49E69FD86AC073", 
-            "size": 395460
+            "md5": "B85C3357A53FA5C5EF1D254662E182C4", 
+            "size": 395496
         }, 
         {
             "filename": "src/settings.jsc", 
-            "md5": "6A13B457A7F25018F619D8D70AFE94A5", 
+            "md5": "10FD71884C558867389D49397D266A75", 
             "size": 284
         }, 
         {
@@ -133,13 +133,13 @@
         }, 
         {
             "filename": "assets/main/config.json", 
-            "md5": "F3E1B352F6E4404289551986C5534A4C", 
-            "size": 1532
+            "md5": "E5F7BC3FE85450BD510C18E110E030FB", 
+            "size": 1647
         }, 
         {
             "filename": "assets/main/index.jsc", 
-            "md5": "0B00A26A06DFDE7428DC6D1D34D3B306", 
-            "size": 83412
+            "md5": "9A8F17C23C7E3A7B7A8D98956D82ED46", 
+            "size": 83536
         }, 
         {
             "filename": "assets/main/import/0e/0e738d4f-4358-45db-9c26-f78c3667c347.json", 
@@ -165,6 +165,11 @@
             "filename": "assets/main/import/43/43536003-f356-4b14-a620-6121ae97d44e.json", 
             "md5": "092710F5EA7CA5EEE89458B7E249E289", 
             "size": 3710
+        }, 
+        {
+            "filename": "assets/main/import/49/4938707f-e2ae-4f78-8083-a41c78d9a701.json", 
+            "md5": "CAE704AC9691E9184CE8FF32D7432534", 
+            "size": 212
         }, 
         {
             "filename": "assets/main/import/58/58fe8245-4714-4141-b689-a4957af08390.json", 
@@ -215,6 +220,16 @@
             "filename": "assets/main/import/98/98e14349-5a77-4ae5-8ba6-7e3bc5f92aea.json", 
             "md5": "142F876D82BECA6298CD2B9C46BA6C42", 
             "size": 191
+        }, 
+        {
+            "filename": "assets/main/import/a2/a2e5d43c-6492-4091-9d04-37349d67053d.json", 
+            "md5": "7871FC157AF8A1F7EBEF099323476B67", 
+            "size": 78
+        }, 
+        {
+            "filename": "assets/main/import/a5/a5a393fb-3f7c-4314-b005-80d8c17891e3.json", 
+            "md5": "D1FDDB200CF94978C4AB0E63B2F59B2A", 
+            "size": 2696
         }, 
         {
             "filename": "assets/main/import/ac/ac78b3ac-1484-4cd5-af9c-53b5f88129fb.json", 
@@ -275,6 +290,11 @@
             "filename": "assets/main/native/7f/7ff66ea4-0a20-4930-bf86-b9fd6696a3d1.png", 
             "md5": "BBA266A722D8C0B4EE77AD17BBC45A12", 
             "size": 553846
+        }, 
+        {
+            "filename": "assets/main/native/a2/a2e5d43c-6492-4091-9d04-37349d67053d.png", 
+            "md5": "E222E7431B8B706417636C88A798CC73", 
+            "size": 299116
         }, 
         {
             "filename": "assets/main/native/e8/e8b84f70-27ad-4749-8d81-9a243a52a65c.png", 

@@ -249,12 +249,22 @@ var Global = {
         }
     },
     //加载bundle
-    gLoadBUndle: function (url, option, complete) {
+    gLoadBundle: function (url, option, complete) {
         cc.assetManager.loadBundle(url, option,  (err, bundle)=>{
             if (complete) {
                 complete(err, bundle)
             }
         })
+    },
+    //释放bundle
+    gReleaseBundle:function(bundleName){
+
+        let bundle = this.gGetBundle(bundleName)
+        if (bundle) {
+            bundle.releaseAll();
+            cc.assetManager.removeBundle(bundle);//释放bundle
+        }
+
     },
     //获取已加载了的bundle
     gGetBundle:function(bundlename)

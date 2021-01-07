@@ -2,7 +2,7 @@
   "ver": "1.1.2",
   "uuid": "f8e53c15-cf3e-4258-b0e5-5b9a4759fdeb",
   "isBundle": true,
-  "bundleName": "gametest",
+  "bundleName": "bundleScene",
   "priority": 1,
   "compressionType": {
     "android": "default"

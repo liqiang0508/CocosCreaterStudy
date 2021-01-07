@@ -1,32 +1,32 @@
-window.__require = function e(n, t, o) {
-function r(c, u) {
-if (!t[c]) {
-if (!n[c]) {
-var a = c.split("/");
+window.__require = function n(e, t, o) {
+function r(u, c) {
+if (!t[u]) {
+if (!e[u]) {
+var a = u.split("/");
 a = a[a.length - 1];
-if (!n[a]) {
+if (!e[a]) {
 var s = "function" == typeof __require && __require;
-if (!u && s) return s(a, !0);
+if (!c && s) return s(a, !0);
 if (i) return i(a, !0);
-throw new Error("Cannot find module '" + c + "'");
+throw new Error("Cannot find module '" + u + "'");
 }
-c = a;
+u = a;
 }
-var l = t[c] = {
+var l = t[u] = {
 exports: {}
 };
-n[c][0].call(l.exports, function(e) {
-return r(n[c][1][e] || e);
-}, l, l.exports, e, n, t, o);
+e[u][0].call(l.exports, function(n) {
+return r(e[u][1][n] || n);
+}, l, l.exports, n, e, t, o);
 }
-return t[c].exports;
+return t[u].exports;
 }
-for (var i = "function" == typeof __require && __require, c = 0; c < o.length; c++) r(o[c]);
+for (var i = "function" == typeof __require && __require, u = 0; u < o.length; u++) r(o[u]);
 return r;
 }({
-Sayhello: [ function(e, n) {
+Sayhello: [ function(n, e) {
 "use strict";
-cc._RF.push(n, "699a2Lmh39MiI9FoGib7Ek3", "Sayhello");
+cc._RF.push(e, "699a2Lmh39MiI9FoGib7Ek3", "Sayhello");
 var t = {
 Say: function() {
 console.log("SayHello=====");
@@ -35,18 +35,16 @@ console.log("SayHello=====");
 window.SayHello = t;
 cc._RF.pop();
 }, {} ],
-bundleScene: [ function(e, n) {
+bundleScene: [ function(n, e) {
 "use strict";
-cc._RF.push(n, "8b80aQyaQZI1LngX975F7G3", "bundleScene");
-var t = e("BaseComponent");
+cc._RF.push(e, "8b80aQyaQZI1LngX975F7G3", "bundleScene");
+var t = n("BaseComponent");
 cc.Class({
 extends: t,
 properties: {},
 start: function() {
 this.btn_back = cc.find("uipanel/btn_back", this.node);
-ua.darkButton(this.btn_back, function() {
-cc.director.loadScene("TestScene");
-});
+ua.darkButton(this.btn_back, function() {});
 },
 onLoad: function() {
 this._super();
