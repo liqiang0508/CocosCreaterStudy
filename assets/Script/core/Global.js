@@ -186,7 +186,19 @@ var Global = {
 
                 }
             }
+            xhr.onerror = function (err) {
+                call(null)
+            };
+            xhr.ontimeout = function () {
+
+                
+                call(null)
+            };
+
+            xhr.open("GET", url, true);
+            xhr.timeout = 5000;
             xhr.send();
+
         }
 
     },

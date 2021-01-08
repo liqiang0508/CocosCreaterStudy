@@ -310,7 +310,7 @@ cc.Class({
 
         
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
-        ua.darkButton(btn_loadbundle, function () {
+        ua.darkButton(btn_loadbundle,  ()=>{
 
             var subGameName = "bundleScene"
             SubGameManager.getSubGameState(subGameName, (state) => {
@@ -320,18 +320,28 @@ cc.Class({
                 // "no_need_update" 在本地，不需要更新
                 if (state == "not_in_app")//下载子游戏
                 {
-                    cc.log("下载子游戏")
+                    cc.log("下载子游戏===")
+                    this.showWiat(true)
                     SubGameManager.downSubGame(subGameName, (progress, DownedSize, TotalSize) => {//下载进度，下载了多少kb ，总下载多少kb
                         cc.log("downSubGame progress===", progress)
     
                     }, (code) => {
-    
+                        this.showWiat(false)
                         cc.log("downSubGame return code == ", code)
                         if(code==0)//下载成功
                         {
                             UiManager.ShowAlert("下载成功", [],  (index)=> {
                                
-            
+                                UiManager.gloadBundleScene(subGameName,(code)=>{
+                                    if(code==0)
+                                    {
+                                        cc.log("gloadBundleScene success")
+                                    }
+                                    else
+                                    {
+                                        cc.log("gloadBundleScene failed=",code)
+                                    }
+                                })
                             })
                         }
                         else//失败
@@ -346,18 +356,28 @@ cc.Class({
                 }
                 else if (state == "need_update")//需要更新
                 {
-                    cc.log("需要更新")
+                    cc.log("需要更新====")
+                    this.showWiat(true)
                     SubGameManager.downSubGame(subGameName, (progress, DownedSize, TotalSize) => {//下载进度，下载了多少kb ，总下载多少kb
                         cc.log("updateSubGame progress===", progress)
     
                     }, (code) => {
-    
+                        this.showWiat(false)
                         cc.log("updateSubGame return code == ", code)
                         if(code==0)//下载成功
                         {
                             UiManager.ShowAlert("更新成功", [],  (index)=> {
                                
-            
+                                UiManager.gloadBundleScene(subGameName,(code)=>{
+                                    if(code==0)
+                                    {
+                                        cc.log("gloadBundleScene success")
+                                    }
+                                    else
+                                    {
+                                        cc.log("gloadBundleScene failed=",code)
+                                    }
+                                })
                             })
                         }
                         else//失败
@@ -371,105 +391,24 @@ cc.Class({
                     })
                 }
                 else {//在本地，不需要更新,直接进
-                    cc.log("在本地，不需要更新,直接进")
-                    var bundle = Global.gGetBundle(subGameName)
-                    if (bundle) {
-                        cc.log( subGameName+" is loaded")
-                    }
-                    else {
-                        UiManager.gShowLoading((layer) => {
-                            layer.updataProgress(30)
-                            var bunldeurl = SubGameManager.getLocalBundlePath(subGameName)
-                            Global.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, (err, bundle) => {
-                                if (err) {
-                                    console.log("Load bundle error")
-                                    return console.error(err);
-                                }
-                                
-                                bundle.loadScene(subGameName, function (err, scene) {
-                                    if (err) {
-                                        console.log("load bundle scene error")
-                                        return
-                                    }
-                                    layer.updataProgress(100)
-                                });
-                            })
-                        }, (layer) => {
-                            UiManager.gLoadScene("bundleScene")
-                        })
-                    }
+                    cc.log("子包本地和远程版本一致，直接进游戏")
+                    
+                    UiManager.gloadBundleScene(subGameName,(code)=>{
+                        if(code==0)
+                        {
+                            cc.log("gloadBundleScene success")
+                        }
+                        else
+                        {
+                            cc.log("gloadBundleScene failed=",code)
+                        }
+                    })
+                        
+                    
     
                 }
             })
-            // var bundle = Global.gGetBundle("bundleScene")
-            // if (bundle) {
-            //     cc.log("bundleScene is loaded")
-            // } 
-            // else 
-            // {
-                
-
-            //     UiManager.gShowLoading((layer) => {
-            //         layer.updataProgress(30)
-            //         var bunldeurl = "http://lee.free.vipnps.vip/hotupversion/remote/bundleScene"
-            //         Global.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) },  (err, bundle)=>{
-            //             if (err) {
-            //                 console.log("Load bundle error")
-            //                 return console.error(err);
-            //             }
-            //             console.log('load bundle successfully.------')
-            //             bundle.loadScene('bundleScene', function (err, scene) {
-            //                 if (err) {
-            //                     console.log("load bundle scene error")
-            //                     return
-            //                 }
-            //                 layer.updataProgress(100) 
-            //             });
-                        
-            //         })
-
-            //     }, (layer) => {
-            //         UiManager.gLoadScene("bundleScene")
-            //     })
-            // }
-            // let bundleA = cc.assetManager.getBundle('Testbundle');
-
-            // if (bundleA) {
-            //     console.log('have already loaded bundle.')
-            //     var obj = window.SayHello //直接使用window对象或者component
-            //     if (obj) {
-            //         obj.Say()
-            //     }
-            //     bundleA.loadScene('bundlescene', function (err, scene) {
-            //         if (err) {
-            //             console.log("load bundle scene error")
-            //             return
-            //         }
-            //         cc.director.runScene(scene);
-            //     });
-            // }
-            // else {
-            //     Global.gLoadBUndle('http://192.168.65.172/hotupversion/remote/Testbundle', { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, function (err, bundle) {
-            //         if (err) {
-            //             console.log("Load bundle error")
-            //             return console.error(err);
-            //         }
-            //         console.log('load bundle successfully.', bundle)
-            //         var obj = window.SayHello //直接使用window对象或者component
-            //         if (obj) {
-            //             obj.Say()
-            //         }
-
-            //         bundle.loadScene('bundlescene', function (err, scene) {
-            //             if (err) {
-            //                 console.log("load bundle scene error")
-            //                 return
-            //             }
-            //             cc.director.runScene(scene);
-            //         });
-            //     })
-
-            // }
+            
 
         })
 

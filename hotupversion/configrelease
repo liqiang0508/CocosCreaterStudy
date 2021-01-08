@@ -8,12 +8,12 @@
   ],
 
 
-  "scriptVersion":100,
-  "baseUrl": "http://192.168.0.102/hotupversion/Script_%s/",
+  "scriptVersion":131,
+  "baseUrl": "http://lee.free.vipnps.vip/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
 
-  "debugScriptVersion": 100,
-  "debugBaseUrl": "http://192.168.0.102/hotupversion/Script_%s/",
+  "debugScriptVersion": 131,
+  "debugBaseUrl": "http://lee.free.vipnps.vip/hotupversion/Script_%s/",
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [
     "-----------",
@@ -34,10 +34,16 @@
     "-----------"
   ],
   "subgames":{
-     "baseUrl":"http://192.168.0.102/hotupversion/remote",
+     "baseUrl":"http://lee.free.vipnps.vip/hotupversion/remote/",
+      "debugUid":[
+       "------",
+       "724001",
+       "------"
+     ],
      "games":{
         "bundleScene":{
-          "version":1
+          "debugVersion":10,
+          "version":11
         }
      }
   },

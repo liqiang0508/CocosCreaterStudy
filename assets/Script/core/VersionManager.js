@@ -385,9 +385,9 @@ var VersionManager = {
                 return
             }
             
-            console.log("本地脚本号==" + localscriptVersion)
-            console.log("远程debug版本号==" + debugscriptVersion)
-            console.log("远程版本号==" + remotescriptVersion)
+            console.log("主包本地脚本号==" + localscriptVersion)
+            console.log("主包远程debug版本号==" + debugscriptVersion)
+            console.log("主包远程版本号==" + remotescriptVersion)
 
             if (Global.GIsArrContain(debugUIDs, localId))//先看是不是测试玩家
             {

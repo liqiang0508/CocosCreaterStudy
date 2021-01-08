@@ -1,5 +1,5 @@
 {
-    "scriptVersion": 129, 
+    "scriptVersion": 131, 
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc", 
@@ -138,8 +138,8 @@
         }, 
         {
             "filename": "assets/main/index.jsc", 
-            "md5": "6CED65F018DF0A0EBF95E27C06F2A65F", 
-            "size": 83556
+            "md5": "E06E466E27C356082213CAD4A8CBC255", 
+            "size": 84940
         }, 
         {
             "filename": "assets/main/import/0e/0e738d4f-4358-45db-9c26-f78c3667c347.json", 
@@ -288,8 +288,8 @@
         }, 
         {
             "filename": "assets/resources/config.json", 
-            "md5": "D0A9A6A5A9460C3D3DAFF436CEE177B1", 
-            "size": 2925
+            "md5": "FD326F1AC172931F07D7AE1A342A5111", 
+            "size": 2972
         }, 
         {
             "filename": "assets/resources/index.jsc", 
@@ -440,6 +440,11 @@
             "filename": "assets/resources/import/85/85566113-8428-4e84-baa6-f9d55360d977.json", 
             "md5": "2CB08E2B26F729EADF0FBDCA169A76BC", 
             "size": 1195
+        }, 
+        {
+            "filename": "assets/resources/import/85/85ded963-40e4-4821-bf77-d17d59606562.json", 
+            "md5": "F177F137880BC78B6692451640D571DD", 
+            "size": 180
         }, 
         {
             "filename": "assets/resources/import/88/88e79fd5-96b4-4a77-a1f4-312467171014.json", 

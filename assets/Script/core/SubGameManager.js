@@ -27,7 +27,18 @@ SubGameManager.getSubGameState = function (subgameName, finishCall) {
 
         if (subgamecfg)//有子游戏的配置
         {
-            if (subgamecfg["scriptVersion"] != this.remoteData["games"][subgameName]["version"])//远程的子游戏版本和本地的不一样
+            var subGameRomoteVer = this.remoteData["games"][subgameName]["version"]
+            var sugGameDebugVer = this.remoteData["games"][subgameName]["debugVersion"]
+            if (this.isDeugPalyer())//是测试玩家 就用debugVersion字段
+            {
+                cc.log("是测试玩家")
+                subGameRomoteVer = sugGameDebugVer
+            }
+            var subGameLocalVer = subgamecfg["scriptVersion"]
+            cc.log("子包本地版本=",subgameName,subGameLocalVer)
+            cc.log("子包远程debug版本=",subgameName,sugGameDebugVer)
+            cc.log("子包远程版本版本=",subgameName,subGameRomoteVer)
+            if (subGameLocalVer != subGameRomoteVer)//远程的子游戏版本和本地的不一样
             {
                 finishCall("need_update")
             }
@@ -76,8 +87,13 @@ SubGameManager.getLoclSubGameCfg = function (subgameName, finishCall) {
 //根据子游戏名称比较下载资源
 SubGameManager.downSubGame = function (subgameName, progressCall, finishCall) {
     this.baseUrl = this.remoteData["baseUrl"]//子游戏远程资源根目录
-    var version = this.remoteData["games"][subgameName]["version"]//子游戏远程版本号
-    var remoteSubGameCfgUrl = this.baseUrl + subgameName + "_" + version + "/appinfo.json"//远程子游戏配置url 
+    this.downversion = this.remoteData["games"][subgameName]["version"]//子游戏远程要下载的版本号
+    var sugGameDebugVer = this.remoteData["games"][subgameName]["debugVersion"]
+    if (this.isDeugPalyer())//是测试玩家 就用debugVersion字段
+    {
+        this.downversion = sugGameDebugVer
+    }
+    var remoteSubGameCfgUrl = this.baseUrl + subgameName + "_" +  this.downversion + "/appinfo.json"//远程子游戏配置url 
     this.progressCall = progressCall
     this.finishCall = finishCall
     cc.log("remoteSubGameCfgUrl=",remoteSubGameCfgUrl)
@@ -162,7 +178,7 @@ SubGameManager.comparefile = function () {
 
 
 SubGameManager.downFiles = function (data) {
-    // cc.log("下载文件====", data.length)
+
     if (data.length == 0) {//md5文件没有下载的
         this.MoveDone();
         return
@@ -170,12 +186,12 @@ SubGameManager.downFiles = function (data) {
     var self = this
     let downFileList = data
     self.DownIndex = 0
-
+    let downError = false //下载失败
     var downOneFile = function (index) {
         var BaseUrl = self.baseUrl
         var fileName = downFileList[index]["fileName"]//下载文件路径
         var fileSize = downFileList[index]["fileSize"]//下载文件大小
-        var fileurl = BaseUrl + fileName//下载文件的url
+        var fileurl = BaseUrl + fileName.replace(self.curSubgameName,self.curSubgameName+"_"+self.downversion)//下载文件的url fileName替换成fileName_xx
         var filetempPath = SubGamesPathTemp + fileName//临时目录
         var filerealPath = SubGamesPath + fileName//真实目录
         var tempDir = SubGamesPathTemp + Global.GgetDirByUrl(fileName)//临时文件夹
@@ -200,21 +216,28 @@ SubGameManager.downFiles = function (data) {
                     if (self.progressCall) {
                         self.progressCall(Math.floor(self.DownIndex / downFileList.length * 100),(self.downedSize/1000).toFixed(1),(self.totalDownSize/1000).toFixed(1))
                     }
-                    downOneFile(self.DownIndex)
+                    cc.log("downError",downError)
+                    if(downError==false)
+                    {
+                        downOneFile(self.DownIndex)
+                    }
+
                 }
                 else {
                     if (self.progressCall) {
                         self.progressCall(Math.floor(100),(self.downedSize/1000).toFixed(1),(self.totalDownSize/1000).toFixed(1))
                     }
-                    cc.log("子游戏下载完成***")
-
                     self.MoveFiles(downFileList)//移动文件
 
                 }
             }
             else {
-
-                this.callFunWithState(5,"子游戏下载单个文件失败=" + fileurl)
+                downError = true
+                var path = SubGamesPath+self.curSubgameName
+                jsb.fileUtils.removeDirectory(path)//移动失败不知道移动了多少，就删掉当前子游戏文件夹
+                jsb.fileUtils.createDirectory(path)
+                self.callFunWithState(5,"子游戏下载单个文件失败=" + fileurl)
+                return
             }
         })
 
@@ -246,12 +269,12 @@ SubGameManager.MoveFiles = function (data) {
         else {
 
             var path = SubGamesPath+self.curSubgameName
-            jsb.fileUtils.removeDirectory(SubGamesPath)//移动失败不知道移动了多少，就删掉当前子游戏文件夹
-            jsb.fileUtils.createDirectory(SubGamesPath)
+            jsb.fileUtils.removeDirectory(path)//移动失败不知道移动了多少，就删掉当前子游戏文件夹
+            jsb.fileUtils.createDirectory(path)
 
             
 
-            this.callFunWithState(6,"移动文件失败" + tempfilePath)
+            self.callFunWithState(6,"移动文件失败" + tempfilePath)
 
            
 
@@ -295,6 +318,19 @@ SubGameManager.getLocalBundlePath = function(bundleName){
     var path = SubGamesPath+bundleName
     return path
 
+}
+
+//是否是测试玩家
+SubGameManager.isDeugPalyer = function(){
+    var debugUids = this.remoteData["debugUid"]//debug玩家数组
+    var localId = cc.sys.localStorage.getItem('debugId') ;//本地存的上次登录的玩家id
+    if (Global.GIsArrContain(debugUids, localId))//先看是不是测试玩家
+    {
+        return true
+    }
+    else{
+        return false
+    }
 
 }
 

@@ -1768,6 +1768,14 @@ var e = t.response;
 _(e);
 } else _(null);
 };
+t.onerror = function() {
+_(null);
+};
+t.ontimeout = function() {
+_(null);
+};
+t.open("GET", e, !0);
+t.timeout = 5e3;
 t.send();
 }
 },
@@ -1816,7 +1824,7 @@ gExitGame: function() {
 cc.sys.isNative && cc.game.end();
 },
 Ghotupdateurl: "xxx",
-GgameType: 1
+GgameType: 3
 };
 if (1 == t.GgameType) {
 t.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configrelease";
@@ -3690,7 +3698,12 @@ cc.log("渠道号===", window.DISTRIBUTE_CHANNEL);
 cc.sys.localStorage.setItem("debugId", 724001);
 this.count = 0;
 if (cc && cc.sys.isNative) {
-window.DISTRIBUTE_CHANNEL, window.chanel.WIN32;
+if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32) {
+cc.log("模拟器不热更新");
+t.parseLocalCfg();
+this.goLoginScene();
+return;
+}
 cc.log("Global.isDebugTest===", Global.isDebugTest);
 Global.isDebugTest ? UiManager.ShowChooseUpdate({
 tips: "热更新选择",
@@ -4636,7 +4649,18 @@ n.getSubGameState = function(e, _) {
 var t = this;
 this.curSubgameName = e;
 this.getLoclSubGameCfg(e, function(n) {
-n ? n.scriptVersion != t.remoteData.games[e].version ? _("need_update") : _("no_need_update") : _("not_in_app");
+if (n) {
+var S = t.remoteData.games[e].version, T = t.remoteData.games[e].debugVersion;
+if (t.isDeugPalyer()) {
+cc.log("是测试玩家");
+S = T;
+}
+var i = n.scriptVersion;
+cc.log("子包本地版本=", e, i);
+cc.log("子包远程debug版本=", e, T);
+cc.log("子包远程版本版本=", e, S);
+_(i != S ? "need_update" : "no_need_update");
+} else _("not_in_app");
 });
 };
 n.getLoclSubGameCfg = function(e, _) {
@@ -4667,7 +4691,10 @@ _(null);
 n.downSubGame = function(e, _, n) {
 var S = this;
 this.baseUrl = this.remoteData.baseUrl;
-var T = this.remoteData.games[e].version, i = this.baseUrl + e + "_" + T + "/appinfo.json";
+this.downversion = this.remoteData.games[e].version;
+var T = this.remoteData.games[e].debugVersion;
+this.isDeugPalyer() && (this.downversion = T);
+var i = this.baseUrl + e + "_" + this.downversion + "/appinfo.json";
 this.progressCall = _;
 this.finishCall = n;
 cc.log("remoteSubGameCfgUrl=", i);
@@ -4718,27 +4745,34 @@ n.downFiles = function(e) {
 if (0 != e.length) {
 var _ = this, t = e;
 _.DownIndex = 0;
-(function e(n) {
-var i = _.baseUrl, o = t[n].fileName, E = t[n].fileSize, r = i + o, R = T + o, s = S + o, a = T + Global.GgetDirByUrl(o), c = S + Global.GgetDirByUrl(o);
-Global.GcreateDir(a);
+var n = !1;
+(function e(i) {
+var o = _.baseUrl, E = t[i].fileName, r = t[i].fileSize, R = o + E.replace(_.curSubgameName, _.curSubgameName + "_" + _.downversion), s = T + E, a = S + E, c = T + Global.GgetDirByUrl(E), I = S + Global.GgetDirByUrl(E);
 Global.GcreateDir(c);
-t[n].tempfile = R;
-t[n].realfile = s;
-cc.log("下载=====", r);
-Global.GDownFile(r, function(n) {
-if (n) {
-Global.GwriteDataToFile(n, R);
-_.downedSize = _.downedSize + E;
+Global.GcreateDir(I);
+t[i].tempfile = s;
+t[i].realfile = a;
+cc.log("下载=====", R);
+Global.GDownFile(R, function(T) {
+if (T) {
+Global.GwriteDataToFile(T, s);
+_.downedSize = _.downedSize + r;
 if (_.DownIndex < t.length - 1) {
 _.DownIndex = _.DownIndex + 1;
 _.progressCall && _.progressCall(Math.floor(_.DownIndex / t.length * 100), (_.downedSize / 1e3).toFixed(1), (_.totalDownSize / 1e3).toFixed(1));
-e(_.DownIndex);
+cc.log("downError", n);
+0 == n && e(_.DownIndex);
 } else {
 _.progressCall && _.progressCall(Math.floor(100), (_.downedSize / 1e3).toFixed(1), (_.totalDownSize / 1e3).toFixed(1));
-cc.log("子游戏下载完成***");
 _.MoveFiles(t);
 }
-} else this.callFunWithState(5, "子游戏下载单个文件失败=" + r);
+} else {
+n = !0;
+var i = S + _.curSubgameName;
+jsb.fileUtils.removeDirectory(i);
+jsb.fileUtils.createDirectory(i);
+_.callFunWithState(5, "子游戏下载单个文件失败=" + R);
+}
 });
 })(_.DownIndex);
 } else this.MoveDone();
@@ -4754,10 +4788,10 @@ _.moveStep = _.moveStep + 1;
 t(_.moveStep);
 } else _.MoveDone();
 } else {
-_.curSubgameName;
-jsb.fileUtils.removeDirectory(S);
-jsb.fileUtils.createDirectory(S);
-this.callFunWithState(6, "移动文件失败" + T);
+var E = S + _.curSubgameName;
+jsb.fileUtils.removeDirectory(E);
+jsb.fileUtils.createDirectory(E);
+_.callFunWithState(6, "移动文件失败" + T);
 }
 })(this.moveStep);
 }, n.MoveDone = function() {
@@ -4770,6 +4804,10 @@ this.finishCall && this.finishCall(e);
 };
 n.getLocalBundlePath = function(e) {
 return S + e;
+};
+n.isDeugPalyer = function() {
+var e = this.remoteData.debugUid, _ = cc.sys.localStorage.getItem("debugId");
+return !!Global.GIsArrContain(e, _);
 };
 _.exports = n;
 cc._RF.pop();
@@ -4911,43 +4949,39 @@ UiManager.gLoadScene("bubbleScene");
 });
 var l = cc.find("uipanel/btn_loadbundle", this.node);
 ua.darkButton(l, function() {
-S.getSubGameState("bundleScene", function(e) {
-if ("not_in_app" == e) {
-cc.log("下载子游戏");
+S.getSubGameState("bundleScene", function(_) {
+if ("not_in_app" == _) {
+cc.log("下载子游戏===");
+e.showWiat(!0);
 S.downSubGame("bundleScene", function(e) {
 cc.log("downSubGame progress===", e);
-}, function(e) {
-cc.log("downSubGame return code == ", e);
-0 == e ? UiManager.ShowAlert("下载成功", [], function() {}) : UiManager.ShowAlert("下载失败" + e, [], function() {});
+}, function(_) {
+e.showWiat(!1);
+cc.log("downSubGame return code == ", _);
+0 == _ ? UiManager.ShowAlert("下载成功", [], function() {
+UiManager.gloadBundleScene("bundleScene", function(e) {
+0 == e ? cc.log("gloadBundleScene success") : cc.log("gloadBundleScene failed=", e);
 });
-} else if ("need_update" == e) {
-cc.log("需要更新");
+}) : UiManager.ShowAlert("下载失败" + _, [], function() {});
+});
+} else if ("need_update" == _) {
+cc.log("需要更新====");
+e.showWiat(!0);
 S.downSubGame("bundleScene", function(e) {
 cc.log("updateSubGame progress===", e);
-}, function(e) {
-cc.log("updateSubGame return code == ", e);
-0 == e ? UiManager.ShowAlert("更新成功", [], function() {}) : UiManager.ShowAlert("更新失败" + e, [], function() {});
+}, function(_) {
+e.showWiat(!1);
+cc.log("updateSubGame return code == ", _);
+0 == _ ? UiManager.ShowAlert("更新成功", [], function() {
+UiManager.gloadBundleScene("bundleScene", function(e) {
+0 == e ? cc.log("gloadBundleScene success") : cc.log("gloadBundleScene failed=", e);
+});
+}) : UiManager.ShowAlert("更新失败" + _, [], function() {});
 });
 } else {
-cc.log("在本地，不需要更新,直接进");
-Global.gGetBundle("bundleScene") ? cc.log("bundleScene is loaded") : UiManager.gShowLoading(function(e) {
-e.updataProgress(30);
-var _ = S.getLocalBundlePath("bundleScene");
-Global.gLoadBundle(_, {
-onFileProgress: function(e, _) {
-return console.log("bundle progress==", e, _);
-}
-}, function(_, t) {
-if (_) {
-console.log("Load bundle error");
-return console.error(_);
-}
-t.loadScene("bundleScene", function(_) {
-_ ? console.log("load bundle scene error") : e.updataProgress(100);
-});
-});
-}, function() {
-UiManager.gLoadScene("bundleScene");
+cc.log("子包本地和远程版本一致，直接进游戏");
+UiManager.gloadBundleScene("bundleScene", function(e) {
+0 == e ? cc.log("gloadBundleScene success") : cc.log("gloadBundleScene failed=", e);
 });
 }
 });
@@ -5042,7 +5076,7 @@ cc._RF.pop();
 UiManager: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "cd0b2zknmFE4bimNxTJpdEG", "UiManager");
-var t = {
+var t = e("SubGameManager"), n = {
 gShowLoading: function(e, _) {
 var t = this;
 this.gLoadPrefabRes("prefabs/loadinglayer", function(n) {
@@ -5108,11 +5142,39 @@ var n = t.getComponent("chooseupdate");
 n && n.initData(e, _);
 }
 });
+},
+gloadBundleScene: function(e, _) {
+n.gShowLoading(function(n) {
+n.updataProgress(30);
+var S = t.getLocalBundlePath(e);
+Global.gLoadBundle(S, {
+onFileProgress: function(e, _) {
+return console.log("bundle progress==", e, _);
+}
+}, function(t, S) {
+if (t) {
+console.log("Load bundle error");
+_ && _(1);
+return console.error(t);
+}
+S.loadScene(e, function(e) {
+if (e) {
+console.log("load bundle scene error");
+_ && _(2);
+} else n.updataProgress(100);
+});
+});
+}, function() {
+_ && _(0);
+n.gLoadScene(e);
+});
 }
 };
-window.UiManager = t;
+window.UiManager = n;
 cc._RF.pop();
-}, {} ],
+}, {
+SubGameManager: "SubGameManager"
+} ],
 VersionManager: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "5cca3EkU1NJZ4QUch/IWwni", "VersionManager");
@@ -5302,9 +5364,9 @@ if (null != _) if (Global.isjson(_)) {
 e.remoteCfg = JSON.parse(_);
 var t = e.localCfg.scriptVersion, S = e.remoteCfg.scriptVersion, T = e.remoteCfg.debugScriptVersion, i = e.remoteCfg.supportBinarys, o = e.remoteCfg.forcedBinaryVersions, E = e.remoteCfg.channels, r = e.remoteCfg.debugUIDs, R = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], s = cc.sys.localStorage.getItem("debugId");
 if (Global.GIsArrContain(E, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(i, n.getAppVersion())) if (Global.GIsArrContain(o, n.getAppVersion())) e.callFunWithState(8, "强制更新", R); else {
-console.log("本地脚本号==" + t);
-console.log("远程debug版本号==" + T);
-console.log("远程版本号==" + S);
+console.log("主包本地脚本号==" + t);
+console.log("主包远程debug版本号==" + T);
+console.log("主包远程版本号==" + S);
 if (Global.GIsArrContain(r, s)) {
 if (parseInt(t) != parseInt(T)) {
 console.log("走测试玩家----热更新");

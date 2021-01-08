@@ -1,11 +1,12 @@
 
 //一些ui常见操作
+var SubGameManager = require("SubGameManager")
 
 var UiManager = {}
 //显示loadinglayer进度
-UiManager.gShowLoading = function(todoCall,endcall){
+UiManager.gShowLoading = function (todoCall, endcall) {
 
-    this.gLoadPrefabRes("prefabs/loadinglayer",  (_node)=> {
+    this.gLoadPrefabRes("prefabs/loadinglayer", (_node) => {
         if (_node) {
             this.gSceneAddNode(_node)
             var LoadingLayer = _node.getComponent("LoadingLayer")
@@ -17,42 +18,42 @@ UiManager.gShowLoading = function(todoCall,endcall){
 
 }
 //当前场景添加节点
-UiManager.gSceneAddNode = function(node){
+UiManager.gSceneAddNode = function (node) {
 
     cc.director.getScene().getChildByName('Canvas').addChild(node)
 }
 //loadscene
-UiManager.gLoadScene = function (sceneName,onLaunchCall = null) {
-    cc.director.loadScene(sceneName,onLaunchCall)
+UiManager.gLoadScene = function (sceneName, onLaunchCall = null) {
+    cc.director.loadScene(sceneName, onLaunchCall)
 }
 
- //preloadscene
+//preloadscene
 UiManager.gPreloadScene = function (sceneName, progressCall, endCall) {
-    cc.director.preloadScene(sceneName,  (completedCount, totalCount, item)=> {
+    cc.director.preloadScene(sceneName, (completedCount, totalCount, item) => {
         var progress = Math.floor(((completedCount / totalCount).toFixed(2)) * 100)
         if (progressCall) {
             progressCall(progress)
         }
-    },  (error, asset)=>{
+    }, (error, asset) => {
         if (endCall) {
             endCall(sceneName, error)
         }
     })
 },
-// 加载prefab
-UiManager.gLoadPrefabRes = function (filepath, call) {
-    cc.resources.load(filepath, function (err, prefab) {
-        if (err) {
-            cc.error("ua.loadPrefabRes error====" + filepath)
-            call(undefined)
-        }
-        else {
-            var newNode = cc.instantiate(prefab);
-            call(newNode)
-            cc.loader.setAutoRelease(filepath, true)
-        }
-    })
-}
+    // 加载prefab
+    UiManager.gLoadPrefabRes = function (filepath, call) {
+        cc.resources.load(filepath, function (err, prefab) {
+            if (err) {
+                cc.error("ua.loadPrefabRes error====" + filepath)
+                call(undefined)
+            }
+            else {
+                var newNode = cc.instantiate(prefab);
+                call(newNode)
+                cc.loader.setAutoRelease(filepath, true)
+            }
+        })
+    }
 //显示弹框
 UiManager.ShowAlert = function (str, btninfo, call) {
 
@@ -96,4 +97,41 @@ UiManager.ShowChooseUpdate = function (data, call) {
     })
 
 },
-window.UiManager =  UiManager
+//根据bundle的名称 进入bundle场景
+UiManager.gloadBundleScene = function (bundleName,finishCall) {
+    UiManager.gShowLoading((layer) => {
+        layer.updataProgress(30)
+        var bunldeurl = SubGameManager.getLocalBundlePath(bundleName)
+        Global.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, (err, bundle) => {
+            if (err) {
+                console.log("Load bundle error")
+                if (finishCall)
+                {
+                    finishCall(1)
+                }
+                return console.error(err);
+            }
+
+            bundle.loadScene(bundleName, function (err, scene) {
+                if (err) {
+                    console.log("load bundle scene error")
+                    if (finishCall)
+                    {
+                        finishCall(2)
+                    }
+                    return
+                }
+                layer.updataProgress(100)
+            });
+        })
+    }, (layer) => {
+        if (finishCall)
+        {
+            finishCall(0)
+        }
+       
+        UiManager.gLoadScene(bundleName)
+    })
+
+}
+window.UiManager = UiManager
