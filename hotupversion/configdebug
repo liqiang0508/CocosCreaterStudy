@@ -39,8 +39,8 @@
      ],
      "games":{
         "bundleScene":{
-          "debugVersion":11,
-          "version":11
+          "debugVersion":12,
+          "version":12
         }
      }
   },

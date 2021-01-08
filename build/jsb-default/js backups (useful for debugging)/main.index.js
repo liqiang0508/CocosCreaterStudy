@@ -1824,7 +1824,7 @@ gExitGame: function() {
 cc.sys.isNative && cc.game.end();
 },
 Ghotupdateurl: "xxx",
-GgameType: 3
+GgameType: 1
 };
 if (1 == t.GgameType) {
 t.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configrelease";
@@ -3698,12 +3698,7 @@ cc.log("渠道号===", window.DISTRIBUTE_CHANNEL);
 cc.sys.localStorage.setItem("debugId", 724001);
 this.count = 0;
 if (cc && cc.sys.isNative) {
-if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32) {
-cc.log("模拟器不热更新");
-t.parseLocalCfg();
-this.goLoginScene();
-return;
-}
+window.DISTRIBUTE_CHANNEL, window.chanel.WIN32;
 cc.log("Global.isDebugTest===", Global.isDebugTest);
 Global.isDebugTest ? UiManager.ShowChooseUpdate({
 tips: "热更新选择",
