@@ -1,6 +1,7 @@
 
 // var Global = require("Global")
 var VersionManager = require("VersionManager")
+var SubGameManager = require("SubGameManager")
 // var GameClient = require("GameClient")
 var BaseComponent = require("BaseComponent")
 cc.Class({
@@ -180,6 +181,9 @@ cc.Class({
             this.Text.string = a//"updateing" + progress + "%    "+DownedSize/1024+"M/"+TotalSize/1024+"M"
         })
 
+
+        
+
     },
     Reboot() {//重启
        
@@ -190,7 +194,7 @@ cc.Class({
     },
 
     goLoginScene() {
-
+        SubGameManager.parseCfgFromData(VersionManager.getSubGameCfg())
         Global.gSchduleOnce(this,  ()=> {
 
             UiManager.gShowLoading((layer)=>{

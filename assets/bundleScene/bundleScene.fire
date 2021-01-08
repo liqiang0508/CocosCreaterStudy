@@ -57,7 +57,7 @@
     "_is3DNode": true,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "autoReleaseAssets": false,
+    "autoReleaseAssets": true,
     "_id": "a5a393fb-3f7c-4314-b005-80d8c17891e3"
   },
   {
@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        431.28065108465046,
+        323.0209880739267,
         0,
         0,
         0,
@@ -263,9 +263,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 220,
+      "g": 53,
+      "b": 53,
       "a": 255
     },
     "_contentSize": {

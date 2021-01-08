@@ -160,6 +160,6 @@ for gameFolderName in SubGameFilders:
 
 print("buildSubGameCfg ============================end")
 
-# print os.getcwd()
+# 打开生成热更新配置文件夹窗口
 os.system("start " +"..\\hotupversion\\remote")
 os.system("pause")

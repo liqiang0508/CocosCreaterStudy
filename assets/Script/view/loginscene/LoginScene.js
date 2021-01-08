@@ -9,7 +9,7 @@ var VersionManager = require("VersionManager")
 // var Global = require("Global")
 var DevicesInfo = require("Devices")
 var BaseComponent = require("BaseComponent");
-var SubGameManager = require("SubGameManager")
+
 cc.Class({
     extends: BaseComponent,
 
@@ -63,18 +63,18 @@ cc.Class({
 
         })
 
-        cc.director.on("test",(event)=>{
-            cc.log("test event",event)
+        cc.director.on("test", (event) => {
+            cc.log("test event", event)
         })
 
-        SubGameManager.Hello()
-        SubGameManager.parseCfgFromData(VersionManager.getSubGameCfg())
+
+        
 
     },
 
     goTestScene() {
-        var param = {"name":"lee"}
-        cc.director.emit("test",param)
+        // var param = {"name":"lee"}
+        // cc.director.emit("test",param)
         UiManager.gShowLoading((layer)=>{
             layer.updataProgress(30)
             this.scheduleOnce(()=>{
@@ -87,7 +87,7 @@ cc.Class({
             UiManager.gLoadScene("TestScene")
             // layer.bClose()
         })
-
+       
 
     }
 

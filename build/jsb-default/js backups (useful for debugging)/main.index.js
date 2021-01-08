@@ -1,28 +1,28 @@
 window.__require = function e(_, t, n) {
-function T(i, o) {
+function S(i, o) {
 if (!t[i]) {
 if (!_[i]) {
 var E = i.split("/");
 E = E[E.length - 1];
 if (!_[E]) {
-var R = "function" == typeof __require && __require;
-if (!o && R) return R(E, !0);
-if (S) return S(E, !0);
+var r = "function" == typeof __require && __require;
+if (!o && r) return r(E, !0);
+if (T) return T(E, !0);
 throw new Error("Cannot find module '" + i + "'");
 }
 i = E;
 }
-var r = t[i] = {
+var R = t[i] = {
 exports: {}
 };
-_[i][0].call(r.exports, function(e) {
-return T(_[i][1][e] || e);
-}, r, r.exports, e, _, t, n);
+_[i][0].call(R.exports, function(e) {
+return S(_[i][1][e] || e);
+}, R, R.exports, e, _, t, n);
 }
 return t[i].exports;
 }
-for (var S = "function" == typeof __require && __require, i = 0; i < n.length; i++) T(n[i]);
-return T;
+for (var T = "function" == typeof __require && __require, i = 0; i < n.length; i++) S(n[i]);
+return S;
 }({
 AdaptBg: [ function(e, _) {
 "use strict";
@@ -100,11 +100,11 @@ this._super();
 var _ = this.node.getChildByName("bg").getChildByName("text");
 _.getComponent(cc.Label).string = "LOL";
 this.text = _;
-var t = this.node.getChildByName("bg").getChildByName("btn_yes"), n = this.node.getChildByName("bg").getChildByName("btn_no"), T = this.node.getChildByName("bg").getChildByName("btn_middle");
+var t = this.node.getChildByName("bg").getChildByName("btn_yes"), n = this.node.getChildByName("bg").getChildByName("btn_no"), S = this.node.getChildByName("bg").getChildByName("btn_middle");
 this.btnyes = t;
 this.btn_no = n;
-this.btn_middle = T;
-ua.darkButton(T, function() {
+this.btn_middle = S;
+ua.darkButton(S, function() {
 e.BtnCall(2);
 e.bClose();
 });
@@ -238,8 +238,8 @@ var _ = cc.spawn(cc.scaleTo(.1, .7), cc.fadeTo(.08, 0)), t = cc.callFunc(functio
 e && e();
 }), n = cc.sequence(_, t);
 this.node.runAction(n);
-var T = this.node.getChildByName("mask");
-T && (T.opacity = 0);
+var S = this.node.getChildByName("mask");
+S && (S.opacity = 0);
 }
 if (2 == this.AimType) {
 _ = cc.fadeTo(.15, 0), t = cc.callFunc(function() {
@@ -256,19 +256,19 @@ if (1 == this.AimType) {
 var _ = this.node.getChildByName("mask");
 this.node.opacity = 10;
 this.node.Scale = .5;
-var t = cc.spawn(cc.scaleTo(.1, 1.05), cc.fadeTo(.1, 180)), n = cc.spawn(cc.scaleTo(.05, 1), cc.fadeTo(.05, 255)), T = cc.callFunc(function() {
+var t = cc.spawn(cc.scaleTo(.1, 1.05), cc.fadeTo(.1, 180)), n = cc.spawn(cc.scaleTo(.05, 1), cc.fadeTo(.05, 255)), S = cc.callFunc(function() {
 e && e();
 _ && (_.opacity = 125);
-}), S = cc.sequence(t, n, T);
-this.node.runAction(S);
+}), T = cc.sequence(t, n, S);
+this.node.runAction(T);
 }
 if (2 == this.AimType) {
 (_ = this.node.getChildByName("mask")) && (_.opacity = 0);
 t = cc.fadeTo(.15, 255), n = cc.callFunc(function() {
 e && e();
 _ && (_.opacity = 225);
-}), S = cc.sequence(t, n);
-this.node.runAction(S);
+}), T = cc.sequence(t, n);
+this.node.runAction(T);
 }
 }
 });
@@ -437,14 +437,14 @@ this.graphic_line.clear();
 drawRayCast: function(e, _) {
 var t = 1440 - this._cur_length;
 if (!(t <= 0)) {
-var n = e.add(_.mul(t)), T = cc.director.getPhysicsManager().rayCast(e, n, cc.RayCastType.Closest);
-if (T.length > 0) {
-var S = T[0], i = S.point;
+var n = e.add(_.mul(t)), S = cc.director.getPhysicsManager().rayCast(e, n, cc.RayCastType.Closest);
+if (S.length > 0) {
+var T = S[0], i = T.point;
 this.drawAimLine(e, i);
 var o = i.sub(e).mag();
 this._cur_length += o;
-var E = S.normal, R = _, r = R.sub(E.mul(2 * R.dot(E)));
-this.drawRayCast(i, r);
+var E = T.normal, r = _, R = r.sub(E.mul(2 * r.dot(E)));
+this.drawRayCast(i, R);
 } else this.drawAimLine(e, n);
 }
 },
@@ -453,9 +453,9 @@ var t = this.graphic_line.node.convertToNodeSpaceAR(e);
 this.graphic_line.moveTo(t.x, t.y);
 this.graphic_line.strokeColor = new cc.Color().fromHEX("#ffffff");
 this.graphic_line.lineWidth = 2;
-var n = _.sub(e), T = Math.round(n.mag() / 35);
+var n = _.sub(e), S = Math.round(n.mag() / 35);
 n.normalizeSelf().mulSelf(35);
-for (var S = 0; S < T; S++) {
+for (var T = 0; T < S; T++) {
 t.addSelf(n);
 this.graphic_line.circle(t.x, t.y, 6);
 }
@@ -1686,10 +1686,10 @@ var t = {
 sayHello: function() {
 console.log("Global sayehello");
 },
-gSchduleFun: function(e, _, t, n, T) {
+gSchduleFun: function(e, _, t, n, S) {
 null == n && (n = cc.macro.REPEAT_FOREVER);
-null == T && (T = 0);
-cc.director.getScheduler().schedule(_, e, t, n, T, !1);
+null == S && (S = 0);
+cc.director.getScheduler().schedule(_, e, t, n, S, !1);
 },
 gSchduleOnce: function(e, _, t) {
 e.scheduleOnce(function() {
@@ -1698,14 +1698,6 @@ _();
 },
 gUnSchduleFun: function(e, _) {
 cc.director.getScheduler().unschedule(_, e);
-},
-gPreloadScene: function(e, _, t) {
-cc.director.preloadScene(e, function(e, t) {
-var n = Math.floor(100 * (e / t).toFixed(2));
-_ && _(n);
-}, function(_) {
-t && t(e, _);
-});
 },
 GIsArrContain: function(e, _) {
 for (var t in e) {
@@ -1729,8 +1721,8 @@ cc.sys.isNative && (jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDir
 GgetDirByUrl: function(e) {
 var _ = e.split("/"), t = "";
 if (_.length > 1) for (var n = 0; n < _.length - 1; n++) {
-var T = _[n];
-t = 0 == n ? T : t + "/" + T;
+var S = _[n];
+t = 0 == n ? S : t + "/" + S;
 } else t = _[0];
 return t + "/";
 },
@@ -1743,12 +1735,12 @@ var t = this;
 if (cc.sys.isNative) {
 var n = jsb.fileUtils.getWritablePath() + "PicTemp/";
 this.GcreateDir(n);
-var T = n + this.GgetFileNameByUrl(e);
-jsb.fileUtils.isFileExist(T) ? this.loadTexture(T, function(e) {
+var S = n + this.GgetFileNameByUrl(e);
+jsb.fileUtils.isFileExist(S) ? this.loadTexture(S, function(e) {
 _ && _(e);
 }) : this.GDownFile(e, function(e) {
-t.GwriteDataToFile(e, T);
-t.loadTexture(T, function(e) {
+t.GwriteDataToFile(e, S);
+t.loadTexture(S, function(e) {
 _ && _(e);
 });
 });
@@ -1790,8 +1782,8 @@ ConverToNodePos: function(e, _) {
 return e.convertToNodeSpaceAR(_);
 },
 GgetTwoV2Angle: function(e, _) {
-var t = _.x - e.x, n = _.y - e.y, T = cc.v2(t, n).signAngle(cc.v2(0, 1));
-return cc.misc.radiansToDegrees(T);
+var t = _.x - e.x, n = _.y - e.y, S = cc.v2(t, n).signAngle(cc.v2(0, 1));
+return cc.misc.radiansToDegrees(S);
 },
 isjson: function(e) {
 if ("string" == typeof e) try {
@@ -1824,7 +1816,7 @@ gExitGame: function() {
 cc.sys.isNative && cc.game.end();
 },
 Ghotupdateurl: "xxx",
-GgameType: 3
+GgameType: 1
 };
 if (1 == t.GgameType) {
 t.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configrelease";
@@ -1868,17 +1860,17 @@ n.open("POST", e);
 cc.sys.isNative && n.setRequestHeader("Accept-Encoding", "gzip, deflate");
 n.timeout = 5e3;
 n.setRequestHeader("Content-Type", "application/json");
-var T = JSON.stringify(_);
-console.log("_data", T);
-n.send(T);
+var S = JSON.stringify(_);
+console.log("_data", S);
+n.send(S);
 }
 };
 _.exports = t;
 cc._RF.pop();
 }, {} ],
 1: [ function(e, _) {
-var t = e("util/"), n = Array.prototype.slice, T = Object.prototype.hasOwnProperty, S = _.exports = r;
-S.AssertionError = function(e) {
+var t = e("util/"), n = Array.prototype.slice, S = Object.prototype.hasOwnProperty, T = _.exports = R;
+T.AssertionError = function(e) {
 this.name = "AssertionError";
 this.actual = e.actual;
 this.expected = e.expected;
@@ -1890,20 +1882,20 @@ this.generatedMessage = !1;
 this.message = E(this);
 this.generatedMessage = !0;
 }
-var _ = e.stackStartFunction || R;
+var _ = e.stackStartFunction || r;
 if (Error.captureStackTrace) Error.captureStackTrace(this, _); else {
 var t = new Error();
 if (t.stack) {
-var n = t.stack, T = _.name, S = n.indexOf("\n" + T);
-if (S >= 0) {
-var i = n.indexOf("\n", S + 1);
+var n = t.stack, S = _.name, T = n.indexOf("\n" + S);
+if (T >= 0) {
+var i = n.indexOf("\n", T + 1);
 n = n.substring(i + 1);
 }
 this.stack = n;
 }
 }
 };
-t.inherits(S.AssertionError, Error);
+t.inherits(T.AssertionError, Error);
 function i(e, _) {
 return t.isUndefined(_) ? "" + _ : t.isNumber(_) && !isFinite(_) ? _.toString() : t.isFunction(_) || t.isRegExp(_) ? _.toString() : _;
 }
@@ -1913,28 +1905,28 @@ return t.isString(e) ? e.length < _ ? e : e.slice(0, _) : e;
 function E(e) {
 return o(JSON.stringify(e.actual, i), 128) + " " + e.operator + " " + o(JSON.stringify(e.expected, i), 128);
 }
-function R(e, _, t, n, T) {
-throw new S.AssertionError({
+function r(e, _, t, n, S) {
+throw new T.AssertionError({
 message: t,
 actual: e,
 expected: _,
 operator: n,
-stackStartFunction: T
+stackStartFunction: S
 });
 }
-S.fail = R;
-function r(e, _) {
-e || R(e, !0, _, "==", S.ok);
+T.fail = r;
+function R(e, _) {
+e || r(e, !0, _, "==", T.ok);
 }
-S.ok = r;
-S.equal = function(e, _, t) {
-e != _ && R(e, _, t, "==", S.equal);
+T.ok = R;
+T.equal = function(e, _, t) {
+e != _ && r(e, _, t, "==", T.equal);
 };
-S.notEqual = function(e, _, t) {
-e == _ && R(e, _, t, "!=", S.notEqual);
+T.notEqual = function(e, _, t) {
+e == _ && r(e, _, t, "!=", T.notEqual);
 };
-S.deepEqual = function(e, _, t) {
-s(e, _) || R(e, _, t, "deepEqual", S.deepEqual);
+T.deepEqual = function(e, _, t) {
+s(e, _) || r(e, _, t, "deepEqual", T.deepEqual);
 };
 function s(e, _) {
 if (e === _) return !0;
@@ -1943,66 +1935,66 @@ if (e.length != _.length) return !1;
 for (var n = 0; n < e.length; n++) if (e[n] !== _[n]) return !1;
 return !0;
 }
-return t.isDate(e) && t.isDate(_) ? e.getTime() === _.getTime() : t.isRegExp(e) && t.isRegExp(_) ? e.source === _.source && e.global === _.global && e.multiline === _.multiline && e.lastIndex === _.lastIndex && e.ignoreCase === _.ignoreCase : t.isObject(e) || t.isObject(_) ? I(e, _) : e == _;
+return t.isDate(e) && t.isDate(_) ? e.getTime() === _.getTime() : t.isRegExp(e) && t.isRegExp(_) ? e.source === _.source && e.global === _.global && e.multiline === _.multiline && e.lastIndex === _.lastIndex && e.ignoreCase === _.ignoreCase : t.isObject(e) || t.isObject(_) ? c(e, _) : e == _;
 }
 function a(e) {
 return "[object Arguments]" == Object.prototype.toString.call(e);
 }
-function I(e, _) {
+function c(e, _) {
 if (t.isNullOrUndefined(e) || t.isNullOrUndefined(_)) return !1;
 if (e.prototype !== _.prototype) return !1;
 if (t.isPrimitive(e) || t.isPrimitive(_)) return e === _;
-var T = a(e), S = a(_);
-if (T && !S || !T && S) return !1;
-if (T) return s(e = n.call(e), _ = n.call(_));
-var i, o, E = C(e), R = C(_);
-if (E.length != R.length) return !1;
+var S = a(e), T = a(_);
+if (S && !T || !S && T) return !1;
+if (S) return s(e = n.call(e), _ = n.call(_));
+var i, o, E = C(e), r = C(_);
+if (E.length != r.length) return !1;
 E.sort();
-R.sort();
-for (o = E.length - 1; o >= 0; o--) if (E[o] != R[o]) return !1;
+r.sort();
+for (o = E.length - 1; o >= 0; o--) if (E[o] != r[o]) return !1;
 for (o = E.length - 1; o >= 0; o--) if (!s(e[i = E[o]], _[i])) return !1;
 return !0;
 }
-S.notDeepEqual = function(e, _, t) {
-s(e, _) && R(e, _, t, "notDeepEqual", S.notDeepEqual);
+T.notDeepEqual = function(e, _, t) {
+s(e, _) && r(e, _, t, "notDeepEqual", T.notDeepEqual);
 };
-S.strictEqual = function(e, _, t) {
-e !== _ && R(e, _, t, "===", S.strictEqual);
+T.strictEqual = function(e, _, t) {
+e !== _ && r(e, _, t, "===", T.strictEqual);
 };
-S.notStrictEqual = function(e, _, t) {
-e === _ && R(e, _, t, "!==", S.notStrictEqual);
+T.notStrictEqual = function(e, _, t) {
+e === _ && r(e, _, t, "!==", T.notStrictEqual);
 };
-function c(e, _) {
+function I(e, _) {
 return !(!e || !_) && ("[object RegExp]" == Object.prototype.toString.call(_) ? _.test(e) : e instanceof _ || !0 === _.call({}, e));
 }
-function N(e, _, n, T) {
-var S;
+function N(e, _, n, S) {
+var T;
 if (t.isString(n)) {
-T = n;
+S = n;
 n = null;
 }
 try {
 _();
 } catch (e) {
-S = e;
+T = e;
 }
-T = (n && n.name ? " (" + n.name + ")." : ".") + (T ? " " + T : ".");
-e && !S && R(S, n, "Missing expected exception" + T);
-!e && c(S, n) && R(S, n, "Got unwanted exception" + T);
-if (e && S && n && !c(S, n) || !e && S) throw S;
+S = (n && n.name ? " (" + n.name + ")." : ".") + (S ? " " + S : ".");
+e && !T && r(T, n, "Missing expected exception" + S);
+!e && I(T, n) && r(T, n, "Got unwanted exception" + S);
+if (e && T && n && !I(T, n) || !e && T) throw T;
 }
-S.throws = function(e, _, t) {
+T.throws = function(e, _, t) {
 N.apply(this, [ !0 ].concat(n.call(arguments)));
 };
-S.doesNotThrow = function(e, _) {
+T.doesNotThrow = function(e, _) {
 N.apply(this, [ !1 ].concat(n.call(arguments)));
 };
-S.ifError = function(e) {
+T.ifError = function(e) {
 if (e) throw e;
 };
 var C = Object.keys || function(e) {
 var _ = [];
-for (var t in e) T.call(e, t) && _.push(t);
+for (var t in e) S.call(e, t) && _.push(t);
 return _;
 };
 }, {
@@ -2034,16 +2026,16 @@ return e && "object" == typeof e && "function" == typeof e.copy && "function" ==
 }, {} ],
 4: [ function(e, _, t) {
 (function(_, n) {
-var T = /%[sdj%]/g;
+var S = /%[sdj%]/g;
 t.format = function(e) {
-if (!h(e)) {
+if (!u(e)) {
 for (var _ = [], t = 0; t < arguments.length; t++) _.push(o(arguments[t]));
 return _.join(" ");
 }
 t = 1;
-for (var n = arguments, S = n.length, i = String(e).replace(T, function(e) {
+for (var n = arguments, T = n.length, i = String(e).replace(S, function(e) {
 if ("%%" === e) return "%";
-if (t >= S) return e;
+if (t >= T) return e;
 switch (e) {
 case "%s":
 return String(n[t++]);
@@ -2061,29 +2053,29 @@ return "[Circular]";
 default:
 return e;
 }
-}), E = n[t]; t < S; E = n[++t]) d(E) || !f(E) ? i += " " + E : i += " " + o(E);
+}), E = n[t]; t < T; E = n[++t]) l(E) || !f(E) ? i += " " + E : i += " " + o(E);
 return i;
 };
-t.deprecate = function(e, T) {
-if (u(n.process)) return function() {
-return t.deprecate(e, T).apply(this, arguments);
+t.deprecate = function(e, S) {
+if (h(n.process)) return function() {
+return t.deprecate(e, S).apply(this, arguments);
 };
 if (!0 === _.noDeprecation) return e;
-var S = !1;
+var T = !1;
 return function() {
-if (!S) {
-if (_.throwDeprecation) throw new Error(T);
-_.traceDeprecation ? console.trace(T) : console.error(T);
-S = !0;
+if (!T) {
+if (_.throwDeprecation) throw new Error(S);
+_.traceDeprecation ? console.trace(S) : console.error(S);
+T = !0;
 }
 return e.apply(this, arguments);
 };
 };
-var S, i = {};
+var T, i = {};
 t.debuglog = function(e) {
-u(S) && (S = _.env.NODE_DEBUG || "");
+h(T) && (T = _.env.NODE_DEBUG || "");
 e = e.toUpperCase();
-if (!i[e]) if (new RegExp("\\b" + e + "\\b", "i").test(S)) {
+if (!i[e]) if (new RegExp("\\b" + e + "\\b", "i").test(T)) {
 var n = _.pid;
 i[e] = function() {
 var _ = t.format.apply(t, arguments);
@@ -2095,15 +2087,15 @@ return i[e];
 function o(e, _) {
 var n = {
 seen: [],
-stylize: R
+stylize: r
 };
 arguments.length >= 3 && (n.depth = arguments[2]);
 arguments.length >= 4 && (n.colors = arguments[3]);
 O(_) ? n.showHidden = _ : _ && t._extend(n, _);
-u(n.showHidden) && (n.showHidden = !1);
-u(n.depth) && (n.depth = 2);
-u(n.colors) && (n.colors = !1);
-u(n.customInspect) && (n.customInspect = !0);
+h(n.showHidden) && (n.showHidden = !1);
+h(n.depth) && (n.depth = 2);
+h(n.colors) && (n.colors = !1);
+h(n.customInspect) && (n.customInspect = !0);
 n.colors && (n.stylize = E);
 return s(n, e, n.depth);
 }
@@ -2137,10 +2129,10 @@ function E(e, _) {
 var t = o.styles[_];
 return t ? "[" + o.colors[t][0] + "m" + e + "[" + o.colors[t][1] + "m" : e;
 }
-function R(e) {
+function r(e) {
 return e;
 }
-function r(e) {
+function R(e) {
 var _ = {};
 e.forEach(function(e) {
 _[e] = !0;
@@ -2149,15 +2141,15 @@ return _;
 }
 function s(e, _, n) {
 if (e.customInspect && _ && P(_.inspect) && _.inspect !== t.inspect && (!_.constructor || _.constructor.prototype !== _)) {
-var T = _.inspect(n, e);
-h(T) || (T = s(e, T, n));
-return T;
+var S = _.inspect(n, e);
+u(S) || (S = s(e, S, n));
+return S;
 }
-var S = a(e, _);
-if (S) return S;
-var i = Object.keys(_), o = r(i);
+var T = a(e, _);
+if (T) return T;
+var i = Object.keys(_), o = R(i);
 e.showHidden && (i = Object.getOwnPropertyNames(_));
-if (M(_) && (i.indexOf("message") >= 0 || i.indexOf("description") >= 0)) return I(_);
+if (M(_) && (i.indexOf("message") >= 0 || i.indexOf("description") >= 0)) return c(_);
 if (0 === i.length) {
 if (P(_)) {
 var E = _.name ? ": " + _.name : "";
@@ -2165,58 +2157,58 @@ return e.stylize("[Function" + E + "]", "special");
 }
 if (D(_)) return e.stylize(RegExp.prototype.toString.call(_), "regexp");
 if (p(_)) return e.stylize(Date.prototype.toString.call(_), "date");
-if (M(_)) return I(_);
+if (M(_)) return c(_);
 }
-var R, O = "", d = !1, l = [ "{", "}" ];
+var r, O = "", l = !1, d = [ "{", "}" ];
 if (A(_)) {
-d = !0;
-l = [ "[", "]" ];
+l = !0;
+d = [ "[", "]" ];
 }
 P(_) && (O = " [Function" + (_.name ? ": " + _.name : "") + "]");
 D(_) && (O = " " + RegExp.prototype.toString.call(_));
 p(_) && (O = " " + Date.prototype.toUTCString.call(_));
-M(_) && (O = " " + I(_));
-if (0 === i.length && (!d || 0 == _.length)) return l[0] + O + l[1];
+M(_) && (O = " " + c(_));
+if (0 === i.length && (!l || 0 == _.length)) return d[0] + O + d[1];
 if (n < 0) return D(_) ? e.stylize(RegExp.prototype.toString.call(_), "regexp") : e.stylize("[Object]", "special");
 e.seen.push(_);
-R = d ? c(e, _, n, o, i) : i.map(function(t) {
-return N(e, _, n, o, t, d);
+r = l ? I(e, _, n, o, i) : i.map(function(t) {
+return N(e, _, n, o, t, l);
 });
 e.seen.pop();
-return C(R, O, l);
+return C(r, O, d);
 }
 function a(e, _) {
-if (u(_)) return e.stylize("undefined", "undefined");
-if (h(_)) {
+if (h(_)) return e.stylize("undefined", "undefined");
+if (u(_)) {
 var t = "'" + JSON.stringify(_).replace(/^"|"$/g, "").replace(/'/g, "\\'").replace(/\\"/g, '"') + "'";
 return e.stylize(t, "string");
 }
-return l(_) ? e.stylize("" + _, "number") : O(_) ? e.stylize("" + _, "boolean") : d(_) ? e.stylize("null", "null") : void 0;
+return d(_) ? e.stylize("" + _, "number") : O(_) ? e.stylize("" + _, "boolean") : l(_) ? e.stylize("null", "null") : void 0;
 }
-function I(e) {
+function c(e) {
 return "[" + Error.prototype.toString.call(e) + "]";
 }
-function c(e, _, t, n, T) {
-for (var S = [], i = 0, o = _.length; i < o; ++i) y(_, String(i)) ? S.push(N(e, _, t, n, String(i), !0)) : S.push("");
-T.forEach(function(T) {
-T.match(/^\d+$/) || S.push(N(e, _, t, n, T, !0));
+function I(e, _, t, n, S) {
+for (var T = [], i = 0, o = _.length; i < o; ++i) y(_, String(i)) ? T.push(N(e, _, t, n, String(i), !0)) : T.push("");
+S.forEach(function(S) {
+S.match(/^\d+$/) || T.push(N(e, _, t, n, S, !0));
 });
-return S;
+return T;
 }
-function N(e, _, t, n, T, S) {
+function N(e, _, t, n, S, T) {
 var i, o, E;
-(E = Object.getOwnPropertyDescriptor(_, T) || {
-value: _[T]
+(E = Object.getOwnPropertyDescriptor(_, S) || {
+value: _[S]
 }).get ? o = E.set ? e.stylize("[Getter/Setter]", "special") : e.stylize("[Getter]", "special") : E.set && (o = e.stylize("[Setter]", "special"));
-y(n, T) || (i = "[" + T + "]");
-o || (e.seen.indexOf(E.value) < 0 ? (o = d(t) ? s(e, E.value, null) : s(e, E.value, t - 1)).indexOf("\n") > -1 && (o = S ? o.split("\n").map(function(e) {
+y(n, S) || (i = "[" + S + "]");
+o || (e.seen.indexOf(E.value) < 0 ? (o = l(t) ? s(e, E.value, null) : s(e, E.value, t - 1)).indexOf("\n") > -1 && (o = T ? o.split("\n").map(function(e) {
 return "  " + e;
 }).join("\n").substr(2) : "\n" + o.split("\n").map(function(e) {
 return "   " + e;
 }).join("\n")) : o = e.stylize("[Circular]", "special"));
-if (u(i)) {
-if (S && T.match(/^\d+$/)) return o;
-if ((i = JSON.stringify("" + T)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
+if (h(i)) {
+if (T && S.match(/^\d+$/)) return o;
+if ((i = JSON.stringify("" + S)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
 i = i.substr(1, i.length - 2);
 i = e.stylize(i, "name");
 } else {
@@ -2240,28 +2232,28 @@ function O(e) {
 return "boolean" == typeof e;
 }
 t.isBoolean = O;
-function d(e) {
+function l(e) {
 return null === e;
 }
-t.isNull = d;
+t.isNull = l;
 t.isNullOrUndefined = function(e) {
 return null == e;
 };
-function l(e) {
+function d(e) {
 return "number" == typeof e;
 }
-t.isNumber = l;
-function h(e) {
+t.isNumber = d;
+function u(e) {
 return "string" == typeof e;
 }
-t.isString = h;
+t.isString = u;
 t.isSymbol = function(e) {
 return "symbol" == typeof e;
 };
-function u(e) {
+function h(e) {
 return void 0 === e;
 }
-t.isUndefined = u;
+t.isUndefined = h;
 function D(e) {
 return f(e) && "[object RegExp]" === L(e);
 }
@@ -2289,16 +2281,16 @@ t.isBuffer = e("./support/isBuffer");
 function L(e) {
 return Object.prototype.toString.call(e);
 }
-function V(e) {
+function m(e) {
 return e < 10 ? "0" + e.toString(10) : e.toString(10);
 }
-var m = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-function g() {
-var e = new Date(), _ = [ V(e.getHours()), V(e.getMinutes()), V(e.getSeconds()) ].join(":");
-return [ e.getDate(), m[e.getMonth()], _ ].join(" ");
+var g = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+function V() {
+var e = new Date(), _ = [ m(e.getHours()), m(e.getMinutes()), m(e.getSeconds()) ].join(":");
+return [ e.getDate(), g[e.getMonth()], _ ].join(" ");
 }
 t.log = function() {
-console.log("%s - %s", g(), t.format.apply(t, arguments));
+console.log("%s - %s", V(), t.format.apply(t, arguments));
 };
 t.inherits = e("inherits");
 t._extend = function(e, _) {
@@ -2318,59 +2310,59 @@ inherits: 2
 5: [ function(e, _, t) {
 "use strict";
 t.byteLength = function(e) {
-var _ = R(e), t = _[0], n = _[1];
+var _ = r(e), t = _[0], n = _[1];
 return 3 * (t + n) / 4 - n;
 };
 t.toByteArray = function(e) {
-var _, t, n = R(e), i = n[0], o = n[1], E = new S(r(0, i, o)), s = 0, a = o > 0 ? i - 4 : i;
+var _, t, n = r(e), i = n[0], o = n[1], E = new T(R(0, i, o)), s = 0, a = o > 0 ? i - 4 : i;
 for (t = 0; t < a; t += 4) {
-_ = T[e.charCodeAt(t)] << 18 | T[e.charCodeAt(t + 1)] << 12 | T[e.charCodeAt(t + 2)] << 6 | T[e.charCodeAt(t + 3)];
+_ = S[e.charCodeAt(t)] << 18 | S[e.charCodeAt(t + 1)] << 12 | S[e.charCodeAt(t + 2)] << 6 | S[e.charCodeAt(t + 3)];
 E[s++] = _ >> 16 & 255;
 E[s++] = _ >> 8 & 255;
 E[s++] = 255 & _;
 }
 if (2 === o) {
-_ = T[e.charCodeAt(t)] << 2 | T[e.charCodeAt(t + 1)] >> 4;
+_ = S[e.charCodeAt(t)] << 2 | S[e.charCodeAt(t + 1)] >> 4;
 E[s++] = 255 & _;
 }
 if (1 === o) {
-_ = T[e.charCodeAt(t)] << 10 | T[e.charCodeAt(t + 1)] << 4 | T[e.charCodeAt(t + 2)] >> 2;
+_ = S[e.charCodeAt(t)] << 10 | S[e.charCodeAt(t + 1)] << 4 | S[e.charCodeAt(t + 2)] >> 2;
 E[s++] = _ >> 8 & 255;
 E[s++] = 255 & _;
 }
 return E;
 };
 t.fromByteArray = function(e) {
-for (var _, t = e.length, T = t % 3, S = [], i = 0, o = t - T; i < o; i += 16383) S.push(s(e, i, i + 16383 > o ? o : i + 16383));
-if (1 === T) {
+for (var _, t = e.length, S = t % 3, T = [], i = 0, o = t - S; i < o; i += 16383) T.push(s(e, i, i + 16383 > o ? o : i + 16383));
+if (1 === S) {
 _ = e[t - 1];
-S.push(n[_ >> 2] + n[_ << 4 & 63] + "==");
-} else if (2 === T) {
+T.push(n[_ >> 2] + n[_ << 4 & 63] + "==");
+} else if (2 === S) {
 _ = (e[t - 2] << 8) + e[t - 1];
-S.push(n[_ >> 10] + n[_ >> 4 & 63] + n[_ << 2 & 63] + "=");
+T.push(n[_ >> 10] + n[_ >> 4 & 63] + n[_ << 2 & 63] + "=");
 }
-return S.join("");
+return T.join("");
 };
-for (var n = [], T = [], S = "undefined" != typeof Uint8Array ? Uint8Array : Array, i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", o = 0, E = i.length; o < E; ++o) {
+for (var n = [], S = [], T = "undefined" != typeof Uint8Array ? Uint8Array : Array, i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", o = 0, E = i.length; o < E; ++o) {
 n[o] = i[o];
-T[i.charCodeAt(o)] = o;
+S[i.charCodeAt(o)] = o;
 }
-T["-".charCodeAt(0)] = 62;
-T["_".charCodeAt(0)] = 63;
-function R(e) {
+S["-".charCodeAt(0)] = 62;
+S["_".charCodeAt(0)] = 63;
+function r(e) {
 var _ = e.length;
 if (_ % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
 var t = e.indexOf("=");
 -1 === t && (t = _);
 return [ t, t === _ ? 0 : 4 - t % 4 ];
 }
-function r(e, _, t) {
+function R(e, _, t) {
 return 3 * (_ + t) / 4 - t;
 }
 function s(e, _, t) {
-for (var T, S, i = [], o = _; o < t; o += 3) {
-T = (e[o] << 16 & 16711680) + (e[o + 1] << 8 & 65280) + (255 & e[o + 2]);
-i.push(n[(S = T) >> 18 & 63] + n[S >> 12 & 63] + n[S >> 6 & 63] + n[63 & S]);
+for (var S, T, i = [], o = _; o < t; o += 3) {
+S = (e[o] << 16 & 16711680) + (e[o + 1] << 8 & 65280) + (255 & e[o + 2]);
+i.push(n[(T = S) >> 18 & 63] + n[T >> 12 & 63] + n[T >> 6 & 63] + n[63 & T]);
 }
 return i.join("");
 }
@@ -2378,7 +2370,7 @@ return i.join("");
 6: [ function(e, _, t) {
 (function(_) {
 "use strict";
-var n = e("base64-js"), T = e("ieee754"), S = e("isarray");
+var n = e("base64-js"), S = e("ieee754"), T = e("isarray");
 t.Buffer = E;
 t.SlowBuffer = function(e) {
 +e != e && (e = 0);
@@ -2417,19 +2409,19 @@ if ("number" == typeof e) {
 if ("string" == typeof _) throw new Error("If encoding is specified then the first argument must be a string");
 return a(this, e);
 }
-return R(this, e, _, t);
+return r(this, e, _, t);
 }
 E.poolSize = 8192;
 E._augment = function(e) {
 e.__proto__ = E.prototype;
 return e;
 };
-function R(e, _, t, n) {
+function r(e, _, t, n) {
 if ("number" == typeof _) throw new TypeError('"value" argument must not be a number');
-return "undefined" != typeof ArrayBuffer && _ instanceof ArrayBuffer ? N(e, _, t, n) : "string" == typeof _ ? I(e, _, t) : C(e, _);
+return "undefined" != typeof ArrayBuffer && _ instanceof ArrayBuffer ? N(e, _, t, n) : "string" == typeof _ ? c(e, _, t) : C(e, _);
 }
 E.from = function(e, _, t) {
-return R(null, e, _, t);
+return r(null, e, _, t);
 };
 if (E.TYPED_ARRAY_SUPPORT) {
 E.prototype.__proto__ = Uint8Array.prototype;
@@ -2439,19 +2431,19 @@ value: null,
 configurable: !0
 });
 }
-function r(e) {
+function R(e) {
 if ("number" != typeof e) throw new TypeError('"size" argument must be a number');
 if (e < 0) throw new RangeError('"size" argument must not be negative');
 }
 function s(e, _, t, n) {
-r(_);
+R(_);
 return _ <= 0 ? o(e, _) : void 0 !== t ? "string" == typeof n ? o(e, _).fill(t, n) : o(e, _).fill(t) : o(e, _);
 }
 E.alloc = function(e, _, t) {
 return s(null, e, _, t);
 };
 function a(e, _) {
-r(_);
+R(_);
 e = o(e, _ < 0 ? 0 : 0 | A(_));
 if (!E.TYPED_ARRAY_SUPPORT) for (var t = 0; t < _; ++t) e[t] = 0;
 return e;
@@ -2462,14 +2454,14 @@ return a(null, e);
 E.allocUnsafeSlow = function(e) {
 return a(null, e);
 };
-function I(e, _, t) {
+function c(e, _, t) {
 "string" == typeof t && "" !== t || (t = "utf8");
 if (!E.isEncoding(t)) throw new TypeError('"encoding" must be a valid string encoding');
-var n = 0 | O(_, t), T = (e = o(e, n)).write(_, t);
-T !== n && (e = e.slice(0, T));
+var n = 0 | O(_, t), S = (e = o(e, n)).write(_, t);
+S !== n && (e = e.slice(0, S));
 return e;
 }
-function c(e, _) {
+function I(e, _) {
 var t = _.length < 0 ? 0 : 0 | A(_.length);
 e = o(e, t);
 for (var n = 0; n < t; n += 1) e[n] = 255 & _[n];
@@ -2480,7 +2472,7 @@ _.byteLength;
 if (t < 0 || _.byteLength < t) throw new RangeError("'offset' is out of bounds");
 if (_.byteLength < t + (n || 0)) throw new RangeError("'length' is out of bounds");
 _ = void 0 === t && void 0 === n ? new Uint8Array(_) : void 0 === n ? new Uint8Array(_, t) : new Uint8Array(_, t, n);
-E.TYPED_ARRAY_SUPPORT ? (e = _).__proto__ = E.prototype : e = c(e, _);
+E.TYPED_ARRAY_SUPPORT ? (e = _).__proto__ = E.prototype : e = I(e, _);
 return e;
 }
 function C(e, _) {
@@ -2491,8 +2483,8 @@ _.copy(e, 0, 0, t);
 return e;
 }
 if (_) {
-if ("undefined" != typeof ArrayBuffer && _.buffer instanceof ArrayBuffer || "length" in _) return "number" != typeof _.length || (n = _.length) != n ? o(e, 0) : c(e, _);
-if ("Buffer" === _.type && S(_.data)) return c(e, _.data);
+if ("undefined" != typeof ArrayBuffer && _.buffer instanceof ArrayBuffer || "length" in _) return "number" != typeof _.length || (n = _.length) != n ? o(e, 0) : I(e, _);
+if ("Buffer" === _.type && T(_.data)) return I(e, _.data);
 }
 var n;
 throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.");
@@ -2507,9 +2499,9 @@ return !(null == e || !e._isBuffer);
 E.compare = function(e, _) {
 if (!E.isBuffer(e) || !E.isBuffer(_)) throw new TypeError("Arguments must be Buffers");
 if (e === _) return 0;
-for (var t = e.length, n = _.length, T = 0, S = Math.min(t, n); T < S; ++T) if (e[T] !== _[T]) {
-t = e[T];
-n = _[T];
+for (var t = e.length, n = _.length, S = 0, T = Math.min(t, n); S < T; ++S) if (e[S] !== _[S]) {
+t = e[S];
+n = _[S];
 break;
 }
 return t < n ? -1 : n < t ? 1 : 0;
@@ -2534,19 +2526,19 @@ return !1;
 }
 };
 E.concat = function(e, _) {
-if (!S(e)) throw new TypeError('"list" argument must be an Array of Buffers');
+if (!T(e)) throw new TypeError('"list" argument must be an Array of Buffers');
 if (0 === e.length) return E.alloc(0);
 var t;
 if (void 0 === _) {
 _ = 0;
 for (t = 0; t < e.length; ++t) _ += e[t].length;
 }
-var n = E.allocUnsafe(_), T = 0;
+var n = E.allocUnsafe(_), S = 0;
 for (t = 0; t < e.length; ++t) {
 var i = e[t];
 if (!E.isBuffer(i)) throw new TypeError('"list" argument must be an Array of Buffers');
-i.copy(n, T);
-T += i.length;
+i.copy(n, S);
+S += i.length;
 }
 return n;
 };
@@ -2586,7 +2578,7 @@ n = !0;
 }
 }
 E.byteLength = O;
-function d(e, _, t) {
+function l(e, _, t) {
 var n = !1;
 (void 0 === _ || _ < 0) && (_ = 0);
 if (_ > this.length) return "";
@@ -2600,7 +2592,7 @@ return F(this, _, t);
 
 case "utf8":
 case "utf-8":
-return m(this, _, t);
+return g(this, _, t);
 
 case "ascii":
 return U(this, _, t);
@@ -2610,7 +2602,7 @@ case "binary":
 return H(this, _, t);
 
 case "base64":
-return V(this, _, t);
+return m(this, _, t);
 
 case "ucs2":
 case "ucs-2":
@@ -2625,7 +2617,7 @@ n = !0;
 }
 }
 E.prototype._isBuffer = !0;
-function l(e, _, t) {
+function d(e, _, t) {
 var n = e[_];
 e[_] = e[t];
 e[t] = n;
@@ -2633,15 +2625,15 @@ e[t] = n;
 E.prototype.swap16 = function() {
 var e = this.length;
 if (e % 2 != 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
-for (var _ = 0; _ < e; _ += 2) l(this, _, _ + 1);
+for (var _ = 0; _ < e; _ += 2) d(this, _, _ + 1);
 return this;
 };
 E.prototype.swap32 = function() {
 var e = this.length;
 if (e % 4 != 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
 for (var _ = 0; _ < e; _ += 4) {
-l(this, _, _ + 3);
-l(this, _ + 1, _ + 2);
+d(this, _, _ + 3);
+d(this, _ + 1, _ + 2);
 }
 return this;
 };
@@ -2649,16 +2641,16 @@ E.prototype.swap64 = function() {
 var e = this.length;
 if (e % 8 != 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
 for (var _ = 0; _ < e; _ += 8) {
-l(this, _, _ + 7);
-l(this, _ + 1, _ + 6);
-l(this, _ + 2, _ + 5);
-l(this, _ + 3, _ + 4);
+d(this, _, _ + 7);
+d(this, _ + 1, _ + 6);
+d(this, _ + 2, _ + 5);
+d(this, _ + 3, _ + 4);
 }
 return this;
 };
 E.prototype.toString = function() {
 var e = 0 | this.length;
-return 0 === e ? "" : 0 === arguments.length ? m(this, 0, e) : d.apply(this, arguments);
+return 0 === e ? "" : 0 === arguments.length ? g(this, 0, e) : l.apply(this, arguments);
 };
 E.prototype.equals = function(e) {
 if (!E.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
@@ -2672,50 +2664,50 @@ this.length > _ && (e += " ... ");
 }
 return "<Buffer " + e + ">";
 };
-E.prototype.compare = function(e, _, t, n, T) {
+E.prototype.compare = function(e, _, t, n, S) {
 if (!E.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
 void 0 === _ && (_ = 0);
 void 0 === t && (t = e ? e.length : 0);
 void 0 === n && (n = 0);
-void 0 === T && (T = this.length);
-if (_ < 0 || t > e.length || n < 0 || T > this.length) throw new RangeError("out of range index");
-if (n >= T && _ >= t) return 0;
-if (n >= T) return -1;
+void 0 === S && (S = this.length);
+if (_ < 0 || t > e.length || n < 0 || S > this.length) throw new RangeError("out of range index");
+if (n >= S && _ >= t) return 0;
+if (n >= S) return -1;
 if (_ >= t) return 1;
 if (this === e) return 0;
-for (var S = (T >>>= 0) - (n >>>= 0), i = (t >>>= 0) - (_ >>>= 0), o = Math.min(S, i), R = this.slice(n, T), r = e.slice(_, t), s = 0; s < o; ++s) if (R[s] !== r[s]) {
-S = R[s];
-i = r[s];
+for (var T = (S >>>= 0) - (n >>>= 0), i = (t >>>= 0) - (_ >>>= 0), o = Math.min(T, i), r = this.slice(n, S), R = e.slice(_, t), s = 0; s < o; ++s) if (r[s] !== R[s]) {
+T = r[s];
+i = R[s];
 break;
 }
-return S < i ? -1 : i < S ? 1 : 0;
+return T < i ? -1 : i < T ? 1 : 0;
 };
-function h(e, _, t, n, T) {
+function u(e, _, t, n, S) {
 if (0 === e.length) return -1;
 if ("string" == typeof t) {
 n = t;
 t = 0;
 } else t > 2147483647 ? t = 2147483647 : t < -2147483648 && (t = -2147483648);
 t = +t;
-isNaN(t) && (t = T ? 0 : e.length - 1);
+isNaN(t) && (t = S ? 0 : e.length - 1);
 t < 0 && (t = e.length + t);
 if (t >= e.length) {
-if (T) return -1;
+if (S) return -1;
 t = e.length - 1;
 } else if (t < 0) {
-if (!T) return -1;
+if (!S) return -1;
 t = 0;
 }
 "string" == typeof _ && (_ = E.from(_, n));
-if (E.isBuffer(_)) return 0 === _.length ? -1 : u(e, _, t, n, T);
+if (E.isBuffer(_)) return 0 === _.length ? -1 : h(e, _, t, n, S);
 if ("number" == typeof _) {
 _ &= 255;
-return E.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? T ? Uint8Array.prototype.indexOf.call(e, _, t) : Uint8Array.prototype.lastIndexOf.call(e, _, t) : u(e, [ _ ], t, n, T);
+return E.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? S ? Uint8Array.prototype.indexOf.call(e, _, t) : Uint8Array.prototype.lastIndexOf.call(e, _, t) : h(e, [ _ ], t, n, S);
 }
 throw new TypeError("val must be string, number or Buffer");
 }
-function u(e, _, t, n, T) {
-var S, i = 1, o = e.length, E = _.length;
+function h(e, _, t, n, S) {
+var T, i = 1, o = e.length, E = _.length;
 if (void 0 !== n && ("ucs2" === (n = String(n).toLowerCase()) || "ucs-2" === n || "utf16le" === n || "utf-16le" === n)) {
 if (e.length < 2 || _.length < 2) return -1;
 i = 2;
@@ -2723,26 +2715,26 @@ o /= 2;
 E /= 2;
 t /= 2;
 }
-function R(e, _) {
+function r(e, _) {
 return 1 === i ? e[_] : e.readUInt16BE(_ * i);
 }
-if (T) {
-var r = -1;
-for (S = t; S < o; S++) if (R(e, S) === R(_, -1 === r ? 0 : S - r)) {
--1 === r && (r = S);
-if (S - r + 1 === E) return r * i;
+if (S) {
+var R = -1;
+for (T = t; T < o; T++) if (r(e, T) === r(_, -1 === R ? 0 : T - R)) {
+-1 === R && (R = T);
+if (T - R + 1 === E) return R * i;
 } else {
--1 !== r && (S -= S - r);
-r = -1;
+-1 !== R && (T -= T - R);
+R = -1;
 }
 } else {
 t + E > o && (t = o - E);
-for (S = t; S >= 0; S--) {
-for (var s = !0, a = 0; a < E; a++) if (R(e, S + a) !== R(_, a)) {
+for (T = t; T >= 0; T--) {
+for (var s = !0, a = 0; a < E; a++) if (r(e, T + a) !== r(_, a)) {
 s = !1;
 break;
 }
-if (s) return S;
+if (s) return T;
 }
 }
 return -1;
@@ -2751,18 +2743,18 @@ E.prototype.includes = function(e, _, t) {
 return -1 !== this.indexOf(e, _, t);
 };
 E.prototype.indexOf = function(e, _, t) {
-return h(this, e, _, t, !0);
+return u(this, e, _, t, !0);
 };
 E.prototype.lastIndexOf = function(e, _, t) {
-return h(this, e, _, t, !1);
+return u(this, e, _, t, !1);
 };
 function D(e, _, t, n) {
 t = Number(t) || 0;
-var T = e.length - t;
-n ? (n = Number(n)) > T && (n = T) : n = T;
-var S = _.length;
-if (S % 2 != 0) throw new TypeError("Invalid hex string");
-n > S / 2 && (n = S / 2);
+var S = e.length - t;
+n ? (n = Number(n)) > S && (n = S) : n = S;
+var T = _.length;
+if (T % 2 != 0) throw new TypeError("Invalid hex string");
+n > T / 2 && (n = T / 2);
 for (var i = 0; i < n; ++i) {
 var o = parseInt(_.substr(2 * i, 2), 16);
 if (isNaN(o)) return i;
@@ -2805,11 +2797,11 @@ n = t;
 t = void 0;
 }
 }
-var T = this.length - _;
-(void 0 === t || t > T) && (t = T);
+var S = this.length - _;
+(void 0 === t || t > S) && (t = S);
 if (e.length > 0 && (t < 0 || _ < 0) || _ > this.length) throw new RangeError("Attempt to write outside buffer bounds");
 n || (n = "utf8");
-for (var S = !1; ;) switch (n) {
+for (var T = !1; ;) switch (n) {
 case "hex":
 return D(this, e, _, t);
 
@@ -2834,9 +2826,9 @@ case "utf-16le":
 return L(this, e, _, t);
 
 default:
-if (S) throw new TypeError("Unknown encoding: " + n);
+if (T) throw new TypeError("Unknown encoding: " + n);
 n = ("" + n).toLowerCase();
-S = !0;
+T = !0;
 }
 };
 E.prototype.toJSON = function() {
@@ -2845,35 +2837,35 @@ type: "Buffer",
 data: Array.prototype.slice.call(this._arr || this, 0)
 };
 };
-function V(e, _, t) {
+function m(e, _, t) {
 return 0 === _ && t === e.length ? n.fromByteArray(e) : n.fromByteArray(e.slice(_, t));
 }
-function m(e, _, t) {
+function g(e, _, t) {
 t = Math.min(e.length, t);
-for (var n = [], T = _; T < t; ) {
-var S = e[T], i = null, o = S > 239 ? 4 : S > 223 ? 3 : S > 191 ? 2 : 1;
-if (T + o <= t) {
-var E, R, r, s;
+for (var n = [], S = _; S < t; ) {
+var T = e[S], i = null, o = T > 239 ? 4 : T > 223 ? 3 : T > 191 ? 2 : 1;
+if (S + o <= t) {
+var E, r, R, s;
 switch (o) {
 case 1:
-S < 128 && (i = S);
+T < 128 && (i = T);
 break;
 
 case 2:
-128 == (192 & (E = e[T + 1])) && (s = (31 & S) << 6 | 63 & E) > 127 && (i = s);
+128 == (192 & (E = e[S + 1])) && (s = (31 & T) << 6 | 63 & E) > 127 && (i = s);
 break;
 
 case 3:
-E = e[T + 1];
-R = e[T + 2];
-128 == (192 & E) && 128 == (192 & R) && (s = (15 & S) << 12 | (63 & E) << 6 | 63 & R) > 2047 && (s < 55296 || s > 57343) && (i = s);
+E = e[S + 1];
+r = e[S + 2];
+128 == (192 & E) && 128 == (192 & r) && (s = (15 & T) << 12 | (63 & E) << 6 | 63 & r) > 2047 && (s < 55296 || s > 57343) && (i = s);
 break;
 
 case 4:
-E = e[T + 1];
-R = e[T + 2];
-r = e[T + 3];
-128 == (192 & E) && 128 == (192 & R) && 128 == (192 & r) && (s = (15 & S) << 18 | (63 & E) << 12 | (63 & R) << 6 | 63 & r) > 65535 && s < 1114112 && (i = s);
+E = e[S + 1];
+r = e[S + 2];
+R = e[S + 3];
+128 == (192 & E) && 128 == (192 & r) && 128 == (192 & R) && (s = (15 & T) << 18 | (63 & E) << 12 | (63 & r) << 6 | 63 & R) > 65535 && s < 1114112 && (i = s);
 }
 }
 if (null === i) {
@@ -2885,39 +2877,39 @@ n.push(i >>> 10 & 1023 | 55296);
 i = 56320 | 1023 & i;
 }
 n.push(i);
-T += o;
+S += o;
 }
 return y(n);
 }
-var g = 4096;
+var V = 4096;
 function y(e) {
 var _ = e.length;
-if (_ <= g) return String.fromCharCode.apply(String, e);
-for (var t = "", n = 0; n < _; ) t += String.fromCharCode.apply(String, e.slice(n, n += g));
+if (_ <= V) return String.fromCharCode.apply(String, e);
+for (var t = "", n = 0; n < _; ) t += String.fromCharCode.apply(String, e.slice(n, n += V));
 return t;
 }
 function U(e, _, t) {
 var n = "";
 t = Math.min(e.length, t);
-for (var T = _; T < t; ++T) n += String.fromCharCode(127 & e[T]);
+for (var S = _; S < t; ++S) n += String.fromCharCode(127 & e[S]);
 return n;
 }
 function H(e, _, t) {
 var n = "";
 t = Math.min(e.length, t);
-for (var T = _; T < t; ++T) n += String.fromCharCode(e[T]);
+for (var S = _; S < t; ++S) n += String.fromCharCode(e[S]);
 return n;
 }
 function F(e, _, t) {
-var n, T = e.length;
+var n, S = e.length;
 (!_ || _ < 0) && (_ = 0);
-(!t || t < 0 || t > T) && (t = T);
-for (var S = "", i = _; i < t; ++i) S += (n = e[i]) < 16 ? "0" + n.toString(16) : n.toString(16);
-return S;
+(!t || t < 0 || t > S) && (t = S);
+for (var T = "", i = _; i < t; ++i) T += (n = e[i]) < 16 ? "0" + n.toString(16) : n.toString(16);
+return T;
 }
 function G(e, _, t) {
-for (var n = e.slice(_, t), T = "", S = 0; S < n.length; S += 2) T += String.fromCharCode(n[S] + 256 * n[S + 1]);
-return T;
+for (var n = e.slice(_, t), S = "", T = 0; T < n.length; T += 2) S += String.fromCharCode(n[T] + 256 * n[T + 1]);
+return S;
 }
 E.prototype.slice = function(e, _) {
 var t, n = this.length;
@@ -2925,9 +2917,9 @@ var t, n = this.length;
 (_ = void 0 === _ ? n : ~~_) < 0 ? (_ += n) < 0 && (_ = 0) : _ > n && (_ = n);
 _ < e && (_ = e);
 if (E.TYPED_ARRAY_SUPPORT) (t = this.subarray(e, _)).__proto__ = E.prototype; else {
-var T = _ - e;
-t = new E(T, void 0);
-for (var S = 0; S < T; ++S) t[S] = this[S + e];
+var S = _ - e;
+t = new E(S, void 0);
+for (var T = 0; T < S; ++T) t[T] = this[T + e];
 }
 return t;
 };
@@ -2939,14 +2931,14 @@ E.prototype.readUIntLE = function(e, _, t) {
 e |= 0;
 _ |= 0;
 t || w(e, _, this.length);
-for (var n = this[e], T = 1, S = 0; ++S < _ && (T *= 256); ) n += this[e + S] * T;
+for (var n = this[e], S = 1, T = 0; ++T < _ && (S *= 256); ) n += this[e + T] * S;
 return n;
 };
 E.prototype.readUIntBE = function(e, _, t) {
 e |= 0;
 _ |= 0;
 t || w(e, _, this.length);
-for (var n = this[e + --_], T = 1; _ > 0 && (T *= 256); ) n += this[e + --_] * T;
+for (var n = this[e + --_], S = 1; _ > 0 && (S *= 256); ) n += this[e + --_] * S;
 return n;
 };
 E.prototype.readUInt8 = function(e, _) {
@@ -2973,17 +2965,17 @@ E.prototype.readIntLE = function(e, _, t) {
 e |= 0;
 _ |= 0;
 t || w(e, _, this.length);
-for (var n = this[e], T = 1, S = 0; ++S < _ && (T *= 256); ) n += this[e + S] * T;
-n >= (T *= 128) && (n -= Math.pow(2, 8 * _));
+for (var n = this[e], S = 1, T = 0; ++T < _ && (S *= 256); ) n += this[e + T] * S;
+n >= (S *= 128) && (n -= Math.pow(2, 8 * _));
 return n;
 };
 E.prototype.readIntBE = function(e, _, t) {
 e |= 0;
 _ |= 0;
 t || w(e, _, this.length);
-for (var n = _, T = 1, S = this[e + --n]; n > 0 && (T *= 256); ) S += this[e + --n] * T;
-S >= (T *= 128) && (S -= Math.pow(2, 8 * _));
-return S;
+for (var n = _, S = 1, T = this[e + --n]; n > 0 && (S *= 256); ) T += this[e + --n] * S;
+T >= (S *= 128) && (T -= Math.pow(2, 8 * _));
+return T;
 };
 E.prototype.readInt8 = function(e, _) {
 _ || w(e, 1, this.length);
@@ -3009,23 +3001,23 @@ return this[e] << 24 | this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3];
 };
 E.prototype.readFloatLE = function(e, _) {
 _ || w(e, 4, this.length);
-return T.read(this, e, !0, 23, 4);
+return S.read(this, e, !0, 23, 4);
 };
 E.prototype.readFloatBE = function(e, _) {
 _ || w(e, 4, this.length);
-return T.read(this, e, !1, 23, 4);
+return S.read(this, e, !1, 23, 4);
 };
 E.prototype.readDoubleLE = function(e, _) {
 _ || w(e, 8, this.length);
-return T.read(this, e, !0, 52, 8);
+return S.read(this, e, !0, 52, 8);
 };
 E.prototype.readDoubleBE = function(e, _) {
 _ || w(e, 8, this.length);
-return T.read(this, e, !1, 52, 8);
+return S.read(this, e, !1, 52, 8);
 };
-function v(e, _, t, n, T, S) {
+function v(e, _, t, n, S, T) {
 if (!E.isBuffer(e)) throw new TypeError('"buffer" argument must be a Buffer instance');
-if (_ > T || _ < S) throw new RangeError('"value" argument is out of bounds');
+if (_ > S || _ < T) throw new RangeError('"value" argument is out of bounds');
 if (t + n > e.length) throw new RangeError("Index out of range");
 }
 E.prototype.writeUIntLE = function(e, _, t, n) {
@@ -3033,9 +3025,9 @@ e = +e;
 _ |= 0;
 t |= 0;
 n || v(this, e, _, t, Math.pow(2, 8 * t) - 1, 0);
-var T = 1, S = 0;
+var S = 1, T = 0;
 this[_] = 255 & e;
-for (;++S < t && (T *= 256); ) this[_ + S] = e / T & 255;
+for (;++T < t && (S *= 256); ) this[_ + T] = e / S & 255;
 return _ + t;
 };
 E.prototype.writeUIntBE = function(e, _, t, n) {
@@ -3043,9 +3035,9 @@ e = +e;
 _ |= 0;
 t |= 0;
 n || v(this, e, _, t, Math.pow(2, 8 * t) - 1, 0);
-var T = t - 1, S = 1;
-this[_ + T] = 255 & e;
-for (;--T >= 0 && (S *= 256); ) this[_ + T] = e / S & 255;
+var S = t - 1, T = 1;
+this[_ + S] = 255 & e;
+for (;--S >= 0 && (T *= 256); ) this[_ + S] = e / T & 255;
 return _ + t;
 };
 E.prototype.writeUInt8 = function(e, _, t) {
@@ -3058,7 +3050,7 @@ return _ + 1;
 };
 function B(e, _, t, n) {
 _ < 0 && (_ = 65535 + _ + 1);
-for (var T = 0, S = Math.min(e.length - t, 2); T < S; ++T) e[t + T] = (_ & 255 << 8 * (n ? T : 1 - T)) >>> 8 * (n ? T : 1 - T);
+for (var S = 0, T = Math.min(e.length - t, 2); S < T; ++S) e[t + S] = (_ & 255 << 8 * (n ? S : 1 - S)) >>> 8 * (n ? S : 1 - S);
 }
 E.prototype.writeUInt16LE = function(e, _, t) {
 e = +e;
@@ -3082,7 +3074,7 @@ return _ + 2;
 };
 function b(e, _, t, n) {
 _ < 0 && (_ = 4294967295 + _ + 1);
-for (var T = 0, S = Math.min(e.length - t, 4); T < S; ++T) e[t + T] = _ >>> 8 * (n ? T : 3 - T) & 255;
+for (var S = 0, T = Math.min(e.length - t, 4); S < T; ++S) e[t + S] = _ >>> 8 * (n ? S : 3 - S) & 255;
 }
 E.prototype.writeUInt32LE = function(e, _, t) {
 e = +e;
@@ -3112,14 +3104,14 @@ E.prototype.writeIntLE = function(e, _, t, n) {
 e = +e;
 _ |= 0;
 if (!n) {
-var T = Math.pow(2, 8 * t - 1);
-v(this, e, _, t, T - 1, -T);
+var S = Math.pow(2, 8 * t - 1);
+v(this, e, _, t, S - 1, -S);
 }
-var S = 0, i = 1, o = 0;
+var T = 0, i = 1, o = 0;
 this[_] = 255 & e;
-for (;++S < t && (i *= 256); ) {
-e < 0 && 0 === o && 0 !== this[_ + S - 1] && (o = 1);
-this[_ + S] = (e / i >> 0) - o & 255;
+for (;++T < t && (i *= 256); ) {
+e < 0 && 0 === o && 0 !== this[_ + T - 1] && (o = 1);
+this[_ + T] = (e / i >> 0) - o & 255;
 }
 return _ + t;
 };
@@ -3127,14 +3119,14 @@ E.prototype.writeIntBE = function(e, _, t, n) {
 e = +e;
 _ |= 0;
 if (!n) {
-var T = Math.pow(2, 8 * t - 1);
-v(this, e, _, t, T - 1, -T);
+var S = Math.pow(2, 8 * t - 1);
+v(this, e, _, t, S - 1, -S);
 }
-var S = t - 1, i = 1, o = 0;
-this[_ + S] = 255 & e;
-for (;--S >= 0 && (i *= 256); ) {
-e < 0 && 0 === o && 0 !== this[_ + S + 1] && (o = 1);
-this[_ + S] = (e / i >> 0) - o & 255;
+var T = t - 1, i = 1, o = 0;
+this[_ + T] = 255 & e;
+for (;--T >= 0 && (i *= 256); ) {
+e < 0 && 0 === o && 0 !== this[_ + T + 1] && (o = 1);
+this[_ + T] = (e / i >> 0) - o & 255;
 }
 return _ + t;
 };
@@ -3196,9 +3188,9 @@ function Y(e, _, t, n) {
 if (t + n > e.length) throw new RangeError("Index out of range");
 if (t < 0) throw new RangeError("Index out of range");
 }
-function W(e, _, t, n, S) {
-S || Y(e, 0, t, 4);
-T.write(e, _, t, n, 23, 4);
+function W(e, _, t, n, T) {
+T || Y(e, 0, t, 4);
+S.write(e, _, t, n, 23, 4);
 return t + 4;
 }
 E.prototype.writeFloatLE = function(e, _, t) {
@@ -3207,9 +3199,9 @@ return W(this, e, _, !0, t);
 E.prototype.writeFloatBE = function(e, _, t) {
 return W(this, e, _, !1, t);
 };
-function K(e, _, t, n, S) {
-S || Y(e, 0, t, 8);
-T.write(e, _, t, n, 52, 8);
+function K(e, _, t, n, T) {
+T || Y(e, 0, t, 8);
+S.write(e, _, t, n, 52, 8);
 return t + 8;
 }
 E.prototype.writeDoubleLE = function(e, _, t) {
@@ -3231,9 +3223,9 @@ if (t < 0 || t >= this.length) throw new RangeError("sourceStart out of bounds")
 if (n < 0) throw new RangeError("sourceEnd out of bounds");
 n > this.length && (n = this.length);
 e.length - _ < n - t && (n = e.length - _ + t);
-var T, S = n - t;
-if (this === e && t < _ && _ < n) for (T = S - 1; T >= 0; --T) e[T + _] = this[T + t]; else if (S < 1e3 || !E.TYPED_ARRAY_SUPPORT) for (T = 0; T < S; ++T) e[T + _] = this[T + t]; else Uint8Array.prototype.set.call(e, this.subarray(t, t + S), _);
-return S;
+var S, T = n - t;
+if (this === e && t < _ && _ < n) for (S = T - 1; S >= 0; --S) e[S + _] = this[S + t]; else if (T < 1e3 || !E.TYPED_ARRAY_SUPPORT) for (S = 0; S < T; ++S) e[S + _] = this[S + t]; else Uint8Array.prototype.set.call(e, this.subarray(t, t + T), _);
+return T;
 };
 E.prototype.fill = function(e, _, t, n) {
 if ("string" == typeof e) {
@@ -3246,8 +3238,8 @@ n = t;
 t = this.length;
 }
 if (1 === e.length) {
-var T = e.charCodeAt(0);
-T < 256 && (e = T);
+var S = e.charCodeAt(0);
+S < 256 && (e = S);
 }
 if (void 0 !== n && "string" != typeof n) throw new TypeError("encoding must be a string");
 if ("string" == typeof n && !E.isEncoding(n)) throw new TypeError("Unknown encoding: " + n);
@@ -3257,10 +3249,10 @@ if (t <= _) return this;
 _ >>>= 0;
 t = void 0 === t ? this.length : t >>> 0;
 e || (e = 0);
-var S;
-if ("number" == typeof e) for (S = _; S < t; ++S) this[S] = e; else {
+var T;
+if ("number" == typeof e) for (T = _; T < t; ++T) this[T] = e; else {
 var i = E.isBuffer(e) ? e : j(new E(e, n).toString()), o = i.length;
-for (S = 0; S < t - _; ++S) this[S + _] = i[S % o];
+for (T = 0; T < t - _; ++T) this[T + _] = i[T % o];
 }
 return this;
 };
@@ -3275,64 +3267,64 @@ return e.trim ? e.trim() : e.replace(/^\s+|\s+$/g, "");
 }
 function j(e, _) {
 _ = _ || Infinity;
-for (var t, n = e.length, T = null, S = [], i = 0; i < n; ++i) {
+for (var t, n = e.length, S = null, T = [], i = 0; i < n; ++i) {
 if ((t = e.charCodeAt(i)) > 55295 && t < 57344) {
-if (!T) {
+if (!S) {
 if (t > 56319) {
-(_ -= 3) > -1 && S.push(239, 191, 189);
+(_ -= 3) > -1 && T.push(239, 191, 189);
 continue;
 }
 if (i + 1 === n) {
-(_ -= 3) > -1 && S.push(239, 191, 189);
+(_ -= 3) > -1 && T.push(239, 191, 189);
 continue;
 }
-T = t;
+S = t;
 continue;
 }
 if (t < 56320) {
-(_ -= 3) > -1 && S.push(239, 191, 189);
-T = t;
+(_ -= 3) > -1 && T.push(239, 191, 189);
+S = t;
 continue;
 }
-t = 65536 + (T - 55296 << 10 | t - 56320);
-} else T && (_ -= 3) > -1 && S.push(239, 191, 189);
-T = null;
+t = 65536 + (S - 55296 << 10 | t - 56320);
+} else S && (_ -= 3) > -1 && T.push(239, 191, 189);
+S = null;
 if (t < 128) {
 if ((_ -= 1) < 0) break;
-S.push(t);
+T.push(t);
 } else if (t < 2048) {
 if ((_ -= 2) < 0) break;
-S.push(t >> 6 | 192, 63 & t | 128);
+T.push(t >> 6 | 192, 63 & t | 128);
 } else if (t < 65536) {
 if ((_ -= 3) < 0) break;
-S.push(t >> 12 | 224, t >> 6 & 63 | 128, 63 & t | 128);
+T.push(t >> 12 | 224, t >> 6 & 63 | 128, 63 & t | 128);
 } else {
 if (!(t < 1114112)) throw new Error("Invalid code point");
 if ((_ -= 4) < 0) break;
-S.push(t >> 18 | 240, t >> 12 & 63 | 128, t >> 6 & 63 | 128, 63 & t | 128);
+T.push(t >> 18 | 240, t >> 12 & 63 | 128, t >> 6 & 63 | 128, 63 & t | 128);
 }
 }
-return S;
+return T;
 }
 function z(e) {
 for (var _ = [], t = 0; t < e.length; ++t) _.push(255 & e.charCodeAt(t));
 return _;
 }
 function q(e, _) {
-for (var t, n, T, S = [], i = 0; i < e.length && !((_ -= 2) < 0); ++i) {
+for (var t, n, S, T = [], i = 0; i < e.length && !((_ -= 2) < 0); ++i) {
 n = (t = e.charCodeAt(i)) >> 8;
-T = t % 256;
-S.push(T);
-S.push(n);
+S = t % 256;
+T.push(S);
+T.push(n);
 }
-return S;
+return T;
 }
 function X(e) {
 return n.toByteArray(Q(e));
 }
 function J(e, _, t, n) {
-for (var T = 0; T < n && !(T + t >= _.length || T >= e.length); ++T) _[T + t] = e[T];
-return T;
+for (var S = 0; S < n && !(S + t >= _.length || S >= e.length); ++S) _[S + t] = e[S];
+return S;
 }
 }).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
 }, {
@@ -3348,25 +3340,25 @@ return "[object Array]" == t.call(e);
 }, {} ],
 8: [ function(e, _) {
 (function(t) {
-var n = e("util"), T = e("assert");
-function S() {
+var n = e("util"), S = e("assert");
+function T() {
 return new Date().getTime();
 }
 var i, o = Array.prototype.slice, E = {};
 i = "undefined" != typeof t && t.console ? t.console : "undefined" != typeof window && window.console ? window.console : {};
-for (var R = [ [ function() {}, "log" ], [ function() {
+for (var r = [ [ function() {}, "log" ], [ function() {
 i.log.apply(i, arguments);
 }, "info" ], [ function() {
 i.log.apply(i, arguments);
 }, "warn" ], [ function() {
 i.warn.apply(i, arguments);
 }, "error" ], [ function(e) {
-E[e] = S();
+E[e] = T();
 }, "time" ], [ function(e) {
 var _ = E[e];
 if (!_) throw new Error("No such label: " + e);
 delete E[e];
-var t = S() - _;
+var t = T() - _;
 i.log(e + ": " + t + "ms");
 }, "timeEnd" ], [ function() {
 var e = new Error();
@@ -3378,11 +3370,11 @@ i.log(n.inspect(e) + "\n");
 }, "dir" ], [ function(e) {
 if (!e) {
 var _ = o.call(arguments, 1);
-T.ok(!1, n.format.apply(null, _));
+S.ok(!1, n.format.apply(null, _));
 }
-}, "assert" ] ], r = 0; r < R.length; r++) {
-var s = R[r], a = s[0], I = s[1];
-i[I] || (i[I] = a);
+}, "assert" ] ], R = 0; R < r.length; R++) {
+var s = r[R], a = s[0], c = s[1];
+i[c] || (i[c] = a);
 }
 _.exports = i;
 }).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
@@ -3391,30 +3383,30 @@ assert: 1,
 util: 13
 } ],
 9: [ function(e, _, t) {
-t.read = function(e, _, t, n, T) {
-var S, i, o = 8 * T - n - 1, E = (1 << o) - 1, R = E >> 1, r = -7, s = t ? T - 1 : 0, a = t ? -1 : 1, I = e[_ + s];
+t.read = function(e, _, t, n, S) {
+var T, i, o = 8 * S - n - 1, E = (1 << o) - 1, r = E >> 1, R = -7, s = t ? S - 1 : 0, a = t ? -1 : 1, c = e[_ + s];
 s += a;
-S = I & (1 << -r) - 1;
-I >>= -r;
-r += o;
-for (;r > 0; S = 256 * S + e[_ + s], s += a, r -= 8) ;
-i = S & (1 << -r) - 1;
-S >>= -r;
-r += n;
-for (;r > 0; i = 256 * i + e[_ + s], s += a, r -= 8) ;
-if (0 === S) S = 1 - R; else {
-if (S === E) return i ? NaN : Infinity * (I ? -1 : 1);
+T = c & (1 << -R) - 1;
+c >>= -R;
+R += o;
+for (;R > 0; T = 256 * T + e[_ + s], s += a, R -= 8) ;
+i = T & (1 << -R) - 1;
+T >>= -R;
+R += n;
+for (;R > 0; i = 256 * i + e[_ + s], s += a, R -= 8) ;
+if (0 === T) T = 1 - r; else {
+if (T === E) return i ? NaN : Infinity * (c ? -1 : 1);
 i += Math.pow(2, n);
-S -= R;
+T -= r;
 }
-return (I ? -1 : 1) * i * Math.pow(2, S - n);
+return (c ? -1 : 1) * i * Math.pow(2, T - n);
 };
-t.write = function(e, _, t, n, T, S) {
-var i, o, E, R = 8 * S - T - 1, r = (1 << R) - 1, s = r >> 1, a = 23 === T ? Math.pow(2, -24) - Math.pow(2, -77) : 0, I = n ? 0 : S - 1, c = n ? 1 : -1, N = _ < 0 || 0 === _ && 1 / _ < 0 ? 1 : 0;
+t.write = function(e, _, t, n, S, T) {
+var i, o, E, r = 8 * T - S - 1, R = (1 << r) - 1, s = R >> 1, a = 23 === S ? Math.pow(2, -24) - Math.pow(2, -77) : 0, c = n ? 0 : T - 1, I = n ? 1 : -1, N = _ < 0 || 0 === _ && 1 / _ < 0 ? 1 : 0;
 _ = Math.abs(_);
 if (isNaN(_) || Infinity === _) {
 o = isNaN(_) ? 1 : 0;
-i = r;
+i = R;
 } else {
 i = Math.floor(Math.log(_) / Math.LN2);
 if (_ * (E = Math.pow(2, -i)) < 1) {
@@ -3425,27 +3417,27 @@ if ((_ += i + s >= 1 ? a / E : a * Math.pow(2, 1 - s)) * E >= 2) {
 i++;
 E /= 2;
 }
-if (i + s >= r) {
+if (i + s >= R) {
 o = 0;
-i = r;
+i = R;
 } else if (i + s >= 1) {
-o = (_ * E - 1) * Math.pow(2, T);
+o = (_ * E - 1) * Math.pow(2, S);
 i += s;
 } else {
-o = _ * Math.pow(2, s - 1) * Math.pow(2, T);
+o = _ * Math.pow(2, s - 1) * Math.pow(2, S);
 i = 0;
 }
 }
-for (;T >= 8; e[t + I] = 255 & o, I += c, o /= 256, T -= 8) ;
-i = i << T | o;
-R += T;
-for (;R > 0; e[t + I] = 255 & i, I += c, i /= 256, R -= 8) ;
-e[t + I - c] |= 128 * N;
+for (;S >= 8; e[t + c] = 255 & o, c += I, o /= 256, S -= 8) ;
+i = i << S | o;
+r += S;
+for (;r > 0; e[t + c] = 255 & i, c += I, i /= 256, r -= 8) ;
+e[t + c - I] |= 128 * N;
 };
 }, {} ],
 10: [ function(e, _) {
-var t, n, T = _.exports = {};
-function S() {
+var t, n, S = _.exports = {};
+function T() {
 throw new Error("setTimeout has not been defined");
 }
 function i() {
@@ -3453,9 +3445,9 @@ throw new Error("clearTimeout has not been defined");
 }
 (function() {
 try {
-t = "function" == typeof setTimeout ? setTimeout : S;
+t = "function" == typeof setTimeout ? setTimeout : T;
 } catch (e) {
-t = S;
+t = T;
 }
 try {
 n = "function" == typeof clearTimeout ? clearTimeout : i;
@@ -3465,7 +3457,7 @@ n = i;
 })();
 function o(e) {
 if (t === setTimeout) return setTimeout(e, 0);
-if ((t === S || !t) && setTimeout) {
+if ((t === T || !t) && setTimeout) {
 t = setTimeout;
 return setTimeout(e, 0);
 }
@@ -3495,35 +3487,35 @@ return n.call(this, e);
 }
 }
 }
-var R, r = [], s = !1, a = -1;
-function I() {
-if (s && R) {
-s = !1;
-R.length ? r = R.concat(r) : a = -1;
-r.length && c();
-}
-}
+var r, R = [], s = !1, a = -1;
 function c() {
-if (!s) {
-var e = o(I);
-s = !0;
-for (var _ = r.length; _; ) {
-R = r;
-r = [];
-for (;++a < _; ) R && R[a].run();
-a = -1;
-_ = r.length;
+if (s && r) {
+s = !1;
+r.length ? R = r.concat(R) : a = -1;
+R.length && I();
 }
-R = null;
+}
+function I() {
+if (!s) {
+var e = o(c);
+s = !0;
+for (var _ = R.length; _; ) {
+r = R;
+R = [];
+for (;++a < _; ) r && r[a].run();
+a = -1;
+_ = R.length;
+}
+r = null;
 s = !1;
 E(e);
 }
 }
-T.nextTick = function(e) {
+S.nextTick = function(e) {
 var _ = new Array(arguments.length - 1);
 if (arguments.length > 1) for (var t = 1; t < arguments.length; t++) _[t - 1] = arguments[t];
-r.push(new N(e, _));
-1 !== r.length || s || o(c);
+R.push(new N(e, _));
+1 !== R.length || s || o(I);
 };
 function N(e, _) {
 this.fun = e;
@@ -3532,35 +3524,35 @@ this.array = _;
 N.prototype.run = function() {
 this.fun.apply(null, this.array);
 };
-T.title = "browser";
-T.browser = !0;
-T.env = {};
-T.argv = [];
-T.version = "";
-T.versions = {};
+S.title = "browser";
+S.browser = !0;
+S.env = {};
+S.argv = [];
+S.version = "";
+S.versions = {};
 function C() {}
-T.on = C;
-T.addListener = C;
-T.once = C;
-T.off = C;
-T.removeListener = C;
-T.removeAllListeners = C;
-T.emit = C;
-T.prependListener = C;
-T.prependOnceListener = C;
-T.listeners = function() {
+S.on = C;
+S.addListener = C;
+S.once = C;
+S.off = C;
+S.removeListener = C;
+S.removeAllListeners = C;
+S.emit = C;
+S.prependListener = C;
+S.prependOnceListener = C;
+S.listeners = function() {
 return [];
 };
-T.binding = function() {
+S.binding = function() {
 throw new Error("process.binding is not supported");
 };
-T.cwd = function() {
+S.cwd = function() {
 return "/";
 };
-T.chdir = function() {
+S.chdir = function() {
 throw new Error("process.chdir is not supported");
 };
-T.umask = function() {
+S.umask = function() {
 return 0;
 };
 }, {} ],
@@ -3668,9 +3660,9 @@ i18n: "i18n"
 LaunchScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "a7016SMIJVNQrZxjzWJyjKM", "LaunchScene");
-var t = e("VersionManager"), n = e("BaseComponent");
+var t = e("VersionManager"), n = e("SubGameManager"), S = e("BaseComponent");
 cc.Class({
-extends: n,
+extends: S,
 properties: {
 Text: {
 default: null,
@@ -3698,12 +3690,7 @@ cc.log("渠道号===", window.DISTRIBUTE_CHANNEL);
 cc.sys.localStorage.setItem("debugId", 724001);
 this.count = 0;
 if (cc && cc.sys.isNative) {
-if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32) {
-cc.log("模拟器不热更新");
-t.parseLocalCfg();
-this.goLoginScene();
-return;
-}
+window.DISTRIBUTE_CHANNEL, window.chanel.WIN32;
 cc.log("Global.isDebugTest===", Global.isDebugTest);
 Global.isDebugTest ? UiManager.ShowChooseUpdate({
 tips: "热更新选择",
@@ -3756,8 +3743,8 @@ _.Reboot();
 }, function(e, t, n) {
 cc.log("load progress===", e);
 cc.director.getScheduler().isScheduled(_.updateText, _) && _.unSchduleUpdateText();
-var T = "updateing" + e + "% (" + t + "kb/" + n + "kb)";
-_.Text.string = T;
+var S = "updateing" + e + "% (" + t + "kb/" + n + "kb)";
+_.Text.string = S;
 });
 },
 Reboot: function() {
@@ -3765,21 +3752,19 @@ this.scheduleOnce(function() {
 Global.gReBoot();
 }, 2);
 },
-goTestScene: function() {
-cc.director.loadScene("TestScene");
-},
 goLoginScene: function() {
 var e = this;
+n.parseCfgFromData(t.getSubGameCfg());
 Global.gSchduleOnce(this, function() {
 UiManager.gShowLoading(function(_) {
 _.updataProgress(30);
 e.scheduleOnce(function() {
-Global.gPreloadScene("LoginScene", null, function() {
+UiManager.gPreloadScene("LoginScene", null, function() {
 _.updataProgress(100);
 });
 }, 2);
 }, function() {
-cc.director.loadScene("LoginScene");
+UiManager.gLoadScene("LoginScene");
 });
 }, 1.5);
 }
@@ -3787,6 +3772,7 @@ cc.director.loadScene("LoginScene");
 cc._RF.pop();
 }, {
 BaseComponent: "BaseComponent",
+SubGameManager: "SubGameManager",
 VersionManager: "VersionManager"
 } ],
 LoadingLayer: [ function(e, _) {
@@ -3849,9 +3835,9 @@ console: 8
 LoginScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "43150sdB6ZHSKFTTRw2QZE7", "LoginScene");
-var t = e("VersionManager"), n = e("Devices"), T = e("BaseComponent");
+var t = e("VersionManager"), n = e("Devices"), S = e("BaseComponent");
 cc.Class({
-extends: T,
+extends: S,
 properties: {
 VersionText: {
 default: null,
@@ -3877,18 +3863,21 @@ ua.darkButton(this.node, function(e) {
 console.log("getLocation=====", e.getLocation().x, e.getLocation().y);
 console.log("getLocationInView=====", e.getLocationInView().x, e.getLocationInView().y);
 });
+cc.director.on("test", function(e) {
+cc.log("test event", e);
+});
 },
 goTestScene: function() {
 var e = this;
 UiManager.gShowLoading(function(_) {
 _.updataProgress(30);
 e.scheduleOnce(function() {
-Global.gPreloadScene("TestScene", null, function() {
+UiManager.gPreloadScene("TestScene", null, function() {
 _.updataProgress(100);
 });
 }, 2);
 }, function() {
-cc.director.loadScene("TestScene");
+UiManager.gLoadScene("TestScene");
 });
 }
 });
@@ -3944,28 +3933,28 @@ this.bclientClose = !1;
 connect: function(_, n) {
 this.netData = new Array();
 this.callbackMap = new Map();
-var T = e("Onlinedef"), S = this;
-this._wsiSendBinary = null == _ ? new WebSocket("ws://" + T.hos + ":" + T.port + "//") : new WebSocket("ws://" + _ + ":" + n + "//");
+var S = e("Onlinedef"), T = this;
+this._wsiSendBinary = null == _ ? new WebSocket("ws://" + S.hos + ":" + S.port + "//") : new WebSocket("ws://" + _ + ":" + n + "//");
 cc.log("-连接--------", _ + ":" + n);
 this._wsiSendBinary.binaryType = "arraybuffer";
 this._wsiSendBinary.onopen = function() {
 cc.log("网络连接成功");
-S.reportConnectSuc();
+T.reportConnectSuc();
 };
 this._wsiSendBinary.onmessage = function(_) {
-S.arrayU8ToU16Array(new Uint8Array(_.data));
-var n = new t(_.data, "utf8"), T = e("Package").ParseStrToPackage(n.toString());
-cc.log("onmessage--33333333333333.........-", T);
-S.callLocalFun(T.m_header_name, T.m_json);
+T.arrayU8ToU16Array(new Uint8Array(_.data));
+var n = new t(_.data, "utf8"), S = e("Package").ParseStrToPackage(n.toString());
+cc.log("onmessage--33333333333333.........-", S);
+T.callLocalFun(S.m_header_name, S.m_json);
 };
 this._wsiSendBinary.onerror = function() {
 cc.log("网络错误");
-S.reportOnlineOff("网络错误");
+T.reportOnlineOff("网络错误");
 };
 this._wsiSendBinary.onclose = function() {
-S._wsiSendBinary = null;
+T._wsiSendBinary = null;
 cc.log("网络已经断开");
-S.reportOnlineOff("网络已经断开");
+T.reportOnlineOff("网络已经断开");
 };
 this.onLoad();
 },
@@ -3976,21 +3965,21 @@ addLocalCallback: function(e, _) {
 null != e && null != _ && null != _ && this.callbackMap.set(e, _);
 },
 arrayU8ToU16Array: function(e) {
-for (var _ = "", t = 0, n = 0, T = 0; T < e.length; T++) {
-if (224 == (240 & e[T])) {
+for (var _ = "", t = 0, n = 0, S = 0; S < e.length; S++) {
+if (224 == (240 & e[S])) {
 t = 3;
-n |= (15 & e[T]) << 12;
-n |= (63 & e[T + 1]) << 6;
-n |= 63 & e[T + 2];
-} else if (192 == (224 & e[T])) {
+n |= (15 & e[S]) << 12;
+n |= (63 & e[S + 1]) << 6;
+n |= 63 & e[S + 2];
+} else if (192 == (224 & e[S])) {
 t = 2;
-n |= (31 & e[T]) << 6;
-n |= 63 & e[T + 1];
-} else if (e[T] <= 127) {
+n |= (31 & e[S]) << 6;
+n |= 63 & e[S + 1];
+} else if (e[S] <= 127) {
 t = 1;
-n |= 127 & e[T];
+n |= 127 & e[S];
 }
-T += t - 1;
+S += t - 1;
 _ += String.fromCharCode(n);
 n = 0;
 t = 0;
@@ -4007,19 +3996,19 @@ return new Uint8Array(_);
 },
 string2u8array: function(e) {
 for (var _ = new Uint8Array(3 * e.length), t = 0, n = 0; n < e.length; n++) {
-var T = e.charCodeAt(n);
-if (T <= 127) {
-var S = 127 & T;
-_[t++] = S;
-} else if (T >= 128 && T <= 2047) {
-var i = 63 & T | 128;
-S = T >> 6 & 31 | 192;
-_[t++] = S;
+var S = e.charCodeAt(n);
+if (S <= 127) {
+var T = 127 & S;
+_[t++] = T;
+} else if (S >= 128 && S <= 2047) {
+var i = 63 & S | 128;
+T = S >> 6 & 31 | 192;
+_[t++] = T;
 _[t++] = i;
-} else if (T >= 2048 && T <= 65535) {
-var o = 63 & T | 128;
-i = T >> 6 & 63 | 128, S = T >> 12 & 15 | 224;
-_[t++] = S;
+} else if (S >= 2048 && S <= 65535) {
+var o = 63 & S | 128;
+i = S >> 6 & 63 | 128, T = S >> 12 & 15 | 224;
+_[t++] = T;
 _[t++] = i;
 _[t++] = o;
 }
@@ -4140,9 +4129,9 @@ encode: function() {
 var e = this.m_game_name + " " + this.m_proto_type + " " + this.m_version, _ = "";
 this.m_header_uid = 0;
 for (var n in this) if (n.indexOf("header") > 0) {
-var T = n.lastIndexOf("_"), S = n.substr(T + 1);
-"m_header_ext_data" == n && (S = "ext-data");
-_ += S + ":" + this[n] + "\n";
+var S = n.lastIndexOf("_"), T = n.substr(S + 1);
+"m_header_ext_data" == n && (T = "ext-data");
+_ += T + ":" + this[n] + "\n";
 }
 var i = JSON.stringify(this.m_json);
 1 == this.m_header_type && (i = new t(i + "\n").toString("base64"));
@@ -4151,29 +4140,29 @@ return e + "\n" + _ + "\n" + i + "\n";
 ParseProto: function(e) {
 var _ = e.indexOf(" "), t = e.substr(0, _);
 this.m_game_name = t;
-var n = e.indexOf(" ", _ + 1), T = e.substr(_ + 1, n - _ - 1);
-this.m_proto_type = T;
-var S = e.indexOf("\n"), i = e.substr(n + 1, S - n - 1);
+var n = e.indexOf(" ", _ + 1), S = e.substr(_ + 1, n - _ - 1);
+this.m_proto_type = S;
+var T = e.indexOf("\n"), i = e.substr(n + 1, T - n - 1);
 this.m_version = i;
 },
 ParseHeader: function(e) {
 for (var _ = 0, t = 0; _ < e.length - 1; ) {
 if ("\n" == e[_]) {
-var n = e.substr(t, _ - t), T = n.indexOf(":"), S = n.substr(0, T), i = n.substr(T + 1, n.length - T - 1);
-"type" == S && (this.m_header_type = i);
-"uid" == S && (this.m_header_uid = i);
-"name" == S && (this.m_header_name = i);
-"id" == S && (this.m_header_id = i);
-"sign" == S && (this.m_header_sign = i);
-"ext-data" == S && (this.m_header_ext_data = i);
-"state" == S && (this.m_header_state = i);
+var n = e.substr(t, _ - t), S = n.indexOf(":"), T = n.substr(0, S), i = n.substr(S + 1, n.length - S - 1);
+"type" == T && (this.m_header_type = i);
+"uid" == T && (this.m_header_uid = i);
+"name" == T && (this.m_header_name = i);
+"id" == T && (this.m_header_id = i);
+"sign" == T && (this.m_header_sign = i);
+"ext-data" == T && (this.m_header_ext_data = i);
+"state" == T && (this.m_header_state = i);
 t = _ + 1;
 }
 _++;
 }
 },
 lastIndexOf: function(e, _, t) {
-for (var n = e.lastIndexOf(_), T = 0; T < t - 1; T++) n = e.lastIndexOf(_, n - 1);
+for (var n = e.lastIndexOf(_), S = 0; S < t - 1; S++) n = e.lastIndexOf(_, n - 1);
 return n;
 },
 ParseJson: function(e) {
@@ -4256,15 +4245,15 @@ var t = e.Slots[_], n = t.getComponent("Slot");
 if (n) {
 cc.log(_, t);
 n.Spin();
-var T = Math.floor(8 * Math.random());
-n.StopAtIndex(T, function() {
+var S = Math.floor(8 * Math.random());
+n.StopAtIndex(S, function() {
 console.log("stop-");
 });
 }
 }
 });
-var T = cc.find("UI/btn_back", this.node);
-ua.darkButton(T, function() {
+var S = cc.find("UI/btn_back", this.node);
+ua.darkButton(S, function() {
 cc.director.loadScene("TestScene");
 });
 },
@@ -4335,9 +4324,9 @@ var e = this, _ = "slots/" + t[this.stopIndex];
 cc.resources.load(_, function(_, t) {
 _ ? cc.log("err==", _) : t && (e.ItemArray[e.stopIndex].getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(t));
 });
-for (var n = this.node.children, T = 0; T < n.length; T++) T != this.stopIndex && function() {
-var e = n[T], _ = Math.floor(Math.random() * t.length), S = "slots/" + t[_];
-cc.resources.load(S, function(_, t) {
+for (var n = this.node.children, S = 0; S < n.length; S++) S != this.stopIndex && function() {
+var e = n[S], _ = Math.floor(Math.random() * t.length), T = "slots/" + t[_];
+cc.resources.load(T, function(_, t) {
 _ ? cc.log("err==", _) : t && (e.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(t));
 });
 }();
@@ -4347,22 +4336,22 @@ addItem: function() {
 var e = this;
 this.ItemArray = new Array();
 for (var _ = function(_) {
-(T = cc.instantiate(e.item)).parent = e.node;
-T.x = 0;
-T.tag = _;
-0 == e.movedirection ? T.y = e.node.height / 2 - T.height * _ - T.height / 2 - e.space * (_ + 1) : T.y = -e.node.height / 2 + T.height * _ + T.height / 2 + e.space * (_ + 1);
-T.getChildByName("text").getComponent(cc.Label).string = _;
-var n = T.getComponent(cc.Sprite);
+(S = cc.instantiate(e.item)).parent = e.node;
+S.x = 0;
+S.tag = _;
+0 == e.movedirection ? S.y = e.node.height / 2 - S.height * _ - S.height / 2 - e.space * (_ + 1) : S.y = -e.node.height / 2 + S.height * _ + S.height / 2 + e.space * (_ + 1);
+S.getChildByName("text").getComponent(cc.Label).string = _;
+var n = S.getComponent(cc.Sprite);
 if (n) {
-S = Math.floor(Math.random() * t.length);
-i = "slots/" + t[S];
+T = Math.floor(Math.random() * t.length);
+i = "slots/" + t[T];
 cc.resources.load(i, function(e, _) {
 e ? cc.log("err==", e) : _ && (n.spriteFrame = new cc.SpriteFrame(_));
 });
 }
-e.ItemArray.push(T);
+e.ItemArray.push(S);
 }, n = 0; n < 8; n++) {
-var T, S, i;
+var S, T, i;
 _(n);
 }
 this.item.height = this.ItemArray[0].height;
@@ -4371,28 +4360,28 @@ updateItem: function(e) {
 if (0 != e) for (var _ = this.node.children, t = 0; t < _.length; t++) {
 var n = _[t];
 if (e > 0) {
-var T = this.node.height / 2 + n.height / 2;
-if (n.y >= T) {
+var S = this.node.height / 2 + n.height / 2;
+if (n.y >= S) {
 n.y = n.y + (-_.length * this.item.height - _.length * this.space);
 this.curIndex += 1;
 this.curIndex > 7 && (this.curIndex -= 8);
 } else {
 n.y = n.y + e;
-if (n.y >= T) {
+if (n.y >= S) {
 n.y = n.y + (-_.length * this.item.height - _.length * this.space);
 this.curIndex += 1;
 this.curIndex > 7 && (this.curIndex -= 8);
 }
 }
 } else {
-T = -this.node.height / 2 - n.height / 2;
-if (n.y <= T) {
+S = -this.node.height / 2 - n.height / 2;
+if (n.y <= S) {
 n.y = n.y + (_.length * this.item.height + _.length * this.space);
 this.curIndex += 1;
 this.curIndex > 7 && (this.curIndex -= 8);
 } else {
 n.y = n.y + e;
-if (n.y <= T) {
+if (n.y <= S) {
 n.y = n.y + (_.length * this.item.height + _.length * this.space);
 this.curIndex += 1;
 this.curIndex > 7 && (this.curIndex -= 8);
@@ -4481,23 +4470,23 @@ Bounce: function() {
 for (var e = this, _ = this.node.children, t = 0; t < _.length; t++) {
 var n = _[t];
 if (n) {
-var T;
-T = 0 == this.movedirection ? cc.moveBy(.5, cc.Vec2(0, -10)).easing(cc.easeOut(1)) : cc.moveBy(.5, cc.Vec2(0, 10)).easing(cc.easeOut(1));
-var S = cc.callFunc(function() {
+var S;
+S = 0 == this.movedirection ? cc.moveBy(.5, cc.Vec2(0, -10)).easing(cc.easeOut(1)) : cc.moveBy(.5, cc.Vec2(0, 10)).easing(cc.easeOut(1));
+var T = cc.callFunc(function() {
 if (e.StopCall) {
 e.StopCall();
 e.StopCall = null;
 }
 e.HaveCompelete = !0;
-}), i = cc.sequence(T, S);
+}), i = cc.sequence(S, T);
 n.runAction(i);
 }
 }
 },
 resetPosY: function() {
 for (var e = this.stopIndex, _ = this.ItemArray[e].y, t = this.node.children, n = 0; n < t.length; n++) {
-var T = t[n];
-T && (T.y = T.y - _);
+var S = t[n];
+S && (S.y = S.y - _);
 }
 },
 Spin: function() {
@@ -4533,10 +4522,10 @@ cc._RF.push(_, "e3c22Dpi01Gp4EerFjvIKH0", "Sound");
 window.Sound = {
 audioId: {},
 backGroundResPath: {},
-_playEffect: function(e, _, t, n, T) {
-var S = this;
-if (!(T && null != S.audioId[e] && S.audioId[e].length > 0)) {
-null == S.audioId[e] && (S.audioId[e] = []);
+_playEffect: function(e, _, t, n, S) {
+var T = this;
+if (!(S && null != T.audioId[e] && T.audioId[e].length > 0)) {
+null == T.audioId[e] && (T.audioId[e] = []);
 null == _ && (_ = !1);
 null == t && (t = 1);
 "number" != typeof t && (t = parseFloat(t));
@@ -4544,28 +4533,28 @@ var i = -1;
 cc.resources.load(e, cc.AudioClip, function(e, n) {
 if (e) cc.log(e); else {
 i = cc.audioEngine.playEffect(n, _);
-S.setEffcetVolume(t);
+T.setEffcetVolume(t);
 }
 });
-S.audioId[e].unshift(i);
+T.audioId[e].unshift(i);
 cc.audioEngine.setFinishCallback(i, function() {
-S.audioId[e].pop();
+T.audioId[e].pop();
 n && n();
 });
 return i;
 }
 },
-playMusic: function(e, _, t, n, T) {
-var S = this;
-if (!(T && null != S.audioId[e] && S.audioId[e].length > 0)) {
-null == S.audioId[e] && (S.audioId[e] = []);
+playMusic: function(e, _, t, n, S) {
+var T = this;
+if (!(S && null != T.audioId[e] && T.audioId[e].length > 0)) {
+null == T.audioId[e] && (T.audioId[e] = []);
 null == _ && (_ = !1);
 null == t && (t = 1);
 "number" != typeof t && (t = parseFloat(t));
 cc.resources.load(e, cc.AudioClip, function(e, n) {
 if (e) cc.log(e); else {
 cc.audioEngine.playMusic(n, _);
-S.setBackGroundVolume(t);
+T.setBackGroundVolume(t);
 }
 });
 }
@@ -4581,9 +4570,9 @@ this.playMusic(e, !0, _ / 100);
 this.backGroundResPath[e] = e;
 return !0;
 },
-playEffect: function(e, _, t, n, T) {
-var S = this.getEffectVolume();
-this._playEffect(e, _, S / 100, n, T);
+playEffect: function(e, _, t, n, S) {
+var T = this.getEffectVolume();
+this._playEffect(e, _, T / 100, n, S);
 },
 getVoiceVolume: function() {
 return window.Save.get("Sound_Voice_Volume", 100);
@@ -4629,11 +4618,169 @@ MainBg: "sound/bgm_main"
 };
 cc._RF.pop();
 }, {} ],
+SubGameManager: [ function(e, _) {
+"use strict";
+cc._RF.push(_, "58117jddOFO2ZIu1G2cUrFt", "SubGameManager");
+var t = e("HttpHelper"), n = {
+remoteData: null
+}, S = "", T = "";
+if (cc && cc.sys.isNative) {
+S = jsb.fileUtils.getWritablePath() + "SubGames/";
+T = jsb.fileUtils.getWritablePath() + "SubGamesTemp/";
+}
+n.parseCfgFromData = function(e) {
+this.remoteData = e;
+cc.log("SubGameManager.parseCfgFromData", this.remoteData);
+};
+n.getSubGameState = function(e, _) {
+var t = this;
+this.curSubgameName = e;
+this.getLoclSubGameCfg(e, function(n) {
+n ? n.scriptVersion != t.remoteData.games[e].version ? _("need_update") : _("no_need_update") : _("not_in_app");
+});
+};
+n.getLoclSubGameCfg = function(e, _) {
+var t = S + e + "/appinfo.json";
+if (jsb.fileUtils.isFileExist(t)) {
+var n = jsb.fileUtils.getStringFromFile(t);
+if (Global.isjson(n)) {
+var T = JSON.parse(n);
+this.localSubGameCfg = T;
+_(T);
+} else {
+this.callFunWithState(1, "读取子游戏本地配置失败====" + e);
+this.localSubGameCfg = {
+scriptVersion: -1,
+files: []
+};
+_(null);
+}
+} else {
+this.callFunWithState(2, "子游戏本地配置不存在====" + e);
+this.localSubGameCfg = {
+scriptVersion: -1,
+files: []
+};
+_(null);
+}
+};
+n.downSubGame = function(e, _, n) {
+var S = this;
+this.baseUrl = this.remoteData.baseUrl;
+var T = this.remoteData.games[e].version, i = this.baseUrl + e + "_" + T + "/appinfo.json";
+this.progressCall = _;
+this.finishCall = n;
+cc.log("remoteSubGameCfgUrl=", i);
+t.sendHttpRequest(i, function(_) {
+if (null != _) if (Global.isjson(_)) {
+S.remoteSubgameCfg = JSON.parse(_);
+S.comparefile();
+} else S.callFunWithState(4, "读取远程子游戏远程md5-json不合法====" + e); else S.callFunWithState(3, "读取远程子游戏配置失败====" + e);
+});
+};
+n.comparefile = function() {
+for (var e = this.localSubGameCfg.files, _ = this.remoteSubgameCfg.files, t = new Array(), n = {}, S = {}, T = 0; T < e.length; T++) {
+var i = (r = e[T]).filename, o = r.md5, E = r.size;
+n[i] = {
+md5: o,
+fileSize: E
+};
+}
+for (T = 0; T < _.length; T++) {
+var r;
+i = (r = _[T]).filename, o = r.md5, E = r.size;
+S[i] = {
+md5: o,
+fileSize: E
+};
+}
+for (var R in S) {
+var s = S[R], a = s.md5;
+E = s.fileSize;
+n[R] ? a != n[R].md5 && t.push({
+fileName: R,
+md5: a,
+fileSize: E
+}) : t.push({
+fileName: R,
+md5: a,
+fileSize: E
+});
+}
+for (var c in t) {
+E = t[c].fileSize;
+this.totalDownSize = this.totalDownSize + E;
+}
+cc.log("准备下载子游戏差异文件");
+this.downFiles(t);
+};
+n.downFiles = function(e) {
+if (0 != e.length) {
+var _ = this, t = e;
+_.DownIndex = 0;
+(function e(n) {
+var i = _.baseUrl, o = t[n].fileName, E = t[n].fileSize, r = i + o, R = T + o, s = S + o, a = T + Global.GgetDirByUrl(o), c = S + Global.GgetDirByUrl(o);
+Global.GcreateDir(a);
+Global.GcreateDir(c);
+t[n].tempfile = R;
+t[n].realfile = s;
+cc.log("下载=====", r);
+Global.GDownFile(r, function(n) {
+if (n) {
+Global.GwriteDataToFile(n, R);
+_.downedSize = _.downedSize + E;
+if (_.DownIndex < t.length - 1) {
+_.DownIndex = _.DownIndex + 1;
+_.progressCall && _.progressCall(Math.floor(_.DownIndex / t.length * 100), (_.downedSize / 1e3).toFixed(1), (_.totalDownSize / 1e3).toFixed(1));
+e(_.DownIndex);
+} else {
+_.progressCall && _.progressCall(Math.floor(100), (_.downedSize / 1e3).toFixed(1), (_.totalDownSize / 1e3).toFixed(1));
+cc.log("子游戏下载完成***");
+_.MoveFiles(t);
+}
+} else this.callFunWithState(5, "子游戏下载单个文件失败=" + r);
+});
+})(_.DownIndex);
+} else this.MoveDone();
+}, n.MoveFiles = function(e) {
+this.moveStep = 0;
+var _ = this;
+(function t(n) {
+var T = e[n].tempfile, i = e[n].realfile, o = Global.GgetDataFromFile(T);
+if (o) {
+Global.GwriteDataToFile(o, i);
+if (_.moveStep < e.length - 1) {
+_.moveStep = _.moveStep + 1;
+t(_.moveStep);
+} else _.MoveDone();
+} else {
+_.curSubgameName;
+jsb.fileUtils.removeDirectory(S);
+jsb.fileUtils.createDirectory(S);
+this.callFunWithState(6, "移动文件失败" + T);
+}
+})(this.moveStep);
+}, n.MoveDone = function() {
+var e = JSON.stringify(this.remoteSubgameCfg, null, 4), _ = S + this.curSubgameName + "/appinfo.json";
+Global.GwriteStringToFile(e, _);
+this.callFunWithState(0, "下载子游戏完成");
+}, n.callFunWithState = function(e, _) {
+cc.log(_ + "====" + e);
+this.finishCall && this.finishCall(e);
+};
+n.getLocalBundlePath = function(e) {
+return S + e;
+};
+_.exports = n;
+cc._RF.pop();
+}, {
+HttpHelper: "HttpHelper"
+} ],
 TestScene: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "43e41jtsGxORJ0f6gUlDaqj", "TestScene");
 e("xxtea"), e("i18n"), e("Package"), e("Devices");
-var t = e("VoiceNative"), n = e("BaseComponent");
+var t = e("VoiceNative"), n = e("BaseComponent"), S = e("SubGameManager");
 cc.Class({
 extends: n,
 properties: {},
@@ -4647,14 +4794,14 @@ this._super();
 start: function() {
 var e = this;
 cc && cc.sys.isNative && jsb.fileUtils.getSearchPaths();
-var _ = cc.find("uipanel/New Sprite", this.node), n = cc.find("content/sp4", this.node), T = Global.ConverToWorldPos(_), S = Global.ConverToNodePos(n.parent, T);
+var _ = cc.find("uipanel/New Sprite", this.node), n = cc.find("content/sp4", this.node), T = Global.ConverToWorldPos(_), i = Global.ConverToNodePos(n.parent, T);
 this.sp4OldPos = n.getPosition();
 n.IsOriginPos = !0;
-var i = cc.find("uipanel/btn_posconvert", this.node);
-ua.darkButton(i, function() {
+var o = cc.find("uipanel/btn_posconvert", this.node);
+ua.darkButton(o, function() {
 if (!(n.getNumberOfRunningActions() > 0)) {
 if (1 == n.IsOriginPos) {
-var _ = cc.moveTo(1, S).easing(cc.easeSineOut());
+var _ = cc.moveTo(1, i).easing(cc.easeSineOut());
 n.runAction(_);
 } else {
 _ = cc.moveTo(1, e.sp4OldPos).easing(cc.easeSineOut());
@@ -4672,14 +4819,14 @@ _.opacity = 255;
 _.on(cc.Node.EventType.TOUCH_CANCEL, function() {
 _.opacity = 255;
 });
-var o = cc.find("uipanel/btn_Alert", this.node);
-ua.darkButton(o, function() {
+var E = cc.find("uipanel/btn_Alert", this.node);
+ua.darkButton(E, function() {
 UiManager.ShowAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
 cc.log("click==", e);
 });
 });
-var E = cc.find("uipanel/btn_showWaiting", this.node);
-ua.darkButton(E, function() {
+var r = cc.find("uipanel/btn_showWaiting", this.node);
+ua.darkButton(r, function() {
 e.showWiat(!0);
 setTimeout(function() {
 e.showWiat(!1);
@@ -4691,29 +4838,29 @@ EventManager.dispatchEvent(e.node, RefreshInfo, {
 name: "Lee123"
 });
 });
-var r = cc.find("uipanel/loadTex", this.node);
+var s = cc.find("uipanel/loadTex", this.node);
 Global.GloadPic("http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96", function(e) {
-e && (r.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
+e && (s.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
 });
-var s = null, a = cc.find("uipanel/btn_Speech", this.node);
-a.on(cc.Node.EventType.TOUCH_START, function() {
-s = Date.now();
+var a = null, c = cc.find("uipanel/btn_Speech", this.node);
+c.on(cc.Node.EventType.TOUCH_START, function() {
+a = Date.now();
 cc.log("开始录音");
 e.SpeechFile = Date.now() + ".amr";
 t.prepare(e.SpeechFile);
 }, this);
-a.on(cc.Node.EventType.TOUCH_END, function() {
+c.on(cc.Node.EventType.TOUCH_END, function() {
 cc.log("结束录音");
-if (Date.now() - s < 1e3) {
+if (Date.now() - a < 1e3) {
 t.cancel();
 cc.log("时间小于一秒");
 UiManager.ShowAlert("时间小于一秒", [ "Yes" ], function() {});
-} else if (Date.now() - s > 8e3) {
+} else if (Date.now() - a > 8e3) {
 t.cancel();
 UiManager.ShowAlert("录音时间大于8s", [ "Yes" ], function() {});
-} else if (null != s) {
+} else if (null != a) {
 t.release();
-var _ = Date.now() - s;
+var _ = Date.now() - a;
 console.log("record time。。。。。  " + _);
 var n = t.getVoiceData(e.SpeechFile);
 console.log("sound data。。。。。  " + n);
@@ -4724,7 +4871,7 @@ t.writeVoice(_, n);
 }, 2e3);
 }
 }, this);
-a.on(cc.Node.EventType.TOUCH_CANCEL, function() {
+c.on(cc.Node.EventType.TOUCH_CANCEL, function() {
 t.cancel();
 cc.log("取消录音");
 }, this);
@@ -4734,8 +4881,8 @@ ua.darkButton(I, function() {
 console.log("setDisplayStats-", !cc.debug.isDisplayStats());
 cc.debug.setDisplayStats(!cc.debug.isDisplayStats());
 });
-var c = cc.find("uipanel/btn_showpopLayer", this.node);
-ua.darkButton(c, function() {
+var N = cc.find("uipanel/btn_showpopLayer", this.node);
+ua.darkButton(N, function() {
 UiManager.gLoadPrefabRes("prefabs/poplayer", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
@@ -4744,29 +4891,49 @@ _ && _.show();
 }
 });
 });
-var N = cc.find("content/sp3", this.node);
-N.isGray = !1;
-var C = cc.find("uipanel/btn_GrayRenderCom", this.node);
-ua.darkButton(C, function() {
-var e = N.getComponent(cc.Sprite);
-if (0 == N.isGray) {
+var C = cc.find("content/sp3", this.node);
+C.isGray = !1;
+var A = cc.find("uipanel/btn_GrayRenderCom", this.node);
+ua.darkButton(A, function() {
+var e = C.getComponent(cc.Sprite);
+if (0 == C.isGray) {
 var _ = cc.MaterialVariant.createWithBuiltin("2d-gray-sprite");
 e.setMaterial(0, _);
 } else {
 var t = cc.MaterialVariant.createWithBuiltin("2d-sprite");
 e.setMaterial(0, t);
 }
-N.isGray = !N.isGray;
+C.isGray = !C.isGray;
 });
-var A = cc.find("uipanel/btn_bubble", this.node);
-ua.darkButton(A, function() {
-cc.director.loadScene("bubbleScene");
-});
-var O = cc.find("uipanel/btn_loadbundle", this.node);
+var O = cc.find("uipanel/btn_bubble", this.node);
 ua.darkButton(O, function() {
+UiManager.gLoadScene("bubbleScene");
+});
+var l = cc.find("uipanel/btn_loadbundle", this.node);
+ua.darkButton(l, function() {
+S.getSubGameState("bundleScene", function(e) {
+if ("not_in_app" == e) {
+cc.log("下载子游戏");
+S.downSubGame("bundleScene", function(e) {
+cc.log("downSubGame progress===", e);
+}, function(e) {
+cc.log("downSubGame return code == ", e);
+0 == e ? UiManager.ShowAlert("下载成功", [], function() {}) : UiManager.ShowAlert("下载失败" + e, [], function() {});
+});
+} else if ("need_update" == e) {
+cc.log("需要更新");
+S.downSubGame("bundleScene", function(e) {
+cc.log("updateSubGame progress===", e);
+}, function(e) {
+cc.log("updateSubGame return code == ", e);
+0 == e ? UiManager.ShowAlert("更新成功", [], function() {}) : UiManager.ShowAlert("更新失败" + e, [], function() {});
+});
+} else {
+cc.log("在本地，不需要更新,直接进");
 Global.gGetBundle("bundleScene") ? cc.log("bundleScene is loaded") : UiManager.gShowLoading(function(e) {
 e.updataProgress(30);
-Global.gLoadBundle("http://lee.free.vipnps.vip/hotupversion/remote/bundleScene", {
+var _ = S.getLocalBundlePath("bundleScene");
+Global.gLoadBundle(_, {
 onFileProgress: function(e, _) {
 return console.log("bundle progress==", e, _);
 }
@@ -4775,13 +4942,14 @@ if (_) {
 console.log("Load bundle error");
 return console.error(_);
 }
-console.log("load bundle successfully.------");
 t.loadScene("bundleScene", function(_) {
 _ ? console.log("load bundle scene error") : e.updataProgress(100);
 });
 });
 }, function() {
-cc.director.loadScene("bundleScene");
+UiManager.gLoadScene("bundleScene");
+});
+}
 });
 });
 var d = cc.find("uipanel/btn_goslot", this.node);
@@ -4789,17 +4957,17 @@ ua.darkButton(d, function() {
 cc.director.loadScene("SlotScene");
 });
 cc.find("content/sp1", this.node).getComponent(cc.RenderComponent).getMaterial(0);
-var l = cc.find("garpgicsnode", this.node), h = l.getComponent(cc.Graphics);
-l.on(cc.Node.EventType.TOUCH_START, function(e) {
+var u = cc.find("garpgicsnode", this.node), h = u.getComponent(cc.Graphics);
+u.on(cc.Node.EventType.TOUCH_START, function(e) {
 var t = e.getTouches(), n = t[0].getLocation();
 t[0].getLocationInView();
 n = _.parent.convertToNodeSpaceAR(n);
-var T = Global.GgetTwoV2Angle(_.getPosition(), n);
-_.angle = -T;
+var S = Global.GgetTwoV2Angle(_.getPosition(), n);
+_.angle = -S;
 h.moveTo(n.x, n.y);
 _.getPosition().subSelf(n).normalizeSelf();
 });
-l.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
+u.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
 var t = e.getTouches()[0].getLocation();
 t = _.parent.convertToNodeSpaceAR(t);
 var n = Global.GgetTwoV2Angle(_.getPosition(), t);
@@ -4807,20 +4975,20 @@ _.angle = -n;
 h.lineTo(t.x, t.y);
 h.stroke();
 });
-var u = cc.view.getVisibleSize(), D = cc.v2(-u.width / 2, u.height / 2), f = cc.v2(u.width / 2, -u.height / 2), p = Global.GgetTwoV2Angle(D, f);
-cc.find("uipanel/New Sprite", this.node).angle = -p;
-var M = cc.view.getVisibleSize();
-(l = l.getComponent(cc.Graphics)).moveTo(-M.width / 2, M.height / 2);
-l.quadraticCurveTo(0, 0, M.width / 2, M.height / 2);
-l.stroke();
+var D = cc.view.getVisibleSize(), f = cc.v2(-D.width / 2, D.height / 2), p = cc.v2(D.width / 2, -D.height / 2), M = Global.GgetTwoV2Angle(f, p);
+cc.find("uipanel/New Sprite", this.node).angle = -M;
+var P = cc.view.getVisibleSize();
+(u = u.getComponent(cc.Graphics)).moveTo(-P.width / 2, P.height / 2);
+u.quadraticCurveTo(0, 0, P.width / 2, P.height / 2);
+u.stroke();
 },
 startMove: function() {
-var e = this, _ = (cc.find("garpgicsnode", this.node), cc.find("uipanel/btn_goslot", this.node)), t = cc.view.getVisibleSize(), n = [ cc.v2(-t.width / 2, t.height / 2), cc.v2(0, 0), cc.v2(t.width / 2, t.height / 2) ], T = cc.bezierTo(2, n);
+var e = this, _ = (cc.find("garpgicsnode", this.node), cc.find("uipanel/btn_goslot", this.node)), t = cc.view.getVisibleSize(), n = [ cc.v2(-t.width / 2, t.height / 2), cc.v2(0, 0), cc.v2(t.width / 2, t.height / 2) ], S = cc.bezierTo(2, n);
 _.setPosition(cc.v2(-t.width / 2, t.height / 2));
-var S = cc.callFunc(function() {
+var T = cc.callFunc(function() {
 _.stopAllActions();
 e.startMove();
-}), i = cc.sequence(T, S);
+}), i = cc.sequence(S, T);
 _.runAction(cc.repeatForever(i));
 },
 EventTest: function(e) {
@@ -4833,6 +5001,7 @@ cc._RF.pop();
 BaseComponent: "BaseComponent",
 Devices: "Devices",
 Package: "Package",
+SubGameManager: "SubGameManager",
 VoiceNative: "VoiceNative",
 i18n: "i18n",
 xxtea: "xxtea"
@@ -4843,7 +5012,7 @@ cc._RF.push(_, "5a00cnrQ/9L/Y0QWJw10Tsi", "Testts");
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-var n = cc._decorator, T = n.ccclass, S = n.property, i = function(e) {
+var n = cc._decorator, S = n.ccclass, T = n.property, i = function(e) {
 __extends(_, e);
 function _() {
 var _ = null !== e && e.apply(this, arguments) || this;
@@ -4854,18 +5023,18 @@ return _;
 _.prototype.start = function() {};
 _.prototype.addSum = function() {
 for (var e = [], _ = 0; _ < arguments.length; _++) e[_] = arguments[_];
-for (var t = 0, n = 0, T = e; n < T.length; n++) {
-var S = T[n];
-t += S;
+for (var t = 0, n = 0, S = e; n < S.length; n++) {
+var T = S[n];
+t += T;
 }
 return t;
 };
 _.prototype.Hello = function() {
 return cc.v2(0, 0);
 };
-__decorate([ S(cc.Label) ], _.prototype, "label", void 0);
-__decorate([ S ], _.prototype, "text", void 0);
-return __decorate([ T ], _);
+__decorate([ T(cc.Label) ], _.prototype, "label", void 0);
+__decorate([ T ], _.prototype, "text", void 0);
+return __decorate([ S ], _);
 }(cc.Component);
 t.default = i;
 cc._RF.pop();
@@ -4879,13 +5048,25 @@ var t = this;
 this.gLoadPrefabRes("prefabs/loadinglayer", function(n) {
 if (n) {
 t.gSceneAddNode(n);
-var T = n.getComponent("LoadingLayer");
-T && T.setCallFun(e, _);
+var S = n.getComponent("LoadingLayer");
+S && S.setCallFun(e, _);
 }
 });
 },
 gSceneAddNode: function(e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
+},
+gLoadScene: function(e, _) {
+void 0 === _ && (_ = null);
+cc.director.loadScene(e, _);
+},
+gPreloadScene: function(e, _, t) {
+cc.director.preloadScene(e, function(e, t) {
+var n = Math.floor(100 * (e / t).toFixed(2));
+_ && _(n);
+}, function(_) {
+t && t(e, _);
+});
 },
 gLoadPrefabRes: function(e, _) {
 cc.resources.load(e, function(t, n) {
@@ -4893,8 +5074,8 @@ if (t) {
 cc.error("ua.loadPrefabRes error====" + e);
 _(void 0);
 } else {
-var T = cc.instantiate(n);
-_(T);
+var S = cc.instantiate(n);
+_(S);
 cc.loader.setAutoRelease(e, !0);
 }
 });
@@ -4903,8 +5084,8 @@ ShowAlert: function(e, _, t) {
 this.gLoadPrefabRes("prefabs/AlertLayer2", function(n) {
 if (n) {
 cc.director.getScene().getChildByName("Canvas").addChild(n);
-var T = n.getComponent("AlertIII");
-T && T.showAlert(e, _, function(e) {
+var S = n.getComponent("AlertIII");
+S && S.showAlert(e, _, function(e) {
 t && t(e);
 });
 }
@@ -4935,10 +5116,10 @@ cc._RF.pop();
 VersionManager: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "5cca3EkU1NJZ4QUch/IWwni", "VersionManager");
-var t = e("HttpHelper"), n = e("Devices"), T = "", S = "", i = "";
+var t = e("HttpHelper"), n = e("Devices"), S = "", T = "", i = "";
 if (cc && cc.sys.isNative) {
-T = jsb.fileUtils.getWritablePath() + "packageTemp/";
-S = jsb.fileUtils.getWritablePath() + "package/";
+S = jsb.fileUtils.getWritablePath() + "packageTemp/";
+T = jsb.fileUtils.getWritablePath() + "package/";
 i = jsb.fileUtils.getWritablePath() + "config/appinfoiii.json";
 }
 var o = {
@@ -4966,36 +5147,36 @@ _.comparefiles();
 });
 },
 comparefiles: function() {
-for (var e = this.localCfg.files, _ = this.remoteMd5Cfg.files, t = new Array(), n = {}, T = {}, S = 0; S < e.length; S++) {
-var i = (R = e[S]).filename, o = R.md5, E = R.size;
+for (var e = this.localCfg.files, _ = this.remoteMd5Cfg.files, t = new Array(), n = {}, S = {}, T = 0; T < e.length; T++) {
+var i = (r = e[T]).filename, o = r.md5, E = r.size;
 n[i] = {
 md5: o,
 fileSize: E
 };
 }
-for (S = 0; S < _.length; S++) {
-var R;
-i = (R = _[S]).filename, o = R.md5, E = R.size;
-T[i] = {
+for (T = 0; T < _.length; T++) {
+var r;
+i = (r = _[T]).filename, o = r.md5, E = r.size;
+S[i] = {
 md5: o,
 fileSize: E
 };
 }
-for (var r in T) {
-var s = T[r], a = s.md5;
+for (var R in S) {
+var s = S[R], a = s.md5;
 E = s.fileSize;
-n[r] ? a != n[r].md5 && t.push({
-fileName: r,
+n[R] ? a != n[R].md5 && t.push({
+fileName: R,
 md5: a,
 fileSize: E
 }) : t.push({
-fileName: r,
+fileName: R,
 md5: a,
 fileSize: E
 });
 }
-for (var I in t) {
-E = t[I].fileSize;
+for (var c in t) {
+E = t[c].fileSize;
 this.totalDownSize = this.totalDownSize + E;
 }
 this.downFiles(t);
@@ -5005,15 +5186,15 @@ if (0 != e.length) {
 var _ = this, t = e;
 _.DownIndex = 0;
 (function e(n) {
-var i = _.BaseUrl, o = t[n].fileName, E = t[n].fileSize, R = i + o, r = T + o, s = S + o, a = T + Global.GgetDirByUrl(o), I = S + Global.GgetDirByUrl(o);
+var i = _.BaseUrl, o = t[n].fileName, E = t[n].fileSize, r = i + o, R = S + o, s = T + o, a = S + Global.GgetDirByUrl(o), c = T + Global.GgetDirByUrl(o);
 Global.GcreateDir(a);
-Global.GcreateDir(I);
-t[n].tempfile = r;
+Global.GcreateDir(c);
+t[n].tempfile = R;
 t[n].realfile = s;
-cc.log("下载=====", R);
-Global.GDownFile(R, function(n) {
+cc.log("下载=====", r);
+Global.GDownFile(r, function(n) {
 if (n) {
-Global.GwriteDataToFile(n, r);
+Global.GwriteDataToFile(n, R);
 _.downedSize = _.downedSize + E;
 if (_.DownIndex < t.length - 1) {
 _.DownIndex = _.DownIndex + 1;
@@ -5024,7 +5205,7 @@ _.progressCall && _.progressCall(Math.floor(100), (_.downedSize / 1e3).toFixed(1
 cc.log("下载完成***");
 _.MoveFiles(t);
 }
-} else _.callFunWithState(3, "下载单个文件失败=" + R);
+} else _.callFunWithState(3, "下载单个文件失败=" + r);
 });
 })(_.DownIndex);
 } else this.MoveDone();
@@ -5033,7 +5214,7 @@ MoveFiles: function(e) {
 this.moveStep = 0;
 var _ = this;
 (function t(n) {
-var T = e[n].tempfile, o = e[n].realfile, E = Global.GgetDataFromFile(T);
+var S = e[n].tempfile, o = e[n].realfile, E = Global.GgetDataFromFile(S);
 if (E) {
 Global.GwriteDataToFile(E, o);
 if (_.moveStep < e.length - 1) {
@@ -5041,10 +5222,10 @@ _.moveStep = _.moveStep + 1;
 t(_.moveStep);
 } else _.MoveDone();
 } else {
-jsb.fileUtils.removeDirectory(S);
-jsb.fileUtils.createDirectory(S);
+jsb.fileUtils.removeDirectory(T);
+jsb.fileUtils.createDirectory(T);
 jsb.fileUtils.removeFile(i);
-_.callFunWithState(4, "移动文件失败" + T);
+_.callFunWithState(4, "移动文件失败" + S);
 }
 })(this.moveStep);
 },
@@ -5062,8 +5243,8 @@ cc.game.restart();
 },
 RemoveTemp: function() {
 if (cc.sys.isNative) {
-jsb.fileUtils.removeDirectory(S);
-jsb.fileUtils.createDirectory(S);
+jsb.fileUtils.removeDirectory(T);
+jsb.fileUtils.createDirectory(T);
 jsb.fileUtils.removeFile(i);
 }
 },
@@ -5110,32 +5291,35 @@ e.callFunWithState(5, "读取包内配置失败，请检查本地配置");
 } else e.localCfg = t.json;
 });
 },
+getSubGameCfg: function() {
+return this.remoteCfg.subgames;
+},
 parseRemoteCfg: function() {
 if (0 != cc.sys.isNative && null != this.remoteCfg) {
 var e = this;
 t.sendHttpRequest(this.remoteCfg, function(_) {
 if (null != _) if (Global.isjson(_)) {
 e.remoteCfg = JSON.parse(_);
-var t = e.localCfg.scriptVersion, T = e.remoteCfg.scriptVersion, S = e.remoteCfg.debugScriptVersion, i = e.remoteCfg.supportBinarys, o = e.remoteCfg.forcedBinaryVersions, E = e.remoteCfg.channels, R = e.remoteCfg.debugUIDs, r = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], s = cc.sys.localStorage.getItem("debugId");
-if (Global.GIsArrContain(E, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(i, n.getAppVersion())) if (Global.GIsArrContain(o, n.getAppVersion())) e.callFunWithState(8, "强制更新", r); else {
+var t = e.localCfg.scriptVersion, S = e.remoteCfg.scriptVersion, T = e.remoteCfg.debugScriptVersion, i = e.remoteCfg.supportBinarys, o = e.remoteCfg.forcedBinaryVersions, E = e.remoteCfg.channels, r = e.remoteCfg.debugUIDs, R = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], s = cc.sys.localStorage.getItem("debugId");
+if (Global.GIsArrContain(E, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(i, n.getAppVersion())) if (Global.GIsArrContain(o, n.getAppVersion())) e.callFunWithState(8, "强制更新", R); else {
 console.log("本地脚本号==" + t);
-console.log("远程debug版本号==" + S);
-console.log("远程版本号==" + T);
-if (Global.GIsArrContain(R, s)) {
-if (parseInt(t) != parseInt(S)) {
+console.log("远程debug版本号==" + T);
+console.log("远程版本号==" + S);
+if (Global.GIsArrContain(r, s)) {
+if (parseInt(t) != parseInt(T)) {
 console.log("走测试玩家----热更新");
-var a = e.remoteCfg.debugBaseUrl, I = (a = cc.js.formatStr(a, S)) + e.remoteCfg.debugConfigFile;
+var a = e.remoteCfg.debugBaseUrl, c = (a = cc.js.formatStr(a, T)) + e.remoteCfg.debugConfigFile;
 e.BaseUrl = a;
-e.downRemoteMd5(I);
+e.downRemoteMd5(c);
 return;
 }
 e.callFunWithState(0, "测试玩家版本和远程一样，不用更新");
-} else if (parseInt(t) == parseInt(T)) e.callFunWithState(0, "不用更新-本地和远程版本一致:" + t); else {
+} else if (parseInt(t) == parseInt(S)) e.callFunWithState(0, "不用更新-本地和远程版本一致:" + t); else {
 console.log("走正式----热更新");
-var c = e.remoteCfg.baseUrl;
-I = (c = cc.js.formatStr(c, T)) + e.remoteCfg.configFile;
-e.BaseUrl = c;
-e.downRemoteMd5(I);
+var I = e.remoteCfg.baseUrl;
+c = (I = cc.js.formatStr(I, S)) + e.remoteCfg.configFile;
+e.BaseUrl = I;
+e.downRemoteMd5(c);
 }
 } else e.callFunWithState(6, "不支持热更新的2进制版本号" + n.getAppVersion()); else e.callFunWithState(7, "不支持热更新的渠道号" + window.DISTRIBUTE_CHANNEL);
 } else e.callFunWithState(10, "远程配置json不合法"); else e.callFunWithState(1, "获取版本配置文件失败");
@@ -5153,26 +5337,26 @@ VoiceNative: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "6659eBg8ldPA6/b57j6ol8I", "VoiceNative");
 var t = 12, n = 128 - t;
-function T(e) {
+function S(e) {
 e -= n;
-var _ = Math.floor(e / t) + n, T = e % t + n;
-return String.fromCharCode(_) + String.fromCharCode(T);
+var _ = Math.floor(e / t) + n, S = e % t + n;
+return String.fromCharCode(_) + String.fromCharCode(S);
 }
-for (var S = {}, i = {}, o = 0; o < 256; ++o) {
-var E, R = o + 1;
-E = R >= n ? T(R) : String.fromCharCode(R);
-S[o] = E;
+for (var T = {}, i = {}, o = 0; o < 256; ++o) {
+var E, r = o + 1;
+E = r >= n ? S(r) : String.fromCharCode(r);
+T[o] = E;
 i[E] = o;
 }
-function r(e) {
+function R(e) {
 var _ = "", t = e.length;
 cc.log("encode, len=" + t + ", data=" + e);
-var n = t >> 16 & 255, T = t >> 8 & 255, i = 255 & t;
-_ += S[t >> 24 & 255];
-_ += S[n];
-_ += S[T];
-_ += S[i];
-for (var o = 0; o < e.length; ++o) _ += S[e[o]];
+var n = t >> 16 & 255, S = t >> 8 & 255, i = 255 & t;
+_ += T[t >> 24 & 255];
+_ += T[n];
+_ += T[S];
+_ += T[i];
+for (var o = 0; o < e.length; ++o) _ += T[e[o]];
 return _;
 }
 var s = "com/casino/game/VoiceRecorder", a = cc.Class({
@@ -5239,7 +5423,7 @@ if (t) return t;
 return null;
 },
 getDataString: function(e) {
-return r(e);
+return R(e);
 },
 setStorageDir: function(e) {
 if (cc.sys.isNative) if (cc.sys.os == cc.sys.OS_ANDROID) jsb.reflection.callStaticMethod(s, "setStorageDir", "(Ljava/lang/String;)V", e); else if (cc.sys.os == cc.sys.OS_IOS) {
@@ -5422,17 +5606,17 @@ initView: function(e) {
 var _ = this;
 this.tiptext.getComponent(cc.Label).string = e.tips;
 var t = e.items, n = function(e) {
-S = cc.instantiate(_.item);
-_.content.addChild(S);
-S.active = !0;
-S.getChildByName("text").getComponent(cc.Label).string = t[e].text;
-ua.darkButton(S, function() {
+T = cc.instantiate(_.item);
+_.content.addChild(T);
+T.active = !0;
+T.getChildByName("text").getComponent(cc.Label).string = t[e].text;
+ua.darkButton(T, function() {
 _.call && _.call(e, _);
 });
 };
-for (var T in t) {
-var S;
-n(T);
+for (var S in t) {
+var T;
+n(S);
 }
 },
 onbackpress: function() {
@@ -6759,17 +6943,17 @@ i18n: [ function(e, _) {
 cc._RF.push(_, "93789C/shtIL6entYsZPjee", "i18n");
 var t = e("polyglot"), n = cc.sys.language;
 "zh" !== n && (n = "en");
-var T = e(n), S = new t({
-phrases: T,
+var S = e(n), T = new t({
+phrases: S,
 allowMissing: !0
 });
 _.exports = {
 init: function(_) {
-T = e(n = _);
-S.replace(T);
+S = e(n = _);
+T.replace(S);
 },
 t: function(e, _) {
-return S.t(e, _);
+return T.t(e, _);
 }
 };
 cc._RF.pop();
@@ -6792,7 +6976,7 @@ this.phrases = {};
 this.extend(e.phrases || {});
 this.currentLocale = e.locale || "en";
 this.allowMissing = !!e.allowMissing;
-this.warn = e.warn || c;
+this.warn = e.warn || I;
 }
 t.VERSION = "1.0.0";
 t.prototype.locale = function(e) {
@@ -6833,14 +7017,14 @@ n = e;
 }
 if ("string" == typeof t) {
 _ = N(_);
-n = I(n = E(t, this.currentLocale, _.smart_count), _);
+n = c(n = E(t, this.currentLocale, _.smart_count), _);
 }
 return n;
 };
 t.prototype.has = function(e) {
 return e in this.phrases;
 };
-var n = "||||", T = {
+var n = "||||", S = {
 chinese: function() {
 return 0;
 },
@@ -6862,7 +7046,7 @@ return 1 === e ? 0 : e % 10 >= 2 && e % 10 <= 4 && (e % 100 < 10 || e % 100 >= 2
 icelandic: function(e) {
 return e % 10 != 1 || e % 100 == 11 ? 1 : 0;
 }
-}, S = {
+}, T = {
 chinese: [ "fa", "id", "ja", "ko", "lo", "ms", "th", "tr", "zh" ],
 german: [ "da", "de", "en", "es", "fi", "el", "he", "hu", "it", "nl", "no", "pt", "sv" ],
 french: [ "fr", "tl", "pt-br" ],
@@ -6872,35 +7056,35 @@ polish: [ "pl" ],
 icelandic: [ "is" ]
 };
 function i(e) {
-var _, t, n, T = {};
+var _, t, n, S = {};
 for (_ in e) if (e.hasOwnProperty(_)) {
 t = e[_];
-for (n in t) T[t[n]] = _;
+for (n in t) S[t[n]] = _;
 }
-return T;
+return S;
 }
 var o = /^\s+|\s+$/g;
-function E(e, t, T) {
-var S, i;
-return null != T && e ? (i = (S = e.split(n))[r(t, T)] || S[0], _.call(i, o, "")) : e;
+function E(e, t, S) {
+var T, i;
+return null != S && e ? (i = (T = e.split(n))[R(t, S)] || T[0], _.call(i, o, "")) : e;
 }
-function R(e) {
-var _ = i(S);
+function r(e) {
+var _ = i(T);
 return _[e] || _.en;
 }
-function r(e, _) {
-return T[R(e)](_);
+function R(e, _) {
+return S[r(e)](_);
 }
 var s = /\$/g, a = "$$$$";
-function I(e, t) {
+function c(e, t) {
 for (var n in t) if ("_" !== n && t.hasOwnProperty(n)) {
-var T = t[n];
-"string" == typeof T && (T = _.call(t[n], s, a));
-e = _.call(e, new RegExp("%\\{" + n + "\\}", "g"), T);
+var S = t[n];
+"string" == typeof S && (S = _.call(t[n], s, a));
+e = _.call(e, new RegExp("%\\{" + n + "\\}", "g"), S);
 }
 return e;
 }
-function c(_) {
+function I(_) {
 e.console && e.console.warn && e.console.warn("WARNING: " + _);
 }
 function N(e) {
@@ -7654,25 +7838,25 @@ xxtea: [ function(e, _) {
 "use strict";
 cc._RF.push(_, "639b6ohfOFGqbHyT0ZVfBTi", "xxtea");
 var t = e("buffer").Buffer, n = 2654435769;
-function T(e, _) {
+function S(e, _) {
 var t = e.length, n = t << 2;
 if (_) {
-var T = e[t - 1];
-if (T < (n -= 4) - 3 || T > n) return null;
-n = T;
+var S = e[t - 1];
+if (S < (n -= 4) - 3 || S > n) return null;
+n = S;
 }
-for (var S = new Uint8Array(n), i = 0; i < n; ++i) S[i] = e[i >> 2] >> ((3 & i) << 3);
-return S;
+for (var T = new Uint8Array(n), i = 0; i < n; ++i) T[i] = e[i >> 2] >> ((3 & i) << 3);
+return T;
 }
-function S(e, _) {
-var t, n = e.length, T = n >> 2;
-0 != (3 & n) && ++T;
-_ ? (t = new Uint32Array(T + 1))[T] = n : t = new Uint32Array(T);
-for (var S = 0; S < n; ++S) t[S >> 2] |= e[S] << ((3 & S) << 3);
+function T(e, _) {
+var t, n = e.length, S = n >> 2;
+0 != (3 & n) && ++S;
+_ ? (t = new Uint32Array(S + 1))[S] = n : t = new Uint32Array(S);
+for (var T = 0; T < n; ++T) t[T >> 2] |= e[T] << ((3 & T) << 3);
 return t;
 }
-function i(e, _, t, n, T, S) {
-return (t >>> 5 ^ _ << 2) + (_ >>> 3 ^ t << 4) ^ (e ^ _) + (S[3 & n ^ T] ^ t);
+function i(e, _, t, n, S, T) {
+return (t >>> 5 ^ _ << 2) + (_ >>> 3 ^ t << 4) ^ (e ^ _) + (T[3 & n ^ S] ^ t);
 }
 function o(e) {
 if (e.length < 16) {
@@ -7683,66 +7867,66 @@ e = _;
 return e;
 }
 function E(e, _) {
-var t, T, S, o, E, R, r = e.length, s = r - 1;
-T = e[s];
-S = 0;
-for (R = 0 | Math.floor(6 + 52 / r); R > 0; --R) {
-o = (S += n) >>> 2 & 3;
+var t, S, T, o, E, r, R = e.length, s = R - 1;
+S = e[s];
+T = 0;
+for (r = 0 | Math.floor(6 + 52 / R); r > 0; --r) {
+o = (T += n) >>> 2 & 3;
 for (E = 0; E < s; ++E) {
 t = e[E + 1];
-T = e[E] += i(S, t, T, E, o, _);
+S = e[E] += i(T, t, S, E, o, _);
 }
 t = e[0];
-T = e[s] += i(S, t, T, E, o, _);
+S = e[s] += i(T, t, S, E, o, _);
 }
 return e;
 }
-function R(e, _) {
-var t, T, S, o, E, R = e.length, r = R - 1;
+function r(e, _) {
+var t, S, T, o, E, r = e.length, R = r - 1;
 t = e[0];
-for (S = Math.floor(6 + 52 / R) * n; 0 !== S; S -= n) {
-o = S >>> 2 & 3;
-for (E = r; E > 0; --E) {
-T = e[E - 1];
-t = e[E] -= i(S, t, T, E, o, _);
+for (T = Math.floor(6 + 52 / r) * n; 0 !== T; T -= n) {
+o = T >>> 2 & 3;
+for (E = R; E > 0; --E) {
+S = e[E - 1];
+t = e[E] -= i(T, t, S, E, o, _);
 }
-T = e[r];
-t = e[0] -= i(S, t, T, E, o, _);
+S = e[R];
+t = e[0] -= i(T, t, S, E, o, _);
 }
 return e;
 }
-function r(e) {
-for (var _ = e.length, t = new Uint8Array(3 * _), n = 0, T = 0; T < _; T++) {
-var S = e.charCodeAt(T);
-if (S < 128) t[n++] = S; else if (S < 2048) {
-t[n++] = 192 | S >> 6;
-t[n++] = 128 | 63 & S;
+function R(e) {
+for (var _ = e.length, t = new Uint8Array(3 * _), n = 0, S = 0; S < _; S++) {
+var T = e.charCodeAt(S);
+if (T < 128) t[n++] = T; else if (T < 2048) {
+t[n++] = 192 | T >> 6;
+t[n++] = 128 | 63 & T;
 } else {
-if (!(S < 55296 || S > 57343)) {
-if (T + 1 < _) {
-var i = e.charCodeAt(T + 1);
-if (S < 56320 && 56320 <= i && i <= 57343) {
-var o = 65536 + ((1023 & S) << 10 | 1023 & i);
+if (!(T < 55296 || T > 57343)) {
+if (S + 1 < _) {
+var i = e.charCodeAt(S + 1);
+if (T < 56320 && 56320 <= i && i <= 57343) {
+var o = 65536 + ((1023 & T) << 10 | 1023 & i);
 t[n++] = 240 | o >> 18;
 t[n++] = 128 | o >> 12 & 63;
 t[n++] = 128 | o >> 6 & 63;
 t[n++] = 128 | 63 & o;
-T++;
+S++;
 continue;
 }
 }
 throw new Error("Malformed string");
 }
-t[n++] = 224 | S >> 12;
-t[n++] = 128 | S >> 6 & 63;
-t[n++] = 128 | 63 & S;
+t[n++] = 224 | T >> 12;
+t[n++] = 128 | T >> 6 & 63;
+t[n++] = 128 | 63 & T;
 }
 }
 return t.subarray(0, n);
 }
 function s(e, _) {
-for (var t = new Uint16Array(_), n = 0, T = 0, S = e.length; n < _ && T < S; n++) {
-var i = e[T++];
+for (var t = new Uint16Array(_), n = 0, S = 0, T = e.length; n < _ && S < T; n++) {
+var i = e[S++];
 switch (i >> 4) {
 case 0:
 case 1:
@@ -7757,18 +7941,18 @@ break;
 
 case 12:
 case 13:
-if (!(T < S)) throw new Error("Unfinished UTF-8 octet sequence");
-t[n] = (31 & i) << 6 | 63 & e[T++];
+if (!(S < T)) throw new Error("Unfinished UTF-8 octet sequence");
+t[n] = (31 & i) << 6 | 63 & e[S++];
 break;
 
 case 14:
-if (!(T + 1 < S)) throw new Error("Unfinished UTF-8 octet sequence");
-t[n] = (15 & i) << 12 | (63 & e[T++]) << 6 | 63 & e[T++];
+if (!(S + 1 < T)) throw new Error("Unfinished UTF-8 octet sequence");
+t[n] = (15 & i) << 12 | (63 & e[S++]) << 6 | 63 & e[S++];
 break;
 
 case 15:
-if (!(T + 2 < S)) throw new Error("Unfinished UTF-8 octet sequence");
-var o = ((7 & i) << 18 | (63 & e[T++]) << 12 | (63 & e[T++]) << 6 | 63 & e[T++]) - 65536;
+if (!(S + 2 < T)) throw new Error("Unfinished UTF-8 octet sequence");
+var o = ((7 & i) << 18 | (63 & e[S++]) << 12 | (63 & e[S++]) << 6 | 63 & e[S++]) - 65536;
 if (!(0 <= o && o <= 1048575)) throw new Error("Character outside valid Unicode range: 0x" + o.toString(16));
 t[n++] = o >> 10 & 1023 | 55296;
 t[n] = 1023 & o | 56320;
@@ -7782,8 +7966,8 @@ n < _ && (t = t.subarray(0, n));
 return String.fromCharCode.apply(String, t);
 }
 function a(e, _) {
-for (var t = [], n = new Uint16Array(32768), T = 0, S = 0, i = e.length; T < _ && S < i; T++) {
-var o = e[S++];
+for (var t = [], n = new Uint16Array(32768), S = 0, T = 0, i = e.length; S < _ && T < i; S++) {
+var o = e[T++];
 switch (o >> 4) {
 case 0:
 case 1:
@@ -7793,68 +7977,68 @@ case 4:
 case 5:
 case 6:
 case 7:
-n[T] = o;
+n[S] = o;
 break;
 
 case 12:
 case 13:
-if (!(S < i)) throw new Error("Unfinished UTF-8 octet sequence");
-n[T] = (31 & o) << 6 | 63 & e[S++];
+if (!(T < i)) throw new Error("Unfinished UTF-8 octet sequence");
+n[S] = (31 & o) << 6 | 63 & e[T++];
 break;
 
 case 14:
-if (!(S + 1 < i)) throw new Error("Unfinished UTF-8 octet sequence");
-n[T] = (15 & o) << 12 | (63 & e[S++]) << 6 | 63 & e[S++];
+if (!(T + 1 < i)) throw new Error("Unfinished UTF-8 octet sequence");
+n[S] = (15 & o) << 12 | (63 & e[T++]) << 6 | 63 & e[T++];
 break;
 
 case 15:
-if (!(S + 2 < i)) throw new Error("Unfinished UTF-8 octet sequence");
-var E = ((7 & o) << 18 | (63 & e[S++]) << 12 | (63 & e[S++]) << 6 | 63 & e[S++]) - 65536;
+if (!(T + 2 < i)) throw new Error("Unfinished UTF-8 octet sequence");
+var E = ((7 & o) << 18 | (63 & e[T++]) << 12 | (63 & e[T++]) << 6 | 63 & e[T++]) - 65536;
 if (!(0 <= E && E <= 1048575)) throw new Error("Character outside valid Unicode range: 0x" + E.toString(16));
-n[T++] = E >> 10 & 1023 | 55296;
-n[T] = 1023 & E | 56320;
+n[S++] = E >> 10 & 1023 | 55296;
+n[S] = 1023 & E | 56320;
 break;
 
 default:
 throw new Error("Bad UTF-8 encoding 0x" + o.toString(16));
 }
-if (T >= 32766) {
-var R = T + 1;
-t.push(String.fromCharCode.apply(String, n.subarray(0, R)));
-_ -= R;
-T = -1;
+if (S >= 32766) {
+var r = S + 1;
+t.push(String.fromCharCode.apply(String, n.subarray(0, r)));
+_ -= r;
+S = -1;
 }
 }
-T > 0 && t.push(String.fromCharCode.apply(String, n.subarray(0, T)));
+S > 0 && t.push(String.fromCharCode.apply(String, n.subarray(0, S)));
 return t.join("");
 }
-function I(e) {
+function c(e) {
 var _ = e.length;
 return 0 === _ ? "" : _ < 32767 ? s(e, _) : a(e, _);
 }
-function c(e, _) {
-"string" == typeof e && (e = r(e));
-"string" == typeof _ && (_ = r(_));
-return null == e || 0 === e.length ? e : T(E(S(e, !0), S(o(_), !1)), !1);
+function I(e, _) {
+"string" == typeof e && (e = R(e));
+"string" == typeof _ && (_ = R(_));
+return null == e || 0 === e.length ? e : S(E(T(e, !0), T(o(_), !1)), !1);
 }
 function N(e, _) {
 "string" == typeof e && (e = new t(e, "base64"));
-"string" == typeof _ && (_ = r(_));
-return null == e || 0 === e.length ? e : T(R(S(e, !1), S(o(_), !1)), !0);
+"string" == typeof _ && (_ = R(_));
+return null == e || 0 === e.length ? e : S(r(T(e, !1), T(o(_), !1)), !0);
 }
 _.exports = Object.create(null, {
 toBytes: {
-value: r
+value: R
 },
 toString: {
-value: I
+value: c
 },
 encrypt: {
-value: c
+value: I
 },
 encryptToString: {
 value: function(e, _) {
-return new t(c(e, _)).toString("base64");
+return new t(I(e, _)).toString("base64");
 }
 },
 decrypt: {
@@ -7862,7 +8046,7 @@ value: N
 },
 decryptToString: {
 value: function(e, _) {
-return I(N(e, _));
+return c(N(e, _));
 }
 }
 });
@@ -8525,4 +8709,4 @@ STR_MESS_EVALUATION_CONTENT: "因为您对于我们游戏的支持与评价，�
 };
 cc._RF.pop();
 }, {} ]
-}, {}, [ "Bubble", "BubbleScene", "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "LoadingLayer", "Save", "UiManager", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Ws", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "bundleSceneTest", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "WsTest", "Testts", "LabelLocalized", "ch", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);
+}, {}, [ "Bubble", "BubbleScene", "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "LoadingLayer", "Save", "SubGameManager", "UiManager", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Ws", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "bundleSceneTest", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "poplayer", "Slot", "SlotScene", "TestScene", "textinput", "WsTest", "Testts", "LabelLocalized", "ch", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);
