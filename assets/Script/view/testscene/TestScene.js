@@ -220,7 +220,7 @@ cc.Class({
                     console.log("sound data。。。。。  " + msgStr);
                     if (msgStr) {
                         //本地测试测试
-                        setTimeout( () =>{
+                        setTimeout(() => {
                             // 间隔两秒播放录音
                             var msgfile = this.SpeechFile;
                             voiceNative.play(msgfile);
@@ -268,7 +268,7 @@ cc.Class({
         //btn_showpopLayer
         var btn_showpopLayer = cc.find("uipanel/btn_showpopLayer", this.node)
         ua.darkButton(btn_showpopLayer, function () {
-    
+
             UiManager.gLoadPrefabRes("prefabs/poplayer", function (prefabNode) {
                 if (prefabNode) {
                     cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
@@ -308,13 +308,13 @@ cc.Class({
         //bundle加载测试
         // btn_goslot
 
-        
+
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
-        ua.darkButton(btn_loadbundle,  ()=>{
+        ua.darkButton(btn_loadbundle, () => {
 
             var subGameName = "bundleScene"
             SubGameManager.getSubGameState(subGameName, (state) => {
-                
+
                 // "not_in_app"     不在本地，没有下载
                 // "need_update"    在本地，需要更新
                 // "no_need_update" 在本地，不需要更新
@@ -324,34 +324,32 @@ cc.Class({
                     this.showWiat(true)
                     SubGameManager.downSubGame(subGameName, (progress, DownedSize, TotalSize) => {//下载进度，下载了多少kb ，总下载多少kb
                         cc.log("downSubGame progress===", progress)
-    
+
                     }, (code) => {
                         this.showWiat(false)
                         cc.log("downSubGame return code == ", code)
-                        if(code==0)//下载成功
+                        if (code == 0)//下载成功
                         {
-                            UiManager.ShowAlert("下载成功", [],  (index)=> {
-                               
-                                UiManager.gloadBundleScene(subGameName,(code)=>{
-                                    if(code==0)
-                                    {
+                            UiManager.ShowAlert("下载成功", [], (index) => {
+
+                                UiManager.gloadBundleScene(subGameName, (code) => {
+                                    if (code == 0) {
                                         cc.log("gloadBundleScene success")
                                     }
-                                    else
-                                    {
-                                        cc.log("gloadBundleScene failed=",code)
+                                    else {
+                                        cc.log("gloadBundleScene failed=", code)
                                     }
                                 })
                             })
                         }
                         else//失败
                         {
-                            UiManager.ShowAlert("下载失败"+code, [],  (index)=> {
-                               
-            
+                            UiManager.ShowAlert("下载失败" + code, [], (index) => {
+
+
                             })
                         }
-    
+
                     })
                 }
                 else if (state == "need_update")//需要更新
@@ -360,55 +358,51 @@ cc.Class({
                     this.showWiat(true)
                     SubGameManager.downSubGame(subGameName, (progress, DownedSize, TotalSize) => {//下载进度，下载了多少kb ，总下载多少kb
                         cc.log("updateSubGame progress===", progress)
-    
+
                     }, (code) => {
                         this.showWiat(false)
                         cc.log("updateSubGame return code == ", code)
-                        if(code==0)//下载成功
+                        if (code == 0)//下载成功
                         {
-                            UiManager.ShowAlert("更新成功", [],  (index)=> {
-                               
-                                UiManager.gloadBundleScene(subGameName,(code)=>{
-                                    if(code==0)
-                                    {
+                            UiManager.ShowAlert("更新成功", [], (index) => {
+
+                                UiManager.gloadBundleScene(subGameName, (code) => {
+                                    if (code == 0) {
                                         cc.log("gloadBundleScene success")
                                     }
-                                    else
-                                    {
-                                        cc.log("gloadBundleScene failed=",code)
+                                    else {
+                                        cc.log("gloadBundleScene failed=", code)
                                     }
                                 })
                             })
                         }
                         else//失败
                         {
-                            UiManager.ShowAlert("更新失败"+code, [],  (index)=> {
-                               
-            
+                            UiManager.ShowAlert("更新失败" + code, [], (index) => {
+
+
                             })
                         }
-    
+
                     })
                 }
                 else {//在本地，不需要更新,直接进
                     cc.log("子包本地和远程版本一致，直接进游戏")
-                    
-                    UiManager.gloadBundleScene(subGameName,(code)=>{
-                        if(code==0)
-                        {
+
+                    UiManager.gloadBundleScene(subGameName, (code) => {
+                        if (code == 0) {
                             cc.log("gloadBundleScene success")
                         }
-                        else
-                        {
-                            cc.log("gloadBundleScene failed=",code)
+                        else {
+                            cc.log("gloadBundleScene failed=", code)
                         }
                     })
-                        
-                    
-    
+
+
+
                 }
             })
-            
+
 
         })
 
@@ -453,7 +447,7 @@ cc.Class({
 
             // 2点的向量
             var v = sp2.getPosition().subSelf(touchLoc).normalizeSelf()
-           
+
         })
 
         garpgicsnode.on(cc.Node.EventType.TOUCH_MOVE, function (event) {
@@ -533,6 +527,6 @@ cc.Class({
         UiManager.ShowAlert("事件传来的参数" + JSON.stringify(event.detail), [])
     },
 
-   
+
     // update (dt) {},
 });
