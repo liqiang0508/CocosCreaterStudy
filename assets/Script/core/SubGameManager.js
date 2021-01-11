@@ -231,9 +231,6 @@ SubGameManager.downFiles = function (data) {
             }
             else {
                 downError = true
-                var path = SubGamesPath + self.curSubgameName
-                jsb.fileUtils.removeDirectory(path)//移动失败不知道移动了多少，就删掉当前子游戏文件夹
-                jsb.fileUtils.createDirectory(path)
                 self.callFunWithState(5, "子游戏下载单个文件失败=" + fileurl)
                 return
             }
@@ -265,19 +262,10 @@ SubGameManager.MoveFiles = function (data) {
             }
         }
         else {
-
             var path = SubGamesPath + self.curSubgameName
-            jsb.fileUtils.removeDirectory(path)//移动失败不知道移动了多少，就删掉当前子游戏文件夹
-            jsb.fileUtils.createDirectory(path)
-
-
-
+            this.removeLocalBundle(path)//移动失败不知道移动了多少，就删掉本地当前子游戏文件夹
             self.callFunWithState(6, "移动文件失败" + tempfilePath)
-
-
-
         }
-
     }
 
     moveOneFile(this.moveStep)
@@ -316,6 +304,14 @@ SubGameManager.getLocalBundlePath = function (bundleName) {
 
 }
 
+//移除本地的bundle
+SubGameManager.removeLocalBundle = function(bundleName){
+    var bundlePath = SubGamesPath + bundleName
+    jsb.fileUtils.removeDirectory(bundlePath)
+    jsb.fileUtils.createDirectory(bundlePath)
+
+
+}
 //是否是测试玩家
 SubGameManager.isDeugPalyer = function () {
     var debugUids = this.remoteData["debugUid"]//debug玩家数组
