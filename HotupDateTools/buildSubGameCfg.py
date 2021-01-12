@@ -124,7 +124,7 @@ for gameFolderName in SubGameFilders:#遍历
 
     #生成md5配置文件
     CfgFile =  OrderedDict()
-    subGameCfg[gameFolderName]["version"] = int(subGameCfg[gameFolderName]["version"])#+1
+    subGameCfg[gameFolderName]["version"] = int(subGameCfg[gameFolderName]["version"])+1
     CfgFile["scriptVersion"] = subGameCfg[gameFolderName]["version"]
     CfgFile["files"] = []
     walk(foderPath,"../build/jsb-default/remote/")

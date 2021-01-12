@@ -4641,47 +4641,42 @@ this.remoteData = e;
 cc.log("SubGameManager.parseCfgFromData", this.remoteData);
 };
 n.getSubGameState = function(e, _) {
-var t = this;
 this.curSubgameName = e;
-this.getLoclSubGameCfg(e, function(n) {
-if (n) {
-var S = t.remoteData.games[e].version, T = t.remoteData.games[e].debugVersion;
-if (t.isDeugPalyer()) {
+var t = this.getLoclSubGameCfg(e);
+if (t) {
+var n = this.remoteData.games[e].version, S = this.remoteData.games[e].debugVersion;
+if (this.isDeugPalyer()) {
 cc.log("是测试玩家");
-S = T;
+n = S;
 }
-var i = n.scriptVersion;
-cc.log("子包本地版本=", e, i);
-cc.log("子包远程debug版本=", e, T);
-cc.log("子包远程版本版本=", e, S);
-_(i != S ? "need_update" : "no_need_update");
+var T = t.scriptVersion;
+cc.log("子包本地版本=", e, T);
+cc.log("子包远程debug版本=", e, S);
+cc.log("子包远程正式版本=", e, n);
+_(T != n ? "need_update" : "no_need_update");
 } else _("not_in_app");
-});
 };
-n.getLoclSubGameCfg = function(e, _) {
-var t = S + e + "/appinfo.json";
-if (jsb.fileUtils.isFileExist(t)) {
-var n = jsb.fileUtils.getStringFromFile(t);
-if (Global.isjson(n)) {
-var T = JSON.parse(n);
-this.localSubGameCfg = T;
-_(T);
-} else {
-this.callFunWithState(1, "读取子游戏本地配置失败====" + e);
+n.getLoclSubGameCfg = function(e) {
+var _ = S + e + "/appinfo.json";
+if (jsb.fileUtils.isFileExist(_)) {
+var t = jsb.fileUtils.getStringFromFile(_);
+if (Global.isjson(t)) {
+var n = JSON.parse(t);
+this.localSubGameCfg = n;
+return this.localSubGameCfg;
+}
+this.callFunWithState(1, "读取子游戏本地配置失败 json配置不合法====" + e);
 this.localSubGameCfg = {
 scriptVersion: -1,
 files: []
 };
-_(null);
+return null;
 }
-} else {
-this.callFunWithState(2, "子游戏本地配置不存在====" + e);
 this.localSubGameCfg = {
 scriptVersion: -1,
 files: []
 };
-_(null);
-}
+return null;
 };
 n.downSubGame = function(e, _, n) {
 var S = this;
@@ -4748,9 +4743,9 @@ Global.GcreateDir(I);
 t[i].tempfile = s;
 t[i].realfile = a;
 cc.log("下载=====", R);
-Global.GDownFile(R, function(T) {
-if (T) {
-Global.GwriteDataToFile(T, s);
+Global.GDownFile(R, function(S) {
+if (S) {
+Global.GwriteDataToFile(S, s);
 _.downedSize = _.downedSize + r;
 if (_.DownIndex < t.length - 1) {
 _.DownIndex = _.DownIndex + 1;
@@ -4763,9 +4758,6 @@ _.MoveFiles(t);
 }
 } else {
 n = !0;
-var i = S + _.curSubgameName;
-jsb.fileUtils.removeDirectory(i);
-jsb.fileUtils.createDirectory(i);
 _.callFunWithState(5, "子游戏下载单个文件失败=" + R);
 }
 });
@@ -4784,8 +4776,7 @@ t(_.moveStep);
 } else _.MoveDone();
 } else {
 var E = S + _.curSubgameName;
-jsb.fileUtils.removeDirectory(E);
-jsb.fileUtils.createDirectory(E);
+this.removeLocalBundle(E);
 _.callFunWithState(6, "移动文件失败" + T);
 }
 })(this.moveStep);
@@ -4799,6 +4790,11 @@ this.finishCall && this.finishCall(e);
 };
 n.getLocalBundlePath = function(e) {
 return S + e;
+};
+n.removeLocalBundle = function(e) {
+var _ = S + e;
+jsb.fileUtils.removeDirectory(_);
+jsb.fileUtils.createDirectory(_);
 };
 n.isDeugPalyer = function() {
 var e = this.remoteData.debugUid, _ = cc.sys.localStorage.getItem("debugId");

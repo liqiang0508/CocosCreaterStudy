@@ -8,7 +8,7 @@ Key = "e2ededca-352b-49"#加密密钥
 # CocosCreatorExePath = "D:/CocosDashboard/resources/.editors/Creator/2.4.3/CocosCreator.exe"
 # ExePath.txt写入自己本地EXE的路径
 CocosCreatorExePath = ""
-subGameCfg_Path = "../assets/resources/subgameCfg.json"#项目中子游戏配置文件
+subGameCfg_Path = "subgameCfg.json"#项目中子游戏配置文件
 exePath = "ExePath.txt"
 if os.path.exists(exePath):
     with open(exePath,"rb+") as f:
