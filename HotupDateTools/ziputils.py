@@ -3,7 +3,7 @@
 import os 
 import sys
 import zipfile
-
+import projectConfig
 global azip 
 # 初始化一个zip文件
 def ZipInit(targetzip):
@@ -21,11 +21,10 @@ def AddFile(srcfile):
 		azip.write(srcfile) #移动目录
 		
 		for dirpath,dirnames,filenames in os.walk(srcfile):#压缩目录下的所有文件
-			for file in filenames:
+			for filename in filenames:
 					# print "file-",file
 					# print 
-					azip.write(os.path.join(dirpath, file))
-	
+					azip.write(os.path.join(dirpath, filename))
 
 # 压缩完毕
 def ZipEnd():
@@ -43,6 +42,36 @@ def ZipExtral(targetzip,destpath):
 		azip.extract(file,destpath)
 	azip.close()
 	
+
+
+
+
+
+#7 zip-------------------------------------------------
+#把 zipFolder指定文件夹压缩成saveZipName
+#压缩的时候只想把一个目录下的所有文件压缩，文件目录使用.\\dir\\* 这样压缩的zip不包含根目录
+def zipFolder(saveZipName,zipFolder,pwd = None):#压缩文件
+
+	cmd =  projectConfig.Zip_Exe +" a "+saveZipName+" "+zipFolder +"  -mx=9 -mm=LZMA"
+	if pwd:
+		cmd = cmd +" -p"+pwd
+	print cmd
+	os.system(cmd)
+
+#解压zip
+def extralFolder(zippath,savefoler,pwd= None):#解压zip
+	
+	# savefoler = os.path.join( os.getcwd(),savefoler)
+	if not os.path.exists(savefoler):
+		os.makedirs(savefoler)
+
+	cmd = projectConfig.Zip_Exe+ " x -o "+savefoler+" "+zippath
+
+	if pwd:
+		cmd = cmd +" -p"+pwd
+	print cmd
+	os.system(cmd)
+#7 zip-------------------------------------------------
 
 # ZipInit("tes1t.zip")
 # AddFile("folder1")

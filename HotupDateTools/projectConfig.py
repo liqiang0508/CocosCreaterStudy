@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import os
+Zip_Exe = os.path.join(os.getcwd(),"7za.exe")
 Key = "e2ededca-352b-49"#加密密钥
 
 #本地cocos exe的路径

@@ -11,7 +11,7 @@ import ziputils
 from collections import OrderedDict
 import projectConfig
 
-print("buildSubGameCfg ============================start")
+
 def copyFileTree(src,dst ): 
 	if os.path.exists(dst):
 		print dst+"  delete**** "
@@ -95,7 +95,7 @@ def writeFileText(filepath,text):
 
 
 
-
+print("buildSubGameCfg =========================================================================start")
 remotePath = "../build/jsb-default/remote"
 subGameCfgPath  = projectConfig.subGameCfg_Path#子游戏配置文件
 subGameCfg = json.loads(getFileText(subGameCfgPath))#子游戏配置数据
@@ -118,13 +118,13 @@ for gameFolderName in SubGameFilders:#遍历
 
     appinfofile = os.path.join(foderPath,"appinfo.json")#每个小游戏对应的appinfo.json文件
 
-    print ("start---------------------",gameFolderName)
+    print ("start--------------------------------",gameFolderName)
     if os.path.exists(appinfofile):#每次都把 appinfo.json删除
         os.remove(appinfofile)
 
     #生成md5配置文件
     CfgFile =  OrderedDict()
-    subGameCfg[gameFolderName]["version"] = int(subGameCfg[gameFolderName]["version"])+1
+    subGameCfg[gameFolderName]["version"] = int(subGameCfg[gameFolderName]["version"])#+1
     CfgFile["scriptVersion"] = subGameCfg[gameFolderName]["version"]
     CfgFile["files"] = []
     walk(foderPath,"../build/jsb-default/remote/")
@@ -136,11 +136,12 @@ for gameFolderName in SubGameFilders:#遍历
 
     src_folder = gameFolderName+"_"+str(subGameCfg[gameFolderName]["version"])# 生成xx_2 加上版本号的文件夹
     targetPath = os.path.join("../hotupversion/remote",src_folder)
-    copyFileTree(foderPath,targetPath)#移动到hotupversion文件夹下面
-    print ("end  ---------------------",gameFolderName)
+    copyFileTree(foderPath,targetPath)#移动到hotupversion/remote文件夹下面
+    print ("end  --------------------------------",gameFolderName)
 
 
 #zip 文件夹
+print("START *** ZIP")
 subGameCfg = json.loads(getFileText(subGameCfgPath))
 for gameFolderName in SubGameFilders:
     if  subGameCfg.has_key(gameFolderName) == False:#编译后的bundle文件夹不在subgameCfg.json中 跳过
@@ -148,17 +149,16 @@ for gameFolderName in SubGameFilders:
 
     src_folder = gameFolderName+"_"+str(subGameCfg[gameFolderName]["version"])
     isupdate = subGameCfg[gameFolderName]["isupdate"]#是否下载
-   
+    if os.path.exists(src_folder +".zip"):#判断zip存在 就先删除一下
+        os.remove(src_folder +".zip")
     if isupdate == True:#子游戏需要更新
         os.chdir("../hotupversion/remote")
         if os.path.exists(src_folder):#文件夹存在
-            ziputils.ZipInit(src_folder +".zip")
-            ziputils.AddFile(src_folder)
-            ziputils.ZipEnd()
-            print("ZIP=============>",gameFolderName)
+            ziputils.zipFolder(src_folder +".zip",".\\"+src_folder+"\\*")
+            print("ZIP=================>",gameFolderName,src_folder +".zip")
         os.chdir("../../HotupDateTools")
-
-print("buildSubGameCfg ============================end")
+print("END *** ZIP")
+print("buildSubGameCfg =========================================================================end")
 
 # 打开生成热更新配置文件夹窗口
 os.system("start " +"..\\hotupversion\\remote")

@@ -20,7 +20,8 @@
 
 
 
-三 子游戏更新
+三 子游戏更新说明
+只更新子游戏的资源，代码逻辑和主包放在一起
 配置subgameCfg.json
 {
     "bundleScene": {
@@ -36,6 +37,6 @@
     }
 }
 
-每个子游戏的资源为一个bundle
-当子游戏的资源修改的时候，修改上面的isupdate为true，运行buildSubGameCfg.py
-生成最新的   子游戏名称_版本号  文件夹
+每个子游戏的美术资源为一个bundle
+当子游戏的资源修改的时候，修改对应子游戏的isupdate为true，构建面板构建项目后，运行buildSubGameCfg.py
+会在hotupversion/remote下面生成最新的   子游戏名称_版本号  文件夹
