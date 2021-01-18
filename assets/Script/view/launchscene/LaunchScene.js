@@ -49,10 +49,10 @@ cc.Class({
 
             if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32)// 自带的模拟器不进行热更新   
             {
-                // cc.log("模拟器不热更新")
-                // VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
-                // this.goLoginScene()
-                // return
+                cc.log("模拟器不热更新")
+                VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示
+                this.goLoginScene()
+                return
             }
             cc.log("Global.isDebugTest===",Global.isDebugTest)
             if (Global.isDebugTest){//debug选择热更新地址
@@ -144,7 +144,7 @@ cc.Class({
         // 11:远程md5-json不合法
         // 100 :更新成功
         VersionManager.checkUpdate(url,  (code, shopUrl)=> {
-
+            SubGameManager.parseCfgFromData(VersionManager.getSubGameCfg())
             if (code == 0)//不用更新
             {
                 this.goLoginScene()
@@ -194,7 +194,7 @@ cc.Class({
     },
 
     goLoginScene() {
-        SubGameManager.parseCfgFromData(VersionManager.getSubGameCfg())
+        
         Global.gSchduleOnce(this,  ()=> {
 
             UiManager.gShowLoading((layer)=>{
