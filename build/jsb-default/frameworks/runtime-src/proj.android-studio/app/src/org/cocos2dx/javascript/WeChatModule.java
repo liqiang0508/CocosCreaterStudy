@@ -11,6 +11,7 @@ import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 import com.tao.honour.wxapi.WXEntryActivity;
+import com.tao.honour.wxapi.WXPayEntryActivity;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -79,12 +80,12 @@ public class WeChatModule {
 	}
 
 	public static void payWx(String content) {
-//		Intent intent = new Intent(Cocos2dxActivity.getContext(), WXPayEntryActivity.class);
-//		intent.putExtra(WXPayEntryActivity.ReqWXPay,"ReqWXPay");
-//		intent.putExtra("PayContent",content);
-//		Cocos2dxActivity.getContext().startActivity(intent);
+		Intent intent = new Intent(Cocos2dxActivity.getContext(), WXPayEntryActivity.class);
+		intent.putExtra(WXPayEntryActivity.ReqWXPay,"ReqWXPay");
+		intent.putExtra("PayContent",content);
+		Cocos2dxActivity.getContext().startActivity(intent);
 	}
-
+	//登录回调
 	public static void wxLoginResultCallback(boolean result, String msg) {
 		if (result) {
 			String code = "gg.wechat.onWxLoginResultCallback(true, '";
@@ -98,7 +99,7 @@ public class WeChatModule {
 			runJsCode(code);
 		}
 	}
-
+	//分享回调
 	public static void wxShareResultCallback(boolean result, String msg) {
 		if (result) {
 			String code = "gg.wechat.onWxShareResultCallback(true, '";
@@ -112,18 +113,13 @@ public class WeChatModule {
 			runJsCode(code);
 		}
 	}
+	//支付回调
+	public static void wxPayResultCallBack(int stateCode) {
 
-	public static void wxPayResultCallBack(boolean result, String msg) {
-		if (result) {
-			String code = "gg.wechat.onWxPayResultCallback(true, '";
-			code += msg;
+			String code = "gg.wechat.onWxPayResultCallback('";
+			code += stateCode;
 			code += "');";
 			runJsCode(code);
-		} else {
-			String code = "gg.wechat.onWxPayResultCallback(false, '";
-			code += msg;
-			code += "');";
-			runJsCode(code);
-		}
+
 	}
 }

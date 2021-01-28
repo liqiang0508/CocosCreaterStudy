@@ -152,6 +152,19 @@ var WeChatModule = cc.Class({
         }
     },
 
+    //微信支付
+    pay:function (content,paycall) {
+        this.PayCall = paycall
+        if (gg.isAndroid === true) {
+            jsb.reflection.callStaticMethod(
+                wxClassPath, 
+                "payWx", 
+                "(Ljava/lang/String;)V", content);
+        } else if (gg.isIOS === true) {
+            jsb.reflection.callStaticMethod("WeChatModule", "payWx", content);
+        }
+        
+    },
     onWxLoginResultCallback: function (result, codeMsg) {
         console.log("WeChatModule onWxLoginResultCallback")
         if (result === false) {
@@ -237,9 +250,12 @@ var WeChatModule = cc.Class({
         }
 
     },
-
-    onWxPayResultCallback: function (result, msg) {
-
+    //code 0成功  -1错误，-2用户取消
+    onWxPayResultCallback: function (code) {
+        if (this.PayCall )
+        {
+            this.PayCall(code)
+        }
     },
 
     onWindowLoginCallback: function (appId, appSecret, code) {
