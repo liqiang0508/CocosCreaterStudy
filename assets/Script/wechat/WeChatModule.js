@@ -63,8 +63,10 @@ var WeChatModule = cc.Class({
         }
         
     },
-    
-    shareImageWx: function (imgPath, type) {
+    //imgPath 图片路径 
+    //type 1 朋友圈，0转发好友
+    shareImageWx: function (imgPath, type,shareCall) {
+        this.ShareCall = shareCall
         if (gg.isAndroid === true) {
             jsb.reflection.callStaticMethod(
                 wxClassPath, 
@@ -74,8 +76,10 @@ var WeChatModule = cc.Class({
             jsb.reflection.callStaticMethod("WeChatModule", "shareImageWx:andType:", imgPath, type);
         }
     },
-    
-    shareTextWx: function (text, type) {
+    //text 文本
+    //type 1 朋友圈，0转发好友
+    shareTextWx: function (text, type,shareCall) {
+        this.ShareCall = shareCall
         if (gg.isAndroid === true) {
             jsb.reflection.callStaticMethod(
                 wxClassPath, 
@@ -86,7 +90,9 @@ var WeChatModule = cc.Class({
         }
     },
 
-    shareUrlWx: function (url, title, desc, type) {
+    //type 1 朋友圈，0转发好友
+    shareUrlWx: function (url, title, desc, type,shareCall) {
+        this.ShareCall = shareCall
         if (gg.isAndroid === true) {
             jsb.reflection.callStaticMethod(
                 wxClassPath, 
@@ -224,6 +230,11 @@ var WeChatModule = cc.Class({
 
     },
     onWxShareResultCallback: function (result, msg) {
+        console.log("WeChatModule onWxShareResultCallback")
+        if (this.ShareCall)
+        {
+            this.ShareCall(result,msg)
+        }
 
     },
 

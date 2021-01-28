@@ -47,7 +47,7 @@ cc.Class({
         var gotest = cc.find("uipanel/gotest", this.node)
         var wechat = cc.find("uipanel/wechat", this.node)
         var label = cc.find("uipanel/label", this.node)
-
+        var  wechatShare = cc.find("uipanel/wechatShare", this.node)
 
         ua.darkButton(wechat, () => {//微信登录
             // // msg返回数据
@@ -71,13 +71,28 @@ cc.Class({
             gg.wechat.login((msg)=>{
                 if (msg.ret==true)
                 {
-                    console.log("WeChatModule success----"+JSON.stringify(msg))
+                    console.log("WeChatModule login success----"+JSON.stringify(msg))
                 }
                 else{
-                    console.log("WeChatModule Faild----"+JSON.stringify(msg))
+                    console.log("WeChatModule login Faild----"+JSON.stringify(msg))
                 }
             })
         })
+
+        ua.darkButton(wechatShare, () => {
+
+            gg.wechat.shareTextWx("666",0,(result,msg)=>{
+                if (result==true)
+                {
+                    console.log("WeChatModule share success----"+msg)
+                }
+                else{
+                    console.log("WeChatModule share Faild----"+msg)
+                }
+            })
+        })
+
+
         ua.darkButton(gotest, () => {
 
             this.goTestScene()

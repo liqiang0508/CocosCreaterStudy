@@ -106,7 +106,7 @@ public class WeChatModule {
 			code += "');";
 			runJsCode(code);
 		} else {
-			String code = "gg.wechat.onWxShareResultCallback(true, '";
+			String code = "gg.wechat.onWxShareResultCallback(false, '";
 			code += msg;
 			code += "');";
 			runJsCode(code);

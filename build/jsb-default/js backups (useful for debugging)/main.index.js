@@ -12,12 +12,12 @@ throw new Error("Cannot find module '" + T + "'");
 }
 T = E;
 }
-var R = _[T] = {
+var s = _[T] = {
 exports: {}
 };
-t[T][0].call(R.exports, function(e) {
+t[T][0].call(s.exports, function(e) {
 return i(t[T][1][e] || e);
-}, R, R.exports, e, t, _, n);
+}, s, s.exports, e, t, _, n);
 }
 return _[T].exports;
 }
@@ -443,8 +443,8 @@ var S = i[0], T = S.point;
 this.drawAimLine(e, T);
 var o = T.sub(e).mag();
 this._cur_length += o;
-var E = S.normal, r = t, R = r.sub(E.mul(2 * r.dot(E)));
-this.drawRayCast(T, R);
+var E = S.normal, r = t, s = r.sub(E.mul(2 * r.dot(E)));
+this.drawRayCast(T, s);
 } else this.drawAimLine(e, n);
 }
 },
@@ -1969,7 +1969,7 @@ t.exports = _;
 cc._RF.pop();
 }, {} ],
 1: [ function(e, t) {
-var _ = e("util/"), n = Array.prototype.slice, i = Object.prototype.hasOwnProperty, S = t.exports = R;
+var _ = e("util/"), n = Array.prototype.slice, i = Object.prototype.hasOwnProperty, S = t.exports = s;
 S.AssertionError = function(e) {
 this.name = "AssertionError";
 this.actual = e.actual;
@@ -2015,10 +2015,10 @@ stackStartFunction: i
 });
 }
 S.fail = r;
-function R(e, t) {
+function s(e, t) {
 e || r(e, !0, t, "==", S.ok);
 }
-S.ok = R;
+S.ok = s;
 S.equal = function(e, t, _) {
 e != t && r(e, t, _, "==", S.equal);
 };
@@ -2026,9 +2026,9 @@ S.notEqual = function(e, t, _) {
 e == t && r(e, t, _, "!=", S.notEqual);
 };
 S.deepEqual = function(e, t, _) {
-s(e, t) || r(e, t, _, "deepEqual", S.deepEqual);
+R(e, t) || r(e, t, _, "deepEqual", S.deepEqual);
 };
-function s(e, t) {
+function R(e, t) {
 if (e === t) return !0;
 if (_.isBuffer(e) && _.isBuffer(t)) {
 if (e.length != t.length) return !1;
@@ -2046,17 +2046,17 @@ if (e.prototype !== t.prototype) return !1;
 if (_.isPrimitive(e) || _.isPrimitive(t)) return e === t;
 var i = a(e), S = a(t);
 if (i && !S || !i && S) return !1;
-if (i) return s(e = n.call(e), t = n.call(t));
+if (i) return R(e = n.call(e), t = n.call(t));
 var T, o, E = l(e), r = l(t);
 if (E.length != r.length) return !1;
 E.sort();
 r.sort();
 for (o = E.length - 1; o >= 0; o--) if (E[o] != r[o]) return !1;
-for (o = E.length - 1; o >= 0; o--) if (!s(e[T = E[o]], t[T])) return !1;
+for (o = E.length - 1; o >= 0; o--) if (!R(e[T = E[o]], t[T])) return !1;
 return !0;
 }
 S.notDeepEqual = function(e, t, _) {
-s(e, t) && r(e, t, _, "notDeepEqual", S.notDeepEqual);
+R(e, t) && r(e, t, _, "notDeepEqual", S.notDeepEqual);
 };
 S.strictEqual = function(e, t, _) {
 e !== t && r(e, t, _, "===", S.strictEqual);
@@ -2197,7 +2197,7 @@ h(n.depth) && (n.depth = 2);
 h(n.colors) && (n.colors = !1);
 h(n.customInspect) && (n.customInspect = !0);
 n.colors && (n.stylize = E);
-return s(n, e, n.depth);
+return R(n, e, n.depth);
 }
 _.inspect = o;
 o.colors = {
@@ -2232,22 +2232,22 @@ return _ ? "[" + o.colors[_][0] + "m" + e + "[" + o.colors[_][1] + "m" : e;
 function r(e) {
 return e;
 }
-function R(e) {
+function s(e) {
 var t = {};
 e.forEach(function(e) {
 t[e] = !0;
 });
 return t;
 }
-function s(e, t, n) {
+function R(e, t, n) {
 if (e.customInspect && t && L(t.inspect) && t.inspect !== _.inspect && (!t.constructor || t.constructor.prototype !== t)) {
 var i = t.inspect(n, e);
-u(i) || (i = s(e, i, n));
+u(i) || (i = R(e, i, n));
 return i;
 }
 var S = a(e, t);
 if (S) return S;
-var T = Object.keys(t), o = R(T);
+var T = Object.keys(t), o = s(T);
 e.showHidden && (T = Object.getOwnPropertyNames(t));
 if (M(t) && (T.indexOf("message") >= 0 || T.indexOf("description") >= 0)) return c(t);
 if (0 === T.length) {
@@ -2301,7 +2301,7 @@ var T, o, E;
 value: t[i]
 }).get ? o = E.set ? e.stylize("[Getter/Setter]", "special") : e.stylize("[Getter]", "special") : E.set && (o = e.stylize("[Setter]", "special"));
 y(n, i) || (T = "[" + i + "]");
-o || (e.seen.indexOf(E.value) < 0 ? (o = O(_) ? s(e, E.value, null) : s(e, E.value, _ - 1)).indexOf("\n") > -1 && (o = S ? o.split("\n").map(function(e) {
+o || (e.seen.indexOf(E.value) < 0 ? (o = O(_) ? R(e, E.value, null) : R(e, E.value, _ - 1)).indexOf("\n") > -1 && (o = S ? o.split("\n").map(function(e) {
 return "  " + e;
 }).join("\n").substr(2) : "\n" + o.split("\n").map(function(e) {
 return "   " + e;
@@ -2414,26 +2414,26 @@ var t = r(e), _ = t[0], n = t[1];
 return 3 * (_ + n) / 4 - n;
 };
 _.toByteArray = function(e) {
-var t, _, n = r(e), T = n[0], o = n[1], E = new S(R(0, T, o)), s = 0, a = o > 0 ? T - 4 : T;
+var t, _, n = r(e), T = n[0], o = n[1], E = new S(s(0, T, o)), R = 0, a = o > 0 ? T - 4 : T;
 for (_ = 0; _ < a; _ += 4) {
 t = i[e.charCodeAt(_)] << 18 | i[e.charCodeAt(_ + 1)] << 12 | i[e.charCodeAt(_ + 2)] << 6 | i[e.charCodeAt(_ + 3)];
-E[s++] = t >> 16 & 255;
-E[s++] = t >> 8 & 255;
-E[s++] = 255 & t;
+E[R++] = t >> 16 & 255;
+E[R++] = t >> 8 & 255;
+E[R++] = 255 & t;
 }
 if (2 === o) {
 t = i[e.charCodeAt(_)] << 2 | i[e.charCodeAt(_ + 1)] >> 4;
-E[s++] = 255 & t;
+E[R++] = 255 & t;
 }
 if (1 === o) {
 t = i[e.charCodeAt(_)] << 10 | i[e.charCodeAt(_ + 1)] << 4 | i[e.charCodeAt(_ + 2)] >> 2;
-E[s++] = t >> 8 & 255;
-E[s++] = 255 & t;
+E[R++] = t >> 8 & 255;
+E[R++] = 255 & t;
 }
 return E;
 };
 _.fromByteArray = function(e) {
-for (var t, _ = e.length, i = _ % 3, S = [], T = 0, o = _ - i; T < o; T += 16383) S.push(s(e, T, T + 16383 > o ? o : T + 16383));
+for (var t, _ = e.length, i = _ % 3, S = [], T = 0, o = _ - i; T < o; T += 16383) S.push(R(e, T, T + 16383 > o ? o : T + 16383));
 if (1 === i) {
 t = e[_ - 1];
 S.push(n[t >> 2] + n[t << 4 & 63] + "==");
@@ -2456,10 +2456,10 @@ var _ = e.indexOf("=");
 -1 === _ && (_ = t);
 return [ _, _ === t ? 0 : 4 - _ % 4 ];
 }
-function R(e, t, _) {
+function s(e, t, _) {
 return 3 * (t + _) / 4 - _;
 }
-function s(e, t, _) {
+function R(e, t, _) {
 for (var i, S, T = [], o = t; o < _; o += 3) {
 i = (e[o] << 16 & 16711680) + (e[o + 1] << 8 & 65280) + (255 & e[o + 2]);
 T.push(n[(S = i) >> 18 & 63] + n[S >> 12 & 63] + n[S >> 6 & 63] + n[63 & S]);
@@ -2531,19 +2531,19 @@ value: null,
 configurable: !0
 });
 }
-function R(e) {
+function s(e) {
 if ("number" != typeof e) throw new TypeError('"size" argument must be a number');
 if (e < 0) throw new RangeError('"size" argument must not be negative');
 }
-function s(e, t, _, n) {
-R(t);
+function R(e, t, _, n) {
+s(t);
 return t <= 0 ? o(e, t) : void 0 !== _ ? "string" == typeof n ? o(e, t).fill(_, n) : o(e, t).fill(_) : o(e, t);
 }
 E.alloc = function(e, t, _) {
-return s(null, e, t, _);
+return R(null, e, t, _);
 };
 function a(e, t) {
-R(t);
+s(t);
 e = o(e, t < 0 ? 0 : 0 | C(t));
 if (!E.TYPED_ARRAY_SUPPORT) for (var _ = 0; _ < t; ++_) e[_] = 0;
 return e;
@@ -2775,9 +2775,9 @@ if (n >= i && t >= _) return 0;
 if (n >= i) return -1;
 if (t >= _) return 1;
 if (this === e) return 0;
-for (var S = (i >>>= 0) - (n >>>= 0), T = (_ >>>= 0) - (t >>>= 0), o = Math.min(S, T), r = this.slice(n, i), R = e.slice(t, _), s = 0; s < o; ++s) if (r[s] !== R[s]) {
-S = r[s];
-T = R[s];
+for (var S = (i >>>= 0) - (n >>>= 0), T = (_ >>>= 0) - (t >>>= 0), o = Math.min(S, T), r = this.slice(n, i), s = e.slice(t, _), R = 0; R < o; ++R) if (r[R] !== s[R]) {
+S = r[R];
+T = s[R];
 break;
 }
 return S < T ? -1 : T < S ? 1 : 0;
@@ -2819,22 +2819,22 @@ function r(e, t) {
 return 1 === T ? e[t] : e.readUInt16BE(t * T);
 }
 if (i) {
-var R = -1;
-for (S = _; S < o; S++) if (r(e, S) === r(t, -1 === R ? 0 : S - R)) {
--1 === R && (R = S);
-if (S - R + 1 === E) return R * T;
+var s = -1;
+for (S = _; S < o; S++) if (r(e, S) === r(t, -1 === s ? 0 : S - s)) {
+-1 === s && (s = S);
+if (S - s + 1 === E) return s * T;
 } else {
--1 !== R && (S -= S - R);
-R = -1;
+-1 !== s && (S -= S - s);
+s = -1;
 }
 } else {
 _ + E > o && (_ = o - E);
 for (S = _; S >= 0; S--) {
-for (var s = !0, a = 0; a < E; a++) if (r(e, S + a) !== r(t, a)) {
-s = !1;
+for (var R = !0, a = 0; a < E; a++) if (r(e, S + a) !== r(t, a)) {
+R = !1;
 break;
 }
-if (s) return S;
+if (R) return S;
 }
 }
 return -1;
@@ -2945,27 +2945,27 @@ _ = Math.min(e.length, _);
 for (var n = [], i = t; i < _; ) {
 var S = e[i], T = null, o = S > 239 ? 4 : S > 223 ? 3 : S > 191 ? 2 : 1;
 if (i + o <= _) {
-var E, r, R, s;
+var E, r, s, R;
 switch (o) {
 case 1:
 S < 128 && (T = S);
 break;
 
 case 2:
-128 == (192 & (E = e[i + 1])) && (s = (31 & S) << 6 | 63 & E) > 127 && (T = s);
+128 == (192 & (E = e[i + 1])) && (R = (31 & S) << 6 | 63 & E) > 127 && (T = R);
 break;
 
 case 3:
 E = e[i + 1];
 r = e[i + 2];
-128 == (192 & E) && 128 == (192 & r) && (s = (15 & S) << 12 | (63 & E) << 6 | 63 & r) > 2047 && (s < 55296 || s > 57343) && (T = s);
+128 == (192 & E) && 128 == (192 & r) && (R = (15 & S) << 12 | (63 & E) << 6 | 63 & r) > 2047 && (R < 55296 || R > 57343) && (T = R);
 break;
 
 case 4:
 E = e[i + 1];
 r = e[i + 2];
-R = e[i + 3];
-128 == (192 & E) && 128 == (192 & r) && 128 == (192 & R) && (s = (15 & S) << 18 | (63 & E) << 12 | (63 & r) << 6 | 63 & R) > 65535 && s < 1114112 && (T = s);
+s = e[i + 3];
+128 == (192 & E) && 128 == (192 & r) && 128 == (192 & s) && (R = (15 & S) << 18 | (63 & E) << 12 | (63 & r) << 6 | 63 & s) > 65535 && R < 1114112 && (T = R);
 }
 }
 if (null === T) {
@@ -3472,8 +3472,8 @@ if (!e) {
 var t = o.call(arguments, 1);
 i.ok(!1, n.format.apply(null, t));
 }
-}, "assert" ] ], R = 0; R < r.length; R++) {
-var s = r[R], a = s[0], c = s[1];
+}, "assert" ] ], s = 0; s < r.length; s++) {
+var R = r[s], a = R[0], c = R[1];
 T[c] || (T[c] = a);
 }
 t.exports = T;
@@ -3484,16 +3484,16 @@ util: 13
 } ],
 9: [ function(e, t, _) {
 _.read = function(e, t, _, n, i) {
-var S, T, o = 8 * i - n - 1, E = (1 << o) - 1, r = E >> 1, R = -7, s = _ ? i - 1 : 0, a = _ ? -1 : 1, c = e[t + s];
-s += a;
-S = c & (1 << -R) - 1;
-c >>= -R;
-R += o;
-for (;R > 0; S = 256 * S + e[t + s], s += a, R -= 8) ;
-T = S & (1 << -R) - 1;
-S >>= -R;
-R += n;
-for (;R > 0; T = 256 * T + e[t + s], s += a, R -= 8) ;
+var S, T, o = 8 * i - n - 1, E = (1 << o) - 1, r = E >> 1, s = -7, R = _ ? i - 1 : 0, a = _ ? -1 : 1, c = e[t + R];
+R += a;
+S = c & (1 << -s) - 1;
+c >>= -s;
+s += o;
+for (;s > 0; S = 256 * S + e[t + R], R += a, s -= 8) ;
+T = S & (1 << -s) - 1;
+S >>= -s;
+s += n;
+for (;s > 0; T = 256 * T + e[t + R], R += a, s -= 8) ;
 if (0 === S) S = 1 - r; else {
 if (S === E) return T ? NaN : Infinity * (c ? -1 : 1);
 T += Math.pow(2, n);
@@ -3502,29 +3502,29 @@ S -= r;
 return (c ? -1 : 1) * T * Math.pow(2, S - n);
 };
 _.write = function(e, t, _, n, i, S) {
-var T, o, E, r = 8 * S - i - 1, R = (1 << r) - 1, s = R >> 1, a = 23 === i ? Math.pow(2, -24) - Math.pow(2, -77) : 0, c = n ? 0 : S - 1, I = n ? 1 : -1, N = t < 0 || 0 === t && 1 / t < 0 ? 1 : 0;
+var T, o, E, r = 8 * S - i - 1, s = (1 << r) - 1, R = s >> 1, a = 23 === i ? Math.pow(2, -24) - Math.pow(2, -77) : 0, c = n ? 0 : S - 1, I = n ? 1 : -1, N = t < 0 || 0 === t && 1 / t < 0 ? 1 : 0;
 t = Math.abs(t);
 if (isNaN(t) || Infinity === t) {
 o = isNaN(t) ? 1 : 0;
-T = R;
+T = s;
 } else {
 T = Math.floor(Math.log(t) / Math.LN2);
 if (t * (E = Math.pow(2, -T)) < 1) {
 T--;
 E *= 2;
 }
-if ((t += T + s >= 1 ? a / E : a * Math.pow(2, 1 - s)) * E >= 2) {
+if ((t += T + R >= 1 ? a / E : a * Math.pow(2, 1 - R)) * E >= 2) {
 T++;
 E /= 2;
 }
-if (T + s >= R) {
+if (T + R >= s) {
 o = 0;
-T = R;
-} else if (T + s >= 1) {
+T = s;
+} else if (T + R >= 1) {
 o = (t * E - 1) * Math.pow(2, i);
-T += s;
+T += R;
 } else {
-o = t * Math.pow(2, s - 1) * Math.pow(2, i);
+o = t * Math.pow(2, R - 1) * Math.pow(2, i);
 T = 0;
 }
 }
@@ -3587,35 +3587,35 @@ return n.call(this, e);
 }
 }
 }
-var r, R = [], s = !1, a = -1;
+var r, s = [], R = !1, a = -1;
 function c() {
-if (s && r) {
-s = !1;
-r.length ? R = r.concat(R) : a = -1;
-R.length && I();
+if (R && r) {
+R = !1;
+r.length ? s = r.concat(s) : a = -1;
+s.length && I();
 }
 }
 function I() {
-if (!s) {
+if (!R) {
 var e = o(c);
-s = !0;
-for (var t = R.length; t; ) {
-r = R;
-R = [];
+R = !0;
+for (var t = s.length; t; ) {
+r = s;
+s = [];
 for (;++a < t; ) r && r[a].run();
 a = -1;
-t = R.length;
+t = s.length;
 }
 r = null;
-s = !1;
+R = !1;
 E(e);
 }
 }
 i.nextTick = function(e) {
 var t = new Array(arguments.length - 1);
 if (arguments.length > 1) for (var _ = 1; _ < arguments.length; _++) t[_ - 1] = arguments[_];
-R.push(new N(e, t));
-1 !== R.length || s || o(I);
+s.push(new N(e, t));
+1 !== s.length || R || o(I);
 };
 function N(e, t) {
 this.fun = e;
@@ -3959,11 +3959,16 @@ start: function() {
 var e = this;
 1 == Global.GgameType && (this.VersionText.string = n.getAppVersion() + "(R" + _.getScriptVersion() + ")");
 3 == Global.GgameType && (this.VersionText.string = n.getAppVersion() + "(D" + _.getScriptVersion() + ")");
-var t = cc.find("uipanel/gotest", this.node), i = cc.find("uipanel/wechat", this.node);
-cc.find("uipanel/label", this.node);
+var t = cc.find("uipanel/gotest", this.node), i = cc.find("uipanel/wechat", this.node), S = (cc.find("uipanel/label", this.node), 
+cc.find("uipanel/wechatShare", this.node));
 ua.darkButton(i, function() {
 gg.wechat.login(function(e) {
-1 == e.ret ? console.log("WeChatModule success----" + JSON.stringify(e)) : console.log("WeChatModule Faild----" + JSON.stringify(e));
+1 == e.ret ? console.log("WeChatModule login success----" + JSON.stringify(e)) : console.log("WeChatModule login Faild----" + JSON.stringify(e));
+});
+});
+ua.darkButton(S, function() {
+gg.wechat.shareTextWx("666", 0, function(e, t) {
+1 == e ? console.log("WeChatModule share success----" + t) : console.log("WeChatModule share Faild----" + t);
 });
 });
 ua.darkButton(t, function() {
@@ -4813,15 +4818,15 @@ md5: o,
 fileSize: E
 };
 }
-for (var R in i) {
-var s = i[R], a = s.md5;
-E = s.fileSize;
-n[R] ? a != n[R].md5 && _.push({
-fileName: R,
+for (var s in i) {
+var R = i[s], a = R.md5;
+E = R.fileSize;
+n[s] ? a != n[s].md5 && _.push({
+fileName: s,
 md5: a,
 fileSize: E
 }) : _.push({
-fileName: R,
+fileName: s,
 md5: a,
 fileSize: E
 });
@@ -4839,15 +4844,15 @@ var t = this, _ = e;
 t.DownIndex = 0;
 var n = !1;
 (function e(T) {
-var o = t.baseUrl, E = _[T].fileName, r = _[T].fileSize, R = o + E.replace(t.curSubgameName, t.curSubgameName + "_" + t.downversion), s = S + E, a = i + E, c = S + Global.GgetDirByUrl(E), I = i + Global.GgetDirByUrl(E);
+var o = t.baseUrl, E = _[T].fileName, r = _[T].fileSize, s = o + E.replace(t.curSubgameName, t.curSubgameName + "_" + t.downversion), R = S + E, a = i + E, c = S + Global.GgetDirByUrl(E), I = i + Global.GgetDirByUrl(E);
 Global.GcreateDir(c);
 Global.GcreateDir(I);
-_[T].tempfile = s;
+_[T].tempfile = R;
 _[T].realfile = a;
-cc.log("下载=====", R);
-Global.GDownFile(R, function(i) {
+cc.log("下载=====", s);
+Global.GDownFile(s, function(i) {
 if (i) {
-Global.GwriteDataToFile(i, s);
+Global.GwriteDataToFile(i, R);
 t.downedSize = t.downedSize + r;
 if (t.DownIndex < _.length - 1) {
 t.DownIndex = t.DownIndex + 1;
@@ -4860,7 +4865,7 @@ t.MoveFiles(_);
 }
 } else {
 n = !0;
-t.callFunWithState(5, "子游戏下载单个文件失败=" + R);
+t.callFunWithState(5, "子游戏下载单个文件失败=" + s);
 }
 });
 })(t.DownIndex);
@@ -4963,15 +4968,15 @@ setTimeout(function() {
 e.showWiat(!1);
 }, 3e3);
 });
-var R = cc.find("uipanel/btn_EventTest", this.node);
-ua.darkButton(R, function() {
+var s = cc.find("uipanel/btn_EventTest", this.node);
+ua.darkButton(s, function() {
 EventManager.dispatchEvent(e.node, RefreshInfo, {
 name: "Lee123"
 });
 });
-var s = cc.find("uipanel/loadTex", this.node);
+var R = cc.find("uipanel/loadTex", this.node);
 Global.GloadPic("http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96", function(e) {
-e && (s.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
+e && (R.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
 });
 var a = null, c = cc.find("uipanel/btn_Speech", this.node);
 c.on(cc.Node.EventType.TOUCH_START, function() {
@@ -5317,15 +5322,15 @@ md5: o,
 fileSize: E
 };
 }
-for (var R in i) {
-var s = i[R], a = s.md5;
-E = s.fileSize;
-n[R] ? a != n[R].md5 && _.push({
-fileName: R,
+for (var s in i) {
+var R = i[s], a = R.md5;
+E = R.fileSize;
+n[s] ? a != n[s].md5 && _.push({
+fileName: s,
 md5: a,
 fileSize: E
 }) : _.push({
-fileName: R,
+fileName: s,
 md5: a,
 fileSize: E
 });
@@ -5341,15 +5346,15 @@ if (0 != e.length) {
 var t = this, _ = e;
 t.DownIndex = 0;
 (function e(n) {
-var T = t.BaseUrl, o = _[n].fileName, E = _[n].fileSize, r = T + o, R = i + o, s = S + o, a = i + Global.GgetDirByUrl(o), c = S + Global.GgetDirByUrl(o);
+var T = t.BaseUrl, o = _[n].fileName, E = _[n].fileSize, r = T + o, s = i + o, R = S + o, a = i + Global.GgetDirByUrl(o), c = S + Global.GgetDirByUrl(o);
 Global.GcreateDir(a);
 Global.GcreateDir(c);
-_[n].tempfile = R;
-_[n].realfile = s;
+_[n].tempfile = s;
+_[n].realfile = R;
 cc.log("下载=====", r);
 Global.GDownFile(r, function(n) {
 if (n) {
-Global.GwriteDataToFile(n, R);
+Global.GwriteDataToFile(n, s);
 t.downedSize = t.downedSize + E;
 if (t.DownIndex < _.length - 1) {
 t.DownIndex = t.DownIndex + 1;
@@ -5455,12 +5460,12 @@ var e = this;
 _.sendHttpRequest(this.remoteCfg, function(t) {
 if (null != t) if (Global.isjson(t)) {
 e.remoteCfg = JSON.parse(t);
-var _ = e.localCfg.scriptVersion, i = e.remoteCfg.scriptVersion, S = e.remoteCfg.debugScriptVersion, T = e.remoteCfg.supportBinarys, o = e.remoteCfg.forcedBinaryVersions, E = e.remoteCfg.channels, r = e.remoteCfg.debugUIDs, R = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], s = cc.sys.localStorage.getItem("debugId");
-if (Global.GIsArrContain(E, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(T, n.getAppVersion())) if (Global.GIsArrContain(o, n.getAppVersion())) e.callFunWithState(8, "强制更新", R); else {
+var _ = e.localCfg.scriptVersion, i = e.remoteCfg.scriptVersion, S = e.remoteCfg.debugScriptVersion, T = e.remoteCfg.supportBinarys, o = e.remoteCfg.forcedBinaryVersions, E = e.remoteCfg.channels, r = e.remoteCfg.debugUIDs, s = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], R = cc.sys.localStorage.getItem("debugId");
+if (Global.GIsArrContain(E, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(T, n.getAppVersion())) if (Global.GIsArrContain(o, n.getAppVersion())) e.callFunWithState(8, "强制更新", s); else {
 console.log("主包本地脚本号==" + _);
 console.log("主包远程debug版本号==" + S);
 console.log("主包远程版本号==" + i);
-if (Global.GIsArrContain(r, s)) {
+if (Global.GIsArrContain(r, R)) {
 if (parseInt(_) != parseInt(S)) {
 console.log("走测试玩家----热更新");
 var a = e.remoteCfg.debugBaseUrl, c = (a = cc.js.formatStr(a, S)) + e.remoteCfg.debugConfigFile;
@@ -5503,7 +5508,7 @@ E = r >= n ? i(r) : String.fromCharCode(r);
 S[o] = E;
 T[E] = o;
 }
-function R(e) {
+function s(e) {
 var t = "", _ = e.length;
 cc.log("encode, len=" + _ + ", data=" + e);
 var n = _ >> 16 & 255, i = _ >> 8 & 255, T = 255 & _;
@@ -5514,7 +5519,7 @@ t += S[T];
 for (var o = 0; o < e.length; ++o) t += S[e[o]];
 return t;
 }
-var s = "com/casino/game/VoiceRecorder", a = cc.Class({
+var R = "com/casino/game/VoiceRecorder", a = cc.Class({
 extends: cc.Component,
 properties: {
 _voiceMediaPath: null
@@ -5530,19 +5535,19 @@ prepare: function(e) {
 if (cc.sys.isNative) {
 cc.audioEngine.pauseAll();
 this.clearCache(e);
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(s, "prepare", "(Ljava/lang/String;)V", e) : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "prepareRecord:", e));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(R, "prepare", "(Ljava/lang/String;)V", e) : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "prepareRecord:", e));
 }
 },
 release: function() {
 if (cc.sys.isNative) {
 cc.audioEngine.resumeAll();
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(s, "release", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "finishRecord"));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(R, "release", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "finishRecord"));
 }
 },
 cancel: function() {
 if (cc.sys.isNative) {
 cc.audioEngine.resumeAll();
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(s, "cancel", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "cancelRecord"));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(R, "cancel", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "cancelRecord"));
 }
 },
 writeVoice: function(e, t) {
@@ -5578,10 +5583,10 @@ if (_) return _;
 return null;
 },
 getDataString: function(e) {
-return R(e);
+return s(e);
 },
 setStorageDir: function(e) {
-if (cc.sys.isNative) if (cc.sys.os == cc.sys.OS_ANDROID) jsb.reflection.callStaticMethod(s, "setStorageDir", "(Ljava/lang/String;)V", e); else if (cc.sys.os == cc.sys.OS_IOS) {
+if (cc.sys.isNative) if (cc.sys.os == cc.sys.OS_ANDROID) jsb.reflection.callStaticMethod(R, "setStorageDir", "(Ljava/lang/String;)V", e); else if (cc.sys.os == cc.sys.OS_IOS) {
 jsb.reflection.callStaticMethod("VoiceSDK", "setStorageDir:", e);
 jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDirectory(e);
 }
@@ -5618,7 +5623,8 @@ loginWx: function() {
 shareImageWx: function(e, t) {
 !0 === gg.isAndroid ? jsb.reflection.callStaticMethod(_, "shareImageWx", "(Ljava/lang/String;I)V", e, t) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "shareImageWx:andType:", e, t);
 },
-shareTextWx: function(e, t) {
+shareTextWx: function(e, t, n) {
+this.ShareCall = n;
 !0 === gg.isAndroid ? jsb.reflection.callStaticMethod(_, "shareTextWx", "(Ljava/lang/String;I)V", e, t) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "shareTextWx:andType:", e, t);
 },
 shareUrlWx: function(e, t, n, i) {
@@ -5714,7 +5720,10 @@ _.LoginCall && _.LoginCall(e);
 }
 });
 },
-onWxShareResultCallback: function() {},
+onWxShareResultCallback: function(e, t) {
+console.log("WeChatModule onWxShareResultCallback");
+this.ShareCall && this.ShareCall(e, t);
+},
 onWxPayResultCallback: function() {},
 onWindowLoginCallback: function(e, t, _) {
 this.appId = e;
@@ -7360,20 +7369,20 @@ return i;
 var o = /^\s+|\s+$/g;
 function E(e, _, i) {
 var S, T;
-return null != i && e ? (T = (S = e.split(n))[R(_, i)] || S[0], t.call(T, o, "")) : e;
+return null != i && e ? (T = (S = e.split(n))[s(_, i)] || S[0], t.call(T, o, "")) : e;
 }
 function r(e) {
 var t = T(S);
 return t[e] || t.en;
 }
-function R(e, t) {
+function s(e, t) {
 return i[r(e)](t);
 }
-var s = /\$/g, a = "$$$$";
+var R = /\$/g, a = "$$$$";
 function c(e, _) {
 for (var n in _) if ("_" !== n && _.hasOwnProperty(n)) {
 var i = _[n];
-"string" == typeof i && (i = t.call(_[n], s, a));
+"string" == typeof i && (i = t.call(_[n], R, a));
 e = t.call(e, new RegExp("%\\{" + n + "\\}", "g"), i);
 }
 return e;
@@ -8161,35 +8170,35 @@ e = t;
 return e;
 }
 function E(e, t) {
-var _, i, S, o, E, r, R = e.length, s = R - 1;
-i = e[s];
+var _, i, S, o, E, r, s = e.length, R = s - 1;
+i = e[R];
 S = 0;
-for (r = 0 | Math.floor(6 + 52 / R); r > 0; --r) {
+for (r = 0 | Math.floor(6 + 52 / s); r > 0; --r) {
 o = (S += n) >>> 2 & 3;
-for (E = 0; E < s; ++E) {
+for (E = 0; E < R; ++E) {
 _ = e[E + 1];
 i = e[E] += T(S, _, i, E, o, t);
 }
 _ = e[0];
-i = e[s] += T(S, _, i, E, o, t);
+i = e[R] += T(S, _, i, E, o, t);
 }
 return e;
 }
 function r(e, t) {
-var _, i, S, o, E, r = e.length, R = r - 1;
+var _, i, S, o, E, r = e.length, s = r - 1;
 _ = e[0];
 for (S = Math.floor(6 + 52 / r) * n; 0 !== S; S -= n) {
 o = S >>> 2 & 3;
-for (E = R; E > 0; --E) {
+for (E = s; E > 0; --E) {
 i = e[E - 1];
 _ = e[E] -= T(S, _, i, E, o, t);
 }
-i = e[R];
+i = e[s];
 _ = e[0] -= T(S, _, i, E, o, t);
 }
 return e;
 }
-function R(e) {
+function s(e) {
 for (var t = e.length, _ = new Uint8Array(3 * t), n = 0, i = 0; i < t; i++) {
 var S = e.charCodeAt(i);
 if (S < 128) _[n++] = S; else if (S < 2048) {
@@ -8218,7 +8227,7 @@ _[n++] = 128 | 63 & S;
 }
 return _.subarray(0, n);
 }
-function s(e, t) {
+function R(e, t) {
 for (var _ = new Uint16Array(t), n = 0, i = 0, S = e.length; n < t && i < S; n++) {
 var T = e[i++];
 switch (T >> 4) {
@@ -8308,21 +8317,21 @@ return _.join("");
 }
 function c(e) {
 var t = e.length;
-return 0 === t ? "" : t < 32767 ? s(e, t) : a(e, t);
+return 0 === t ? "" : t < 32767 ? R(e, t) : a(e, t);
 }
 function I(e, t) {
-"string" == typeof e && (e = R(e));
-"string" == typeof t && (t = R(t));
+"string" == typeof e && (e = s(e));
+"string" == typeof t && (t = s(t));
 return null == e || 0 === e.length ? e : i(E(S(e, !0), S(o(t), !1)), !1);
 }
 function N(e, t) {
 "string" == typeof e && (e = new _(e, "base64"));
-"string" == typeof t && (t = R(t));
+"string" == typeof t && (t = s(t));
 return null == e || 0 === e.length ? e : i(r(S(e, !1), S(o(t), !1)), !0);
 }
 t.exports = Object.create(null, {
 toBytes: {
-value: R
+value: s
 },
 toString: {
 value: c
