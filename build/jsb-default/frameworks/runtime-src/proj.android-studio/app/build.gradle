@@ -7,7 +7,7 @@ android {
     buildToolsVersion PROP_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        applicationId "org.cocos2d.helloworld"
+        applicationId "com.tao.honour"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
         versionCode 10300
@@ -65,6 +65,13 @@ android {
                 keyPassword RELEASE_KEY_PASSWORD
             }
         }
+
+        debug {
+            keyAlias 'fengtao'
+            keyPassword '123456'
+            storeFile file('keystore')
+            storePassword '123456'
+        }
     }
 
     buildTypes {
@@ -85,17 +92,19 @@ android {
 //                }
 //            }
         }
-
         debug {
-            debuggable true
-            jniDebuggable true
-            renderscriptDebuggable true
+            signingConfig signingConfigs.debug
+        }
+//        debug {
+//            debuggable true
+//            jniDebuggable true
+//            renderscriptDebuggable true
 //            externalNativeBuild {
 //                ndkBuild {
 //                    arguments 'NDK_DEBUG=1'
 //                }
 //            }
-        }
+//        }
     }
 }
 
@@ -134,5 +143,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
     implementation fileTree(dir: "../../../cocos2d-x/cocos/platform/android/java/libs", include: ['*.jar'])
     implementation project(':libcocos2dx')
-    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.core:core-ktx:1.2.0"
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }

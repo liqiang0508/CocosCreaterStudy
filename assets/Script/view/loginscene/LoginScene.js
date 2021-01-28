@@ -34,7 +34,6 @@ cc.Class({
 
 
     start() {
-
         if (Global.GgameType == 1)//正式包
         {
             this.VersionText.string = DevicesInfo.getAppVersion() + "(R" + VersionManager.getScriptVersion() + ")"
@@ -46,10 +45,39 @@ cc.Class({
         }
 
         var gotest = cc.find("uipanel/gotest", this.node)
+        var wechat = cc.find("uipanel/wechat", this.node)
         var label = cc.find("uipanel/label", this.node)
 
 
-
+        ua.darkButton(wechat, () => {//微信登录
+            // // msg返回数据
+            // {
+            //     "ret": true,
+            //     "access_token": "41_SV9AdqFcpBfQ1DhMMg2Uj8tDa8dFarr5TyEPKfyRoAaYBUz4Hhm2jMK9IaNNXnque_mifuHleWJ_MiPTunE5M_ZkRwB8sibRMGhl9iGvPis",
+            //     "openid": "oA4c1s3irUjxOdKONHqJajVDN04s",
+            //     "userinfo": {
+            //         "openid": "oA4c1s3irUjxOdKONHqJajVDN04s",
+            //         "nickname": "断了的弦的小童鞋",
+            //         "sex": 1,
+            //         "language": "zh_CN",
+            //         "city": "Chengdu",
+            //         "province": "Sichuan",
+            //         "country": "CN",
+            //         "headimgurl": "https://thirdwx.qlogo.cn/mmopen/vi_32/Wdib0xAqRqyTxZkzLicMEicAkkwdOexCeVJ4yTGFKu6Ij5tXNOeI0HEwZJSxbWhlhRiaro5CaQAJg0jIyZy5JV12JA/132",
+            //         "privilege": [],
+            //         "unionid": "oL3hmuFGiJbK95lVFaBHHHXI-XhA"
+            //     }
+            // }
+            gg.wechat.login((msg)=>{
+                if (msg.ret==true)
+                {
+                    console.log("WeChatModule success----"+JSON.stringify(msg))
+                }
+                else{
+                    console.log("WeChatModule Faild----"+JSON.stringify(msg))
+                }
+            })
+        })
         ua.darkButton(gotest, () => {
 
             this.goTestScene()

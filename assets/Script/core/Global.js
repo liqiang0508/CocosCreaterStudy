@@ -304,3 +304,28 @@ if (Global.GgameType == 3)//debug包
 
 // module.exports = Global;
 window.Global = Global
+
+
+window.gg = {};
+
+var WeChatModule = require('WeChatModule');
+
+
+gg.isAndroid = false
+gg.isIOS = false
+gg.isWindows = false
+
+if(cc.sys.isNative&&cc.sys.os == cc.sys.OS_ANDROID)//android
+{
+    gg.isAndroid = true
+}
+else if(cc.sys.isNative&&cc.sys.os == cc.sys.OS_IOS)//ios
+{
+    gg.isIOS = true
+}
+else
+{
+    gg.isWindows = true
+}
+
+gg.wechat = new WeChatModule();
