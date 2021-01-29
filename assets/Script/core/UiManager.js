@@ -44,7 +44,7 @@ UiManager.gPreloadScene = function (sceneName, progressCall, endCall) {
     UiManager.gLoadPrefabRes = function (filepath, call) {
         cc.resources.load(filepath, function (err, prefab) {
             if (err) {
-                cc.error("ua.loadPrefabRes error====" + filepath)
+                cc.error("UiManager.loadPrefabRes error====" + filepath)
                 call(undefined)
             }
             else {
@@ -55,7 +55,7 @@ UiManager.gPreloadScene = function (sceneName, progressCall, endCall) {
         })
     }
 //显示弹框
-UiManager.ShowAlert = function (str, btninfo, call) {
+UiManager.ShowAlert = function (str, btninfo = [], call) {
 
     this.gLoadPrefabRes("prefabs/AlertLayer2", function (_node) {
         if (_node) {
@@ -104,7 +104,7 @@ UiManager.gloadBundleScene = function (bundleName,finishCall) {
         var bunldeurl = SubGameManager.getLocalBundlePath(bundleName)
         Global.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, (err, bundle) => {
             if (err) {
-                console.log("Load bundle error")
+                console.log("Global gLoadBundle error")
                 if (finishCall)
                 {
                     finishCall(1)
@@ -114,7 +114,7 @@ UiManager.gloadBundleScene = function (bundleName,finishCall) {
 
             bundle.loadScene(bundleName, function (err, scene) {
                 if (err) {
-                    console.log("load bundle scene error")
+                    console.log("Global gLoadBundle scene error")
                     if (finishCall)
                     {
                         finishCall(2)

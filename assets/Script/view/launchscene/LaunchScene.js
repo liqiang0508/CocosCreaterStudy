@@ -143,6 +143,7 @@ cc.Class({
         // 10:远程配置json不合法
         // 11:远程md5-json不合法
         // 100 :更新成功
+        console.log("goCheckUpdate=="+url)
         VersionManager.checkUpdate(url,  (code, shopUrl)=> {
             SubGameManager.parseCfgFromData(VersionManager.getSubGameCfg())
             if (code == 0)//不用更新

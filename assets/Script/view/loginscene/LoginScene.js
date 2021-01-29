@@ -68,10 +68,12 @@ cc.Class({
             //         "unionid": "oL3hmuFGiJbK95lVFaBHHHXI-XhA"
             //     }
             // }
+           
             gg.wechat.login((msg)=>{
                 if (msg.ret==true)
                 {
                     console.log("WeChatModule login success----"+JSON.stringify(msg))
+                    UiManager.ShowAlert(JSON.stringify(msg))
                 }
                 else{
                     console.log("WeChatModule login Faild----"+JSON.stringify(msg))
