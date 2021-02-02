@@ -4,7 +4,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
-    buildToolsVersion PROP_BUILD_TOOLS_VERSION
 
     defaultConfig {
         applicationId "com.tao.honour"
@@ -37,6 +36,11 @@ android {
 //                }
 //            }
 //        }
+    }
+    //fix   Entry name 'classes.dex' collided报错
+    packagingOptions {
+        exclude 'classes.dex'
+        exclude '**.**'
     }
 
     sourceSets.main {
@@ -112,22 +116,25 @@ android.applicationVariants.all { variant ->
     // delete previous files first
     delete "${buildDir}/intermediates/merged_assets/${variant.dirName}"
 
-    variant.mergeAssets.doLast {
+    variant.mergeAssetsProvider.get().doLast {
         def sourceDir = "${buildDir}/../../../../.."
 
         copy {
             from "${sourceDir}/assets"
             into "${outputDir}/assets"
+            into outputDir.dir("assets")
         }
 
         copy {
             from "${sourceDir}/src"
             into "${outputDir}/src"
+            into outputDir.dir("src")
         }
 
         copy {
             from "${sourceDir}/jsb-adapter"
             into "${outputDir}/jsb-adapter"
+            into outputDir.dir("jsb-adapter")
         }
 
         copy {
