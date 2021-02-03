@@ -118,7 +118,9 @@ android.applicationVariants.all { variant ->
 
     variant.mergeAssetsProvider.get().doLast {
         def sourceDir = "${buildDir}/../../../../.."
-
+//        def outputDir = "${buildDir}/intermediates/merged_assets/${variant.dirName}/out"
+//        System.out.println("______sourceDir = " + sourceDir)
+//        System.out.println("______outputDir1 = " + outputDir)
         copy {
             from "${sourceDir}/assets"
             into "${outputDir}/assets"
