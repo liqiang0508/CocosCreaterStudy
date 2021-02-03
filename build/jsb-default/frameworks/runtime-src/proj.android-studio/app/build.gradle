@@ -3,7 +3,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.tao.honour"
@@ -62,7 +62,11 @@ android {
     signingConfigs {
 
        release {
-            if (project.hasProperty("RELEASE_STORE_FILE")) {
+           storeFile file('keystore')
+           storePassword '123456'
+           keyPassword '123456'
+           keyAlias 'fengtao'
+           if (project.hasProperty("RELEASE_STORE_FILE")) {
                 storeFile file(RELEASE_STORE_FILE)
                 storePassword RELEASE_STORE_PASSWORD
                 keyAlias RELEASE_KEY_ALIAS
@@ -80,15 +84,13 @@ android {
 
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            if (project.hasProperty("RELEASE_STORE_FILE")) {
-                signingConfig signingConfigs.release
-            }
 
 //            externalNativeBuild {
 //                ndkBuild {
@@ -96,20 +98,20 @@ android {
 //                }
 //            }
         }
+
         debug {
             signingConfig signingConfigs.debug
-        }
-//        debug {
-//            debuggable true
-//            jniDebuggable true
-//            renderscriptDebuggable true
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true
 //            externalNativeBuild {
 //                ndkBuild {
 //                    arguments 'NDK_DEBUG=1'
 //                }
 //            }
-//        }
+        }
     }
+
 }
 
 android.applicationVariants.all { variant ->
