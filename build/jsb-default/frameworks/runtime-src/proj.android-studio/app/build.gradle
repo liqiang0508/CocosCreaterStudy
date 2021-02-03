@@ -5,6 +5,24 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 30
 
+    signingConfigs {
+
+        release {
+            keyAlias 'fengtao'
+            keyPassword '123456'
+            storeFile file('keystore')
+            storePassword '123456'
+
+        }
+
+        debug {
+            keyAlias 'fengtao'
+            keyPassword '123456'
+            storeFile file('keystore')
+            storePassword '123456'
+        }
+    }
+
     defaultConfig {
         applicationId "com.tao.honour"
         minSdkVersion PROP_MIN_SDK_VERSION
@@ -14,6 +32,9 @@ android {
         ndk {
             abiFilters 'armeabi-v7a' //'arm64-v8a',
         }
+        signingConfig signingConfigs.release
+
+
 //        externalNativeBuild {
 //            ndkBuild {
 //                if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
@@ -59,28 +80,7 @@ android {
 //        }
 //    }
 
-    signingConfigs {
 
-       release {
-           storeFile file('keystore')
-           storePassword '123456'
-           keyPassword '123456'
-           keyAlias 'fengtao'
-           if (project.hasProperty("RELEASE_STORE_FILE")) {
-                storeFile file(RELEASE_STORE_FILE)
-                storePassword RELEASE_STORE_PASSWORD
-                keyAlias RELEASE_KEY_ALIAS
-                keyPassword RELEASE_KEY_PASSWORD
-            }
-        }
-
-        debug {
-            keyAlias 'fengtao'
-            keyPassword '123456'
-            storeFile file('keystore')
-            storePassword '123456'
-        }
-    }
 
     buildTypes {
         release {
