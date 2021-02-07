@@ -32,7 +32,7 @@ cc.Class({
      
 
         this.Slots = new Array()
-        for(let i =1;i<=3;i++)
+        for(let i =1;i<=1;i++)
         {
             var slot = cc.find("content/slot"+i,this.node)
             this.Slots.push(slot)
@@ -52,11 +52,15 @@ cc.Class({
                     let stopIndex = Math.floor(Math.random() * 8)
 
                     //请求服务器停止点显示什么图片
-                    slotcompoent.StopAtIndex(stopIndex, function () {
-                        console.log("stop-")
-                    })
+                    // slotcompoent.StopAtIndex(stopIndex, function () {
+                    //     console.log("stop-")
+                    // })
 
-
+                    Global.gSchduleOnce(this,()=>{
+                        slotcompoent.StopAtIndex(stopIndex, function () {
+                            console.log("stop-")
+                        })
+                    },3)
                    
                 }
             }

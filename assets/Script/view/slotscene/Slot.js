@@ -7,7 +7,7 @@ const Slot_PerNum = 8; //一个卡槽几个item
 const Max_Speed = 50; //最大速度
 const SLOT_SPEED_UP_TIME = 3;// --卡槽滚动加速时间
 const Slot_StopTime = 3;  //到达最大速度 在转几圈到到index
-const Slot_BackDistance = 10;//滚动到最后回滚的距离
+const Slot_BackDistance =15;//滚动到最后回滚的距离
 
 
 window.SlotState = {
@@ -86,7 +86,7 @@ cc.Class({
 
     randItemPic()//随机item上面的图片
     {
-        cc.log("randItemPic---")
+        // cc.log("randItemPic---")
         var self = this
         let name = iconTexture[this.stopIndex];
         let path = "slots/" + name
@@ -279,7 +279,7 @@ cc.Class({
     updateSlotsToDown(dt){//往下滚动
 
          var timedeal = dt//1/60;
-        // cc.log("updateSlots",this.delta.y,  this.SlotState);
+        // cc.log("updateSlots",this.SpeedY,  this.SlotState);
         if(this.SlotState == window.SlotState.eSpeedUp)//加速
         {
           
@@ -483,10 +483,10 @@ cc.Class({
                 var move;
                if(this.movedirection==0)
                {
-                 move = cc.moveBy(0.5,cc.Vec2(0,-Slot_BackDistance)).easing(cc.easeOut(1));
+                 move = cc.moveBy(0.1,cc.Vec2(0,-Slot_BackDistance)).easing(cc.easeOut(1));
                }
                else{
-                 move = cc.moveBy(0.5,cc.Vec2(0,Slot_BackDistance)).easing(cc.easeOut(1));
+                 move = cc.moveBy(0.1,cc.Vec2(0,Slot_BackDistance)).easing(cc.easeOut(1));
                }
              
                var call = cc.callFunc(function(){
