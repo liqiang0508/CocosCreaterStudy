@@ -41,7 +41,7 @@ cc.Class({
         },
 
         space:{
-            default:10,
+            default:0,
             type:cc.Float,
             tooltip:"间距",
         },

@@ -45,14 +45,14 @@ cc.Class({
             for (var i = 0;i<this.Slots.length;i++) {
                 let slot = this.Slots[i]
               
-                let slotcompoent = slot.getComponent("Slot")
-                if (slotcompoent) {
-                    cc.log(i,slot)
-                    slotcompoent.Spin()
+                let SlotPanel = slot.getComponent("SlotPanel")
+                if (SlotPanel) {
+                   
+                    SlotPanel.Spin()
                     let stopIndex = Math.floor(Math.random() * 3)
 
                     //请求服务器停止点显示什么图片
-                    slotcompoent.StopAtIndex(stopIndex, function () {
+                    SlotPanel.StopAtIndex(stopIndex, function () {
                         console.log("stop- call")
                     })
 
