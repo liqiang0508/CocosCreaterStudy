@@ -2,7 +2,7 @@
 // const Buffer = require('buffer').Buffer;
 
 // const SLOT_NUM = 3;//几个卡槽
-const Slot_PerNum = 5; //一个卡槽几个item
+const Slot_PerNum = 8; //一个卡槽几个item
 
 const Max_Speed = 100 //最大速度
 const SLOT_SPEED_UP_TIME = 2;// --卡槽滚动加速时间
@@ -240,7 +240,7 @@ cc.Class({
             
             if(this.stopIndex==this.curIndex)//停止的位置和当前的一样
             {
-                var S = this.node.height *Slot_StopTime+  this.space*(this.ItemArray.length-1)*Slot_StopTime +Slot_BackDistance+50
+                var S = this.node.height *Slot_StopTime+  this.space*(this.ItemArray.length-1)*Slot_StopTime +Slot_BackDistance+this.item.height*2.5
                 // var S1= this.ItemArray.length*this.space+this.ItemArray.length*this.item.height;//vt*vt-vo*vo = 2as来算加速度
                 this.Acceleration = this.SpeedY * this.SpeedY/ (2 * S)*60; 
 

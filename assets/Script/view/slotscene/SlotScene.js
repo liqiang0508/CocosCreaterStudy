@@ -49,7 +49,7 @@ cc.Class({
                 if (SlotPanel) {
                    
                     SlotPanel.Spin()
-                    let stopIndex = Math.floor(Math.random() * 3)
+                    let stopIndex = Math.floor(Math.random() * 7)
 
                     //请求服务器停止点显示什么图片
                     SlotPanel.StopAtIndex(stopIndex, function () {
