@@ -49,18 +49,14 @@ cc.Class({
                 if (slotcompoent) {
                     cc.log(i,slot)
                     slotcompoent.Spin()
-                    let stopIndex = Math.floor(Math.random() * 8)
+                    let stopIndex = Math.floor(Math.random() * 3)
 
                     //请求服务器停止点显示什么图片
-                    // slotcompoent.StopAtIndex(stopIndex, function () {
-                    //     console.log("stop-")
-                    // })
+                    slotcompoent.StopAtIndex(stopIndex, function () {
+                        console.log("stop- call")
+                    })
 
-                    Global.gSchduleOnce(this,()=>{
-                        slotcompoent.StopAtIndex(stopIndex, function () {
-                            console.log("stop-")
-                        })
-                    },3)
+                   
                    
                 }
             }
