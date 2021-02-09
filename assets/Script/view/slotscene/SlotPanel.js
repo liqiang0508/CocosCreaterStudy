@@ -209,7 +209,7 @@ cc.Class({
             this.offsetY = this.offsetY -this.item.height
             this.curIndex =  (this.curIndex + 1)%Slot_PerNum;
         }
-        // cc.log("Index==", this.curIndex)
+        cc.log("Index==", this.curIndex)
     },
 
 
@@ -244,8 +244,8 @@ cc.Class({
             {
                 // this.SpeedY = 0
                 // this.resetPosY()
-                
-                var S = this.itemNum * this.item.height+60+Slot_BackDistance
+                var offset = 0-this.ItemArray[this.curIndex].y
+                var S = this.itemNum * this.item.height+60+Slot_BackDistance-offset
                 cc.log("this offset----",S,this.offsetY)
                 // var S = this.node.height *Slot_StopTime +  this.space*(this.ItemArray.length-1)*Slot_StopTime +Slot_BackDistance+this.item.height*Slot_StopTime*2//-this.ItemArray[this.stopIndex].y*2
                 this.Acceleration = this.SpeedY * this.SpeedY/ (2 * S)*60; 
@@ -309,7 +309,7 @@ cc.Class({
 
         var self = this;
         var child = this.node.children;
-        var dis = 0-this.ItemArray[this.curIndex].y
+        var dis = 0-this.ItemArray[this.stopIndex].y
         for(var start = 0; start < child.length;start++)
         {
             var haha = child[start];
