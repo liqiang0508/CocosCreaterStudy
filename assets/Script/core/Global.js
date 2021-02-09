@@ -96,6 +96,11 @@ var Global = {
         path = path + "/"
         return path
     },
+    //保留小数几位
+    GnumberToFix(n,num){
+        var t = Math.pow(10,num)
+        return Math.floor(n*t)/t
+    },
     //获取url最后的文件名
     GgetFileNameByUrl: function (url) {
         var arr = url.split("/")

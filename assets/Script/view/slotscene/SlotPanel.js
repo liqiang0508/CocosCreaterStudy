@@ -2,13 +2,13 @@
 // const Buffer = require('buffer').Buffer;
 
 // const SLOT_NUM = 3;//几个卡槽
-const Slot_PerNum = 8; //一个卡槽几个item
+const Slot_PerNum = 5; //一个卡槽几个item
 
 const Max_Speed = 100 //最大速度
 const SLOT_SPEED_UP_TIME = 2;// --卡槽滚动加速时间
 const SLOT_SPEED_DOWN_TIME = 3;// --卡槽滚动减速时间
-const Slot_StopTime = 2;  //减速 在转几圈到到index
-const Slot_BackDistance = 10;//滚动到最后回滚的距离
+const Slot_StopTime = 1;  //减速 在转几圈到到index
+const Slot_BackDistance = 15;//滚动到最后回滚的距离
 
 
 window.SlotState = {
@@ -69,7 +69,7 @@ cc.Class({
         }
          this.node.height = this.showItemNum*this.width+( this.showItemNum+1)*this.space
          this.SlotState = window.SlotState.eStoped;
-         this.addItem();
+         this.addSlotCell();
 
          this.curIndex = 1;//当前index
          this.StartSpin = false;//是否在spin
@@ -80,6 +80,12 @@ cc.Class({
          this.schedule(this.update1, 1/60);
         
          this.offsetY = 0
+         this.itemNum = this.ItemArray.length  //有几个cell
+
+        //  this.node.on(cc.Node.EventType.TOUCH_MOVE,(event)=>{
+
+        //     this.updateItem(event.getDelta().y)
+        //  })
 
     },
 
@@ -90,7 +96,7 @@ cc.Class({
 
     },
 
-    addItem(){
+    addSlotCell(){
 
         this.ItemArray = new Array();
 
@@ -176,38 +182,34 @@ cc.Class({
                 if(target.y<=posy)// 超过最下面 y坐标上移
                 {
                         target.y = target.y+(child.length*this.item.height+child.length*this.space);
-                        this.curIndex+=1;
-                        if(this.curIndex>(Slot_PerNum-1))
-                        {
-                            this.curIndex-=(Slot_PerNum);
-                        }
-                        // cc.log("updateItem==curIndex1",this.curIndex);
+                        // this.curIndex+=1;
+                       
                            
                 }
-                else{ //small
+                else{ //向下滚动
 
                     target.y = target.y+deltaY;//move
-                    this.offsetY = this.offsetY + deltaY
+                    
                      if(target.y<=posy)//top)
                      {
                         
                         target.y = target.y+(child.length*this.item.height+child.length*this.space);
-                        this.curIndex+=1;
-                        if(this.curIndex>(Slot_PerNum-1))
-                        {
-                            this.curIndex-=(Slot_PerNum);
-                        }
-                        // cc.log("updateItem==curIndex2",this.curIndex);
+                        // this.curIndex+=1;
+                        
+                       
                      }
 
                 }
             }
         }
-
-    
        
-        
-        // cc.log("updateItem==curIndex",this.curIndex);
+        this.offsetY = this.offsetY+Math.abs(deltaY)
+        if (this.offsetY>this.item.height)
+        {
+            this.offsetY = this.offsetY -this.item.height
+            this.curIndex =  (this.curIndex + 1)%Slot_PerNum;
+        }
+        // cc.log("Index==", this.curIndex)
     },
 
 
@@ -240,15 +242,17 @@ cc.Class({
             
             if(this.stopIndex==this.curIndex)//停止的位置和当前的一样
             {
-                var S = this.node.height *Slot_StopTime+  this.space*(this.ItemArray.length-1)*Slot_StopTime +Slot_BackDistance+this.item.height*2.5
-                // var S1= this.ItemArray.length*this.space+this.ItemArray.length*this.item.height;//vt*vt-vo*vo = 2as来算加速度
+                // this.SpeedY = 0
+                // this.resetPosY()
+                
+                var S = this.itemNum * this.item.height+60+Slot_BackDistance
+                cc.log("this offset----",S,this.offsetY)
+                // var S = this.node.height *Slot_StopTime +  this.space*(this.ItemArray.length-1)*Slot_StopTime +Slot_BackDistance+this.item.height*Slot_StopTime*2//-this.ItemArray[this.stopIndex].y*2
                 this.Acceleration = this.SpeedY * this.SpeedY/ (2 * S)*60; 
-
-                this.resetPosY()
-
+                
                 cc.log(" 减速this.Acceleration---", this.Acceleration)
                 this.SlotState = window.SlotState.eSpeedDown;
-                // return;
+                return;
                 
             }
            
@@ -305,6 +309,7 @@ cc.Class({
 
         var self = this;
         var child = this.node.children;
+        var dis = 0-this.ItemArray[this.curIndex].y
         for(var start = 0; start < child.length;start++)
         {
             var haha = child[start];
@@ -314,10 +319,10 @@ cc.Class({
                 var move;
                if(this.movedirection==0)
                {
-                 move = cc.moveBy(0.1,cc.Vec2(0,-Slot_BackDistance)).easing(cc.easeOut(1));
+                 move = cc.moveBy(0.1,cc.Vec2(0,-dis)).easing(cc.easeOut(1));
                }
                else{
-                 move = cc.moveBy(0.1,cc.Vec2(0,Slot_BackDistance)).easing(cc.easeOut(1));
+                 move = cc.moveBy(0.1,cc.Vec2(0,dis)).easing(cc.easeOut(1));
                }
              
                var call = cc.callFunc(function(){
