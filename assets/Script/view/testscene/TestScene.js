@@ -305,6 +305,11 @@ cc.Class({
         ua.darkButton(btn_bubble, () => {
             UiManager.gLoadScene("bubbleScene")
         })
+
+        var btn_mipai = cc.find("uipanel/btn_mipai", this.node)
+        ua.darkButton(btn_mipai, () => {
+            UiManager.gLoadScene("mipaiScene")
+        })
         //bundle加载测试
         // btn_goslot
 
