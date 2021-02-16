@@ -20,7 +20,10 @@ export default class Testts extends cc.Component {
     @property(cc.Label)
     label: cc.Label = null;
 
-    @property
+    @property({
+        type:cc.String,
+    
+    })
     text: string = 'hello';
 
     // LIFE-CYCLE CALLBACKS:
@@ -37,7 +40,7 @@ export default class Testts extends cc.Component {
         // cc.log(typeof(b))
         // cc.log(this.addSum(1,2,3))
         // cc.log(cc.ENGINE_VERSION)
-        this.SayHello("Lee",(data:string)=>{
+        this.SayHello(this.text,(data:string)=>{
             console.log("我是回调=="+data)
         })
 
