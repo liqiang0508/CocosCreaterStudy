@@ -27,7 +27,7 @@ cc.Class({
 
         this._super()
 
-        this.schedule(this.update1, 1/60);
+        // this.schedule(this.update1, 1/60);
         this.speed = 5  //vt*vt-v0*v0=2as
         // this.MaxSpeed = 100
         this.S = 375.0
@@ -48,7 +48,7 @@ cc.Class({
         }
         this.speed = this.speed + this.ACC*dt
   
-        cc.log("this.speed==",this.speed)
+        // cc.log("this.speed==",this.speed)
         if (this.speed<=0 )
         {   
             

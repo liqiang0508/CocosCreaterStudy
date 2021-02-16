@@ -37,6 +37,9 @@ export default class Testts extends cc.Component {
         // cc.log(typeof(b))
         // cc.log(this.addSum(1,2,3))
         // cc.log(cc.ENGINE_VERSION)
+        this.SayHello("Lee",(data:string)=>{
+            console.log("我是回调=="+data)
+        })
 
     }
 
@@ -51,5 +54,16 @@ export default class Testts extends cc.Component {
     Hello():cc.Vec2{
         return cc.v2(0,0)
     }
+
+    SayHello(str:string,callback:(data:string)=>void){
+        console.log("Test ts SayHello=="+str)
+        if (callback!=null)
+        {
+            callback(str)
+        }
+    }
+
+
+
     // update (dt) {}
 }
