@@ -317,9 +317,16 @@ cc.Class({
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
         ua.darkButton(btn_loadbundle, () => {
 
+            if(cc.sys.isNative == false)//web 平台
+            {
+                console.log("bundle测试目前只测试了原生")
+                return 
+            }
+            
             var subGameName = "bundleScene"
             SubGameManager.getSubGameState(subGameName, (state) => {
 
+               
                 // "not_in_app"     不在本地，没有下载
                 // "need_update"    在本地，需要更新
                 // "no_need_update" 在本地，不需要更新
