@@ -119,15 +119,25 @@ cc.Class({
 
         ua.darkButton(wechatShare, () => {
 
-            // gg.wechat.shareTextWx("666",0,(result,msg)=>{
-            //     if (result==true)
-            //     {
-            //         console.log("WeChatModule share success----"+msg)
-            //     }
-            //     else{
-            //         console.log("WeChatModule share Faild----"+msg)
-            //     }
-            // })
+            if(cc.sys.isNative == false)
+            {
+                console.log("Wx 分享只支持原生平台")
+                return 
+            }
+            gg.wechat.shareTextWx("666",0,(result,msg)=>{
+                if (result==true)
+                {
+                    console.log("WeChatModule share success----"+msg)
+                }
+                else{
+                    console.log("WeChatModule share Faild----"+msg)
+                }
+            })
+
+            // cc.log("cc.winSize.width",cc.winSize.width/2)
+            // var ac = cc.moveBy(0.1,cc.v2(cc.winSize.width/2,0))
+            // wechatShare.runAction(ac)
+           
 
             cc.log("cc.winSize.width",cc.winSize.width/2)
             var ac = cc.moveBy(0.1,cc.v2(cc.winSize.width/2,0))
@@ -154,8 +164,14 @@ cc.Class({
         })
 
 
-        
-
+        // shader test
+        this.img4 = cc.find("uipanel/4",this.node)
+        this.img4Material = this.img4.getComponent(cc.Sprite).getMaterials()[0]
+        this.schedule(()=>{
+            var randNum = Math.random()
+            cc.log("randNum==",randNum)
+            this.img4Material.effect.setProperty('colorR', Math.abs(Math.sin(randNum)));
+        },1)
     },
 
     goTestScene() {
