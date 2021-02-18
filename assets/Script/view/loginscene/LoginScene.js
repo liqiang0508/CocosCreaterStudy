@@ -104,7 +104,12 @@ cc.Class({
             //         "unionid": "oL3hmuFGiJbK95lVFaBHHHXI-XhA"
             //     }
             // }
-           
+            if(cc.sys.isNative == false)
+            {
+                console.log("Wx 登录只支持原生平台")
+                UiManager.ShowFlotText("Wx 登录只支持原生平台")
+                return 
+            }
             gg.wechat.login((msg)=>{
                 if (msg.ret==true)
                 {
@@ -122,6 +127,7 @@ cc.Class({
             if(cc.sys.isNative == false)
             {
                 console.log("Wx 分享只支持原生平台")
+                UiManager.ShowFlotText("Wx 分享只支持原生平台")
                 return 
             }
             gg.wechat.shareTextWx("666",0,(result,msg)=>{
@@ -149,6 +155,7 @@ cc.Class({
             
            
             this.goTestScene()
+            
         })
 
         ua.darkButton(this.node, (event) => {

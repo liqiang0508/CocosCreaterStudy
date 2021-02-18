@@ -17,6 +17,34 @@ UiManager.gShowLoading = function (todoCall, endcall) {
     })
 
 }
+
+//显示浮动文字
+UiManager.ShowFlotText = function (text, parent = null, pos = cc.v2(0, 0)) {
+
+    this.gLoadPrefabRes("prefabs/FloatText", (_node) => {
+        if (_node) {
+
+            _node.getComponent(cc.Label).string = text
+
+            if (parent) {
+                parent.addChild(_node)
+            }
+            else {
+                this.gSceneAddNode(_node)
+            }
+
+            _node.setPosition(pos)
+
+            cc.tween(_node)
+                .parallel(
+                    cc.tween().by(1, { position: cc.v2(0, 150) }),
+                    cc.tween().to(1, { opacity: 0 })
+                ).start()
+        }
+    })
+
+}
+
 //当前场景添加节点
 UiManager.gSceneAddNode = function (node) {
 
@@ -97,41 +125,38 @@ UiManager.ShowChooseUpdate = function (data, call) {
     })
 
 },
-//根据bundle的名称 进入bundle场景
-UiManager.gloadBundleScene = function (bundleName,finishCall) {
-    UiManager.gShowLoading((layer) => {
-        layer.updataProgress(30)
-        var bunldeurl = SubGameManager.getLocalBundlePath(bundleName)
-        Global.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, (err, bundle) => {
-            if (err) {
-                console.log("Global gLoadBundle error")
-                if (finishCall)
-                {
-                    finishCall(1)
+    //根据bundle的名称 进入bundle场景
+    UiManager.gloadBundleScene = function (bundleName, finishCall) {
+        UiManager.gShowLoading((layer) => {
+            layer.updataProgress(30)
+            var bunldeurl = SubGameManager.getLocalBundlePath(bundleName)
+            Global.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, (err, bundle) => {
+                if (err) {
+                    console.log("Global gLoadBundle error")
+                    if (finishCall) {
+                        finishCall(1)
+                    }
+                    return console.error(err);
                 }
-                return console.error(err);
+
+                bundle.loadScene(bundleName, function (err, scene) {
+                    if (err) {
+                        console.log("Global gLoadBundle scene error")
+                        if (finishCall) {
+                            finishCall(2)
+                        }
+                        return
+                    }
+                    layer.updataProgress(100)
+                });
+            })
+        }, (layer) => {
+            if (finishCall) {
+                finishCall(0)
             }
 
-            bundle.loadScene(bundleName, function (err, scene) {
-                if (err) {
-                    console.log("Global gLoadBundle scene error")
-                    if (finishCall)
-                    {
-                        finishCall(2)
-                    }
-                    return
-                }
-                layer.updataProgress(100)
-            });
+            UiManager.gLoadScene(bundleName)
         })
-    }, (layer) => {
-        if (finishCall)
-        {
-            finishCall(0)
-        }
-       
-        UiManager.gLoadScene(bundleName)
-    })
 
-}
+    }
 window.UiManager = UiManager
