@@ -17,7 +17,7 @@ CCEffect %{
           }
         }
         blur: {
-          value: 0.35,
+          value: 0.01,
           editor: {
             tooltip: "光圈模糊程度"
           }
