@@ -8,11 +8,11 @@
   ],
 
 
-  "scriptVersion":131,
+  "scriptVersion":134,
   "baseUrl": "http://lee.free.vipnps.vip/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
 
-  "debugScriptVersion": 131,
+  "debugScriptVersion": 134,
   "debugBaseUrl": "http://lee.free.vipnps.vip/hotupversion/Script_%s/",
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [

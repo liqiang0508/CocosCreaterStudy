@@ -1857,7 +1857,7 @@ gExitGame: function() {
 cc.sys.isNative && cc.game.end();
 },
 Ghotupdateurl: "xxx",
-GgameType: 3
+GgameType: 1
 };
 if (1 == _.GgameType) {
 _.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configrelease";
