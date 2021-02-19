@@ -1,5 +1,3 @@
-// Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
-
 CCEffect %{
   techniques:
   - passes:
@@ -12,12 +10,28 @@ CCEffect %{
         cullMode: none
       properties:
         texture: { value: white }
-        alphaThreshold: { value: 0.5 }
-        edge: {
-          value: 0.15,
-          inspector: {
-            tooltip: "圆角范围",
-            range: [0.0, 0.5]
+        wh_ratio: {
+          value: 1,
+          editor: {
+            tooltip: "宽高比"
+          }
+        }
+        blur: {
+          value: 0.01,
+          editor: {
+            tooltip: "光圈模糊程度"
+          }
+        }
+        radius: {
+          value: 0.5,
+          editor: {
+            tooltip: "光圈半径"
+          }
+        }
+        center: {
+          value: [0.5, 0.5],
+          editor: {
+            tooltip: "光圈起点"
           }
         }
 }%
@@ -57,99 +71,38 @@ CCProgram vs %{
   }
 }%
 
-
 CCProgram fs %{
+
   precision highp float;
 
   #include <alpha-test>
 
   in vec4 v_color;
 
-  uniform Props {
-    float edge;
-  };
-
   #if USE_TEXTURE
   in vec2 v_uv0;
   uniform sampler2D texture;
   #endif
 
+  uniform ARGS{
+    float radius;
+    float blur;
+    vec2 center;
+    float wh_ratio;
+  };
+
   void main () {
     vec4 o = vec4(1, 1, 1, 1);
-
-    #if USE_TEXTURE
     o *= texture(texture, v_uv0);
-      #if CC_USE_ALPHA_ATLAS_TEXTURE
-      o.a *= texture2D(texture, v_uv0 + vec2(0, 0.5)).r;
-      #endif
-    #endif
-
     o *= v_color;
 
-    ALPHA_TEST(o);
+    float circle = radius * radius;
+    float rx = center.x * wh_ratio;
+    float ry = center.y;
+    float dis = (v_uv0.x * wh_ratio - rx) * (v_uv0.x * wh_ratio - rx) + (v_uv0.y  - ry) * (v_uv0.y - ry);
 
-    // vec2 uv = v_uv0.xy - vec2(0.5, 0.5);
-    // float rx = abs(uv.x) - (0.5 - edge);
-    // float ry = abs(uv.y) - (0.5 - edge);
-    // float mx = step(0.5 - edge, abs(uv.x));
-    // float my = step(0.5 - edge, abs(uv.y));
-    // float radius = length(vec2(rx, ry));
-    // float a =1.0 - mx * my * step(edge, radius) * smoothstep(0., edge * 0.02, radius - edge);
+    o.a = smoothstep(circle, circle - blur, dis) * o.a;
 
-  
-    // gl_FragColor = vec4(o.rgb, o.a * a);
-
-     float edge = 0.5;
-            float dis = 0.0;
-            vec2 texCoord = v_uv0;
-            if ( texCoord.x < edge )
-            {
-                if ( texCoord.y < edge )
-                {
-                    dis = distance( texCoord, vec2(edge, edge) );
-                }
-                if ( texCoord.y > (1.0 - edge) )
-                {
-                    dis = distance( texCoord, vec2(edge, (1.0 - edge)) );
-                }
-            }
-            else if ( texCoord.x > (1.0 - edge) )
-            {
-                if ( texCoord.y < edge )
-                {
-                    dis = distance( texCoord, vec2((1.0 - edge), edge ) );
-                }
-                if ( texCoord.y > (1.0 - edge) )
-                {
-                    dis = distance( texCoord, vec2((1.0 - edge), (1.0 - edge) ) );
-                }
-            }
-      
-            if(dis > 0.001)
-            {
-                // 外圈沟
-                float gap = edge * 0.02;
-                if(dis <= edge - gap)
-                {
-                    gl_FragColor = texture2D( texture,texCoord);
-                }
-                else if(dis <= edge)
-                {
-                    // 平滑过渡
-                    float t = smoothstep(0.0,gap,edge-dis);
-                    vec4 color = texture2D( texture,texCoord);
-                    gl_FragColor = vec4(color.rgb,t);
-                }else{
-                    gl_FragColor = vec4(0.,0.,0.,0.);
-                }
-            }
-            else
-            {
-                gl_FragColor = texture2D( texture,texCoord);
-            }
-
-      
+    gl_FragColor = o;
   }
 }%
-
-       

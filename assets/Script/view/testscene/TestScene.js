@@ -149,6 +149,7 @@ cc.Class({
 
 
         //load Tex
+        cc.dynamicAtlasManager.enabled = false;
         var loadTex = cc.find("uipanel/loadTex", this.node)
         var url = "http://54.179.180.39:8080/CSLServer/img/welcome.png"//"http://tools.itharbors.com/christmas/res/tree.png"
         url = "http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96"
@@ -159,15 +160,14 @@ cc.Class({
                 // SpriteCom.sizeMode = cc.Sprite.SizeMode.RAW
                 // console.log(loadTex.width)
                 //加载材质
-                // cc.resources.load("materials/circle_head",cc.Material,function(err,res){
+                // cc.resources.load("materials/Circle_Head",cc.Material,(err,res)=>{
 
                 //     if(!err)
                 //     {
                 //         cc.log("res==",res)
-                //         var com = sp2.getComponent(cc.Sprite)
                 //         let variant1 = cc.MaterialVariant.create(res);
-                //         // variant1.setProperty("edge",0.01)
-                //         com.setMaterial(0, variant1);
+                //         variant1.setProperty("edge",0.5)
+                //         SpriteCom.setMaterial(0, variant1);
 
                 //     }
                 //     else{

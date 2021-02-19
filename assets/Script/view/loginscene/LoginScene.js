@@ -145,9 +145,9 @@ cc.Class({
             // wechatShare.runAction(ac)
            
 
-            cc.log("cc.winSize.width",cc.winSize.width/2)
-            var ac = cc.moveBy(0.1,cc.v2(cc.winSize.width/2,0))
-            wechatShare.runAction(ac)
+            // cc.log("cc.winSize.width",cc.winSize.width/2)
+            // var ac = cc.moveBy(0.1,cc.v2(cc.winSize.width/2,0))
+            // wechatShare.runAction(ac)
         })
 
 

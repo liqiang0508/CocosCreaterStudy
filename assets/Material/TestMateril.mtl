@@ -14,7 +14,10 @@
         "USE_ALPHA_TEST": false
       },
       "props": {
-        "colorR": 1
+        "colorR": 1,
+        "radius": 0.4,
+        "wh_ratio": 0.7222222,
+        "blur": 0.1
       }
     }
   }
