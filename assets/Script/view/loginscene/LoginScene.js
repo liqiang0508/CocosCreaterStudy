@@ -176,7 +176,7 @@ cc.Class({
         this.img4Material = this.img4.getComponent(cc.Sprite).getMaterials()[0]
         this.schedule(()=>{
             var randNum = Math.random()
-            cc.log("randNum==",randNum)
+            //cc.log("randNum==",randNum)
             this.img4Material.effect.setProperty('colorR', Math.abs(Math.sin(randNum)));
         },1)
     },

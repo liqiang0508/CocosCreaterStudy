@@ -121,7 +121,7 @@ CCProgram fs %{
 
     
 
-    // gl_FragColor = vec4(abs(sin(colorR)),0.0,0.0,1.0);
+    gl_FragColor = vec4(abs(sin(cc_time.x)),o.g,o.b,o.a);
 
     // gl_FragColor = vec4(abs(sin(cc_time.x)),0.0,0.0,1.0);
     // gl_FragColor = vec4(colorR,0.0,0.0,1.0);

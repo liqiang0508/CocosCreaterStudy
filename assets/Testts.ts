@@ -44,6 +44,9 @@ export default class Testts extends cc.Component {
             console.log("我是回调=="+data)
         })
 
+        myModule.say("497232807")
+     
+
     }
 
     addSum(...arg):number{
