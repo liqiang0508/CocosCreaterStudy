@@ -65,3 +65,6 @@ build/jsb-default/frameworks/runtime-src/proj.android-studio/app/.externalNative
 build/jsb-default/frameworks/runtime-src/proj.android-studio/game/.externalNativeBuild/
 build/jsb-default/frameworks/runtime-src/proj.android-studio/app/release/hello_world-release.apk
 HotupDateTools/ExePath.txt
+json/
+ExportTest/
+ccreator/
