@@ -140,7 +140,6 @@ function parse_fire(filenames, assetpath, path_to_json_files, uuidmaps) {
     let uuid = {};
     filenames.forEach(function (filename) {
         state.reset();
-        Utils.log('parse_fire==' + filename)
         let parser = new FireParser();
         parser.run(filename, assetpath, path_to_json_files)
         for (let key in state._uuid) {
