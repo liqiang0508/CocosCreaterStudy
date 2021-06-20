@@ -5,7 +5,7 @@
 
 const Path = require('path');
 
-class Constants{};
+class Constants { };
 
 Constants.PACKAGE_NAME = 'creator-luacpp-support';
 // root of the this plugin 
@@ -14,7 +14,7 @@ Constants.PACKAGE_PATH = Editor.url('packages://' + Constants.PACKAGE_NAME + '/'
 if (process && process.type === 'renderer')
     Constants.PROJECT_PATH = Editor.remote.projectInfo.path;
 else
-    Constants.PROJECT_PATH = Editor.projectInfo.path;
+    Constants.PROJECT_PATH = Editor.Project.path;
 // path of `assets` folder
 Constants.ASSETS_PATH = Path.join(Constants.PROJECT_PATH, 'assets');
 // path of `temp` folder

@@ -21,7 +21,7 @@ class BuildWorker extends WorkerBase {
         Utils.recordBuild();
 
         Editor.Ipc.sendToAll('creator-luacpp-support:state-changed', 'start', 0);
-        Utils.log('[creator-luacpp-support] build start');
+        Utils.log('[creator-luacpp-support] build===================================== start');
 
         this._callback = callback;
         this._state = state;
@@ -38,7 +38,7 @@ class BuildWorker extends WorkerBase {
                 this._copyResources(copyReourceInfos);
                 Editor.Ipc.sendToAll('creator-luacpp-support:state-changed', 'finish', 100);
                 this._callback();
-                Utils.log('[creator-luacpp-support] build end');
+                Utils.log('[creator-luacpp-support] build===================================== end');
             }.bind(this));
         }.bind(this));
     }
