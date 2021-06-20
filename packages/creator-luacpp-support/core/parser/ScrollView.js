@@ -1,7 +1,7 @@
 const Node = require('./Node');
 const Utils = require('./Utils');
 const state = require('./Global').state;
-
+const Utils1 = require('../Utils');
 class ScrollView extends Node {
     constructor(data) {
         super(data);
@@ -32,8 +32,8 @@ class ScrollView extends Node {
     parse_properties() {
         super.parse_node_properties();
 
-        this._properties = {node: this._properties};
-        
+        this._properties = { node: this._properties };
+
         // data from 'node' component
         this.add_property_rgb('backgroundImageColor', '_color', this._node_data);
 
@@ -49,7 +49,7 @@ class ScrollView extends Node {
             else
                 this._properties.backgroundImageScale9Enabled = false;
         }
-        
+
         // data from scroll view component
         let component_sv = Node.get_node_component_of_type(this._node_data, 'cc.ScrollView');
         if (component_sv.horizontal && component_sv.vertical)
@@ -77,7 +77,7 @@ class ScrollView extends Node {
 
         this._content_pos = content_node._position;
 
-        content_node._children.forEach(function(child_idx) {
+        content_node._children.forEach(function (child_idx) {
             this.parse_child(child_idx.__id__);
         }.bind(this));
     }
@@ -87,6 +87,7 @@ class ScrollView extends Node {
         // position and anchorPoit.
         let properties = child._properties.node ? child._properties.node : child._properties;
         let pos = properties.position;
+        Utils1.log(JSON.stringify(properties))
         let x = pos.x;
         let y = pos.y;
         properties.position = {

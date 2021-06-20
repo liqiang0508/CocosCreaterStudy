@@ -4,6 +4,7 @@ const path = require('path');
 const Utils = require('../Utils');
 const Constants = require('../Constants');
 const Scene = require('./Scene');
+const Node = require('./Node');
 const state = require('./Global').state;
 const get_sprite_frame_name_by_uuid = require('./Utils').get_sprite_frame_name_by_uuid;
 
@@ -16,7 +17,7 @@ class FireParser {
     constructor() {
         this._state = state;
         this._json_file = null;
-        this._json_output = {version: Constants.VERDION, root: {}};
+        this._json_output = { version: Constants.VERDION, root: {} };
         this._creatorassets = null;
     }
 
@@ -46,15 +47,15 @@ class FireParser {
             let frame = {
                 name: get_sprite_frame_name_by_uuid(sprite_frame_uuid),
                 texturePath: state._assetpath + sprite_frame.texture_path,
-                rect: {x:sprite_frame.trimX, y:sprite_frame.trimY, w:sprite_frame.width, h:sprite_frame.height},
-                offset: {x:sprite_frame.offsetX, y:sprite_frame.offsetY},
+                rect: { x: sprite_frame.trimX, y: sprite_frame.trimY, w: sprite_frame.width, h: sprite_frame.height },
+                offset: { x: sprite_frame.offsetX, y: sprite_frame.offsetY },
                 rotated: sprite_frame.rotated,
-                originalSize: {w:sprite_frame.rawWidth, h:sprite_frame.rawHeight}
+                originalSize: { w: sprite_frame.rawWidth, h: sprite_frame.rawHeight }
             };
             // does it have a capInsets?
-            if (sprite_frame.borderTop != 0 || sprite_frame.borderBottom != 0 || 
+            if (sprite_frame.borderTop != 0 || sprite_frame.borderBottom != 0 ||
                 sprite_frame.borderLeft != 0 || sprite_frame.borderRgith != 0) {
-                
+
                 frame.centerRect = {
                     x: sprite_frame.borderLeft,
                     y: sprite_frame.borderTop,
@@ -73,7 +74,7 @@ class FireParser {
         let collisionMatrix = Editor.remote.Profile.load('profile://project/project.json').data['collision-matrix'];
         this._json_output.collisionMatrix = [];
         for (let i = 0, len = collisionMatrix.length; i < len; ++i) {
-            let collisionLine = {value: collisionMatrix[i]};
+            let collisionLine = { value: collisionMatrix[i] };
             this._json_output.collisionMatrix.push(collisionLine);
         }
     }
@@ -84,6 +85,7 @@ class FireParser {
     }
 
     run(filename, assetpath, path_to_json_files) {
+        state._filename = path.basename(filename, '.prefab');
         state._filename = path.basename(filename, '.fire');
         let sub_folder = path.dirname(filename).substr(Constants.ASSETS_PATH.length + 1);
         let json_name = path.join(path_to_json_files, sub_folder, state._filename) + '.json';
@@ -96,6 +98,7 @@ class FireParser {
             if (obj.__type__ === 'cc.SceneAsset') {
                 let scene = obj.scene;
                 let scene_idx = scene.__id__;
+                // Utils.log("scene==" + JSON.stringify(state._json_data[scene_idx]))
                 let scene_obj = new Scene(state._json_data[scene_idx]);
 
                 scene_obj.parse_properties();
@@ -103,7 +106,24 @@ class FireParser {
                 this.to_json_setup();
                 let jsonNode = scene_obj.to_json(0, 0);
                 this._json_output.root = jsonNode;
-                let dump = JSON.stringify(this._json_output, null, '\t').replace(/\\\\/g,'/');
+                let dump = JSON.stringify(this._json_output, null, '\t').replace(/\\\\/g, '/');
+                fs.writeSync(this._json_file, dump);
+                fs.close(this._json_file);
+            }
+            else if (obj.__type__ === 'cc.Prefab') {
+
+                let scene = obj.data;
+
+                let scene_idx = scene.__id__;
+                // Utils.log("Prefab==" + JSON.stringify(state._json_data[scene_idx]))
+                let scene_obj = new Node(state._json_data[scene_idx]);
+
+                scene_obj.parse_properties();
+
+                this.to_json_setup();
+                let jsonNode = scene_obj.to_json(0, 0);
+                this._json_output.root = jsonNode;
+                let dump = JSON.stringify(this._json_output, null, '\t').replace(/\\\\/g, '/');
                 fs.writeSync(this._json_file, dump);
                 fs.close(this._json_file);
             }
@@ -118,11 +138,12 @@ function parse_fire(filenames, assetpath, path_to_json_files, uuidmaps) {
     uuidinfos = uuidmaps;
 
     let uuid = {};
-    filenames.forEach(function(filename) {
+    filenames.forEach(function (filename) {
         state.reset();
+        Utils.log('parse_fire==' + filename)
         let parser = new FireParser();
         parser.run(filename, assetpath, path_to_json_files)
-        for(let key in state._uuid) {
+        for (let key in state._uuid) {
             if (state._uuid.hasOwnProperty(key))
                 uuid[key] = state._uuid[key];
         }

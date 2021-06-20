@@ -65,7 +65,7 @@ class Utils {
 
     // should be invoked in renderer process
     static getAssetsInfo(cb) {
-        Editor.remote.assetdb.queryMetas('db://**/*', '', function(err, metaInfos) {
+        Editor.remote.assetdb.queryMetas('db://**/*', '', function (err, metaInfos) {
             let uuidmaps = {};
 
             for (let i = 0, len = metaInfos.length; i < len; ++i) {
@@ -98,7 +98,7 @@ class Utils {
     }
 
     static recordBuild() {
-        Utils.initAnalytics(function(analytics){
+        Utils.initAnalytics(function (analytics) {
             analytics.CAEvent.onEvent({ eventName: 'build' });
         });
     }
@@ -109,35 +109,35 @@ class Utils {
             return;
         }
 
-        var src = "https://analytics.cocos.com/assets/js/cocosAnalytics.min.js";
-        var script = document.createElement('script');
-        script.onload = function () {
-            document.head.removeChild(script);
+        // var src = "https://analytics.cocos.com/assets/js/cocosAnalytics.min.js";
+        // var script = document.createElement('script');
+        // script.onload = function () {
+        //     document.head.removeChild(script);
 
-            analytics = cocosAnalytics;
-            if (typeof(analytics) !== 'undefined') {
-                analytics.init({
-                    appID: '630639001',
-                    appSecret: 'a2d8adf595006f7a6af5f9b7e66a31d7',
-                    channel: 'creator',
-                    version: Constants.VERDION
-                });
-                // analytics.enableDebug(true);
-                analytics.CAAccount.loginStart();
-                analytics.CAAccount.loginSuccess({'userID': 'creator_for_cpp'});
+        //     analytics = cocosAnalytics;
+        //     if (typeof(analytics) !== 'undefined') {
+        //         analytics.init({
+        //             appID: '630639001',
+        //             appSecret: 'a2d8adf595006f7a6af5f9b7e66a31d7',
+        //             channel: 'creator',
+        //             version: Constants.VERDION
+        //         });
+        //         // analytics.enableDebug(true);
+        //         analytics.CAAccount.loginStart();
+        //         analytics.CAAccount.loginSuccess({'userID': 'creator_for_cpp'});
 
-                callback(analytics);
-            }
-        };
-        script.onerror = function () {
-            document.head.removeChild(script);
-        };
-        script.src = src;
-        document.head.appendChild(script);
+        //         callback(analytics);
+        //     }
+        // };
+        // script.onerror = function () {
+        //     document.head.removeChild(script);
+        // };
+        // script.src = src;
+        // document.head.appendChild(script);
     }
 
     static _isAnalyticsInitialized() {
-        return typeof(analytics) !== 'undefined';
+        return typeof (analytics) !== 'undefined';
     }
 }
 

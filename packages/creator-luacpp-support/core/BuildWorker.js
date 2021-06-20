@@ -12,7 +12,7 @@ const Del = require('del')
 const parse_fire = require('./parser/ConvertFireToJson');
 const parse_utils = require('./parser/Utils')
 
-const {WorkerBase, registerWorker} = require('./WorkerBase');
+const { WorkerBase, registerWorker } = require('./WorkerBase');
 
 const plugin_profile = 'profile://project/creator-luacpp-support.json';
 
@@ -30,11 +30,11 @@ class BuildWorker extends WorkerBase {
         Fs.emptyDirSync(Constants.JSON_PATH);
         Fs.emptyDirSync(Constants.CCREATOR_PATH);
 
-        Utils.getAssetsInfo(function(uuidmap) {
+        Utils.getAssetsInfo(function (uuidmap) {
             let copyReourceInfos = this._convertFireToJson(uuidmap);
-            let dynamicLoadRes = this._getDynamicLoadRes(uuidmap);
-            Object.assign(copyReourceInfos, dynamicLoadRes);
-            this._compileJsonToBinary(function() {
+            // let dynamicLoadRes = this._getDynamicLoadRes(uuidmap);
+            // Object.assign(copyReourceInfos, dynamicLoadRes);
+            this._compileJsonToBinary(function () {
                 this._copyResources(copyReourceInfos);
                 Editor.Ipc.sendToAll('creator-luacpp-support:state-changed', 'finish', 100);
                 this._callback();
@@ -45,6 +45,12 @@ class BuildWorker extends WorkerBase {
 
     _convertFireToJson(uuidmap) {
         let fireFiles = this._getFireList();
+        let fireFiles2 = this._getPrefabList();
+
+        fireFiles2.forEach(function (filename) {
+            // Utils.log('prefabName==' + filename);
+            fireFiles.push(filename);
+        });
         let copyReourceInfos = parse_fire(fireFiles, 'creator', Constants.JSON_PATH, uuidmap);
 
         return copyReourceInfos;
@@ -54,21 +60,43 @@ class BuildWorker extends WorkerBase {
     _compileJsonToBinary(cb) {
         const jsonFiles = this._getJsonList();
 
-        let i = 0;
-        jsonFiles.forEach(function(file) {
-            let subFolder = Path.dirname(file).substr(Constants.JSON_PATH.length + 1);
-            let creatorPath = Path.join(Constants.CCREATOR_PATH, subFolder);
-            let params = ['-b', '-o', creatorPath, Constants.CREATOR_READER_FBS, file];
+        // let i = 0;
+        // jsonFiles.forEach(function (file) {
+        //     let subFolder = Path.dirname(file).substr(Constants.JSON_PATH.length + 1);
+        //     let creatorPath = Path.join(Constants.CCREATOR_PATH, subFolder);
+        //     let params = ['-b', '-o', creatorPath, Constants.CREATOR_READER_FBS, file];
 
-            Utils.runcommand(Constants.FLATC, params, function(code){
-                if (code != 0)
-                    Utils.log('[creator-luacpp-support] convert ' + file + ' to .ccreator error');
+        //     Utils.runcommand(Constants.FLATC, params, function (code) {
+        //         if (code != 0)
+        //             Utils.log('[creator-luacpp-support] convert ' + file + ' to .ccreator error');
 
-                ++i;
-                if (i === jsonFiles.length)
-                    cb();
+        //         ++i;
+        //         Utils.log('[creator-luacpp-support] convert ' + file)
+        //         if (i === jsonFiles.length)
+        //             cb();
+        //     });
+        // });
+        if (jsonFiles.length > 0) {
+            let i = 0;
+            jsonFiles.forEach(function (file) {
+                let subFolder = Path.dirname(file).substr(Constants.JSON_PATH.length + 1);
+                let creatorPath = Path.join(Constants.CCREATOR_PATH, subFolder);
+                let params = ['-b', '-o', creatorPath, Constants.CREATOR_READER_FBS, file];
+                // Utils.log('creatorPath==' + creatorPath + " " + file)
+                Utils.runcommand(Constants.FLATC, params, function (code) {
+                    if (code != 0)
+                        Utils.log('[creator-luacpp-support] convert ' + file + ' to .ccreator error');
+
+                    ++i;
+                    if (i === jsonFiles.length)
+                        cb();
+                });
+
             });
-        });
+        }
+        else {
+            cb();
+        }
     }
 
     _copyResources(copyReourceInfos) {
@@ -78,7 +106,7 @@ class BuildWorker extends WorkerBase {
         // - all files in reader
         // - lua binding codes(currently is missing)
         let projectRoot = this._state.path;
-        
+
         // root path of resources
         let resdst;
         let classes;
@@ -89,7 +117,7 @@ class BuildWorker extends WorkerBase {
             classes = Path.join(projectRoot, 'frameworks/runtime-src/Classes');
             if (!Fs.existsSync(classes))
                 classes = Path.join(projectRoot, 'project/Classes'); // cocos2d-x internal lua tests
-        } 
+        }
         else {
             resdst = Path.join(projectRoot, 'Resources');
             classes = Path.join(projectRoot, 'Classes');
@@ -99,11 +127,11 @@ class BuildWorker extends WorkerBase {
         {
             // copy .ccreator
             resdst = Path.join(resdst, Constants.RESOURCE_FOLDER_NAME);
-            Del.sync(resdst, {force: true});
+            Del.sync(resdst, { force: true });
             this._copyTo(Constants.CCREATOR_PATH, resdst, ['.ccreator'], true);
 
             // copy other resources
-            Object.keys(copyReourceInfos).forEach(function(uuid) {
+            Object.keys(copyReourceInfos).forEach(function (uuid) {
                 let pathInfo = copyReourceInfos[uuid];
                 let src = pathInfo.fullpath;
                 let dst = Path.join(resdst, pathInfo.relative_path);
@@ -119,21 +147,20 @@ class BuildWorker extends WorkerBase {
         // copy reader
         {
             let codeFilesDist = Path.join(classes, 'reader')
-            Del.sync(codeFilesDist, {force: true});
+            Del.sync(codeFilesDist, { force: true });
             Fs.copySync(Constants.READER_PATH, codeFilesDist);
 
             // should exclude binding codes for c++ project
-            if (!isLuaProject)
-            {
+            if (!isLuaProject) {
                 let bindingCodesPath = Path.join(classes, 'reader/lua-bindings');
-                Del.sync(bindingCodesPath, {force: true});
+                Del.sync(bindingCodesPath, { force: true });
             }
         }
     }
 
-   // copy all files with ext in src to dst
-   // @exts array of ext, such as ['.json', '.ccreator']
-   // @recursive whether recursively to copy the subfolder
+    // copy all files with ext in src to dst
+    // @exts array of ext, such as ['.json', '.ccreator']
+    // @recursive whether recursively to copy the subfolder
     _copyTo(src, dst, exts, recursive) {
         let files = this._getFilesWithExt(src, exts, recursive);
 
@@ -152,11 +179,16 @@ class BuildWorker extends WorkerBase {
         return this._getFilesWithExt(Constants.ASSETS_PATH, ['.fire'], true);
     }
 
+    //get .prefab file
+    _getPrefabList() {
+        return this._getFilesWithExt(Constants.ASSETS_PATH, ['.prefab'], true);
+    }
+
     _getJsonList() {
         return this._getFilesWithExt(Constants.JSON_PATH, ['.json'], true);
     }
 
-   // return file list ends with `exts` in dir
+    // return file list ends with `exts` in dir
     _getFilesWithExt(dir, exts, recursive) {
         let foundFiles = [];
 
@@ -169,7 +201,7 @@ class BuildWorker extends WorkerBase {
 
             if (recursive) {
                 let stats = Fs.lstatSync(fullpath);
-                if (stats.isDirectory()) 
+                if (stats.isDirectory())
                     foundFiles = foundFiles.concat(this._getFilesWithExt(fullpath, exts, recursive));
             }
         });
@@ -181,14 +213,14 @@ class BuildWorker extends WorkerBase {
         let state = Editor.remote.Profile.load(plugin_profile, Constants.PROFILE_DEFAULTS);
         if (!state.data.exportResourceDynamicallyLoaded)
             return;
-        
+
         let dynamicLoadRes = {};
         let resourcesPath = Path.join(Constants.ASSETS_PATH, 'resources');
 
-        Object.keys(uuidmap).forEach(function(uuid) {
-            if(uuidmap[uuid].indexOf(resourcesPath) < 0)
+        Object.keys(uuidmap).forEach(function (uuid) {
+            if (uuidmap[uuid].indexOf(resourcesPath) < 0)
                 return true;
-            
+
             dynamicLoadRes[uuid] = parse_utils.get_relative_full_path_by_uuid(uuid);
         });
 
