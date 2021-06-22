@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-06-22 18:13:07
- * @LastEditTime: 2021-06-22 20:31:52
+ * @LastEditTime: 2021-06-22 20:48:32
  */
 
 var Fs = require('fs');
@@ -24,10 +24,13 @@ Editor.Panel.extend({
         profileProject: profileProject
       },
       methods: {
-        onConfirm(event) {
+        _onOpen(event) {
           event.stopPropagation();
-          Editor.log('On Confirm!');
+          Editor.log('_onOpen!');
+          Editor.Dialog.messageBox({ message: "666" })
         },
+
+        //选择目录
         _onChooseDistPathClick(event) {
           event.stopPropagation();
           let res = Editor.Dialog.openFile({
@@ -40,9 +43,10 @@ Editor.Panel.extend({
           }
         },
 
+        //打开目录
         _onShowInFinderClick(event) {
           event.stopPropagation();
-          if (!Fs.existsSync(this.profileProject.data.path)&this.profileProject.data.path!="") {
+          if (!Fs.existsSync(this.profileProject.data.path) & this.profileProject.data.path != "") {
             Editor.warn('%s not exists!', this.profileProject.data.path);
             return;
           }
