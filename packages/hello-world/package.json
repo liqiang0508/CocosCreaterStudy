@@ -1,0 +1,19 @@
+{
+  "name": "hello-world",
+  "version": "0.0.1",
+  "description": "一份简单的扩展包",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "main-menu": {
+    "Tools/Hello World": {
+      "message": "hello-world:say-hello"
+    }
+  },
+  "panel": {
+    "main": "panel/index.js",
+    "type": "dockable",
+    "title": "Simple Panel",
+    "width": 400,
+    "height": 300
+  }
+}
