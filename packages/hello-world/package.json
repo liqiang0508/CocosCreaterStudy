@@ -12,8 +12,18 @@
   "panel": {
     "main": "panel/index.js",
     "type": "dockable",
-    "title": "Simple Panel",
+    "title": "Set Up Project",
     "width": 400,
     "height": 300
+  },
+  "profiles": {
+    "project": {
+      "setup": false,
+      "path": "",
+      "autoBuild": false,
+      "exportResourceOnly": false,
+      "exportResourceDynamicallyLoaded": false,
+      "customBuild": false
+    }
   }
 }
