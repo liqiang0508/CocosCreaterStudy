@@ -2,14 +2,15 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-06-22 18:13:07
- * @LastEditTime: 2021-06-23 11:54:44
+ * @LastEditTime: 2021-06-23 17:47:29
  */
 // const Consts = require('../Consts');
 const packageName = "plugin_test"
 var Fs = require('fs');
 const Electron = require('electron');
-const Style = Fs.readFileSync(Editor.url('packages://'+packageName+'/panel/index.css', 'utf8'));
-const Template = Fs.readFileSync(Editor.url('packages://'+packageName+'/panel/index.html', 'utf8'));
+const Consts = require(Editor.url('packages://' + packageName + '/Consts.js'));
+const Style = Fs.readFileSync(Editor.url('packages://' + Consts.packageName + '/panel/index.css', 'utf8'));
+const Template = Fs.readFileSync(Editor.url('packages://' + Consts.packageName + '/panel/index.html', 'utf8'));
 const Remote = require('electron').remote;
 Editor.Panel.extend({
 
@@ -31,6 +32,11 @@ Editor.Panel.extend({
           Editor.log('res==' + res)
         },
 
+        _onCheckClick(event) {
+          // Editor.log('_onCheckClick!'+event.target.value);
+          this.profileProject.data.choose = event.target.value
+          this.profileProject.save()
+        },
         //选择目录
         _onChooseDistPathClick(event) {
           event.stopPropagation();
