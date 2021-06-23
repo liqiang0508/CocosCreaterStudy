@@ -2,15 +2,15 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-06-22 18:13:07
- * @LastEditTime: 2021-06-22 20:48:32
+ * @LastEditTime: 2021-06-23 11:54:44
  */
-
+// const Consts = require('../Consts');
+const packageName = "plugin_test"
 var Fs = require('fs');
 const Electron = require('electron');
-
-const Style = Fs.readFileSync(Editor.url('packages://hello-world/panel/index.css', 'utf8'))
-const Template = Fs.readFileSync(Editor.url('packages://hello-world/panel/index.html', 'utf8'))
-
+const Style = Fs.readFileSync(Editor.url('packages://'+packageName+'/panel/index.css', 'utf8'));
+const Template = Fs.readFileSync(Editor.url('packages://'+packageName+'/panel/index.html', 'utf8'));
+const Remote = require('electron').remote;
 Editor.Panel.extend({
 
   style: Style,
@@ -27,7 +27,8 @@ Editor.Panel.extend({
         _onOpen(event) {
           event.stopPropagation();
           Editor.log('_onOpen!');
-          Editor.Dialog.messageBox({ message: "666" })
+          let res = Remote.dialog.showOpenDialog({ properties: ['openDirectory'] })
+          Editor.log('res==' + res)
         },
 
         //选择目录
