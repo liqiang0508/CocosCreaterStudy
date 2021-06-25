@@ -110,16 +110,11 @@ class FireParser {
                 fs.writeSync(this._json_file, dump);
                 fs.close(this._json_file);
             }
-            else if (obj.__type__ === 'cc.Prefab') {
-
+            else if (obj.__type__ === 'cc.Prefab'){
                 let scene = obj.data;
-
                 let scene_idx = scene.__id__;
-                // Utils.log("Prefab==" + JSON.stringify(state._json_data[scene_idx]))
                 let scene_obj = new Node(state._json_data[scene_idx]);
-
                 scene_obj.parse_properties();
-
                 this.to_json_setup();
                 let jsonNode = scene_obj.to_json(0, 0);
                 this._json_output.root = jsonNode;
@@ -127,6 +122,7 @@ class FireParser {
                 fs.writeSync(this._json_file, dump);
                 fs.close(this._json_file);
             }
+           
         });
     }
 }

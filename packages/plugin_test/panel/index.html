@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-06-22 18:13:07
- * @LastEditTime: 2021-06-23 17:44:20
+ * @LastEditTime: 2021-06-23 17:51:29
 -->
 <!DOCTYPE html>
 <html>
@@ -19,10 +19,13 @@
 			</div>
 		</ui-prop>
 
-		<ui-prop name="checkBox">
-			<ui-checkbox v-value="profileProject.data.choose" v-on:confirm=_onCheckClick>checkbox</ui-checkbox>
-		</ui-prop>
+		
 	</div>
+	
+	<ui-button class="tiny" v-on:confirm="_onOpen">TestBtn</ui-button>
+	<ui-prop name="checkBox">
+		<ui-checkbox v-value="profileProject.data.choose" v-on:confirm=_onCheckClick>checkbox</ui-checkbox>
+	</ui-prop>
 
 
 </body>

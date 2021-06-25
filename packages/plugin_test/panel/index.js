@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-06-22 18:13:07
- * @LastEditTime: 2021-06-23 17:47:29
+ * @LastEditTime: 2021-06-25 10:40:42
  */
 // const Consts = require('../Consts');
 const packageName = "plugin_test"
@@ -28,8 +28,18 @@ Editor.Panel.extend({
         _onOpen(event) {
           event.stopPropagation();
           Editor.log('_onOpen!');
-          let res = Remote.dialog.showOpenDialog({ properties: ['openDirectory'] })
-          Editor.log('res==' + res)
+          //let res = Remote.dialog.showOpenDialog({ properties: ['openDirectory'] })
+          //Editor.log('res==' + res)
+          Editor.assetdb.queryAssets('db://assets/**\/*', 'texture', function (err, results) {
+            results.forEach(function (result) {
+              Editor.log( result.path);
+              // result.url
+              // result.path
+              // result.uuid
+              // result.type
+              // result.isSubAsset
+            });
+          });
         },
 
         _onCheckClick(event) {
