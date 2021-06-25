@@ -44,6 +44,7 @@ class CreatorReader: public cocos2d::Ref
 public:
     static CreatorReader* createWithFilename(const std::string& filename);
 
+    cocos2d::Node* getNodeGraph() const;
     /**
      Returns the scenegraph contained in the .ccreator file
      @return A `Scene*`
