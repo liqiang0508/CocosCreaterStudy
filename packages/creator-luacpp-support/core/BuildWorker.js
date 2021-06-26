@@ -46,14 +46,14 @@ class BuildWorker extends WorkerBase {
     _convertFireToJson(uuidmap) {
         let fireFiles = this._getFireList();
         let prefabFils = this._getPrefabList();
-        let aniFiles = this._getAniList();
-        
+        // let aniFiles = this._getAniList();
+
         prefabFils.forEach(function (filename) {
             fireFiles.push(filename);
         });
-        aniFiles.forEach(function (filename) {
-            fireFiles.push(filename);
-        });
+        // aniFiles.forEach(function (filename) {
+        //     fireFiles.push(filename);
+        // });
         let copyReourceInfos = parse_fire(fireFiles, 'creator', Constants.JSON_PATH, uuidmap);
 
         return copyReourceInfos;
@@ -122,10 +122,10 @@ class BuildWorker extends WorkerBase {
                 classes = Path.join(projectRoot, 'project/Classes'); // cocos2d-x internal lua tests
         }
         else {
-            resdst = Path.join(projectRoot, 'Resources');
+            resdst = projectRoot//Path.join(projectRoot, 'Resources');
             classes = Path.join(projectRoot, 'Classes');
         }
-        Utils.log("resdst=="+resdst)
+        Utils.log("resdst==" + resdst)
         // copy resources
         {
             // copy .ccreator
@@ -139,13 +139,13 @@ class BuildWorker extends WorkerBase {
                 let src = pathInfo.fullpath;
                 let dst = Path.join(resdst, pathInfo.relative_path);
                 Fs.ensureDirSync(Path.dirname(dst));
-				//Utils.log(src)
+                //Utils.log(src)
                 Fs.copySync(src, dst);
             });
         }
         // 复制其他资源
         var extList = [".png"]
-        this._copyTo(Constants.ASSETS_PATH,resdst,extList,true)
+        this._copyTo(Constants.ASSETS_PATH, resdst, extList, true)
 
         let state = Editor.remote.Profile.load(plugin_profile, Constants.PROFILE_DEFAULTS);
         if (state.data.exportResourceOnly)
@@ -191,8 +191,8 @@ class BuildWorker extends WorkerBase {
         return this._getFilesWithExt(Constants.ASSETS_PATH, ['.prefab'], true);
     }
 
-     //get .anim file
-     _getAniList() {
+    //get .anim file
+    _getAniList() {
         return this._getFilesWithExt(Constants.ASSETS_PATH, ['.anim'], true);
     }
 
