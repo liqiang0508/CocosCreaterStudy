@@ -102,7 +102,26 @@ table Node
     tag:int = 0;
     anim:AnimationRef;
     colliders:[Collider];
+    widget:Widget;
     groupIndex:int;
+}
+
+table Widget
+{
+    isAlignOnce:bool;
+    alignFlags:int;
+    left:float;
+    right:float;
+    top:float;
+    bottom:float;
+    verticalCenter:float;
+    horizontalCenter:float;
+    isAbsLeft:bool;
+    isAbsRight:bool;
+    isAbsTop:bool;
+    isAbsBottom:bool;
+    isAbsHorizontalCenter:bool;
+    isAbsVerticalCenter:bool;
 }
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

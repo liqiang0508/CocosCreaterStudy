@@ -2,14 +2,14 @@ const state = require('./Global').state;
 const Collider = require('./Collider');
 let Utils = require('./Utils');
 const fs = require('fs');
-
+const Widget = require('./Widget');
 class Node {
 
     static get_node_components(node) {
         if ('_components' in node) {
             let idxs = node._components;
             let components = [];
-            idxs.forEach( idx => {
+            idxs.forEach(idx => {
                 let idx_num = idx.__id__;
                 components.push(state._json_data[idx_num]);
             });
@@ -52,15 +52,15 @@ class Node {
             'cc.ParticleSystem', 'cc.TiledMap', 'cc.Canvas', 'cc.RichText',
             'cc.VideoPlayer', 'cc.WebView', 'cc.Slider', 'cc.Toggle', 'cc.ToggleGroup',
             'cc.PageView', 'cc.Mask', 'dragonBones.ArmatureDisplay'];
-    
+
         if (!components)
             return 'cc.Node';
-    
+
         let node_components = components.map(x => x.__type__);
         // special case for object without components
         if (node_components.length == 0)
             return 'cc.Node';
-    
+
         for (let i = 0, len = supported_components.length; i < len; ++i) {
             let supported = supported_components[i];
             if (node_components.includes(supported)) {
@@ -72,16 +72,16 @@ class Node {
         Utils.log('treat all unknown components as cc.Node')
         return 'cc.Node';
     }
-    
+
     static guess_type(node_data) {
         let components = Node.get_node_components(node_data);
         if (components)
             return Node.guess_type_from_components(components);
-    
+
         // prefab don't have componets, should guess type from prefab node data
         if (node_data._prefab)
             return 'cc.Prefab';
-    
+
         return null;
     }
 
@@ -107,7 +107,7 @@ class Node {
         if (value in data) {
             let w = data[value].width;
             let h = data[value].height;
-            this._properties[newkey] = {w:w, h:h};
+            this._properties[newkey] = { w: w, h: h };
         }
     }
 
@@ -122,7 +122,7 @@ class Node {
         if (value in data) {
             let x = data[value].x;
             let y = data[value].y;
-            this._properties[newkey] = {x:x, y:y};
+            this._properties[newkey] = { x: x, y: y };
         }
     }
 
@@ -131,7 +131,7 @@ class Node {
             let r = data[value].r;
             let g = data[value].g;
             let b = data[value].b;
-            this._properties[newkey] = {r:parseInt(r), g:parseInt(g), b:parseInt(b)};
+            this._properties[newkey] = { r: parseInt(r), g: parseInt(g), b: parseInt(b) };
         }
     }
 
@@ -147,7 +147,7 @@ class Node {
     parse_properties() {
         // 1st: parse self
         this.parse_node_properties();
-        
+
         // 2nd: parse children
         this.parse_children();
     }
@@ -165,7 +165,7 @@ class Node {
 
     parse_children() {
         if (this._node_data._children)
-            this._node_data._children.forEach(function(item) {
+            this._node_data._children.forEach(function (item) {
                 this.parse_child(item.__id__);
             }.bind(this));
     }
@@ -194,6 +194,14 @@ class Node {
 
         this.parse_clip();
         this.parse_colliders();
+        this.parse_widget();
+    }
+
+    parse_widget() {
+        let component = Node.get_node_components_of_type(this._node_data, 'cc.Widget');
+        if (component.length === 1) {
+            this._properties.widget = Widget.parse(component[0]);
+        }
     }
 
     parse_child(node_idx) {
@@ -213,7 +221,7 @@ class Node {
 
     parse_colliders() {
         let collider_components = Node.get_node_components_of_type(this._node_data, 'cc.BoxCollider');
-        collider_components =  collider_components.concat(Node.get_node_components_of_type(this._node_data, 'cc.CircleCollider'));
+        collider_components = collider_components.concat(Node.get_node_components_of_type(this._node_data, 'cc.CircleCollider'));
         collider_components = collider_components.concat(Node.get_node_components_of_type(this._node_data, 'cc.PolygonCollider'));
 
         this._properties.colliders = [];
@@ -240,7 +248,7 @@ class Node {
                 function parseCurveProperty(from, to) {
                     let curve = from.curve;
                     if (curve) {
-                        let curve_type = typeof(curve);
+                        let curve_type = typeof (curve);
                         if (curve_type === 'string')
                             to.curveType = curve;
                         else {
@@ -253,7 +261,7 @@ class Node {
                 function addProp(from, from_key, to, to_key) {
                     if (from[from_key]) {
                         to[to_key] = [];
-                        from[from_key].forEach(function(prop) {
+                        from[from_key].forEach(function (prop) {
                             let value = {
                                 frame: prop.frame,
                                 value: prop.value,
@@ -276,15 +284,15 @@ class Node {
                 addProp(props, 'skewX', result, 'skewX');
                 addProp(props, 'skewY', result, 'skewY');
                 addProp(props, 'opacity', result, 'opacity');
-                
+
 
                 // position -> {x:, y:, curveType?, curveData?}
                 if (props.position) {
                     result.position = [];
-                    props.position.forEach(function(pos) {
+                    props.position.forEach(function (pos) {
                         let value = {
                             frame: pos.frame,
-                            value: {x: pos.value[0], y: pos.value[1]}
+                            value: { x: pos.value[0], y: pos.value[1] }
                         };
                         parseCurveProperty(pos, value);
                         result.position.push(value);
@@ -294,10 +302,10 @@ class Node {
                 // color
                 if (props.color) {
                     result.color = [];
-                    props.color.forEach(function(clr){
+                    props.color.forEach(function (clr) {
                         let value = {
                             frame: clr.frame,
-                            value: {r:clr.value.r, g:clr.value.g, b:clr.value.g, a:clr.value.a}
+                            value: { r: clr.value.r, g: clr.value.g, b: clr.value.g, a: clr.value.a }
                         };
                         parseCurveProperty(clr, value);
                         result.color.push(value);
@@ -307,16 +315,14 @@ class Node {
                 return result;
             }
 
-            component._clips.forEach(function(clip) {
+            component._clips.forEach(function (clip) {
                 let clip_uuid = clip.__uuid__;
-                if (clip_uuid in state._clips)
-                {
+                if (clip_uuid in state._clips) {
                     anim.clips.push(state._clips[clip_uuid]);
                 }
-                else
-                {
+                else {
                     let clip_content = JSON.parse(fs.readFileSync(uuidinfos[clip_uuid]));
-                    
+
                     // parse curveData
                     let animationClip = {
                         name: clip_content._name,
@@ -328,10 +334,9 @@ class Node {
                     };
 
                     let curveData = clip_content.curveData;
-                    if (curveData.paths)
-                    {
+                    if (curveData.paths) {
                         // animationclip of sub nodes
-                        for(let path in curveData.paths) {
+                        for (let path in curveData.paths) {
                             if (curveData.paths.hasOwnProperty(path) && curveData.paths[path].props) {
                                 // how to support comps?
                                 let subAnim = {
@@ -345,7 +350,7 @@ class Node {
 
                     // parse self animationclip
                     if (curveData.props)
-                        animationClip.curveData.push({props: parseCurveDataProps(curveData.props)}); 
+                        animationClip.curveData.push({ props: parseCurveDataProps(curveData.props) });
 
                     anim.clips.push(animationClip);
                     state._clips[clip_uuid] = animationClip;
