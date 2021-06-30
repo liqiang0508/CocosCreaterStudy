@@ -1,6 +1,7 @@
 const state = require('./Global').state;
 const Collider = require('./Collider');
 let Utils = require('./Utils');
+let UtilsII = require('../Utils');
 const fs = require('fs');
 const Widget = require('./Widget');
 class Node {
@@ -317,48 +318,53 @@ class Node {
 
             component._clips.forEach(function (clip) {
                 let clip_uuid = clip.__uuid__;
-                if (clip_uuid in state._clips) {
-                    anim.clips.push(state._clips[clip_uuid]);
-                }
-                else {
-                    let clip_content = JSON.parse(fs.readFileSync(uuidinfos[clip_uuid]));
+                let clip_content = JSON.parse(fs.readFileSync(uuidinfos[clip_uuid]));
+                anim.clips.push(clip_content._name);//保存clip的名称
+                
+                // let clip_uuid = clip.__uuid__;
+                // if (clip_uuid in state._clips) {
+                //     anim.clips.push(state._clips[clip_uuid]);
+                // }
+                // else {
+                //     let clip_content = JSON.parse(fs.readFileSync(uuidinfos[clip_uuid]));
 
-                    // parse curveData
-                    let animationClip = {
-                        name: clip_content._name,
-                        duration: clip_content._duration,
-                        sample: clip_content.sample,
-                        speed: clip_content.speed,
-                        wrapMode: clip_content.wrapMode,
-                        curveData: []
-                    };
+                //     // parse curveData
+                //     let animationClip = {
+                //         name: clip_content._name,
+                //         duration: clip_content._duration,
+                //         sample: clip_content.sample,
+                //         speed: clip_content.speed,
+                //         wrapMode: clip_content.wrapMode,
+                //         curveData: []
+                //     };
 
-                    let curveData = clip_content.curveData;
-                    if (curveData.paths) {
-                        // animationclip of sub nodes
-                        for (let path in curveData.paths) {
-                            if (curveData.paths.hasOwnProperty(path) && curveData.paths[path].props) {
-                                // how to support comps?
-                                let subAnim = {
-                                    path: path,
-                                    props: parseCurveDataProps(curveData.paths[path].props)
-                                };
-                                animationClip.curveData.push(subAnim);
-                            }
-                        }
-                    }
+                //     let curveData = clip_content.curveData;
+                //     if (curveData.paths) {
+                //         // animationclip of sub nodes
+                //         for (let path in curveData.paths) {
+                //             if (curveData.paths.hasOwnProperty(path) && curveData.paths[path].props) {
+                //                 // how to support comps?
+                //                 let subAnim = {
+                //                     path: path,
+                //                     props: parseCurveDataProps(curveData.paths[path].props)
+                //                 };
+                //                 animationClip.curveData.push(subAnim);
+                //             }
+                //         }
+                //     }
 
-                    // parse self animationclip
-                    if (curveData.props)
-                        animationClip.curveData.push({ props: parseCurveDataProps(curveData.props) });
+                //     // parse self animationclip
+                //     if (curveData.props)
+                //         animationClip.curveData.push({ props: parseCurveDataProps(curveData.props) });
 
-                    anim.clips.push(animationClip);
-                    state._clips[clip_uuid] = animationClip;
-                }
+                    // anim.clips.push(animationClip);
+                    // state._clips[clip_uuid] = animationClip;
+                // }
             });
             // default clip
             if (component._defaultClip)
-                anim.defaultClip = state._clips[component._defaultClip.__uuid__].name;
+                    var defaultClip = JSON.parse(fs.readFileSync(uuidinfos[component._defaultClip.__uuid__]));
+                    anim.defaultClip = defaultClip._name;
 
             this._properties.anim = anim;
         }

@@ -87,43 +87,60 @@ class FireParser {
     run(filename, assetpath, path_to_json_files) {
         state._filename = path.basename(filename, '.prefab');
         state._filename = path.basename(filename, '.fire');
+        state._filename = path.basename(filename, '.anim');
         let sub_folder = path.dirname(filename).substr(Constants.ASSETS_PATH.length + 1);
         let json_name = path.join(path_to_json_files, sub_folder, state._filename) + '.json';
         this._json_file = this.create_file(json_name);
         state._assetpath = assetpath;
 
         state._json_data = JSON.parse(fs.readFileSync(filename));
+        // Utils.log("AnimationClip=="+JSON.stringify(state._json_data))
+        if (Array.isArray(state._json_data)) {
 
-        state._json_data.forEach(obj => {
-            if (obj.__type__ === 'cc.SceneAsset') {
-                let scene = obj.scene;
-                let scene_idx = scene.__id__;
-                // Utils.log("scene==" + JSON.stringify(state._json_data[scene_idx]))
-                let scene_obj = new Scene(state._json_data[scene_idx]);
+            state._json_data.forEach(obj => {
+                if (obj.__type__ === 'cc.SceneAsset') {
+                    let scene = obj.scene;
+                    let scene_idx = scene.__id__;
+                    // Utils.log("scene==" + JSON.stringify(state._json_data[scene_idx]))
+                    let scene_obj = new Scene(state._json_data[scene_idx]);
 
-                scene_obj.parse_properties();
+                    scene_obj.parse_properties();
 
-                this.to_json_setup();
-                let jsonNode = scene_obj.to_json(0, 0);
-                this._json_output.root = jsonNode;
-                let dump = JSON.stringify(this._json_output, null, '\t').replace(/\\\\/g, '/');
-                fs.writeSync(this._json_file, dump);
-                fs.close(this._json_file);
-            }
-            else if (obj.__type__ === 'cc.Prefab'){
-                let scene = obj.data;
-                let scene_idx = scene.__id__;
-                let scene_obj = new Node(state._json_data[scene_idx]);
-                scene_obj.parse_properties();
-                this.to_json_setup();
-                let jsonNode = scene_obj.to_json(0, 0);
-                this._json_output.root = jsonNode;
-                let dump = JSON.stringify(this._json_output, null, '\t').replace(/\\\\/g, '/');
-                fs.writeSync(this._json_file, dump);
-                fs.close(this._json_file);
-            }
+                    this.to_json_setup();
+                    let jsonNode = scene_obj.to_json(0, 0);
+                    this._json_output.root = jsonNode;
+                    let dump = JSON.stringify(this._json_output, null, '\t').replace(/\\\\/g, '/');
+                    fs.writeSync(this._json_file, dump);
+                    fs.close(this._json_file);
+                }
+                else if (obj.__type__ === 'cc.Prefab') {
+                    let scene = obj.data;
+                    let scene_idx = scene.__id__;
+                    let scene_obj = new Node(state._json_data[scene_idx]);
+                    scene_obj.parse_properties();
+                    this.to_json_setup();
+                    let jsonNode = scene_obj.to_json(0, 0);
+                    this._json_output.root = jsonNode;
+                    let dump = JSON.stringify(this._json_output, null, '\t').replace(/\\\\/g, '/');
+                    fs.writeSync(this._json_file, dump);
+                    fs.close(this._json_file);
+                }
+
+            });
+        }
+        else{//"cc.AnimationClip",
+            
+            //Utils.log("AnimationClip==" + JSON.stringify(state._json_data))
+            // delete state._json_data.__type__ 
            
-        });
+            // state._json_data.name =  state._json_data._name
+            // delete state._json_data._name 
+            // delete state._json_data._name
+            // let dump = JSON.stringify(state._json_data, null, '\t').replace(/\\\\/g, '/');
+            // fs.writeSync(this._json_file, dump);
+            // fs.close(this._json_file);
+        }
+
     }
 }
 

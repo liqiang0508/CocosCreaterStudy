@@ -359,7 +359,7 @@ table SpineSkeleton
 // an existing animation
 table AnimationRef
 {
-    clips:[AnimationClip];
+    clips:[string];
     playOnLoad:bool;
     defaultClip:string;
 }

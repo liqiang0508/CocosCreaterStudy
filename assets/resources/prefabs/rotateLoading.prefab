@@ -204,9 +204,12 @@
     "_clips": [
       {
         "__uuid__": "3d474e80-ec86-41c0-a1c7-367e2e7124d1"
+      },
+      {
+        "__uuid__": "4e9deb77-380b-4973-a783-1c89ac26b312"
       }
     ],
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_id": ""
   },
   {
@@ -322,7 +325,7 @@
     "asset": {
       "__uuid__": "85566113-8428-4e84-baa6-f9d55360d977"
     },
-    "fileId": "31WjYpODZK9Y2FD+Cc6ABU",
+    "fileId": "",
     "sync": false
   }
 ]

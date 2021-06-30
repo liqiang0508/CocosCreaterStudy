@@ -46,14 +46,14 @@ class BuildWorker extends WorkerBase {
     _convertFireToJson(uuidmap) {
         let fireFiles = this._getFireList();
         let prefabFils = this._getPrefabList();
-        // let aniFiles = this._getAniList();
-
         prefabFils.forEach(function (filename) {
             fireFiles.push(filename);
         });
-        // aniFiles.forEach(function (filename) {
-        //     fireFiles.push(filename);
-        // });
+
+        let aniFiles = this._getAniList();
+        aniFiles.forEach(function (filename) {
+            fireFiles.push(filename);
+        });
         let copyReourceInfos = parse_fire(fireFiles, 'creator', Constants.JSON_PATH, uuidmap);
 
         return copyReourceInfos;
@@ -125,7 +125,7 @@ class BuildWorker extends WorkerBase {
             resdst = projectRoot//Path.join(projectRoot, 'Resources');
             classes = Path.join(projectRoot, 'Classes');
         }
-        Utils.log("resdst==" + resdst)
+        // Utils.log("resdst==" + resdst)
         // copy resources
         {
             // copy .ccreator
