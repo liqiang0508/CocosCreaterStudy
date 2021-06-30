@@ -2,11 +2,12 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-06-22 18:13:07
- * @LastEditTime: 2021-06-25 10:40:42
+ * @LastEditTime: 2021-06-30 09:50:28
  */
 // const Consts = require('../Consts');
 const packageName = "plugin_test"
 var Fs = require('fs');
+var Path = require("path")
 const Electron = require('electron');
 const Consts = require(Editor.url('packages://' + packageName + '/Consts.js'));
 const Style = Fs.readFileSync(Editor.url('packages://' + Consts.packageName + '/panel/index.css', 'utf8'));
@@ -32,7 +33,7 @@ Editor.Panel.extend({
           //Editor.log('res==' + res)
           Editor.assetdb.queryAssets('db://assets/**\/*', 'texture', function (err, results) {
             results.forEach(function (result) {
-              Editor.log( result.path);
+              Editor.log( Path.basename(result.path));//获取文件名
               // result.url
               // result.path
               // result.uuid
