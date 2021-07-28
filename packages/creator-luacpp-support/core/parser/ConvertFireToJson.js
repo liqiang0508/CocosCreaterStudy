@@ -130,15 +130,19 @@ class FireParser {
         }
         else{//"cc.AnimationClip",
             
-            //Utils.log("AnimationClip==" + JSON.stringify(state._json_data))
-            // delete state._json_data.__type__ 
-           
-            // state._json_data.name =  state._json_data._name
-            // delete state._json_data._name 
-            // delete state._json_data._name
-            // let dump = JSON.stringify(state._json_data, null, '\t').replace(/\\\\/g, '/');
-            // fs.writeSync(this._json_file, dump);
-            // fs.close(this._json_file);
+            // Utils.log("AnimationClip==" + JSON.stringify(state._json_data))
+            var clip_content = state._json_data
+            let animationClip = {
+                name: clip_content._name,
+                duration: clip_content._duration,
+                sample: clip_content.sample,
+                speed: clip_content.speed,
+                wrapMode: clip_content.wrapMode,
+                curveData: clip_content.curveData
+            };
+            let dump = JSON.stringify(animationClip, null, '\t').replace(/\\\\/g, '/');
+            fs.writeSync(this._json_file, dump);
+            fs.close(this._json_file);
         }
 
     }
