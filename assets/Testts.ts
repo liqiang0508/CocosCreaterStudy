@@ -3,14 +3,11 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-07 15:30:49
- * @LastEditTime: 2020-08-10 11:08:24
+ * @LastEditTime: 2021-08-05 17:34:56
  */
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
+
+import { Lee  } from "./Person";
+
 
 const {ccclass, property} = cc._decorator;
 import xxtea = require("./Script/core/xxtea.js")
@@ -46,7 +43,8 @@ export default class Testts extends cc.Component {
 
         myModule.say("497232807")
      
-
+        var p = new Lee.Person()
+        p.Say("Hello world")
     }
 
     addSum(...arg):number{
