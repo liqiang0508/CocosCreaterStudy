@@ -1,6 +1,6 @@
 
 var xxtea = require("xxtea")
-let i18n = require("i18n")
+// let i18n = require("i18n")
 var Package = require("Package")
 var DevicesInfo = require("Devices")
 

@@ -20,6 +20,16 @@ cc.Class({
     onLoad() {
         this._super()
         cc.log("launchsene onLoad")
+
+        var packet_pb = require("messages_pb");
+        console.log(packet_pb);
+
+        var person = new packet_pb.Person();
+        person.setName("张三");
+        console.log(person);
+
+        var b = person.serializeBinary();
+        console.log(b);
     },
 
     onDestroy() {

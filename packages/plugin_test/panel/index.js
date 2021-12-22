@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-06-22 18:13:07
- * @LastEditTime: 2021-06-30 09:50:28
+ * @LastEditTime: 2021-07-30 18:04:51
  */
 // const Consts = require('../Consts');
 const packageName = "plugin_test"
@@ -20,6 +20,7 @@ Editor.Panel.extend({
 
   ready() {
     let profileProject = this.profiles.project;
+    Editor.log(JSON.stringify(profileProject));
     new window.Vue({
       el: this.shadowRoot,
       data: {
@@ -28,19 +29,19 @@ Editor.Panel.extend({
       methods: {
         _onOpen(event) {
           event.stopPropagation();
-          Editor.log('_onOpen!');
+          
           //let res = Remote.dialog.showOpenDialog({ properties: ['openDirectory'] })
           //Editor.log('res==' + res)
-          Editor.assetdb.queryAssets('db://assets/**\/*', 'texture', function (err, results) {
-            results.forEach(function (result) {
-              Editor.log( Path.basename(result.path));//获取文件名
-              // result.url
-              // result.path
-              // result.uuid
-              // result.type
-              // result.isSubAsset
-            });
-          });
+          // Editor.assetdb.queryAssets('db://assets/**\/*', 'texture', function (err, results) {
+          //   results.forEach(function (result) {
+          //     // Editor.log( Path.basename(result.path));//获取文件名
+          //     // result.url
+          //     // result.path
+          //     // result.uuid
+          //     // result.type
+          //     // result.isSubAsset
+          //   });
+          // });
         },
 
         _onCheckClick(event) {
