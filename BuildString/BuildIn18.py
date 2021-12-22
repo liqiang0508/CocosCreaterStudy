@@ -26,8 +26,8 @@ for langue in Langue: #把语言存起来遍历生成xml文件
 	if langue=='':
 		break
 	dataDic = {}
-	# f = open(langue+".json", "w+",encoding='utf-8')
-	# f.write("if (!window.i18n) window.i18n = {};\nif (!window.i18n.languages) window.i18n.languages = {};\nwindow.i18n.languages."+str(langue)+"={\n")
+	f = open(langue+".ts", "w+",encoding='utf-8')
+	f.write("export default{\n")
 	# f.write("{\n")
 
 	for booksheet in workbook.sheets():#循环每个表单	
@@ -41,20 +41,20 @@ for langue in Langue: #把语言存起来遍历生成xml文件
 					celldata = celldata.replace('\n','\\n') 
 					celldata = celldata.replace('\"','\\"') 
 					text = "\""+textValue+"\":"+"\""+celldata+"\",\n"
-					# f.write(("\t"+text))
-					dataDic[textValue] = celldata
+					f.write(("\t"+text))
+					# dataDic[textValue] = celldata
 				else:
 					pass
-	with open(langue+".json",'w',encoding="utf-8") as f:
-		# 设置不转换成ascii  json字符串首缩进
-		print("build {} success------------------".format(langue+".json"))
-		f.write(json.dumps( dataDic,ensure_ascii=False,indent=2 ) )
+	# with open(langue+".json",'w',encoding="utf-8") as f:
+	# 	# 设置不转换成ascii  json字符串首缩进
+	# 	print("build {} success------------------".format(langue+".json"))
+	# 	f.write(json.dumps( dataDic,ensure_ascii=False,indent=2 ) )
 		
-	# f.write("}\n")
-	# f.close()
+	f.write("}\n")
+	f.close()
  
-	src = langue+".json"
-	dst = "../assets/resources/i18n/label/"+langue+".json"
+	src = langue+".ts"
+	dst = "../assets/i18n/"+langue+".ts"
 	shutil.copyfile(src, dst)
 
 print("build success------------------")

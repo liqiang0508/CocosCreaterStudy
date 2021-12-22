@@ -4,6 +4,7 @@ var VersionManager = require("VersionManager")
 var SubGameManager = require("SubGameManager")
 // var GameClient = require("GameClient")
 var BaseComponent = require("BaseComponent")
+import  Lang from "zh"
 cc.Class({
     extends: BaseComponent,
 
@@ -30,6 +31,10 @@ cc.Class({
 
         var b = person.serializeBinary();
         console.log(b);
+
+        console.log("000",Lang)
+        console.log("111",Lang.default)
+        console.log("2001",Lang["2001"])
     },
 
     onDestroy() {

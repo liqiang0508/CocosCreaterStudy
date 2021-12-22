@@ -1,6 +1,6 @@
 import * as i18nLabel from "./i18nLabel";
 import * as i18nSprite from "./i18nSprite";
-
+import Lang from "./Lang";
 export class i18nMgr {
     private static language = "";     // 当前语言
     private static labelArr: i18nLabel.i18nLabel[] = [];        // i18nLabel 列表
@@ -54,7 +54,7 @@ export class i18nMgr {
 
 
     /**
-     * 添加或移除 i18nSprite
+     * 添加或移除 i18nSpripte
      */
     public static _addOrDelSprite(sprite: i18nSprite.i18nSprite, isAdd: boolean) {
         if (isAdd) {
@@ -79,18 +79,24 @@ export class i18nMgr {
 
 
     private static reloadLabel() {
-        let url = "i18n/label/" + this.language;
-        cc.resources.load(url, (err, data: cc.JsonAsset) => {
-            if (err) {
-                console.error(err);
-                this.labelData = {};
-            } else {
-                this.labelData = data.json;
-            }
-            for (let one of this.labelArr) {
-                one._resetValue();
-            }
-        });
+        // import * as Text from this.language
+        // this.labelData = Text
+        // console.log(this.labelData)
+        this.labelData = Lang[this.language];
+        // let url = "i18n/label/" + this.language;
+        
+        // cc.resources.load(url, (err, data: cc.JsonAsset) => {
+        //     if (err) {
+        //         console.error(err);
+        //         this.labelData = {};
+        //     } else {
+        //         this.labelData = data.json;
+        //         console.log("66",this.labelData);
+        //     }
+        //     for (let one of this.labelArr) {
+        //         one._resetValue();
+        //     }
+        // });
     }
 
     private static reloadSprite() {
