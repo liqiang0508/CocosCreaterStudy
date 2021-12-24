@@ -22,7 +22,6 @@ for l in (data):
 Langue = Langue[1:]#去掉第一个ID
 
 for langue in Langue: #把语言存起来遍历生成xml文件
-	# print "\ncurlangue==="+langue+"\n"
 	if langue=='':
 		break
 	dataDic = {}
