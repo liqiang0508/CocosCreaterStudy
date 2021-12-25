@@ -23,42 +23,24 @@ cc.Class({
         this._super()
         cc.log("launchsene onLoad")
 
-        console.log("protobuf================")
-        var packet_pb = require("messages_pb");
-        // console.log(packet_pb);
-        
-        var person = new packet_pb.Person();
-        person.setName("张三");
-        console.log("person===",person);
-        var b = person.serializeBinary();
-        console.log("serializeBinary===",b);
-
-        var data = packet_pb.Person.deserializeBinary(b)
-        console.log("deserializeBinary===",data);
-
-        console.log("000",Lang)
-        console.log("2001",Lang["2001"])
-        console.log("protobuf================end")
-
-        console.log("protobufjs===========")
+        console.log("protobufjs test===========")
         var Proto = require("gameProto")
         var peron2 = Proto.tutorial.Person.create()
         peron2.name = "王麻子"
         var byteData = Proto.tutorial.Person.encode(peron2).finish()
-        console.log("byteData===========",byteData)
+        console.log("编码测试===========",byteData)
+        console.log("编码测试 字符串===========",byteData.toString())
         var decodeData = Proto.tutorial.Person.decode(byteData)
-        console.log("decodeData===========",decodeData)
-
-        var decodeData2 = Proto.tutorial.Person.decode(b)
-        console.log("decodeData===========2",decodeData2)
-        console.log("protobufjs===========end")
+        console.log("解码测试===========",decodeData)
+        // var decodeData2 = Proto.tutorial.Person.decode(b)
+        // console.log("解码===========2",decodeData2)
+        console.log("protobufjs test===========end")
 
         console.log("ProtoTool test ================")
-
         var res = ProtoTool.encode(CMD.Login,{name:"王麻子"})
-        console.log("res==",res)
+        console.log("ProtoTool 编码",res)
         var res1 = ProtoTool.decode(CMD.Login,res)
-        console.log("res==1",res1)
+        console.log("ProtoTool 解码",res1)
         console.log("ProtoTool test ================ end")
     },
 
