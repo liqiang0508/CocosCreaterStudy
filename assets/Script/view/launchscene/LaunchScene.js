@@ -48,11 +48,9 @@ cc.Class({
 
         console.log("ProtoTool test ===========================")
         var res = ProtoTool.encode(CMD.Login, { name: "hello world", email: "497232807@qq.com", id: 201162 })
-        console.log("ProtoTool 编码", res)
-        // var testData = res.buffer.slice(res.byteOffset, res.byteLength + res.byteOffset)
-        // console.log("testData===========", testData)
+        console.log("ProtoTool 编码==", res, res.toString())
         var res1 = ProtoTool.decode(CMD.Login, res)
-        console.log("ProtoTool 解码", JSON.stringify(res1))
+        console.log("ProtoTool 解码==", JSON.stringify(res1))
         console.log("ProtoTool test =========================== end")
     },
 

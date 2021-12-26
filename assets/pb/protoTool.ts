@@ -3,7 +3,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-24 15:02:42
- * @LastEditTime: 2021-12-26 12:47:56
+ * @LastEditTime: 2021-12-26 16:02:22
  */
 var gameProto = require("gameProto")
 let ProtoTool = {
@@ -25,6 +25,8 @@ let ProtoTool = {
 
             bytesData = message.create(data)
             bytesData = message.encode(bytesData).finish()
+            bytesData = bytesData.slice().buffer
+            // bytesData = bytesData.buffer.slice(bytesData.byteOffset, bytesData.byteLength + bytesData.byteOffset)
         }
         return bytesData
     },
@@ -44,7 +46,7 @@ let ProtoTool = {
                     message = gameProto[key]
                 }
             }
-            res = message.decode(bytes)
+            res = message.decode(new Uint8Array(bytes))
         }
         return res
     },
