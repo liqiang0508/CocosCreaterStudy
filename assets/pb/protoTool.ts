@@ -3,13 +3,13 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-24 15:02:42
- * @LastEditTime: 2021-12-24 15:57:43
+ * @LastEditTime: 2021-12-26 12:47:56
  */
 var gameProto = require("gameProto")
 let ProtoTool = {
-
+    //根据协议编码pb数据
     encode: function (cmd, data) {
-        var res = null
+        var bytesData = null
         if (CMD2PB[cmd]) {
             var pak = CMD2PB[cmd].pak
             let arry = pak.split(".")
@@ -23,12 +23,12 @@ let ProtoTool = {
                 }
             }
 
-            res = message.create(data)
-            res = message.encode(res).finish()
+            bytesData = message.create(data)
+            bytesData = message.encode(bytesData).finish()
         }
-        return res
+        return bytesData
     },
-
+    //根据协议解码pb数据
     decode: function (cmd, bytes) {
         var res = null
 
@@ -47,6 +47,26 @@ let ProtoTool = {
             res = message.decode(bytes)
         }
         return res
+    },
+
+    Uint8ArrayToString: function (fileData) {
+        var dataString = "";
+        for (var i = 0; i < fileData.length; i++) {
+            dataString += String.fromCharCode(fileData[i]);
+        }
+
+        return dataString
+
+    },
+
+    stringToUint8Array: function (str) {
+        var arr = [];
+        for (var i = 0, j = str.length; i < j; ++i) {
+            arr.push(str.charCodeAt(i));
+        }
+
+        var tmpUint8Array = new Uint8Array(arr);
+        return tmpUint8Array
     }
 
 }

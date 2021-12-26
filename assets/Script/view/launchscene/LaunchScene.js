@@ -4,7 +4,8 @@ var VersionManager = require("VersionManager")
 var SubGameManager = require("SubGameManager")
 // var GameClient = require("GameClient")
 var BaseComponent = require("BaseComponent")
-import  Lang from "zh"
+var xxtea = require("xxtea")
+import Lang from "zh"
 // import CMD from "cmd" 
 cc.Class({
     extends: BaseComponent,
@@ -18,7 +19,6 @@ cc.Class({
     },
 
 
-
     onLoad() {
         this._super()
         cc.log("launchsene onLoad")
@@ -26,22 +26,34 @@ cc.Class({
         console.log("protobufjs test===========")
         var Proto = require("gameProto")
         var peron2 = Proto.tutorial.Person.create()
-        peron2.name = "王麻子"
+        peron2.name = "hello world"
+        peron2.email = "497232807@qq.com"
+        peron2.id = 201162
         var byteData = Proto.tutorial.Person.encode(peron2).finish()
-        console.log("编码测试===========",byteData)
-        console.log("编码测试 字符串===========",byteData.toString())
+        console.log("编码测试===========", byteData)
+
+        if (cc.sys.isNative) {
+            var path = jsb.fileUtils.getWritablePath() + "test2.txt"
+            jsb.fileUtils.writeDataToFile(byteData, path);
+
+        }
+
+        var strData = ProtoTool.Uint8ArrayToString(byteData)
+        console.log("编码测试 Uint8ArrayToString===========", strData)
+        console.log("编码测试 stringToUint8Array===========", ProtoTool.stringToUint8Array(strData))
+
         var decodeData = Proto.tutorial.Person.decode(byteData)
-        console.log("解码测试===========",decodeData)
-        // var decodeData2 = Proto.tutorial.Person.decode(b)
-        // console.log("解码===========2",decodeData2)
+        console.log("解码测试===========", JSON.stringify(decodeData))
         console.log("protobufjs test===========end")
 
-        console.log("ProtoTool test ================")
-        var res = ProtoTool.encode(CMD.Login,{name:"王麻子"})
-        console.log("ProtoTool 编码",res)
-        var res1 = ProtoTool.decode(CMD.Login,res)
-        console.log("ProtoTool 解码",res1)
-        console.log("ProtoTool test ================ end")
+        console.log("ProtoTool test ===========================")
+        var res = ProtoTool.encode(CMD.Login, { name: "hello world", email: "497232807@qq.com", id: 201162 })
+        console.log("ProtoTool 编码", res)
+        // var testData = res.buffer.slice(res.byteOffset, res.byteLength + res.byteOffset)
+        // console.log("testData===========", testData)
+        var res1 = ProtoTool.decode(CMD.Login, res)
+        console.log("ProtoTool 解码", JSON.stringify(res1))
+        console.log("ProtoTool test =========================== end")
     },
 
     onDestroy() {
@@ -62,7 +74,7 @@ cc.Class({
 
     },
     start() {
-        
+
         cc.log("渠道号===", window.DISTRIBUTE_CHANNEL)
         cc.sys.localStorage.setItem('debugId', 724001)
         this.count = 0
@@ -76,8 +88,8 @@ cc.Class({
                 this.goLoginScene()
                 return
             }
-            cc.log("Global.isDebugTest===",Global.isDebugTest)
-            if (Global.isDebugTest){//debug选择热更新地址
+            cc.log("Global.isDebugTest===", Global.isDebugTest)
+            if (Global.isDebugTest) {//debug选择热更新地址
                 var data = {
                     "tips": "热更新选择",
                     "items": [
@@ -86,61 +98,59 @@ cc.Class({
                         { "text": "公司热更新地址" }//http://192.168.65.151/hotupversion/configdebug
                     ]
                 }
-                UiManager.ShowChooseUpdate(data,  (index,layer)=>{
-        
+                UiManager.ShowChooseUpdate(data, (index, layer) => {
+
                     console.log("点击了", index)
-                    if (index == 0)
-                    {
+                    if (index == 0) {
                         this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
                         layer.bClose()
                     }
                     else if (index == 1)//手动输入地址
                     {
-                        UiManager.ShowTextInput((text)=>{
-                            if(text.length>0)
-                            {
+                        UiManager.ShowTextInput((text) => {
+                            if (text.length > 0) {
                                 Global.Ghotupdateurl = text
                                 this.goCheckUpdate(text)//热更新检查
                                 layer.bClose()
                             }
-                            else{
+                            else {
                                 console.log("请输入自定义的热更新地址")
                                 layer.bClose()
-                                UiManager.ShowAlert("请输入正确自定义的热更新地址", [],  ()=> {
-                                    
+                                UiManager.ShowAlert("请输入正确自定义的热更新地址", [], () => {
+
                                     Global.gExitGame()
                                 })
                             }
-                           
+
                         })
-                        
+
                     }
-                    else if(index ==2) //公司热更新地址
+                    else if (index == 2) //公司热更新地址
                     {
                         Global.Ghotupdateurl = "http://192.168.65.151/hotupversion/configdebug"
                         this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
                         layer.bClose()
                     }
-                    
+
                 })
             }
-            else{//正式不选择
+            else {//正式不选择
 
-                Global.gSchduleOnce(this,  ()=> {
+                Global.gSchduleOnce(this, () => {
 
                     this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
-    
+
                 }, 3)
             }
             Global.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0)//显示update...
 
-            
+
 
         }
         else {//web
             VersionManager.getH5ScriptVersion()//直接读取本地配置版本号 便于登录界面右下角展示
             this.goLoginScene()
-           
+
 
         }
 
@@ -149,7 +159,7 @@ cc.Class({
     },
 
     goCheckUpdate(url) {//检查热更新
-      
+
 
         // stateCode
         // 0:不用更新 
@@ -165,8 +175,8 @@ cc.Class({
         // 10:远程配置json不合法
         // 11:远程md5-json不合法
         // 100 :更新成功
-        console.log("goCheckUpdate=="+url)
-        VersionManager.checkUpdate(url,  (code, shopUrl)=> {
+        console.log("goCheckUpdate==" + url)
+        VersionManager.checkUpdate(url, (code, shopUrl) => {
             SubGameManager.parseCfgFromData(VersionManager.getSubGameCfg())
             if (code == 0)//不用更新
             {
@@ -182,19 +192,19 @@ cc.Class({
             }
             else if (code == 8)//强制更新 打开商店链接
             {
-                UiManager.ShowAlert("发现新版本" + shopUrl, [],  (index)=> {
+                UiManager.ShowAlert("发现新版本" + shopUrl, [], (index) => {
                     cc.sys.openURL(shopUrl)
 
                 })
             }
             else {//热更新error 
 
-                UiManager.ShowAlert("ErrorCode=====" + code, [],  ()=> {
+                UiManager.ShowAlert("ErrorCode=====" + code, [], () => {
                     this.Reboot()//失败重启
-      
+
                 })
             }
-        },  (progress, DownedSize, TotalSize)=> {//下载进度，下载了多少kb ，总下载多少kb  
+        }, (progress, DownedSize, TotalSize) => {//下载进度，下载了多少kb ，总下载多少kb  
             cc.log("load progress===", progress)
             if (cc.director.getScheduler().isScheduled(this.updateText, this)) {
                 this.unSchduleUpdateText()//停止显示update... 
@@ -205,35 +215,35 @@ cc.Class({
         })
 
 
-        
+
 
     },
     Reboot() {//重启
-       
-        this.scheduleOnce(()=>{
+
+        this.scheduleOnce(() => {
             Global.gReBoot()
-        },2)
+        }, 2)
 
     },
 
     goLoginScene() {
-        
-        Global.gSchduleOnce(this,  ()=> {
 
-            UiManager.gShowLoading((layer)=>{
+        Global.gSchduleOnce(this, () => {
+
+            UiManager.gShowLoading((layer) => {
                 layer.updataProgress(30)
-                this.scheduleOnce(()=>{
-                    UiManager.gPreloadScene("LoginScene",null,()=>{
+                this.scheduleOnce(() => {
+                    UiManager.gPreloadScene("LoginScene", null, () => {
                         layer.updataProgress(100)
                     })
-                },2)
-    
-            },(layer)=>{
+                }, 2)
+
+            }, (layer) => {
                 UiManager.gLoadScene("LoginScene")
             })
 
         }, 1.5)
-       
+
 
     },
 
