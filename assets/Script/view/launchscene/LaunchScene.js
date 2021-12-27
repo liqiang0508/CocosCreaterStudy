@@ -28,7 +28,7 @@ cc.Class({
         var peron2 = Proto.tutorial.Person.create()
         peron2.name = "hello world"
         peron2.email = "497232807@qq.com"
-        peron2.id = 201162
+        peron2.id = 110
         var byteData = Proto.tutorial.Person.encode(peron2).finish()
         console.log("编码测试===========", byteData)
 
@@ -41,14 +41,15 @@ cc.Class({
         var strData = ProtoTool.Uint8ArrayToString(byteData)
         console.log("编码测试 Uint8ArrayToString===========", strData)
         console.log("编码测试 stringToUint8Array===========", ProtoTool.stringToUint8Array(strData))
-
         var decodeData = Proto.tutorial.Person.decode(byteData)
         console.log("解码测试===========", JSON.stringify(decodeData))
         console.log("protobufjs test===========end")
 
+
         console.log("ProtoTool test ===========================")
         var res = ProtoTool.encode(CMD.Login, { name: "hello world", email: "497232807@qq.com", id: 201162 })
-        console.log("ProtoTool 编码==", res, res.toString())
+        console.log("ProtoTool 编码==", res)
+        console.log("ProtoTool 编码==toString", JSON.stringify(res))
         var res1 = ProtoTool.decode(CMD.Login, res)
         console.log("ProtoTool 解码==", JSON.stringify(res1))
         console.log("ProtoTool test =========================== end")
