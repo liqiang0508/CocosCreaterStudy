@@ -3,7 +3,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-24 15:02:42
- * @LastEditTime: 2021-12-26 16:02:22
+ * @LastEditTime: 2021-12-27 17:47:49
  */
 var gameProto = require("gameProto")
 let ProtoTool = {
@@ -25,7 +25,7 @@ let ProtoTool = {
 
             bytesData = message.create(data)
             bytesData = message.encode(bytesData).finish()
-            bytesData = bytesData.slice().buffer
+            // bytesData = bytesData.slice().buffer
             // bytesData = bytesData.buffer.slice(bytesData.byteOffset, bytesData.byteLength + bytesData.byteOffset)
         }
         return bytesData
@@ -69,7 +69,23 @@ let ProtoTool = {
 
         var tmpUint8Array = new Uint8Array(arr);
         return tmpUint8Array
-    }
+    },
+
+    packData: function (cmd, byteData) {
+        // var message = {cmd:cmd,data:ProtoTool.Uint8ArrayToString(byteData)}
+        // console.log("message==",message)
+        // message = ProtoTool.stringToUint8Array(JSON.stringify(message))
+        // console.log("message==1",message)
+        var data  = {id:cmd,data:byteData}
+        var message = gameProto.tutorial.Package.create(data)
+        var bytesData = gameProto.tutorial.Package.encode(message).finish()
+        return bytesData
+    },
+
+    parseData: function (byteData) {
+        var message = gameProto.tutorial.Package.decode(byteData)
+        return message
+    },
 
 }
 

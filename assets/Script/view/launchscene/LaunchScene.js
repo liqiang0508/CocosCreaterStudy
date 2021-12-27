@@ -49,10 +49,14 @@ cc.Class({
         console.log("ProtoTool test ===========================")
         var res = ProtoTool.encode(CMD.Login, { name: "hello world", email: "497232807@qq.com", id: 201162 })
         console.log("ProtoTool 编码==", res)
-        console.log("ProtoTool 编码==toString", JSON.stringify(res))
+        // console.log("ProtoTool 编码==toString", JSON.stringify(res))
         var res1 = ProtoTool.decode(CMD.Login, res)
         console.log("ProtoTool 解码==", JSON.stringify(res1))
         console.log("ProtoTool test =========================== end")
+        var message = ProtoTool.packData(CMD.Login,res)
+        console.log("pack message==", message)
+        var message2 = ProtoTool.parseData(message)
+        console.log("parseData==", message2)
     },
 
     onDestroy() {
@@ -148,7 +152,7 @@ cc.Class({
         }
         else {//web
             VersionManager.getH5ScriptVersion()//直接读取本地配置版本号 便于登录界面右下角展示
-            this.goLoginScene()
+            // this.goLoginScene()
 
 
         }
