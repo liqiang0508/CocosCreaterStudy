@@ -16,7 +16,7 @@ var EventManager = {
             }
         })
     },
-    dispatchEvent(eventName: string, data: Object) {
+    dispatchEvent(eventName: string, data: any) {
         var event = new cc.Event.EventCustom(eventName, true)
         if (data) {
             event.setUserData(data)
