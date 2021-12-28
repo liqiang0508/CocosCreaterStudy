@@ -6,7 +6,6 @@ var SubGameManager = require("SubGameManager")
 var BaseComponent = require("BaseComponent")
 var xxtea = require("xxtea")
 import Lang from "zh"
-// import CMD from "cmd" 
 cc.Class({
     extends: BaseComponent,
 

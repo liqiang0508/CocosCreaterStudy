@@ -243,6 +243,11 @@ cc.Class({
         }, this)
 
         EventManager.on(this.node, ConstEventDefine.EVENT_NAME.TEST, this.EventTest)
+
+        EventManager.on(this.node, ConstEventDefine.EVENT_NAME.TEST, (data)=>{
+
+            console.log("EventTest===2",data.detail)
+        })
         //encryptToString 语音-》string(字符串压缩)）发送  接收后解密 存储
         // var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
         // var endata = xxtea.encryptToString(data,"1234")//编码成字符串
@@ -535,6 +540,7 @@ cc.Class({
     EventTest(event) {
 
         event.stopPropagation()
+        console.log("EventTest===1")
         UiManager.ShowAlert("事件传来的参数" + JSON.stringify(event.detail), [])
     },
 
