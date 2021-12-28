@@ -144,7 +144,7 @@ cc.Class({
         //btn_EventTest
         var btn_EventTest = cc.find("uipanel/btn_EventTest", this.node)
         ua.darkButton(btn_EventTest, (event) => {
-            EventManager.dispatchEvent(this.node, ConstEventDefine.EVENT_NAME.TEST, { "name": "Lee123" })
+            EventManager.dispatchEvent(ConstEventDefine.EVENT_NAME.TEST, { "name": "Lee123" })
         })
 
         //load Tex
@@ -242,9 +242,9 @@ cc.Class({
             cc.log("取消录音")
         }, this)
 
-        EventManager.on(this.node, ConstEventDefine.EVENT_NAME.TEST, this.EventTest)
+        EventManager.on(ConstEventDefine.EVENT_NAME.TEST, this.EventTest)
 
-        EventManager.on(this.node, ConstEventDefine.EVENT_NAME.TEST, (data)=>{
+        EventManager.on(ConstEventDefine.EVENT_NAME.TEST, (data)=>{
 
             console.log("EventTest===2",data.detail)
         })

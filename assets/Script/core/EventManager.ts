@@ -1,25 +1,28 @@
 var EventManager = {
-    on(node:cc.Node, eventName:string, call:Function) {
-        node.on(eventName, (event) => {
+    init() {
+        this.mEventTarget = new cc.EventTarget()
+    },
+    on(eventName: string, call: Function) {
+        this.mEventTarget.on(eventName, (event) => {
             if (call) {
                 call(event)
             }
         })
     },
-    off(node:cc.Node, eventName:string, call:Function) {
-        node.off(eventName, (event) => {
+    off(eventName: string, call: Function) {
+        this.mEventTarget.off(eventName, (event) => {
             if (call) {
                 call()
             }
         })
     },
-    dispatchEvent(node:cc.Node, eventName:string, data:Object) {
+    dispatchEvent(eventName: string, data: Object) {
         var event = new cc.Event.EventCustom(eventName, true)
         if (data) {
             event.setUserData(data)
         }
-        node.dispatchEvent(event)
+        this.mEventTarget.dispatchEvent(event)
     }
 }
-
+EventManager.init()
 globalThis.EventManager = EventManager;
