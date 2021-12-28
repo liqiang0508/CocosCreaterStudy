@@ -144,9 +144,8 @@ cc.Class({
         //btn_EventTest
         var btn_EventTest = cc.find("uipanel/btn_EventTest", this.node)
         ua.darkButton(btn_EventTest, (event) => {
-            EventManager.dispatchEvent(this.node, RefreshInfo, { "name": "Lee123" })
+            EventManager.dispatchEvent(this.node, ConstEventDefine.EVENT_NAME.TEST, { "name": "Lee123" })
         })
-
 
         //load Tex
         cc.dynamicAtlasManager.enabled = false;
@@ -243,7 +242,7 @@ cc.Class({
             cc.log("取消录音")
         }, this)
 
-        EventManager.on(this.node, RefreshInfo, this.EventTest)
+        EventManager.on(this.node, ConstEventDefine.EVENT_NAME.TEST, this.EventTest)
         //encryptToString 语音-》string(字符串压缩)）发送  接收后解密 存储
         // var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
         // var endata = xxtea.encryptToString(data,"1234")//编码成字符串

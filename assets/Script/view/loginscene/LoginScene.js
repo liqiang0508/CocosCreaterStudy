@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2020-09-01 14:38:55
+ * @LastEditTime: 2021-12-28 18:09:35
  */
 var VersionManager = require("VersionManager")
 // var Global = require("Global")
@@ -185,12 +185,9 @@ cc.Class({
         // var param = {"name":"lee"}
         // cc.director.emit("test",param)
         UiManager.gShowLoading((layer)=>{
-            layer.updataProgress(30)
-            this.scheduleOnce(()=>{
-                UiManager.gPreloadScene("TestScene",null,()=>{
-                    layer.updataProgress(100)
-                })
-            },2)
+            UiManager.gPreloadScene("TestScene", (progress) => {
+                layer.updataProgress(progress)
+            })
 
         },(layer)=>{
             UiManager.gLoadScene("TestScene")

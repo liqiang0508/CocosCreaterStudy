@@ -22,7 +22,6 @@ cc.Class({
     onLoad() {
         this._super()
         cc.log("launchsene onLoad")
-
         console.log("protobufjs test===========")
         var Proto = require("gameProto")
         var peron2 = Proto.tutorial.Person.create()
@@ -53,7 +52,7 @@ cc.Class({
         var res1 = ProtoTool.decode(CMD.Login, res)
         console.log("ProtoTool 解码==", JSON.stringify(res1))
         console.log("ProtoTool test =========================== end")
-        var message = ProtoTool.packData(CMD.Login,res)
+        var message = ProtoTool.packData(CMD.Login, res)
         console.log("pack message==", message)
         var message2 = ProtoTool.parseData(message)
         console.log("parseData==", message2)
@@ -148,11 +147,10 @@ cc.Class({
             Global.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0)//显示update...
 
 
-
         }
         else {//web
             VersionManager.getH5ScriptVersion()//直接读取本地配置版本号 便于登录界面右下角展示
-            // this.goLoginScene()
+            this.goLoginScene()
 
 
         }
@@ -234,12 +232,10 @@ cc.Class({
         Global.gSchduleOnce(this, () => {
 
             UiManager.gShowLoading((layer) => {
-                layer.updataProgress(30)
-                this.scheduleOnce(() => {
-                    UiManager.gPreloadScene("LoginScene", null, () => {
-                        layer.updataProgress(100)
-                    })
-                }, 2)
+                // layer.updataProgress(30)
+                UiManager.gPreloadScene("LoginScene", (progress) => {
+                    layer.updataProgress(progress)
+                })
 
             }, (layer) => {
                 UiManager.gLoadScene("LoginScene")

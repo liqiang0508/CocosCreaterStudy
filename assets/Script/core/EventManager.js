@@ -47,8 +47,7 @@ EventManager.dispatchEvent = function(node,eventName,data)
 
 }
 
-window.EventManager  = EventManager ;
+globalThis.EventManager  = EventManager ;
 
 
-window.RefreshInfo = "refreshinfo";
 
