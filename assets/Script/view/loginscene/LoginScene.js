@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2021-12-28 18:09:35
+ * @LastEditTime: 2021-12-29 15:55:06
  */
 var VersionManager = require("VersionManager")
 // var Global = require("Global")
@@ -182,17 +182,8 @@ cc.Class({
     },
 
     goTestScene() {
-        // var param = {"name":"lee"}
-        // cc.director.emit("test",param)
-        UITool.gShowLoading((layer)=>{
-            UITool.gPreloadScene("TestScene", (progress) => {
-                layer.updataProgress(progress)
-            })
 
-        },(layer)=>{
-            UITool.gLoadScene("TestScene")
-            // layer.bClose()
-        })
+        UITool.changeScene("TestScene")
        
 
     }

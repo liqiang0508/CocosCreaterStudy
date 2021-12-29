@@ -226,17 +226,7 @@ cc.Class({
     goLoginScene() {
 
         Global.gSchduleOnce(this, () => {
-
-            UITool.gShowLoading((layer) => {
-                // layer.updataProgress(30)
-                UITool.gPreloadScene("LoginScene", (progress) => {
-                    layer.updataProgress(progress)
-                })
-
-            }, (layer) => {
-                UITool.gLoadScene("LoginScene")
-            })
-
+            UITool.changeScene("LoginScene")
         }, 1.5)
 
 
