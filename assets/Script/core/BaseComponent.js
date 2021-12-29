@@ -15,7 +15,7 @@ cc.Class({
     showWiat(b){//显示菊花转之类的
         if(b)
         {
-            UiManager.gLoadPrefabRes("prefabs/rotateLoading",function(node)
+            UITool.gLoadPrefabRes("prefabs/rotateLoading",function(node)
             {
                 if (node)
                 {

@@ -1,8 +1,5 @@
 
-// var Global = require("Global")
 var VersionManager = require("VersionManager")
-var SubGameManager = require("SubGameManager")
-// var GameClient = require("GameClient")
 var BaseComponent = require("BaseComponent")
 var xxtea = require("xxtea")
 import Lang from "zh"
@@ -99,7 +96,7 @@ cc.Class({
                         { "text": "公司热更新地址" }//http://192.168.65.151/hotupversion/configdebug
                     ]
                 }
-                UiManager.ShowChooseUpdate(data, (index, layer) => {
+                UITool.ShowChooseUpdate(data, (index, layer) => {
 
                     console.log("点击了", index)
                     if (index == 0) {
@@ -108,7 +105,7 @@ cc.Class({
                     }
                     else if (index == 1)//手动输入地址
                     {
-                        UiManager.ShowTextInput((text) => {
+                        UITool.ShowTextInput((text) => {
                             if (text.length > 0) {
                                 Global.Ghotupdateurl = text
                                 this.goCheckUpdate(text)//热更新检查
@@ -117,7 +114,7 @@ cc.Class({
                             else {
                                 console.log("请输入自定义的热更新地址")
                                 layer.bClose()
-                                UiManager.ShowAlert("请输入正确自定义的热更新地址", [], () => {
+                                UITool.ShowAlert("请输入正确自定义的热更新地址", [], () => {
 
                                     Global.gExitGame()
                                 })
@@ -192,14 +189,14 @@ cc.Class({
             }
             else if (code == 8)//强制更新 打开商店链接
             {
-                UiManager.ShowAlert("发现新版本" + shopUrl, [], (index) => {
+                UITool.ShowAlert("发现新版本" + shopUrl, [], (index) => {
                     cc.sys.openURL(shopUrl)
 
                 })
             }
             else {//热更新error 
 
-                UiManager.ShowAlert("ErrorCode=====" + code, [], () => {
+                UITool.ShowAlert("ErrorCode=====" + code, [], () => {
                     this.Reboot()//失败重启
 
                 })
@@ -230,14 +227,14 @@ cc.Class({
 
         Global.gSchduleOnce(this, () => {
 
-            UiManager.gShowLoading((layer) => {
+            UITool.gShowLoading((layer) => {
                 // layer.updataProgress(30)
-                UiManager.gPreloadScene("LoginScene", (progress) => {
+                UITool.gPreloadScene("LoginScene", (progress) => {
                     layer.updataProgress(progress)
                 })
 
             }, (layer) => {
-                UiManager.gLoadScene("LoginScene")
+                UITool.gLoadScene("LoginScene")
             })
 
         }, 1.5)

@@ -6,8 +6,6 @@ var DevicesInfo = require("Devices")
 
 const voiceNative = require("VoiceNative");
 var BaseComponent = require("BaseComponent")
-var SubGameManager = require("SubGameManager")
-
 
 cc.Class({
     extends: BaseComponent,
@@ -128,7 +126,7 @@ cc.Class({
         ua.darkButton(showAlertIII, function (event) {
 
             // event.currentTarget.active = false
-            UiManager.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
+            UITool.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
                 cc.log("click==", index)
             })
 
@@ -195,7 +193,7 @@ cc.Class({
             if (Date.now() - lastTouchTime < 1000) {
                 voiceNative.cancel();
                 cc.log("时间小于一秒");
-                UiManager.ShowAlert("时间小于一秒", ["Yes"], function (index) {
+                UITool.ShowAlert("时间小于一秒", ["Yes"], function (index) {
 
                 })
 
@@ -203,7 +201,7 @@ cc.Class({
             else if (Date.now() - lastTouchTime > 8000) {
                 voiceNative.cancel();
 
-                UiManager.ShowAlert("录音时间大于8s", ["Yes"], function (index) {
+                UITool.ShowAlert("录音时间大于8s", ["Yes"], function (index) {
 
                 })
             }
@@ -275,7 +273,7 @@ cc.Class({
         var btn_showpopLayer = cc.find("uipanel/btn_showpopLayer", this.node)
         ua.darkButton(btn_showpopLayer, function () {
 
-            UiManager.gLoadPrefabRes("prefabs/poplayer", function (prefabNode) {
+            UITool.gLoadPrefabRes("prefabs/poplayer", function (prefabNode) {
                 if (prefabNode) {
                     cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
                     var com = prefabNode.getComponent("poplayer")
@@ -309,12 +307,12 @@ cc.Class({
 
         var btn_bubble = cc.find("uipanel/btn_bubble", this.node)
         ua.darkButton(btn_bubble, () => {
-            UiManager.gLoadScene("bubbleScene")
+            UITool.gLoadScene("bubbleScene")
         })
 
         var btn_mipai = cc.find("uipanel/btn_mipai", this.node)
         ua.darkButton(btn_mipai, () => {
-            UiManager.gLoadScene("mipaiScene")
+            UITool.gLoadScene("mipaiScene")
         })
         //bundle加载测试
         // btn_goslot
@@ -348,9 +346,9 @@ cc.Class({
                         cc.log("downSubGame return code == ", code)
                         if (code == 0)//下载成功
                         {
-                            UiManager.ShowAlert("下载成功", [], (index) => {
+                            UITool.ShowAlert("下载成功", [], (index) => {
 
-                                UiManager.gloadBundleScene(subGameName, (code) => {
+                                UITool.gloadBundleScene(subGameName, (code) => {
                                     if (code == 0) {
                                         cc.log("gloadBundleScene success")
                                     }
@@ -362,7 +360,7 @@ cc.Class({
                         }
                         else//失败
                         {
-                            UiManager.ShowAlert("下载失败" + code, [], (index) => {
+                            UITool.ShowAlert("下载失败" + code, [], (index) => {
 
 
                             })
@@ -382,9 +380,9 @@ cc.Class({
                         cc.log("updateSubGame return code == ", code)
                         if (code == 0)//下载成功
                         {
-                            UiManager.ShowAlert("更新成功", [], (index) => {
+                            UITool.ShowAlert("更新成功", [], (index) => {
 
-                                UiManager.gloadBundleScene(subGameName, (code) => {
+                                UITool.gloadBundleScene(subGameName, (code) => {
                                     if (code == 0) {
                                         cc.log("gloadBundleScene success")
                                     }
@@ -396,7 +394,7 @@ cc.Class({
                         }
                         else//失败
                         {
-                            UiManager.ShowAlert("更新失败" + code, [], (index) => {
+                            UITool.ShowAlert("更新失败" + code, [], (index) => {
 
 
                             })
@@ -407,7 +405,7 @@ cc.Class({
                 else {//在本地，不需要更新,直接进
                     cc.log("子包本地和远程版本一致，直接进游戏")
 
-                    UiManager.gloadBundleScene(subGameName, (code) => {
+                    UITool.gloadBundleScene(subGameName, (code) => {
                         if (code == 0) {
                             cc.log("gloadBundleScene success")
                         }
@@ -543,7 +541,7 @@ cc.Class({
 
         event.stopPropagation()
         console.log("EventTest===1")
-        UiManager.ShowAlert("事件传来的参数" + JSON.stringify(event.detail), [])
+        UITool.ShowAlert("事件传来的参数" + JSON.stringify(event.detail), [])
     },
 
 

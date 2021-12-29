@@ -327,5 +327,5 @@ SubGameManager.isDeugPalyer = function () {
 }
 
 
-
-module.exports = SubGameManager;
+globalThis.SubGameManager = SubGameManager
+// module.exports = SubGameManager;

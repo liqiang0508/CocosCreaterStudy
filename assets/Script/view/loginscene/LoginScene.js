@@ -107,14 +107,14 @@ cc.Class({
             if(cc.sys.isNative == false)
             {
                 console.log("Wx 登录只支持原生平台")
-                UiManager.ShowFlotText("Wx 登录只支持原生平台")
+                UITool.ShowFlotText("Wx 登录只支持原生平台")
                 return 
             }
             gg.wechat.login((msg)=>{
                 if (msg.ret==true)
                 {
                     console.log("WeChatModule login success----"+JSON.stringify(msg))
-                    UiManager.ShowAlert(JSON.stringify(msg))
+                    UITool.ShowAlert(JSON.stringify(msg))
                 }
                 else{
                     console.log("WeChatModule login Faild----"+JSON.stringify(msg))
@@ -127,7 +127,7 @@ cc.Class({
             if(cc.sys.isNative == false)
             {
                 console.log("Wx 分享只支持原生平台")
-                UiManager.ShowFlotText("Wx 分享只支持原生平台")
+                UITool.ShowFlotText("Wx 分享只支持原生平台")
                 return 
             }
             gg.wechat.shareTextWx("666",0,(result,msg)=>{
@@ -184,13 +184,13 @@ cc.Class({
     goTestScene() {
         // var param = {"name":"lee"}
         // cc.director.emit("test",param)
-        UiManager.gShowLoading((layer)=>{
-            UiManager.gPreloadScene("TestScene", (progress) => {
+        UITool.gShowLoading((layer)=>{
+            UITool.gPreloadScene("TestScene", (progress) => {
                 layer.updataProgress(progress)
             })
 
         },(layer)=>{
-            UiManager.gLoadScene("TestScene")
+            UITool.gLoadScene("TestScene")
             // layer.bClose()
         })
        

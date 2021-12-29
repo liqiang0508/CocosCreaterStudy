@@ -36,7 +36,7 @@ var KeypadDispatch = cc.Class({
 
         if( this.Stacks.length ==1)//根布局 提示退出游戏
         {
-            UiManager.ShowAlert("exit game?", ["yes", "no"], function (index) {
+            UITool.ShowAlert("exit game?", ["yes", "no"], function (index) {
                 if(index==1){
                     cc.game.end()
                 }
