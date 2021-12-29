@@ -76,7 +76,7 @@ http.postData = function (url, callback, base64) {
 
 http.uploadFile = function (url, callback, filepath) {
     var data = jsb.fileUtils.getDataFromFile(filepath);
-    var xhr = cc.loader.getXMLHttpRequest();
+    var xhr = new XMLHttpRequest()//.getXMLHttpRequest();
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-Type', 'application/octet-stream');
     xhr.send(data);

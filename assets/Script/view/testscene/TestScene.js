@@ -35,8 +35,10 @@ cc.Class({
         if (cc && cc.sys.isNative) {
             searchPaths = jsb.fileUtils.getSearchPaths();
         }
-
-
+        // this.mChild={}
+        // UITool.getChildNode(this.mChild,this.node)
+        // console.log("mChild===",this.mChild)
+        // this.mChild.sp3.active = false
         // 坐标转换
         var sp2 = cc.find("uipanel/New Sprite", this.node)
         var sp4 = cc.find("content/sp4", this.node)
