@@ -21,10 +21,13 @@
     "_components": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 3
       }
     ],
     "_prefab": {
-      "__id__": 3
+      "__id__": 4
     },
     "_opacity": 255,
     "_color": {
@@ -36,7 +39,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44.49,
+      "width": 66.74,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -88,8 +91,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "",
-    "_N$string": "",
+    "_string": "666",
+    "_N$string": "666",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -104,6 +107,25 @@
     "_N$fontFamily": "Arial",
     "_N$overflow": 0,
     "_N$cacheMode": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "fc177247-4cea-48c8-9478-4aea54ea0a9a"
+    },
+    "_clips": [
+      {
+        "__uuid__": "fc177247-4cea-48c8-9478-4aea54ea0a9a"
+      }
+    ],
+    "playOnLoad": true,
     "_id": ""
   },
   {

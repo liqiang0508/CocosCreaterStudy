@@ -2,10 +2,10 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2021-12-29 16:21:46
+ * @LastEditTime: 2021-12-29 16:52:08
  */
 var UITool = {
-    showWaitState:false,
+    showWaitState: false,
     getChildNode: function (nodeObject: object, node: cc.Node) {
         var childNode: cc.Node[] = node.children
         for (var i = 0; i < childNode.length; i++) {
@@ -36,12 +36,9 @@ var UITool = {
                     this.gSceneAddNode(node)
                 }
                 node.setPosition(pos)
-                cc.tween(node)
-                    .parallel(
-                        cc.tween().by(1, { position: cc.v2(0, 150) }),
-                        cc.tween().to(1, { opacity: 0 })
-                            .call(() => { node.destroy() })
-                    ).start()
+                this.playAnimation(node,"floatTextShow",()=>{
+                    node.destroy()
+                })
             }
         })
     },
@@ -177,9 +174,8 @@ var UITool = {
         })
     },
     showWaitNetWork: function (time = 30) {
-        if (this.showWaitState)
-        {
-            return 
+        if (this.showWaitState) {
+            return
         }
         this.showWaitState = true
         UITool.gLoadPrefabRes("prefabs/rotateLoading", function (node: cc.Node) {
@@ -199,6 +195,18 @@ var UITool = {
             node.destroy()
         }
     },
+    //播放动画
+    playAnimation: function (node: cc.Node, name: string, endCall: Function) {
+        var anim = node.getComponent(cc.Animation);
+        if (anim) {
+            anim.play(name);
+            anim.on("finished", () => {
+                if (endCall) {
+                    endCall()
+                }
+            }, this);
+        }
+    }
 }
 
 globalThis.UITool = UITool;
