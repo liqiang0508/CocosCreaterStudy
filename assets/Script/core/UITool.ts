@@ -2,10 +2,10 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2021-12-29 15:54:51
+ * @LastEditTime: 2021-12-29 16:21:46
  */
 var UITool = {
-
+    showWaitState:false,
     getChildNode: function (nodeObject: object, node: cc.Node) {
         var childNode: cc.Node[] = node.children
         for (var i = 0; i < childNode.length; i++) {
@@ -25,7 +25,7 @@ var UITool = {
             }
         })
     },
-    ShowFlotText: function (text, parent = null, pos = cc.v2(0, 0)) {
+    showFlotText: function (text, parent = null, pos = cc.v2(0, 0)) {
         this.gLoadPrefabRes("prefabs/FloatText", (node: cc.Node) => {
             if (node) {
                 node.getComponent(cc.Label).string = text
@@ -40,6 +40,7 @@ var UITool = {
                     .parallel(
                         cc.tween().by(1, { position: cc.v2(0, 150) }),
                         cc.tween().to(1, { opacity: 0 })
+                            .call(() => { node.destroy() })
                     ).start()
             }
         })
@@ -132,7 +133,7 @@ var UITool = {
                     if (finishCall) {
                         finishCall(1)
                     }
-                    return console.error(err);
+                    return
                 }
 
                 bundle.loadScene(bundleName, function (err, scene) {
@@ -162,18 +163,42 @@ var UITool = {
     },
     //切换场景
     changeScene: function (sceneName, call) {
-        this.gShowLoading((layer) => { 
+        this.gShowLoading((layer) => {
             this.gPreloadScene(sceneName, (progress) => {
                 layer.updataProgress(progress)
             })
-        }, (layer) => { 
+        }, (layer) => {
+            layer.updataProgress(100)
             this.gLoadScene(sceneName)
-            if(call){
+            if (call) {
                 call()
             }
 
         })
-    }
+    },
+    showWaitNetWork: function (time = 30) {
+        if (this.showWaitState)
+        {
+            return 
+        }
+        this.showWaitState = true
+        UITool.gLoadPrefabRes("prefabs/rotateLoading", function (node: cc.Node) {
+            if (node) {
+                cc.director.getScene().getChildByName("Canvas").addChild(node)
+                node.name = "rotateLoading"
+                cc.tween(node).delay(time)
+                    .call(() => { node.destroy() })
+                    .start()
+            }
+        })
+    },
+    dismissWaitNetWork: function () {
+        this.showWaitState = false
+        var node = cc.director.getScene().getChildByName("Canvas").getChildByName("rotateLoading")
+        if (node) {
+            node.destroy()
+        }
+    },
 }
 
 globalThis.UITool = UITool;

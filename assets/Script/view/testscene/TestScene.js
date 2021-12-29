@@ -136,9 +136,10 @@ cc.Class({
         //btn_showWaiting菊花转
         var btn_showWaiting = cc.find("uipanel/btn_showWaiting", this.node)
         ua.darkButton(btn_showWaiting, (event) => {
-            this.showWiat(true)
+            UITool.showWaitNetWork()
+            UITool.showFlotText("3s后关闭")
             setTimeout(() => {
-                this.showWiat(false)
+                UITool.dismissWaitNetWork()
             }, 3000)
         })
         //btn_EventTest
@@ -337,12 +338,12 @@ cc.Class({
                 if (state == "not_in_app")//下载子游戏
                 {
                     cc.log("下载子游戏===")
-                    this.showWiat(true)
+                    UITool.showWaitNetWork()
                     SubGameManager.downSubGame(subGameName, (progress, DownedSize, TotalSize) => {//下载进度，下载了多少kb ，总下载多少kb
                         cc.log("downSubGame progress===", progress)
 
                     }, (code) => {
-                        this.showWiat(false)
+                        UITool.dismissWaitNetWork()
                         cc.log("downSubGame return code == ", code)
                         if (code == 0)//下载成功
                         {
@@ -371,12 +372,12 @@ cc.Class({
                 else if (state == "need_update")//需要更新
                 {
                     cc.log("需要更新====")
-                    this.showWiat(true)
+                    UITool.showWaitNetWork()
                     SubGameManager.downSubGame(subGameName, (progress, DownedSize, TotalSize) => {//下载进度，下载了多少kb ，总下载多少kb
                         cc.log("updateSubGame progress===", progress)
 
                     }, (code) => {
-                        this.showWiat(false)
+                        UITool.dismissWaitNetWork()
                         cc.log("updateSubGame return code == ", code)
                         if (code == 0)//下载成功
                         {

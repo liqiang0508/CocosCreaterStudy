@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2021-12-29 15:55:06
+ * @LastEditTime: 2021-12-29 16:21:52
  */
 var VersionManager = require("VersionManager")
 // var Global = require("Global")
@@ -107,7 +107,7 @@ cc.Class({
             if(cc.sys.isNative == false)
             {
                 console.log("Wx 登录只支持原生平台")
-                UITool.ShowFlotText("Wx 登录只支持原生平台")
+                UITool.showFlotText("Wx 登录只支持原生平台")
                 return 
             }
             gg.wechat.login((msg)=>{
@@ -127,7 +127,7 @@ cc.Class({
             if(cc.sys.isNative == false)
             {
                 console.log("Wx 分享只支持原生平台")
-                UITool.ShowFlotText("Wx 分享只支持原生平台")
+                UITool.showFlotText("Wx 分享只支持原生平台")
                 return 
             }
             gg.wechat.shareTextWx("666",0,(result,msg)=>{
