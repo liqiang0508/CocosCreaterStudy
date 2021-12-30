@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2021-12-29 16:21:52
+ * @LastEditTime: 2021-12-29 17:01:14
  */
 var VersionManager = require("VersionManager")
 // var Global = require("Global")
@@ -106,7 +106,7 @@ cc.Class({
             // }
             if(cc.sys.isNative == false)
             {
-                console.log("Wx 登录只支持原生平台")
+                // console.log("Wx 登录只支持原生平台")
                 UITool.showFlotText("Wx 登录只支持原生平台")
                 return 
             }
@@ -126,7 +126,7 @@ cc.Class({
 
             if(cc.sys.isNative == false)
             {
-                console.log("Wx 分享只支持原生平台")
+                // console.log("Wx 分享只支持原生平台")
                 UITool.showFlotText("Wx 分享只支持原生平台")
                 return 
             }

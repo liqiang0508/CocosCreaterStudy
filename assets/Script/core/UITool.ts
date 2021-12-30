@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2021-12-29 16:52:08
+ * @LastEditTime: 2021-12-30 20:28:27
  */
 var UITool = {
     showWaitState: false,
@@ -82,12 +82,12 @@ var UITool = {
     },
     //弹框
     ShowAlert: function (str, btninfo = [], call) {
-        this.gLoadPrefabRes("prefabs/AlertLayer2", function (node: cc.Node) {
+        this.gLoadPrefabRes("prefabs/AlertLayer", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(node)
-                var AlertIII = node.getComponent("AlertIII")
-                if (AlertIII) {
-                    AlertIII.showAlert(str, btninfo, function (index) {
+                var Alert = node.getComponent("Alert")
+                if (Alert) {
+                    Alert.showAlert(str, btninfo, function (index) {
                         if (call) {
                             call(index)
                         }
