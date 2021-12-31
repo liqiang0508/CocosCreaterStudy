@@ -3,11 +3,11 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-12 13:56:57
- * @LastEditTime: 2020-08-12 14:32:38
+ * @LastEditTime: 2021-12-31 11:23:48
  */
-var BaseComponent = require("BaseComponent")
+
 cc.Class({
-    extends:BaseComponent,
+    extends:cc.Component,
 
     properties: {
         // foo: {

@@ -1,17 +1,17 @@
 
-var BaseComponent = require("BaseComponent")
+
 cc.Class({
-    extends: BaseComponent,
+    extends: cc.Component,
 
     properties: {
     },
 
     // LIFE-CYCLE CALLBACKS:
     onDestroy(){
-        this._super()
+
     },
     onLoad () {
-        this._super()
+
   
         var btndone = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("btn_done")
         UITool.addBtnClick(btndone,()=>{
@@ -38,7 +38,7 @@ cc.Class({
         this.Editbox.getComponent(cc.EditBox).setFocus()
     },
     onbackpress(){
-        this._super()
+
 
     },
 

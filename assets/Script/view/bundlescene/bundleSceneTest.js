@@ -1,20 +1,13 @@
 
-var BaseComponent = require("BaseComponent");
+
 cc.Class({
-    extends: BaseComponent,
+    extends: cc.Component,
 
     properties: {
 
     },
 
-    onLoad() {
-
-        this._super()
-    },
-
-    onDestroy() {
-        this._super()
-    },
+ 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},

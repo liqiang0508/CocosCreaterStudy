@@ -1,10 +1,9 @@
 
 var VersionManager = require("VersionManager")
-var BaseComponent = require("BaseComponent")
 var xxtea = require("xxtea")
 import Lang from "zh"
 cc.Class({
-    extends: BaseComponent,
+    extends: cc.Component,
 
     properties: {
 
@@ -16,7 +15,7 @@ cc.Class({
 
 
     onLoad() {
-        this._super()
+  
         cc.log("launchsene onLoad")
         console.log("protobufjs test===========")
         var Proto = require("gameProto")
@@ -55,7 +54,7 @@ cc.Class({
     },
 
     onDestroy() {
-        this._super()
+
     },
 
     updateText() {//显示updating...

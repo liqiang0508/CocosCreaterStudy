@@ -3,15 +3,13 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2021-12-29 17:01:14
+ * @LastEditTime: 2021-12-31 11:26:49
  */
 var VersionManager = require("VersionManager")
 // var Global = require("Global")
 var DevicesInfo = require("Devices")
-var BaseComponent = require("BaseComponent");
-
 cc.Class({
-    extends: BaseComponent,
+    extends: cc.Component,
 
     properties: {
 
@@ -25,7 +23,7 @@ cc.Class({
 
     onLoad() {
 
-        this._super()
+ 
 
         // this.schedule(this.update1, 1/60);
         this.speed = 5  //vt*vt-v0*v0=2as
@@ -37,7 +35,7 @@ cc.Class({
     },
 
     onDestroy() {
-        this._super()
+  
     },
 
     update1(dt){

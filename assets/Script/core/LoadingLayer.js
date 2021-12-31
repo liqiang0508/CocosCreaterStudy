@@ -1,8 +1,8 @@
 
-var BaseComponent = require("BaseComponent");
+
 const { timeStamp } = require("console");
 cc.Class({
-    extends: BaseComponent,
+    extends: cc.Component,
 
     properties: {
         
@@ -10,15 +10,7 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad() {
-
-        this._super()
-    },
-
-    onDestroy() {
-        this._super()
-        
-    },
+  
 
     start () {
         this.ProgreeNode = cc.find("progress",this.node)

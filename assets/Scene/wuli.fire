@@ -302,7 +302,7 @@
       "array": [
         0,
         0,
-        431.28065108465046,
+        392.30014938601306,
         0,
         0,
         0,
@@ -1082,7 +1082,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
     "_string": "button",
     "_N$string": "button",
     "_fontSize": 20,

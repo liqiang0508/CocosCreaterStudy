@@ -1775,18 +1775,6 @@
     "sync": false
   },
   {
-    "__type__": "99b61PfCD9G5ZZgSdlAOr7O",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "AimType": 1,
-    "mStarted": false,
-    "_id": ""
-  },
-  {
     "__type__": "cc.Widget",
     "_name": "",
     "_objFlags": 0,
@@ -1811,6 +1799,16 @@
     "_isAbsVerticalCenter": true,
     "_originalWidth": 750,
     "_originalHeight": 1334,
+    "_id": ""
+  },
+  {
+    "__type__": "ddbe6DEUkJPyLv9UmKO+cUY",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
     "_id": ""
   },
   {

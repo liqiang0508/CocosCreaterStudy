@@ -1,17 +1,17 @@
 
-var BaseComponent = require("BaseComponent")
+
 cc.Class({
-    extends: BaseComponent,
+    extends: cc.Component,
 
     properties: {
     },
 
     // LIFE-CYCLE CALLBACKS:
     onDestroy(){
-        this._super()
+
     },
     onLoad () {
-        this._super()
+
        
         var btnclose = this.node.getChildByName("bg").getChildByName("btn_close")
         UITool.addBtnClick(btnclose,()=>{
@@ -19,7 +19,7 @@ cc.Class({
         })
     },
     onbackpress(){
-        this._super()
+
 
     },
 

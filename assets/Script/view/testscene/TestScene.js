@@ -5,10 +5,10 @@ var Package = require("Package")
 var DevicesInfo = require("Devices")
 
 const voiceNative = require("VoiceNative");
-var BaseComponent = require("BaseComponent")
+
 
 cc.Class({
-    extends: BaseComponent,
+    extends: cc.Component,
 
     properties: {
 
@@ -17,14 +17,14 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this._super()
+
         voiceNative.init();
         //   KeypadDispatch.getInstance()
 
     },
 
     onDestroy() {
-        this._super()
+
     },
 
     start() {

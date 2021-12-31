@@ -1,17 +1,14 @@
 
-var BaseComponent = require("BaseComponent")
 cc.Class({
-    extends: BaseComponent,
+    extends: cc.Component,
 
     properties: {
     },
 
     // LIFE-CYCLE CALLBACKS:
-    onDestroy() {
-        this._super()
-    },
+ 
     onLoad() {
-        this._super()
+ 
 
         this.content = this.node.getChildByName("bg").getChildByName("ScrollView").getChildByName("view").getChildByName("content")
         this.item = this.node.getChildByName("bg").getChildByName("item")
@@ -51,7 +48,7 @@ cc.Class({
 
     },
     onbackpress() {
-        this._super()
+        
 
     },
 

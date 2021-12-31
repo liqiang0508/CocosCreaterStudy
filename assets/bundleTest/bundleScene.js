@@ -1,6 +1,6 @@
-var BaseComponent = require("BaseComponent")
+
 cc.Class({
-    extends:BaseComponent,
+    extends:cc.Component,
 
     properties: {
         // foo: {
@@ -34,12 +34,5 @@ cc.Class({
 
     // update (dt) {},
 
-    onLoad () {
-
-        this._super()
-    },
-
-    onDestroy(){
-        this._super()
-    },
+ 
 });
