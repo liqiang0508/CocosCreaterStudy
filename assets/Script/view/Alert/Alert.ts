@@ -113,4 +113,7 @@ export default class Alert extends popBaseView {
         this.fresh()
     }
 
+    onbackpress() {
+        this.dismisssAnimation()
+    }
 }

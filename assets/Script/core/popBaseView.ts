@@ -2,17 +2,16 @@
  * @Description: 弹框基类
  * @Author: li qiang
  * @Date: 2021-12-31 09:53:56
- * @LastEditTime: 2021-12-31 11:35:43
+ * @LastEditTime: 2021-12-31 12:12:58
  */
 
 
 const {ccclass, property} = cc._decorator;
 import  KeypadDispatch = require("./KeypadDispatch.js");
-import  BaseComponent  from "./BaseComponent.js";
+import  BaseComponent  from "./BaseComponent";
 
 @ccclass
 export default class popBaseView extends BaseComponent {
-
     mChild:any = {};
     
     onLoad () {
@@ -28,8 +27,11 @@ export default class popBaseView extends BaseComponent {
 
     dismisssAnimation() {
         UITool.playAnimation(this.mChild.view,"view_dismiss",()=>{
-            this.node.destroy();
+            this.close();
         })
+    }
+    close(){
+        this.node.destroy();
     }
 
 }

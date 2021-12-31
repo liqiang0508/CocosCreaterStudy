@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-22 15:50:04
- * @LastEditTime: 2020-08-07 11:03:03
+ * @LastEditTime: 2021-12-31 12:21:04
  */
 
 // var Global = require("Global")
@@ -33,16 +33,6 @@ var KeypadDispatch = cc.Class({
     },
 
     onbackkeyup(){//按了返回键 ，默认关闭最上层弹出层。 子类如果有其他额外操作，继承重写方法即可
-
-        if( this.Stacks.length ==1)//根布局 提示退出游戏
-        {
-            UITool.ShowAlert("exit game?", ["yes", "no"], function (index) {
-                if(index==1){
-                    cc.game.end()
-                }
-            })
-            return
-        }
 
         var com =  this.Stacks[this.Stacks.length-1]//弹出层调用自己的onbackpress
         if (com)
