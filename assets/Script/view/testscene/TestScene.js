@@ -19,7 +19,6 @@ cc.Class({
     onLoad() {
 
         voiceNative.init();
-        //   KeypadDispatch.getInstance()
 
     },
 

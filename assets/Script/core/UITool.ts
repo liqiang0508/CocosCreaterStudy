@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2021-12-31 14:42:10
+ * @LastEditTime: 2021-12-31 15:13:38
  */
 var UITool = {
     showWaitState: false,

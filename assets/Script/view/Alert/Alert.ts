@@ -4,7 +4,6 @@ import popBaseView from "../../core/popBaseView";
 @ccclass
 export default class Alert extends popBaseView {
 
-    mChild:any = {};
     mText:string = ""
     mBtnInfo:any = []
     mCall:Function = null;

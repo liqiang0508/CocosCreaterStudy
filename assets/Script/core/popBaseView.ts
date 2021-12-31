@@ -2,24 +2,22 @@
  * @Description: 弹框基类
  * @Author: li qiang
  * @Date: 2021-12-31 09:53:56
- * @LastEditTime: 2021-12-31 14:39:53
+ * @LastEditTime: 2021-12-31 15:11:13
  */
 
 
 const {ccclass, property} = cc._decorator;
-import  KeypadDispatch = require("./KeypadDispatch.js");
 import  BaseComponent  from "./BaseComponent";
 
 @ccclass
 export default class popBaseView extends BaseComponent {
-    mChild:any = {};
-    
+    mChild:any = {}
     onLoad () {
-        KeypadDispatch.getInstance().add(this)
+        keypadManager.add(this)
     }
 
     onDestroy() {
-        KeypadDispatch.getInstance().remove()
+        keypadManager.remove()
     }
     start () {
 

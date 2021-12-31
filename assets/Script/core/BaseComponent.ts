@@ -4,7 +4,6 @@ const { ccclass, property } = cc._decorator;
 export default class BaseComponent extends cc.Component {
 
     mStarted:boolean= false;
-
     onLoad() {
 
     }
