@@ -27,14 +27,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 44
+        "__id__": 45
       },
       {
-        "__id__": 45
+        "__id__": 46
       }
     ],
     "_prefab": {
-      "__id__": 46
+      "__id__": 47
     },
     "_opacity": 255,
     "_color": {
@@ -319,10 +319,13 @@
       },
       {
         "__id__": 42
+      },
+      {
+        "__id__": 43
       }
     ],
     "_prefab": {
-      "__id__": 43
+      "__id__": 44
     },
     "_opacity": 255,
     "_color": {
@@ -1754,13 +1757,23 @@
     },
     "_clips": [
       {
-        "__uuid__": "a874a86a-3345-42cc-8ab9-bcbe3147f708"
+        "__uuid__": "257517b0-7fb5-4ede-9456-1c31b1752fe8"
       },
       {
-        "__uuid__": "257517b0-7fb5-4ede-9456-1c31b1752fe8"
+        "__uuid__": "a874a86a-3345-42cc-8ab9-bcbe3147f708"
       }
     ],
     "playOnLoad": true,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.BlockInputEvents",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 7
+    },
+    "_enabled": true,
     "_id": ""
   },
   {

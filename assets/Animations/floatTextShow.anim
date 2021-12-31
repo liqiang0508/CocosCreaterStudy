@@ -13,11 +13,11 @@
         {
           "frame": 0,
           "value": 0,
-          "curve": "linear"
+          "curve": "cubicOut"
         },
         {
           "frame": 2,
-          "value": 200
+          "value": 250
         }
       ],
       "opacity": [
@@ -25,6 +25,10 @@
           "frame": 0,
           "value": 255,
           "curve": "linear"
+        },
+        {
+          "frame": 1.85,
+          "value": 250
         },
         {
           "frame": 2,

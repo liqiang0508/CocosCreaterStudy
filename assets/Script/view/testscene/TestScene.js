@@ -127,7 +127,8 @@ cc.Class({
 
             // event.currentTarget.active = false
             UITool.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
-                cc.log("click==", index)
+                // cc.log("click==", index)
+                UITool.showFlotText(index)
             })
 
 
