@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2021-12-31 14:37:39
+ * @LastEditTime: 2021-12-31 14:42:10
  */
 var UITool = {
     showWaitState: false,
@@ -81,7 +81,7 @@ var UITool = {
         })
     },
     //弹框
-    ShowAlert: function (str, btninfo = [], call) {
+    showAlert: function (str, btninfo = [], call) {
         this.loadPrefabRes("prefabs/AlertLayer", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(node)
