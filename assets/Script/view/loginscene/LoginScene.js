@@ -112,7 +112,7 @@ cc.Class({
                 if (msg.ret==true)
                 {
                     console.log("WeChatModule login success----"+JSON.stringify(msg))
-                    UITool.ShowAlert(JSON.stringify(msg))
+                    UITool.showAlert(JSON.stringify(msg))
                 }
                 else{
                     console.log("WeChatModule login Faild----"+JSON.stringify(msg))

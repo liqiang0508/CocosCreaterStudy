@@ -16,7 +16,7 @@ cc.Class({
         var btn_exit = cc.find("uipanel/btn_exit", this.node)
         UITool.addBtnClick(btn_exit, () => {
 
-            UITool.gShowLoading((layer) => {
+            UITool.showLoading((layer) => {
                 layer.updataProgress(30)
                 this.scheduleOnce(() => {
                     layer.updataProgress(100)

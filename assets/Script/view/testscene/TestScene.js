@@ -126,7 +126,7 @@ cc.Class({
         UITool.addBtnClick(showAlertIII, function (event) {
 
             // event.currentTarget.active = false
-            UITool.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
+            UITool.showAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
                 // cc.log("click==", index)
                 UITool.showFlotText(index)
             })
@@ -195,7 +195,7 @@ cc.Class({
             if (Date.now() - lastTouchTime < 1000) {
                 voiceNative.cancel();
                 cc.log("时间小于一秒");
-                UITool.ShowAlert("时间小于一秒", ["Yes"], function (index) {
+                UITool.showAlert("时间小于一秒", ["Yes"], function (index) {
 
                 })
 
@@ -203,7 +203,7 @@ cc.Class({
             else if (Date.now() - lastTouchTime > 8000) {
                 voiceNative.cancel();
 
-                UITool.ShowAlert("录音时间大于8s", ["Yes"], function (index) {
+                UITool.showAlert("录音时间大于8s", ["Yes"], function (index) {
 
                 })
             }
@@ -275,7 +275,7 @@ cc.Class({
         var btn_showpopLayer = cc.find("uipanel/btn_showpopLayer", this.node)
         UITool.addBtnClick(btn_showpopLayer, function () {
 
-            UITool.gLoadPrefabRes("prefabs/poplayer", function (prefabNode) {
+            UITool.loadPrefabRes("prefabs/poplayer", function (prefabNode) {
                 if (prefabNode) {
                     cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
                     var com = prefabNode.getComponent("poplayer")
@@ -309,12 +309,12 @@ cc.Class({
 
         var btn_bubble = cc.find("uipanel/btn_bubble", this.node)
         UITool.addBtnClick(btn_bubble, () => {
-            UITool.gLoadScene("bubbleScene")
+            UITool.loadScene("bubbleScene")
         })
 
         var btn_mipai = cc.find("uipanel/btn_mipai", this.node)
         UITool.addBtnClick(btn_mipai, () => {
-            UITool.gLoadScene("mipaiScene")
+            UITool.loadScene("mipaiScene")
         })
         //bundle加载测试
         // btn_goslot
@@ -348,21 +348,21 @@ cc.Class({
                         cc.log("downSubGame return code == ", code)
                         if (code == 0)//下载成功
                         {
-                            UITool.ShowAlert("下载成功", [], (index) => {
+                            UITool.showAlert("下载成功", [], (index) => {
 
-                                UITool.gloadBundleScene(subGameName, (code) => {
+                                UITool.loadBundleScene(subGameName, (code) => {
                                     if (code == 0) {
-                                        cc.log("gloadBundleScene success")
+                                        cc.log("loadBundleScene success")
                                     }
                                     else {
-                                        cc.log("gloadBundleScene failed=", code)
+                                        cc.log("loadBundleScene failed=", code)
                                     }
                                 })
                             })
                         }
                         else//失败
                         {
-                            UITool.ShowAlert("下载失败" + code, [], (index) => {
+                            UITool.showAlert("下载失败" + code, [], (index) => {
 
 
                             })
@@ -382,21 +382,21 @@ cc.Class({
                         cc.log("updateSubGame return code == ", code)
                         if (code == 0)//下载成功
                         {
-                            UITool.ShowAlert("更新成功", [], (index) => {
+                            UITool.showAlert("更新成功", [], (index) => {
 
-                                UITool.gloadBundleScene(subGameName, (code) => {
+                                UITool.loadBundleScene(subGameName, (code) => {
                                     if (code == 0) {
-                                        cc.log("gloadBundleScene success")
+                                        cc.log("loadBundleScene success")
                                     }
                                     else {
-                                        cc.log("gloadBundleScene failed=", code)
+                                        cc.log("loadBundleScene failed=", code)
                                     }
                                 })
                             })
                         }
                         else//失败
                         {
-                            UITool.ShowAlert("更新失败" + code, [], (index) => {
+                            UITool.showAlert("更新失败" + code, [], (index) => {
 
 
                             })
@@ -407,12 +407,12 @@ cc.Class({
                 else {//在本地，不需要更新,直接进
                     cc.log("子包本地和远程版本一致，直接进游戏")
 
-                    UITool.gloadBundleScene(subGameName, (code) => {
+                    UITool.loadBundleScene(subGameName, (code) => {
                         if (code == 0) {
-                            cc.log("gloadBundleScene success")
+                            cc.log("loadBundleScene success")
                         }
                         else {
-                            cc.log("gloadBundleScene failed=", code)
+                            cc.log("loadBundleScene failed=", code)
                         }
                     })
 
@@ -543,7 +543,7 @@ cc.Class({
 
         event.stopPropagation()
         console.log("EventTest===1")
-        UITool.ShowAlert("事件传来的参数" + JSON.stringify(event.detail), [])
+        UITool.showAlert("事件传来的参数" + JSON.stringify(event.detail), [])
     },
 
 

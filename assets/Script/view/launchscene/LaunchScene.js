@@ -95,7 +95,7 @@ cc.Class({
                         { "text": "公司热更新地址" }//http://192.168.65.151/hotupversion/configdebug
                     ]
                 }
-                UITool.ShowChooseUpdate(data, (index, layer) => {
+                UITool.showChooseUpdate(data, (index, layer) => {
 
                     console.log("点击了", index)
                     if (index == 0) {
@@ -104,7 +104,7 @@ cc.Class({
                     }
                     else if (index == 1)//手动输入地址
                     {
-                        UITool.ShowTextInput((text) => {
+                        UITool.showTextInput((text) => {
                             if (text.length > 0) {
                                 Global.Ghotupdateurl = text
                                 this.goCheckUpdate(text)//热更新检查
@@ -113,7 +113,7 @@ cc.Class({
                             else {
                                 console.log("请输入自定义的热更新地址")
                                 layer.bClose()
-                                UITool.ShowAlert("请输入正确自定义的热更新地址", [], () => {
+                                UITool.showAlert("请输入正确自定义的热更新地址", [], () => {
 
                                     Global.gExitGame()
                                 })
@@ -188,14 +188,14 @@ cc.Class({
             }
             else if (code == 8)//强制更新 打开商店链接
             {
-                UITool.ShowAlert("发现新版本" + shopUrl, [], (index) => {
+                UITool.showAlert("发现新版本" + shopUrl, [], (index) => {
                     cc.sys.openURL(shopUrl)
 
                 })
             }
             else {//热更新error 
 
-                UITool.ShowAlert("ErrorCode=====" + code, [], () => {
+                UITool.showAlert("ErrorCode=====" + code, [], () => {
                     this.Reboot()//失败重启
 
                 })

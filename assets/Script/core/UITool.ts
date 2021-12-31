@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2021-12-31 11:37:25
+ * @LastEditTime: 2021-12-31 14:37:39
  */
 var UITool = {
     showWaitState: false,
@@ -14,10 +14,10 @@ var UITool = {
             this.getChildNode(nodeObject, childNode[i])
         }
     },
-    gShowLoading: function (todoCall, endcall) {
-        this.gLoadPrefabRes("prefabs/loadinglayer", (node: cc.Node) => {
+    showLoading: function (todoCall, endcall) {
+        this.loadPrefabRes("prefabs/loadinglayer", (node: cc.Node) => {
             if (node) {
-                this.gSceneAddNode(node)
+                this.sceneAddNode(node)
                 var LoadingLayer = node.getComponent("LoadingLayer")
                 if (LoadingLayer) {
                     LoadingLayer.setCallFun(todoCall, endcall)
@@ -26,14 +26,14 @@ var UITool = {
         })
     },
     showFlotText: function (text, parent = null, pos = cc.v2(0, 0)) {
-        this.gLoadPrefabRes("prefabs/FloatText", (node: cc.Node) => {
+        this.loadPrefabRes("prefabs/FloatText", (node: cc.Node) => {
             if (node) {
                 node.getComponent(cc.Label).string = text
                 if (parent) {
                     parent.addChild(node)
                 }
                 else {
-                    this.gSceneAddNode(node)
+                    this.sceneAddNode(node)
                 }
                 node.setPosition(pos)
                 this.playAnimation(node, "floatTextShow", () => {
@@ -42,15 +42,15 @@ var UITool = {
             }
         })
     },
-    gSceneAddNode: function (node) {
+    sceneAddNode: function (node) {
         cc.director.getScene().getChildByName('Canvas').addChild(node)
     },
     //加载场景
-    gLoadScene: function (sceneName, onLaunchCall = null) {
+    loadScene: function (sceneName, onLaunchCall = null) {
         cc.director.loadScene(sceneName, onLaunchCall)
     },
     //预加载场景
-    gPreloadScene: function (sceneName, progressCall, endCall) {
+    preloadScene: function (sceneName, progressCall, endCall) {
         cc.director.preloadScene(sceneName, (completedCount: number, totalCount: number, item: any) => {
             var progress = Math.floor(completedCount / totalCount * 100)
             if (progressCall) {
@@ -63,7 +63,7 @@ var UITool = {
         })
     },
     //加载预制体
-    gLoadPrefabRes: function (filepath: string, call: Function) {
+    loadPrefabRes: function (filepath: string, call: Function) {
         cc.resources.load(filepath, function (err, prefab) {
             if (err) {
                 console.log("UITool.loadPrefabRes error====" + filepath)
@@ -82,7 +82,7 @@ var UITool = {
     },
     //弹框
     ShowAlert: function (str, btninfo = [], call) {
-        this.gLoadPrefabRes("prefabs/AlertLayer", function (node: cc.Node) {
+        this.loadPrefabRes("prefabs/AlertLayer", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(node)
                 var Alert = node.getComponent("Alert")
@@ -96,8 +96,8 @@ var UITool = {
             }
         })
     },
-    ShowTextInput: function (call) {
-        this.gLoadPrefabRes("prefabs/textinput", function (node: cc.Node) {
+    showTextInput: function (call) {
+        this.loadPrefabRes("prefabs/textinput", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(node)
                 var textinput = node.getComponent("textinput")
@@ -107,8 +107,8 @@ var UITool = {
             }
         })
     },
-    ShowChooseUpdate: function (data, call) {
-        this.gLoadPrefabRes("prefabs/selectupdate", function (node: cc.Node) {
+    showChooseUpdate: function (data, call) {
+        this.loadPrefabRes("prefabs/selectupdate", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(node)
                 var chooseupdate = node.getComponent("chooseupdate")
@@ -119,14 +119,14 @@ var UITool = {
         })
     },
 
-    gloadBundleScene: function (bundleName, finishCall) {
-        this.gShowLoading((layer) => {
+    loadBundleScene: function (bundleName, finishCall) {
+        this.showLoading((layer) => {
             layer.updataProgress(30)
             //@ts-ignore
             var bunldeurl = SubGameManager.getLocalBundlePath(bundleName)
-            this.gLoadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, (err, bundle) => {
+            this.loadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, (err, bundle) => {
                 if (err) {
-                    console.log("Global gLoadBundle error")
+                    console.log("Global loadBundle error")
                     if (finishCall) {
                         finishCall(1)
                     }
@@ -135,7 +135,7 @@ var UITool = {
 
                 bundle.loadScene(bundleName, function (err, scene) {
                     if (err) {
-                        console.log("Global gLoadBundle scene error")
+                        console.log("Global loadBundle scene error")
                         if (finishCall) {
                             finishCall(2)
                         }
@@ -148,10 +148,10 @@ var UITool = {
             if (finishCall) {
                 finishCall(0)
             }
-            this.gLoadScene(bundleName)
+            this.loadScene(bundleName)
         })
     },
-    gLoadBundle: function (url, option, complete) {
+    loadBundle: function (url, option, complete) {
         cc.assetManager.loadBundle(url, option, (err, bundle) => {
             if (complete) {
                 complete(err, bundle)
@@ -160,13 +160,13 @@ var UITool = {
     },
     //切换场景
     changeScene: function (sceneName, call) {
-        this.gShowLoading((layer) => {
-            this.gPreloadScene(sceneName, (progress) => {
+        this.showLoading((layer) => {
+            this.preloadScene(sceneName, (progress) => {
                 layer.updataProgress(progress)
             })
         }, (layer) => {
             layer.updataProgress(100)
-            this.gLoadScene(sceneName)
+            this.loadScene(sceneName)
             if (call) {
                 call()
             }
@@ -178,7 +178,7 @@ var UITool = {
             return
         }
         this.showWaitState = true
-        UITool.gLoadPrefabRes("prefabs/rotateLoading", function (node: cc.Node) {
+        UITool.loadPrefabRes("prefabs/rotateLoading", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName("Canvas").addChild(node)
                 node.name = "rotateLoading"

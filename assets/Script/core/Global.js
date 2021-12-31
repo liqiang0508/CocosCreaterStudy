@@ -254,7 +254,7 @@ var Global = {
         }
     },
     //加载bundle
-    gLoadBundle: function (url, option, complete) {
+    loadBundle: function (url, option, complete) {
         cc.assetManager.loadBundle(url, option,  (err, bundle)=>{
             if (complete) {
                 complete(err, bundle)
