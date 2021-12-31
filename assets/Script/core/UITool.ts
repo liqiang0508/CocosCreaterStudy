@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2021-12-31 10:10:48
+ * @LastEditTime: 2021-12-31 11:37:25
  */
 var UITool = {
     showWaitState: false,
@@ -198,9 +198,7 @@ var UITool = {
     //播放动画
     playAnimation: function (node: cc.Node, name: string, endCall: Function) {
         var anim = node.getComponent(cc.Animation);
-        console.log("playAnimation")
         if (anim) {
-            console.log("playAnimation 1")
             anim.play(name);
             anim.on("finished", () => {
                 if (endCall) {

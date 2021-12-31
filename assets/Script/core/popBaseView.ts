@@ -2,7 +2,7 @@
  * @Description: 弹框基类
  * @Author: li qiang
  * @Date: 2021-12-31 09:53:56
- * @LastEditTime: 2021-12-31 11:32:24
+ * @LastEditTime: 2021-12-31 11:35:43
  */
 
 
@@ -27,7 +27,7 @@ export default class popBaseView extends BaseComponent {
     }
 
     dismisssAnimation() {
-        UITool.playAnimation(this.mChild.mask,"view_dismiss",()=>{
+        UITool.playAnimation(this.mChild.view,"view_dismiss",()=>{
             this.node.destroy();
         })
     }
