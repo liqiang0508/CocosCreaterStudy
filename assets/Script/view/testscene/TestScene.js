@@ -47,7 +47,7 @@ cc.Class({
         sp4.IsOriginPos = true
         //btn_posconvert
         var btn_posconvert = cc.find("uipanel/btn_posconvert", this.node)
-        ua.darkButton(btn_posconvert, () => {
+        UITool.addBtnClick(btn_posconvert, () => {
             if (sp4.getNumberOfRunningActions() > 0) {
                 return
             }
@@ -123,7 +123,7 @@ cc.Class({
 
         //show Alert
         var showAlertIII = cc.find("uipanel/btn_Alert", this.node)
-        ua.darkButton(showAlertIII, function (event) {
+        UITool.addBtnClick(showAlertIII, function (event) {
 
             // event.currentTarget.active = false
             UITool.ShowAlert("666", ["LOL", "LOL1", "LOL#"], function (index) {
@@ -135,7 +135,7 @@ cc.Class({
 
         //btn_showWaiting菊花转
         var btn_showWaiting = cc.find("uipanel/btn_showWaiting", this.node)
-        ua.darkButton(btn_showWaiting, (event) => {
+        UITool.addBtnClick(btn_showWaiting, (event) => {
             UITool.showWaitNetWork()
             UITool.showFlotText("3s后关闭")
             setTimeout(() => {
@@ -144,7 +144,7 @@ cc.Class({
         })
         //btn_EventTest
         var btn_EventTest = cc.find("uipanel/btn_EventTest", this.node)
-        ua.darkButton(btn_EventTest, (event) => {
+        UITool.addBtnClick(btn_EventTest, (event) => {
             EventManager.dispatchEvent(ConstEventDefine.EVENT_NAME.TEST, { "name": "Lee123" })
         })
 
@@ -263,7 +263,7 @@ cc.Class({
 
         //btn_fps
         var btn_fps = cc.find("uipanel/btn_fps", this.node)
-        ua.darkButton(btn_fps, function () {
+        UITool.addBtnClick(btn_fps, function () {
             console.log("setDisplayStats-", !cc.debug.isDisplayStats())
             cc.debug.setDisplayStats(!cc.debug.isDisplayStats())
 
@@ -272,14 +272,14 @@ cc.Class({
 
         //btn_showpopLayer
         var btn_showpopLayer = cc.find("uipanel/btn_showpopLayer", this.node)
-        ua.darkButton(btn_showpopLayer, function () {
+        UITool.addBtnClick(btn_showpopLayer, function () {
 
             UITool.gLoadPrefabRes("prefabs/poplayer", function (prefabNode) {
                 if (prefabNode) {
                     cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
                     var com = prefabNode.getComponent("poplayer")
                     if (com) {
-                        com.show()
+                       
                     }
                 }
             })
@@ -290,7 +290,7 @@ cc.Class({
         var sp3 = cc.find("content/sp3", this.node)
         sp3.isGray = false
         var btn_GrayRenderCom = cc.find("uipanel/btn_GrayRenderCom", this.node)
-        ua.darkButton(btn_GrayRenderCom, function () {
+        UITool.addBtnClick(btn_GrayRenderCom, function () {
 
             var sp_com = sp3.getComponent(cc.Sprite)
             if (sp3.isGray == false) {
@@ -307,12 +307,12 @@ cc.Class({
         })
 
         var btn_bubble = cc.find("uipanel/btn_bubble", this.node)
-        ua.darkButton(btn_bubble, () => {
+        UITool.addBtnClick(btn_bubble, () => {
             UITool.gLoadScene("bubbleScene")
         })
 
         var btn_mipai = cc.find("uipanel/btn_mipai", this.node)
-        ua.darkButton(btn_mipai, () => {
+        UITool.addBtnClick(btn_mipai, () => {
             UITool.gLoadScene("mipaiScene")
         })
         //bundle加载测试
@@ -320,7 +320,7 @@ cc.Class({
 
 
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
-        ua.darkButton(btn_loadbundle, () => {
+        UITool.addBtnClick(btn_loadbundle, () => {
 
             if(cc.sys.isNative == false)//web 平台
             {
@@ -425,7 +425,7 @@ cc.Class({
 
         // btn_goslot
         var btn_goslot = cc.find("uipanel/btn_goslot", this.node)
-        ua.darkButton(btn_goslot, function () {
+        UITool.addBtnClick(btn_goslot, function () {
             cc.director.loadScene("SlotScene")
             // var bezier = [cc.v2(-windowSize.width / 2, windowSize.height / 2), cc.v2(0, 0), cc.v2(windowSize.width / 2, windowSize.height / 2)];
             // var bezierTo = cc.bezierTo(2, bezier);

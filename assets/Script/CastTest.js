@@ -60,13 +60,13 @@ cc.Class({
             console.log("game over====")
         })
         var firebtn = cc.find("uipanel/firebtn",this.node)
-        ua.darkButton(firebtn,(event)=>{
+        UITool.addBtnClick(firebtn,(event)=>{
             cc.log("firebtn*****vec",self.forceVec)
             var force = cc.v2(self.forceVec.x,self.forceVec.y).mul(600000)
             cc.log("firebtn*****force",force)
             this.img.getComponent(cc.RigidBody).applyForceToCenter(force)
         })
-        ua.darkButton(this.node,function(event){
+        UITool.addBtnClick(this.node,function(event){
             
             // var node = cc.instantiate(self.img)
             // self.node.addChild(node)

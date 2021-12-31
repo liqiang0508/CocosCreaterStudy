@@ -4,10 +4,6 @@ cc.Class({
     extends: BaseComponent,
 
     properties: {
-        AimType: {
-            default: 1,
-            override: true
-        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -44,7 +40,7 @@ cc.Class({
             var textNode = item.getChildByName("text")
             textNode.getComponent(cc.Label).string = items[index]["text"]
 
-            ua.darkButton(item,  ()=> {
+            UITool.addBtnClick(item,  ()=> {
                
                 if (this.call) {
                     this.call(index,this)

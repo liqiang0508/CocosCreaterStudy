@@ -4,10 +4,6 @@ cc.Class({
     extends: BaseComponent,
 
     properties: {
-        AimType:{
-            default:1,
-            override:true
-        }
     },
 
 
@@ -112,24 +108,28 @@ cc.Class({
         console.log("showAlert start" )
         this.mChild={}
         UITool.getChildNode(this.mChild,this.node)
-        ua.darkButton(this.mChild.btn_middle,  () =>{
+        UITool.addBtnClick(this.mChild.btn_middle,  () =>{
             this.BtnCall(2)
             this.bClose()
         })
-        ua.darkButton(this.mChild.btn_yes, () =>{
+        UITool.addBtnClick(this.mChild.btn_yes, () =>{
             this.BtnCall(1)
             this.bClose()
         })
-        ua.darkButton(this.mChild.btn_no, () =>{
+        UITool.addBtnClick(this.mChild.btn_no, () =>{
             this.BtnCall(0)
             this.bClose()
 
         })
-        ua.darkButton(this.mChild.mask, () =>{
+        UITool.addBtnClick(this.mChild.mask, () =>{
             this.bClose()
         })
         this.fresh()
     },
+    bclose(){
+
+        UITool.playAnimation(this.mChild)
+    }
 
 
     // update (dt) {},

@@ -4,10 +4,6 @@ cc.Class({
     extends: BaseComponent,
 
     properties: {
-        AimType:{
-            default:1,
-            override:true
-        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -18,7 +14,7 @@ cc.Class({
         this._super()
        
         var btnclose = this.node.getChildByName("bg").getChildByName("btn_close")
-        ua.darkButton(btnclose,()=>{
+        UITool.addBtnClick(btnclose,()=>{
             this.bClose()
         })
     },

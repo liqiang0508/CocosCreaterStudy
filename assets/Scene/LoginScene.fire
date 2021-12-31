@@ -189,7 +189,7 @@
       "array": [
         0,
         0,
-        393.1755333181352,
+        393.16679453049915,
         0,
         0,
         0,
@@ -813,7 +813,7 @@
         1,
         1,
         1,
-        1
+        0
       ]
     },
     "_eulerAngles": {
@@ -996,12 +996,12 @@
     },
     "_grayMaterial": null,
     "duration": 0.1,
-    "zoomScale": 1.2,
+    "zoomScale": 0.9,
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": true,
-    "_N$transition": 1,
-    "transition": 1,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -1558,7 +1558,7 @@
         1,
         1,
         1,
-        1
+        0
       ]
     },
     "_eulerAngles": {
@@ -1741,12 +1741,12 @@
     },
     "_grayMaterial": null,
     "duration": 0.1,
-    "zoomScale": 1.2,
+    "zoomScale": 0.9,
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": true,
-    "_N$transition": 1,
-    "transition": 1,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -1931,7 +1931,7 @@
         1,
         1,
         1,
-        1
+        0
       ]
     },
     "_eulerAngles": {
@@ -2114,12 +2114,12 @@
     },
     "_grayMaterial": null,
     "duration": 0.1,
-    "zoomScale": 1.2,
+    "zoomScale": 0.9,
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": true,
-    "_N$transition": 1,
-    "transition": 1,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -2407,6 +2407,7 @@
     },
     "_enabled": true,
     "AimType": 1,
+    "mStarted": false,
     "VersionText": {
       "__id__": 13
     },

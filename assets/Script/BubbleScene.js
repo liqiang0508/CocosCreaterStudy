@@ -40,7 +40,7 @@ cc.Class({
         this.Score = 0
         
         var btn_pause = cc.find("uipanel/btn_pause",this.node)
-        ua.darkButton(btn_pause,()=>{
+        UITool.addBtnClick(btn_pause,()=>{
             if (window.GameState==0)
             {
                 window.GameState = 1

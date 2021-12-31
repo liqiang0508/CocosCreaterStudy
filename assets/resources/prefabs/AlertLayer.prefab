@@ -1755,6 +1755,9 @@
     "_clips": [
       {
         "__uuid__": "a874a86a-3345-42cc-8ab9-bcbe3147f708"
+      },
+      {
+        "__uuid__": "257517b0-7fb5-4ede-9456-1c31b1752fe8"
       }
     ],
     "playOnLoad": true,
@@ -1780,6 +1783,7 @@
     },
     "_enabled": true,
     "AimType": 1,
+    "mStarted": false,
     "_id": ""
   },
   {

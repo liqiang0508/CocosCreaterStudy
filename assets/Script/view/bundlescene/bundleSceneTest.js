@@ -21,7 +21,7 @@ cc.Class({
 
     start() {
         var btn_exit = cc.find("uipanel/btn_exit", this.node)
-        ua.darkButton(btn_exit, () => {
+        UITool.addBtnClick(btn_exit, () => {
 
             UITool.gShowLoading((layer) => {
                 layer.updataProgress(30)

@@ -26,7 +26,7 @@ cc.Class({
 
     start () {
         this.btn_back = cc.find("uipanel/btn_back",this.node)
-        ua.darkButton(this.btn_back,function(){
+        UITool.addBtnClick(this.btn_back,function(){
 
             // cc.director.loadScene("TestScene")
         })

@@ -85,7 +85,7 @@ cc.Class({
         var label = cc.find("uipanel/label", this.node)
         var  wechatShare = cc.find("uipanel/wechatShare", this.node)
 
-        ua.darkButton(wechat, () => {//微信登录
+        UITool.addBtnClick(wechat, () => {//微信登录
             // // msg返回数据
             // {
             //     "ret": true,
@@ -122,7 +122,7 @@ cc.Class({
             })
         })
 
-        ua.darkButton(wechatShare, () => {
+        UITool.addBtnClick(wechatShare, () => {
 
             if(cc.sys.isNative == false)
             {
@@ -151,14 +151,14 @@ cc.Class({
         })
 
 
-        ua.darkButton(gotest, () => {
+        UITool.addBtnClick(gotest, () => {
             
            
             this.goTestScene()
             
         })
 
-        ua.darkButton(this.node, (event) => {
+        UITool.addBtnClick(this.node, (event) => {
             console.log("getLocation=====", event.getLocation().x, event.getLocation().y)//原点在左下角
             // var pos = Global.ConverToNodePos(gotest.parent,event.getLocation())
             // gotest.setPosition(pos)

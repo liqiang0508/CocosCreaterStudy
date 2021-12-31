@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2021-12-30 20:28:27
+ * @LastEditTime: 2021-12-31 09:39:30
  */
 var UITool = {
     showWaitState: false,
@@ -36,7 +36,7 @@ var UITool = {
                     this.gSceneAddNode(node)
                 }
                 node.setPosition(pos)
-                this.playAnimation(node,"floatTextShow",()=>{
+                this.playAnimation(node, "floatTextShow", () => {
                     node.destroy()
                 })
             }
@@ -206,6 +206,28 @@ var UITool = {
                 }
             }, this);
         }
+    },
+    addBtnClick: function (node: cc.Node, endCall: Function, startCall: Function, moveCall: Function) {
+        node.on(cc.Node.EventType.TOUCH_START, (event) => {
+            if (startCall) {
+                startCall(event)
+            }
+        })
+        node.on(cc.Node.EventType.TOUCH_MOVE, (event) => {
+            if (moveCall) {
+                moveCall(event)
+            }
+        })
+        node.on(cc.Node.EventType.TOUCH_END, (event) => {
+            if (endCall) {
+                endCall(event)
+            }
+        })
+        node.on(cc.Node.EventType.TOUCH_CANCEL, (event) => {
+            if (endCall) {
+                endCall(event)
+            }
+        })
     }
 }
 

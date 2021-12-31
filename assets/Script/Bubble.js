@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-12 11:09:31
- * @LastEditTime: 2020-08-14 09:30:01
+ * @LastEditTime: 2021-12-31 09:41:25
  */
 
 
@@ -42,7 +42,7 @@ cc.Class({
         this.Speed = cc.v2(Math.random()*1000-500,Math.random()*1000-500)
         this.ScreenSize = cc.view.getVisibleSize()
 
-        ua.ClickNode(this.node,()=>{
+        UITool.addBtnClick(this.node,null,()=>{
             if (window.GameState==1)//暂停
             {
                 return

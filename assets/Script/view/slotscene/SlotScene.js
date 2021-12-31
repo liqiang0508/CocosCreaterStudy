@@ -39,7 +39,7 @@ cc.Class({
         }
         var btn_spin = cc.find("UI/btn_spin",this.node)
      
-        ua.darkButton(btn_spin,()=>{
+        UITool.addBtnClick(btn_spin,()=>{
             cc.log("Start spin")
           
             for (var i = 0;i<this.Slots.length;i++) {
@@ -63,7 +63,7 @@ cc.Class({
         })
 
         var btn_back =  cc.find("UI/btn_back",this.node)
-        ua.darkButton(btn_back,function(){
+        UITool.addBtnClick(btn_back,function(){
 
             cc.director.loadScene("TestScene")
         })

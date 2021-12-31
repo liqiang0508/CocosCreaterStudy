@@ -4,10 +4,6 @@ cc.Class({
     extends: BaseComponent,
 
     properties: {
-        AimType:{
-            default:2,
-            override:true
-        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -18,7 +14,7 @@ cc.Class({
         this._super()
   
         var btndone = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("btn_done")
-        ua.darkButton(btndone,()=>{
+        UITool.addBtnClick(btndone,()=>{
             if (this.call)
             {
                 var text = this.Editbox.getComponent(cc.EditBox).string
