@@ -3,7 +3,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class BaseComponent extends cc.Component {
 
-    mStarted:boolean= false;
+    mStarted: boolean = false;
     onLoad() {
 
     }
