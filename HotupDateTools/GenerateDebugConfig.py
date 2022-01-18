@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: UTF-8 -*-
+# -*- coding:utf-8 -*-
 print("generateLocalConfig Start==========================")
 
 import os
@@ -114,7 +114,7 @@ def GetAppInfoFileName():  #获取appinfoiii的打包后的资源名 然后生�
 # 先把golbal里面的GgameType 修改为3 再来bild
 filepath = "../assets/Script/core/Global.js"
 data = ""
-with open(filepath, "r", encoding="utf-8") as f:
+with open(filepath, "r", encoding='utf8') as f:
     data = f.read()
     data = data.replace("GgameType:1", "GgameType:3")
     f.close()
@@ -200,7 +200,7 @@ with open(filepath, "r") as f:
     data = data.replace("GgameType:3", "GgameType:1")
     f.close()
 
-with open(filepath, "w+") as F:
+with open(filepath, "w+", encoding='utf8') as F:
     F.write(data)
     F.close()
 #
