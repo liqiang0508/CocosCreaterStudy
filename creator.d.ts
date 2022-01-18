@@ -8294,6 +8294,7 @@ declare namespace cc {
 		/** !#en Returns a value which used to indicate the onLoad get called or not.
 		!#zh 返回一个值用来判断 onLoad 是否被调用过，不等于 0 时调用过，等于 0 时未调用。 */
 		_isOnLoadCalled: number;		
+        _id: any;
 		/**
 		!#en Update is called every frame, if the Component is enabled.<br/>
 		This is a lifecycle method. It may not be implemented in the super class. You can only call its super class method inside it. It should not be called manually elsewhere.

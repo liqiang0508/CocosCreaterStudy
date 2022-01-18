@@ -1,1 +1,1 @@
-[1,["f0DsHuE9FGQ75VF/qdOSCE"],["_effectAsset"],[["cc.Material",["_name","_techniqueData"],1]],[[0,0,1,3]],[[0,"circle_head",{"0":{"defines":{"USE_TEXTURE":true,"USE_ALPHA_TEST":false},"props":{"feather":0.5,"radius":0.5,"alphaThreshold":0,"edge":0.5}}}]],0,0,[0],[0],[0]]
+[1,["f0DsHuE9FGQ75VF/qdOSCE"],["_effectAsset"],[["cc.Material",["_name","_techniqueData"],1]],[[0,0,1,3]],[[0,"Circle_Head",{"0":{"defines":{"USE_TEXTURE":true,"USE_ALPHA_TEST":false},"props":{"feather":0.5,"radius":0.5,"alphaThreshold":0,"edge":0.5}}}]],0,0,[0],[0],[0]]

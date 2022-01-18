@@ -69,3 +69,6 @@ json/
 ExportTest/
 ccreator/
 Export/Resources/
+build2.43/
+build/jsb-default/frameworks/runtime-src/proj.android-studio/instantapp/.cxx/
+build/jsb-default/frameworks/runtime-src/proj.android-studio/app/.cxx/

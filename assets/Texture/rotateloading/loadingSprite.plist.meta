@@ -1,6 +1,7 @@
 {
-  "ver": "1.2.4",
+  "ver": "1.2.6",
   "uuid": "6bd43f76-26a4-4787-8b72-3d493ab8414e",
+  "importer": "sprite-atlas",
   "rawTextureUuid": "5e7947af-ad65-4145-abb5-b74e2d0ac98c",
   "size": {
     "width": 256,
@@ -9,8 +10,9 @@
   "type": "Texture Packer",
   "subMetas": {
     "loading_1.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "dfdfc4b2-6bb4-4826-8f7a-e29a87ed3fb3",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5e7947af-ad65-4145-abb5-b74e2d0ac98c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -31,8 +33,9 @@
       "subMetas": {}
     },
     "loading_2.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "a493338f-5f6c-4063-a5b5-b5dd74230945",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5e7947af-ad65-4145-abb5-b74e2d0ac98c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -53,8 +56,9 @@
       "subMetas": {}
     },
     "loading_3.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "b4b85a7e-cee9-4034-aa14-e31119b9ee01",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5e7947af-ad65-4145-abb5-b74e2d0ac98c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -75,8 +79,9 @@
       "subMetas": {}
     },
     "loading_4.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "6fe410db-23ad-4705-9cea-3db1f2ff0071",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5e7947af-ad65-4145-abb5-b74e2d0ac98c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -97,8 +102,9 @@
       "subMetas": {}
     },
     "loading_5.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "1ea8d7fd-e317-47c0-8151-ea8064e99688",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5e7947af-ad65-4145-abb5-b74e2d0ac98c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -119,8 +125,9 @@
       "subMetas": {}
     },
     "loading_6.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "45ea1c29-f07f-4b0c-b802-c079e9b39ad9",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5e7947af-ad65-4145-abb5-b74e2d0ac98c",
       "trimType": "auto",
       "trimThreshold": 1,
@@ -141,8 +148,9 @@
       "subMetas": {}
     },
     "loading_7.png": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "c1e9f0c7-96f4-4654-b225-4e10df2c1171",
+      "importer": "sprite-frame",
       "rawTextureUuid": "5e7947af-ad65-4145-abb5-b74e2d0ac98c",
       "trimType": "auto",
       "trimThreshold": 1,

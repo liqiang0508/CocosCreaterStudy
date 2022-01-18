@@ -373,7 +373,7 @@ var Assembler = {
   updateIADatas: function updateIADatas(iaIndex, meshIndex) {
     // When the MeshBuffer is switched, it is necessary to synchronize the iaData of the native assembler.
     this.updateMeshIndex(iaIndex, meshIndex);
-    var materials = this._renderComp.sharedMaterials;
+    var materials = this._renderComp._materials;
     var material = materials[iaIndex] || materials[0];
     this.updateMaterial(iaIndex, material);
   }
@@ -614,6 +614,11 @@ cc.js.mixin(proto, {
     this.setMaskInverted(mask.inverted);
     this.setUseModel(mask._type !== Mask.Type.IMAGE_STENCIL);
     this.setImageStencil(mask._type === Mask.Type.IMAGE_STENCIL);
+
+    if (mask._graphics) {
+      mask._graphics._assembler.setUseModel(mask._type !== Mask.Type.IMAGE_STENCIL);
+    }
+
     mask.node._renderFlag |= cc.RenderFlow.FLAG_UPDATE_RENDER_DATA;
   }
 }, renderer.MaskAssembler.prototype);
@@ -1066,7 +1071,7 @@ Object.assign(cc.Sprite.__assembler__.Tiled.prototype, {
       for (var i = 0, j = 0, l = local.length / 2; i < l; i++, offset += floatsPerVert) {
         j = i * 2;
         world[offset] = local[j];
-        world[offset + 1] = local[j++];
+        world[offset + 1] = local[j + 1];
         world[offset + 2] = 0;
       }
     }
@@ -1802,7 +1807,7 @@ var cacheManager = {
     caches.sort(function (a, b) {
       return a.lastTime - b.lastTime;
     });
-    caches.length = Math.floor(this.cachedFiles.count / 3);
+    caches.length = Math.floor(caches.length / 3);
     if (caches.length === 0) return;
 
     for (var i = 0, l = caches.length; i < l; i++) {
@@ -5433,6 +5438,54 @@ sys.getSafeAreaRect = function () {
     var video = this._video;
     if (!video) return -1;
     return video.currentTime();
+  };
+
+  _p.getFrame = function () {
+    var video = this._video;
+    if (!video) return;
+    video.getFrame();
+  };
+
+  _p.getFrameChannel = function () {
+    var video = this._video;
+    if (!video) return 0;
+    return video.getFrameChannel();
+  };
+
+  _p.getFrameWidth = function () {
+    var video = this._video;
+    if (!video) return 0;
+    return video.getFrameWidth();
+  };
+
+  _p.getFrameHeight = function () {
+    var video = this._video;
+    if (!video) return 0;
+    return video.getFrameHeight();
+  };
+
+  _p.pushFrameDataToTexture2D = function (tex) {
+    var video = this._video;
+    if (!video) return;
+    video.pushFrameDataToTexture2D(tex);
+  };
+
+  _p.getVideoTexDataSize = function () {
+    var video = this._video;
+    if (!video) return 0;
+    return video.getVideoTexDataSize();
+  };
+
+  _p.setShowRawFrame = function (show) {
+    var video = this._video;
+    if (!video) return;
+    video.setShowRawFrame(show);
+  };
+
+  _p.update = function () {
+    var video = this._video;
+    if (!video) return;
+    video.update();
   };
 
   _p.setKeepAspectRatioEnabled = function (isEnabled) {

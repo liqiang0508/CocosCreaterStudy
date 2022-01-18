@@ -16,7 +16,7 @@ if (cc && cc.sys.isNative) {//web跑的时候会报错
 
     GtempCfg = jsb.fileUtils.getWritablePath() + "config/appinfoiii.json"//包外配置
 
-} 
+}
 
 // stateCode
 // 0:不用更新 
@@ -38,14 +38,14 @@ var VersionManager = {
     remoteMd5Cfg: '',//远程md5
     localCfg: '',//local配置
     stateCode: '',//更新状态码
-    totalDownSize:0,//下载文件总大小  kb
-    downedSize:0,//已下载文件的大小  kb
+    totalDownSize: 0,//下载文件总大小  kb
+    downedSize: 0,//已下载文件的大小  kb
 
 
     checkUpdate: function (url, downcall, progressCall) {
-        cc.log("checkUpdate----",url)
+        cc.log("checkUpdate----", url)
         var self = this;
-        
+
 
         this.downcall = downcall;
         this.progressCall = progressCall;
@@ -56,18 +56,17 @@ var VersionManager = {
     },
     //下载远程md5
     downRemoteMd5: function (url) {
-        
+
         cc.log("下载远程md5,", url)
 
-        HttpHelper.sendHttpRequest(url,  (data)=> {
+        HttpHelper.sendHttpRequest(url, (data) => {
             if (data == null) {
                 this.callFunWithState(2, "获取MD5配置文件失败")
                 return
             }
-            if(!Global.isjson(data))
-            {
+            if (!Global.isjson(data)) {
                 this.callFunWithState(11, "远程md5-json不合法")
-                return 
+                return
             }
             this.remoteMd5Cfg = JSON.parse(data)
             this.comparefiles()
@@ -124,9 +123,9 @@ var VersionManager = {
             }
         }
         //totalDownSize 计算热更新下载文件的大小
-        for (var index in ChangeFiles){
+        for (var index in ChangeFiles) {
             var fileSize = ChangeFiles[index]["fileSize"]
-            this.totalDownSize = this.totalDownSize +fileSize
+            this.totalDownSize = this.totalDownSize + fileSize
         }
 
         this.downFiles(ChangeFiles)
@@ -164,18 +163,18 @@ var VersionManager = {
                 if (data) {
                     Global.GwriteDataToFile(data, filetempPath)
 
-                    self.downedSize = self.downedSize+fileSize//记录已下载文件的大小
+                    self.downedSize = self.downedSize + fileSize//记录已下载文件的大小
 
                     if (self.DownIndex < downFileList.length - 1) {
                         self.DownIndex = self.DownIndex + 1
                         if (self.progressCall) {
-                            self.progressCall(Math.floor(self.DownIndex / downFileList.length * 100),(self.downedSize/1000).toFixed(1),(self.totalDownSize/1000).toFixed(1))
+                            self.progressCall(Math.floor(self.DownIndex / downFileList.length * 100), (self.downedSize / 1000).toFixed(1), (self.totalDownSize / 1000).toFixed(1))
                         }
                         downOneFile(self.DownIndex)
                     }
                     else {
                         if (self.progressCall) {
-                            self.progressCall(Math.floor(100),(self.downedSize/1000).toFixed(1),(self.totalDownSize/1000).toFixed(1))
+                            self.progressCall(Math.floor(100), (self.downedSize / 1000).toFixed(1), (self.totalDownSize / 1000).toFixed(1))
                         }
                         cc.log("下载完成***")
 
@@ -218,10 +217,10 @@ var VersionManager = {
                 jsb.fileUtils.createDirectory(GHotUpFolder)
 
                 jsb.fileUtils.removeFile(GtempCfg)//移除包外的热更新配置
-                
+
                 self.callFunWithState(4, "移动文件失败" + tempfilePath)
 
-               
+
 
             }
 
@@ -236,7 +235,7 @@ var VersionManager = {
         var str = JSON.stringify(this.remoteMd5Cfg, null, 4)
         Global.GcreateDir(jsb.fileUtils.getWritablePath() + "config")
         Global.GwriteStringToFile(str, GtempCfg)//移动完成后再把远程的配置存在可读写路径下的config目录
-        
+
         this.callFunWithState(100, "更新成功")
     },
 
@@ -246,7 +245,7 @@ var VersionManager = {
         cc.audioEngine.stopAll();
         cc.game.restart()
 
-       
+
     },
 
     //移除热更新的临时文件
@@ -260,11 +259,11 @@ var VersionManager = {
 
     },
 
-    callFunWithState: function (state, desc,url) {
-        
+    callFunWithState: function (state, desc, url) {
+
         if (this.downcall) {
-            console.log(desc+": 状态码="+state)
-            this.downcall(state,url)
+            console.log(desc + ": 状态码=" + state)
+            this.downcall(state, url)
         }
     },
 
@@ -276,20 +275,20 @@ var VersionManager = {
         if (jsb.fileUtils.isFileExist(path)) {//先看包外是否有配置 包外有先读取包外的
             console.log("读取包外配置");
             var data = jsb.fileUtils.getStringFromFile(path)
-            if(Global.isjson(data))//判断是不是合法的json
+            if (Global.isjson(data))//判断是不是合法的json
             {
                 self.localCfg = JSON.parse(data)
-                 //拉取远程配置
+                //拉取远程配置
                 self.parseRemoteCfg()
-            }else{//包外json配置不合法
+            } else {//包外json配置不合法
                 self.RemoveTemp()//移除热更新相关的东西
                 self.callFunWithState(9, "包外json配置不合法")
                 return
             }
-            
-           
+
+
         }
-        else{//读取包内配置
+        else {//读取包内配置
             console.log("读取包内配置");
             cc.resources.load('appinfoiii', function (err, jsonAsset) {
                 if (err) {
@@ -297,7 +296,7 @@ var VersionManager = {
                     self.callFunWithState(5, "读取包内配置失败，请检查本地配置")
                 }
                 else {
-    
+
                     self.localCfg = jsonAsset.json
                     //拉取远程配置
                     self.parseRemoteCfg()
@@ -306,17 +305,17 @@ var VersionManager = {
 
         }
 
-      
+
 
     },
     //获取本地最新脚本版本号
-    getScriptVersion:function(){
-       
-            return this.localCfg["scriptVersion"]
-        
-       
+    getScriptVersion: function () {
+
+        return this.localCfg["scriptVersion"]
+
+
     },
-    getH5ScriptVersion:function(){
+    getH5ScriptVersion: function () {
         var self = this
         cc.resources.load('appinfoiii', function (err, jsonAsset) {
             if (err) {
@@ -326,31 +325,31 @@ var VersionManager = {
             else {
 
                 self.localCfg = jsonAsset.json
-                
+
             };
         });
 
     },
 
     //获取子游戏配置
-    getSubGameCfg:function(){
+    getSubGameCfg: function () {
 
         return this.remoteCfg["subgames"]
     },
     //拉取远程配置
     parseRemoteCfg: function () {
-        if(cc.sys.isNative==false||this.remoteCfg==null)//不是原生
+        if (cc.sys.isNative == false || this.remoteCfg == null)//不是原生
         {
             return
         }
         var self = this
-       
+        console.log("拉取远程配置", this.remoteCfg)
         HttpHelper.sendHttpRequest(this.remoteCfg, function (data) {
             if (data == null) {
                 self.callFunWithState(1, "获取版本配置文件失败")
                 return
             }
-            if(!Global.isjson(data))//判断是不是合法的json
+            if (!Global.isjson(data))//判断是不是合法的json
             {
                 self.callFunWithState(10, "远程配置json不合法")
                 return
@@ -359,32 +358,32 @@ var VersionManager = {
             var localscriptVersion = self.localCfg["scriptVersion"]//本地配置版本号
             var remotescriptVersion = self.remoteCfg["scriptVersion"]//远程配置版本号
             var debugscriptVersion = self.remoteCfg["debugScriptVersion"]//测试版本号
-            var supportBinarys =  self.remoteCfg["supportBinarys"]//支持热更新的版本号
+            var supportBinarys = self.remoteCfg["supportBinarys"]//支持热更新的版本号
             var forcedBinaryVersions = self.remoteCfg["forcedBinaryVersions"]//强制更新版本号
             var channels = self.remoteCfg["channels"]//支持热更新的渠道号
             var debugUIDs = self.remoteCfg["debugUIDs"]//测试id组
             var binaryUrl = self.remoteCfg["binaryUrl"][window.DISTRIBUTE_CHANNEL] || self.remoteCfg[0]//商店地址  根据远程配置的渠道号对应的数组
-            var localId = cc.sys.localStorage.getItem('debugId') ;//本地存的上次登录的玩家id
-            if(!Global.GIsArrContain(channels, window.DISTRIBUTE_CHANNEL))//app版本是否支持热更新
+            var localId = cc.sys.localStorage.getItem('debugId');//本地存的上次登录的玩家id
+            if (!Global.GIsArrContain(channels, window.DISTRIBUTE_CHANNEL))//app版本是否支持热更新
             {
-                self.callFunWithState(7, "不支持热更新的渠道号"+window.DISTRIBUTE_CHANNEL)
-                return 
+                self.callFunWithState(7, "不支持热更新的渠道号" + window.DISTRIBUTE_CHANNEL)
+                return
             }
-            
-            if(!Global.GIsArrContain(supportBinarys, DevicesInfo.getAppVersion()))//app版本是否支持热更新
+
+            if (!Global.GIsArrContain(supportBinarys, DevicesInfo.getAppVersion()))//app版本是否支持热更新
             {
-                
-                self.callFunWithState(6, "不支持热更新的2进制版本号"+DevicesInfo.getAppVersion())
-                return 
+
+                self.callFunWithState(6, "不支持热更新的2进制版本号" + DevicesInfo.getAppVersion())
+                return
             }
 
             //forcedBinaryVersions 强制更新
-            if(Global.GIsArrContain(forcedBinaryVersions, DevicesInfo.getAppVersion()))//版本在里面
+            if (Global.GIsArrContain(forcedBinaryVersions, DevicesInfo.getAppVersion()))//版本在里面
             {
-                self.callFunWithState(8, "强制更新",binaryUrl)
+                self.callFunWithState(8, "强制更新", binaryUrl)
                 return
             }
-            
+
             console.log("主包本地脚本号==" + localscriptVersion)
             console.log("主包远程debug版本号==" + debugscriptVersion)
             console.log("主包远程版本号==" + remotescriptVersion)
@@ -408,7 +407,7 @@ var VersionManager = {
                     self.callFunWithState(0, "测试玩家版本和远程一样，不用更新")
                     return
                 }
-                
+
 
             }
 
@@ -424,7 +423,7 @@ var VersionManager = {
                 return
             }
 
-            self.callFunWithState(0, "不用更新-本地和远程版本一致:"+localscriptVersion)
+            self.callFunWithState(0, "不用更新-本地和远程版本一致:" + localscriptVersion)
 
         })
 

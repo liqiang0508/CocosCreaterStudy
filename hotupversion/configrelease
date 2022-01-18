@@ -1,19 +1,15 @@
 {
-  
   "openUIDs": [
     "-----------",
     "all-1",
     "770x",
     "-----------"
   ],
-
-
-  "scriptVersion":134,
-  "baseUrl": "http://lee.free.vipnps.vip/hotupversion/Script_%s/",
+  "scriptVersion": 135,
+  "baseUrl": "http://192.168.0.105/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
-
-  "debugScriptVersion": 134,
-  "debugBaseUrl": "http://lee.free.vipnps.vip/hotupversion/Script_%s/",
+  "debugScriptVersion": 135,
+  "debugBaseUrl": "http://192.168.0.105/hotupversion/Script_%s/",
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [
     "-----------",
@@ -23,8 +19,6 @@
     "264138",
     "-----------"
   ],
-
-
   "channels": [
     "-----------",
     "0",
@@ -33,29 +27,27 @@
     "3",
     "-----------"
   ],
-  "subgames":{
-     "baseUrl":"http://lee.free.vipnps.vip/hotupversion/remote/",
-      "debugUid":[
-       "------",
-       "724001",
-       "------"
-     ],
-     "games":{
-        "bundleScene":{
-          "debugVersion":10,
-          "version":11
-        }
-     }
+  "subgames": {
+    "baseUrl": "http://192.168.0.105/hotupversion/remote/",
+    "debugUid": [
+      "------",
+      "724001",
+      "------"
+    ],
+    "games": {
+      "bundleScene": {
+        "debugVersion": 10,
+        "version": 11
+      }
+    }
   },
-
   "supportBinarys": [
     "-----------",
     "x.x.x",
     "1.3.0",
+    "1.0",
     "-----------"
   ],
-
-
   "forcedBinaryVersions": [
     "-----------",
     "x.x.x",
@@ -68,7 +60,5 @@
     "www.baidu2.com",
     "www.baidu3.com"
   ],
-
-
-  "MarkLast":""
+  "MarkLast": ""
 }

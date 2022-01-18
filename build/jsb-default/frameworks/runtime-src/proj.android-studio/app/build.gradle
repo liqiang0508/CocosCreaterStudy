@@ -3,8 +3,6 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-
     signingConfigs {
 
         release {
@@ -27,18 +25,16 @@ android {
         }
     }
 
+    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
+    buildToolsVersion PROP_BUILD_TOOLS_VERSION
+
     defaultConfig {
         applicationId "com.tao.honour"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 10300
-        versionName "1.3.0"
-        ndk {
-            abiFilters 'armeabi-v7a' //'arm64-v8a',
-        }
+        versionCode 1
+        versionName "1.0"
         signingConfig signingConfigs.release
-        multiDexEnabled true
-
 
 //        externalNativeBuild {
 //            ndkBuild {
@@ -58,15 +54,12 @@ android {
 //                    }
 //
 //                    arguments '-j' + Runtime.runtime.availableProcessors()
-//                    abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
 //                }
 //            }
+//            ndk {
+//                abiFilters PROP_APP_ABI.split(':')
+//            }
 //        }
-    }
-    //fix   Entry name 'classes.dex' collided报错
-    packagingOptions {
-        exclude 'classes.dex'
-        exclude '**.**'
     }
 
     sourceSets.main {
@@ -85,7 +78,17 @@ android {
 //        }
 //    }
 
+    signingConfigs {
 
+       release {
+            if (project.hasProperty("RELEASE_STORE_FILE")) {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
+        }
+    }
 
     buildTypes {
         release {
@@ -96,6 +99,9 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (project.hasProperty("RELEASE_STORE_FILE")) {
+                signingConfig signingConfigs.release
+            }
 
 //            externalNativeBuild {
 //                ndkBuild {
@@ -116,34 +122,21 @@ android {
 //            }
         }
     }
-
 }
 
 android.applicationVariants.all { variant ->
     // delete previous files first
     delete "${buildDir}/intermediates/merged_assets/${variant.dirName}"
 
-    variant.mergeAssetsProvider.get().doLast {
+    variant.mergeAssets.doLast {
         def sourceDir = "${buildDir}/../../../../.."
-//        def outputDir = "${buildDir}/intermediates/merged_assets/${variant.dirName}/out"
-//        System.out.println("______sourceDir = " + sourceDir)
-//        System.out.println("______outputDir1 = " + outputDir)
-        copy {
-            from "${sourceDir}/assets"
-            into "${outputDir}/assets"
-            into outputDir.dir("assets")
-        }
 
         copy {
-            from "${sourceDir}/src"
-            into "${outputDir}/src"
-            into outputDir.dir("src")
-        }
-
-        copy {
-            from "${sourceDir}/jsb-adapter"
-            into "${outputDir}/jsb-adapter"
-            into outputDir.dir("jsb-adapter")
+            from "${sourceDir}"
+            include "assets/**"
+            include "src/**"
+            include "jsb-adapter/**"
+            into outputDir
         }
 
         copy {

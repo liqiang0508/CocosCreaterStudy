@@ -15,7 +15,7 @@ cc.Class({
 
 
     onLoad() {
-  
+
         cc.log("launchsene onLoad")
         console.log("protobufjs test===========")
         var Proto = require("gameProto")
@@ -140,17 +140,11 @@ cc.Class({
                 }, 3)
             }
             Global.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0)//显示update...
-
-
         }
         else {//web
             VersionManager.getH5ScriptVersion()//直接读取本地配置版本号 便于登录界面右下角展示
             this.goLoginScene()
-
-
         }
-
-
 
     },
 
@@ -182,10 +176,10 @@ cc.Class({
 
                 this.Reboot()
             }
-            else if (code == 6 || code == 7) {//不支持的热更新的版本号,渠道号  ，直接进登录界面
+            // else if (code == 6 || code == 7) {//不支持的热更新的版本号,渠道号  ，直接进登录界面
 
-                this.goLoginScene()
-            }
+            //     // this.goLoginScene()
+            // }
             else if (code == 8)//强制更新 打开商店链接
             {
                 UITool.showAlert("发现新版本" + shopUrl, [], (index) => {

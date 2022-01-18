@@ -30,7 +30,7 @@ var Global = {
         cc.director.getScheduler().unschedule(call, component);
     },
 
-   
+
     // 数组是否包含
     GIsArrContain: function (arr, n) {
         for (var i in arr) {
@@ -97,9 +97,9 @@ var Global = {
         return path
     },
     //保留小数几位
-    GnumberToFix(n,num){
-        var t = Math.pow(10,num)
-        return Math.floor(n*t)/t
+    GnumberToFix(n, num) {
+        var t = Math.pow(10, num)
+        return Math.floor(n * t) / t
     },
     //获取url最后的文件名
     GgetFileNameByUrl: function (url) {
@@ -196,7 +196,7 @@ var Global = {
             };
             xhr.ontimeout = function () {
 
-                
+
                 call(null)
             };
 
@@ -230,7 +230,7 @@ var Global = {
 
     },
 
-    
+
     GgetTwoV2Angle: function (vA, vB) {//获得2点的夹角vA起点，vB终点
 
         var dx = vB.x - vA.x;
@@ -255,14 +255,14 @@ var Global = {
     },
     //加载bundle
     loadBundle: function (url, option, complete) {
-        cc.assetManager.loadBundle(url, option,  (err, bundle)=>{
+        cc.assetManager.loadBundle(url, option, (err, bundle) => {
             if (complete) {
                 complete(err, bundle)
             }
         })
     },
     //释放bundle
-    gReleaseBundle:function(bundleName){
+    gReleaseBundle: function (bundleName) {
 
         let bundle = this.gGetBundle(bundleName)
         if (bundle) {
@@ -272,38 +272,36 @@ var Global = {
 
     },
     //获取已加载了的bundle
-    gGetBundle:function(bundlename)
-    {
+    gGetBundle: function (bundlename) {
         var bundle = cc.assetManager.getBundle(bundlename);
         return bundle
     },
-    
+
     //重启
     gReBoot: function () {
 
         cc.game.restart()
     },
     //退出游戏
-    gExitGame:function(){
-        if(cc.sys.isNative)
-        {
+    gExitGame: function () {
+        if (cc.sys.isNative) {
             cc.game.end()
         }
     },
     Ghotupdateurl: "xxx", // 热更新地址
-    GgameType:1  // 1正式包 3debug 注意1前面不要有空格
+    GgameType: 1  // 1正式包 3debug 注意1前面不要有空格
 
 }
 
 // 根据不同包指定不同的热更新地址
 if (Global.GgameType == 1)//正式包
 {
-    Global.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configrelease"
+    Global.Ghotupdateurl = "http://192.168.0.105/hotupversion/configrelease"
     Global.isDebugTest = false
 }
 if (Global.GgameType == 3)//debug包
 {
-    Global.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configdebug"
+    Global.Ghotupdateurl = "http://192.168.0.105/hotupversion/configdebug"
     Global.isDebugTest = true
 }
 
@@ -320,16 +318,15 @@ gg.isAndroid = false
 gg.isIOS = false
 gg.isWindows = false
 
-if(cc.sys.isNative&&cc.sys.os == cc.sys.OS_ANDROID)//android
+if (cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID)//android
 {
     gg.isAndroid = true
 }
-else if(cc.sys.isNative&&cc.sys.os == cc.sys.OS_IOS)//ios
+else if (cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS)//ios
 {
     gg.isIOS = true
 }
-else
-{
+else {
     gg.isWindows = true
 }
 

@@ -1,27 +1,27 @@
 window.__require = function n(e, t, o) {
-function r(u, c) {
-if (!t[u]) {
-if (!e[u]) {
-var a = u.split("/");
-a = a[a.length - 1];
-if (!e[a]) {
-var s = "function" == typeof __require && __require;
-if (!c && s) return s(a, !0);
-if (i) return i(a, !0);
-throw new Error("Cannot find module '" + u + "'");
+function r(i, u) {
+if (!t[i]) {
+if (!e[i]) {
+var l = i.split("/");
+l = l[l.length - 1];
+if (!e[l]) {
+var a = "function" == typeof __require && __require;
+if (!u && a) return a(l, !0);
+if (c) return c(l, !0);
+throw new Error("Cannot find module '" + i + "'");
 }
-u = a;
+i = l;
 }
-var l = t[u] = {
+var f = t[i] = {
 exports: {}
 };
-e[u][0].call(l.exports, function(n) {
-return r(e[u][1][n] || n);
-}, l, l.exports, n, e, t, o);
+e[i][0].call(f.exports, function(n) {
+return r(e[i][1][n] || n);
+}, f, f.exports, n, e, t, o);
 }
-return t[u].exports;
+return t[i].exports;
 }
-for (var i = "function" == typeof __require && __require, u = 0; u < o.length; u++) r(o[u]);
+for (var c = "function" == typeof __require && __require, i = 0; i < o.length; i++) r(o[i]);
 return r;
 }({
 Sayhello: [ function(n, e) {
@@ -38,23 +38,14 @@ cc._RF.pop();
 bundleScene: [ function(n, e) {
 "use strict";
 cc._RF.push(e, "8b80aQyaQZI1LngX975F7G3", "bundleScene");
-var t = n("BaseComponent");
 cc.Class({
-extends: t,
+extends: cc.Component,
 properties: {},
 start: function() {
 this.btn_back = cc.find("uipanel/btn_back", this.node);
-ua.darkButton(this.btn_back, function() {});
-},
-onLoad: function() {
-this._super();
-},
-onDestroy: function() {
-this._super();
+UITool.addBtnClick(this.btn_back, function() {});
 }
 });
 cc._RF.pop();
-}, {
-BaseComponent: void 0
-} ]
+}, {} ]
 }, {}, [ "Sayhello", "bundleScene" ]);

@@ -1,6 +1,7 @@
 {
-  "ver": "2.3.5",
+  "ver": "2.3.7",
   "uuid": "2896f8e8-5acc-41ef-9005-523b8542b2a2",
+  "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -12,8 +13,9 @@
   "platformSettings": {},
   "subMetas": {
     "stop_kakadu": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "a78641e7-8e7f-465a-8342-6c58d639f892",
+      "importer": "sprite-frame",
       "rawTextureUuid": "2896f8e8-5acc-41ef-9005-523b8542b2a2",
       "trimType": "auto",
       "trimThreshold": 1,

@@ -1,28 +1,28 @@
-window.__require = function e(t, _, n) {
-function i(S, T) {
-if (!_[S]) {
-if (!t[S]) {
-var r = S.split("/");
-r = r[r.length - 1];
-if (!t[r]) {
-var s = "function" == typeof __require && __require;
-if (!T && s) return s(r, !0);
-if (o) return o(r, !0);
-throw new Error("Cannot find module '" + S + "'");
+window.__require = function e(t, n, i) {
+function o(s, a) {
+if (!n[s]) {
+if (!t[s]) {
+var c = s.split("/");
+c = c[c.length - 1];
+if (!t[c]) {
+var l = "function" == typeof __require && __require;
+if (!a && l) return l(c, !0);
+if (r) return r(c, !0);
+throw new Error("Cannot find module '" + s + "'");
 }
-S = r;
+s = c;
 }
-var E = _[S] = {
+var u = n[s] = {
 exports: {}
 };
-t[S][0].call(E.exports, function(e) {
-return i(t[S][1][e] || e);
-}, E, E.exports, e, t, _, n);
+t[s][0].call(u.exports, function(e) {
+return o(t[s][1][e] || e);
+}, u, u.exports, e, t, n, i);
 }
-return _[S].exports;
+return n[s].exports;
 }
-for (var o = "function" == typeof __require && __require, S = 0; S < n.length; S++) i(n[S]);
-return i;
+for (var r = "function" == typeof __require && __require, s = 0; s < i.length; s++) o(i[s]);
+return o;
 }({
 AdaptBg: [ function(e, t) {
 "use strict";
@@ -79,209 +79,148 @@ cc.sys.getSafeAreaRect(), cc.view.getVisibleSize();
 });
 cc._RF.pop();
 }, {} ],
-AlertIII: [ function(e, t) {
+Alert: [ function(e, t, n) {
 "use strict";
-cc._RF.push(t, "fcc45vfYNtImpD7O5BXoNrL", "AlertIII");
-var _ = e("BaseComponent");
-cc.Class({
-extends: _,
-properties: {
-AimType: {
-default: 1,
-override: !0
+cc._RF.push(t, "ddbe6DEUkJPyLv9UmKO+cUY", "Alert");
+Object.defineProperty(n, "__esModule", {
+value: !0
+});
+var i = cc._decorator, o = i.ccclass, r = (i.property, function(e) {
+__extends(t, e);
+function t() {
+var t = null !== e && e.apply(this, arguments) || this;
+t.mText = "";
+t.mBtnInfo = [];
+t.mCall = null;
+return t;
 }
-},
-onDestroy: function() {
-this._super();
-},
-onLoad: function() {
-var e = this;
-this._super();
-var t = this.node.getChildByName("bg").getChildByName("text");
-t.getComponent(cc.Label).string = "LOL";
-this.text = t;
-var _ = this.node.getChildByName("bg").getChildByName("btn_yes"), n = this.node.getChildByName("bg").getChildByName("btn_no"), i = this.node.getChildByName("bg").getChildByName("btn_middle");
-this.btnyes = _;
-this.btn_no = n;
-this.btn_middle = i;
-ua.darkButton(i, function() {
-e.BtnCall(2);
-e.bClose();
-});
-ua.darkButton(_, function() {
-e.BtnCall(1);
-e.bClose();
-});
-ua.darkButton(n, function() {
-e.BtnCall(0);
-e.bClose();
-});
-},
-setTitle: function(e) {
-this.text.getComponent(cc.Label).string = e;
-},
-setButtonInfo: function(e) {
+t.prototype.setTitle = function(e) {
+this.mChild.text.getComponent(cc.Label).string = e;
+};
+t.prototype.setButtonInfo = function(e) {
 if (1 == e.length) {
-this.btnyes.active = !1;
-this.btn_no.active = !1;
-this.btn_middle.active = !0;
-this.setButtonText(this.btn_middle, e[0]);
+this.mChild.btn_yes.active = !1;
+this.mChild.btn_no.active = !1;
+this.mChild.btn_middle.active = !0;
+this.setButtonText(this.mChild.btn_middle, e[0]);
 }
 if (0 == e.length) {
-this.btnyes.active = !1;
-this.btn_no.active = !1;
-this.btn_middle.active = !0;
-this.setButtonText(this.btn_middle, "Yes");
+this.mChild.btn_yes.active = !1;
+this.mChild.btn_no.active = !1;
+this.mChild.btn_middle.active = !0;
+this.setButtonText(this.mChild.btn_middle, "Yes");
 }
 if (2 == e.length) {
-this.btnyes.active = !0;
-this.btn_no.active = !0;
-this.btn_middle.active = !1;
-this.setButtonText(this.btnyes, e[0]);
-this.setButtonText(this.btn_no, e[1]);
+this.mChild.btn_yes.active = !0;
+this.mChild.btn_no.active = !0;
+this.mChild.btn_middle.active = !1;
+this.setButtonText(this.mChild.btn_yes, e[0]);
+this.setButtonText(this.mChild.btn_no, e[1]);
 }
 if (3 == e.length) {
-this.btnyes.active = !0;
-this.btn_no.active = !0;
-this.btn_middle.active = !0;
-this.setButtonText(this.btnyes, e[0]);
-this.setButtonText(this.btn_no, e[1]);
-this.setButtonText(this.btn_middle, e[2]);
+this.mChild.btn_yes.active = !0;
+this.mChild.btn_no.active = !0;
+this.mChild.btn_middle.active = !0;
+this.setButtonText(this.mChild.btn_yes, e[0]);
+this.setButtonText(this.mChild.btn_no, e[1]);
+this.setButtonText(this.mChild.btn_middle, e[2]);
 }
-},
-showAlert: function(e, t, _) {
-this.EnterAni();
-this.setTitle(e);
-this.setButtonInfo(t);
-this.AddClickBtnCall(_);
-},
-AddClickBtnCall: function(e) {
-this.ClickCall = e;
-},
-BtnCall: function(e) {
-this.ClickCall && this.ClickCall(e);
-},
-setButtonText: function(e, t) {
-var _ = e.getChildByName("Background").getChildByName("Label");
-_ && (_.getComponent(cc.Label).string = t);
-},
-start: function() {}
+};
+t.prototype.fresh = function() {
+this.mText && this.setTitle(this.mText);
+this.mBtnInfo && this.setButtonInfo(this.mBtnInfo);
+};
+t.prototype.showAlert = function(e, t, n) {
+this.mText = e;
+this.mBtnInfo = t;
+this.mCall = n;
+this.isStarted() && this.fresh();
+};
+t.prototype.BtnCall = function(e) {
+this.mCall && this.mCall(e);
+};
+t.prototype.setButtonText = function(e, t) {
+var n = e.getChildByName("Background").getChildByName("Label");
+n && (n.getComponent(cc.Label).string = t);
+};
+t.prototype.start = function() {
+var e = this;
+this.mChild = {};
+UITool.getChildNode(this.mChild, this.node);
+UITool.addBtnClick(this.mChild.btn_middle, function() {
+e.BtnCall(2);
+e.dismisssAnimation();
 });
+UITool.addBtnClick(this.mChild.btn_yes, function() {
+e.BtnCall(1);
+e.dismisssAnimation();
+});
+UITool.addBtnClick(this.mChild.btn_no, function() {
+e.BtnCall(0);
+e.dismisssAnimation();
+});
+UITool.addBtnClick(this.mChild.mask, function() {
+e.dismisssAnimation();
+});
+this.fresh();
+};
+t.prototype.onbackpress = function() {
+this.dismisssAnimation();
+};
+return __decorate([ o ], t);
+}(e("../../core/popBaseView").default));
+n.default = r;
 cc._RF.pop();
 }, {
-BaseComponent: "BaseComponent"
+"../../core/popBaseView": "popBaseView"
 } ],
 Base64Tool: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "04561E7wzpHiKoMn1wok8WB", "Base64Tool");
-var _ = e("buffer").Buffer, n = {
+var n = e("buffer").Buffer, i = {
 encode: function(e) {
-return new _(e).toString("base64");
+return new n(e).toString("base64");
 },
 decode: function(e) {
-return new _(e, "base64").toString();
+return new n(e, "base64").toString();
 }
 };
-t.exports = n;
+t.exports = i;
 cc._RF.pop();
 }, {
 buffer: 6
 } ],
-BaseComponent: [ function(e, t) {
+BaseComponent: [ function(e, t, n) {
 "use strict";
-cc._RF.push(t, "8e980PYoChFa6X8R9XVV7PJ", "BaseComponent");
-var _ = e("KeypadDispatch");
-cc.Class({
-extends: cc.Component,
-properties: {
-AimType: {
-default: 0,
-override: !0,
-tooltip: "弹出动画  1:弹出 2:渐变"
-}
-},
-showWiat: function(e) {
-if (e) UiManager.gLoadPrefabRes("prefabs/rotateLoading", function(e) {
-if (e) {
-cc.director.getScene().getChildByName("Canvas").addChild(e);
-e.setName("rotateLoading");
-}
-}); else {
-var t = cc.director.getScene().getChildByName("Canvas").getChildByName("rotateLoading");
-t && t.removeFromParent();
-}
-},
-onLoad: function() {
-_.getInstance().add(this);
-},
-start: function() {},
-onDestroy: function() {
-this.node.targetOff(this);
-_.getInstance().remove();
-},
-show: function() {
-this.EnterAni();
-},
-bClose: function() {
-var e = this;
-this.ExtAni(function() {
-if (e.node) {
-e.node.destroy();
-e.node.removeFromParent();
-}
+cc._RF.push(t, "9f8731qGcZP64lVKwO/GgDA", "BaseComponent");
+Object.defineProperty(n, "__esModule", {
+value: !0
 });
-},
-ExtAni: function(e) {
-0 == this.AimType && e && e();
-if (1 == this.AimType) {
-var t = cc.spawn(cc.scaleTo(.1, .7), cc.fadeTo(.08, 0)), _ = cc.callFunc(function() {
-e && e();
-}), n = cc.sequence(t, _);
-this.node.runAction(n);
-var i = this.node.getChildByName("mask");
-i && (i.opacity = 0);
+var i = cc._decorator, o = i.ccclass, r = (i.property, function(e) {
+__extends(t, e);
+function t() {
+var t = null !== e && e.apply(this, arguments) || this;
+t.mStarted = !1;
+return t;
 }
-if (2 == this.AimType) {
-t = cc.fadeTo(.15, 0), _ = cc.callFunc(function() {
-e && e();
-}), n = cc.sequence(t, _);
-this.node.runAction(n);
-}
-},
-onbackpress: function() {
-this.bClose();
-},
-EnterAni: function(e) {
-if (1 == this.AimType) {
-var t = this.node.getChildByName("mask");
-this.node.opacity = 10;
-this.node.Scale = .5;
-var _ = cc.spawn(cc.scaleTo(.1, 1.05), cc.fadeTo(.1, 180)), n = cc.spawn(cc.scaleTo(.05, 1), cc.fadeTo(.05, 255)), i = cc.callFunc(function() {
-e && e();
-t && (t.opacity = 125);
-}), o = cc.sequence(_, n, i);
-this.node.runAction(o);
-}
-if (2 == this.AimType) {
-(t = this.node.getChildByName("mask")) && (t.opacity = 0);
-_ = cc.fadeTo(.15, 255), n = cc.callFunc(function() {
-e && e();
-t && (t.opacity = 225);
-}), o = cc.sequence(_, n);
-this.node.runAction(o);
-}
-}
-});
+t.prototype.onLoad = function() {};
+t.prototype.start = function() {
+this.mStarted = !0;
+};
+t.prototype.onDestroy = function() {};
+t.prototype.isStarted = function() {
+return this.mStarted;
+};
+return __decorate([ o ], t);
+}(cc.Component));
+n.default = r;
 cc._RF.pop();
-}, {
-KeypadDispatch: "KeypadDispatch"
-} ],
+}, {} ],
 BubbleScene: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "056f1Xf3tBLE5KzIZKhSnU6", "BubbleScene");
-var _ = e("BaseComponent");
 cc.Class({
-extends: _,
+extends: cc.Component,
 properties: {},
 start: function() {
 window.GameState = 0;
@@ -291,7 +230,7 @@ this.ball = cc.find("ball", this.node);
 this.schedule(this.CreateBubble, 1);
 this.Score = 0;
 var e = cc.find("uipanel/btn_pause", this.node);
-ua.darkButton(e, function() {
+UITool.addBtnClick(e, function() {
 0 == window.GameState ? window.GameState = 1 : window.GameState = 0;
 });
 },
@@ -321,9 +260,7 @@ t.y = 0;
 }
 });
 cc._RF.pop();
-}, {
-BaseComponent: "BaseComponent"
-} ],
+}, {} ],
 Bubble: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "588d51xwI9Hoqya8KILiGGJ", "Bubble");
@@ -339,7 +276,7 @@ start: function() {
 var e = this;
 this.Speed = cc.v2(1e3 * Math.random() - 500, 1e3 * Math.random() - 500);
 this.ScreenSize = cc.view.getVisibleSize();
-ua.ClickNode(this.node, function() {
+UITool.addBtnClick(this.node, null, function() {
 if (1 != window.GameState) {
 e.ClickCall && e.ClickCall();
 e.node.removeFromParent();
@@ -406,19 +343,19 @@ this.img.setPosition(cc.v2(0, 0));
 window.EventManager.on(this.node, "gameover", function() {
 console.log("game over====");
 });
-var _ = cc.find("uipanel/firebtn", this.node);
-ua.darkButton(_, function() {
+var n = cc.find("uipanel/firebtn", this.node);
+UITool.addBtnClick(n, function() {
 cc.log("firebtn*****vec", t.forceVec);
-var _ = cc.v2(t.forceVec.x, t.forceVec.y).mul(6e5);
-cc.log("firebtn*****force", _);
-e.img.getComponent(cc.RigidBody).applyForceToCenter(_);
+var n = cc.v2(t.forceVec.x, t.forceVec.y).mul(6e5);
+cc.log("firebtn*****force", n);
+e.img.getComponent(cc.RigidBody).applyForceToCenter(n);
 });
-ua.darkButton(this.node, function(e) {
-var _ = e.getTouches()[0].getLocation();
-_ = t.img.parent.convertToNodeSpaceAR(_);
-var n = t.img.getPosition().subSelf(_).normalizeSelf();
-cc.log("v===", n);
-t.forceVec = n;
+UITool.addBtnClick(this.node, function(e) {
+var n = e.getTouches()[0].getLocation();
+n = t.img.parent.convertToNodeSpaceAR(n);
+var i = t.img.getPosition().subSelf(n).normalizeSelf();
+cc.log("v===", i);
+t.forceVec = i;
 });
 },
 onTouchStart: function() {
@@ -427,37 +364,37 @@ this.graphic_line.clear();
 onTouchMove: function(e) {
 this.graphic_line.clear();
 this._cur_length = 0;
-var t = e.getStartLocation(), _ = e.getLocation();
-this.drawRayCast(t, _.subSelf(t).normalizeSelf());
+var t = e.getStartLocation(), n = e.getLocation();
+this.drawRayCast(t, n.subSelf(t).normalizeSelf());
 this.graphic_line.stroke();
 },
 onTouchEnd: function() {
 this.graphic_line.clear();
 },
 drawRayCast: function(e, t) {
-var _ = 1440 - this._cur_length;
-if (!(_ <= 0)) {
-var n = e.add(t.mul(_)), i = cc.director.getPhysicsManager().rayCast(e, n, cc.RayCastType.Closest);
-if (i.length > 0) {
-var o = i[0], S = o.point;
-this.drawAimLine(e, S);
-var T = S.sub(e).mag();
-this._cur_length += T;
-var r = o.normal, s = t, E = s.sub(r.mul(2 * s.dot(r)));
-this.drawRayCast(S, E);
-} else this.drawAimLine(e, n);
+var n = 1440 - this._cur_length;
+if (!(n <= 0)) {
+var i = e.add(t.mul(n)), o = cc.director.getPhysicsManager().rayCast(e, i, cc.RayCastType.Closest);
+if (o.length > 0) {
+var r = o[0], s = r.point;
+this.drawAimLine(e, s);
+var a = s.sub(e).mag();
+this._cur_length += a;
+var c = r.normal, l = t, u = l.sub(c.mul(2 * l.dot(c)));
+this.drawRayCast(s, u);
+} else this.drawAimLine(e, i);
 }
 },
 drawAimLine: function(e, t) {
-var _ = this.graphic_line.node.convertToNodeSpaceAR(e);
-this.graphic_line.moveTo(_.x, _.y);
+var n = this.graphic_line.node.convertToNodeSpaceAR(e);
+this.graphic_line.moveTo(n.x, n.y);
 this.graphic_line.strokeColor = new cc.Color().fromHEX("#ffffff");
 this.graphic_line.lineWidth = 2;
-var n = t.sub(e), i = Math.round(n.mag() / 35);
-n.normalizeSelf().mulSelf(35);
-for (var o = 0; o < i; o++) {
-_.addSelf(n);
-this.graphic_line.circle(_.x, _.y, 6);
+var i = t.sub(e), o = Math.round(i.mag() / 35);
+i.normalizeSelf().mulSelf(35);
+for (var r = 0; r < o; r++) {
+n.addSelf(i);
+this.graphic_line.circle(n.x, n.y, 6);
 }
 },
 start: function() {},
@@ -483,7 +420,7 @@ cc._RF.pop();
 Cell: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "6cd2bQoraxKY5HGNVMucv31", "Cell");
-var _ = [ "stop_banana", "stop_begemot", "stop_cocktail", "stop_crocodile", "stop_kakadu", "stop_lion", "stop_man", "stop_monkey" ];
+var n = [ "stop_banana", "stop_begemot", "stop_cocktail", "stop_crocodile", "stop_kakadu", "stop_lion", "stop_man", "stop_monkey" ];
 cc.Class({
 extends: cc.Component,
 properties: {},
@@ -491,9 +428,9 @@ setBgRes: function(e) {
 if (this.bg) {
 var t = this.bg.getComponent(cc.Sprite);
 if (t) {
-var n = "slots/" + _[e];
-cc.resources.load(n, function(e, _) {
-e ? cc.log("err==", e) : _ && (t.spriteFrame = new cc.SpriteFrame(_));
+var i = "slots/" + n[e];
+cc.resources.load(i, function(e, n) {
+e ? cc.log("err==", e) : n && (t.spriteFrame = new cc.SpriteFrame(n));
 });
 }
 } else cc.log("this.bg  不存在");
@@ -512,1130 +449,2846 @@ cc._RF.pop();
 Chanel: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "15547fdAgdMZo3lwC1nVArs", "Chanel");
-var _ = {
+var n = {
 WIN32: 0,
 IOS_APPSTORE: 1,
 H5: 2,
 ANDROID_GOOGLE_PLAY: 3
 };
-window.chanel = _;
-cc.sys.isBrowser ? window.DISTRIBUTE_CHANNEL = _.H5 : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? window.DISTRIBUTE_CHANNEL = _.ANDROID_GOOGLE_PLAY : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS ? window.DISTRIBUTE_CHANNEL = _.IOS_APPSTORE : window.DISTRIBUTE_CHANNEL = _.WIN32;
+window.chanel = n;
+cc.sys.isBrowser ? window.DISTRIBUTE_CHANNEL = n.H5 : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? window.DISTRIBUTE_CHANNEL = n.ANDROID_GOOGLE_PLAY : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS ? window.DISTRIBUTE_CHANNEL = n.IOS_APPSTORE : window.DISTRIBUTE_CHANNEL = n.WIN32;
+cc._RF.pop();
+}, {} ],
+ConstEventDefine: [ function(e, t) {
+"use strict";
+cc._RF.push(t, "61b76Jo/yFIe6tdWMzfo4eF", "ConstEventDefine");
+globalThis.ConstEventDefine = {
+EVENT_NAME: {
+TEST: "TEST"
+}
+};
 cc._RF.pop();
 }, {} ],
 ConstantItem: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "597b04MNS9KfIVJ0rR+fn0e", "ConstantItem");
-var _ = {
+var n = {
 1: {}
 };
-_[1].ID = 1;
-_[1].Name = "钻石包_1";
-_[1].Type = 0;
-_[1].PriceType = 2;
-_[1].Price = 35;
-_[1].PriceBeforeDiscount = 0;
-_[1].Time = 0;
-_[1].StorePosition = 1101;
-_[1].InfoVersion = 0;
-_[1].AddGem = 6;
-_[1].AddInteractiveItem = 0;
-_[1].AddSpeechItem = 0;
-_[1].DiscountBuyItem = 0;
-_[1].AddChip = 0;
-_[1].MinRandomChip = 0;
-_[1].MaxRandomChip = 0;
-_[2] = {};
-_[2].ID = 2;
-_[2].Name = "钻石包_2";
-_[2].Type = 0;
-_[2].PriceType = 2;
-_[2].Price = 175;
-_[2].PriceBeforeDiscount = 0;
-_[2].Time = 0;
-_[2].StorePosition = 1102;
-_[2].InfoVersion = 0;
-_[2].AddGem = 31;
-_[2].AddInteractiveItem = 0;
-_[2].AddSpeechItem = 0;
-_[2].DiscountBuyItem = 0;
-_[2].AddChip = 0;
-_[2].MinRandomChip = 0;
-_[2].MaxRandomChip = 0;
-_[3] = {};
-_[3].ID = 3;
-_[3].Name = "钻石包_3";
-_[3].Type = 0;
-_[3].PriceType = 2;
-_[3].Price = 699;
-_[3].PriceBeforeDiscount = 0;
-_[3].Time = 0;
-_[3].StorePosition = 1103;
-_[3].InfoVersion = 0;
-_[3].AddGem = 132;
-_[3].AddInteractiveItem = 0;
-_[3].AddSpeechItem = 0;
-_[3].DiscountBuyItem = 0;
-_[3].AddChip = 0;
-_[3].MinRandomChip = 0;
-_[3].MaxRandomChip = 0;
-_[4] = {};
-_[4].ID = 4;
-_[4].Name = "钻石包_4";
-_[4].Type = 0;
-_[4].PriceType = 2;
-_[4].Price = 1750;
-_[4].PriceBeforeDiscount = 0;
-_[4].Time = 0;
-_[4].StorePosition = 1104;
-_[4].InfoVersion = 0;
-_[4].AddGem = 336;
-_[4].AddInteractiveItem = 0;
-_[4].AddSpeechItem = 0;
-_[4].DiscountBuyItem = 0;
-_[4].AddChip = 0;
-_[4].MinRandomChip = 0;
-_[4].MaxRandomChip = 0;
-_[5] = {};
-_[5].ID = 5;
-_[5].Name = "钻石包_5";
-_[5].Type = 0;
-_[5].PriceType = 2;
-_[5].Price = 3500;
-_[5].PriceBeforeDiscount = 0;
-_[5].Time = 0;
-_[5].StorePosition = 1105;
-_[5].InfoVersion = 0;
-_[5].AddGem = 690;
-_[5].AddInteractiveItem = 0;
-_[5].AddSpeechItem = 0;
-_[5].DiscountBuyItem = 0;
-_[5].AddChip = 0;
-_[5].MinRandomChip = 0;
-_[5].MaxRandomChip = 0;
-_[6] = {};
-_[6].ID = 6;
-_[6].Name = "周卡";
-_[6].Type = 7;
-_[6].PriceType = 2;
-_[6].Price = 175;
-_[6].PriceBeforeDiscount = 0;
-_[6].Time = 168;
-_[6].StorePosition = 0;
-_[6].InfoVersion = 0;
-_[6].AddGem = 15;
-_[6].AddInteractiveItem = 0;
-_[6].AddSpeechItem = 0;
-_[6].DiscountBuyItem = 0;
-_[6].AddChip = 0;
-_[6].MinRandomChip = 0;
-_[6].MaxRandomChip = 0;
-_[7] = {};
-_[7].ID = 7;
-_[7].Name = "月卡";
-_[7].Type = 7;
-_[7].PriceType = 2;
-_[7].Price = 699;
-_[7].PriceBeforeDiscount = 0;
-_[7].Time = 720;
-_[7].StorePosition = 0;
-_[7].InfoVersion = 0;
-_[7].AddGem = 100;
-_[7].AddInteractiveItem = 0;
-_[7].AddSpeechItem = 0;
-_[7].DiscountBuyItem = 0;
-_[7].AddChip = 0;
-_[7].MinRandomChip = 0;
-_[7].MaxRandomChip = 0;
-_[16] = {};
-_[16].ID = 16;
-_[16].Name = "互动道具包_1";
-_[16].Type = 0;
-_[16].PriceType = 0;
-_[16].Price = 1e3;
-_[16].PriceBeforeDiscount = 0;
-_[16].Time = 0;
-_[16].StorePosition = 2104;
-_[16].InfoVersion = 0;
-_[16].AddGem = 0;
-_[16].AddInteractiveItem = 25;
-_[16].AddSpeechItem = 0;
-_[16].DiscountBuyItem = 0;
-_[16].AddChip = 0;
-_[16].MinRandomChip = 0;
-_[16].MaxRandomChip = 0;
-_[17] = {};
-_[17].ID = 17;
-_[17].Name = "互动道具包_2";
-_[17].Type = 0;
-_[17].PriceType = 0;
-_[17].Price = 6e3;
-_[17].PriceBeforeDiscount = 0;
-_[17].Time = 0;
-_[17].StorePosition = 2105;
-_[17].InfoVersion = 0;
-_[17].AddGem = 0;
-_[17].AddInteractiveItem = 150;
-_[17].AddSpeechItem = 0;
-_[17].DiscountBuyItem = 0;
-_[17].AddChip = 0;
-_[17].MinRandomChip = 0;
-_[17].MaxRandomChip = 0;
-_[18] = {};
-_[18].ID = 18;
-_[18].Name = "互动道具包_3";
-_[18].Type = 0;
-_[18].PriceType = 0;
-_[18].Price = 24e3;
-_[18].PriceBeforeDiscount = 0;
-_[18].Time = 0;
-_[18].StorePosition = 2106;
-_[18].InfoVersion = 0;
-_[18].AddGem = 0;
-_[18].AddInteractiveItem = 660;
-_[18].AddSpeechItem = 0;
-_[18].DiscountBuyItem = 0;
-_[18].AddChip = 0;
-_[18].MinRandomChip = 0;
-_[18].MaxRandomChip = 0;
-_[19] = {};
-_[19].ID = 19;
-_[19].Name = "喇叭包_1";
-_[19].Type = 0;
-_[19].PriceType = 0;
-_[19].Price = 2500;
-_[19].PriceBeforeDiscount = 0;
-_[19].Time = 0;
-_[19].StorePosition = 2101;
-_[19].InfoVersion = 0;
-_[19].AddGem = 0;
-_[19].AddInteractiveItem = 0;
-_[19].AddSpeechItem = 25;
-_[19].DiscountBuyItem = 0;
-_[19].AddChip = 0;
-_[19].MinRandomChip = 0;
-_[19].MaxRandomChip = 0;
-_[20] = {};
-_[20].ID = 20;
-_[20].Name = "喇叭包_2";
-_[20].Type = 0;
-_[20].PriceType = 0;
-_[20].Price = 15e3;
-_[20].PriceBeforeDiscount = 0;
-_[20].Time = 0;
-_[20].StorePosition = 2102;
-_[20].InfoVersion = 0;
-_[20].AddGem = 0;
-_[20].AddInteractiveItem = 0;
-_[20].AddSpeechItem = 150;
-_[20].DiscountBuyItem = 0;
-_[20].AddChip = 0;
-_[20].MinRandomChip = 0;
-_[20].MaxRandomChip = 0;
-_[21] = {};
-_[21].ID = 21;
-_[21].Name = "喇叭包_3";
-_[21].Type = 0;
-_[21].PriceType = 0;
-_[21].Price = 6e4;
-_[21].PriceBeforeDiscount = 0;
-_[21].Time = 0;
-_[21].StorePosition = 2103;
-_[21].InfoVersion = 0;
-_[21].AddGem = 0;
-_[21].AddInteractiveItem = 0;
-_[21].AddSpeechItem = 600;
-_[21].DiscountBuyItem = 0;
-_[21].AddChip = 0;
-_[21].MinRandomChip = 0;
-_[21].MaxRandomChip = 0;
-_[22] = {};
-_[22].ID = 22;
-_[22].Name = "喇叭包_4";
-_[22].Type = 0;
-_[22].PriceType = 1;
-_[22].Price = 10;
-_[22].PriceBeforeDiscount = 0;
-_[22].Time = 0;
-_[22].StorePosition = 2107;
-_[22].InfoVersion = 0;
-_[22].AddGem = 0;
-_[22].AddInteractiveItem = 0;
-_[22].AddSpeechItem = 1;
-_[22].DiscountBuyItem = 0;
-_[22].AddChip = 0;
-_[22].MinRandomChip = 0;
-_[22].MaxRandomChip = 0;
-_[4004] = {};
-_[4004].ID = 4004;
-_[4004].Name = "饮品_鲜榨果汁";
-_[4004].Type = 4;
-_[4004].PriceType = 0;
-_[4004].Price = 3500;
-_[4004].PriceBeforeDiscount = 0;
-_[4004].Time = 24;
-_[4004].StorePosition = 4101;
-_[4004].InfoVersion = 0;
-_[4004].AddGem = 0;
-_[4004].AddInteractiveItem = 0;
-_[4004].AddSpeechItem = 0;
-_[4004].DiscountBuyItem = 0;
-_[4004].AddChip = 0;
-_[4004].MinRandomChip = 0;
-_[4004].MaxRandomChip = 0;
-_[4009] = {};
-_[4009].ID = 4009;
-_[4009].Name = "饮品_鸡尾酒（血腥玛丽）";
-_[4009].Type = 4;
-_[4009].PriceType = 0;
-_[4009].Price = 3500;
-_[4009].PriceBeforeDiscount = 0;
-_[4009].Time = 24;
-_[4009].StorePosition = 4102;
-_[4009].InfoVersion = 0;
-_[4009].AddGem = 0;
-_[4009].AddInteractiveItem = 0;
-_[4009].AddSpeechItem = 0;
-_[4009].DiscountBuyItem = 0;
-_[4009].AddChip = 0;
-_[4009].MinRandomChip = 0;
-_[4009].MaxRandomChip = 0;
-_[4013] = {};
-_[4013].ID = 4013;
-_[4013].Name = "美食_棒棒糖";
-_[4013].Type = 4;
-_[4013].PriceType = 0;
-_[4013].Price = 4500;
-_[4013].PriceBeforeDiscount = 0;
-_[4013].Time = 24;
-_[4013].StorePosition = 4105;
-_[4013].InfoVersion = 0;
-_[4013].AddGem = 0;
-_[4013].AddInteractiveItem = 0;
-_[4013].AddSpeechItem = 0;
-_[4013].DiscountBuyItem = 0;
-_[4013].AddChip = 0;
-_[4013].MinRandomChip = 0;
-_[4013].MaxRandomChip = 0;
-_[4014] = {};
-_[4014].ID = 4014;
-_[4014].Name = "美食_提拉米苏";
-_[4014].Type = 4;
-_[4014].PriceType = 0;
-_[4014].Price = 5500;
-_[4014].PriceBeforeDiscount = 0;
-_[4014].Time = 24;
-_[4014].StorePosition = 4107;
-_[4014].InfoVersion = 0;
-_[4014].AddGem = 0;
-_[4014].AddInteractiveItem = 0;
-_[4014].AddSpeechItem = 0;
-_[4014].DiscountBuyItem = 0;
-_[4014].AddChip = 0;
-_[4014].MinRandomChip = 0;
-_[4014].MaxRandomChip = 0;
-_[4019] = {};
-_[4019].ID = 4019;
-_[4019].Name = "美食_冰淇林";
-_[4019].Type = 4;
-_[4019].PriceType = 0;
-_[4019].Price = 5500;
-_[4019].PriceBeforeDiscount = 0;
-_[4019].Time = 24;
-_[4019].StorePosition = 4106;
-_[4019].InfoVersion = 0;
-_[4019].AddGem = 0;
-_[4019].AddInteractiveItem = 0;
-_[4019].AddSpeechItem = 0;
-_[4019].DiscountBuyItem = 0;
-_[4019].AddChip = 0;
-_[4019].MinRandomChip = 0;
-_[4019].MaxRandomChip = 0;
-_[4023] = {};
-_[4023].ID = 4023;
-_[4023].Name = "烟_雪茄";
-_[4023].Type = 4;
-_[4023].PriceType = 0;
-_[4023].Price = 4500;
-_[4023].PriceBeforeDiscount = 0;
-_[4023].Time = 24;
-_[4023].StorePosition = 4103;
-_[4023].InfoVersion = 0;
-_[4023].AddGem = 0;
-_[4023].AddInteractiveItem = 0;
-_[4023].AddSpeechItem = 0;
-_[4023].DiscountBuyItem = 0;
-_[4023].AddChip = 0;
-_[4023].MinRandomChip = 0;
-_[4023].MaxRandomChip = 0;
-_[4024] = {};
-_[4024].ID = 4024;
-_[4024].Name = "烟_烟斗";
-_[4024].Type = 4;
-_[4024].PriceType = 0;
-_[4024].Price = 4500;
-_[4024].PriceBeforeDiscount = 0;
-_[4024].Time = 24;
-_[4024].StorePosition = 4104;
-_[4024].InfoVersion = 0;
-_[4024].AddGem = 0;
-_[4024].AddInteractiveItem = 0;
-_[4024].AddSpeechItem = 0;
-_[4024].DiscountBuyItem = 0;
-_[4024].AddChip = 0;
-_[4024].MinRandomChip = 0;
-_[4024].MaxRandomChip = 0;
-_[4027] = {};
-_[4027].ID = 4027;
-_[4027].Name = "吉祥物_招财猫";
-_[4027].Type = 4;
-_[4027].PriceType = 0;
-_[4027].Price = 6500;
-_[4027].PriceBeforeDiscount = 0;
-_[4027].Time = 24;
-_[4027].StorePosition = 4108;
-_[4027].InfoVersion = 0;
-_[4027].AddGem = 0;
-_[4027].AddInteractiveItem = 0;
-_[4027].AddSpeechItem = 0;
-_[4027].DiscountBuyItem = 0;
-_[4027].AddChip = 0;
-_[4027].MinRandomChip = 0;
-_[4027].MaxRandomChip = 0;
-_[4029] = {};
-_[4029].ID = 4029;
-_[4029].Name = "吉祥物_忠犬";
-_[4029].Type = 4;
-_[4029].PriceType = 0;
-_[4029].Price = 6500;
-_[4029].PriceBeforeDiscount = 0;
-_[4029].Time = 24;
-_[4029].StorePosition = 4109;
-_[4029].InfoVersion = 0;
-_[4029].AddGem = 0;
-_[4029].AddInteractiveItem = 0;
-_[4029].AddSpeechItem = 0;
-_[4029].DiscountBuyItem = 0;
-_[4029].AddChip = 0;
-_[4029].MinRandomChip = 0;
-_[4029].MaxRandomChip = 0;
-_[4031] = {};
-_[4031].ID = 4031;
-_[4031].Name = "吉祥物_晴天娃娃";
-_[4031].Type = 4;
-_[4031].PriceType = 0;
-_[4031].Price = 7500;
-_[4031].PriceBeforeDiscount = 0;
-_[4031].Time = 24;
-_[4031].StorePosition = 4110;
-_[4031].InfoVersion = 0;
-_[4031].AddGem = 0;
-_[4031].AddInteractiveItem = 0;
-_[4031].AddSpeechItem = 0;
-_[4031].DiscountBuyItem = 0;
-_[4031].AddChip = 0;
-_[4031].MinRandomChip = 0;
-_[4031].MaxRandomChip = 0;
-_[4038] = {};
-_[4038].ID = 4038;
-_[4038].Name = "饰品_手链";
-_[4038].Type = 4;
-_[4038].PriceType = 0;
-_[4038].Price = 7500;
-_[4038].PriceBeforeDiscount = 0;
-_[4038].Time = 24;
-_[4038].StorePosition = 4112;
-_[4038].InfoVersion = 0;
-_[4038].AddGem = 0;
-_[4038].AddInteractiveItem = 0;
-_[4038].AddSpeechItem = 0;
-_[4038].DiscountBuyItem = 0;
-_[4038].AddChip = 0;
-_[4038].MinRandomChip = 0;
-_[4038].MaxRandomChip = 0;
-_[4039] = {};
-_[4039].ID = 4039;
-_[4039].Name = "饰品_铃铛";
-_[4039].Type = 4;
-_[4039].PriceType = 0;
-_[4039].Price = 7500;
-_[4039].PriceBeforeDiscount = 0;
-_[4039].Time = 24;
-_[4039].StorePosition = 4111;
-_[4039].InfoVersion = 0;
-_[4039].AddGem = 0;
-_[4039].AddInteractiveItem = 0;
-_[4039].AddSpeechItem = 0;
-_[4039].DiscountBuyItem = 0;
-_[4039].AddChip = 0;
-_[4039].MinRandomChip = 0;
-_[4039].MaxRandomChip = 0;
-_[5001] = {};
-_[5001].ID = 5001;
-_[5001].Name = "VIP（白银）";
-_[5001].Type = 5;
-_[5001].PriceType = 0;
-_[5001].Price = 0;
-_[5001].PriceBeforeDiscount = 0;
-_[5001].Time = 0;
-_[5001].StorePosition = 0;
-_[5001].InfoVersion = 0;
-_[5001].AddGem = 0;
-_[5001].AddInteractiveItem = 0;
-_[5001].AddSpeechItem = 0;
-_[5001].DiscountBuyItem = 100;
-_[5001].AddChip = 0;
-_[5001].MinRandomChip = 0;
-_[5001].MaxRandomChip = 0;
-_[5002] = {};
-_[5002].ID = 5002;
-_[5002].Name = "VIP（黄金）";
-_[5002].Type = 5;
-_[5002].PriceType = 0;
-_[5002].Price = 0;
-_[5002].PriceBeforeDiscount = 0;
-_[5002].Time = 0;
-_[5002].StorePosition = 0;
-_[5002].InfoVersion = 0;
-_[5002].AddGem = 0;
-_[5002].AddInteractiveItem = 0;
-_[5002].AddSpeechItem = 0;
-_[5002].DiscountBuyItem = 95;
-_[5002].AddChip = 0;
-_[5002].MinRandomChip = 0;
-_[5002].MaxRandomChip = 0;
-_[5003] = {};
-_[5003].ID = 5003;
-_[5003].Name = "VIP（蓝钻）";
-_[5003].Type = 5;
-_[5003].PriceType = 0;
-_[5003].Price = 0;
-_[5003].PriceBeforeDiscount = 0;
-_[5003].Time = 0;
-_[5003].StorePosition = 0;
-_[5003].InfoVersion = 0;
-_[5003].AddGem = 0;
-_[5003].AddInteractiveItem = 0;
-_[5003].AddSpeechItem = 0;
-_[5003].DiscountBuyItem = 90;
-_[5003].AddChip = 0;
-_[5003].MinRandomChip = 0;
-_[5003].MaxRandomChip = 0;
-_[5004] = {};
-_[5004].ID = 5004;
-_[5004].Name = "VIP（黑钻）";
-_[5004].Type = 5;
-_[5004].PriceType = 0;
-_[5004].Price = 0;
-_[5004].PriceBeforeDiscount = 0;
-_[5004].Time = 0;
-_[5004].StorePosition = 0;
-_[5004].InfoVersion = 0;
-_[5004].AddGem = 0;
-_[5004].AddInteractiveItem = 0;
-_[5004].AddSpeechItem = 0;
-_[5004].DiscountBuyItem = 80;
-_[5004].AddChip = 0;
-_[5004].MinRandomChip = 0;
-_[5004].MaxRandomChip = 0;
-_[5005] = {};
-_[5005].ID = 5005;
-_[5005].Name = "VIP（至尊）";
-_[5005].Type = 5;
-_[5005].PriceType = 0;
-_[5005].Price = 0;
-_[5005].PriceBeforeDiscount = 0;
-_[5005].Time = 0;
-_[5005].StorePosition = 0;
-_[5005].InfoVersion = 0;
-_[5005].AddGem = 0;
-_[5005].AddInteractiveItem = 0;
-_[5005].AddSpeechItem = 0;
-_[5005].DiscountBuyItem = 70;
-_[5005].AddChip = 0;
-_[5005].MinRandomChip = 0;
-_[5005].MaxRandomChip = 0;
-_[6001] = {};
-_[6001].ID = 6001;
-_[6001].Name = "互动道具";
-_[6001].Type = 6;
-_[6001].PriceType = 0;
-_[6001].Price = 0;
-_[6001].PriceBeforeDiscount = 0;
-_[6001].Time = 0;
-_[6001].StorePosition = 0;
-_[6001].InfoVersion = 0;
-_[6001].AddGem = 0;
-_[6001].AddInteractiveItem = 0;
-_[6001].AddSpeechItem = 0;
-_[6001].DiscountBuyItem = 0;
-_[6001].AddChip = 0;
-_[6001].MinRandomChip = 0;
-_[6001].MaxRandomChip = 0;
-_[6002] = {};
-_[6002].ID = 6002;
-_[6002].Name = "语音聊天道具";
-_[6002].Type = 6;
-_[6002].PriceType = 0;
-_[6002].Price = 0;
-_[6002].PriceBeforeDiscount = 0;
-_[6002].Time = 0;
-_[6002].StorePosition = 0;
-_[6002].InfoVersion = 0;
-_[6002].AddGem = 0;
-_[6002].AddInteractiveItem = 0;
-_[6002].AddSpeechItem = 0;
-_[6002].DiscountBuyItem = 0;
-_[6002].AddChip = 0;
-_[6002].MinRandomChip = 0;
-_[6002].MaxRandomChip = 0;
-_[6003] = {};
-_[6003].ID = 6003;
-_[6003].Name = "踢人卡";
-_[6003].Type = 6;
-_[6003].PriceType = 0;
-_[6003].Price = 0;
-_[6003].PriceBeforeDiscount = 0;
-_[6003].Time = 0;
-_[6003].StorePosition = 0;
-_[6003].InfoVersion = 0;
-_[6003].AddGem = 0;
-_[6003].AddInteractiveItem = 0;
-_[6003].AddSpeechItem = 0;
-_[6003].DiscountBuyItem = 0;
-_[6003].AddChip = 0;
-_[6003].MinRandomChip = 0;
-_[6003].MaxRandomChip = 0;
-_[6004] = {};
-_[6004].ID = 6004;
-_[6004].Name = "锁房卡";
-_[6004].Type = 6;
-_[6004].PriceType = 0;
-_[6004].Price = 0;
-_[6004].PriceBeforeDiscount = 0;
-_[6004].Time = 0;
-_[6004].StorePosition = 0;
-_[6004].InfoVersion = 0;
-_[6004].AddGem = 0;
-_[6004].AddInteractiveItem = 0;
-_[6004].AddSpeechItem = 0;
-_[6004].DiscountBuyItem = 0;
-_[6004].AddChip = 0;
-_[6004].MinRandomChip = 0;
-_[6004].MaxRandomChip = 0;
-_[6005] = {};
-_[6005].ID = 6005;
-_[6005].Name = "全服大喇叭";
-_[6005].Type = 6;
-_[6005].PriceType = 0;
-_[6005].Price = 0;
-_[6005].PriceBeforeDiscount = 0;
-_[6005].Time = 0;
-_[6005].StorePosition = 0;
-_[6005].InfoVersion = 0;
-_[6005].AddGem = 0;
-_[6005].AddInteractiveItem = 0;
-_[6005].AddSpeechItem = 0;
-_[6005].DiscountBuyItem = 0;
-_[6005].AddChip = 0;
-_[6005].MinRandomChip = 0;
-_[6005].MaxRandomChip = 0;
-_[7001] = {};
-_[7001].ID = 7001;
-_[7001].Name = "小月卡";
-_[7001].Type = 7;
-_[7001].PriceType = 1;
-_[7001].Price = 30;
-_[7001].PriceBeforeDiscount = 0;
-_[7001].Time = 720;
-_[7001].StorePosition = 0;
-_[7001].InfoVersion = 0;
-_[7001].AddGem = 0;
-_[7001].AddInteractiveItem = 0;
-_[7001].AddSpeechItem = 0;
-_[7001].DiscountBuyItem = 0;
-_[7001].AddChip = 1e6;
-_[7001].MinRandomChip = 15e4;
-_[7001].MaxRandomChip = 2e5;
-_[8001] = {};
-_[8001].ID = 8001;
-_[8001].Name = "小小兵";
-_[8001].Type = 8;
-_[8001].PriceType = 0;
-_[8001].Price = 5e4;
-_[8001].PriceBeforeDiscount = 0;
-_[8001].Time = 72;
-_[8001].StorePosition = 3109;
-_[8001].InfoVersion = 0;
-_[8001].AddGem = 0;
-_[8001].AddInteractiveItem = 0;
-_[8001].AddSpeechItem = 0;
-_[8001].DiscountBuyItem = 0;
-_[8001].AddChip = 0;
-_[8001].MinRandomChip = 0;
-_[8001].MaxRandomChip = 0;
-_[8007] = {};
-_[8007].ID = 8007;
-_[8007].Name = "海盗";
-_[8007].Type = 8;
-_[8007].PriceType = 0;
-_[8007].Price = 5e4;
-_[8007].PriceBeforeDiscount = 0;
-_[8007].Time = 72;
-_[8007].StorePosition = 3110;
-_[8007].InfoVersion = 0;
-_[8007].AddGem = 0;
-_[8007].AddInteractiveItem = 0;
-_[8007].AddSpeechItem = 0;
-_[8007].DiscountBuyItem = 0;
-_[8007].AddChip = 0;
-_[8007].MinRandomChip = 0;
-_[8007].MaxRandomChip = 0;
-_[8003] = {};
-_[8003].ID = 8003;
-_[8003].Name = "钢铁人";
-_[8003].Type = 8;
-_[8003].PriceType = 0;
-_[8003].Price = 5e4;
-_[8003].PriceBeforeDiscount = 0;
-_[8003].Time = 72;
-_[8003].StorePosition = 3111;
-_[8003].InfoVersion = 0;
-_[8003].AddGem = 0;
-_[8003].AddInteractiveItem = 0;
-_[8003].AddSpeechItem = 0;
-_[8003].DiscountBuyItem = 0;
-_[8003].AddChip = 0;
-_[8003].MinRandomChip = 0;
-_[8003].MaxRandomChip = 0;
-_[8004] = {};
-_[8004].ID = 8004;
-_[8004].Name = "奇异博士";
-_[8004].Type = 8;
-_[8004].PriceType = 0;
-_[8004].Price = 5e4;
-_[8004].PriceBeforeDiscount = 0;
-_[8004].Time = 72;
-_[8004].StorePosition = 3112;
-_[8004].InfoVersion = 0;
-_[8004].AddGem = 0;
-_[8004].AddInteractiveItem = 0;
-_[8004].AddSpeechItem = 0;
-_[8004].DiscountBuyItem = 0;
-_[8004].AddChip = 0;
-_[8004].MinRandomChip = 0;
-_[8004].MaxRandomChip = 0;
-_[8021] = {};
-_[8021].ID = 8021;
-_[8021].Name = "熊本熊";
-_[8021].Type = 8;
-_[8021].PriceType = 0;
-_[8021].Price = 5e4;
-_[8021].PriceBeforeDiscount = 0;
-_[8021].Time = 72;
-_[8021].StorePosition = 3108;
-_[8021].InfoVersion = 0;
-_[8021].AddGem = 0;
-_[8021].AddInteractiveItem = 0;
-_[8021].AddSpeechItem = 0;
-_[8021].DiscountBuyItem = 0;
-_[8021].AddChip = 0;
-_[8021].MinRandomChip = 0;
-_[8021].MaxRandomChip = 0;
-_[8022] = {};
-_[8022].ID = 8022;
-_[8022].Name = "托尼乔巴";
-_[8022].Type = 8;
-_[8022].PriceType = 0;
-_[8022].Price = 5e4;
-_[8022].PriceBeforeDiscount = 0;
-_[8022].Time = 72;
-_[8022].StorePosition = 3103;
-_[8022].InfoVersion = 0;
-_[8022].AddGem = 0;
-_[8022].AddInteractiveItem = 0;
-_[8022].AddSpeechItem = 0;
-_[8022].DiscountBuyItem = 0;
-_[8022].AddChip = 0;
-_[8022].MinRandomChip = 0;
-_[8022].MaxRandomChip = 0;
-_[8023] = {};
-_[8023].ID = 8023;
-_[8023].Name = "美少女战士";
-_[8023].Type = 8;
-_[8023].PriceType = 0;
-_[8023].Price = 5e4;
-_[8023].PriceBeforeDiscount = 0;
-_[8023].Time = 72;
-_[8023].StorePosition = 3104;
-_[8023].InfoVersion = 0;
-_[8023].AddGem = 0;
-_[8023].AddInteractiveItem = 0;
-_[8023].AddSpeechItem = 0;
-_[8023].DiscountBuyItem = 0;
-_[8023].AddChip = 0;
-_[8023].MinRandomChip = 0;
-_[8023].MaxRandomChip = 0;
-_[8024] = {};
-_[8024].ID = 8024;
-_[8024].Name = "小兔子";
-_[8024].Type = 8;
-_[8024].PriceType = 0;
-_[8024].Price = 5e4;
-_[8024].PriceBeforeDiscount = 0;
-_[8024].Time = 72;
-_[8024].StorePosition = 3107;
-_[8024].InfoVersion = 0;
-_[8024].AddGem = 0;
-_[8024].AddInteractiveItem = 0;
-_[8024].AddSpeechItem = 0;
-_[8024].DiscountBuyItem = 0;
-_[8024].AddChip = 0;
-_[8024].MinRandomChip = 0;
-_[8024].MaxRandomChip = 0;
-_[8025] = {};
-_[8025].ID = 8025;
-_[8025].Name = "猫猫";
-_[8025].Type = 8;
-_[8025].PriceType = 0;
-_[8025].Price = 5e4;
-_[8025].PriceBeforeDiscount = 0;
-_[8025].Time = 72;
-_[8025].StorePosition = 3106;
-_[8025].InfoVersion = 0;
-_[8025].AddGem = 0;
-_[8025].AddInteractiveItem = 0;
-_[8025].AddSpeechItem = 0;
-_[8025].DiscountBuyItem = 0;
-_[8025].AddChip = 0;
-_[8025].MinRandomChip = 0;
-_[8025].MaxRandomChip = 0;
-_[8026] = {};
-_[8026].ID = 8026;
-_[8026].Name = "仓鼠";
-_[8026].Type = 8;
-_[8026].PriceType = 0;
-_[8026].Price = 5e4;
-_[8026].PriceBeforeDiscount = 0;
-_[8026].Time = 72;
-_[8026].StorePosition = 3105;
-_[8026].InfoVersion = 0;
-_[8026].AddGem = 0;
-_[8026].AddInteractiveItem = 0;
-_[8026].AddSpeechItem = 0;
-_[8026].DiscountBuyItem = 0;
-_[8026].AddChip = 0;
-_[8026].MinRandomChip = 0;
-_[8026].MaxRandomChip = 0;
-_[8027] = {};
-_[8027].ID = 8027;
-_[8027].Name = "水灯节free";
-_[8027].Type = 8;
-_[8027].PriceType = 0;
-_[8027].Price = 5e4;
-_[8027].PriceBeforeDiscount = 0;
-_[8027].Time = 168;
-_[8027].StorePosition = 0;
-_[8027].InfoVersion = 0;
-_[8027].AddGem = 0;
-_[8027].AddInteractiveItem = 0;
-_[8027].AddSpeechItem = 0;
-_[8027].DiscountBuyItem = 0;
-_[8027].AddChip = 0;
-_[8027].MinRandomChip = 0;
-_[8027].MaxRandomChip = 0;
-_[8028] = {};
-_[8028].ID = 8028;
-_[8028].Name = "水灯节";
-_[8028].Type = 8;
-_[8028].PriceType = 0;
-_[8028].Price = 1e5;
-_[8028].PriceBeforeDiscount = 0;
-_[8028].Time = 72;
-_[8028].StorePosition = 3113;
-_[8028].InfoVersion = 0;
-_[8028].AddGem = 0;
-_[8028].AddInteractiveItem = 0;
-_[8028].AddSpeechItem = 0;
-_[8028].DiscountBuyItem = 0;
-_[8028].AddChip = 0;
-_[8028].MinRandomChip = 0;
-_[8028].MaxRandomChip = 0;
-_[8029] = {};
-_[8029].ID = 8029;
-_[8029].Name = "黄金";
-_[8029].Type = 8;
-_[8029].PriceType = 0;
-_[8029].Price = 1e5;
-_[8029].PriceBeforeDiscount = 0;
-_[8029].Time = 72;
-_[8029].StorePosition = 3114;
-_[8029].InfoVersion = 0;
-_[8029].AddGem = 0;
-_[8029].AddInteractiveItem = 0;
-_[8029].AddSpeechItem = 0;
-_[8029].DiscountBuyItem = 0;
-_[8029].AddChip = 0;
-_[8029].MinRandomChip = 0;
-_[8029].MaxRandomChip = 0;
-_[8030] = {};
-_[8030].ID = 8030;
-_[8030].Name = "天空";
-_[8030].Type = 8;
-_[8030].PriceType = 0;
-_[8030].Price = 1e5;
-_[8030].PriceBeforeDiscount = 0;
-_[8030].Time = 72;
-_[8030].StorePosition = 3115;
-_[8030].InfoVersion = 0;
-_[8030].AddGem = 0;
-_[8030].AddInteractiveItem = 0;
-_[8030].AddSpeechItem = 0;
-_[8030].DiscountBuyItem = 0;
-_[8030].AddChip = 0;
-_[8030].MinRandomChip = 0;
-_[8030].MaxRandomChip = 0;
-_[8031] = {};
-_[8031].ID = 8031;
-_[8031].Name = "魔卡小樱";
-_[8031].Type = 8;
-_[8031].PriceType = 0;
-_[8031].Price = 1e5;
-_[8031].PriceBeforeDiscount = 0;
-_[8031].Time = 72;
-_[8031].StorePosition = 3116;
-_[8031].InfoVersion = 0;
-_[8031].AddGem = 0;
-_[8031].AddInteractiveItem = 0;
-_[8031].AddSpeechItem = 0;
-_[8031].DiscountBuyItem = 0;
-_[8031].AddChip = 0;
-_[8031].MinRandomChip = 0;
-_[8031].MaxRandomChip = 0;
-_[8032] = {};
-_[8032].ID = 8032;
-_[8032].Name = "可乐罐";
-_[8032].Type = 8;
-_[8032].PriceType = 0;
-_[8032].Price = 1e5;
-_[8032].PriceBeforeDiscount = 0;
-_[8032].Time = 72;
-_[8032].StorePosition = 3117;
-_[8032].InfoVersion = 0;
-_[8032].AddGem = 0;
-_[8032].AddInteractiveItem = 0;
-_[8032].AddSpeechItem = 0;
-_[8032].DiscountBuyItem = 0;
-_[8032].AddChip = 0;
-_[8032].MinRandomChip = 0;
-_[8032].MaxRandomChip = 0;
-_[8033] = {};
-_[8033].ID = 8033;
-_[8033].Name = "Jinglebells";
-_[8033].Type = 8;
-_[8033].PriceType = 0;
-_[8033].Price = 1e5;
-_[8033].PriceBeforeDiscount = 0;
-_[8033].Time = 72;
-_[8033].StorePosition = 0;
-_[8033].InfoVersion = 0;
-_[8033].AddGem = 0;
-_[8033].AddInteractiveItem = 0;
-_[8033].AddSpeechItem = 0;
-_[8033].DiscountBuyItem = 0;
-_[8033].AddChip = 0;
-_[8033].MinRandomChip = 0;
-_[8033].MaxRandomChip = 0;
-_[8034] = {};
-_[8034].ID = 8034;
-_[8034].Name = "圣诞帽";
-_[8034].Type = 8;
-_[8034].PriceType = 0;
-_[8034].Price = 1e5;
-_[8034].PriceBeforeDiscount = 0;
-_[8034].Time = 72;
-_[8034].StorePosition = 0;
-_[8034].InfoVersion = 0;
-_[8034].AddGem = 0;
-_[8034].AddInteractiveItem = 0;
-_[8034].AddSpeechItem = 0;
-_[8034].DiscountBuyItem = 0;
-_[8034].AddChip = 0;
-_[8034].MinRandomChip = 0;
-_[8034].MaxRandomChip = 0;
-_[8035] = {};
-_[8035].ID = 8035;
-_[8035].Name = "元旦节";
-_[8035].Type = 8;
-_[8035].PriceType = 0;
-_[8035].Price = 1e5;
-_[8035].PriceBeforeDiscount = 0;
-_[8035].Time = 72;
-_[8035].StorePosition = 3102;
-_[8035].InfoVersion = 0;
-_[8035].AddGem = 0;
-_[8035].AddInteractiveItem = 0;
-_[8035].AddSpeechItem = 0;
-_[8035].DiscountBuyItem = 0;
-_[8035].AddChip = 0;
-_[8035].MinRandomChip = 0;
-_[8035].MaxRandomChip = 0;
-_[8036] = {};
-_[8036].ID = 8036;
-_[8036].Name = "宋干节";
-_[8036].Type = 8;
-_[8036].PriceType = 0;
-_[8036].Price = 1e4;
-_[8036].PriceBeforeDiscount = 0;
-_[8036].Time = 168;
-_[8036].StorePosition = 3101;
-_[8036].InfoVersion = 0;
-_[8036].AddGem = 0;
-_[8036].AddInteractiveItem = 0;
-_[8036].AddSpeechItem = 0;
-_[8036].DiscountBuyItem = 0;
-_[8036].AddChip = 0;
-_[8036].MinRandomChip = 0;
-_[8036].MaxRandomChip = 0;
-_[8037] = {};
-_[8037].ID = 8037;
-_[8037].Name = "四周年";
-_[8037].Type = 8;
-_[8037].PriceType = 0;
-_[8037].Price = 1e4;
-_[8037].PriceBeforeDiscount = 0;
-_[8037].Time = 1e3;
-_[8037].StorePosition = 0;
-_[8037].InfoVersion = 0;
-_[8037].AddGem = 0;
-_[8037].AddInteractiveItem = 0;
-_[8037].AddSpeechItem = 0;
-_[8037].DiscountBuyItem = 0;
-_[8037].AddChip = 0;
-_[8037].MinRandomChip = 0;
-_[8037].MaxRandomChip = 0;
-_[8038] = {};
-_[8038].ID = 8038;
-_[8038].Name = "万圣节男";
-_[8038].Type = 8;
-_[8038].PriceType = 0;
-_[8038].Price = 1e4;
-_[8038].PriceBeforeDiscount = 0;
-_[8038].Time = 168;
-_[8038].StorePosition = 0;
-_[8038].InfoVersion = 0;
-_[8038].AddGem = 0;
-_[8038].AddInteractiveItem = 0;
-_[8038].AddSpeechItem = 0;
-_[8038].DiscountBuyItem = 0;
-_[8038].AddChip = 0;
-_[8038].MinRandomChip = 0;
-_[8038].MaxRandomChip = 0;
-_[8039] = {};
-_[8039].ID = 8039;
-_[8039].Name = "万圣节女";
-_[8039].Type = 8;
-_[8039].PriceType = 0;
-_[8039].Price = 1e4;
-_[8039].PriceBeforeDiscount = 0;
-_[8039].Time = 168;
-_[8039].StorePosition = 0;
-_[8039].InfoVersion = 0;
-_[8039].AddGem = 0;
-_[8039].AddInteractiveItem = 0;
-_[8039].AddSpeechItem = 0;
-_[8039].DiscountBuyItem = 0;
-_[8039].AddChip = 0;
-_[8039].MinRandomChip = 0;
-_[8039].MaxRandomChip = 0;
-_[8040] = {};
-_[8040].ID = 8040;
-_[8040].Name = "dummy皮肤";
-_[8040].Type = 8;
-_[8040].PriceType = 0;
-_[8040].Price = 1e4;
-_[8040].PriceBeforeDiscount = 0;
-_[8040].Time = 168;
-_[8040].StorePosition = 0;
-_[8040].InfoVersion = 0;
-_[8040].AddGem = 0;
-_[8040].AddInteractiveItem = 0;
-_[8040].AddSpeechItem = 0;
-_[8040].DiscountBuyItem = 0;
-_[8040].AddChip = 0;
-_[8040].MinRandomChip = 0;
-_[8040].MaxRandomChip = 0;
-_[8041] = {};
-_[8041].ID = 8041;
-_[8041].Name = "圣诞动态皮肤";
-_[8041].Type = 8;
-_[8041].PriceType = 0;
-_[8041].Price = 1e4;
-_[8041].PriceBeforeDiscount = 0;
-_[8041].Time = 168;
-_[8041].StorePosition = 0;
-_[8041].InfoVersion = 0;
-_[8041].AddGem = 0;
-_[8041].AddInteractiveItem = 0;
-_[8041].AddSpeechItem = 0;
-_[8041].DiscountBuyItem = 0;
-_[8041].AddChip = 0;
-_[8041].MinRandomChip = 0;
-_[8041].MaxRandomChip = 0;
-_[8042] = {};
-_[8042].ID = 8042;
-_[8042].Name = "2020年";
-_[8042].Type = 8;
-_[8042].PriceType = 0;
-_[8042].Price = 1e5;
-_[8042].PriceBeforeDiscount = 0;
-_[8042].Time = 72;
-_[8042].StorePosition = 3100;
-_[8042].InfoVersion = 0;
-_[8042].AddGem = 0;
-_[8042].AddInteractiveItem = 0;
-_[8042].AddSpeechItem = 0;
-_[8042].DiscountBuyItem = 0;
-_[8042].AddChip = 0;
-_[8042].MinRandomChip = 0;
-_[8042].MaxRandomChip = 0;
-_[8043] = {};
-_[8043].ID = 8043;
-_[8043].Name = "2020春节活动皮肤";
-_[8043].Type = 8;
-_[8043].PriceType = 0;
-_[8043].Price = 1e5;
-_[8043].PriceBeforeDiscount = 0;
-_[8043].Time = 168;
-_[8043].StorePosition = 0;
-_[8043].InfoVersion = 0;
-_[8043].AddGem = 0;
-_[8043].AddInteractiveItem = 0;
-_[8043].AddSpeechItem = 0;
-_[8043].DiscountBuyItem = 0;
-_[8043].AddChip = 0;
-_[8043].MinRandomChip = 0;
-_[8043].MaxRandomChip = 0;
-t.exports = _;
+n[1].ID = 1;
+n[1].Name = "钻石包_1";
+n[1].Type = 0;
+n[1].PriceType = 2;
+n[1].Price = 35;
+n[1].PriceBeforeDiscount = 0;
+n[1].Time = 0;
+n[1].StorePosition = 1101;
+n[1].InfoVersion = 0;
+n[1].AddGem = 6;
+n[1].AddInteractiveItem = 0;
+n[1].AddSpeechItem = 0;
+n[1].DiscountBuyItem = 0;
+n[1].AddChip = 0;
+n[1].MinRandomChip = 0;
+n[1].MaxRandomChip = 0;
+n[2] = {};
+n[2].ID = 2;
+n[2].Name = "钻石包_2";
+n[2].Type = 0;
+n[2].PriceType = 2;
+n[2].Price = 175;
+n[2].PriceBeforeDiscount = 0;
+n[2].Time = 0;
+n[2].StorePosition = 1102;
+n[2].InfoVersion = 0;
+n[2].AddGem = 31;
+n[2].AddInteractiveItem = 0;
+n[2].AddSpeechItem = 0;
+n[2].DiscountBuyItem = 0;
+n[2].AddChip = 0;
+n[2].MinRandomChip = 0;
+n[2].MaxRandomChip = 0;
+n[3] = {};
+n[3].ID = 3;
+n[3].Name = "钻石包_3";
+n[3].Type = 0;
+n[3].PriceType = 2;
+n[3].Price = 699;
+n[3].PriceBeforeDiscount = 0;
+n[3].Time = 0;
+n[3].StorePosition = 1103;
+n[3].InfoVersion = 0;
+n[3].AddGem = 132;
+n[3].AddInteractiveItem = 0;
+n[3].AddSpeechItem = 0;
+n[3].DiscountBuyItem = 0;
+n[3].AddChip = 0;
+n[3].MinRandomChip = 0;
+n[3].MaxRandomChip = 0;
+n[4] = {};
+n[4].ID = 4;
+n[4].Name = "钻石包_4";
+n[4].Type = 0;
+n[4].PriceType = 2;
+n[4].Price = 1750;
+n[4].PriceBeforeDiscount = 0;
+n[4].Time = 0;
+n[4].StorePosition = 1104;
+n[4].InfoVersion = 0;
+n[4].AddGem = 336;
+n[4].AddInteractiveItem = 0;
+n[4].AddSpeechItem = 0;
+n[4].DiscountBuyItem = 0;
+n[4].AddChip = 0;
+n[4].MinRandomChip = 0;
+n[4].MaxRandomChip = 0;
+n[5] = {};
+n[5].ID = 5;
+n[5].Name = "钻石包_5";
+n[5].Type = 0;
+n[5].PriceType = 2;
+n[5].Price = 3500;
+n[5].PriceBeforeDiscount = 0;
+n[5].Time = 0;
+n[5].StorePosition = 1105;
+n[5].InfoVersion = 0;
+n[5].AddGem = 690;
+n[5].AddInteractiveItem = 0;
+n[5].AddSpeechItem = 0;
+n[5].DiscountBuyItem = 0;
+n[5].AddChip = 0;
+n[5].MinRandomChip = 0;
+n[5].MaxRandomChip = 0;
+n[6] = {};
+n[6].ID = 6;
+n[6].Name = "周卡";
+n[6].Type = 7;
+n[6].PriceType = 2;
+n[6].Price = 175;
+n[6].PriceBeforeDiscount = 0;
+n[6].Time = 168;
+n[6].StorePosition = 0;
+n[6].InfoVersion = 0;
+n[6].AddGem = 15;
+n[6].AddInteractiveItem = 0;
+n[6].AddSpeechItem = 0;
+n[6].DiscountBuyItem = 0;
+n[6].AddChip = 0;
+n[6].MinRandomChip = 0;
+n[6].MaxRandomChip = 0;
+n[7] = {};
+n[7].ID = 7;
+n[7].Name = "月卡";
+n[7].Type = 7;
+n[7].PriceType = 2;
+n[7].Price = 699;
+n[7].PriceBeforeDiscount = 0;
+n[7].Time = 720;
+n[7].StorePosition = 0;
+n[7].InfoVersion = 0;
+n[7].AddGem = 100;
+n[7].AddInteractiveItem = 0;
+n[7].AddSpeechItem = 0;
+n[7].DiscountBuyItem = 0;
+n[7].AddChip = 0;
+n[7].MinRandomChip = 0;
+n[7].MaxRandomChip = 0;
+n[16] = {};
+n[16].ID = 16;
+n[16].Name = "互动道具包_1";
+n[16].Type = 0;
+n[16].PriceType = 0;
+n[16].Price = 1e3;
+n[16].PriceBeforeDiscount = 0;
+n[16].Time = 0;
+n[16].StorePosition = 2104;
+n[16].InfoVersion = 0;
+n[16].AddGem = 0;
+n[16].AddInteractiveItem = 25;
+n[16].AddSpeechItem = 0;
+n[16].DiscountBuyItem = 0;
+n[16].AddChip = 0;
+n[16].MinRandomChip = 0;
+n[16].MaxRandomChip = 0;
+n[17] = {};
+n[17].ID = 17;
+n[17].Name = "互动道具包_2";
+n[17].Type = 0;
+n[17].PriceType = 0;
+n[17].Price = 6e3;
+n[17].PriceBeforeDiscount = 0;
+n[17].Time = 0;
+n[17].StorePosition = 2105;
+n[17].InfoVersion = 0;
+n[17].AddGem = 0;
+n[17].AddInteractiveItem = 150;
+n[17].AddSpeechItem = 0;
+n[17].DiscountBuyItem = 0;
+n[17].AddChip = 0;
+n[17].MinRandomChip = 0;
+n[17].MaxRandomChip = 0;
+n[18] = {};
+n[18].ID = 18;
+n[18].Name = "互动道具包_3";
+n[18].Type = 0;
+n[18].PriceType = 0;
+n[18].Price = 24e3;
+n[18].PriceBeforeDiscount = 0;
+n[18].Time = 0;
+n[18].StorePosition = 2106;
+n[18].InfoVersion = 0;
+n[18].AddGem = 0;
+n[18].AddInteractiveItem = 660;
+n[18].AddSpeechItem = 0;
+n[18].DiscountBuyItem = 0;
+n[18].AddChip = 0;
+n[18].MinRandomChip = 0;
+n[18].MaxRandomChip = 0;
+n[19] = {};
+n[19].ID = 19;
+n[19].Name = "喇叭包_1";
+n[19].Type = 0;
+n[19].PriceType = 0;
+n[19].Price = 2500;
+n[19].PriceBeforeDiscount = 0;
+n[19].Time = 0;
+n[19].StorePosition = 2101;
+n[19].InfoVersion = 0;
+n[19].AddGem = 0;
+n[19].AddInteractiveItem = 0;
+n[19].AddSpeechItem = 25;
+n[19].DiscountBuyItem = 0;
+n[19].AddChip = 0;
+n[19].MinRandomChip = 0;
+n[19].MaxRandomChip = 0;
+n[20] = {};
+n[20].ID = 20;
+n[20].Name = "喇叭包_2";
+n[20].Type = 0;
+n[20].PriceType = 0;
+n[20].Price = 15e3;
+n[20].PriceBeforeDiscount = 0;
+n[20].Time = 0;
+n[20].StorePosition = 2102;
+n[20].InfoVersion = 0;
+n[20].AddGem = 0;
+n[20].AddInteractiveItem = 0;
+n[20].AddSpeechItem = 150;
+n[20].DiscountBuyItem = 0;
+n[20].AddChip = 0;
+n[20].MinRandomChip = 0;
+n[20].MaxRandomChip = 0;
+n[21] = {};
+n[21].ID = 21;
+n[21].Name = "喇叭包_3";
+n[21].Type = 0;
+n[21].PriceType = 0;
+n[21].Price = 6e4;
+n[21].PriceBeforeDiscount = 0;
+n[21].Time = 0;
+n[21].StorePosition = 2103;
+n[21].InfoVersion = 0;
+n[21].AddGem = 0;
+n[21].AddInteractiveItem = 0;
+n[21].AddSpeechItem = 600;
+n[21].DiscountBuyItem = 0;
+n[21].AddChip = 0;
+n[21].MinRandomChip = 0;
+n[21].MaxRandomChip = 0;
+n[22] = {};
+n[22].ID = 22;
+n[22].Name = "喇叭包_4";
+n[22].Type = 0;
+n[22].PriceType = 1;
+n[22].Price = 10;
+n[22].PriceBeforeDiscount = 0;
+n[22].Time = 0;
+n[22].StorePosition = 2107;
+n[22].InfoVersion = 0;
+n[22].AddGem = 0;
+n[22].AddInteractiveItem = 0;
+n[22].AddSpeechItem = 1;
+n[22].DiscountBuyItem = 0;
+n[22].AddChip = 0;
+n[22].MinRandomChip = 0;
+n[22].MaxRandomChip = 0;
+n[4004] = {};
+n[4004].ID = 4004;
+n[4004].Name = "饮品_鲜榨果汁";
+n[4004].Type = 4;
+n[4004].PriceType = 0;
+n[4004].Price = 3500;
+n[4004].PriceBeforeDiscount = 0;
+n[4004].Time = 24;
+n[4004].StorePosition = 4101;
+n[4004].InfoVersion = 0;
+n[4004].AddGem = 0;
+n[4004].AddInteractiveItem = 0;
+n[4004].AddSpeechItem = 0;
+n[4004].DiscountBuyItem = 0;
+n[4004].AddChip = 0;
+n[4004].MinRandomChip = 0;
+n[4004].MaxRandomChip = 0;
+n[4009] = {};
+n[4009].ID = 4009;
+n[4009].Name = "饮品_鸡尾酒（血腥玛丽）";
+n[4009].Type = 4;
+n[4009].PriceType = 0;
+n[4009].Price = 3500;
+n[4009].PriceBeforeDiscount = 0;
+n[4009].Time = 24;
+n[4009].StorePosition = 4102;
+n[4009].InfoVersion = 0;
+n[4009].AddGem = 0;
+n[4009].AddInteractiveItem = 0;
+n[4009].AddSpeechItem = 0;
+n[4009].DiscountBuyItem = 0;
+n[4009].AddChip = 0;
+n[4009].MinRandomChip = 0;
+n[4009].MaxRandomChip = 0;
+n[4013] = {};
+n[4013].ID = 4013;
+n[4013].Name = "美食_棒棒糖";
+n[4013].Type = 4;
+n[4013].PriceType = 0;
+n[4013].Price = 4500;
+n[4013].PriceBeforeDiscount = 0;
+n[4013].Time = 24;
+n[4013].StorePosition = 4105;
+n[4013].InfoVersion = 0;
+n[4013].AddGem = 0;
+n[4013].AddInteractiveItem = 0;
+n[4013].AddSpeechItem = 0;
+n[4013].DiscountBuyItem = 0;
+n[4013].AddChip = 0;
+n[4013].MinRandomChip = 0;
+n[4013].MaxRandomChip = 0;
+n[4014] = {};
+n[4014].ID = 4014;
+n[4014].Name = "美食_提拉米苏";
+n[4014].Type = 4;
+n[4014].PriceType = 0;
+n[4014].Price = 5500;
+n[4014].PriceBeforeDiscount = 0;
+n[4014].Time = 24;
+n[4014].StorePosition = 4107;
+n[4014].InfoVersion = 0;
+n[4014].AddGem = 0;
+n[4014].AddInteractiveItem = 0;
+n[4014].AddSpeechItem = 0;
+n[4014].DiscountBuyItem = 0;
+n[4014].AddChip = 0;
+n[4014].MinRandomChip = 0;
+n[4014].MaxRandomChip = 0;
+n[4019] = {};
+n[4019].ID = 4019;
+n[4019].Name = "美食_冰淇林";
+n[4019].Type = 4;
+n[4019].PriceType = 0;
+n[4019].Price = 5500;
+n[4019].PriceBeforeDiscount = 0;
+n[4019].Time = 24;
+n[4019].StorePosition = 4106;
+n[4019].InfoVersion = 0;
+n[4019].AddGem = 0;
+n[4019].AddInteractiveItem = 0;
+n[4019].AddSpeechItem = 0;
+n[4019].DiscountBuyItem = 0;
+n[4019].AddChip = 0;
+n[4019].MinRandomChip = 0;
+n[4019].MaxRandomChip = 0;
+n[4023] = {};
+n[4023].ID = 4023;
+n[4023].Name = "烟_雪茄";
+n[4023].Type = 4;
+n[4023].PriceType = 0;
+n[4023].Price = 4500;
+n[4023].PriceBeforeDiscount = 0;
+n[4023].Time = 24;
+n[4023].StorePosition = 4103;
+n[4023].InfoVersion = 0;
+n[4023].AddGem = 0;
+n[4023].AddInteractiveItem = 0;
+n[4023].AddSpeechItem = 0;
+n[4023].DiscountBuyItem = 0;
+n[4023].AddChip = 0;
+n[4023].MinRandomChip = 0;
+n[4023].MaxRandomChip = 0;
+n[4024] = {};
+n[4024].ID = 4024;
+n[4024].Name = "烟_烟斗";
+n[4024].Type = 4;
+n[4024].PriceType = 0;
+n[4024].Price = 4500;
+n[4024].PriceBeforeDiscount = 0;
+n[4024].Time = 24;
+n[4024].StorePosition = 4104;
+n[4024].InfoVersion = 0;
+n[4024].AddGem = 0;
+n[4024].AddInteractiveItem = 0;
+n[4024].AddSpeechItem = 0;
+n[4024].DiscountBuyItem = 0;
+n[4024].AddChip = 0;
+n[4024].MinRandomChip = 0;
+n[4024].MaxRandomChip = 0;
+n[4027] = {};
+n[4027].ID = 4027;
+n[4027].Name = "吉祥物_招财猫";
+n[4027].Type = 4;
+n[4027].PriceType = 0;
+n[4027].Price = 6500;
+n[4027].PriceBeforeDiscount = 0;
+n[4027].Time = 24;
+n[4027].StorePosition = 4108;
+n[4027].InfoVersion = 0;
+n[4027].AddGem = 0;
+n[4027].AddInteractiveItem = 0;
+n[4027].AddSpeechItem = 0;
+n[4027].DiscountBuyItem = 0;
+n[4027].AddChip = 0;
+n[4027].MinRandomChip = 0;
+n[4027].MaxRandomChip = 0;
+n[4029] = {};
+n[4029].ID = 4029;
+n[4029].Name = "吉祥物_忠犬";
+n[4029].Type = 4;
+n[4029].PriceType = 0;
+n[4029].Price = 6500;
+n[4029].PriceBeforeDiscount = 0;
+n[4029].Time = 24;
+n[4029].StorePosition = 4109;
+n[4029].InfoVersion = 0;
+n[4029].AddGem = 0;
+n[4029].AddInteractiveItem = 0;
+n[4029].AddSpeechItem = 0;
+n[4029].DiscountBuyItem = 0;
+n[4029].AddChip = 0;
+n[4029].MinRandomChip = 0;
+n[4029].MaxRandomChip = 0;
+n[4031] = {};
+n[4031].ID = 4031;
+n[4031].Name = "吉祥物_晴天娃娃";
+n[4031].Type = 4;
+n[4031].PriceType = 0;
+n[4031].Price = 7500;
+n[4031].PriceBeforeDiscount = 0;
+n[4031].Time = 24;
+n[4031].StorePosition = 4110;
+n[4031].InfoVersion = 0;
+n[4031].AddGem = 0;
+n[4031].AddInteractiveItem = 0;
+n[4031].AddSpeechItem = 0;
+n[4031].DiscountBuyItem = 0;
+n[4031].AddChip = 0;
+n[4031].MinRandomChip = 0;
+n[4031].MaxRandomChip = 0;
+n[4038] = {};
+n[4038].ID = 4038;
+n[4038].Name = "饰品_手链";
+n[4038].Type = 4;
+n[4038].PriceType = 0;
+n[4038].Price = 7500;
+n[4038].PriceBeforeDiscount = 0;
+n[4038].Time = 24;
+n[4038].StorePosition = 4112;
+n[4038].InfoVersion = 0;
+n[4038].AddGem = 0;
+n[4038].AddInteractiveItem = 0;
+n[4038].AddSpeechItem = 0;
+n[4038].DiscountBuyItem = 0;
+n[4038].AddChip = 0;
+n[4038].MinRandomChip = 0;
+n[4038].MaxRandomChip = 0;
+n[4039] = {};
+n[4039].ID = 4039;
+n[4039].Name = "饰品_铃铛";
+n[4039].Type = 4;
+n[4039].PriceType = 0;
+n[4039].Price = 7500;
+n[4039].PriceBeforeDiscount = 0;
+n[4039].Time = 24;
+n[4039].StorePosition = 4111;
+n[4039].InfoVersion = 0;
+n[4039].AddGem = 0;
+n[4039].AddInteractiveItem = 0;
+n[4039].AddSpeechItem = 0;
+n[4039].DiscountBuyItem = 0;
+n[4039].AddChip = 0;
+n[4039].MinRandomChip = 0;
+n[4039].MaxRandomChip = 0;
+n[5001] = {};
+n[5001].ID = 5001;
+n[5001].Name = "VIP（白银）";
+n[5001].Type = 5;
+n[5001].PriceType = 0;
+n[5001].Price = 0;
+n[5001].PriceBeforeDiscount = 0;
+n[5001].Time = 0;
+n[5001].StorePosition = 0;
+n[5001].InfoVersion = 0;
+n[5001].AddGem = 0;
+n[5001].AddInteractiveItem = 0;
+n[5001].AddSpeechItem = 0;
+n[5001].DiscountBuyItem = 100;
+n[5001].AddChip = 0;
+n[5001].MinRandomChip = 0;
+n[5001].MaxRandomChip = 0;
+n[5002] = {};
+n[5002].ID = 5002;
+n[5002].Name = "VIP（黄金）";
+n[5002].Type = 5;
+n[5002].PriceType = 0;
+n[5002].Price = 0;
+n[5002].PriceBeforeDiscount = 0;
+n[5002].Time = 0;
+n[5002].StorePosition = 0;
+n[5002].InfoVersion = 0;
+n[5002].AddGem = 0;
+n[5002].AddInteractiveItem = 0;
+n[5002].AddSpeechItem = 0;
+n[5002].DiscountBuyItem = 95;
+n[5002].AddChip = 0;
+n[5002].MinRandomChip = 0;
+n[5002].MaxRandomChip = 0;
+n[5003] = {};
+n[5003].ID = 5003;
+n[5003].Name = "VIP（蓝钻）";
+n[5003].Type = 5;
+n[5003].PriceType = 0;
+n[5003].Price = 0;
+n[5003].PriceBeforeDiscount = 0;
+n[5003].Time = 0;
+n[5003].StorePosition = 0;
+n[5003].InfoVersion = 0;
+n[5003].AddGem = 0;
+n[5003].AddInteractiveItem = 0;
+n[5003].AddSpeechItem = 0;
+n[5003].DiscountBuyItem = 90;
+n[5003].AddChip = 0;
+n[5003].MinRandomChip = 0;
+n[5003].MaxRandomChip = 0;
+n[5004] = {};
+n[5004].ID = 5004;
+n[5004].Name = "VIP（黑钻）";
+n[5004].Type = 5;
+n[5004].PriceType = 0;
+n[5004].Price = 0;
+n[5004].PriceBeforeDiscount = 0;
+n[5004].Time = 0;
+n[5004].StorePosition = 0;
+n[5004].InfoVersion = 0;
+n[5004].AddGem = 0;
+n[5004].AddInteractiveItem = 0;
+n[5004].AddSpeechItem = 0;
+n[5004].DiscountBuyItem = 80;
+n[5004].AddChip = 0;
+n[5004].MinRandomChip = 0;
+n[5004].MaxRandomChip = 0;
+n[5005] = {};
+n[5005].ID = 5005;
+n[5005].Name = "VIP（至尊）";
+n[5005].Type = 5;
+n[5005].PriceType = 0;
+n[5005].Price = 0;
+n[5005].PriceBeforeDiscount = 0;
+n[5005].Time = 0;
+n[5005].StorePosition = 0;
+n[5005].InfoVersion = 0;
+n[5005].AddGem = 0;
+n[5005].AddInteractiveItem = 0;
+n[5005].AddSpeechItem = 0;
+n[5005].DiscountBuyItem = 70;
+n[5005].AddChip = 0;
+n[5005].MinRandomChip = 0;
+n[5005].MaxRandomChip = 0;
+n[6001] = {};
+n[6001].ID = 6001;
+n[6001].Name = "互动道具";
+n[6001].Type = 6;
+n[6001].PriceType = 0;
+n[6001].Price = 0;
+n[6001].PriceBeforeDiscount = 0;
+n[6001].Time = 0;
+n[6001].StorePosition = 0;
+n[6001].InfoVersion = 0;
+n[6001].AddGem = 0;
+n[6001].AddInteractiveItem = 0;
+n[6001].AddSpeechItem = 0;
+n[6001].DiscountBuyItem = 0;
+n[6001].AddChip = 0;
+n[6001].MinRandomChip = 0;
+n[6001].MaxRandomChip = 0;
+n[6002] = {};
+n[6002].ID = 6002;
+n[6002].Name = "语音聊天道具";
+n[6002].Type = 6;
+n[6002].PriceType = 0;
+n[6002].Price = 0;
+n[6002].PriceBeforeDiscount = 0;
+n[6002].Time = 0;
+n[6002].StorePosition = 0;
+n[6002].InfoVersion = 0;
+n[6002].AddGem = 0;
+n[6002].AddInteractiveItem = 0;
+n[6002].AddSpeechItem = 0;
+n[6002].DiscountBuyItem = 0;
+n[6002].AddChip = 0;
+n[6002].MinRandomChip = 0;
+n[6002].MaxRandomChip = 0;
+n[6003] = {};
+n[6003].ID = 6003;
+n[6003].Name = "踢人卡";
+n[6003].Type = 6;
+n[6003].PriceType = 0;
+n[6003].Price = 0;
+n[6003].PriceBeforeDiscount = 0;
+n[6003].Time = 0;
+n[6003].StorePosition = 0;
+n[6003].InfoVersion = 0;
+n[6003].AddGem = 0;
+n[6003].AddInteractiveItem = 0;
+n[6003].AddSpeechItem = 0;
+n[6003].DiscountBuyItem = 0;
+n[6003].AddChip = 0;
+n[6003].MinRandomChip = 0;
+n[6003].MaxRandomChip = 0;
+n[6004] = {};
+n[6004].ID = 6004;
+n[6004].Name = "锁房卡";
+n[6004].Type = 6;
+n[6004].PriceType = 0;
+n[6004].Price = 0;
+n[6004].PriceBeforeDiscount = 0;
+n[6004].Time = 0;
+n[6004].StorePosition = 0;
+n[6004].InfoVersion = 0;
+n[6004].AddGem = 0;
+n[6004].AddInteractiveItem = 0;
+n[6004].AddSpeechItem = 0;
+n[6004].DiscountBuyItem = 0;
+n[6004].AddChip = 0;
+n[6004].MinRandomChip = 0;
+n[6004].MaxRandomChip = 0;
+n[6005] = {};
+n[6005].ID = 6005;
+n[6005].Name = "全服大喇叭";
+n[6005].Type = 6;
+n[6005].PriceType = 0;
+n[6005].Price = 0;
+n[6005].PriceBeforeDiscount = 0;
+n[6005].Time = 0;
+n[6005].StorePosition = 0;
+n[6005].InfoVersion = 0;
+n[6005].AddGem = 0;
+n[6005].AddInteractiveItem = 0;
+n[6005].AddSpeechItem = 0;
+n[6005].DiscountBuyItem = 0;
+n[6005].AddChip = 0;
+n[6005].MinRandomChip = 0;
+n[6005].MaxRandomChip = 0;
+n[7001] = {};
+n[7001].ID = 7001;
+n[7001].Name = "小月卡";
+n[7001].Type = 7;
+n[7001].PriceType = 1;
+n[7001].Price = 30;
+n[7001].PriceBeforeDiscount = 0;
+n[7001].Time = 720;
+n[7001].StorePosition = 0;
+n[7001].InfoVersion = 0;
+n[7001].AddGem = 0;
+n[7001].AddInteractiveItem = 0;
+n[7001].AddSpeechItem = 0;
+n[7001].DiscountBuyItem = 0;
+n[7001].AddChip = 1e6;
+n[7001].MinRandomChip = 15e4;
+n[7001].MaxRandomChip = 2e5;
+n[8001] = {};
+n[8001].ID = 8001;
+n[8001].Name = "小小兵";
+n[8001].Type = 8;
+n[8001].PriceType = 0;
+n[8001].Price = 5e4;
+n[8001].PriceBeforeDiscount = 0;
+n[8001].Time = 72;
+n[8001].StorePosition = 3109;
+n[8001].InfoVersion = 0;
+n[8001].AddGem = 0;
+n[8001].AddInteractiveItem = 0;
+n[8001].AddSpeechItem = 0;
+n[8001].DiscountBuyItem = 0;
+n[8001].AddChip = 0;
+n[8001].MinRandomChip = 0;
+n[8001].MaxRandomChip = 0;
+n[8007] = {};
+n[8007].ID = 8007;
+n[8007].Name = "海盗";
+n[8007].Type = 8;
+n[8007].PriceType = 0;
+n[8007].Price = 5e4;
+n[8007].PriceBeforeDiscount = 0;
+n[8007].Time = 72;
+n[8007].StorePosition = 3110;
+n[8007].InfoVersion = 0;
+n[8007].AddGem = 0;
+n[8007].AddInteractiveItem = 0;
+n[8007].AddSpeechItem = 0;
+n[8007].DiscountBuyItem = 0;
+n[8007].AddChip = 0;
+n[8007].MinRandomChip = 0;
+n[8007].MaxRandomChip = 0;
+n[8003] = {};
+n[8003].ID = 8003;
+n[8003].Name = "钢铁人";
+n[8003].Type = 8;
+n[8003].PriceType = 0;
+n[8003].Price = 5e4;
+n[8003].PriceBeforeDiscount = 0;
+n[8003].Time = 72;
+n[8003].StorePosition = 3111;
+n[8003].InfoVersion = 0;
+n[8003].AddGem = 0;
+n[8003].AddInteractiveItem = 0;
+n[8003].AddSpeechItem = 0;
+n[8003].DiscountBuyItem = 0;
+n[8003].AddChip = 0;
+n[8003].MinRandomChip = 0;
+n[8003].MaxRandomChip = 0;
+n[8004] = {};
+n[8004].ID = 8004;
+n[8004].Name = "奇异博士";
+n[8004].Type = 8;
+n[8004].PriceType = 0;
+n[8004].Price = 5e4;
+n[8004].PriceBeforeDiscount = 0;
+n[8004].Time = 72;
+n[8004].StorePosition = 3112;
+n[8004].InfoVersion = 0;
+n[8004].AddGem = 0;
+n[8004].AddInteractiveItem = 0;
+n[8004].AddSpeechItem = 0;
+n[8004].DiscountBuyItem = 0;
+n[8004].AddChip = 0;
+n[8004].MinRandomChip = 0;
+n[8004].MaxRandomChip = 0;
+n[8021] = {};
+n[8021].ID = 8021;
+n[8021].Name = "熊本熊";
+n[8021].Type = 8;
+n[8021].PriceType = 0;
+n[8021].Price = 5e4;
+n[8021].PriceBeforeDiscount = 0;
+n[8021].Time = 72;
+n[8021].StorePosition = 3108;
+n[8021].InfoVersion = 0;
+n[8021].AddGem = 0;
+n[8021].AddInteractiveItem = 0;
+n[8021].AddSpeechItem = 0;
+n[8021].DiscountBuyItem = 0;
+n[8021].AddChip = 0;
+n[8021].MinRandomChip = 0;
+n[8021].MaxRandomChip = 0;
+n[8022] = {};
+n[8022].ID = 8022;
+n[8022].Name = "托尼乔巴";
+n[8022].Type = 8;
+n[8022].PriceType = 0;
+n[8022].Price = 5e4;
+n[8022].PriceBeforeDiscount = 0;
+n[8022].Time = 72;
+n[8022].StorePosition = 3103;
+n[8022].InfoVersion = 0;
+n[8022].AddGem = 0;
+n[8022].AddInteractiveItem = 0;
+n[8022].AddSpeechItem = 0;
+n[8022].DiscountBuyItem = 0;
+n[8022].AddChip = 0;
+n[8022].MinRandomChip = 0;
+n[8022].MaxRandomChip = 0;
+n[8023] = {};
+n[8023].ID = 8023;
+n[8023].Name = "美少女战士";
+n[8023].Type = 8;
+n[8023].PriceType = 0;
+n[8023].Price = 5e4;
+n[8023].PriceBeforeDiscount = 0;
+n[8023].Time = 72;
+n[8023].StorePosition = 3104;
+n[8023].InfoVersion = 0;
+n[8023].AddGem = 0;
+n[8023].AddInteractiveItem = 0;
+n[8023].AddSpeechItem = 0;
+n[8023].DiscountBuyItem = 0;
+n[8023].AddChip = 0;
+n[8023].MinRandomChip = 0;
+n[8023].MaxRandomChip = 0;
+n[8024] = {};
+n[8024].ID = 8024;
+n[8024].Name = "小兔子";
+n[8024].Type = 8;
+n[8024].PriceType = 0;
+n[8024].Price = 5e4;
+n[8024].PriceBeforeDiscount = 0;
+n[8024].Time = 72;
+n[8024].StorePosition = 3107;
+n[8024].InfoVersion = 0;
+n[8024].AddGem = 0;
+n[8024].AddInteractiveItem = 0;
+n[8024].AddSpeechItem = 0;
+n[8024].DiscountBuyItem = 0;
+n[8024].AddChip = 0;
+n[8024].MinRandomChip = 0;
+n[8024].MaxRandomChip = 0;
+n[8025] = {};
+n[8025].ID = 8025;
+n[8025].Name = "猫猫";
+n[8025].Type = 8;
+n[8025].PriceType = 0;
+n[8025].Price = 5e4;
+n[8025].PriceBeforeDiscount = 0;
+n[8025].Time = 72;
+n[8025].StorePosition = 3106;
+n[8025].InfoVersion = 0;
+n[8025].AddGem = 0;
+n[8025].AddInteractiveItem = 0;
+n[8025].AddSpeechItem = 0;
+n[8025].DiscountBuyItem = 0;
+n[8025].AddChip = 0;
+n[8025].MinRandomChip = 0;
+n[8025].MaxRandomChip = 0;
+n[8026] = {};
+n[8026].ID = 8026;
+n[8026].Name = "仓鼠";
+n[8026].Type = 8;
+n[8026].PriceType = 0;
+n[8026].Price = 5e4;
+n[8026].PriceBeforeDiscount = 0;
+n[8026].Time = 72;
+n[8026].StorePosition = 3105;
+n[8026].InfoVersion = 0;
+n[8026].AddGem = 0;
+n[8026].AddInteractiveItem = 0;
+n[8026].AddSpeechItem = 0;
+n[8026].DiscountBuyItem = 0;
+n[8026].AddChip = 0;
+n[8026].MinRandomChip = 0;
+n[8026].MaxRandomChip = 0;
+n[8027] = {};
+n[8027].ID = 8027;
+n[8027].Name = "水灯节free";
+n[8027].Type = 8;
+n[8027].PriceType = 0;
+n[8027].Price = 5e4;
+n[8027].PriceBeforeDiscount = 0;
+n[8027].Time = 168;
+n[8027].StorePosition = 0;
+n[8027].InfoVersion = 0;
+n[8027].AddGem = 0;
+n[8027].AddInteractiveItem = 0;
+n[8027].AddSpeechItem = 0;
+n[8027].DiscountBuyItem = 0;
+n[8027].AddChip = 0;
+n[8027].MinRandomChip = 0;
+n[8027].MaxRandomChip = 0;
+n[8028] = {};
+n[8028].ID = 8028;
+n[8028].Name = "水灯节";
+n[8028].Type = 8;
+n[8028].PriceType = 0;
+n[8028].Price = 1e5;
+n[8028].PriceBeforeDiscount = 0;
+n[8028].Time = 72;
+n[8028].StorePosition = 3113;
+n[8028].InfoVersion = 0;
+n[8028].AddGem = 0;
+n[8028].AddInteractiveItem = 0;
+n[8028].AddSpeechItem = 0;
+n[8028].DiscountBuyItem = 0;
+n[8028].AddChip = 0;
+n[8028].MinRandomChip = 0;
+n[8028].MaxRandomChip = 0;
+n[8029] = {};
+n[8029].ID = 8029;
+n[8029].Name = "黄金";
+n[8029].Type = 8;
+n[8029].PriceType = 0;
+n[8029].Price = 1e5;
+n[8029].PriceBeforeDiscount = 0;
+n[8029].Time = 72;
+n[8029].StorePosition = 3114;
+n[8029].InfoVersion = 0;
+n[8029].AddGem = 0;
+n[8029].AddInteractiveItem = 0;
+n[8029].AddSpeechItem = 0;
+n[8029].DiscountBuyItem = 0;
+n[8029].AddChip = 0;
+n[8029].MinRandomChip = 0;
+n[8029].MaxRandomChip = 0;
+n[8030] = {};
+n[8030].ID = 8030;
+n[8030].Name = "天空";
+n[8030].Type = 8;
+n[8030].PriceType = 0;
+n[8030].Price = 1e5;
+n[8030].PriceBeforeDiscount = 0;
+n[8030].Time = 72;
+n[8030].StorePosition = 3115;
+n[8030].InfoVersion = 0;
+n[8030].AddGem = 0;
+n[8030].AddInteractiveItem = 0;
+n[8030].AddSpeechItem = 0;
+n[8030].DiscountBuyItem = 0;
+n[8030].AddChip = 0;
+n[8030].MinRandomChip = 0;
+n[8030].MaxRandomChip = 0;
+n[8031] = {};
+n[8031].ID = 8031;
+n[8031].Name = "魔卡小樱";
+n[8031].Type = 8;
+n[8031].PriceType = 0;
+n[8031].Price = 1e5;
+n[8031].PriceBeforeDiscount = 0;
+n[8031].Time = 72;
+n[8031].StorePosition = 3116;
+n[8031].InfoVersion = 0;
+n[8031].AddGem = 0;
+n[8031].AddInteractiveItem = 0;
+n[8031].AddSpeechItem = 0;
+n[8031].DiscountBuyItem = 0;
+n[8031].AddChip = 0;
+n[8031].MinRandomChip = 0;
+n[8031].MaxRandomChip = 0;
+n[8032] = {};
+n[8032].ID = 8032;
+n[8032].Name = "可乐罐";
+n[8032].Type = 8;
+n[8032].PriceType = 0;
+n[8032].Price = 1e5;
+n[8032].PriceBeforeDiscount = 0;
+n[8032].Time = 72;
+n[8032].StorePosition = 3117;
+n[8032].InfoVersion = 0;
+n[8032].AddGem = 0;
+n[8032].AddInteractiveItem = 0;
+n[8032].AddSpeechItem = 0;
+n[8032].DiscountBuyItem = 0;
+n[8032].AddChip = 0;
+n[8032].MinRandomChip = 0;
+n[8032].MaxRandomChip = 0;
+n[8033] = {};
+n[8033].ID = 8033;
+n[8033].Name = "Jinglebells";
+n[8033].Type = 8;
+n[8033].PriceType = 0;
+n[8033].Price = 1e5;
+n[8033].PriceBeforeDiscount = 0;
+n[8033].Time = 72;
+n[8033].StorePosition = 0;
+n[8033].InfoVersion = 0;
+n[8033].AddGem = 0;
+n[8033].AddInteractiveItem = 0;
+n[8033].AddSpeechItem = 0;
+n[8033].DiscountBuyItem = 0;
+n[8033].AddChip = 0;
+n[8033].MinRandomChip = 0;
+n[8033].MaxRandomChip = 0;
+n[8034] = {};
+n[8034].ID = 8034;
+n[8034].Name = "圣诞帽";
+n[8034].Type = 8;
+n[8034].PriceType = 0;
+n[8034].Price = 1e5;
+n[8034].PriceBeforeDiscount = 0;
+n[8034].Time = 72;
+n[8034].StorePosition = 0;
+n[8034].InfoVersion = 0;
+n[8034].AddGem = 0;
+n[8034].AddInteractiveItem = 0;
+n[8034].AddSpeechItem = 0;
+n[8034].DiscountBuyItem = 0;
+n[8034].AddChip = 0;
+n[8034].MinRandomChip = 0;
+n[8034].MaxRandomChip = 0;
+n[8035] = {};
+n[8035].ID = 8035;
+n[8035].Name = "元旦节";
+n[8035].Type = 8;
+n[8035].PriceType = 0;
+n[8035].Price = 1e5;
+n[8035].PriceBeforeDiscount = 0;
+n[8035].Time = 72;
+n[8035].StorePosition = 3102;
+n[8035].InfoVersion = 0;
+n[8035].AddGem = 0;
+n[8035].AddInteractiveItem = 0;
+n[8035].AddSpeechItem = 0;
+n[8035].DiscountBuyItem = 0;
+n[8035].AddChip = 0;
+n[8035].MinRandomChip = 0;
+n[8035].MaxRandomChip = 0;
+n[8036] = {};
+n[8036].ID = 8036;
+n[8036].Name = "宋干节";
+n[8036].Type = 8;
+n[8036].PriceType = 0;
+n[8036].Price = 1e4;
+n[8036].PriceBeforeDiscount = 0;
+n[8036].Time = 168;
+n[8036].StorePosition = 3101;
+n[8036].InfoVersion = 0;
+n[8036].AddGem = 0;
+n[8036].AddInteractiveItem = 0;
+n[8036].AddSpeechItem = 0;
+n[8036].DiscountBuyItem = 0;
+n[8036].AddChip = 0;
+n[8036].MinRandomChip = 0;
+n[8036].MaxRandomChip = 0;
+n[8037] = {};
+n[8037].ID = 8037;
+n[8037].Name = "四周年";
+n[8037].Type = 8;
+n[8037].PriceType = 0;
+n[8037].Price = 1e4;
+n[8037].PriceBeforeDiscount = 0;
+n[8037].Time = 1e3;
+n[8037].StorePosition = 0;
+n[8037].InfoVersion = 0;
+n[8037].AddGem = 0;
+n[8037].AddInteractiveItem = 0;
+n[8037].AddSpeechItem = 0;
+n[8037].DiscountBuyItem = 0;
+n[8037].AddChip = 0;
+n[8037].MinRandomChip = 0;
+n[8037].MaxRandomChip = 0;
+n[8038] = {};
+n[8038].ID = 8038;
+n[8038].Name = "万圣节男";
+n[8038].Type = 8;
+n[8038].PriceType = 0;
+n[8038].Price = 1e4;
+n[8038].PriceBeforeDiscount = 0;
+n[8038].Time = 168;
+n[8038].StorePosition = 0;
+n[8038].InfoVersion = 0;
+n[8038].AddGem = 0;
+n[8038].AddInteractiveItem = 0;
+n[8038].AddSpeechItem = 0;
+n[8038].DiscountBuyItem = 0;
+n[8038].AddChip = 0;
+n[8038].MinRandomChip = 0;
+n[8038].MaxRandomChip = 0;
+n[8039] = {};
+n[8039].ID = 8039;
+n[8039].Name = "万圣节女";
+n[8039].Type = 8;
+n[8039].PriceType = 0;
+n[8039].Price = 1e4;
+n[8039].PriceBeforeDiscount = 0;
+n[8039].Time = 168;
+n[8039].StorePosition = 0;
+n[8039].InfoVersion = 0;
+n[8039].AddGem = 0;
+n[8039].AddInteractiveItem = 0;
+n[8039].AddSpeechItem = 0;
+n[8039].DiscountBuyItem = 0;
+n[8039].AddChip = 0;
+n[8039].MinRandomChip = 0;
+n[8039].MaxRandomChip = 0;
+n[8040] = {};
+n[8040].ID = 8040;
+n[8040].Name = "dummy皮肤";
+n[8040].Type = 8;
+n[8040].PriceType = 0;
+n[8040].Price = 1e4;
+n[8040].PriceBeforeDiscount = 0;
+n[8040].Time = 168;
+n[8040].StorePosition = 0;
+n[8040].InfoVersion = 0;
+n[8040].AddGem = 0;
+n[8040].AddInteractiveItem = 0;
+n[8040].AddSpeechItem = 0;
+n[8040].DiscountBuyItem = 0;
+n[8040].AddChip = 0;
+n[8040].MinRandomChip = 0;
+n[8040].MaxRandomChip = 0;
+n[8041] = {};
+n[8041].ID = 8041;
+n[8041].Name = "圣诞动态皮肤";
+n[8041].Type = 8;
+n[8041].PriceType = 0;
+n[8041].Price = 1e4;
+n[8041].PriceBeforeDiscount = 0;
+n[8041].Time = 168;
+n[8041].StorePosition = 0;
+n[8041].InfoVersion = 0;
+n[8041].AddGem = 0;
+n[8041].AddInteractiveItem = 0;
+n[8041].AddSpeechItem = 0;
+n[8041].DiscountBuyItem = 0;
+n[8041].AddChip = 0;
+n[8041].MinRandomChip = 0;
+n[8041].MaxRandomChip = 0;
+n[8042] = {};
+n[8042].ID = 8042;
+n[8042].Name = "2020年";
+n[8042].Type = 8;
+n[8042].PriceType = 0;
+n[8042].Price = 1e5;
+n[8042].PriceBeforeDiscount = 0;
+n[8042].Time = 72;
+n[8042].StorePosition = 3100;
+n[8042].InfoVersion = 0;
+n[8042].AddGem = 0;
+n[8042].AddInteractiveItem = 0;
+n[8042].AddSpeechItem = 0;
+n[8042].DiscountBuyItem = 0;
+n[8042].AddChip = 0;
+n[8042].MinRandomChip = 0;
+n[8042].MaxRandomChip = 0;
+n[8043] = {};
+n[8043].ID = 8043;
+n[8043].Name = "2020春节活动皮肤";
+n[8043].Type = 8;
+n[8043].PriceType = 0;
+n[8043].Price = 1e5;
+n[8043].PriceBeforeDiscount = 0;
+n[8043].Time = 168;
+n[8043].StorePosition = 0;
+n[8043].InfoVersion = 0;
+n[8043].AddGem = 0;
+n[8043].AddInteractiveItem = 0;
+n[8043].AddSpeechItem = 0;
+n[8043].DiscountBuyItem = 0;
+n[8043].AddChip = 0;
+n[8043].MinRandomChip = 0;
+n[8043].MaxRandomChip = 0;
+t.exports = n;
 cc._RF.pop();
 }, {} ],
+1: [ function(e, t) {
+var n = e("util/"), i = Array.prototype.slice, o = Object.prototype.hasOwnProperty, r = t.exports = u;
+r.AssertionError = function(e) {
+this.name = "AssertionError";
+this.actual = e.actual;
+this.expected = e.expected;
+this.operator = e.operator;
+if (e.message) {
+this.message = e.message;
+this.generatedMessage = !1;
+} else {
+this.message = c(this);
+this.generatedMessage = !0;
+}
+var t = e.stackStartFunction || l;
+if (Error.captureStackTrace) Error.captureStackTrace(this, t); else {
+var n = new Error();
+if (n.stack) {
+var i = n.stack, o = t.name, r = i.indexOf("\n" + o);
+if (r >= 0) {
+var s = i.indexOf("\n", r + 1);
+i = i.substring(s + 1);
+}
+this.stack = i;
+}
+}
+};
+n.inherits(r.AssertionError, Error);
+function s(e, t) {
+return n.isUndefined(t) ? "" + t : n.isNumber(t) && !isFinite(t) ? t.toString() : n.isFunction(t) || n.isRegExp(t) ? t.toString() : t;
+}
+function a(e, t) {
+return n.isString(e) ? e.length < t ? e : e.slice(0, t) : e;
+}
+function c(e) {
+return a(JSON.stringify(e.actual, s), 128) + " " + e.operator + " " + a(JSON.stringify(e.expected, s), 128);
+}
+function l(e, t, n, i, o) {
+throw new r.AssertionError({
+message: n,
+actual: e,
+expected: t,
+operator: i,
+stackStartFunction: o
+});
+}
+r.fail = l;
+function u(e, t) {
+e || l(e, !0, t, "==", r.ok);
+}
+r.ok = u;
+r.equal = function(e, t, n) {
+e != t && l(e, t, n, "==", r.equal);
+};
+r.notEqual = function(e, t, n) {
+e == t && l(e, t, n, "!=", r.notEqual);
+};
+r.deepEqual = function(e, t, n) {
+f(e, t) || l(e, t, n, "deepEqual", r.deepEqual);
+};
+function f(e, t) {
+if (e === t) return !0;
+if (n.isBuffer(e) && n.isBuffer(t)) {
+if (e.length != t.length) return !1;
+for (var i = 0; i < e.length; i++) if (e[i] !== t[i]) return !1;
+return !0;
+}
+return n.isDate(e) && n.isDate(t) ? e.getTime() === t.getTime() : n.isRegExp(e) && n.isRegExp(t) ? e.source === t.source && e.global === t.global && e.multiline === t.multiline && e.lastIndex === t.lastIndex && e.ignoreCase === t.ignoreCase : n.isObject(e) || n.isObject(t) ? h(e, t) : e == t;
+}
+function d(e) {
+return "[object Arguments]" == Object.prototype.toString.call(e);
+}
+function h(e, t) {
+if (n.isNullOrUndefined(e) || n.isNullOrUndefined(t)) return !1;
+if (e.prototype !== t.prototype) return !1;
+if (n.isPrimitive(e) || n.isPrimitive(t)) return e === t;
+var o = d(e), r = d(t);
+if (o && !r || !o && r) return !1;
+if (o) return f(e = i.call(e), t = i.call(t));
+var s, a, c = m(e), l = m(t);
+if (c.length != l.length) return !1;
+c.sort();
+l.sort();
+for (a = c.length - 1; a >= 0; a--) if (c[a] != l[a]) return !1;
+for (a = c.length - 1; a >= 0; a--) if (!f(e[s = c[a]], t[s])) return !1;
+return !0;
+}
+r.notDeepEqual = function(e, t, n) {
+f(e, t) && l(e, t, n, "notDeepEqual", r.notDeepEqual);
+};
+r.strictEqual = function(e, t, n) {
+e !== t && l(e, t, n, "===", r.strictEqual);
+};
+r.notStrictEqual = function(e, t, n) {
+e === t && l(e, t, n, "!==", r.notStrictEqual);
+};
+function p(e, t) {
+return !(!e || !t) && ("[object RegExp]" == Object.prototype.toString.call(t) ? t.test(e) : e instanceof t || !0 === t.call({}, e));
+}
+function g(e, t, i, o) {
+var r;
+if (n.isString(i)) {
+o = i;
+i = null;
+}
+try {
+t();
+} catch (e) {
+r = e;
+}
+o = (i && i.name ? " (" + i.name + ")." : ".") + (o ? " " + o : ".");
+e && !r && l(r, i, "Missing expected exception" + o);
+!e && p(r, i) && l(r, i, "Got unwanted exception" + o);
+if (e && r && i && !p(r, i) || !e && r) throw r;
+}
+r.throws = function(e, t, n) {
+g.apply(this, [ !0 ].concat(i.call(arguments)));
+};
+r.doesNotThrow = function(e, t) {
+g.apply(this, [ !1 ].concat(i.call(arguments)));
+};
+r.ifError = function(e) {
+if (e) throw e;
+};
+var m = Object.keys || function(e) {
+var t = [];
+for (var n in e) o.call(e, n) && t.push(n);
+return t;
+};
+}, {
+"util/": 4
+} ],
+2: [ function(e, t) {
+"function" == typeof Object.create ? t.exports = function(e, t) {
+e.super_ = t;
+e.prototype = Object.create(t.prototype, {
+constructor: {
+value: e,
+enumerable: !1,
+writable: !0,
+configurable: !0
+}
+});
+} : t.exports = function(e, t) {
+e.super_ = t;
+var n = function() {};
+n.prototype = t.prototype;
+e.prototype = new n();
+e.prototype.constructor = e;
+};
+}, {} ],
+3: [ function(e, t) {
+t.exports = function(e) {
+return e && "object" == typeof e && "function" == typeof e.copy && "function" == typeof e.fill && "function" == typeof e.readUInt8;
+};
+}, {} ],
+4: [ function(e, t, n) {
+(function(t, i) {
+var o = /%[sdj%]/g;
+n.format = function(e) {
+if (!w(e)) {
+for (var t = [], n = 0; n < arguments.length; n++) t.push(a(arguments[n]));
+return t.join(" ");
+}
+n = 1;
+for (var i = arguments, r = i.length, s = String(e).replace(o, function(e) {
+if ("%%" === e) return "%";
+if (n >= r) return e;
+switch (e) {
+case "%s":
+return String(i[n++]);
+
+case "%d":
+return Number(i[n++]);
+
+case "%j":
+try {
+return JSON.stringify(i[n++]);
+} catch (e) {
+return "[Circular]";
+}
+
+default:
+return e;
+}
+}), c = i[n]; n < r; c = i[++n]) b(c) || !_(c) ? s += " " + c : s += " " + a(c);
+return s;
+};
+n.deprecate = function(e, o) {
+if (C(i.process)) return function() {
+return n.deprecate(e, o).apply(this, arguments);
+};
+if (!0 === t.noDeprecation) return e;
+var r = !1;
+return function() {
+if (!r) {
+if (t.throwDeprecation) throw new Error(o);
+t.traceDeprecation ? console.trace(o) : console.error(o);
+r = !0;
+}
+return e.apply(this, arguments);
+};
+};
+var r, s = {};
+n.debuglog = function(e) {
+C(r) && (r = t.env.NODE_DEBUG || "");
+e = e.toUpperCase();
+if (!s[e]) if (new RegExp("\\b" + e + "\\b", "i").test(r)) {
+var i = t.pid;
+s[e] = function() {
+var t = n.format.apply(n, arguments);
+console.error("%s %d: %s", e, i, t);
+};
+} else s[e] = function() {};
+return s[e];
+};
+function a(e, t) {
+var i = {
+seen: [],
+stylize: l
+};
+arguments.length >= 3 && (i.depth = arguments[2]);
+arguments.length >= 4 && (i.colors = arguments[3]);
+v(t) ? i.showHidden = t : t && n._extend(i, t);
+C(i.showHidden) && (i.showHidden = !1);
+C(i.depth) && (i.depth = 2);
+C(i.colors) && (i.colors = !1);
+C(i.customInspect) && (i.customInspect = !0);
+i.colors && (i.stylize = c);
+return f(i, e, i.depth);
+}
+n.inspect = a;
+a.colors = {
+bold: [ 1, 22 ],
+italic: [ 3, 23 ],
+underline: [ 4, 24 ],
+inverse: [ 7, 27 ],
+white: [ 37, 39 ],
+grey: [ 90, 39 ],
+black: [ 30, 39 ],
+blue: [ 34, 39 ],
+cyan: [ 36, 39 ],
+green: [ 32, 39 ],
+magenta: [ 35, 39 ],
+red: [ 31, 39 ],
+yellow: [ 33, 39 ]
+};
+a.styles = {
+special: "cyan",
+number: "yellow",
+boolean: "yellow",
+undefined: "grey",
+null: "bold",
+string: "green",
+date: "magenta",
+regexp: "red"
+};
+function c(e, t) {
+var n = a.styles[t];
+return n ? "[" + a.colors[n][0] + "m" + e + "[" + a.colors[n][1] + "m" : e;
+}
+function l(e) {
+return e;
+}
+function u(e) {
+var t = {};
+e.forEach(function(e) {
+t[e] = !0;
+});
+return t;
+}
+function f(e, t, i) {
+if (e.customInspect && t && P(t.inspect) && t.inspect !== n.inspect && (!t.constructor || t.constructor.prototype !== t)) {
+var o = t.inspect(i, e);
+w(o) || (o = f(e, o, i));
+return o;
+}
+var r = d(e, t);
+if (r) return r;
+var s = Object.keys(t), a = u(s);
+e.showHidden && (s = Object.getOwnPropertyNames(t));
+if (T(t) && (s.indexOf("message") >= 0 || s.indexOf("description") >= 0)) return h(t);
+if (0 === s.length) {
+if (P(t)) {
+var c = t.name ? ": " + t.name : "";
+return e.stylize("[Function" + c + "]", "special");
+}
+if (A(t)) return e.stylize(RegExp.prototype.toString.call(t), "regexp");
+if (I(t)) return e.stylize(Date.prototype.toString.call(t), "date");
+if (T(t)) return h(t);
+}
+var l, v = "", b = !1, S = [ "{", "}" ];
+if (y(t)) {
+b = !0;
+S = [ "[", "]" ];
+}
+P(t) && (v = " [Function" + (t.name ? ": " + t.name : "") + "]");
+A(t) && (v = " " + RegExp.prototype.toString.call(t));
+I(t) && (v = " " + Date.prototype.toUTCString.call(t));
+T(t) && (v = " " + h(t));
+if (0 === s.length && (!b || 0 == t.length)) return S[0] + v + S[1];
+if (i < 0) return A(t) ? e.stylize(RegExp.prototype.toString.call(t), "regexp") : e.stylize("[Object]", "special");
+e.seen.push(t);
+l = b ? p(e, t, i, a, s) : s.map(function(n) {
+return g(e, t, i, a, n, b);
+});
+e.seen.pop();
+return m(l, v, S);
+}
+function d(e, t) {
+if (C(t)) return e.stylize("undefined", "undefined");
+if (w(t)) {
+var n = "'" + JSON.stringify(t).replace(/^"|"$/g, "").replace(/'/g, "\\'").replace(/\\"/g, '"') + "'";
+return e.stylize(n, "string");
+}
+return S(t) ? e.stylize("" + t, "number") : v(t) ? e.stylize("" + t, "boolean") : b(t) ? e.stylize("null", "null") : void 0;
+}
+function h(e) {
+return "[" + Error.prototype.toString.call(e) + "]";
+}
+function p(e, t, n, i, o) {
+for (var r = [], s = 0, a = t.length; s < a; ++s) R(t, String(s)) ? r.push(g(e, t, n, i, String(s), !0)) : r.push("");
+o.forEach(function(o) {
+o.match(/^\d+$/) || r.push(g(e, t, n, i, o, !0));
+});
+return r;
+}
+function g(e, t, n, i, o, r) {
+var s, a, c;
+(c = Object.getOwnPropertyDescriptor(t, o) || {
+value: t[o]
+}).get ? a = c.set ? e.stylize("[Getter/Setter]", "special") : e.stylize("[Getter]", "special") : c.set && (a = e.stylize("[Setter]", "special"));
+R(i, o) || (s = "[" + o + "]");
+a || (e.seen.indexOf(c.value) < 0 ? (a = b(n) ? f(e, c.value, null) : f(e, c.value, n - 1)).indexOf("\n") > -1 && (a = r ? a.split("\n").map(function(e) {
+return "  " + e;
+}).join("\n").substr(2) : "\n" + a.split("\n").map(function(e) {
+return "   " + e;
+}).join("\n")) : a = e.stylize("[Circular]", "special"));
+if (C(s)) {
+if (r && o.match(/^\d+$/)) return a;
+if ((s = JSON.stringify("" + o)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
+s = s.substr(1, s.length - 2);
+s = e.stylize(s, "name");
+} else {
+s = s.replace(/'/g, "\\'").replace(/\\"/g, '"').replace(/(^"|"$)/g, "'");
+s = e.stylize(s, "string");
+}
+}
+return s + ": " + a;
+}
+function m(e, t, n) {
+return e.reduce(function(e, t) {
+t.indexOf("\n");
+return e + t.replace(/\u001b\[\d\d?m/g, "").length + 1;
+}, 0) > 60 ? n[0] + ("" === t ? "" : t + "\n ") + " " + e.join(",\n  ") + " " + n[1] : n[0] + t + " " + e.join(", ") + " " + n[1];
+}
+function y(e) {
+return Array.isArray(e);
+}
+n.isArray = y;
+function v(e) {
+return "boolean" == typeof e;
+}
+n.isBoolean = v;
+function b(e) {
+return null === e;
+}
+n.isNull = b;
+n.isNullOrUndefined = function(e) {
+return null == e;
+};
+function S(e) {
+return "number" == typeof e;
+}
+n.isNumber = S;
+function w(e) {
+return "string" == typeof e;
+}
+n.isString = w;
+n.isSymbol = function(e) {
+return "symbol" == typeof e;
+};
+function C(e) {
+return void 0 === e;
+}
+n.isUndefined = C;
+function A(e) {
+return _(e) && "[object RegExp]" === x(e);
+}
+n.isRegExp = A;
+function _(e) {
+return "object" == typeof e && null !== e;
+}
+n.isObject = _;
+function I(e) {
+return _(e) && "[object Date]" === x(e);
+}
+n.isDate = I;
+function T(e) {
+return _(e) && ("[object Error]" === x(e) || e instanceof Error);
+}
+n.isError = T;
+function P(e) {
+return "function" == typeof e;
+}
+n.isFunction = P;
+n.isPrimitive = function(e) {
+return null === e || "boolean" == typeof e || "number" == typeof e || "string" == typeof e || "symbol" == typeof e || "undefined" == typeof e;
+};
+n.isBuffer = e("./support/isBuffer");
+function x(e) {
+return Object.prototype.toString.call(e);
+}
+function O(e) {
+return e < 10 ? "0" + e.toString(10) : e.toString(10);
+}
+var D = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+function B() {
+var e = new Date(), t = [ O(e.getHours()), O(e.getMinutes()), O(e.getSeconds()) ].join(":");
+return [ e.getDate(), D[e.getMonth()], t ].join(" ");
+}
+n.log = function() {
+console.log("%s - %s", B(), n.format.apply(n, arguments));
+};
+n.inherits = e("inherits");
+n._extend = function(e, t) {
+if (!t || !_(t)) return e;
+for (var n = Object.keys(t), i = n.length; i--; ) e[n[i]] = t[n[i]];
+return e;
+};
+function R(e, t) {
+return Object.prototype.hasOwnProperty.call(e, t);
+}
+}).call(this, e("_process"), "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
+}, {
+"./support/isBuffer": 3,
+_process: 10,
+inherits: 2
+} ],
+5: [ function(e, t, n) {
+"use strict";
+n.byteLength = function(e) {
+var t = l(e), n = t[0], i = t[1];
+return 3 * (n + i) / 4 - i;
+};
+n.toByteArray = function(e) {
+var t, n, i = l(e), s = i[0], a = i[1], c = new r(u(0, s, a)), f = 0, d = a > 0 ? s - 4 : s;
+for (n = 0; n < d; n += 4) {
+t = o[e.charCodeAt(n)] << 18 | o[e.charCodeAt(n + 1)] << 12 | o[e.charCodeAt(n + 2)] << 6 | o[e.charCodeAt(n + 3)];
+c[f++] = t >> 16 & 255;
+c[f++] = t >> 8 & 255;
+c[f++] = 255 & t;
+}
+if (2 === a) {
+t = o[e.charCodeAt(n)] << 2 | o[e.charCodeAt(n + 1)] >> 4;
+c[f++] = 255 & t;
+}
+if (1 === a) {
+t = o[e.charCodeAt(n)] << 10 | o[e.charCodeAt(n + 1)] << 4 | o[e.charCodeAt(n + 2)] >> 2;
+c[f++] = t >> 8 & 255;
+c[f++] = 255 & t;
+}
+return c;
+};
+n.fromByteArray = function(e) {
+for (var t, n = e.length, o = n % 3, r = [], s = 0, a = n - o; s < a; s += 16383) r.push(f(e, s, s + 16383 > a ? a : s + 16383));
+if (1 === o) {
+t = e[n - 1];
+r.push(i[t >> 2] + i[t << 4 & 63] + "==");
+} else if (2 === o) {
+t = (e[n - 2] << 8) + e[n - 1];
+r.push(i[t >> 10] + i[t >> 4 & 63] + i[t << 2 & 63] + "=");
+}
+return r.join("");
+};
+for (var i = [], o = [], r = "undefined" != typeof Uint8Array ? Uint8Array : Array, s = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", a = 0, c = s.length; a < c; ++a) {
+i[a] = s[a];
+o[s.charCodeAt(a)] = a;
+}
+o["-".charCodeAt(0)] = 62;
+o["_".charCodeAt(0)] = 63;
+function l(e) {
+var t = e.length;
+if (t % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
+var n = e.indexOf("=");
+-1 === n && (n = t);
+return [ n, n === t ? 0 : 4 - n % 4 ];
+}
+function u(e, t, n) {
+return 3 * (t + n) / 4 - n;
+}
+function f(e, t, n) {
+for (var o, r, s = [], a = t; a < n; a += 3) {
+o = (e[a] << 16 & 16711680) + (e[a + 1] << 8 & 65280) + (255 & e[a + 2]);
+s.push(i[(r = o) >> 18 & 63] + i[r >> 12 & 63] + i[r >> 6 & 63] + i[63 & r]);
+}
+return s.join("");
+}
+}, {} ],
+6: [ function(e, t, n) {
+(function(t) {
+"use strict";
+var i = e("base64-js"), o = e("ieee754"), r = e("isarray");
+n.Buffer = c;
+n.SlowBuffer = function(e) {
++e != e && (e = 0);
+return c.alloc(+e);
+};
+n.INSPECT_MAX_BYTES = 50;
+c.TYPED_ARRAY_SUPPORT = void 0 !== t.TYPED_ARRAY_SUPPORT ? t.TYPED_ARRAY_SUPPORT : function() {
+try {
+var e = new Uint8Array(1);
+e.__proto__ = {
+__proto__: Uint8Array.prototype,
+foo: function() {
+return 42;
+}
+};
+return 42 === e.foo() && "function" == typeof e.subarray && 0 === e.subarray(1, 1).byteLength;
+} catch (e) {
+return !1;
+}
+}();
+n.kMaxLength = s();
+function s() {
+return c.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823;
+}
+function a(e, t) {
+if (s() < t) throw new RangeError("Invalid typed array length");
+if (c.TYPED_ARRAY_SUPPORT) (e = new Uint8Array(t)).__proto__ = c.prototype; else {
+null === e && (e = new c(t));
+e.length = t;
+}
+return e;
+}
+function c(e, t, n) {
+if (!(c.TYPED_ARRAY_SUPPORT || this instanceof c)) return new c(e, t, n);
+if ("number" == typeof e) {
+if ("string" == typeof t) throw new Error("If encoding is specified then the first argument must be a string");
+return d(this, e);
+}
+return l(this, e, t, n);
+}
+c.poolSize = 8192;
+c._augment = function(e) {
+e.__proto__ = c.prototype;
+return e;
+};
+function l(e, t, n, i) {
+if ("number" == typeof t) throw new TypeError('"value" argument must not be a number');
+return "undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer ? g(e, t, n, i) : "string" == typeof t ? h(e, t, n) : m(e, t);
+}
+c.from = function(e, t, n) {
+return l(null, e, t, n);
+};
+if (c.TYPED_ARRAY_SUPPORT) {
+c.prototype.__proto__ = Uint8Array.prototype;
+c.__proto__ = Uint8Array;
+"undefined" != typeof Symbol && Symbol.species && c[Symbol.species] === c && Object.defineProperty(c, Symbol.species, {
+value: null,
+configurable: !0
+});
+}
+function u(e) {
+if ("number" != typeof e) throw new TypeError('"size" argument must be a number');
+if (e < 0) throw new RangeError('"size" argument must not be negative');
+}
+function f(e, t, n, i) {
+u(t);
+return t <= 0 ? a(e, t) : void 0 !== n ? "string" == typeof i ? a(e, t).fill(n, i) : a(e, t).fill(n) : a(e, t);
+}
+c.alloc = function(e, t, n) {
+return f(null, e, t, n);
+};
+function d(e, t) {
+u(t);
+e = a(e, t < 0 ? 0 : 0 | y(t));
+if (!c.TYPED_ARRAY_SUPPORT) for (var n = 0; n < t; ++n) e[n] = 0;
+return e;
+}
+c.allocUnsafe = function(e) {
+return d(null, e);
+};
+c.allocUnsafeSlow = function(e) {
+return d(null, e);
+};
+function h(e, t, n) {
+"string" == typeof n && "" !== n || (n = "utf8");
+if (!c.isEncoding(n)) throw new TypeError('"encoding" must be a valid string encoding');
+var i = 0 | v(t, n), o = (e = a(e, i)).write(t, n);
+o !== i && (e = e.slice(0, o));
+return e;
+}
+function p(e, t) {
+var n = t.length < 0 ? 0 : 0 | y(t.length);
+e = a(e, n);
+for (var i = 0; i < n; i += 1) e[i] = 255 & t[i];
+return e;
+}
+function g(e, t, n, i) {
+t.byteLength;
+if (n < 0 || t.byteLength < n) throw new RangeError("'offset' is out of bounds");
+if (t.byteLength < n + (i || 0)) throw new RangeError("'length' is out of bounds");
+t = void 0 === n && void 0 === i ? new Uint8Array(t) : void 0 === i ? new Uint8Array(t, n) : new Uint8Array(t, n, i);
+c.TYPED_ARRAY_SUPPORT ? (e = t).__proto__ = c.prototype : e = p(e, t);
+return e;
+}
+function m(e, t) {
+if (c.isBuffer(t)) {
+var n = 0 | y(t.length);
+if (0 === (e = a(e, n)).length) return e;
+t.copy(e, 0, 0, n);
+return e;
+}
+if (t) {
+if ("undefined" != typeof ArrayBuffer && t.buffer instanceof ArrayBuffer || "length" in t) return "number" != typeof t.length || (i = t.length) != i ? a(e, 0) : p(e, t);
+if ("Buffer" === t.type && r(t.data)) return p(e, t.data);
+}
+var i;
+throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.");
+}
+function y(e) {
+if (e >= s()) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + s().toString(16) + " bytes");
+return 0 | e;
+}
+c.isBuffer = function(e) {
+return !(null == e || !e._isBuffer);
+};
+c.compare = function(e, t) {
+if (!c.isBuffer(e) || !c.isBuffer(t)) throw new TypeError("Arguments must be Buffers");
+if (e === t) return 0;
+for (var n = e.length, i = t.length, o = 0, r = Math.min(n, i); o < r; ++o) if (e[o] !== t[o]) {
+n = e[o];
+i = t[o];
+break;
+}
+return n < i ? -1 : i < n ? 1 : 0;
+};
+c.isEncoding = function(e) {
+switch (String(e).toLowerCase()) {
+case "hex":
+case "utf8":
+case "utf-8":
+case "ascii":
+case "latin1":
+case "binary":
+case "base64":
+case "ucs2":
+case "ucs-2":
+case "utf16le":
+case "utf-16le":
+return !0;
+
+default:
+return !1;
+}
+};
+c.concat = function(e, t) {
+if (!r(e)) throw new TypeError('"list" argument must be an Array of Buffers');
+if (0 === e.length) return c.alloc(0);
+var n;
+if (void 0 === t) {
+t = 0;
+for (n = 0; n < e.length; ++n) t += e[n].length;
+}
+var i = c.allocUnsafe(t), o = 0;
+for (n = 0; n < e.length; ++n) {
+var s = e[n];
+if (!c.isBuffer(s)) throw new TypeError('"list" argument must be an Array of Buffers');
+s.copy(i, o);
+o += s.length;
+}
+return i;
+};
+function v(e, t) {
+if (c.isBuffer(e)) return e.length;
+if ("undefined" != typeof ArrayBuffer && "function" == typeof ArrayBuffer.isView && (ArrayBuffer.isView(e) || e instanceof ArrayBuffer)) return e.byteLength;
+"string" != typeof e && (e = "" + e);
+var n = e.length;
+if (0 === n) return 0;
+for (var i = !1; ;) switch (t) {
+case "ascii":
+case "latin1":
+case "binary":
+return n;
+
+case "utf8":
+case "utf-8":
+case void 0:
+return J(e).length;
+
+case "ucs2":
+case "ucs-2":
+case "utf16le":
+case "utf-16le":
+return 2 * n;
+
+case "hex":
+return n >>> 1;
+
+case "base64":
+return $(e).length;
+
+default:
+if (i) return J(e).length;
+t = ("" + t).toLowerCase();
+i = !0;
+}
+}
+c.byteLength = v;
+function b(e, t, n) {
+var i = !1;
+(void 0 === t || t < 0) && (t = 0);
+if (t > this.length) return "";
+(void 0 === n || n > this.length) && (n = this.length);
+if (n <= 0) return "";
+if ((n >>>= 0) <= (t >>>= 0)) return "";
+e || (e = "utf8");
+for (;;) switch (e) {
+case "hex":
+return M(this, t, n);
+
+case "utf8":
+case "utf-8":
+return D(this, t, n);
+
+case "ascii":
+return k(this, t, n);
+
+case "latin1":
+case "binary":
+return E(this, t, n);
+
+case "base64":
+return O(this, t, n);
+
+case "ucs2":
+case "ucs-2":
+case "utf16le":
+case "utf-16le":
+return N(this, t, n);
+
+default:
+if (i) throw new TypeError("Unknown encoding: " + e);
+e = (e + "").toLowerCase();
+i = !0;
+}
+}
+c.prototype._isBuffer = !0;
+function S(e, t, n) {
+var i = e[t];
+e[t] = e[n];
+e[n] = i;
+}
+c.prototype.swap16 = function() {
+var e = this.length;
+if (e % 2 != 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
+for (var t = 0; t < e; t += 2) S(this, t, t + 1);
+return this;
+};
+c.prototype.swap32 = function() {
+var e = this.length;
+if (e % 4 != 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
+for (var t = 0; t < e; t += 4) {
+S(this, t, t + 3);
+S(this, t + 1, t + 2);
+}
+return this;
+};
+c.prototype.swap64 = function() {
+var e = this.length;
+if (e % 8 != 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
+for (var t = 0; t < e; t += 8) {
+S(this, t, t + 7);
+S(this, t + 1, t + 6);
+S(this, t + 2, t + 5);
+S(this, t + 3, t + 4);
+}
+return this;
+};
+c.prototype.toString = function() {
+var e = 0 | this.length;
+return 0 === e ? "" : 0 === arguments.length ? D(this, 0, e) : b.apply(this, arguments);
+};
+c.prototype.equals = function(e) {
+if (!c.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
+return this === e || 0 === c.compare(this, e);
+};
+c.prototype.inspect = function() {
+var e = "", t = n.INSPECT_MAX_BYTES;
+if (this.length > 0) {
+e = this.toString("hex", 0, t).match(/.{2}/g).join(" ");
+this.length > t && (e += " ... ");
+}
+return "<Buffer " + e + ">";
+};
+c.prototype.compare = function(e, t, n, i, o) {
+if (!c.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
+void 0 === t && (t = 0);
+void 0 === n && (n = e ? e.length : 0);
+void 0 === i && (i = 0);
+void 0 === o && (o = this.length);
+if (t < 0 || n > e.length || i < 0 || o > this.length) throw new RangeError("out of range index");
+if (i >= o && t >= n) return 0;
+if (i >= o) return -1;
+if (t >= n) return 1;
+if (this === e) return 0;
+for (var r = (o >>>= 0) - (i >>>= 0), s = (n >>>= 0) - (t >>>= 0), a = Math.min(r, s), l = this.slice(i, o), u = e.slice(t, n), f = 0; f < a; ++f) if (l[f] !== u[f]) {
+r = l[f];
+s = u[f];
+break;
+}
+return r < s ? -1 : s < r ? 1 : 0;
+};
+function w(e, t, n, i, o) {
+if (0 === e.length) return -1;
+if ("string" == typeof n) {
+i = n;
+n = 0;
+} else n > 2147483647 ? n = 2147483647 : n < -2147483648 && (n = -2147483648);
+n = +n;
+isNaN(n) && (n = o ? 0 : e.length - 1);
+n < 0 && (n = e.length + n);
+if (n >= e.length) {
+if (o) return -1;
+n = e.length - 1;
+} else if (n < 0) {
+if (!o) return -1;
+n = 0;
+}
+"string" == typeof t && (t = c.from(t, i));
+if (c.isBuffer(t)) return 0 === t.length ? -1 : C(e, t, n, i, o);
+if ("number" == typeof t) {
+t &= 255;
+return c.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? o ? Uint8Array.prototype.indexOf.call(e, t, n) : Uint8Array.prototype.lastIndexOf.call(e, t, n) : C(e, [ t ], n, i, o);
+}
+throw new TypeError("val must be string, number or Buffer");
+}
+function C(e, t, n, i, o) {
+var r, s = 1, a = e.length, c = t.length;
+if (void 0 !== i && ("ucs2" === (i = String(i).toLowerCase()) || "ucs-2" === i || "utf16le" === i || "utf-16le" === i)) {
+if (e.length < 2 || t.length < 2) return -1;
+s = 2;
+a /= 2;
+c /= 2;
+n /= 2;
+}
+function l(e, t) {
+return 1 === s ? e[t] : e.readUInt16BE(t * s);
+}
+if (o) {
+var u = -1;
+for (r = n; r < a; r++) if (l(e, r) === l(t, -1 === u ? 0 : r - u)) {
+-1 === u && (u = r);
+if (r - u + 1 === c) return u * s;
+} else {
+-1 !== u && (r -= r - u);
+u = -1;
+}
+} else {
+n + c > a && (n = a - c);
+for (r = n; r >= 0; r--) {
+for (var f = !0, d = 0; d < c; d++) if (l(e, r + d) !== l(t, d)) {
+f = !1;
+break;
+}
+if (f) return r;
+}
+}
+return -1;
+}
+c.prototype.includes = function(e, t, n) {
+return -1 !== this.indexOf(e, t, n);
+};
+c.prototype.indexOf = function(e, t, n) {
+return w(this, e, t, n, !0);
+};
+c.prototype.lastIndexOf = function(e, t, n) {
+return w(this, e, t, n, !1);
+};
+function A(e, t, n, i) {
+n = Number(n) || 0;
+var o = e.length - n;
+i ? (i = Number(i)) > o && (i = o) : i = o;
+var r = t.length;
+if (r % 2 != 0) throw new TypeError("Invalid hex string");
+i > r / 2 && (i = r / 2);
+for (var s = 0; s < i; ++s) {
+var a = parseInt(t.substr(2 * s, 2), 16);
+if (isNaN(a)) return s;
+e[n + s] = a;
+}
+return s;
+}
+function _(e, t, n, i) {
+return Z(J(t, e.length - n), e, n, i);
+}
+function I(e, t, n, i) {
+return Z(Y(t), e, n, i);
+}
+function T(e, t, n, i) {
+return I(e, t, n, i);
+}
+function P(e, t, n, i) {
+return Z($(t), e, n, i);
+}
+function x(e, t, n, i) {
+return Z(K(t, e.length - n), e, n, i);
+}
+c.prototype.write = function(e, t, n, i) {
+if (void 0 === t) {
+i = "utf8";
+n = this.length;
+t = 0;
+} else if (void 0 === n && "string" == typeof t) {
+i = t;
+n = this.length;
+t = 0;
+} else {
+if (!isFinite(t)) throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
+t |= 0;
+if (isFinite(n)) {
+n |= 0;
+void 0 === i && (i = "utf8");
+} else {
+i = n;
+n = void 0;
+}
+}
+var o = this.length - t;
+(void 0 === n || n > o) && (n = o);
+if (e.length > 0 && (n < 0 || t < 0) || t > this.length) throw new RangeError("Attempt to write outside buffer bounds");
+i || (i = "utf8");
+for (var r = !1; ;) switch (i) {
+case "hex":
+return A(this, e, t, n);
+
+case "utf8":
+case "utf-8":
+return _(this, e, t, n);
+
+case "ascii":
+return I(this, e, t, n);
+
+case "latin1":
+case "binary":
+return T(this, e, t, n);
+
+case "base64":
+return P(this, e, t, n);
+
+case "ucs2":
+case "ucs-2":
+case "utf16le":
+case "utf-16le":
+return x(this, e, t, n);
+
+default:
+if (r) throw new TypeError("Unknown encoding: " + i);
+i = ("" + i).toLowerCase();
+r = !0;
+}
+};
+c.prototype.toJSON = function() {
+return {
+type: "Buffer",
+data: Array.prototype.slice.call(this._arr || this, 0)
+};
+};
+function O(e, t, n) {
+return 0 === t && n === e.length ? i.fromByteArray(e) : i.fromByteArray(e.slice(t, n));
+}
+function D(e, t, n) {
+n = Math.min(e.length, n);
+for (var i = [], o = t; o < n; ) {
+var r = e[o], s = null, a = r > 239 ? 4 : r > 223 ? 3 : r > 191 ? 2 : 1;
+if (o + a <= n) {
+var c, l, u, f;
+switch (a) {
+case 1:
+r < 128 && (s = r);
+break;
+
+case 2:
+128 == (192 & (c = e[o + 1])) && (f = (31 & r) << 6 | 63 & c) > 127 && (s = f);
+break;
+
+case 3:
+c = e[o + 1];
+l = e[o + 2];
+128 == (192 & c) && 128 == (192 & l) && (f = (15 & r) << 12 | (63 & c) << 6 | 63 & l) > 2047 && (f < 55296 || f > 57343) && (s = f);
+break;
+
+case 4:
+c = e[o + 1];
+l = e[o + 2];
+u = e[o + 3];
+128 == (192 & c) && 128 == (192 & l) && 128 == (192 & u) && (f = (15 & r) << 18 | (63 & c) << 12 | (63 & l) << 6 | 63 & u) > 65535 && f < 1114112 && (s = f);
+}
+}
+if (null === s) {
+s = 65533;
+a = 1;
+} else if (s > 65535) {
+s -= 65536;
+i.push(s >>> 10 & 1023 | 55296);
+s = 56320 | 1023 & s;
+}
+i.push(s);
+o += a;
+}
+return R(i);
+}
+var B = 4096;
+function R(e) {
+var t = e.length;
+if (t <= B) return String.fromCharCode.apply(String, e);
+for (var n = "", i = 0; i < t; ) n += String.fromCharCode.apply(String, e.slice(i, i += B));
+return n;
+}
+function k(e, t, n) {
+var i = "";
+n = Math.min(e.length, n);
+for (var o = t; o < n; ++o) i += String.fromCharCode(127 & e[o]);
+return i;
+}
+function E(e, t, n) {
+var i = "";
+n = Math.min(e.length, n);
+for (var o = t; o < n; ++o) i += String.fromCharCode(e[o]);
+return i;
+}
+function M(e, t, n) {
+var i, o = e.length;
+(!t || t < 0) && (t = 0);
+(!n || n < 0 || n > o) && (n = o);
+for (var r = "", s = t; s < n; ++s) r += (i = e[s]) < 16 ? "0" + i.toString(16) : i.toString(16);
+return r;
+}
+function N(e, t, n) {
+for (var i = e.slice(t, n), o = "", r = 0; r < i.length; r += 2) o += String.fromCharCode(i[r] + 256 * i[r + 1]);
+return o;
+}
+c.prototype.slice = function(e, t) {
+var n, i = this.length;
+(e = ~~e) < 0 ? (e += i) < 0 && (e = 0) : e > i && (e = i);
+(t = void 0 === t ? i : ~~t) < 0 ? (t += i) < 0 && (t = 0) : t > i && (t = i);
+t < e && (t = e);
+if (c.TYPED_ARRAY_SUPPORT) (n = this.subarray(e, t)).__proto__ = c.prototype; else {
+var o = t - e;
+n = new c(o, void 0);
+for (var r = 0; r < o; ++r) n[r] = this[r + e];
+}
+return n;
+};
+function j(e, t, n) {
+if (e % 1 != 0 || e < 0) throw new RangeError("offset is not uint");
+if (e + t > n) throw new RangeError("Trying to access beyond buffer length");
+}
+c.prototype.readUIntLE = function(e, t, n) {
+e |= 0;
+t |= 0;
+n || j(e, t, this.length);
+for (var i = this[e], o = 1, r = 0; ++r < t && (o *= 256); ) i += this[e + r] * o;
+return i;
+};
+c.prototype.readUIntBE = function(e, t, n) {
+e |= 0;
+t |= 0;
+n || j(e, t, this.length);
+for (var i = this[e + --t], o = 1; t > 0 && (o *= 256); ) i += this[e + --t] * o;
+return i;
+};
+c.prototype.readUInt8 = function(e, t) {
+t || j(e, 1, this.length);
+return this[e];
+};
+c.prototype.readUInt16LE = function(e, t) {
+t || j(e, 2, this.length);
+return this[e] | this[e + 1] << 8;
+};
+c.prototype.readUInt16BE = function(e, t) {
+t || j(e, 2, this.length);
+return this[e] << 8 | this[e + 1];
+};
+c.prototype.readUInt32LE = function(e, t) {
+t || j(e, 4, this.length);
+return (this[e] | this[e + 1] << 8 | this[e + 2] << 16) + 16777216 * this[e + 3];
+};
+c.prototype.readUInt32BE = function(e, t) {
+t || j(e, 4, this.length);
+return 16777216 * this[e] + (this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3]);
+};
+c.prototype.readIntLE = function(e, t, n) {
+e |= 0;
+t |= 0;
+n || j(e, t, this.length);
+for (var i = this[e], o = 1, r = 0; ++r < t && (o *= 256); ) i += this[e + r] * o;
+i >= (o *= 128) && (i -= Math.pow(2, 8 * t));
+return i;
+};
+c.prototype.readIntBE = function(e, t, n) {
+e |= 0;
+t |= 0;
+n || j(e, t, this.length);
+for (var i = t, o = 1, r = this[e + --i]; i > 0 && (o *= 256); ) r += this[e + --i] * o;
+r >= (o *= 128) && (r -= Math.pow(2, 8 * t));
+return r;
+};
+c.prototype.readInt8 = function(e, t) {
+t || j(e, 1, this.length);
+return 128 & this[e] ? -1 * (255 - this[e] + 1) : this[e];
+};
+c.prototype.readInt16LE = function(e, t) {
+t || j(e, 2, this.length);
+var n = this[e] | this[e + 1] << 8;
+return 32768 & n ? 4294901760 | n : n;
+};
+c.prototype.readInt16BE = function(e, t) {
+t || j(e, 2, this.length);
+var n = this[e + 1] | this[e] << 8;
+return 32768 & n ? 4294901760 | n : n;
+};
+c.prototype.readInt32LE = function(e, t) {
+t || j(e, 4, this.length);
+return this[e] | this[e + 1] << 8 | this[e + 2] << 16 | this[e + 3] << 24;
+};
+c.prototype.readInt32BE = function(e, t) {
+t || j(e, 4, this.length);
+return this[e] << 24 | this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3];
+};
+c.prototype.readFloatLE = function(e, t) {
+t || j(e, 4, this.length);
+return o.read(this, e, !0, 23, 4);
+};
+c.prototype.readFloatBE = function(e, t) {
+t || j(e, 4, this.length);
+return o.read(this, e, !1, 23, 4);
+};
+c.prototype.readDoubleLE = function(e, t) {
+t || j(e, 8, this.length);
+return o.read(this, e, !0, 52, 8);
+};
+c.prototype.readDoubleBE = function(e, t) {
+t || j(e, 8, this.length);
+return o.read(this, e, !1, 52, 8);
+};
+function F(e, t, n, i, o, r) {
+if (!c.isBuffer(e)) throw new TypeError('"buffer" argument must be a Buffer instance');
+if (t > o || t < r) throw new RangeError('"value" argument is out of bounds');
+if (n + i > e.length) throw new RangeError("Index out of range");
+}
+c.prototype.writeUIntLE = function(e, t, n, i) {
+e = +e;
+t |= 0;
+n |= 0;
+i || F(this, e, t, n, Math.pow(2, 8 * n) - 1, 0);
+var o = 1, r = 0;
+this[t] = 255 & e;
+for (;++r < n && (o *= 256); ) this[t + r] = e / o & 255;
+return t + n;
+};
+c.prototype.writeUIntBE = function(e, t, n, i) {
+e = +e;
+t |= 0;
+n |= 0;
+i || F(this, e, t, n, Math.pow(2, 8 * n) - 1, 0);
+var o = n - 1, r = 1;
+this[t + o] = 255 & e;
+for (;--o >= 0 && (r *= 256); ) this[t + o] = e / r & 255;
+return t + n;
+};
+c.prototype.writeUInt8 = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 1, 255, 0);
+c.TYPED_ARRAY_SUPPORT || (e = Math.floor(e));
+this[t] = 255 & e;
+return t + 1;
+};
+function U(e, t, n, i) {
+t < 0 && (t = 65535 + t + 1);
+for (var o = 0, r = Math.min(e.length - n, 2); o < r; ++o) e[n + o] = (t & 255 << 8 * (i ? o : 1 - o)) >>> 8 * (i ? o : 1 - o);
+}
+c.prototype.writeUInt16LE = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 2, 65535, 0);
+if (c.TYPED_ARRAY_SUPPORT) {
+this[t] = 255 & e;
+this[t + 1] = e >>> 8;
+} else U(this, e, t, !0);
+return t + 2;
+};
+c.prototype.writeUInt16BE = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 2, 65535, 0);
+if (c.TYPED_ARRAY_SUPPORT) {
+this[t] = e >>> 8;
+this[t + 1] = 255 & e;
+} else U(this, e, t, !1);
+return t + 2;
+};
+function L(e, t, n, i) {
+t < 0 && (t = 4294967295 + t + 1);
+for (var o = 0, r = Math.min(e.length - n, 4); o < r; ++o) e[n + o] = t >>> 8 * (i ? o : 3 - o) & 255;
+}
+c.prototype.writeUInt32LE = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 4, 4294967295, 0);
+if (c.TYPED_ARRAY_SUPPORT) {
+this[t + 3] = e >>> 24;
+this[t + 2] = e >>> 16;
+this[t + 1] = e >>> 8;
+this[t] = 255 & e;
+} else L(this, e, t, !0);
+return t + 4;
+};
+c.prototype.writeUInt32BE = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 4, 4294967295, 0);
+if (c.TYPED_ARRAY_SUPPORT) {
+this[t] = e >>> 24;
+this[t + 1] = e >>> 16;
+this[t + 2] = e >>> 8;
+this[t + 3] = 255 & e;
+} else L(this, e, t, !1);
+return t + 4;
+};
+c.prototype.writeIntLE = function(e, t, n, i) {
+e = +e;
+t |= 0;
+if (!i) {
+var o = Math.pow(2, 8 * n - 1);
+F(this, e, t, n, o - 1, -o);
+}
+var r = 0, s = 1, a = 0;
+this[t] = 255 & e;
+for (;++r < n && (s *= 256); ) {
+e < 0 && 0 === a && 0 !== this[t + r - 1] && (a = 1);
+this[t + r] = (e / s >> 0) - a & 255;
+}
+return t + n;
+};
+c.prototype.writeIntBE = function(e, t, n, i) {
+e = +e;
+t |= 0;
+if (!i) {
+var o = Math.pow(2, 8 * n - 1);
+F(this, e, t, n, o - 1, -o);
+}
+var r = n - 1, s = 1, a = 0;
+this[t + r] = 255 & e;
+for (;--r >= 0 && (s *= 256); ) {
+e < 0 && 0 === a && 0 !== this[t + r + 1] && (a = 1);
+this[t + r] = (e / s >> 0) - a & 255;
+}
+return t + n;
+};
+c.prototype.writeInt8 = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 1, 127, -128);
+c.TYPED_ARRAY_SUPPORT || (e = Math.floor(e));
+e < 0 && (e = 255 + e + 1);
+this[t] = 255 & e;
+return t + 1;
+};
+c.prototype.writeInt16LE = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 2, 32767, -32768);
+if (c.TYPED_ARRAY_SUPPORT) {
+this[t] = 255 & e;
+this[t + 1] = e >>> 8;
+} else U(this, e, t, !0);
+return t + 2;
+};
+c.prototype.writeInt16BE = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 2, 32767, -32768);
+if (c.TYPED_ARRAY_SUPPORT) {
+this[t] = e >>> 8;
+this[t + 1] = 255 & e;
+} else U(this, e, t, !1);
+return t + 2;
+};
+c.prototype.writeInt32LE = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 4, 2147483647, -2147483648);
+if (c.TYPED_ARRAY_SUPPORT) {
+this[t] = 255 & e;
+this[t + 1] = e >>> 8;
+this[t + 2] = e >>> 16;
+this[t + 3] = e >>> 24;
+} else L(this, e, t, !0);
+return t + 4;
+};
+c.prototype.writeInt32BE = function(e, t, n) {
+e = +e;
+t |= 0;
+n || F(this, e, t, 4, 2147483647, -2147483648);
+e < 0 && (e = 4294967295 + e + 1);
+if (c.TYPED_ARRAY_SUPPORT) {
+this[t] = e >>> 24;
+this[t + 1] = e >>> 16;
+this[t + 2] = e >>> 8;
+this[t + 3] = 255 & e;
+} else L(this, e, t, !1);
+return t + 4;
+};
+function G(e, t, n, i) {
+if (n + i > e.length) throw new RangeError("Index out of range");
+if (n < 0) throw new RangeError("Index out of range");
+}
+function V(e, t, n, i, r) {
+r || G(e, 0, n, 4);
+o.write(e, t, n, i, 23, 4);
+return n + 4;
+}
+c.prototype.writeFloatLE = function(e, t, n) {
+return V(this, e, t, !0, n);
+};
+c.prototype.writeFloatBE = function(e, t, n) {
+return V(this, e, t, !1, n);
+};
+function W(e, t, n, i, r) {
+r || G(e, 0, n, 8);
+o.write(e, t, n, i, 52, 8);
+return n + 8;
+}
+c.prototype.writeDoubleLE = function(e, t, n) {
+return W(this, e, t, !0, n);
+};
+c.prototype.writeDoubleBE = function(e, t, n) {
+return W(this, e, t, !1, n);
+};
+c.prototype.copy = function(e, t, n, i) {
+n || (n = 0);
+i || 0 === i || (i = this.length);
+t >= e.length && (t = e.length);
+t || (t = 0);
+i > 0 && i < n && (i = n);
+if (i === n) return 0;
+if (0 === e.length || 0 === this.length) return 0;
+if (t < 0) throw new RangeError("targetStart out of bounds");
+if (n < 0 || n >= this.length) throw new RangeError("sourceStart out of bounds");
+if (i < 0) throw new RangeError("sourceEnd out of bounds");
+i > this.length && (i = this.length);
+e.length - t < i - n && (i = e.length - t + n);
+var o, r = i - n;
+if (this === e && n < t && t < i) for (o = r - 1; o >= 0; --o) e[o + t] = this[o + n]; else if (r < 1e3 || !c.TYPED_ARRAY_SUPPORT) for (o = 0; o < r; ++o) e[o + t] = this[o + n]; else Uint8Array.prototype.set.call(e, this.subarray(n, n + r), t);
+return r;
+};
+c.prototype.fill = function(e, t, n, i) {
+if ("string" == typeof e) {
+if ("string" == typeof t) {
+i = t;
+t = 0;
+n = this.length;
+} else if ("string" == typeof n) {
+i = n;
+n = this.length;
+}
+if (1 === e.length) {
+var o = e.charCodeAt(0);
+o < 256 && (e = o);
+}
+if (void 0 !== i && "string" != typeof i) throw new TypeError("encoding must be a string");
+if ("string" == typeof i && !c.isEncoding(i)) throw new TypeError("Unknown encoding: " + i);
+} else "number" == typeof e && (e &= 255);
+if (t < 0 || this.length < t || this.length < n) throw new RangeError("Out of range index");
+if (n <= t) return this;
+t >>>= 0;
+n = void 0 === n ? this.length : n >>> 0;
+e || (e = 0);
+var r;
+if ("number" == typeof e) for (r = t; r < n; ++r) this[r] = e; else {
+var s = c.isBuffer(e) ? e : J(new c(e, i).toString()), a = s.length;
+for (r = 0; r < n - t; ++r) this[r + t] = s[r % a];
+}
+return this;
+};
+var z = /[^+\/0-9A-Za-z-_]/g;
+function H(e) {
+if ((e = q(e).replace(z, "")).length < 2) return "";
+for (;e.length % 4 != 0; ) e += "=";
+return e;
+}
+function q(e) {
+return e.trim ? e.trim() : e.replace(/^\s+|\s+$/g, "");
+}
+function J(e, t) {
+t = t || Infinity;
+for (var n, i = e.length, o = null, r = [], s = 0; s < i; ++s) {
+if ((n = e.charCodeAt(s)) > 55295 && n < 57344) {
+if (!o) {
+if (n > 56319) {
+(t -= 3) > -1 && r.push(239, 191, 189);
+continue;
+}
+if (s + 1 === i) {
+(t -= 3) > -1 && r.push(239, 191, 189);
+continue;
+}
+o = n;
+continue;
+}
+if (n < 56320) {
+(t -= 3) > -1 && r.push(239, 191, 189);
+o = n;
+continue;
+}
+n = 65536 + (o - 55296 << 10 | n - 56320);
+} else o && (t -= 3) > -1 && r.push(239, 191, 189);
+o = null;
+if (n < 128) {
+if ((t -= 1) < 0) break;
+r.push(n);
+} else if (n < 2048) {
+if ((t -= 2) < 0) break;
+r.push(n >> 6 | 192, 63 & n | 128);
+} else if (n < 65536) {
+if ((t -= 3) < 0) break;
+r.push(n >> 12 | 224, n >> 6 & 63 | 128, 63 & n | 128);
+} else {
+if (!(n < 1114112)) throw new Error("Invalid code point");
+if ((t -= 4) < 0) break;
+r.push(n >> 18 | 240, n >> 12 & 63 | 128, n >> 6 & 63 | 128, 63 & n | 128);
+}
+}
+return r;
+}
+function Y(e) {
+for (var t = [], n = 0; n < e.length; ++n) t.push(255 & e.charCodeAt(n));
+return t;
+}
+function K(e, t) {
+for (var n, i, o, r = [], s = 0; s < e.length && !((t -= 2) < 0); ++s) {
+i = (n = e.charCodeAt(s)) >> 8;
+o = n % 256;
+r.push(o);
+r.push(i);
+}
+return r;
+}
+function $(e) {
+return i.toByteArray(H(e));
+}
+function Z(e, t, n, i) {
+for (var o = 0; o < i && !(o + n >= t.length || o >= e.length); ++o) t[o + n] = e[o];
+return o;
+}
+}).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
+}, {
+"base64-js": 5,
+ieee754: 9,
+isarray: 7
+} ],
+7: [ function(e, t) {
+var n = {}.toString;
+t.exports = Array.isArray || function(e) {
+return "[object Array]" == n.call(e);
+};
+}, {} ],
+8: [ function(e, t) {
+(function(n) {
+var i = e("util"), o = e("assert");
+function r() {
+return new Date().getTime();
+}
+var s, a = Array.prototype.slice, c = {};
+s = "undefined" != typeof n && n.console ? n.console : "undefined" != typeof window && window.console ? window.console : {};
+for (var l = [ [ function() {}, "log" ], [ function() {
+s.log.apply(s, arguments);
+}, "info" ], [ function() {
+s.log.apply(s, arguments);
+}, "warn" ], [ function() {
+s.warn.apply(s, arguments);
+}, "error" ], [ function(e) {
+c[e] = r();
+}, "time" ], [ function(e) {
+var t = c[e];
+if (!t) throw new Error("No such label: " + e);
+delete c[e];
+var n = r() - t;
+s.log(e + ": " + n + "ms");
+}, "timeEnd" ], [ function() {
+var e = new Error();
+e.name = "Trace";
+e.message = i.format.apply(null, arguments);
+s.error(e.stack);
+}, "trace" ], [ function(e) {
+s.log(i.inspect(e) + "\n");
+}, "dir" ], [ function(e) {
+if (!e) {
+var t = a.call(arguments, 1);
+o.ok(!1, i.format.apply(null, t));
+}
+}, "assert" ] ], u = 0; u < l.length; u++) {
+var f = l[u], d = f[0], h = f[1];
+s[h] || (s[h] = d);
+}
+t.exports = s;
+}).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
+}, {
+assert: 1,
+util: 13
+} ],
+9: [ function(e, t, n) {
+n.read = function(e, t, n, i, o) {
+var r, s, a = 8 * o - i - 1, c = (1 << a) - 1, l = c >> 1, u = -7, f = n ? o - 1 : 0, d = n ? -1 : 1, h = e[t + f];
+f += d;
+r = h & (1 << -u) - 1;
+h >>= -u;
+u += a;
+for (;u > 0; r = 256 * r + e[t + f], f += d, u -= 8) ;
+s = r & (1 << -u) - 1;
+r >>= -u;
+u += i;
+for (;u > 0; s = 256 * s + e[t + f], f += d, u -= 8) ;
+if (0 === r) r = 1 - l; else {
+if (r === c) return s ? NaN : Infinity * (h ? -1 : 1);
+s += Math.pow(2, i);
+r -= l;
+}
+return (h ? -1 : 1) * s * Math.pow(2, r - i);
+};
+n.write = function(e, t, n, i, o, r) {
+var s, a, c, l = 8 * r - o - 1, u = (1 << l) - 1, f = u >> 1, d = 23 === o ? Math.pow(2, -24) - Math.pow(2, -77) : 0, h = i ? 0 : r - 1, p = i ? 1 : -1, g = t < 0 || 0 === t && 1 / t < 0 ? 1 : 0;
+t = Math.abs(t);
+if (isNaN(t) || Infinity === t) {
+a = isNaN(t) ? 1 : 0;
+s = u;
+} else {
+s = Math.floor(Math.log(t) / Math.LN2);
+if (t * (c = Math.pow(2, -s)) < 1) {
+s--;
+c *= 2;
+}
+if ((t += s + f >= 1 ? d / c : d * Math.pow(2, 1 - f)) * c >= 2) {
+s++;
+c /= 2;
+}
+if (s + f >= u) {
+a = 0;
+s = u;
+} else if (s + f >= 1) {
+a = (t * c - 1) * Math.pow(2, o);
+s += f;
+} else {
+a = t * Math.pow(2, f - 1) * Math.pow(2, o);
+s = 0;
+}
+}
+for (;o >= 8; e[n + h] = 255 & a, h += p, a /= 256, o -= 8) ;
+s = s << o | a;
+l += o;
+for (;l > 0; e[n + h] = 255 & s, h += p, s /= 256, l -= 8) ;
+e[n + h - p] |= 128 * g;
+};
+}, {} ],
+10: [ function(e, t) {
+var n, i, o = t.exports = {};
+function r() {
+throw new Error("setTimeout has not been defined");
+}
+function s() {
+throw new Error("clearTimeout has not been defined");
+}
+(function() {
+try {
+n = "function" == typeof setTimeout ? setTimeout : r;
+} catch (e) {
+n = r;
+}
+try {
+i = "function" == typeof clearTimeout ? clearTimeout : s;
+} catch (e) {
+i = s;
+}
+})();
+function a(e) {
+if (n === setTimeout) return setTimeout(e, 0);
+if ((n === r || !n) && setTimeout) {
+n = setTimeout;
+return setTimeout(e, 0);
+}
+try {
+return n(e, 0);
+} catch (t) {
+try {
+return n.call(null, e, 0);
+} catch (t) {
+return n.call(this, e, 0);
+}
+}
+}
+function c(e) {
+if (i === clearTimeout) return clearTimeout(e);
+if ((i === s || !i) && clearTimeout) {
+i = clearTimeout;
+return clearTimeout(e);
+}
+try {
+return i(e);
+} catch (t) {
+try {
+return i.call(null, e);
+} catch (t) {
+return i.call(this, e);
+}
+}
+}
+var l, u = [], f = !1, d = -1;
+function h() {
+if (f && l) {
+f = !1;
+l.length ? u = l.concat(u) : d = -1;
+u.length && p();
+}
+}
+function p() {
+if (!f) {
+var e = a(h);
+f = !0;
+for (var t = u.length; t; ) {
+l = u;
+u = [];
+for (;++d < t; ) l && l[d].run();
+d = -1;
+t = u.length;
+}
+l = null;
+f = !1;
+c(e);
+}
+}
+o.nextTick = function(e) {
+var t = new Array(arguments.length - 1);
+if (arguments.length > 1) for (var n = 1; n < arguments.length; n++) t[n - 1] = arguments[n];
+u.push(new g(e, t));
+1 !== u.length || f || a(p);
+};
+function g(e, t) {
+this.fun = e;
+this.array = t;
+}
+g.prototype.run = function() {
+this.fun.apply(null, this.array);
+};
+o.title = "browser";
+o.browser = !0;
+o.env = {};
+o.argv = [];
+o.version = "";
+o.versions = {};
+function m() {}
+o.on = m;
+o.addListener = m;
+o.once = m;
+o.off = m;
+o.removeListener = m;
+o.removeAllListeners = m;
+o.emit = m;
+o.prependListener = m;
+o.prependOnceListener = m;
+o.listeners = function() {
+return [];
+};
+o.binding = function() {
+throw new Error("process.binding is not supported");
+};
+o.cwd = function() {
+return "/";
+};
+o.chdir = function() {
+throw new Error("process.chdir is not supported");
+};
+o.umask = function() {
+return 0;
+};
+}, {} ],
+11: [ function(e, t, n) {
+arguments[4][2][0].apply(n, arguments);
+}, {
+dup: 2
+} ],
+12: [ function(e, t, n) {
+arguments[4][3][0].apply(n, arguments);
+}, {
+dup: 3
+} ],
+13: [ function(e, t, n) {
+arguments[4][4][0].apply(n, arguments);
+}, {
+"./support/isBuffer": 12,
+_process: 10,
+dup: 4,
+inherits: 11
+} ],
 DevicesAndroid: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "76007bwrn9IE5i9lxVbGD0F", "DevicesAndroid");
-var _ = "com/casino/game/ApplicationUtil", n = {
+var n = "com/casino/game/ApplicationUtil", i = {
 getDevicesID: function() {
-return jsb.reflection.callStaticMethod(_, "getDeviceIdentifier", "()Ljava/lang/String;");
+return jsb.reflection.callStaticMethod(n, "getDeviceIdentifier", "()Ljava/lang/String;");
 },
 getAppVersion: function() {
-return jsb.reflection.callStaticMethod(_, "getApplicationVersion", "()Ljava/lang/String;");
+return jsb.reflection.callStaticMethod(n, "getApplicationVersion", "()Ljava/lang/String;");
 }
 };
-t.exports = n;
+t.exports = i;
 cc._RF.pop();
 }, {} ],
 DevicesIos: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "6e0f94nMBRI+ZIyjS7/Emyg", "DevicesIos");
-var _ = {
+var n = {
 getDevicesID: function() {
 cc.log("TODO DevicesIos getDevicesID");
 return "123";
@@ -1645,13 +3298,13 @@ cc.log("TODO DevicesIos getAppVersion");
 return "1.3.0";
 }
 };
-t.exports = _;
+t.exports = n;
 cc._RF.pop();
 }, {} ],
 DevicesWeb: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "1f7d1OvDdhKb6+AnPj2Q80P", "DevicesWeb");
-var _ = {
+var n = {
 getDevicesID: function() {
 var e = new Date().getTime(), t = window.Save.get("decicesID", e);
 t == e && window.Save.set("decicesID", e);
@@ -1661,13 +3314,13 @@ getAppVersion: function() {
 return "1.3.0";
 }
 };
-t.exports = _;
+t.exports = n;
 cc._RF.pop();
 }, {} ],
 Devices: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "cd548Gn7o1Afas1wT6k6Lak", "Devices");
-var _ = {
+var n = {
 instance: void 0,
 getDevicesID: function() {
 return this.instance.getDevicesID();
@@ -1676,34 +3329,61 @@ getAppVersion: function() {
 return this.instance.getAppVersion();
 }
 };
-_.instance = e("DevicesWeb");
-cc.sys.isBrowser ? _.instance = e("DevicesWeb") : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? _.instance = e("DevicesAndroid") : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS && (_.instance = e("DevicesIos"));
-t.exports = _;
+n.instance = e("DevicesWeb");
+cc.sys.isBrowser ? n.instance = e("DevicesWeb") : cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? n.instance = e("DevicesAndroid") : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS && (n.instance = e("DevicesIos"));
+t.exports = n;
 cc._RF.pop();
 }, {
 DevicesAndroid: "DevicesAndroid",
 DevicesIos: "DevicesIos",
 DevicesWeb: "DevicesWeb"
 } ],
+EventManager: [ function(e, t) {
+"use strict";
+cc._RF.push(t, "97b6e3fUlhDhbBdhiccGCP8", "EventManager");
+var n = {
+init: function() {
+this.mEventTarget = new cc.EventTarget();
+},
+on: function(e, t) {
+this.mEventTarget.on(e, function(e) {
+t && t(e);
+});
+},
+off: function(e, t) {
+this.mEventTarget.off(e, function() {
+t && t();
+});
+},
+dispatchEvent: function(e, t) {
+var n = new cc.Event.EventCustom(e, !0);
+t && n.setUserData(t);
+this.mEventTarget.dispatchEvent(n);
+}
+};
+n.init();
+globalThis.EventManager = n;
+cc._RF.pop();
+}, {} ],
 GameClient: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "7790f7DHIlN/LJdV2QxtWlg", "GameClient");
-var _ = e("OnlineWS"), n = {
+var n = e("OnlineWS"), i = {
 initData: function() {
 cc.log("GameClient initData***");
 },
-connect: function(e, t, n) {
-this.ws = new _();
+connect: function(e, t, i) {
+this.ws = new n();
 this.ws.connect(e, t);
 this.ws.setConnectCall(function() {
-n && n();
+i && i();
 });
 },
 getConnectState: function() {
 return !!this.ws && this.ws.getWsState();
 }
 };
-t.exports = n;
+t.exports = i;
 cc._RF.pop();
 }, {
 OnlineWS: "OnlineWS"
@@ -1711,27 +3391,27 @@ OnlineWS: "OnlineWS"
 Global: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "b5395s9nXxHJIO9wugo2HKF", "Global");
-var _ = {
+var n = {
 sayHello: function() {
 console.log("Global sayehello");
 },
-gSchduleFun: function(e, t, _, n, i) {
-null == n && (n = cc.macro.REPEAT_FOREVER);
-null == i && (i = 0);
-cc.director.getScheduler().schedule(t, e, _, n, i, !1);
+gSchduleFun: function(e, t, n, i, o) {
+null == i && (i = cc.macro.REPEAT_FOREVER);
+null == o && (o = 0);
+cc.director.getScheduler().schedule(t, e, n, i, o, !1);
 },
-gSchduleOnce: function(e, t, _) {
+gSchduleOnce: function(e, t, n) {
 e.scheduleOnce(function() {
 t();
-}, _);
+}, n);
 },
 gUnSchduleFun: function(e, t) {
 cc.director.getScheduler().unschedule(t, e);
 },
 GIsArrContain: function(e, t) {
-for (var _ in e) {
-var n = e[_];
-if (n == t || n == toString(t)) return !0;
+for (var n in e) {
+var i = e[n];
+if (i == t || i == toString(t)) return !0;
 }
 return !1;
 },
@@ -1748,73 +3428,73 @@ GcreateDir: function(e) {
 cc.sys.isNative && (jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDirectory(e));
 },
 GgetDirByUrl: function(e) {
-var t = e.split("/"), _ = "";
-if (t.length > 1) for (var n = 0; n < t.length - 1; n++) {
-var i = t[n];
-_ = 0 == n ? i : _ + "/" + i;
-} else _ = t[0];
-return _ + "/";
+var t = e.split("/"), n = "";
+if (t.length > 1) for (var i = 0; i < t.length - 1; i++) {
+var o = t[i];
+n = 0 == i ? o : n + "/" + o;
+} else n = t[0];
+return n + "/";
 },
 GnumberToFix: function(e, t) {
-var _ = Math.pow(10, t);
-return Math.floor(e * _) / _;
+var n = Math.pow(10, t);
+return Math.floor(e * n) / n;
 },
 GgetFileNameByUrl: function(e) {
 var t = e.split("/");
 return t[t.length - 1];
 },
 GloadPic: function(e, t) {
-var _ = this;
+var n = this;
 if (cc.sys.isNative) {
-var n = jsb.fileUtils.getWritablePath() + "PicTemp/";
-this.GcreateDir(n);
-var i = n + this.GgetFileNameByUrl(e);
-jsb.fileUtils.isFileExist(i) ? this.loadTexture(i, function(e) {
+var i = jsb.fileUtils.getWritablePath() + "PicTemp/";
+this.GcreateDir(i);
+var o = i + this.GgetFileNameByUrl(e);
+jsb.fileUtils.isFileExist(o) ? this.loadTexture(o, function(e) {
 t && t(e);
 }) : this.GDownFile(e, function(e) {
-_.GwriteDataToFile(e, i);
-_.loadTexture(i, function(e) {
+n.GwriteDataToFile(e, o);
+n.loadTexture(o, function(e) {
 t && t(e);
 });
 });
 } else cc.assetManager.loadRemote(e, {
 ext: ".png"
-}, function(e, _) {
-e ? t && t(null) : t(_);
+}, function(e, n) {
+e ? t && t(null) : t(n);
 });
 },
 loadTexture: function(e, t) {
 cc.assetManager.loadRemote(e, {
 ext: ".png"
-}, function(e, _) {
-e ? t && t(null) : t(_);
+}, function(e, n) {
+e ? t && t(null) : t(n);
 });
 },
 GDownFile: function(e, t) {
 if (cc.sys.isNative) {
-var _ = new XMLHttpRequest();
-_.responseType = "arraybuffer";
-_.open("GET", e, !0);
-_.onreadystatechange = function() {
-if (4 === _.readyState && _.status >= 200) {
-var e = _.response;
+var n = new XMLHttpRequest();
+n.responseType = "arraybuffer";
+n.open("GET", e, !0);
+n.onreadystatechange = function() {
+if (4 === n.readyState && n.status >= 200) {
+var e = n.response;
 t(e);
 } else t(null);
 };
-_.onerror = function() {
+n.onerror = function() {
 t(null);
 };
-_.ontimeout = function() {
+n.ontimeout = function() {
 t(null);
 };
-_.open("GET", e, !0);
-_.timeout = 5e3;
-_.send();
+n.open("GET", e, !0);
+n.timeout = 5e3;
+n.send();
 }
 },
 StrTime: function(e, t) {
-for (var _ = "", n = 0; n < t; n++) _ += e;
-return _;
+for (var n = "", i = 0; i < t; i++) n += e;
+return n;
 },
 ConverToWorldPos: function(e) {
 return e.parent.convertToWorldSpaceAR(e.getPosition());
@@ -1823,8 +3503,8 @@ ConverToNodePos: function(e, t) {
 return e.convertToNodeSpaceAR(t);
 },
 GgetTwoV2Angle: function(e, t) {
-var _ = t.x - e.x, n = t.y - e.y, i = cc.v2(_, n).signAngle(cc.v2(0, 1));
-return cc.misc.radiansToDegrees(i);
+var n = t.x - e.x, i = t.y - e.y, o = cc.v2(n, i).signAngle(cc.v2(0, 1));
+return cc.misc.radiansToDegrees(o);
 },
 isjson: function(e) {
 if ("string" == typeof e) try {
@@ -1835,9 +3515,9 @@ console.log(e);
 return !1;
 }
 },
-gLoadBundle: function(e, t, _) {
+loadBundle: function(e, t, n) {
 cc.assetManager.loadBundle(e, t, function(e, t) {
-_ && _(e, t);
+n && n(e, t);
 });
 },
 gReleaseBundle: function(e) {
@@ -1859,22 +3539,22 @@ cc.sys.isNative && cc.game.end();
 Ghotupdateurl: "xxx",
 GgameType: 1
 };
-if (1 == _.GgameType) {
-_.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configrelease";
-_.isDebugTest = !1;
+if (1 == n.GgameType) {
+n.Ghotupdateurl = "http://192.168.0.105/hotupversion/configrelease";
+n.isDebugTest = !1;
 }
-if (3 == _.GgameType) {
-_.Ghotupdateurl = "http://lee.free.vipnps.vip/hotupversion/configdebug";
-_.isDebugTest = !0;
+if (3 == n.GgameType) {
+n.Ghotupdateurl = "http://192.168.0.105/hotupversion/configdebug";
+n.isDebugTest = !0;
 }
-window.Global = _;
+window.Global = n;
 window.gg = {};
-var n = e("WeChatModule");
+var i = e("WeChatModule");
 gg.isAndroid = !1;
 gg.isIOS = !1;
 gg.isWindows = !1;
 cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID ? gg.isAndroid = !0 : cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS ? gg.isIOS = !0 : gg.isWindows = !0;
-gg.wechat = new n();
+gg.wechat = new i();
 cc._RF.pop();
 }, {
 WeChatModule: "WeChatModule"
@@ -1882,1920 +3562,153 @@ WeChatModule: "WeChatModule"
 HttpHelper: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "163fcvJNjZDzY673ehl7bYi", "HttpHelper");
-var _ = {
+var n = {
 sendHttpRequest: function(e, t) {
-var _ = cc.loader.getXMLHttpRequest();
-_.onreadystatechange = function() {
-4 == _.readyState && _.status >= 200 && _.status < 300 && t && t(_.responseText);
+var n = new XMLHttpRequest();
+n.onreadystatechange = function() {
+4 == n.readyState && n.status >= 200 && n.status < 300 && t && t(n.responseText);
 };
-_.onerror = function() {
+n.onerror = function() {
 cc.log(" xhr.onerror*******");
 t(null);
 };
-_.ontimeout = function() {
+n.ontimeout = function() {
 cc.log(" xhr.ontimeout*******");
 t(null);
 };
-_.open("GET", e, !0);
-cc.sys.isNative && _.setRequestHeader("Accept-Encoding", "gzip, deflate");
-_.timeout = 5e3;
-_.send();
-},
-sendHttpPost: function(e, t, _) {
-var n = cc.loader.getXMLHttpRequest();
-n.onreadystatechange = function() {
-4 == n.readyState && n.status >= 200 && n.status < 300 && _ && _(n.responseText);
+n.onabort = function() {
+cc.log(" xhr.onabort*******");
+t(null);
 };
-n.open("POST", e);
+n.open("GET", e, !0);
 cc.sys.isNative && n.setRequestHeader("Accept-Encoding", "gzip, deflate");
-n.timeout = 5e3;
-n.setRequestHeader("Content-Type", "application/json");
-var i = JSON.stringify(t);
-console.log("_data", i);
-n.send(i);
+n.send();
+},
+sendHttpPost: function(e, t, n) {
+var i = new XMLHttpRequest();
+i.onreadystatechange = function() {
+4 == i.readyState && i.status >= 200 && i.status < 300 && n && n(i.responseText);
+};
+i.open("POST", e);
+cc.sys.isNative && i.setRequestHeader("Accept-Encoding", "gzip, deflate");
+i.timeout = 5e3;
+i.setRequestHeader("Content-Type", "application/json");
+var o = JSON.stringify(t);
+console.log("_data", o);
+i.send(o);
 }
 };
-t.exports = _;
+t.exports = n;
 cc._RF.pop();
 }, {} ],
 HttpModule: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "a23fcYTDHVNGq+mQACXkU+h", "HttpModule");
-var _ = {
+var n = {
 quest: function(e, t) {
-var _ = e.url, n = e.method, i = e.data, o = e.timeout || 0, S = new XMLHttpRequest();
-o > 0 && (S.timeout = o);
-S.onreadystatechange = function() {
-if (4 == S.readyState) if (S.status >= 200 && S.status < 400) {
-var e = S.responseText;
+var n = e.url, i = e.method, o = e.data, r = e.timeout || 0, s = new XMLHttpRequest();
+r > 0 && (s.timeout = r);
+s.onreadystatechange = function() {
+if (4 == s.readyState) if (s.status >= 200 && s.status < 400) {
+var e = s.responseText;
 try {
-e = JSON.parse(S.responseText);
+e = JSON.parse(s.responseText);
 } catch (e) {}
 t && t(null, e);
-} else t && t("status: " + S.status);
+} else t && t("status: " + s.status);
 }.bind(this);
-S.open(n, _, !0);
-if ("object" == typeof i) try {
-i = JSON.stringify(i);
+s.open(i, n, !0);
+if ("object" == typeof o) try {
+o = JSON.stringify(o);
 } catch (e) {}
-S.send(i);
-S.ontimeout = function() {
+s.send(o);
+s.ontimeout = function() {
 t && t("timeout");
 console.log("连接超时");
 };
 },
 get: function(e, t) {
-var _ = e.url ? e : {
+var n = e.url ? e : {
 url: e
 };
-_.method = "get";
-this.quest(_, t);
+n.method = "get";
+this.quest(n, t);
 },
 post: function(e, t) {
-var _ = e.url ? e : {
+var n = e.url ? e : {
 url: e
 };
-_.method = "post";
-this.quest(_, t);
+n.method = "post";
+this.quest(n, t);
 },
-postData: function(e, t, _) {
-var n = [], i = new XMLHttpRequest(), o = {};
-o.userid = gg.userData.userId;
-o.data = _;
-for (var S = JSON.stringify(o), T = 0; T < S.length; T++) n.push(S.charCodeAt(T));
-var r = new Uint8Array(n);
-i.onreadystatechange = function() {
-if (4 == i.readyState) if (i.status >= 200 && i.status < 400) {
-var e = i.responseText;
+postData: function(e, t, n) {
+var i = [], o = new XMLHttpRequest(), r = {};
+r.userid = gg.userData.userId;
+r.data = n;
+for (var s = JSON.stringify(r), a = 0; a < s.length; a++) i.push(s.charCodeAt(a));
+var c = new Uint8Array(i);
+o.onreadystatechange = function() {
+if (4 == o.readyState) if (o.status >= 200 && o.status < 400) {
+var e = o.responseText;
 try {
-e = JSON.parse(i.responseText);
+e = JSON.parse(o.responseText);
 } catch (e) {}
 t && t(null, e);
-} else t && t("status: " + i.status);
+} else t && t("status: " + o.status);
 }.bind(this);
-i.open("post", e, !0);
-i.send(r);
-i.ontimeout = function() {
+o.open("post", e, !0);
+o.send(c);
+o.ontimeout = function() {
 t && t("timeout");
 console.log("连接超时");
 };
 },
-uploadFile: function(e, t, _) {
-var n = jsb.fileUtils.getDataFromFile(_), i = cc.loader.getXMLHttpRequest();
-i.open("POST", e);
-i.setRequestHeader("Content-Type", "application/octet-stream");
-i.send(n);
-i.onreadystatechange = function() {
-if (4 == i.readyState) if (200 == i.status) {
-var e = i.responseText;
+uploadFile: function(e, t, n) {
+var i = jsb.fileUtils.getDataFromFile(n), o = new XMLHttpRequest();
+o.open("POST", e);
+o.setRequestHeader("Content-Type", "application/octet-stream");
+o.send(i);
+o.onreadystatechange = function() {
+if (4 == o.readyState) if (200 == o.status) {
+var e = o.responseText;
 try {
-e = JSON.parse(i.responseText);
+e = JSON.parse(o.responseText);
 } catch (t) {
-e = i.responseText;
+e = o.responseText;
 }
 t && t(null, e);
-} else t && t("status: " + i.status);
+} else t && t("status: " + o.status);
 };
 }
 };
-t.exports = _;
+t.exports = n;
 cc._RF.pop();
 }, {} ],
-1: [ function(e, t) {
-var _ = e("util/"), n = Array.prototype.slice, i = Object.prototype.hasOwnProperty, o = t.exports = E;
-o.AssertionError = function(e) {
-this.name = "AssertionError";
-this.actual = e.actual;
-this.expected = e.expected;
-this.operator = e.operator;
-if (e.message) {
-this.message = e.message;
-this.generatedMessage = !1;
-} else {
-this.message = r(this);
-this.generatedMessage = !0;
-}
-var t = e.stackStartFunction || s;
-if (Error.captureStackTrace) Error.captureStackTrace(this, t); else {
-var _ = new Error();
-if (_.stack) {
-var n = _.stack, i = t.name, o = n.indexOf("\n" + i);
-if (o >= 0) {
-var S = n.indexOf("\n", o + 1);
-n = n.substring(S + 1);
-}
-this.stack = n;
-}
-}
-};
-_.inherits(o.AssertionError, Error);
-function S(e, t) {
-return _.isUndefined(t) ? "" + t : _.isNumber(t) && !isFinite(t) ? t.toString() : _.isFunction(t) || _.isRegExp(t) ? t.toString() : t;
-}
-function T(e, t) {
-return _.isString(e) ? e.length < t ? e : e.slice(0, t) : e;
-}
-function r(e) {
-return T(JSON.stringify(e.actual, S), 128) + " " + e.operator + " " + T(JSON.stringify(e.expected, S), 128);
-}
-function s(e, t, _, n, i) {
-throw new o.AssertionError({
-message: _,
-actual: e,
-expected: t,
-operator: n,
-stackStartFunction: i
-});
-}
-o.fail = s;
-function E(e, t) {
-e || s(e, !0, t, "==", o.ok);
-}
-o.ok = E;
-o.equal = function(e, t, _) {
-e != t && s(e, t, _, "==", o.equal);
-};
-o.notEqual = function(e, t, _) {
-e == t && s(e, t, _, "!=", o.notEqual);
-};
-o.deepEqual = function(e, t, _) {
-R(e, t) || s(e, t, _, "deepEqual", o.deepEqual);
-};
-function R(e, t) {
-if (e === t) return !0;
-if (_.isBuffer(e) && _.isBuffer(t)) {
-if (e.length != t.length) return !1;
-for (var n = 0; n < e.length; n++) if (e[n] !== t[n]) return !1;
-return !0;
-}
-return _.isDate(e) && _.isDate(t) ? e.getTime() === t.getTime() : _.isRegExp(e) && _.isRegExp(t) ? e.source === t.source && e.global === t.global && e.multiline === t.multiline && e.lastIndex === t.lastIndex && e.ignoreCase === t.ignoreCase : _.isObject(e) || _.isObject(t) ? c(e, t) : e == t;
-}
-function a(e) {
-return "[object Arguments]" == Object.prototype.toString.call(e);
-}
-function c(e, t) {
-if (_.isNullOrUndefined(e) || _.isNullOrUndefined(t)) return !1;
-if (e.prototype !== t.prototype) return !1;
-if (_.isPrimitive(e) || _.isPrimitive(t)) return e === t;
-var i = a(e), o = a(t);
-if (i && !o || !i && o) return !1;
-if (i) return R(e = n.call(e), t = n.call(t));
-var S, T, r = N(e), s = N(t);
-if (r.length != s.length) return !1;
-r.sort();
-s.sort();
-for (T = r.length - 1; T >= 0; T--) if (r[T] != s[T]) return !1;
-for (T = r.length - 1; T >= 0; T--) if (!R(e[S = r[T]], t[S])) return !1;
-return !0;
-}
-o.notDeepEqual = function(e, t, _) {
-R(e, t) && s(e, t, _, "notDeepEqual", o.notDeepEqual);
-};
-o.strictEqual = function(e, t, _) {
-e !== t && s(e, t, _, "===", o.strictEqual);
-};
-o.notStrictEqual = function(e, t, _) {
-e === t && s(e, t, _, "!==", o.notStrictEqual);
-};
-function I(e, t) {
-return !(!e || !t) && ("[object RegExp]" == Object.prototype.toString.call(t) ? t.test(e) : e instanceof t || !0 === t.call({}, e));
-}
-function l(e, t, n, i) {
-var o;
-if (_.isString(n)) {
-i = n;
-n = null;
-}
-try {
-t();
-} catch (e) {
-o = e;
-}
-i = (n && n.name ? " (" + n.name + ")." : ".") + (i ? " " + i : ".");
-e && !o && s(o, n, "Missing expected exception" + i);
-!e && I(o, n) && s(o, n, "Got unwanted exception" + i);
-if (e && o && n && !I(o, n) || !e && o) throw o;
-}
-o.throws = function(e, t, _) {
-l.apply(this, [ !0 ].concat(n.call(arguments)));
-};
-o.doesNotThrow = function(e, t) {
-l.apply(this, [ !1 ].concat(n.call(arguments)));
-};
-o.ifError = function(e) {
-if (e) throw e;
-};
-var N = Object.keys || function(e) {
-var t = [];
-for (var _ in e) i.call(e, _) && t.push(_);
-return t;
-};
-}, {
-"util/": 4
-} ],
-2: [ function(e, t) {
-"function" == typeof Object.create ? t.exports = function(e, t) {
-e.super_ = t;
-e.prototype = Object.create(t.prototype, {
-constructor: {
-value: e,
-enumerable: !1,
-writable: !0,
-configurable: !0
-}
-});
-} : t.exports = function(e, t) {
-e.super_ = t;
-var _ = function() {};
-_.prototype = t.prototype;
-e.prototype = new _();
-e.prototype.constructor = e;
-};
-}, {} ],
-3: [ function(e, t) {
-t.exports = function(e) {
-return e && "object" == typeof e && "function" == typeof e.copy && "function" == typeof e.fill && "function" == typeof e.readUInt8;
-};
-}, {} ],
-4: [ function(e, t, _) {
-(function(t, n) {
-var i = /%[sdj%]/g;
-_.format = function(e) {
-if (!h(e)) {
-for (var t = [], _ = 0; _ < arguments.length; _++) t.push(T(arguments[_]));
-return t.join(" ");
-}
-_ = 1;
-for (var n = arguments, o = n.length, S = String(e).replace(i, function(e) {
-if ("%%" === e) return "%";
-if (_ >= o) return e;
-switch (e) {
-case "%s":
-return String(n[_++]);
-
-case "%d":
-return Number(n[_++]);
-
-case "%j":
-try {
-return JSON.stringify(n[_++]);
-} catch (e) {
-return "[Circular]";
-}
-
-default:
-return e;
-}
-}), r = n[_]; _ < o; r = n[++_]) O(r) || !D(r) ? S += " " + r : S += " " + T(r);
-return S;
-};
-_.deprecate = function(e, i) {
-if (u(n.process)) return function() {
-return _.deprecate(e, i).apply(this, arguments);
-};
-if (!0 === t.noDeprecation) return e;
-var o = !1;
-return function() {
-if (!o) {
-if (t.throwDeprecation) throw new Error(i);
-t.traceDeprecation ? console.trace(i) : console.error(i);
-o = !0;
-}
-return e.apply(this, arguments);
-};
-};
-var o, S = {};
-_.debuglog = function(e) {
-u(o) && (o = t.env.NODE_DEBUG || "");
-e = e.toUpperCase();
-if (!S[e]) if (new RegExp("\\b" + e + "\\b", "i").test(o)) {
-var n = t.pid;
-S[e] = function() {
-var t = _.format.apply(_, arguments);
-console.error("%s %d: %s", e, n, t);
-};
-} else S[e] = function() {};
-return S[e];
-};
-function T(e, t) {
-var n = {
-seen: [],
-stylize: s
-};
-arguments.length >= 3 && (n.depth = arguments[2]);
-arguments.length >= 4 && (n.colors = arguments[3]);
-A(t) ? n.showHidden = t : t && _._extend(n, t);
-u(n.showHidden) && (n.showHidden = !1);
-u(n.depth) && (n.depth = 2);
-u(n.colors) && (n.colors = !1);
-u(n.customInspect) && (n.customInspect = !0);
-n.colors && (n.stylize = r);
-return R(n, e, n.depth);
-}
-_.inspect = T;
-T.colors = {
-bold: [ 1, 22 ],
-italic: [ 3, 23 ],
-underline: [ 4, 24 ],
-inverse: [ 7, 27 ],
-white: [ 37, 39 ],
-grey: [ 90, 39 ],
-black: [ 30, 39 ],
-blue: [ 34, 39 ],
-cyan: [ 36, 39 ],
-green: [ 32, 39 ],
-magenta: [ 35, 39 ],
-red: [ 31, 39 ],
-yellow: [ 33, 39 ]
-};
-T.styles = {
-special: "cyan",
-number: "yellow",
-boolean: "yellow",
-undefined: "grey",
-null: "bold",
-string: "green",
-date: "magenta",
-regexp: "red"
-};
-function r(e, t) {
-var _ = T.styles[t];
-return _ ? "[" + T.colors[_][0] + "m" + e + "[" + T.colors[_][1] + "m" : e;
-}
-function s(e) {
-return e;
-}
-function E(e) {
-var t = {};
-e.forEach(function(e) {
-t[e] = !0;
-});
-return t;
-}
-function R(e, t, n) {
-if (e.customInspect && t && P(t.inspect) && t.inspect !== _.inspect && (!t.constructor || t.constructor.prototype !== t)) {
-var i = t.inspect(n, e);
-h(i) || (i = R(e, i, n));
-return i;
-}
-var o = a(e, t);
-if (o) return o;
-var S = Object.keys(t), T = E(S);
-e.showHidden && (S = Object.getOwnPropertyNames(t));
-if (M(t) && (S.indexOf("message") >= 0 || S.indexOf("description") >= 0)) return c(t);
-if (0 === S.length) {
-if (P(t)) {
-var r = t.name ? ": " + t.name : "";
-return e.stylize("[Function" + r + "]", "special");
-}
-if (f(t)) return e.stylize(RegExp.prototype.toString.call(t), "regexp");
-if (p(t)) return e.stylize(Date.prototype.toString.call(t), "date");
-if (M(t)) return c(t);
-}
-var s, A = "", O = !1, d = [ "{", "}" ];
-if (C(t)) {
-O = !0;
-d = [ "[", "]" ];
-}
-P(t) && (A = " [Function" + (t.name ? ": " + t.name : "") + "]");
-f(t) && (A = " " + RegExp.prototype.toString.call(t));
-p(t) && (A = " " + Date.prototype.toUTCString.call(t));
-M(t) && (A = " " + c(t));
-if (0 === S.length && (!O || 0 == t.length)) return d[0] + A + d[1];
-if (n < 0) return f(t) ? e.stylize(RegExp.prototype.toString.call(t), "regexp") : e.stylize("[Object]", "special");
-e.seen.push(t);
-s = O ? I(e, t, n, T, S) : S.map(function(_) {
-return l(e, t, n, T, _, O);
-});
-e.seen.pop();
-return N(s, A, d);
-}
-function a(e, t) {
-if (u(t)) return e.stylize("undefined", "undefined");
-if (h(t)) {
-var _ = "'" + JSON.stringify(t).replace(/^"|"$/g, "").replace(/'/g, "\\'").replace(/\\"/g, '"') + "'";
-return e.stylize(_, "string");
-}
-return d(t) ? e.stylize("" + t, "number") : A(t) ? e.stylize("" + t, "boolean") : O(t) ? e.stylize("null", "null") : void 0;
-}
-function c(e) {
-return "[" + Error.prototype.toString.call(e) + "]";
-}
-function I(e, t, _, n, i) {
-for (var o = [], S = 0, T = t.length; S < T; ++S) y(t, String(S)) ? o.push(l(e, t, _, n, String(S), !0)) : o.push("");
-i.forEach(function(i) {
-i.match(/^\d+$/) || o.push(l(e, t, _, n, i, !0));
-});
-return o;
-}
-function l(e, t, _, n, i, o) {
-var S, T, r;
-(r = Object.getOwnPropertyDescriptor(t, i) || {
-value: t[i]
-}).get ? T = r.set ? e.stylize("[Getter/Setter]", "special") : e.stylize("[Getter]", "special") : r.set && (T = e.stylize("[Setter]", "special"));
-y(n, i) || (S = "[" + i + "]");
-T || (e.seen.indexOf(r.value) < 0 ? (T = O(_) ? R(e, r.value, null) : R(e, r.value, _ - 1)).indexOf("\n") > -1 && (T = o ? T.split("\n").map(function(e) {
-return "  " + e;
-}).join("\n").substr(2) : "\n" + T.split("\n").map(function(e) {
-return "   " + e;
-}).join("\n")) : T = e.stylize("[Circular]", "special"));
-if (u(S)) {
-if (o && i.match(/^\d+$/)) return T;
-if ((S = JSON.stringify("" + i)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
-S = S.substr(1, S.length - 2);
-S = e.stylize(S, "name");
-} else {
-S = S.replace(/'/g, "\\'").replace(/\\"/g, '"').replace(/(^"|"$)/g, "'");
-S = e.stylize(S, "string");
-}
-}
-return S + ": " + T;
-}
-function N(e, t, _) {
-return e.reduce(function(e, t) {
-t.indexOf("\n");
-return e + t.replace(/\u001b\[\d\d?m/g, "").length + 1;
-}, 0) > 60 ? _[0] + ("" === t ? "" : t + "\n ") + " " + e.join(",\n  ") + " " + _[1] : _[0] + t + " " + e.join(", ") + " " + _[1];
-}
-function C(e) {
-return Array.isArray(e);
-}
-_.isArray = C;
-function A(e) {
-return "boolean" == typeof e;
-}
-_.isBoolean = A;
-function O(e) {
-return null === e;
-}
-_.isNull = O;
-_.isNullOrUndefined = function(e) {
-return null == e;
-};
-function d(e) {
-return "number" == typeof e;
-}
-_.isNumber = d;
-function h(e) {
-return "string" == typeof e;
-}
-_.isString = h;
-_.isSymbol = function(e) {
-return "symbol" == typeof e;
-};
-function u(e) {
-return void 0 === e;
-}
-_.isUndefined = u;
-function f(e) {
-return D(e) && "[object RegExp]" === g(e);
-}
-_.isRegExp = f;
-function D(e) {
-return "object" == typeof e && null !== e;
-}
-_.isObject = D;
-function p(e) {
-return D(e) && "[object Date]" === g(e);
-}
-_.isDate = p;
-function M(e) {
-return D(e) && ("[object Error]" === g(e) || e instanceof Error);
-}
-_.isError = M;
-function P(e) {
-return "function" == typeof e;
-}
-_.isFunction = P;
-_.isPrimitive = function(e) {
-return null === e || "boolean" == typeof e || "number" == typeof e || "string" == typeof e || "symbol" == typeof e || "undefined" == typeof e;
-};
-_.isBuffer = e("./support/isBuffer");
-function g(e) {
-return Object.prototype.toString.call(e);
-}
-function L(e) {
-return e < 10 ? "0" + e.toString(10) : e.toString(10);
-}
-var m = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-function V() {
-var e = new Date(), t = [ L(e.getHours()), L(e.getMinutes()), L(e.getSeconds()) ].join(":");
-return [ e.getDate(), m[e.getMonth()], t ].join(" ");
-}
-_.log = function() {
-console.log("%s - %s", V(), _.format.apply(_, arguments));
-};
-_.inherits = e("inherits");
-_._extend = function(e, t) {
-if (!t || !D(t)) return e;
-for (var _ = Object.keys(t), n = _.length; n--; ) e[_[n]] = t[_[n]];
-return e;
-};
-function y(e, t) {
-return Object.prototype.hasOwnProperty.call(e, t);
-}
-}).call(this, e("_process"), "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
-}, {
-"./support/isBuffer": 3,
-_process: 10,
-inherits: 2
-} ],
-5: [ function(e, t, _) {
+Lang: [ function(e, t, n) {
 "use strict";
-_.byteLength = function(e) {
-var t = s(e), _ = t[0], n = t[1];
-return 3 * (_ + n) / 4 - n;
-};
-_.toByteArray = function(e) {
-var t, _, n = s(e), S = n[0], T = n[1], r = new o(E(0, S, T)), R = 0, a = T > 0 ? S - 4 : S;
-for (_ = 0; _ < a; _ += 4) {
-t = i[e.charCodeAt(_)] << 18 | i[e.charCodeAt(_ + 1)] << 12 | i[e.charCodeAt(_ + 2)] << 6 | i[e.charCodeAt(_ + 3)];
-r[R++] = t >> 16 & 255;
-r[R++] = t >> 8 & 255;
-r[R++] = 255 & t;
-}
-if (2 === T) {
-t = i[e.charCodeAt(_)] << 2 | i[e.charCodeAt(_ + 1)] >> 4;
-r[R++] = 255 & t;
-}
-if (1 === T) {
-t = i[e.charCodeAt(_)] << 10 | i[e.charCodeAt(_ + 1)] << 4 | i[e.charCodeAt(_ + 2)] >> 2;
-r[R++] = t >> 8 & 255;
-r[R++] = 255 & t;
-}
-return r;
-};
-_.fromByteArray = function(e) {
-for (var t, _ = e.length, i = _ % 3, o = [], S = 0, T = _ - i; S < T; S += 16383) o.push(R(e, S, S + 16383 > T ? T : S + 16383));
-if (1 === i) {
-t = e[_ - 1];
-o.push(n[t >> 2] + n[t << 4 & 63] + "==");
-} else if (2 === i) {
-t = (e[_ - 2] << 8) + e[_ - 1];
-o.push(n[t >> 10] + n[t >> 4 & 63] + n[t << 2 & 63] + "=");
-}
-return o.join("");
-};
-for (var n = [], i = [], o = "undefined" != typeof Uint8Array ? Uint8Array : Array, S = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", T = 0, r = S.length; T < r; ++T) {
-n[T] = S[T];
-i[S.charCodeAt(T)] = T;
-}
-i["-".charCodeAt(0)] = 62;
-i["_".charCodeAt(0)] = 63;
-function s(e) {
-var t = e.length;
-if (t % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
-var _ = e.indexOf("=");
--1 === _ && (_ = t);
-return [ _, _ === t ? 0 : 4 - _ % 4 ];
-}
-function E(e, t, _) {
-return 3 * (t + _) / 4 - _;
-}
-function R(e, t, _) {
-for (var i, o, S = [], T = t; T < _; T += 3) {
-i = (e[T] << 16 & 16711680) + (e[T + 1] << 8 & 65280) + (255 & e[T + 2]);
-S.push(n[(o = i) >> 18 & 63] + n[o >> 12 & 63] + n[o >> 6 & 63] + n[63 & o]);
-}
-return S.join("");
-}
-}, {} ],
-6: [ function(e, t, _) {
-(function(t) {
-"use strict";
-var n = e("base64-js"), i = e("ieee754"), o = e("isarray");
-_.Buffer = r;
-_.SlowBuffer = function(e) {
-+e != e && (e = 0);
-return r.alloc(+e);
-};
-_.INSPECT_MAX_BYTES = 50;
-r.TYPED_ARRAY_SUPPORT = void 0 !== t.TYPED_ARRAY_SUPPORT ? t.TYPED_ARRAY_SUPPORT : function() {
-try {
-var e = new Uint8Array(1);
-e.__proto__ = {
-__proto__: Uint8Array.prototype,
-foo: function() {
-return 42;
-}
-};
-return 42 === e.foo() && "function" == typeof e.subarray && 0 === e.subarray(1, 1).byteLength;
-} catch (e) {
-return !1;
-}
-}();
-_.kMaxLength = S();
-function S() {
-return r.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823;
-}
-function T(e, t) {
-if (S() < t) throw new RangeError("Invalid typed array length");
-if (r.TYPED_ARRAY_SUPPORT) (e = new Uint8Array(t)).__proto__ = r.prototype; else {
-null === e && (e = new r(t));
-e.length = t;
-}
-return e;
-}
-function r(e, t, _) {
-if (!(r.TYPED_ARRAY_SUPPORT || this instanceof r)) return new r(e, t, _);
-if ("number" == typeof e) {
-if ("string" == typeof t) throw new Error("If encoding is specified then the first argument must be a string");
-return a(this, e);
-}
-return s(this, e, t, _);
-}
-r.poolSize = 8192;
-r._augment = function(e) {
-e.__proto__ = r.prototype;
-return e;
-};
-function s(e, t, _, n) {
-if ("number" == typeof t) throw new TypeError('"value" argument must not be a number');
-return "undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer ? l(e, t, _, n) : "string" == typeof t ? c(e, t, _) : N(e, t);
-}
-r.from = function(e, t, _) {
-return s(null, e, t, _);
-};
-if (r.TYPED_ARRAY_SUPPORT) {
-r.prototype.__proto__ = Uint8Array.prototype;
-r.__proto__ = Uint8Array;
-"undefined" != typeof Symbol && Symbol.species && r[Symbol.species] === r && Object.defineProperty(r, Symbol.species, {
-value: null,
-configurable: !0
+cc._RF.push(t, "d33f0cfyklAmKbkZODfHo74", "Lang");
+Object.defineProperty(n, "__esModule", {
+value: !0
 });
-}
-function E(e) {
-if ("number" != typeof e) throw new TypeError('"size" argument must be a number');
-if (e < 0) throw new RangeError('"size" argument must not be negative');
-}
-function R(e, t, _, n) {
-E(t);
-return t <= 0 ? T(e, t) : void 0 !== _ ? "string" == typeof n ? T(e, t).fill(_, n) : T(e, t).fill(_) : T(e, t);
-}
-r.alloc = function(e, t, _) {
-return R(null, e, t, _);
+var i = e("./zh"), o = e("./en");
+n.default = {
+zh: i.default,
+en: o.default
 };
-function a(e, t) {
-E(t);
-e = T(e, t < 0 ? 0 : 0 | C(t));
-if (!r.TYPED_ARRAY_SUPPORT) for (var _ = 0; _ < t; ++_) e[_] = 0;
-return e;
-}
-r.allocUnsafe = function(e) {
-return a(null, e);
-};
-r.allocUnsafeSlow = function(e) {
-return a(null, e);
-};
-function c(e, t, _) {
-"string" == typeof _ && "" !== _ || (_ = "utf8");
-if (!r.isEncoding(_)) throw new TypeError('"encoding" must be a valid string encoding');
-var n = 0 | A(t, _), i = (e = T(e, n)).write(t, _);
-i !== n && (e = e.slice(0, i));
-return e;
-}
-function I(e, t) {
-var _ = t.length < 0 ? 0 : 0 | C(t.length);
-e = T(e, _);
-for (var n = 0; n < _; n += 1) e[n] = 255 & t[n];
-return e;
-}
-function l(e, t, _, n) {
-t.byteLength;
-if (_ < 0 || t.byteLength < _) throw new RangeError("'offset' is out of bounds");
-if (t.byteLength < _ + (n || 0)) throw new RangeError("'length' is out of bounds");
-t = void 0 === _ && void 0 === n ? new Uint8Array(t) : void 0 === n ? new Uint8Array(t, _) : new Uint8Array(t, _, n);
-r.TYPED_ARRAY_SUPPORT ? (e = t).__proto__ = r.prototype : e = I(e, t);
-return e;
-}
-function N(e, t) {
-if (r.isBuffer(t)) {
-var _ = 0 | C(t.length);
-if (0 === (e = T(e, _)).length) return e;
-t.copy(e, 0, 0, _);
-return e;
-}
-if (t) {
-if ("undefined" != typeof ArrayBuffer && t.buffer instanceof ArrayBuffer || "length" in t) return "number" != typeof t.length || (n = t.length) != n ? T(e, 0) : I(e, t);
-if ("Buffer" === t.type && o(t.data)) return I(e, t.data);
-}
-var n;
-throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.");
-}
-function C(e) {
-if (e >= S()) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + S().toString(16) + " bytes");
-return 0 | e;
-}
-r.isBuffer = function(e) {
-return !(null == e || !e._isBuffer);
-};
-r.compare = function(e, t) {
-if (!r.isBuffer(e) || !r.isBuffer(t)) throw new TypeError("Arguments must be Buffers");
-if (e === t) return 0;
-for (var _ = e.length, n = t.length, i = 0, o = Math.min(_, n); i < o; ++i) if (e[i] !== t[i]) {
-_ = e[i];
-n = t[i];
-break;
-}
-return _ < n ? -1 : n < _ ? 1 : 0;
-};
-r.isEncoding = function(e) {
-switch (String(e).toLowerCase()) {
-case "hex":
-case "utf8":
-case "utf-8":
-case "ascii":
-case "latin1":
-case "binary":
-case "base64":
-case "ucs2":
-case "ucs-2":
-case "utf16le":
-case "utf-16le":
-return !0;
-
-default:
-return !1;
-}
-};
-r.concat = function(e, t) {
-if (!o(e)) throw new TypeError('"list" argument must be an Array of Buffers');
-if (0 === e.length) return r.alloc(0);
-var _;
-if (void 0 === t) {
-t = 0;
-for (_ = 0; _ < e.length; ++_) t += e[_].length;
-}
-var n = r.allocUnsafe(t), i = 0;
-for (_ = 0; _ < e.length; ++_) {
-var S = e[_];
-if (!r.isBuffer(S)) throw new TypeError('"list" argument must be an Array of Buffers');
-S.copy(n, i);
-i += S.length;
-}
-return n;
-};
-function A(e, t) {
-if (r.isBuffer(e)) return e.length;
-if ("undefined" != typeof ArrayBuffer && "function" == typeof ArrayBuffer.isView && (ArrayBuffer.isView(e) || e instanceof ArrayBuffer)) return e.byteLength;
-"string" != typeof e && (e = "" + e);
-var _ = e.length;
-if (0 === _) return 0;
-for (var n = !1; ;) switch (t) {
-case "ascii":
-case "latin1":
-case "binary":
-return _;
-
-case "utf8":
-case "utf-8":
-case void 0:
-return j(e).length;
-
-case "ucs2":
-case "ucs-2":
-case "utf16le":
-case "utf-16le":
-return 2 * _;
-
-case "hex":
-return _ >>> 1;
-
-case "base64":
-return X(e).length;
-
-default:
-if (n) return j(e).length;
-t = ("" + t).toLowerCase();
-n = !0;
-}
-}
-r.byteLength = A;
-function O(e, t, _) {
-var n = !1;
-(void 0 === t || t < 0) && (t = 0);
-if (t > this.length) return "";
-(void 0 === _ || _ > this.length) && (_ = this.length);
-if (_ <= 0) return "";
-if ((_ >>>= 0) <= (t >>>= 0)) return "";
-e || (e = "utf8");
-for (;;) switch (e) {
-case "hex":
-return F(this, t, _);
-
-case "utf8":
-case "utf-8":
-return m(this, t, _);
-
-case "ascii":
-return U(this, t, _);
-
-case "latin1":
-case "binary":
-return H(this, t, _);
-
-case "base64":
-return L(this, t, _);
-
-case "ucs2":
-case "ucs-2":
-case "utf16le":
-case "utf-16le":
-return G(this, t, _);
-
-default:
-if (n) throw new TypeError("Unknown encoding: " + e);
-e = (e + "").toLowerCase();
-n = !0;
-}
-}
-r.prototype._isBuffer = !0;
-function d(e, t, _) {
-var n = e[t];
-e[t] = e[_];
-e[_] = n;
-}
-r.prototype.swap16 = function() {
-var e = this.length;
-if (e % 2 != 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
-for (var t = 0; t < e; t += 2) d(this, t, t + 1);
-return this;
-};
-r.prototype.swap32 = function() {
-var e = this.length;
-if (e % 4 != 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
-for (var t = 0; t < e; t += 4) {
-d(this, t, t + 3);
-d(this, t + 1, t + 2);
-}
-return this;
-};
-r.prototype.swap64 = function() {
-var e = this.length;
-if (e % 8 != 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
-for (var t = 0; t < e; t += 8) {
-d(this, t, t + 7);
-d(this, t + 1, t + 6);
-d(this, t + 2, t + 5);
-d(this, t + 3, t + 4);
-}
-return this;
-};
-r.prototype.toString = function() {
-var e = 0 | this.length;
-return 0 === e ? "" : 0 === arguments.length ? m(this, 0, e) : O.apply(this, arguments);
-};
-r.prototype.equals = function(e) {
-if (!r.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
-return this === e || 0 === r.compare(this, e);
-};
-r.prototype.inspect = function() {
-var e = "", t = _.INSPECT_MAX_BYTES;
-if (this.length > 0) {
-e = this.toString("hex", 0, t).match(/.{2}/g).join(" ");
-this.length > t && (e += " ... ");
-}
-return "<Buffer " + e + ">";
-};
-r.prototype.compare = function(e, t, _, n, i) {
-if (!r.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
-void 0 === t && (t = 0);
-void 0 === _ && (_ = e ? e.length : 0);
-void 0 === n && (n = 0);
-void 0 === i && (i = this.length);
-if (t < 0 || _ > e.length || n < 0 || i > this.length) throw new RangeError("out of range index");
-if (n >= i && t >= _) return 0;
-if (n >= i) return -1;
-if (t >= _) return 1;
-if (this === e) return 0;
-for (var o = (i >>>= 0) - (n >>>= 0), S = (_ >>>= 0) - (t >>>= 0), T = Math.min(o, S), s = this.slice(n, i), E = e.slice(t, _), R = 0; R < T; ++R) if (s[R] !== E[R]) {
-o = s[R];
-S = E[R];
-break;
-}
-return o < S ? -1 : S < o ? 1 : 0;
-};
-function h(e, t, _, n, i) {
-if (0 === e.length) return -1;
-if ("string" == typeof _) {
-n = _;
-_ = 0;
-} else _ > 2147483647 ? _ = 2147483647 : _ < -2147483648 && (_ = -2147483648);
-_ = +_;
-isNaN(_) && (_ = i ? 0 : e.length - 1);
-_ < 0 && (_ = e.length + _);
-if (_ >= e.length) {
-if (i) return -1;
-_ = e.length - 1;
-} else if (_ < 0) {
-if (!i) return -1;
-_ = 0;
-}
-"string" == typeof t && (t = r.from(t, n));
-if (r.isBuffer(t)) return 0 === t.length ? -1 : u(e, t, _, n, i);
-if ("number" == typeof t) {
-t &= 255;
-return r.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? i ? Uint8Array.prototype.indexOf.call(e, t, _) : Uint8Array.prototype.lastIndexOf.call(e, t, _) : u(e, [ t ], _, n, i);
-}
-throw new TypeError("val must be string, number or Buffer");
-}
-function u(e, t, _, n, i) {
-var o, S = 1, T = e.length, r = t.length;
-if (void 0 !== n && ("ucs2" === (n = String(n).toLowerCase()) || "ucs-2" === n || "utf16le" === n || "utf-16le" === n)) {
-if (e.length < 2 || t.length < 2) return -1;
-S = 2;
-T /= 2;
-r /= 2;
-_ /= 2;
-}
-function s(e, t) {
-return 1 === S ? e[t] : e.readUInt16BE(t * S);
-}
-if (i) {
-var E = -1;
-for (o = _; o < T; o++) if (s(e, o) === s(t, -1 === E ? 0 : o - E)) {
--1 === E && (E = o);
-if (o - E + 1 === r) return E * S;
-} else {
--1 !== E && (o -= o - E);
-E = -1;
-}
-} else {
-_ + r > T && (_ = T - r);
-for (o = _; o >= 0; o--) {
-for (var R = !0, a = 0; a < r; a++) if (s(e, o + a) !== s(t, a)) {
-R = !1;
-break;
-}
-if (R) return o;
-}
-}
-return -1;
-}
-r.prototype.includes = function(e, t, _) {
-return -1 !== this.indexOf(e, t, _);
-};
-r.prototype.indexOf = function(e, t, _) {
-return h(this, e, t, _, !0);
-};
-r.prototype.lastIndexOf = function(e, t, _) {
-return h(this, e, t, _, !1);
-};
-function f(e, t, _, n) {
-_ = Number(_) || 0;
-var i = e.length - _;
-n ? (n = Number(n)) > i && (n = i) : n = i;
-var o = t.length;
-if (o % 2 != 0) throw new TypeError("Invalid hex string");
-n > o / 2 && (n = o / 2);
-for (var S = 0; S < n; ++S) {
-var T = parseInt(t.substr(2 * S, 2), 16);
-if (isNaN(T)) return S;
-e[_ + S] = T;
-}
-return S;
-}
-function D(e, t, _, n) {
-return J(j(t, e.length - _), e, _, n);
-}
-function p(e, t, _, n) {
-return J(z(t), e, _, n);
-}
-function M(e, t, _, n) {
-return p(e, t, _, n);
-}
-function P(e, t, _, n) {
-return J(X(t), e, _, n);
-}
-function g(e, t, _, n) {
-return J(q(t, e.length - _), e, _, n);
-}
-r.prototype.write = function(e, t, _, n) {
-if (void 0 === t) {
-n = "utf8";
-_ = this.length;
-t = 0;
-} else if (void 0 === _ && "string" == typeof t) {
-n = t;
-_ = this.length;
-t = 0;
-} else {
-if (!isFinite(t)) throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
-t |= 0;
-if (isFinite(_)) {
-_ |= 0;
-void 0 === n && (n = "utf8");
-} else {
-n = _;
-_ = void 0;
-}
-}
-var i = this.length - t;
-(void 0 === _ || _ > i) && (_ = i);
-if (e.length > 0 && (_ < 0 || t < 0) || t > this.length) throw new RangeError("Attempt to write outside buffer bounds");
-n || (n = "utf8");
-for (var o = !1; ;) switch (n) {
-case "hex":
-return f(this, e, t, _);
-
-case "utf8":
-case "utf-8":
-return D(this, e, t, _);
-
-case "ascii":
-return p(this, e, t, _);
-
-case "latin1":
-case "binary":
-return M(this, e, t, _);
-
-case "base64":
-return P(this, e, t, _);
-
-case "ucs2":
-case "ucs-2":
-case "utf16le":
-case "utf-16le":
-return g(this, e, t, _);
-
-default:
-if (o) throw new TypeError("Unknown encoding: " + n);
-n = ("" + n).toLowerCase();
-o = !0;
-}
-};
-r.prototype.toJSON = function() {
-return {
-type: "Buffer",
-data: Array.prototype.slice.call(this._arr || this, 0)
-};
-};
-function L(e, t, _) {
-return 0 === t && _ === e.length ? n.fromByteArray(e) : n.fromByteArray(e.slice(t, _));
-}
-function m(e, t, _) {
-_ = Math.min(e.length, _);
-for (var n = [], i = t; i < _; ) {
-var o = e[i], S = null, T = o > 239 ? 4 : o > 223 ? 3 : o > 191 ? 2 : 1;
-if (i + T <= _) {
-var r, s, E, R;
-switch (T) {
-case 1:
-o < 128 && (S = o);
-break;
-
-case 2:
-128 == (192 & (r = e[i + 1])) && (R = (31 & o) << 6 | 63 & r) > 127 && (S = R);
-break;
-
-case 3:
-r = e[i + 1];
-s = e[i + 2];
-128 == (192 & r) && 128 == (192 & s) && (R = (15 & o) << 12 | (63 & r) << 6 | 63 & s) > 2047 && (R < 55296 || R > 57343) && (S = R);
-break;
-
-case 4:
-r = e[i + 1];
-s = e[i + 2];
-E = e[i + 3];
-128 == (192 & r) && 128 == (192 & s) && 128 == (192 & E) && (R = (15 & o) << 18 | (63 & r) << 12 | (63 & s) << 6 | 63 & E) > 65535 && R < 1114112 && (S = R);
-}
-}
-if (null === S) {
-S = 65533;
-T = 1;
-} else if (S > 65535) {
-S -= 65536;
-n.push(S >>> 10 & 1023 | 55296);
-S = 56320 | 1023 & S;
-}
-n.push(S);
-i += T;
-}
-return y(n);
-}
-var V = 4096;
-function y(e) {
-var t = e.length;
-if (t <= V) return String.fromCharCode.apply(String, e);
-for (var _ = "", n = 0; n < t; ) _ += String.fromCharCode.apply(String, e.slice(n, n += V));
-return _;
-}
-function U(e, t, _) {
-var n = "";
-_ = Math.min(e.length, _);
-for (var i = t; i < _; ++i) n += String.fromCharCode(127 & e[i]);
-return n;
-}
-function H(e, t, _) {
-var n = "";
-_ = Math.min(e.length, _);
-for (var i = t; i < _; ++i) n += String.fromCharCode(e[i]);
-return n;
-}
-function F(e, t, _) {
-var n, i = e.length;
-(!t || t < 0) && (t = 0);
-(!_ || _ < 0 || _ > i) && (_ = i);
-for (var o = "", S = t; S < _; ++S) o += (n = e[S]) < 16 ? "0" + n.toString(16) : n.toString(16);
-return o;
-}
-function G(e, t, _) {
-for (var n = e.slice(t, _), i = "", o = 0; o < n.length; o += 2) i += String.fromCharCode(n[o] + 256 * n[o + 1]);
-return i;
-}
-r.prototype.slice = function(e, t) {
-var _, n = this.length;
-(e = ~~e) < 0 ? (e += n) < 0 && (e = 0) : e > n && (e = n);
-(t = void 0 === t ? n : ~~t) < 0 ? (t += n) < 0 && (t = 0) : t > n && (t = n);
-t < e && (t = e);
-if (r.TYPED_ARRAY_SUPPORT) (_ = this.subarray(e, t)).__proto__ = r.prototype; else {
-var i = t - e;
-_ = new r(i, void 0);
-for (var o = 0; o < i; ++o) _[o] = this[o + e];
-}
-return _;
-};
-function v(e, t, _) {
-if (e % 1 != 0 || e < 0) throw new RangeError("offset is not uint");
-if (e + t > _) throw new RangeError("Trying to access beyond buffer length");
-}
-r.prototype.readUIntLE = function(e, t, _) {
-e |= 0;
-t |= 0;
-_ || v(e, t, this.length);
-for (var n = this[e], i = 1, o = 0; ++o < t && (i *= 256); ) n += this[e + o] * i;
-return n;
-};
-r.prototype.readUIntBE = function(e, t, _) {
-e |= 0;
-t |= 0;
-_ || v(e, t, this.length);
-for (var n = this[e + --t], i = 1; t > 0 && (i *= 256); ) n += this[e + --t] * i;
-return n;
-};
-r.prototype.readUInt8 = function(e, t) {
-t || v(e, 1, this.length);
-return this[e];
-};
-r.prototype.readUInt16LE = function(e, t) {
-t || v(e, 2, this.length);
-return this[e] | this[e + 1] << 8;
-};
-r.prototype.readUInt16BE = function(e, t) {
-t || v(e, 2, this.length);
-return this[e] << 8 | this[e + 1];
-};
-r.prototype.readUInt32LE = function(e, t) {
-t || v(e, 4, this.length);
-return (this[e] | this[e + 1] << 8 | this[e + 2] << 16) + 16777216 * this[e + 3];
-};
-r.prototype.readUInt32BE = function(e, t) {
-t || v(e, 4, this.length);
-return 16777216 * this[e] + (this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3]);
-};
-r.prototype.readIntLE = function(e, t, _) {
-e |= 0;
-t |= 0;
-_ || v(e, t, this.length);
-for (var n = this[e], i = 1, o = 0; ++o < t && (i *= 256); ) n += this[e + o] * i;
-n >= (i *= 128) && (n -= Math.pow(2, 8 * t));
-return n;
-};
-r.prototype.readIntBE = function(e, t, _) {
-e |= 0;
-t |= 0;
-_ || v(e, t, this.length);
-for (var n = t, i = 1, o = this[e + --n]; n > 0 && (i *= 256); ) o += this[e + --n] * i;
-o >= (i *= 128) && (o -= Math.pow(2, 8 * t));
-return o;
-};
-r.prototype.readInt8 = function(e, t) {
-t || v(e, 1, this.length);
-return 128 & this[e] ? -1 * (255 - this[e] + 1) : this[e];
-};
-r.prototype.readInt16LE = function(e, t) {
-t || v(e, 2, this.length);
-var _ = this[e] | this[e + 1] << 8;
-return 32768 & _ ? 4294901760 | _ : _;
-};
-r.prototype.readInt16BE = function(e, t) {
-t || v(e, 2, this.length);
-var _ = this[e + 1] | this[e] << 8;
-return 32768 & _ ? 4294901760 | _ : _;
-};
-r.prototype.readInt32LE = function(e, t) {
-t || v(e, 4, this.length);
-return this[e] | this[e + 1] << 8 | this[e + 2] << 16 | this[e + 3] << 24;
-};
-r.prototype.readInt32BE = function(e, t) {
-t || v(e, 4, this.length);
-return this[e] << 24 | this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3];
-};
-r.prototype.readFloatLE = function(e, t) {
-t || v(e, 4, this.length);
-return i.read(this, e, !0, 23, 4);
-};
-r.prototype.readFloatBE = function(e, t) {
-t || v(e, 4, this.length);
-return i.read(this, e, !1, 23, 4);
-};
-r.prototype.readDoubleLE = function(e, t) {
-t || v(e, 8, this.length);
-return i.read(this, e, !0, 52, 8);
-};
-r.prototype.readDoubleBE = function(e, t) {
-t || v(e, 8, this.length);
-return i.read(this, e, !1, 52, 8);
-};
-function w(e, t, _, n, i, o) {
-if (!r.isBuffer(e)) throw new TypeError('"buffer" argument must be a Buffer instance');
-if (t > i || t < o) throw new RangeError('"value" argument is out of bounds');
-if (_ + n > e.length) throw new RangeError("Index out of range");
-}
-r.prototype.writeUIntLE = function(e, t, _, n) {
-e = +e;
-t |= 0;
-_ |= 0;
-n || w(this, e, t, _, Math.pow(2, 8 * _) - 1, 0);
-var i = 1, o = 0;
-this[t] = 255 & e;
-for (;++o < _ && (i *= 256); ) this[t + o] = e / i & 255;
-return t + _;
-};
-r.prototype.writeUIntBE = function(e, t, _, n) {
-e = +e;
-t |= 0;
-_ |= 0;
-n || w(this, e, t, _, Math.pow(2, 8 * _) - 1, 0);
-var i = _ - 1, o = 1;
-this[t + i] = 255 & e;
-for (;--i >= 0 && (o *= 256); ) this[t + i] = e / o & 255;
-return t + _;
-};
-r.prototype.writeUInt8 = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 1, 255, 0);
-r.TYPED_ARRAY_SUPPORT || (e = Math.floor(e));
-this[t] = 255 & e;
-return t + 1;
-};
-function B(e, t, _, n) {
-t < 0 && (t = 65535 + t + 1);
-for (var i = 0, o = Math.min(e.length - _, 2); i < o; ++i) e[_ + i] = (t & 255 << 8 * (n ? i : 1 - i)) >>> 8 * (n ? i : 1 - i);
-}
-r.prototype.writeUInt16LE = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 2, 65535, 0);
-if (r.TYPED_ARRAY_SUPPORT) {
-this[t] = 255 & e;
-this[t + 1] = e >>> 8;
-} else B(this, e, t, !0);
-return t + 2;
-};
-r.prototype.writeUInt16BE = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 2, 65535, 0);
-if (r.TYPED_ARRAY_SUPPORT) {
-this[t] = e >>> 8;
-this[t + 1] = 255 & e;
-} else B(this, e, t, !1);
-return t + 2;
-};
-function b(e, t, _, n) {
-t < 0 && (t = 4294967295 + t + 1);
-for (var i = 0, o = Math.min(e.length - _, 4); i < o; ++i) e[_ + i] = t >>> 8 * (n ? i : 3 - i) & 255;
-}
-r.prototype.writeUInt32LE = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 4, 4294967295, 0);
-if (r.TYPED_ARRAY_SUPPORT) {
-this[t + 3] = e >>> 24;
-this[t + 2] = e >>> 16;
-this[t + 1] = e >>> 8;
-this[t] = 255 & e;
-} else b(this, e, t, !0);
-return t + 4;
-};
-r.prototype.writeUInt32BE = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 4, 4294967295, 0);
-if (r.TYPED_ARRAY_SUPPORT) {
-this[t] = e >>> 24;
-this[t + 1] = e >>> 16;
-this[t + 2] = e >>> 8;
-this[t + 3] = 255 & e;
-} else b(this, e, t, !1);
-return t + 4;
-};
-r.prototype.writeIntLE = function(e, t, _, n) {
-e = +e;
-t |= 0;
-if (!n) {
-var i = Math.pow(2, 8 * _ - 1);
-w(this, e, t, _, i - 1, -i);
-}
-var o = 0, S = 1, T = 0;
-this[t] = 255 & e;
-for (;++o < _ && (S *= 256); ) {
-e < 0 && 0 === T && 0 !== this[t + o - 1] && (T = 1);
-this[t + o] = (e / S >> 0) - T & 255;
-}
-return t + _;
-};
-r.prototype.writeIntBE = function(e, t, _, n) {
-e = +e;
-t |= 0;
-if (!n) {
-var i = Math.pow(2, 8 * _ - 1);
-w(this, e, t, _, i - 1, -i);
-}
-var o = _ - 1, S = 1, T = 0;
-this[t + o] = 255 & e;
-for (;--o >= 0 && (S *= 256); ) {
-e < 0 && 0 === T && 0 !== this[t + o + 1] && (T = 1);
-this[t + o] = (e / S >> 0) - T & 255;
-}
-return t + _;
-};
-r.prototype.writeInt8 = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 1, 127, -128);
-r.TYPED_ARRAY_SUPPORT || (e = Math.floor(e));
-e < 0 && (e = 255 + e + 1);
-this[t] = 255 & e;
-return t + 1;
-};
-r.prototype.writeInt16LE = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 2, 32767, -32768);
-if (r.TYPED_ARRAY_SUPPORT) {
-this[t] = 255 & e;
-this[t + 1] = e >>> 8;
-} else B(this, e, t, !0);
-return t + 2;
-};
-r.prototype.writeInt16BE = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 2, 32767, -32768);
-if (r.TYPED_ARRAY_SUPPORT) {
-this[t] = e >>> 8;
-this[t + 1] = 255 & e;
-} else B(this, e, t, !1);
-return t + 2;
-};
-r.prototype.writeInt32LE = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 4, 2147483647, -2147483648);
-if (r.TYPED_ARRAY_SUPPORT) {
-this[t] = 255 & e;
-this[t + 1] = e >>> 8;
-this[t + 2] = e >>> 16;
-this[t + 3] = e >>> 24;
-} else b(this, e, t, !0);
-return t + 4;
-};
-r.prototype.writeInt32BE = function(e, t, _) {
-e = +e;
-t |= 0;
-_ || w(this, e, t, 4, 2147483647, -2147483648);
-e < 0 && (e = 4294967295 + e + 1);
-if (r.TYPED_ARRAY_SUPPORT) {
-this[t] = e >>> 24;
-this[t + 1] = e >>> 16;
-this[t + 2] = e >>> 8;
-this[t + 3] = 255 & e;
-} else b(this, e, t, !1);
-return t + 4;
-};
-function Y(e, t, _, n) {
-if (_ + n > e.length) throw new RangeError("Index out of range");
-if (_ < 0) throw new RangeError("Index out of range");
-}
-function W(e, t, _, n, o) {
-o || Y(e, 0, _, 4);
-i.write(e, t, _, n, 23, 4);
-return _ + 4;
-}
-r.prototype.writeFloatLE = function(e, t, _) {
-return W(this, e, t, !0, _);
-};
-r.prototype.writeFloatBE = function(e, t, _) {
-return W(this, e, t, !1, _);
-};
-function x(e, t, _, n, o) {
-o || Y(e, 0, _, 8);
-i.write(e, t, _, n, 52, 8);
-return _ + 8;
-}
-r.prototype.writeDoubleLE = function(e, t, _) {
-return x(this, e, t, !0, _);
-};
-r.prototype.writeDoubleBE = function(e, t, _) {
-return x(this, e, t, !1, _);
-};
-r.prototype.copy = function(e, t, _, n) {
-_ || (_ = 0);
-n || 0 === n || (n = this.length);
-t >= e.length && (t = e.length);
-t || (t = 0);
-n > 0 && n < _ && (n = _);
-if (n === _) return 0;
-if (0 === e.length || 0 === this.length) return 0;
-if (t < 0) throw new RangeError("targetStart out of bounds");
-if (_ < 0 || _ >= this.length) throw new RangeError("sourceStart out of bounds");
-if (n < 0) throw new RangeError("sourceEnd out of bounds");
-n > this.length && (n = this.length);
-e.length - t < n - _ && (n = e.length - t + _);
-var i, o = n - _;
-if (this === e && _ < t && t < n) for (i = o - 1; i >= 0; --i) e[i + t] = this[i + _]; else if (o < 1e3 || !r.TYPED_ARRAY_SUPPORT) for (i = 0; i < o; ++i) e[i + t] = this[i + _]; else Uint8Array.prototype.set.call(e, this.subarray(_, _ + o), t);
-return o;
-};
-r.prototype.fill = function(e, t, _, n) {
-if ("string" == typeof e) {
-if ("string" == typeof t) {
-n = t;
-t = 0;
-_ = this.length;
-} else if ("string" == typeof _) {
-n = _;
-_ = this.length;
-}
-if (1 === e.length) {
-var i = e.charCodeAt(0);
-i < 256 && (e = i);
-}
-if (void 0 !== n && "string" != typeof n) throw new TypeError("encoding must be a string");
-if ("string" == typeof n && !r.isEncoding(n)) throw new TypeError("Unknown encoding: " + n);
-} else "number" == typeof e && (e &= 255);
-if (t < 0 || this.length < t || this.length < _) throw new RangeError("Out of range index");
-if (_ <= t) return this;
-t >>>= 0;
-_ = void 0 === _ ? this.length : _ >>> 0;
-e || (e = 0);
-var o;
-if ("number" == typeof e) for (o = t; o < _; ++o) this[o] = e; else {
-var S = r.isBuffer(e) ? e : j(new r(e, n).toString()), T = S.length;
-for (o = 0; o < _ - t; ++o) this[o + t] = S[o % T];
-}
-return this;
-};
-var K = /[^+\/0-9A-Za-z-_]/g;
-function Q(e) {
-if ((e = k(e).replace(K, "")).length < 2) return "";
-for (;e.length % 4 != 0; ) e += "=";
-return e;
-}
-function k(e) {
-return e.trim ? e.trim() : e.replace(/^\s+|\s+$/g, "");
-}
-function j(e, t) {
-t = t || Infinity;
-for (var _, n = e.length, i = null, o = [], S = 0; S < n; ++S) {
-if ((_ = e.charCodeAt(S)) > 55295 && _ < 57344) {
-if (!i) {
-if (_ > 56319) {
-(t -= 3) > -1 && o.push(239, 191, 189);
-continue;
-}
-if (S + 1 === n) {
-(t -= 3) > -1 && o.push(239, 191, 189);
-continue;
-}
-i = _;
-continue;
-}
-if (_ < 56320) {
-(t -= 3) > -1 && o.push(239, 191, 189);
-i = _;
-continue;
-}
-_ = 65536 + (i - 55296 << 10 | _ - 56320);
-} else i && (t -= 3) > -1 && o.push(239, 191, 189);
-i = null;
-if (_ < 128) {
-if ((t -= 1) < 0) break;
-o.push(_);
-} else if (_ < 2048) {
-if ((t -= 2) < 0) break;
-o.push(_ >> 6 | 192, 63 & _ | 128);
-} else if (_ < 65536) {
-if ((t -= 3) < 0) break;
-o.push(_ >> 12 | 224, _ >> 6 & 63 | 128, 63 & _ | 128);
-} else {
-if (!(_ < 1114112)) throw new Error("Invalid code point");
-if ((t -= 4) < 0) break;
-o.push(_ >> 18 | 240, _ >> 12 & 63 | 128, _ >> 6 & 63 | 128, 63 & _ | 128);
-}
-}
-return o;
-}
-function z(e) {
-for (var t = [], _ = 0; _ < e.length; ++_) t.push(255 & e.charCodeAt(_));
-return t;
-}
-function q(e, t) {
-for (var _, n, i, o = [], S = 0; S < e.length && !((t -= 2) < 0); ++S) {
-n = (_ = e.charCodeAt(S)) >> 8;
-i = _ % 256;
-o.push(i);
-o.push(n);
-}
-return o;
-}
-function X(e) {
-return n.toByteArray(Q(e));
-}
-function J(e, t, _, n) {
-for (var i = 0; i < n && !(i + _ >= t.length || i >= e.length); ++i) t[i + _] = e[i];
-return i;
-}
-}).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
-}, {
-"base64-js": 5,
-ieee754: 9,
-isarray: 7
-} ],
-7: [ function(e, t) {
-var _ = {}.toString;
-t.exports = Array.isArray || function(e) {
-return "[object Array]" == _.call(e);
-};
-}, {} ],
-8: [ function(e, t) {
-(function(_) {
-var n = e("util"), i = e("assert");
-function o() {
-return new Date().getTime();
-}
-var S, T = Array.prototype.slice, r = {};
-S = "undefined" != typeof _ && _.console ? _.console : "undefined" != typeof window && window.console ? window.console : {};
-for (var s = [ [ function() {}, "log" ], [ function() {
-S.log.apply(S, arguments);
-}, "info" ], [ function() {
-S.log.apply(S, arguments);
-}, "warn" ], [ function() {
-S.warn.apply(S, arguments);
-}, "error" ], [ function(e) {
-r[e] = o();
-}, "time" ], [ function(e) {
-var t = r[e];
-if (!t) throw new Error("No such label: " + e);
-delete r[e];
-var _ = o() - t;
-S.log(e + ": " + _ + "ms");
-}, "timeEnd" ], [ function() {
-var e = new Error();
-e.name = "Trace";
-e.message = n.format.apply(null, arguments);
-S.error(e.stack);
-}, "trace" ], [ function(e) {
-S.log(n.inspect(e) + "\n");
-}, "dir" ], [ function(e) {
-if (!e) {
-var t = T.call(arguments, 1);
-i.ok(!1, n.format.apply(null, t));
-}
-}, "assert" ] ], E = 0; E < s.length; E++) {
-var R = s[E], a = R[0], c = R[1];
-S[c] || (S[c] = a);
-}
-t.exports = S;
-}).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
-}, {
-assert: 1,
-util: 13
-} ],
-9: [ function(e, t, _) {
-_.read = function(e, t, _, n, i) {
-var o, S, T = 8 * i - n - 1, r = (1 << T) - 1, s = r >> 1, E = -7, R = _ ? i - 1 : 0, a = _ ? -1 : 1, c = e[t + R];
-R += a;
-o = c & (1 << -E) - 1;
-c >>= -E;
-E += T;
-for (;E > 0; o = 256 * o + e[t + R], R += a, E -= 8) ;
-S = o & (1 << -E) - 1;
-o >>= -E;
-E += n;
-for (;E > 0; S = 256 * S + e[t + R], R += a, E -= 8) ;
-if (0 === o) o = 1 - s; else {
-if (o === r) return S ? NaN : Infinity * (c ? -1 : 1);
-S += Math.pow(2, n);
-o -= s;
-}
-return (c ? -1 : 1) * S * Math.pow(2, o - n);
-};
-_.write = function(e, t, _, n, i, o) {
-var S, T, r, s = 8 * o - i - 1, E = (1 << s) - 1, R = E >> 1, a = 23 === i ? Math.pow(2, -24) - Math.pow(2, -77) : 0, c = n ? 0 : o - 1, I = n ? 1 : -1, l = t < 0 || 0 === t && 1 / t < 0 ? 1 : 0;
-t = Math.abs(t);
-if (isNaN(t) || Infinity === t) {
-T = isNaN(t) ? 1 : 0;
-S = E;
-} else {
-S = Math.floor(Math.log(t) / Math.LN2);
-if (t * (r = Math.pow(2, -S)) < 1) {
-S--;
-r *= 2;
-}
-if ((t += S + R >= 1 ? a / r : a * Math.pow(2, 1 - R)) * r >= 2) {
-S++;
-r /= 2;
-}
-if (S + R >= E) {
-T = 0;
-S = E;
-} else if (S + R >= 1) {
-T = (t * r - 1) * Math.pow(2, i);
-S += R;
-} else {
-T = t * Math.pow(2, R - 1) * Math.pow(2, i);
-S = 0;
-}
-}
-for (;i >= 8; e[_ + c] = 255 & T, c += I, T /= 256, i -= 8) ;
-S = S << i | T;
-s += i;
-for (;s > 0; e[_ + c] = 255 & S, c += I, S /= 256, s -= 8) ;
-e[_ + c - I] |= 128 * l;
-};
-}, {} ],
-10: [ function(e, t) {
-var _, n, i = t.exports = {};
-function o() {
-throw new Error("setTimeout has not been defined");
-}
-function S() {
-throw new Error("clearTimeout has not been defined");
-}
-(function() {
-try {
-_ = "function" == typeof setTimeout ? setTimeout : o;
-} catch (e) {
-_ = o;
-}
-try {
-n = "function" == typeof clearTimeout ? clearTimeout : S;
-} catch (e) {
-n = S;
-}
-})();
-function T(e) {
-if (_ === setTimeout) return setTimeout(e, 0);
-if ((_ === o || !_) && setTimeout) {
-_ = setTimeout;
-return setTimeout(e, 0);
-}
-try {
-return _(e, 0);
-} catch (t) {
-try {
-return _.call(null, e, 0);
-} catch (t) {
-return _.call(this, e, 0);
-}
-}
-}
-function r(e) {
-if (n === clearTimeout) return clearTimeout(e);
-if ((n === S || !n) && clearTimeout) {
-n = clearTimeout;
-return clearTimeout(e);
-}
-try {
-return n(e);
-} catch (t) {
-try {
-return n.call(null, e);
-} catch (t) {
-return n.call(this, e);
-}
-}
-}
-var s, E = [], R = !1, a = -1;
-function c() {
-if (R && s) {
-R = !1;
-s.length ? E = s.concat(E) : a = -1;
-E.length && I();
-}
-}
-function I() {
-if (!R) {
-var e = T(c);
-R = !0;
-for (var t = E.length; t; ) {
-s = E;
-E = [];
-for (;++a < t; ) s && s[a].run();
-a = -1;
-t = E.length;
-}
-s = null;
-R = !1;
-r(e);
-}
-}
-i.nextTick = function(e) {
-var t = new Array(arguments.length - 1);
-if (arguments.length > 1) for (var _ = 1; _ < arguments.length; _++) t[_ - 1] = arguments[_];
-E.push(new l(e, t));
-1 !== E.length || R || T(I);
-};
-function l(e, t) {
-this.fun = e;
-this.array = t;
-}
-l.prototype.run = function() {
-this.fun.apply(null, this.array);
-};
-i.title = "browser";
-i.browser = !0;
-i.env = {};
-i.argv = [];
-i.version = "";
-i.versions = {};
-function N() {}
-i.on = N;
-i.addListener = N;
-i.once = N;
-i.off = N;
-i.removeListener = N;
-i.removeAllListeners = N;
-i.emit = N;
-i.prependListener = N;
-i.prependOnceListener = N;
-i.listeners = function() {
-return [];
-};
-i.binding = function() {
-throw new Error("process.binding is not supported");
-};
-i.cwd = function() {
-return "/";
-};
-i.chdir = function() {
-throw new Error("process.chdir is not supported");
-};
-i.umask = function() {
-return 0;
-};
-}, {} ],
-11: [ function(e, t, _) {
-arguments[4][2][0].apply(_, arguments);
-}, {
-dup: 2
-} ],
-12: [ function(e, t, _) {
-arguments[4][3][0].apply(_, arguments);
-}, {
-dup: 3
-} ],
-13: [ function(e, t, _) {
-arguments[4][4][0].apply(_, arguments);
-}, {
-"./support/isBuffer": 12,
-_process: 10,
-dup: 4,
-inherits: 11
-} ],
-KeypadDispatch: [ function(e, t) {
-"use strict";
-cc._RF.push(t, "c37c1GBpUhDCoCJcFdLsA1S", "KeypadDispatch");
-var _ = cc.Class({
-properties: {
-Stacks: {
-default: [],
-type: [ cc.Component ]
-}
-},
-ctor: function() {
-this.addEventListener();
-},
-add: function(e) {
-this.Stacks.push(e);
-},
-remove: function() {
-this.Stacks.pop();
-},
-onbackkeyup: function() {
-if (1 != this.Stacks.length) {
-var e = this.Stacks[this.Stacks.length - 1];
-e && e.onbackpress && e.onbackpress();
-} else UiManager.ShowAlert("exit game?", [ "yes", "no" ], function(e) {
-1 == e && cc.game.end();
-});
-},
-addEventListener: function() {
-cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-},
-onKeyUp: function(e) {
-switch (e.keyCode) {
-case cc.macro.KEY.a:
-case cc.macro.KEY.back:
-this.onbackkeyup();
-}
-},
-onDestroy: function() {
-cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-}
-});
-_._instance = null;
-_.getInstance = function() {
-_._instance || (_._instance = new _());
-return _._instance;
-};
-t.exports = _;
-cc._RF.pop();
-}, {} ],
-LabelLocalized: [ function(e, t) {
-"use strict";
-cc._RF.push(t, "e4f88adp3hERoJ48DZ2PSAl", "LabelLocalized");
-var _ = e("i18n");
-cc.Class({
-extends: cc.Label,
-properties: {
-textKey: {
-default: "TEXT_KEY",
-multiline: !0,
-tooltip: "Enter i18n key here",
-notify: function() {
-if (this._sgNode) {
-this._sgNode.setString(this.string);
-this._updateNodeSize();
-}
-}
-},
-string: {
-override: !0,
-tooltip: "Here shows the localized string of Text Key",
-get: function() {
-return _.t(this.textKey);
-},
-set: function(e) {
-this.textKey = e;
-}
-}
-}
-});
 cc._RF.pop();
 }, {
-i18n: "i18n"
+"./en": "en",
+"./zh": "zh"
 } ],
 LaunchScene: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "a7016SMIJVNQrZxjzWJyjKM", "LaunchScene");
-var _ = e("VersionManager"), n = e("SubGameManager"), i = e("BaseComponent");
+var n;
+(n = e("zh")) && n.__esModule;
+var i = e("VersionManager");
+e("xxtea");
 cc.Class({
-extends: i,
+extends: cc.Component,
 properties: {
 Text: {
 default: null,
@@ -3803,12 +3716,40 @@ type: cc.Label
 }
 },
 onLoad: function() {
-this._super();
 cc.log("launchsene onLoad");
+console.log("protobufjs test===========");
+var t = e("gameProto"), n = t.tutorial.Person.create();
+n.name = "hello world";
+n.email = "497232807@qq.com";
+n.id = 110;
+var i = t.tutorial.Person.encode(n).finish();
+console.log("编码测试===========", i);
+if (cc.sys.isNative) {
+var o = jsb.fileUtils.getWritablePath() + "test2.txt";
+jsb.fileUtils.writeDataToFile(i, o);
+}
+var r = ProtoTool.Uint8ArrayToString(i);
+console.log("编码测试 Uint8ArrayToString===========", r);
+console.log("编码测试 stringToUint8Array===========", ProtoTool.stringToUint8Array(r));
+var s = t.tutorial.Person.decode(i);
+console.log("解码测试===========", JSON.stringify(s));
+console.log("protobufjs test===========end");
+console.log("ProtoTool test ===========================");
+var a = ProtoTool.encode(CMD.Login, {
+name: "hello world",
+email: "497232807@qq.com",
+id: 201162
+});
+console.log("ProtoTool 编码==", a);
+var c = ProtoTool.decode(CMD.Login, a);
+console.log("ProtoTool 解码==", JSON.stringify(c));
+console.log("ProtoTool test =========================== end");
+var l = ProtoTool.packData(CMD.Login, a);
+console.log("pack message==", l);
+var u = ProtoTool.parseData(l);
+console.log("parseData==", u);
 },
-onDestroy: function() {
-this._super();
-},
+onDestroy: function() {},
 updateText: function() {
 this.count = this.count + 1;
 this.count = this.count % 4;
@@ -3823,14 +3764,8 @@ cc.log("渠道号===", window.DISTRIBUTE_CHANNEL);
 cc.sys.localStorage.setItem("debugId", 724001);
 this.count = 0;
 if (cc && cc.sys.isNative) {
-if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32) {
-cc.log("模拟器不热更新");
-_.parseLocalCfg();
-this.goLoginScene();
-return;
-}
 cc.log("Global.isDebugTest===", Global.isDebugTest);
-Global.isDebugTest ? UiManager.ShowChooseUpdate({
+Global.isDebugTest ? UITool.showChooseUpdate({
 tips: "热更新选择",
 items: [ {
 text: "默认热更新地址"
@@ -3839,52 +3774,52 @@ text: "手动输入热更新地址"
 }, {
 text: "公司热更新地址"
 } ]
-}, function(t, _) {
+}, function(t, n) {
 console.log("点击了", t);
 if (0 == t) {
 e.goCheckUpdate(Global.Ghotupdateurl);
-_.bClose();
-} else if (1 == t) UiManager.ShowTextInput(function(t) {
+n.bClose();
+} else if (1 == t) UITool.showTextInput(function(t) {
 if (t.length > 0) {
 Global.Ghotupdateurl = t;
 e.goCheckUpdate(t);
-_.bClose();
+n.bClose();
 } else {
 console.log("请输入自定义的热更新地址");
-_.bClose();
-UiManager.ShowAlert("请输入正确自定义的热更新地址", [], function() {
+n.bClose();
+UITool.showAlert("请输入正确自定义的热更新地址", [], function() {
 Global.gExitGame();
 });
 }
 }); else if (2 == t) {
 Global.Ghotupdateurl = "http://192.168.65.151/hotupversion/configdebug";
 e.goCheckUpdate(Global.Ghotupdateurl);
-_.bClose();
+n.bClose();
 }
 }) : Global.gSchduleOnce(this, function() {
 e.goCheckUpdate(Global.Ghotupdateurl);
 }, 3);
 Global.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0);
 } else {
-_.getH5ScriptVersion();
+i.getH5ScriptVersion();
 this.goLoginScene();
 }
 },
 goCheckUpdate: function(e) {
 var t = this;
 console.log("goCheckUpdate==" + e);
-_.checkUpdate(e, function(e, i) {
-n.parseCfgFromData(_.getSubGameCfg());
-0 == e ? t.goLoginScene() : 100 == e ? t.Reboot() : 6 == e || 7 == e ? t.goLoginScene() : 8 == e ? UiManager.ShowAlert("发现新版本" + i, [], function() {
-cc.sys.openURL(i);
-}) : UiManager.ShowAlert("ErrorCode=====" + e, [], function() {
+i.checkUpdate(e, function(e, n) {
+SubGameManager.parseCfgFromData(i.getSubGameCfg());
+0 == e ? t.goLoginScene() : 100 == e ? t.Reboot() : 8 == e ? UITool.showAlert("发现新版本" + n, [], function() {
+cc.sys.openURL(n);
+}) : UITool.showAlert("ErrorCode=====" + e, [], function() {
 t.Reboot();
 });
-}, function(e, _, n) {
+}, function(e, n, i) {
 cc.log("load progress===", e);
 cc.director.getScheduler().isScheduled(t.updateText, t) && t.unSchduleUpdateText();
-var i = "updateing" + e + "% (" + _ + "kb/" + n + "kb)";
-t.Text.string = i;
+var o = "updateing" + e + "% (" + n + "kb/" + i + "kb)";
+t.Text.string = o;
 });
 },
 Reboot: function() {
@@ -3893,41 +3828,25 @@ Global.gReBoot();
 }, 2);
 },
 goLoginScene: function() {
-var e = this;
 Global.gSchduleOnce(this, function() {
-UiManager.gShowLoading(function(t) {
-t.updataProgress(30);
-e.scheduleOnce(function() {
-UiManager.gPreloadScene("LoginScene", null, function() {
-t.updataProgress(100);
-});
-}, 2);
-}, function() {
-UiManager.gLoadScene("LoginScene");
-});
+UITool.changeScene("LoginScene");
 }, 1.5);
 }
 });
 cc._RF.pop();
 }, {
-BaseComponent: "BaseComponent",
-SubGameManager: "SubGameManager",
-VersionManager: "VersionManager"
+VersionManager: "VersionManager",
+gameProto: "gameProto",
+xxtea: "xxtea",
+zh: "zh"
 } ],
 LoadingLayer: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "2bf46C7+jhAWb9zRwpfreic", "LoadingLayer");
-var _ = e("BaseComponent");
 e("console").timeStamp;
 cc.Class({
-extends: _,
+extends: cc.Component,
 properties: {},
-onLoad: function() {
-this._super();
-},
-onDestroy: function() {
-this._super();
-},
 start: function() {
 this.ProgreeNode = cc.find("progress", this.node);
 this.percent = 0;
@@ -3968,15 +3887,14 @@ this.progresscall = null;
 });
 cc._RF.pop();
 }, {
-BaseComponent: "BaseComponent",
 console: 8
 } ],
 LoginScene: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "43150sdB6ZHSKFTTRw2QZE7", "LoginScene");
-var _ = e("VersionManager"), n = e("Devices"), i = e("BaseComponent");
+var n = e("VersionManager"), i = e("Devices");
 cc.Class({
-extends: i,
+extends: cc.Component,
 properties: {
 VersionText: {
 default: null,
@@ -3984,16 +3902,13 @@ type: cc.Label
 }
 },
 onLoad: function() {
-this._super();
 this.speed = 5;
 this.S = 375;
 this.ACC = -this.speed * this.speed / (2 * this.S) * 60;
 this.offsetX = 0;
 cc.log("ACC", this.ACC);
 },
-onDestroy: function() {
-this._super();
-},
+onDestroy: function() {},
 update1: function() {
 if (0 != this.speed) {
 this.speed = this.speed + this.ACC * (1 / 60);
@@ -4009,41 +3924,30 @@ this.gotest.x = this.gotest.x + this.speed;
 },
 start: function() {
 var e = this;
-1 == Global.GgameType && (this.VersionText.string = n.getAppVersion() + "(R" + _.getScriptVersion() + ")");
-3 == Global.GgameType && (this.VersionText.string = n.getAppVersion() + "(D" + _.getScriptVersion() + ")");
+1 == Global.GgameType && (this.VersionText.string = i.getAppVersion() + "(R" + n.getScriptVersion() + ")");
+3 == Global.GgameType && (this.VersionText.string = i.getAppVersion() + "(D" + n.getScriptVersion() + ")");
 var t = cc.find("uipanel/gotest", this.node);
 this.gotest = t;
 cc.log("this.gotest.x1", this.gotest.x);
-var i = cc.find("uipanel/wechat", this.node), o = (cc.find("uipanel/label", this.node), 
+var o = cc.find("uipanel/wechat", this.node), r = (cc.find("uipanel/label", this.node), 
 cc.find("uipanel/wechatShare", this.node));
-ua.darkButton(i, function() {
-if (0 != cc.sys.isNative) gg.wechat.login(function(e) {
+UITool.addBtnClick(o, function() {
+0 != cc.sys.isNative ? gg.wechat.login(function(e) {
 if (1 == e.ret) {
 console.log("WeChatModule login success----" + JSON.stringify(e));
-UiManager.ShowAlert(JSON.stringify(e));
+UITool.showAlert(JSON.stringify(e));
 } else console.log("WeChatModule login Faild----" + JSON.stringify(e));
-}); else {
-console.log("Wx 登录只支持原生平台");
-UiManager.ShowFlotText("Wx 登录只支持原生平台");
-}
+}) : UITool.showFlotText("Wx 登录只支持原生平台");
 });
-ua.darkButton(o, function() {
-if (0 != cc.sys.isNative) {
-gg.wechat.shareTextWx("666", 0, function(e, t) {
+UITool.addBtnClick(r, function() {
+0 != cc.sys.isNative ? gg.wechat.shareTextWx("666", 0, function(e, t) {
 1 == e ? console.log("WeChatModule share success----" + t) : console.log("WeChatModule share Faild----" + t);
+}) : UITool.showFlotText("Wx 分享只支持原生平台");
 });
-cc.log("cc.winSize.width", cc.winSize.width / 2);
-var e = cc.moveBy(.1, cc.v2(cc.winSize.width / 2, 0));
-o.runAction(e);
-} else {
-console.log("Wx 分享只支持原生平台");
-UiManager.ShowFlotText("Wx 分享只支持原生平台");
-}
-});
-ua.darkButton(t, function() {
+UITool.addBtnClick(t, function() {
 e.goTestScene();
 });
-ua.darkButton(this.node, function(e) {
+UITool.addBtnClick(this.node, function(e) {
 console.log("getLocation=====", e.getLocation().x, e.getLocation().y);
 console.log("getLocationInView=====", e.getLocationInView().x, e.getLocationInView().y);
 });
@@ -4054,27 +3958,15 @@ this.img4 = cc.find("uipanel/4", this.node);
 this.img4Material = this.img4.getComponent(cc.Sprite).getMaterials()[0];
 this.schedule(function() {
 var t = Math.random();
-cc.log("randNum==", t);
 e.img4Material.effect.setProperty("colorR", Math.abs(Math.sin(t)));
 }, 1);
 },
 goTestScene: function() {
-var e = this;
-UiManager.gShowLoading(function(t) {
-t.updataProgress(30);
-e.scheduleOnce(function() {
-UiManager.gPreloadScene("TestScene", null, function() {
-t.updataProgress(100);
-});
-}, 2);
-}, function() {
-UiManager.gLoadScene("TestScene");
-});
+UITool.changeScene("TestScene");
 }
 });
 cc._RF.pop();
 }, {
-BaseComponent: "BaseComponent",
 Devices: "Devices",
 VersionManager: "VersionManager"
 } ],
@@ -4082,7 +3974,7 @@ MainScene: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "280c3rsZJJKnZ9RqbALVwtK", "MainScene");
 e("Base64Tool");
-var _ = e("Devices");
+var n = e("Devices");
 cc.Class({
 extends: cc.Component,
 properties: {},
@@ -4095,7 +3987,7 @@ e = JSON.parse(e);
 cc.log("data==", e.args.show_env);
 }
 });
-cc.director.getScene().getChildByName("Canvas").getChildByName("label").getComponent(cc.Label).string = "设备版本号：" + _.getAppVersion() + "\nchanle" + window.DISTRIBUTE_CHANNEL;
+cc.director.getScene().getChildByName("Canvas").getChildByName("label").getComponent(cc.Label).string = "设备版本号：" + n.getAppVersion() + "\nchanle" + window.DISTRIBUTE_CHANNEL;
 },
 launchFullScreen: function(e) {
 if (e.requestFullScreen) e.requestFullScreen(); else if (e.mozRequestFullScreen) e.mozRequestFullScreen(); else if (e.webkitRequestFullScreen) e.webkitRequestFullScreen(); else {
@@ -4116,36 +4008,36 @@ HttpHelper: "HttpHelper"
 OnlineWS: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "88503myvH9CnIObyoxlBC25", "OnlineWS");
-var _ = e("buffer").Buffer;
+var n = e("buffer").Buffer;
 cc.Class({
 ctor: function() {
 this.bclientClose = !1;
 },
-connect: function(t, n) {
+connect: function(t, i) {
 this.netData = new Array();
 this.callbackMap = new Map();
-var i = e("Onlinedef"), o = this;
-this._wsiSendBinary = null == t ? new WebSocket("ws://" + i.hos + ":" + i.port + "//") : new WebSocket("ws://" + t + ":" + n + "//");
-cc.log("-连接--------", t + ":" + n);
+var o = e("Onlinedef"), r = this;
+this._wsiSendBinary = null == t ? new WebSocket("ws://" + o.hos + ":" + o.port + "//") : new WebSocket("ws://" + t + ":" + i + "//");
+cc.log("-连接--------", t + ":" + i);
 this._wsiSendBinary.binaryType = "arraybuffer";
 this._wsiSendBinary.onopen = function() {
 cc.log("网络连接成功");
-o.reportConnectSuc();
+r.reportConnectSuc();
 };
 this._wsiSendBinary.onmessage = function(t) {
-o.arrayU8ToU16Array(new Uint8Array(t.data));
-var n = new _(t.data, "utf8"), i = e("Package").ParseStrToPackage(n.toString());
-cc.log("onmessage--33333333333333.........-", i);
-o.callLocalFun(i.m_header_name, i.m_json);
+r.arrayU8ToU16Array(new Uint8Array(t.data));
+var i = new n(t.data, "utf8"), o = e("Package").ParseStrToPackage(i.toString());
+cc.log("onmessage--33333333333333.........-", o);
+r.callLocalFun(o.m_header_name, o.m_json);
 };
 this._wsiSendBinary.onerror = function() {
 cc.log("网络错误");
-o.reportOnlineOff("网络错误");
+r.reportOnlineOff("网络错误");
 };
 this._wsiSendBinary.onclose = function() {
-o._wsiSendBinary = null;
+r._wsiSendBinary = null;
 cc.log("网络已经断开");
-o.reportOnlineOff("网络已经断开");
+r.reportOnlineOff("网络已经断开");
 };
 this.onLoad();
 },
@@ -4156,63 +4048,63 @@ addLocalCallback: function(e, t) {
 null != e && null != t && null != t && this.callbackMap.set(e, t);
 },
 arrayU8ToU16Array: function(e) {
-for (var t = "", _ = 0, n = 0, i = 0; i < e.length; i++) {
-if (224 == (240 & e[i])) {
-_ = 3;
-n |= (15 & e[i]) << 12;
-n |= (63 & e[i + 1]) << 6;
-n |= 63 & e[i + 2];
-} else if (192 == (224 & e[i])) {
-_ = 2;
-n |= (31 & e[i]) << 6;
-n |= 63 & e[i + 1];
-} else if (e[i] <= 127) {
-_ = 1;
-n |= 127 & e[i];
+for (var t = "", n = 0, i = 0, o = 0; o < e.length; o++) {
+if (224 == (240 & e[o])) {
+n = 3;
+i |= (15 & e[o]) << 12;
+i |= (63 & e[o + 1]) << 6;
+i |= 63 & e[o + 2];
+} else if (192 == (224 & e[o])) {
+n = 2;
+i |= (31 & e[o]) << 6;
+i |= 63 & e[o + 1];
+} else if (e[o] <= 127) {
+n = 1;
+i |= 127 & e[o];
 }
-i += _ - 1;
-t += String.fromCharCode(n);
+o += n - 1;
+t += String.fromCharCode(i);
+i = 0;
 n = 0;
-_ = 0;
 }
 return t;
 },
 Uint8ArrayToString: function(e) {
-for (var t = "", _ = 0; _ < e.length; _++) t += String.fromCharCode(e[_]);
+for (var t = "", n = 0; n < e.length; n++) t += String.fromCharCode(e[n]);
 return t;
 },
 stringToUint8Array: function(e) {
-for (var t = [], _ = 0, n = e.length; _ < n; ++_) t.push(e.charCodeAt(_));
+for (var t = [], n = 0, i = e.length; n < i; ++n) t.push(e.charCodeAt(n));
 return new Uint8Array(t);
 },
 string2u8array: function(e) {
-for (var t = new Uint8Array(3 * e.length), _ = 0, n = 0; n < e.length; n++) {
-var i = e.charCodeAt(n);
-if (i <= 127) {
-var o = 127 & i;
-t[_++] = o;
-} else if (i >= 128 && i <= 2047) {
-var S = 63 & i | 128;
-o = i >> 6 & 31 | 192;
-t[_++] = o;
-t[_++] = S;
-} else if (i >= 2048 && i <= 65535) {
-var T = 63 & i | 128;
-S = i >> 6 & 63 | 128, o = i >> 12 & 15 | 224;
-t[_++] = o;
-t[_++] = S;
-t[_++] = T;
+for (var t = new Uint8Array(3 * e.length), n = 0, i = 0; i < e.length; i++) {
+var o = e.charCodeAt(i);
+if (o <= 127) {
+var r = 127 & o;
+t[n++] = r;
+} else if (o >= 128 && o <= 2047) {
+var s = 63 & o | 128;
+r = o >> 6 & 31 | 192;
+t[n++] = r;
+t[n++] = s;
+} else if (o >= 2048 && o <= 65535) {
+var a = 63 & o | 128;
+s = o >> 6 & 63 | 128, r = o >> 12 & 15 | 224;
+t[n++] = r;
+t[n++] = s;
+t[n++] = a;
 }
 }
-return new Uint8Array(t.buffer, 0, _);
+return new Uint8Array(t.buffer, 0, n);
 },
 send: function(e, t) {
 e.m_header_name != window.Message.MS_PingPong && cc.log("Client send ===", e);
 t && this.addLocalCallback(e.m_header_name, t);
 e = e.encode();
 if (this._wsiSendBinary) if (this._wsiSendBinary.readyState === WebSocket.OPEN) {
-var _ = this.string2u8array(e.toString("utf-8"));
-this._wsiSendBinary.send(_);
+var n = this.string2u8array(e.toString("utf-8"));
+this._wsiSendBinary.send(n);
 } else {
 cc.log("网络已经断开", this._wsiSendBinary.readyState);
 this.reportOnlineOff("网络已经断开");
@@ -4223,10 +4115,10 @@ return null != this._wsiSendBinary && this._wsiSendBinary.readyState === WebSock
 },
 onLoad: function() {},
 callLocalFun: function(e, t) {
-var _ = this.callbackMap.get(e);
-if (null != _) {
+var n = this.callbackMap.get(e);
+if (null != n) {
 cc.log("=========OnlineWs===heart==", e);
-_(t);
+n(t);
 }
 },
 update: function() {
@@ -4277,7 +4169,7 @@ cc._RF.pop();
 Package: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "328a3iqtbhCEafyBWl8EuDx", "Package");
-var _ = e("buffer").Buffer;
+var n = e("buffer").Buffer;
 cc.Class({
 properties: {
 m_game_name: "AP2",
@@ -4294,73 +4186,73 @@ m_json: void 0,
 m_Ext_Data: void 0
 },
 statics: {
-biuldReq: function(t, _) {
-var n;
-(n = new (n = e("Package"))()).m_proto_type = "REQ";
-n.m_json = _;
-n.m_header_name = t;
-return n;
+biuldReq: function(t, n) {
+var i;
+(i = new (i = e("Package"))()).m_proto_type = "REQ";
+i.m_json = n;
+i.m_header_name = t;
+return i;
 },
-biuldNotify: function(t, _) {
-var n;
-(n = new (n = e("Package"))()).m_proto_type = "NOTIFY";
-n.m_json = _;
-n.m_header_name = t;
-return n;
+biuldNotify: function(t, n) {
+var i;
+(i = new (i = e("Package"))()).m_proto_type = "NOTIFY";
+i.m_json = n;
+i.m_header_name = t;
+return i;
 },
 ParseStrToPackage: function(t) {
-var _;
-(_ = new (_ = e("Package"))()).ParseProto(t);
-_.ParseHeader(t);
-_.ParseJson(t);
-return _;
+var n;
+(n = new (n = e("Package"))()).ParseProto(t);
+n.ParseHeader(t);
+n.ParseJson(t);
+return n;
 }
 },
 encode: function() {
 var e = this.m_game_name + " " + this.m_proto_type + " " + this.m_version, t = "";
 this.m_header_uid = 0;
-for (var n in this) if (n.indexOf("header") > 0) {
-var i = n.lastIndexOf("_"), o = n.substr(i + 1);
-"m_header_ext_data" == n && (o = "ext-data");
-t += o + ":" + this[n] + "\n";
+for (var i in this) if (i.indexOf("header") > 0) {
+var o = i.lastIndexOf("_"), r = i.substr(o + 1);
+"m_header_ext_data" == i && (r = "ext-data");
+t += r + ":" + this[i] + "\n";
 }
-var S = JSON.stringify(this.m_json);
-1 == this.m_header_type && (S = new _(S + "\n").toString("base64"));
-return e + "\n" + t + "\n" + S + "\n";
+var s = JSON.stringify(this.m_json);
+1 == this.m_header_type && (s = new n(s + "\n").toString("base64"));
+return e + "\n" + t + "\n" + s + "\n";
 },
 ParseProto: function(e) {
-var t = e.indexOf(" "), _ = e.substr(0, t);
-this.m_game_name = _;
-var n = e.indexOf(" ", t + 1), i = e.substr(t + 1, n - t - 1);
-this.m_proto_type = i;
-var o = e.indexOf("\n"), S = e.substr(n + 1, o - n - 1);
-this.m_version = S;
+var t = e.indexOf(" "), n = e.substr(0, t);
+this.m_game_name = n;
+var i = e.indexOf(" ", t + 1), o = e.substr(t + 1, i - t - 1);
+this.m_proto_type = o;
+var r = e.indexOf("\n"), s = e.substr(i + 1, r - i - 1);
+this.m_version = s;
 },
 ParseHeader: function(e) {
-for (var t = 0, _ = 0; t < e.length - 1; ) {
+for (var t = 0, n = 0; t < e.length - 1; ) {
 if ("\n" == e[t]) {
-var n = e.substr(_, t - _), i = n.indexOf(":"), o = n.substr(0, i), S = n.substr(i + 1, n.length - i - 1);
-"type" == o && (this.m_header_type = S);
-"uid" == o && (this.m_header_uid = S);
-"name" == o && (this.m_header_name = S);
-"id" == o && (this.m_header_id = S);
-"sign" == o && (this.m_header_sign = S);
-"ext-data" == o && (this.m_header_ext_data = S);
-"state" == o && (this.m_header_state = S);
-_ = t + 1;
+var i = e.substr(n, t - n), o = i.indexOf(":"), r = i.substr(0, o), s = i.substr(o + 1, i.length - o - 1);
+"type" == r && (this.m_header_type = s);
+"uid" == r && (this.m_header_uid = s);
+"name" == r && (this.m_header_name = s);
+"id" == r && (this.m_header_id = s);
+"sign" == r && (this.m_header_sign = s);
+"ext-data" == r && (this.m_header_ext_data = s);
+"state" == r && (this.m_header_state = s);
+n = t + 1;
 }
 t++;
 }
 },
-lastIndexOf: function(e, t, _) {
-for (var n = e.lastIndexOf(t), i = 0; i < _ - 1; i++) n = e.lastIndexOf(t, n - 1);
-return n;
+lastIndexOf: function(e, t, n) {
+for (var i = e.lastIndexOf(t), o = 0; o < n - 1; o++) i = e.lastIndexOf(t, i - 1);
+return i;
 },
 ParseJson: function(e) {
-var t = this.lastIndexOf(e, "\n", 2), n = e.substr(t + 1, e.length - t - 2);
-1 == this.m_header_type && (n = new _(n, "base64").toString());
-n = JSON.parse(n);
-this.m_json = n;
+var t = this.lastIndexOf(e, "\n", 2), i = e.substr(t + 1, e.length - t - 2);
+1 == this.m_header_type && (i = new n(i, "base64").toString());
+i = JSON.parse(i);
+this.m_json = i;
 },
 ctor: function() {
 this.bclientClose = !1;
@@ -4371,6 +4263,25 @@ cc._RF.pop();
 Package: "Package",
 buffer: 6
 } ],
+Person: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "802653MbBdDn6IFk4t581n7", "Person");
+Object.defineProperty(n, "__esModule", {
+value: !0
+});
+n.Lee = void 0;
+(function(e) {
+var t = function() {
+function e() {}
+e.prototype.Say = function(e) {
+console.log("Lee person.Say" + e);
+};
+return e;
+}();
+e.Person = t;
+})(n.Lee || (n.Lee = {}));
+cc._RF.pop();
+}, {} ],
 PhysicsCenter: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "8b2c803BjFI/ZRhXMTnBd1H", "PhysicsCenter");
@@ -4408,9 +4319,9 @@ set: function(e, t) {
 cc.sys.localStorage.setItem(e, t);
 },
 get: function(e, t) {
-var _ = cc.sys.localStorage.getItem(e);
-null === _ && (_ = t);
-return _;
+var n = cc.sys.localStorage.getItem(e);
+null === n && (n = t);
+return n;
 }
 };
 cc._RF.pop();
@@ -4479,36 +4390,36 @@ t.parent = this.node;
 t.x = 0;
 t.tag = e;
 0 == this.movedirection ? t.y = this.node.height / 2 - t.height * e - t.height / 2 - this.space * (e + 1) : t.y = -this.node.height / 2 + t.height * e + t.height / 2 + this.space * (e + 1);
-var _ = t.getComponent("Cell");
-_.seTextString(e);
-_.setBgRes(e);
+var n = t.getComponent("Cell");
+n.seTextString(e);
+n.setBgRes(e);
 this.ItemArray.push(t);
 }
 this.item.height = 120;
 },
 updateItem: function(e) {
 if (0 != e) {
-for (var t = this.node.children, _ = 0; _ < t.length; _++) {
-var n = t[_];
+for (var t = this.node.children, n = 0; n < t.length; n++) {
+var i = t[n];
 if (e > 0) {
-var i = this.node.height / 2 + n.height / 2;
-if (n.y >= i) {
-n.y = n.y + (-t.length * this.item.height - t.length * this.space);
+var o = this.node.height / 2 + i.height / 2;
+if (i.y >= o) {
+i.y = i.y + (-t.length * this.item.height - t.length * this.space);
 this.curIndex += 1;
 this.curIndex > 4 && (this.curIndex -= 5);
 } else {
-n.y = n.y + e;
-if (n.y >= i) {
-n.y = n.y + (-t.length * this.item.height - t.length * this.space);
+i.y = i.y + e;
+if (i.y >= o) {
+i.y = i.y + (-t.length * this.item.height - t.length * this.space);
 this.curIndex += 1;
 this.curIndex > 4 && (this.curIndex -= 5);
 }
 }
 } else {
-i = -this.node.height / 2 - n.height / 2;
-if (n.y <= i) n.y = n.y + (t.length * this.item.height + t.length * this.space); else {
-n.y = n.y + e;
-n.y <= i && (n.y = n.y + (t.length * this.item.height + t.length * this.space));
+o = -this.node.height / 2 - i.height / 2;
+if (i.y <= o) i.y = i.y + (t.length * this.item.height + t.length * this.space); else {
+i.y = i.y + e;
+i.y <= o && (i.y = i.y + (t.length * this.item.height + t.length * this.space));
 }
 }
 }
@@ -4557,27 +4468,27 @@ this.SlotState = window.SlotState.eSpeedDown;
 }
 },
 Bounce: function() {
-for (var e = this, t = this.node.children, _ = 0 - this.ItemArray[this.stopIndex].y, n = 0; n < t.length; n++) {
-var i = t[n];
-if (i) {
-var o;
-o = 0 == this.movedirection ? cc.moveBy(.1, cc.Vec2(0, -_)).easing(cc.easeOut(1)) : cc.moveBy(.1, cc.Vec2(0, _)).easing(cc.easeOut(1));
-var S = cc.callFunc(function() {
+for (var e = this, t = this.node.children, n = 0 - this.ItemArray[this.stopIndex].y, i = 0; i < t.length; i++) {
+var o = t[i];
+if (o) {
+var r;
+r = 0 == this.movedirection ? cc.moveBy(.1, cc.Vec2(0, -n)).easing(cc.easeOut(1)) : cc.moveBy(.1, cc.Vec2(0, n)).easing(cc.easeOut(1));
+var s = cc.callFunc(function() {
 if (e.StopCall) {
 e.StopCall();
 e.StopCall = null;
 }
 e.HaveCompelete = !0;
-}), T = cc.sequence(o, S);
-i.runAction(T);
+}), a = cc.sequence(r, s);
+o.runAction(a);
 }
 }
 },
 resetPosY: function() {
 this.restPos = !0;
-for (var e = this.stopIndex, t = this.ItemArray[e].y, _ = this.node.children, n = 0; n < _.length; n++) {
-var i = _[n];
-i && (i.y = i.y - t);
+for (var e = this.stopIndex, t = this.ItemArray[e].y, n = this.node.children, i = 0; i < n.length; i++) {
+var o = n[i];
+o && (o.y = o.y - t);
 }
 this.restPos = !1;
 },
@@ -4616,25 +4527,25 @@ onLoad: function() {
 var e = this;
 this.Slots = new Array();
 for (var t = 1; t <= 1; t++) {
-var _ = cc.find("content/slot" + t, this.node);
-this.Slots.push(_);
+var n = cc.find("content/slot" + t, this.node);
+this.Slots.push(n);
 }
-var n = cc.find("UI/btn_spin", this.node);
-ua.darkButton(n, function() {
+var i = cc.find("UI/btn_spin", this.node);
+UITool.addBtnClick(i, function() {
 cc.log("Start spin");
 for (var t = 0; t < e.Slots.length; t++) {
-var _ = e.Slots[t].getComponent("SlotPanel");
-if (_) {
-_.Spin();
-var n = Math.floor(4 * Math.random());
-_.StopAtIndex(n, function() {
+var n = e.Slots[t].getComponent("SlotPanel");
+if (n) {
+n.Spin();
+var i = Math.floor(4 * Math.random());
+n.StopAtIndex(i, function() {
 console.log("stop- call");
 });
 }
 }
 });
-var i = cc.find("UI/btn_back", this.node);
-ua.darkButton(i, function() {
+var o = cc.find("UI/btn_back", this.node);
+UITool.addBtnClick(o, function() {
 cc.director.loadScene("TestScene");
 });
 },
@@ -4652,39 +4563,39 @@ cc._RF.push(t, "e3c22Dpi01Gp4EerFjvIKH0", "Sound");
 window.Sound = {
 audioId: {},
 backGroundResPath: {},
-_playEffect: function(e, t, _, n, i) {
-var o = this;
-if (!(i && null != o.audioId[e] && o.audioId[e].length > 0)) {
-null == o.audioId[e] && (o.audioId[e] = []);
+_playEffect: function(e, t, n, i, o) {
+var r = this;
+if (!(o && null != r.audioId[e] && r.audioId[e].length > 0)) {
+null == r.audioId[e] && (r.audioId[e] = []);
 null == t && (t = !1);
-null == _ && (_ = 1);
-"number" != typeof _ && (_ = parseFloat(_));
-var S = -1;
-cc.resources.load(e, cc.AudioClip, function(e, n) {
+null == n && (n = 1);
+"number" != typeof n && (n = parseFloat(n));
+var s = -1;
+cc.resources.load(e, cc.AudioClip, function(e, i) {
 if (e) cc.log(e); else {
-S = cc.audioEngine.playEffect(n, t);
-o.setEffcetVolume(_);
+s = cc.audioEngine.playEffect(i, t);
+r.setEffcetVolume(n);
 }
 });
-o.audioId[e].unshift(S);
-cc.audioEngine.setFinishCallback(S, function() {
-o.audioId[e].pop();
-n && n();
+r.audioId[e].unshift(s);
+cc.audioEngine.setFinishCallback(s, function() {
+r.audioId[e].pop();
+i && i();
 });
-return S;
+return s;
 }
 },
-playMusic: function(e, t, _, n, i) {
-var o = this;
-if (!(i && null != o.audioId[e] && o.audioId[e].length > 0)) {
-null == o.audioId[e] && (o.audioId[e] = []);
+playMusic: function(e, t, n, i, o) {
+var r = this;
+if (!(o && null != r.audioId[e] && r.audioId[e].length > 0)) {
+null == r.audioId[e] && (r.audioId[e] = []);
 null == t && (t = !1);
-null == _ && (_ = 1);
-"number" != typeof _ && (_ = parseFloat(_));
-cc.resources.load(e, cc.AudioClip, function(e, n) {
+null == n && (n = 1);
+"number" != typeof n && (n = parseFloat(n));
+cc.resources.load(e, cc.AudioClip, function(e, i) {
 if (e) cc.log(e); else {
-cc.audioEngine.playMusic(n, t);
-o.setBackGroundVolume(_);
+cc.audioEngine.playMusic(i, t);
+r.setBackGroundVolume(n);
 }
 });
 }
@@ -4700,9 +4611,9 @@ this.playMusic(e, !0, t / 100);
 this.backGroundResPath[e] = e;
 return !0;
 },
-playEffect: function(e, t, _, n, i) {
-var o = this.getEffectVolume();
-this._playEffect(e, t, o / 100, n, i);
+playEffect: function(e, t, n, i, o) {
+var r = this.getEffectVolume();
+this._playEffect(e, t, r / 100, i, o);
 },
 getVoiceVolume: function() {
 return window.Save.get("Sound_Voice_Volume", 100);
@@ -4736,8 +4647,8 @@ this.curPlayBgSound = void 0;
 stop: function(e) {
 if (null != this.audioId[e] && 0 != this.audioId[e].length) {
 for (var t = 0; t < this.audioId[e].length; t++) {
-var _ = this.audioId[e].pop();
-cc.audioEngine.stop(_);
+var n = this.audioId[e].pop();
+cc.audioEngine.stop(n);
 }
 this.backGroundResPath[e] = void 0;
 }
@@ -4751,40 +4662,40 @@ cc._RF.pop();
 SubGameManager: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "58117jddOFO2ZIu1G2cUrFt", "SubGameManager");
-var _ = e("HttpHelper"), n = {
+var n = e("HttpHelper"), i = {
 remoteData: null
-}, i = "", o = "";
+}, o = "", r = "";
 if (cc && cc.sys.isNative) {
-i = jsb.fileUtils.getWritablePath() + "SubGames/";
-o = jsb.fileUtils.getWritablePath() + "SubGamesTemp/";
+o = jsb.fileUtils.getWritablePath() + "SubGames/";
+r = jsb.fileUtils.getWritablePath() + "SubGamesTemp/";
 }
-n.parseCfgFromData = function(e) {
+i.parseCfgFromData = function(e) {
 this.remoteData = e;
 cc.log("SubGameManager.parseCfgFromData", this.remoteData);
 };
-n.getSubGameState = function(e, t) {
+i.getSubGameState = function(e, t) {
 this.curSubgameName = e;
-var _ = this.getLoclSubGameCfg(e);
-if (_) {
-var n = this.remoteData.games[e].version, i = this.remoteData.games[e].debugVersion;
+var n = this.getLoclSubGameCfg(e);
+if (n) {
+var i = this.remoteData.games[e].version, o = this.remoteData.games[e].debugVersion;
 if (this.isDeugPalyer()) {
 cc.log("是测试玩家");
-n = i;
+i = o;
 }
-var o = _.scriptVersion;
-cc.log("子包本地版本=", e, o);
-cc.log("子包远程debug版本=", e, i);
-cc.log("子包远程正式版本=", e, n);
-t(o != n ? "need_update" : "no_need_update");
+var r = n.scriptVersion;
+cc.log("子包本地版本=", e, r);
+cc.log("子包远程debug版本=", e, o);
+cc.log("子包远程正式版本=", e, i);
+t(r != i ? "need_update" : "no_need_update");
 } else t("not_in_app");
 };
-n.getLoclSubGameCfg = function(e) {
-var t = i + e + "/appinfo.json";
+i.getLoclSubGameCfg = function(e) {
+var t = o + e + "/appinfo.json";
 if (jsb.fileUtils.isFileExist(t)) {
-var _ = jsb.fileUtils.getStringFromFile(t);
-if (Global.isjson(_)) {
-var n = JSON.parse(_);
-this.localSubGameCfg = n;
+var n = jsb.fileUtils.getStringFromFile(t);
+if (Global.isjson(n)) {
+var i = JSON.parse(n);
+this.localSubGameCfg = i;
 return this.localSubGameCfg;
 }
 this.callFunWithState(1, "读取子游戏本地配置失败 json配置不合法====" + e);
@@ -4800,129 +4711,129 @@ files: []
 };
 return null;
 };
-n.downSubGame = function(e, t, n) {
-var i = this;
+i.downSubGame = function(e, t, i) {
+var o = this;
 this.baseUrl = this.remoteData.baseUrl;
 this.downversion = this.remoteData.games[e].version;
-var o = this.remoteData.games[e].debugVersion;
-this.isDeugPalyer() && (this.downversion = o);
-var S = this.baseUrl + e + "_" + this.downversion + "/appinfo.json";
+var r = this.remoteData.games[e].debugVersion;
+this.isDeugPalyer() && (this.downversion = r);
+var s = this.baseUrl + e + "_" + this.downversion + "/appinfo.json";
 this.progressCall = t;
-this.finishCall = n;
-cc.log("remoteSubGameCfgUrl=", S);
-_.sendHttpRequest(S, function(t) {
+this.finishCall = i;
+cc.log("remoteSubGameCfgUrl=", s);
+n.sendHttpRequest(s, function(t) {
 if (null != t) if (Global.isjson(t)) {
-i.remoteSubgameCfg = JSON.parse(t);
-i.comparefile();
-} else i.callFunWithState(4, "读取远程子游戏远程md5-json不合法====" + e); else i.callFunWithState(3, "读取远程子游戏配置失败====" + e);
+o.remoteSubgameCfg = JSON.parse(t);
+o.comparefile();
+} else o.callFunWithState(4, "读取远程子游戏远程md5-json不合法====" + e); else o.callFunWithState(3, "读取远程子游戏配置失败====" + e);
 });
 };
-n.comparefile = function() {
-for (var e = this.localSubGameCfg.files, t = this.remoteSubgameCfg.files, _ = new Array(), n = {}, i = {}, o = 0; o < e.length; o++) {
-var S = (s = e[o]).filename, T = s.md5, r = s.size;
-n[S] = {
-md5: T,
-fileSize: r
+i.comparefile = function() {
+for (var e = this.localSubGameCfg.files, t = this.remoteSubgameCfg.files, n = new Array(), i = {}, o = {}, r = 0; r < e.length; r++) {
+var s = (l = e[r]).filename, a = l.md5, c = l.size;
+i[s] = {
+md5: a,
+fileSize: c
 };
 }
-for (o = 0; o < t.length; o++) {
-var s;
-S = (s = t[o]).filename, T = s.md5, r = s.size;
-i[S] = {
-md5: T,
-fileSize: r
+for (r = 0; r < t.length; r++) {
+var l;
+s = (l = t[r]).filename, a = l.md5, c = l.size;
+o[s] = {
+md5: a,
+fileSize: c
 };
 }
-for (var E in i) {
-var R = i[E], a = R.md5;
-r = R.fileSize;
-n[E] ? a != n[E].md5 && _.push({
-fileName: E,
-md5: a,
-fileSize: r
-}) : _.push({
-fileName: E,
-md5: a,
-fileSize: r
+for (var u in o) {
+var f = o[u], d = f.md5;
+c = f.fileSize;
+i[u] ? d != i[u].md5 && n.push({
+fileName: u,
+md5: d,
+fileSize: c
+}) : n.push({
+fileName: u,
+md5: d,
+fileSize: c
 });
 }
-for (var c in _) {
-r = _[c].fileSize;
-this.totalDownSize = this.totalDownSize + r;
+for (var h in n) {
+c = n[h].fileSize;
+this.totalDownSize = this.totalDownSize + c;
 }
 cc.log("准备下载子游戏差异文件");
-this.downFiles(_);
+this.downFiles(n);
 };
-n.downFiles = function(e) {
+i.downFiles = function(e) {
 if (0 != e.length) {
-var t = this, _ = e;
+var t = this, n = e;
 t.DownIndex = 0;
-var n = !1;
-(function e(S) {
-var T = t.baseUrl, r = _[S].fileName, s = _[S].fileSize, E = T + r.replace(t.curSubgameName, t.curSubgameName + "_" + t.downversion), R = o + r, a = i + r, c = o + Global.GgetDirByUrl(r), I = i + Global.GgetDirByUrl(r);
-Global.GcreateDir(c);
-Global.GcreateDir(I);
-_[S].tempfile = R;
-_[S].realfile = a;
-cc.log("下载=====", E);
-Global.GDownFile(E, function(i) {
-if (i) {
-Global.GwriteDataToFile(i, R);
-t.downedSize = t.downedSize + s;
-if (t.DownIndex < _.length - 1) {
+var i = !1;
+(function e(s) {
+var a = t.baseUrl, c = n[s].fileName, l = n[s].fileSize, u = a + c.replace(t.curSubgameName, t.curSubgameName + "_" + t.downversion), f = r + c, d = o + c, h = r + Global.GgetDirByUrl(c), p = o + Global.GgetDirByUrl(c);
+Global.GcreateDir(h);
+Global.GcreateDir(p);
+n[s].tempfile = f;
+n[s].realfile = d;
+cc.log("下载=====", u);
+Global.GDownFile(u, function(o) {
+if (o) {
+Global.GwriteDataToFile(o, f);
+t.downedSize = t.downedSize + l;
+if (t.DownIndex < n.length - 1) {
 t.DownIndex = t.DownIndex + 1;
-t.progressCall && t.progressCall(Math.floor(t.DownIndex / _.length * 100), (t.downedSize / 1e3).toFixed(1), (t.totalDownSize / 1e3).toFixed(1));
-cc.log("downError", n);
-0 == n && e(t.DownIndex);
+t.progressCall && t.progressCall(Math.floor(t.DownIndex / n.length * 100), (t.downedSize / 1e3).toFixed(1), (t.totalDownSize / 1e3).toFixed(1));
+cc.log("downError", i);
+0 == i && e(t.DownIndex);
 } else {
 t.progressCall && t.progressCall(Math.floor(100), (t.downedSize / 1e3).toFixed(1), (t.totalDownSize / 1e3).toFixed(1));
-t.MoveFiles(_);
+t.MoveFiles(n);
 }
 } else {
-n = !0;
-t.callFunWithState(5, "子游戏下载单个文件失败=" + E);
+i = !0;
+t.callFunWithState(5, "子游戏下载单个文件失败=" + u);
 }
 });
 })(t.DownIndex);
 } else this.MoveDone();
-}, n.MoveFiles = function(e) {
+}, i.MoveFiles = function(e) {
 this.moveStep = 0;
 var t = this;
-(function _(n) {
-var o = e[n].tempfile, S = e[n].realfile, T = Global.GgetDataFromFile(o);
-if (T) {
-Global.GwriteDataToFile(T, S);
+(function n(i) {
+var r = e[i].tempfile, s = e[i].realfile, a = Global.GgetDataFromFile(r);
+if (a) {
+Global.GwriteDataToFile(a, s);
 if (t.moveStep < e.length - 1) {
 t.moveStep = t.moveStep + 1;
-_(t.moveStep);
+n(t.moveStep);
 } else t.MoveDone();
 } else {
-var r = i + t.curSubgameName;
-this.removeLocalBundle(r);
-t.callFunWithState(6, "移动文件失败" + o);
+var c = o + t.curSubgameName;
+this.removeLocalBundle(c);
+t.callFunWithState(6, "移动文件失败" + r);
 }
 })(this.moveStep);
-}, n.MoveDone = function() {
-var e = JSON.stringify(this.remoteSubgameCfg, null, 4), t = i + this.curSubgameName + "/appinfo.json";
+}, i.MoveDone = function() {
+var e = JSON.stringify(this.remoteSubgameCfg, null, 4), t = o + this.curSubgameName + "/appinfo.json";
 Global.GwriteStringToFile(e, t);
 this.callFunWithState(0, "下载子游戏完成");
-}, n.callFunWithState = function(e, t) {
+}, i.callFunWithState = function(e, t) {
 cc.log(t + "====" + e);
 this.finishCall && this.finishCall(e);
 };
-n.getLocalBundlePath = function(e) {
-return i + e;
+i.getLocalBundlePath = function(e) {
+return o + e;
 };
-n.removeLocalBundle = function(e) {
-var t = i + e;
+i.removeLocalBundle = function(e) {
+var t = o + e;
 jsb.fileUtils.removeDirectory(t);
 jsb.fileUtils.createDirectory(t);
 };
-n.isDeugPalyer = function() {
+i.isDeugPalyer = function() {
 var e = this.remoteData.debugUid, t = cc.sys.localStorage.getItem("debugId");
 return !!Global.GIsArrContain(e, t);
 };
-t.exports = n;
+globalThis.SubGameManager = i;
 cc._RF.pop();
 }, {
 HttpHelper: "HttpHelper"
@@ -4930,35 +4841,32 @@ HttpHelper: "HttpHelper"
 TestScene: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "43e41jtsGxORJ0f6gUlDaqj", "TestScene");
-e("xxtea"), e("i18n"), e("Package"), e("Devices");
-var _ = e("VoiceNative"), n = e("BaseComponent"), i = e("SubGameManager");
+e("xxtea"), e("Package"), e("Devices");
+var n = e("VoiceNative");
 cc.Class({
-extends: n,
+extends: cc.Component,
 properties: {},
 onLoad: function() {
-this._super();
-_.init();
+n.init();
 },
-onDestroy: function() {
-this._super();
-},
+onDestroy: function() {},
 start: function() {
 var e = this;
 cc && cc.sys.isNative && jsb.fileUtils.getSearchPaths();
-var t = cc.find("uipanel/New Sprite", this.node), n = cc.find("content/sp4", this.node), o = Global.ConverToWorldPos(t), S = Global.ConverToNodePos(n.parent, o);
-this.sp4OldPos = n.getPosition();
-n.IsOriginPos = !0;
-var T = cc.find("uipanel/btn_posconvert", this.node);
-ua.darkButton(T, function() {
-if (!(n.getNumberOfRunningActions() > 0)) {
-if (1 == n.IsOriginPos) {
-var t = cc.moveTo(1, S).easing(cc.easeSineOut());
-n.runAction(t);
+var t = cc.find("uipanel/New Sprite", this.node), i = cc.find("content/sp4", this.node), o = Global.ConverToWorldPos(t), r = Global.ConverToNodePos(i.parent, o);
+this.sp4OldPos = i.getPosition();
+i.IsOriginPos = !0;
+var s = cc.find("uipanel/btn_posconvert", this.node);
+UITool.addBtnClick(s, function() {
+if (!(i.getNumberOfRunningActions() > 0)) {
+if (1 == i.IsOriginPos) {
+var t = cc.moveTo(1, r).easing(cc.easeSineOut());
+i.runAction(t);
 } else {
 t = cc.moveTo(1, e.sp4OldPos).easing(cc.easeSineOut());
-n.runAction(t);
+i.runAction(t);
 }
-n.IsOriginPos = !n.IsOriginPos;
+i.IsOriginPos = !i.IsOriginPos;
 }
 });
 t.on(cc.Node.EventType.TOUCH_START, function() {
@@ -4970,200 +4878,202 @@ t.opacity = 255;
 t.on(cc.Node.EventType.TOUCH_CANCEL, function() {
 t.opacity = 255;
 });
-var r = cc.find("uipanel/btn_Alert", this.node);
-ua.darkButton(r, function() {
-UiManager.ShowAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
-cc.log("click==", e);
+var a = cc.find("uipanel/btn_Alert", this.node);
+UITool.addBtnClick(a, function() {
+UITool.showAlert("666", [ "LOL", "LOL1", "LOL#" ], function(e) {
+UITool.showFlotText(e);
 });
 });
-var s = cc.find("uipanel/btn_showWaiting", this.node);
-ua.darkButton(s, function() {
-e.showWiat(!0);
+var c = cc.find("uipanel/btn_showWaiting", this.node);
+UITool.addBtnClick(c, function() {
+UITool.showWaitNetWork();
+UITool.showFlotText("3s后关闭");
 setTimeout(function() {
-e.showWiat(!1);
+UITool.dismissWaitNetWork();
 }, 3e3);
 });
-var E = cc.find("uipanel/btn_EventTest", this.node);
-ua.darkButton(E, function() {
-EventManager.dispatchEvent(e.node, RefreshInfo, {
+var l = cc.find("uipanel/btn_EventTest", this.node);
+UITool.addBtnClick(l, function() {
+EventManager.dispatchEvent(ConstEventDefine.EVENT_NAME.TEST, {
 name: "Lee123"
 });
 });
-var R = cc.find("uipanel/loadTex", this.node);
+cc.dynamicAtlasManager.enabled = !1;
+var u = cc.find("uipanel/loadTex", this.node);
 Global.GloadPic("http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96", function(e) {
-e && (R.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
+e && (u.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(e));
 });
-var a = null, c = cc.find("uipanel/btn_Speech", this.node);
-c.on(cc.Node.EventType.TOUCH_START, function() {
-a = Date.now();
+var f = null, d = cc.find("uipanel/btn_Speech", this.node);
+d.on(cc.Node.EventType.TOUCH_START, function() {
+f = Date.now();
 cc.log("开始录音");
 e.SpeechFile = Date.now() + ".amr";
-_.prepare(e.SpeechFile);
+n.prepare(e.SpeechFile);
 }, this);
-c.on(cc.Node.EventType.TOUCH_END, function() {
+d.on(cc.Node.EventType.TOUCH_END, function() {
 cc.log("结束录音");
-if (Date.now() - a < 1e3) {
-_.cancel();
+if (Date.now() - f < 1e3) {
+n.cancel();
 cc.log("时间小于一秒");
-UiManager.ShowAlert("时间小于一秒", [ "Yes" ], function() {});
-} else if (Date.now() - a > 8e3) {
-_.cancel();
-UiManager.ShowAlert("录音时间大于8s", [ "Yes" ], function() {});
-} else if (null != a) {
-_.release();
-var t = Date.now() - a;
+UITool.showAlert("时间小于一秒", [ "Yes" ], function() {});
+} else if (Date.now() - f > 8e3) {
+n.cancel();
+UITool.showAlert("录音时间大于8s", [ "Yes" ], function() {});
+} else if (null != f) {
+n.release();
+var t = Date.now() - f;
 console.log("record time。。。。。  " + t);
-var n = _.getVoiceData(e.SpeechFile);
-console.log("sound data。。。。。  " + n);
-n && setTimeout(function() {
+var i = n.getVoiceData(e.SpeechFile);
+console.log("sound data。。。。。  " + i);
+i && setTimeout(function() {
 var t = e.SpeechFile;
-_.play(t);
-_.writeVoice(t, n);
+n.play(t);
+n.writeVoice(t, i);
 }, 2e3);
 }
 }, this);
-c.on(cc.Node.EventType.TOUCH_CANCEL, function() {
-_.cancel();
+d.on(cc.Node.EventType.TOUCH_CANCEL, function() {
+n.cancel();
 cc.log("取消录音");
 }, this);
-EventManager.on(this.node, RefreshInfo, this.EventTest);
-var I = cc.find("uipanel/btn_fps", this.node);
-ua.darkButton(I, function() {
+EventManager.on(ConstEventDefine.EVENT_NAME.TEST, this.EventTest);
+EventManager.on(ConstEventDefine.EVENT_NAME.TEST, function(e) {
+console.log("EventTest===2", e.detail);
+});
+var h = cc.find("uipanel/btn_fps", this.node);
+UITool.addBtnClick(h, function() {
 console.log("setDisplayStats-", !cc.debug.isDisplayStats());
 cc.debug.setDisplayStats(!cc.debug.isDisplayStats());
 });
-var l = cc.find("uipanel/btn_showpopLayer", this.node);
-ua.darkButton(l, function() {
-UiManager.gLoadPrefabRes("prefabs/poplayer", function(e) {
+var p = cc.find("uipanel/btn_showpopLayer", this.node);
+UITool.addBtnClick(p, function() {
+UITool.loadPrefabRes("prefabs/poplayer", function(e) {
 if (e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
-var t = e.getComponent("poplayer");
-t && t.show();
+e.getComponent("poplayer");
 }
 });
 });
-var N = cc.find("content/sp3", this.node);
-N.isGray = !1;
-var C = cc.find("uipanel/btn_GrayRenderCom", this.node);
-ua.darkButton(C, function() {
-var e = N.getComponent(cc.Sprite);
-if (0 == N.isGray) {
+var g = cc.find("content/sp3", this.node);
+g.isGray = !1;
+var m = cc.find("uipanel/btn_GrayRenderCom", this.node);
+UITool.addBtnClick(m, function() {
+var e = g.getComponent(cc.Sprite);
+if (0 == g.isGray) {
 var t = cc.MaterialVariant.createWithBuiltin("2d-gray-sprite");
 e.setMaterial(0, t);
 } else {
-var _ = cc.MaterialVariant.createWithBuiltin("2d-sprite");
-e.setMaterial(0, _);
+var n = cc.MaterialVariant.createWithBuiltin("2d-sprite");
+e.setMaterial(0, n);
 }
-N.isGray = !N.isGray;
+g.isGray = !g.isGray;
 });
-var A = cc.find("uipanel/btn_bubble", this.node);
-ua.darkButton(A, function() {
-UiManager.gLoadScene("bubbleScene");
+var y = cc.find("uipanel/btn_bubble", this.node);
+UITool.addBtnClick(y, function() {
+UITool.loadScene("bubbleScene");
 });
-var O = cc.find("uipanel/btn_mipai", this.node);
-ua.darkButton(O, function() {
-UiManager.gLoadScene("mipaiScene");
+var v = cc.find("uipanel/btn_mipai", this.node);
+UITool.addBtnClick(v, function() {
+UITool.loadScene("mipaiScene");
 });
-var d = cc.find("uipanel/btn_loadbundle", this.node);
-ua.darkButton(d, function() {
-0 != cc.sys.isNative ? i.getSubGameState("bundleScene", function(t) {
-if ("not_in_app" == t) {
+var b = cc.find("uipanel/btn_loadbundle", this.node);
+UITool.addBtnClick(b, function() {
+0 != cc.sys.isNative ? SubGameManager.getSubGameState("bundleScene", function(e) {
+if ("not_in_app" == e) {
 cc.log("下载子游戏===");
-e.showWiat(!0);
-i.downSubGame("bundleScene", function(e) {
+UITool.showWaitNetWork();
+SubGameManager.downSubGame("bundleScene", function(e) {
 cc.log("downSubGame progress===", e);
-}, function(t) {
-e.showWiat(!1);
-cc.log("downSubGame return code == ", t);
-0 == t ? UiManager.ShowAlert("下载成功", [], function() {
-UiManager.gloadBundleScene("bundleScene", function(e) {
-0 == e ? cc.log("gloadBundleScene success") : cc.log("gloadBundleScene failed=", e);
+}, function(e) {
+UITool.dismissWaitNetWork();
+cc.log("downSubGame return code == ", e);
+0 == e ? UITool.showAlert("下载成功", [], function() {
+UITool.loadBundleScene("bundleScene", function(e) {
+0 == e ? cc.log("loadBundleScene success") : cc.log("loadBundleScene failed=", e);
 });
-}) : UiManager.ShowAlert("下载失败" + t, [], function() {});
+}) : UITool.showAlert("下载失败" + e, [], function() {});
 });
-} else if ("need_update" == t) {
+} else if ("need_update" == e) {
 cc.log("需要更新====");
-e.showWiat(!0);
-i.downSubGame("bundleScene", function(e) {
+UITool.showWaitNetWork();
+SubGameManager.downSubGame("bundleScene", function(e) {
 cc.log("updateSubGame progress===", e);
-}, function(t) {
-e.showWiat(!1);
-cc.log("updateSubGame return code == ", t);
-0 == t ? UiManager.ShowAlert("更新成功", [], function() {
-UiManager.gloadBundleScene("bundleScene", function(e) {
-0 == e ? cc.log("gloadBundleScene success") : cc.log("gloadBundleScene failed=", e);
+}, function(e) {
+UITool.dismissWaitNetWork();
+cc.log("updateSubGame return code == ", e);
+0 == e ? UITool.showAlert("更新成功", [], function() {
+UITool.loadBundleScene("bundleScene", function(e) {
+0 == e ? cc.log("loadBundleScene success") : cc.log("loadBundleScene failed=", e);
 });
-}) : UiManager.ShowAlert("更新失败" + t, [], function() {});
+}) : UITool.showAlert("更新失败" + e, [], function() {});
 });
 } else {
 cc.log("子包本地和远程版本一致，直接进游戏");
-UiManager.gloadBundleScene("bundleScene", function(e) {
-0 == e ? cc.log("gloadBundleScene success") : cc.log("gloadBundleScene failed=", e);
+UITool.loadBundleScene("bundleScene", function(e) {
+0 == e ? cc.log("loadBundleScene success") : cc.log("loadBundleScene failed=", e);
 });
 }
 }) : console.log("bundle测试目前只测试了原生");
 });
-var h = cc.find("uipanel/btn_goslot", this.node);
-ua.darkButton(h, function() {
+var S = cc.find("uipanel/btn_goslot", this.node);
+UITool.addBtnClick(S, function() {
 cc.director.loadScene("SlotScene");
 });
 cc.find("content/sp1", this.node).getComponent(cc.RenderComponent).getMaterial(0);
-var u = cc.find("garpgicsnode", this.node), f = u.getComponent(cc.Graphics);
-u.on(cc.Node.EventType.TOUCH_START, function(e) {
-var _ = e.getTouches(), n = _[0].getLocation();
-_[0].getLocationInView();
+var w = cc.find("garpgicsnode", this.node), C = w.getComponent(cc.Graphics);
+w.on(cc.Node.EventType.TOUCH_START, function(e) {
+var n = e.getTouches(), i = n[0].getLocation();
+n[0].getLocationInView();
+i = t.parent.convertToNodeSpaceAR(i);
+var o = Global.GgetTwoV2Angle(t.getPosition(), i);
+t.angle = -o;
+C.moveTo(i.x, i.y);
+t.getPosition().subSelf(i).normalizeSelf();
+});
+w.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
+var n = e.getTouches()[0].getLocation();
 n = t.parent.convertToNodeSpaceAR(n);
 var i = Global.GgetTwoV2Angle(t.getPosition(), n);
 t.angle = -i;
-f.moveTo(n.x, n.y);
-t.getPosition().subSelf(n).normalizeSelf();
+C.lineTo(n.x, n.y);
+C.stroke();
 });
-u.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
-var _ = e.getTouches()[0].getLocation();
-_ = t.parent.convertToNodeSpaceAR(_);
-var n = Global.GgetTwoV2Angle(t.getPosition(), _);
-t.angle = -n;
-f.lineTo(_.x, _.y);
-f.stroke();
-});
-var D = cc.view.getVisibleSize(), p = cc.v2(-D.width / 2, D.height / 2), M = cc.v2(D.width / 2, -D.height / 2), P = Global.GgetTwoV2Angle(p, M);
-cc.find("uipanel/New Sprite", this.node).angle = -P;
-var g = cc.view.getVisibleSize();
-(u = u.getComponent(cc.Graphics)).moveTo(-g.width / 2, g.height / 2);
-u.quadraticCurveTo(0, 0, g.width / 2, g.height / 2);
-u.stroke();
+var A = cc.view.getVisibleSize(), _ = cc.v2(-A.width / 2, A.height / 2), I = cc.v2(A.width / 2, -A.height / 2), T = Global.GgetTwoV2Angle(_, I);
+cc.find("uipanel/New Sprite", this.node).angle = -T;
+var P = cc.view.getVisibleSize();
+(w = w.getComponent(cc.Graphics)).moveTo(-P.width / 2, P.height / 2);
+w.quadraticCurveTo(0, 0, P.width / 2, P.height / 2);
+w.stroke();
 },
 startMove: function() {
-var e = this, t = (cc.find("garpgicsnode", this.node), cc.find("uipanel/btn_goslot", this.node)), _ = cc.view.getVisibleSize(), n = [ cc.v2(-_.width / 2, _.height / 2), cc.v2(0, 0), cc.v2(_.width / 2, _.height / 2) ], i = cc.bezierTo(2, n);
-t.setPosition(cc.v2(-_.width / 2, _.height / 2));
-var o = cc.callFunc(function() {
+var e = this, t = (cc.find("garpgicsnode", this.node), cc.find("uipanel/btn_goslot", this.node)), n = cc.view.getVisibleSize(), i = [ cc.v2(-n.width / 2, n.height / 2), cc.v2(0, 0), cc.v2(n.width / 2, n.height / 2) ], o = cc.bezierTo(2, i);
+t.setPosition(cc.v2(-n.width / 2, n.height / 2));
+var r = cc.callFunc(function() {
 t.stopAllActions();
 e.startMove();
-}), S = cc.sequence(i, o);
-t.runAction(cc.repeatForever(S));
+}), s = cc.sequence(o, r);
+t.runAction(cc.repeatForever(s));
 },
 EventTest: function(e) {
 e.stopPropagation();
-UiManager.ShowAlert("事件传来的参数" + JSON.stringify(e.detail), []);
+console.log("EventTest===1");
+UITool.showAlert("事件传来的参数" + JSON.stringify(e.detail), []);
 }
 });
 cc._RF.pop();
 }, {
-BaseComponent: "BaseComponent",
 Devices: "Devices",
 Package: "Package",
-SubGameManager: "SubGameManager",
 VoiceNative: "VoiceNative",
-i18n: "i18n",
 xxtea: "xxtea"
 } ],
-Testts: [ function(e, t, _) {
+Testts: [ function(e, t, n) {
 "use strict";
 cc._RF.push(t, "5a00cnrQ/9L/Y0QWJw10Tsi", "Testts");
-Object.defineProperty(_, "__esModule", {
+Object.defineProperty(n, "__esModule", {
 value: !0
 });
-var n = cc._decorator, i = n.ccclass, o = n.property, S = function(e) {
+var i = e("./Person"), o = cc._decorator, r = o.ccclass, s = o.property, a = function(e) {
 __extends(t, e);
 function t() {
 var t = null !== e && e.apply(this, arguments) || this;
@@ -5175,14 +5085,16 @@ t.prototype.start = function() {
 this.SayHello(this.text, function(e) {
 console.log("我是回调==" + e);
 });
+myModule.say("497232807");
+new i.Lee.Person().Say("Hello world");
 };
 t.prototype.addSum = function() {
 for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-for (var _ = 0, n = 0, i = e; n < i.length; n++) {
-var o = i[n];
-_ += o;
+for (var n = 0, i = 0, o = e; i < o.length; i++) {
+var r = o[i];
+n += r;
 }
-return _;
+return n;
 };
 t.prototype.Hello = function() {
 return cc.v2(0, 0);
@@ -5191,162 +5103,228 @@ t.prototype.SayHello = function(e, t) {
 console.log("Test ts SayHello==" + e);
 null != t && t(e);
 };
-__decorate([ o(cc.Label) ], t.prototype, "label", void 0);
-__decorate([ o({
+__decorate([ s(cc.Label) ], t.prototype, "label", void 0);
+__decorate([ s({
 type: cc.String
 }) ], t.prototype, "text", void 0);
-return __decorate([ i ], t);
+return __decorate([ r ], t);
 }(cc.Component);
-_.default = S;
+n.default = a;
 cc._RF.pop();
-}, {} ],
-UiManager: [ function(e, t) {
+}, {
+"./Person": "Person"
+} ],
+UITool: [ function(e, t) {
 "use strict";
-cc._RF.push(t, "cd0b2zknmFE4bimNxTJpdEG", "UiManager");
-var _ = e("SubGameManager"), n = {
-gShowLoading: function(e, t) {
-var _ = this;
-this.gLoadPrefabRes("prefabs/loadinglayer", function(n) {
-if (n) {
-_.gSceneAddNode(n);
-var i = n.getComponent("LoadingLayer");
-i && i.setCallFun(e, t);
+cc._RF.push(t, "4f9399jM0VKd48qXjqRT+2W", "UITool");
+var n = {
+showWaitState: !1,
+getChildNode: function(e, t) {
+for (var n = t.children, i = 0; i < n.length; i++) {
+e[n[i].name] = n[i];
+this.getChildNode(e, n[i]);
 }
-});
 },
-ShowFlotText: function(e, t, _) {
+showLoading: function(e, t) {
 var n = this;
-void 0 === t && (t = null);
-void 0 === _ && (_ = cc.v2(0, 0));
-this.gLoadPrefabRes("prefabs/FloatText", function(i) {
+this.loadPrefabRes("prefabs/loadinglayer", function(i) {
 if (i) {
-i.getComponent(cc.Label).string = e;
-t ? t.addChild(i) : n.gSceneAddNode(i);
-i.setPosition(_);
-cc.tween(i).parallel(cc.tween().by(1, {
-position: cc.v2(0, 150)
-}), cc.tween().to(1, {
-opacity: 0
-})).start();
+n.sceneAddNode(i);
+var o = i.getComponent("LoadingLayer");
+o && o.setCallFun(e, t);
 }
 });
 },
-gSceneAddNode: function(e) {
+showFlotText: function(e, t, n) {
+var i = this;
+void 0 === t && (t = null);
+void 0 === n && (n = cc.v2(0, 0));
+this.loadPrefabRes("prefabs/FloatText", function(o) {
+if (o) {
+o.getComponent(cc.Label).string = e;
+t ? t.addChild(o) : i.sceneAddNode(o);
+o.setPosition(n);
+i.playAnimation(o, "floatTextShow", function() {
+o.destroy();
+});
+}
+});
+},
+sceneAddNode: function(e) {
 cc.director.getScene().getChildByName("Canvas").addChild(e);
 },
-gLoadScene: function(e, t) {
+loadScene: function(e, t) {
 void 0 === t && (t = null);
 cc.director.loadScene(e, t);
 },
-gPreloadScene: function(e, t, _) {
-cc.director.preloadScene(e, function(e, _) {
-var n = Math.floor(100 * (e / _).toFixed(2));
-t && t(n);
+preloadScene: function(e, t, n) {
+cc.director.preloadScene(e, function(e, n) {
+var i = Math.floor(e / n * 100);
+t && t(i);
 }, function(t) {
-_ && _(e, t);
+n && n(e, t);
 });
 },
-gLoadPrefabRes: function(e, t) {
-cc.resources.load(e, function(_, n) {
-if (_) {
-cc.error("UiManager.loadPrefabRes error====" + e);
-t(void 0);
+loadPrefabRes: function(e, t) {
+cc.resources.load(e, function(n, i) {
+if (n) {
+console.log("UITool.loadPrefabRes error====" + e);
+t && t(null);
 } else {
-var i = cc.instantiate(n);
-t(i);
+var o = cc.instantiate(i);
+t && t(o);
 cc.loader.setAutoRelease(e, !0);
 }
 });
 },
-ShowAlert: function(e, t, _) {
+showAlert: function(e, t, n) {
 void 0 === t && (t = []);
-this.gLoadPrefabRes("prefabs/AlertLayer2", function(n) {
-if (n) {
-cc.director.getScene().getChildByName("Canvas").addChild(n);
-var i = n.getComponent("AlertIII");
-i && i.showAlert(e, t, function(e) {
-_ && _(e);
+this.loadPrefabRes("prefabs/AlertLayer", function(i) {
+if (i) {
+cc.director.getScene().getChildByName("Canvas").addChild(i);
+var o = i.getComponent("Alert");
+o && o.showAlert(e, t, function(e) {
+n && n(e);
 });
 }
 });
 },
-ShowTextInput: function(e) {
-this.gLoadPrefabRes("prefabs/textinput", function(t) {
+showTextInput: function(e) {
+this.loadPrefabRes("prefabs/textinput", function(t) {
 if (t) {
 cc.director.getScene().getChildByName("Canvas").addChild(t);
-var _ = t.getComponent("textinput");
-_ && _.show(e);
+var n = t.getComponent("textinput");
+n && n.show(e);
 }
 });
 },
-ShowChooseUpdate: function(e, t) {
-this.gLoadPrefabRes("prefabs/selectupdate", function(_) {
-if (_) {
-cc.director.getScene().getChildByName("Canvas").addChild(_);
-var n = _.getComponent("chooseupdate");
-n && n.initData(e, t);
+showChooseUpdate: function(e, t) {
+this.loadPrefabRes("prefabs/selectupdate", function(n) {
+if (n) {
+cc.director.getScene().getChildByName("Canvas").addChild(n);
+var i = n.getComponent("chooseupdate");
+i && i.initData(e, t);
 }
 });
 },
-gloadBundleScene: function(e, t) {
-n.gShowLoading(function(n) {
-n.updataProgress(30);
-var i = _.getLocalBundlePath(e);
-Global.gLoadBundle(i, {
+loadBundleScene: function(e, t) {
+var n = this;
+this.showLoading(function(i) {
+i.updataProgress(30);
+var o = SubGameManager.getLocalBundlePath(e);
+n.loadBundle(o, {
 onFileProgress: function(e, t) {
 return console.log("bundle progress==", e, t);
 }
-}, function(_, i) {
-if (_) {
-console.log("Global gLoadBundle error");
+}, function(n, o) {
+if (n) {
+console.log("Global loadBundle error");
 t && t(1);
-return console.error(_);
-}
-i.loadScene(e, function(e) {
+} else o.loadScene(e, function(e) {
 if (e) {
-console.log("Global gLoadBundle scene error");
+console.log("Global loadBundle scene error");
 t && t(2);
-} else n.updataProgress(100);
+} else i.updataProgress(100);
 });
 });
 }, function() {
 t && t(0);
-n.gLoadScene(e);
+n.loadScene(e);
+});
+},
+loadBundle: function(e, t, n) {
+cc.assetManager.loadBundle(e, t, function(e, t) {
+n && n(e, t);
+});
+},
+changeScene: function(e, t) {
+var n = this;
+this.showLoading(function(t) {
+n.preloadScene(e, function(e) {
+t.updataProgress(e);
+});
+}, function(i) {
+i.updataProgress(100);
+n.loadScene(e);
+t && t();
+});
+},
+showWaitNetWork: function(e) {
+void 0 === e && (e = 30);
+if (!this.showWaitState) {
+this.showWaitState = !0;
+n.loadPrefabRes("prefabs/rotateLoading", function(t) {
+if (t) {
+cc.director.getScene().getChildByName("Canvas").addChild(t);
+t.name = "rotateLoading";
+cc.tween(t).delay(e).call(function() {
+t.destroy();
+}).start();
+}
+});
+}
+},
+dismissWaitNetWork: function() {
+this.showWaitState = !1;
+var e = cc.director.getScene().getChildByName("Canvas").getChildByName("rotateLoading");
+e && e.destroy();
+},
+playAnimation: function(e, t, n) {
+var i = e.getComponent(cc.Animation);
+if (i) {
+i.play(t);
+i.on("finished", function() {
+n && n();
+}, this);
+}
+},
+addBtnClick: function(e, t, n, i) {
+void 0 === n && (n = null);
+void 0 === i && (i = null);
+e.on(cc.Node.EventType.TOUCH_START, function(e) {
+n && n(e);
+});
+e.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
+i && i(e);
+});
+e.on(cc.Node.EventType.TOUCH_END, function(e) {
+t && t(e);
+});
+e.on(cc.Node.EventType.TOUCH_CANCEL, function(e) {
+t && t(e);
 });
 }
 };
-window.UiManager = n;
+globalThis.UITool = n;
 cc._RF.pop();
-}, {
-SubGameManager: "SubGameManager"
-} ],
+}, {} ],
 VersionManager: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "5cca3EkU1NJZ4QUch/IWwni", "VersionManager");
-var _ = e("HttpHelper"), n = e("Devices"), i = "", o = "", S = "";
+var n = e("HttpHelper"), i = e("Devices"), o = "", r = "", s = "";
 if (cc && cc.sys.isNative) {
-i = jsb.fileUtils.getWritablePath() + "packageTemp/";
-o = jsb.fileUtils.getWritablePath() + "package/";
-S = jsb.fileUtils.getWritablePath() + "config/appinfoiii.json";
+o = jsb.fileUtils.getWritablePath() + "packageTemp/";
+r = jsb.fileUtils.getWritablePath() + "package/";
+s = jsb.fileUtils.getWritablePath() + "config/appinfoiii.json";
 }
-var T = {
+var a = {
 remoteCfg: null,
 remoteMd5Cfg: "",
 localCfg: "",
 stateCode: "",
 totalDownSize: 0,
 downedSize: 0,
-checkUpdate: function(e, t, _) {
+checkUpdate: function(e, t, n) {
 cc.log("checkUpdate----", e);
 this.downcall = t;
-this.progressCall = _;
+this.progressCall = n;
 this.remoteCfg = e;
 this.parseLocalCfg();
 },
 downRemoteMd5: function(e) {
 var t = this;
 cc.log("下载远程md5,", e);
-_.sendHttpRequest(e, function(e) {
+n.sendHttpRequest(e, function(e) {
 if (null != e) if (Global.isjson(e)) {
 t.remoteMd5Cfg = JSON.parse(e);
 t.comparefiles();
@@ -5354,65 +5332,65 @@ t.comparefiles();
 });
 },
 comparefiles: function() {
-for (var e = this.localCfg.files, t = this.remoteMd5Cfg.files, _ = new Array(), n = {}, i = {}, o = 0; o < e.length; o++) {
-var S = (s = e[o]).filename, T = s.md5, r = s.size;
-n[S] = {
-md5: T,
-fileSize: r
+for (var e = this.localCfg.files, t = this.remoteMd5Cfg.files, n = new Array(), i = {}, o = {}, r = 0; r < e.length; r++) {
+var s = (l = e[r]).filename, a = l.md5, c = l.size;
+i[s] = {
+md5: a,
+fileSize: c
 };
 }
-for (o = 0; o < t.length; o++) {
-var s;
-S = (s = t[o]).filename, T = s.md5, r = s.size;
-i[S] = {
-md5: T,
-fileSize: r
+for (r = 0; r < t.length; r++) {
+var l;
+s = (l = t[r]).filename, a = l.md5, c = l.size;
+o[s] = {
+md5: a,
+fileSize: c
 };
 }
-for (var E in i) {
-var R = i[E], a = R.md5;
-r = R.fileSize;
-n[E] ? a != n[E].md5 && _.push({
-fileName: E,
-md5: a,
-fileSize: r
-}) : _.push({
-fileName: E,
-md5: a,
-fileSize: r
+for (var u in o) {
+var f = o[u], d = f.md5;
+c = f.fileSize;
+i[u] ? d != i[u].md5 && n.push({
+fileName: u,
+md5: d,
+fileSize: c
+}) : n.push({
+fileName: u,
+md5: d,
+fileSize: c
 });
 }
-for (var c in _) {
-r = _[c].fileSize;
-this.totalDownSize = this.totalDownSize + r;
+for (var h in n) {
+c = n[h].fileSize;
+this.totalDownSize = this.totalDownSize + c;
 }
-this.downFiles(_);
+this.downFiles(n);
 },
 downFiles: function(e) {
 if (0 != e.length) {
-var t = this, _ = e;
+var t = this, n = e;
 t.DownIndex = 0;
-(function e(n) {
-var S = t.BaseUrl, T = _[n].fileName, r = _[n].fileSize, s = S + T, E = i + T, R = o + T, a = i + Global.GgetDirByUrl(T), c = o + Global.GgetDirByUrl(T);
-Global.GcreateDir(a);
-Global.GcreateDir(c);
-_[n].tempfile = E;
-_[n].realfile = R;
-cc.log("下载=====", s);
-Global.GDownFile(s, function(n) {
-if (n) {
-Global.GwriteDataToFile(n, E);
-t.downedSize = t.downedSize + r;
-if (t.DownIndex < _.length - 1) {
+(function e(i) {
+var s = t.BaseUrl, a = n[i].fileName, c = n[i].fileSize, l = s + a, u = o + a, f = r + a, d = o + Global.GgetDirByUrl(a), h = r + Global.GgetDirByUrl(a);
+Global.GcreateDir(d);
+Global.GcreateDir(h);
+n[i].tempfile = u;
+n[i].realfile = f;
+cc.log("下载=====", l);
+Global.GDownFile(l, function(i) {
+if (i) {
+Global.GwriteDataToFile(i, u);
+t.downedSize = t.downedSize + c;
+if (t.DownIndex < n.length - 1) {
 t.DownIndex = t.DownIndex + 1;
-t.progressCall && t.progressCall(Math.floor(t.DownIndex / _.length * 100), (t.downedSize / 1e3).toFixed(1), (t.totalDownSize / 1e3).toFixed(1));
+t.progressCall && t.progressCall(Math.floor(t.DownIndex / n.length * 100), (t.downedSize / 1e3).toFixed(1), (t.totalDownSize / 1e3).toFixed(1));
 e(t.DownIndex);
 } else {
 t.progressCall && t.progressCall(Math.floor(100), (t.downedSize / 1e3).toFixed(1), (t.totalDownSize / 1e3).toFixed(1));
 cc.log("下载完成***");
-t.MoveFiles(_);
+t.MoveFiles(n);
 }
-} else t.callFunWithState(3, "下载单个文件失败=" + s);
+} else t.callFunWithState(3, "下载单个文件失败=" + l);
 });
 })(t.DownIndex);
 } else this.MoveDone();
@@ -5420,19 +5398,19 @@ t.MoveFiles(_);
 MoveFiles: function(e) {
 this.moveStep = 0;
 var t = this;
-(function _(n) {
-var i = e[n].tempfile, T = e[n].realfile, r = Global.GgetDataFromFile(i);
-if (r) {
-Global.GwriteDataToFile(r, T);
+(function n(i) {
+var o = e[i].tempfile, a = e[i].realfile, c = Global.GgetDataFromFile(o);
+if (c) {
+Global.GwriteDataToFile(c, a);
 if (t.moveStep < e.length - 1) {
 t.moveStep = t.moveStep + 1;
-_(t.moveStep);
+n(t.moveStep);
 } else t.MoveDone();
 } else {
-jsb.fileUtils.removeDirectory(o);
-jsb.fileUtils.createDirectory(o);
-jsb.fileUtils.removeFile(S);
-t.callFunWithState(4, "移动文件失败" + i);
+jsb.fileUtils.removeDirectory(r);
+jsb.fileUtils.createDirectory(r);
+jsb.fileUtils.removeFile(s);
+t.callFunWithState(4, "移动文件失败" + o);
 }
 })(this.moveStep);
 },
@@ -5440,7 +5418,7 @@ MoveDone: function() {
 cc.log("移动成功****");
 var e = JSON.stringify(this.remoteMd5Cfg, null, 4);
 Global.GcreateDir(jsb.fileUtils.getWritablePath() + "config");
-Global.GwriteStringToFile(e, S);
+Global.GwriteStringToFile(e, s);
 this.callFunWithState(100, "更新成功");
 },
 ReStartGame: function() {
@@ -5450,37 +5428,37 @@ cc.game.restart();
 },
 RemoveTemp: function() {
 if (cc.sys.isNative) {
-jsb.fileUtils.removeDirectory(o);
-jsb.fileUtils.createDirectory(o);
-jsb.fileUtils.removeFile(S);
+jsb.fileUtils.removeDirectory(r);
+jsb.fileUtils.createDirectory(r);
+jsb.fileUtils.removeFile(s);
 }
 },
-callFunWithState: function(e, t, _) {
+callFunWithState: function(e, t, n) {
 if (this.downcall) {
 console.log(t + ": 状态码=" + e);
-this.downcall(e, _);
+this.downcall(e, n);
 }
 },
 parseLocalCfg: function() {
-var e = this, t = S;
+var e = this, t = s;
 if (jsb.fileUtils.isFileExist(t)) {
 console.log("读取包外配置");
-var _ = jsb.fileUtils.getStringFromFile(t);
-if (!Global.isjson(_)) {
+var n = jsb.fileUtils.getStringFromFile(t);
+if (!Global.isjson(n)) {
 e.RemoveTemp();
 e.callFunWithState(9, "包外json配置不合法");
 return;
 }
-e.localCfg = JSON.parse(_);
+e.localCfg = JSON.parse(n);
 e.parseRemoteCfg();
 } else {
 console.log("读取包内配置");
-cc.resources.load("appinfoiii", function(t, _) {
+cc.resources.load("appinfoiii", function(t, n) {
 if (t) {
 cc.log("读取包内配置失败" + t);
 e.callFunWithState(5, "读取包内配置失败，请检查本地配置");
 } else {
-e.localCfg = _.json;
+e.localCfg = n.json;
 e.parseRemoteCfg();
 }
 });
@@ -5491,11 +5469,11 @@ return this.localCfg.scriptVersion;
 },
 getH5ScriptVersion: function() {
 var e = this;
-cc.resources.load("appinfoiii", function(t, _) {
+cc.resources.load("appinfoiii", function(t, n) {
 if (t) {
 cc.log("读取包内配置失败" + t);
 e.callFunWithState(5, "读取包内配置失败，请检查本地配置");
-} else e.localCfg = _.json;
+} else e.localCfg = n.json;
 });
 },
 getSubGameCfg: function() {
@@ -5504,37 +5482,38 @@ return this.remoteCfg.subgames;
 parseRemoteCfg: function() {
 if (0 != cc.sys.isNative && null != this.remoteCfg) {
 var e = this;
-_.sendHttpRequest(this.remoteCfg, function(t) {
+console.log("拉取远程配置", this.remoteCfg);
+n.sendHttpRequest(this.remoteCfg, function(t) {
 if (null != t) if (Global.isjson(t)) {
 e.remoteCfg = JSON.parse(t);
-var _ = e.localCfg.scriptVersion, i = e.remoteCfg.scriptVersion, o = e.remoteCfg.debugScriptVersion, S = e.remoteCfg.supportBinarys, T = e.remoteCfg.forcedBinaryVersions, r = e.remoteCfg.channels, s = e.remoteCfg.debugUIDs, E = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], R = cc.sys.localStorage.getItem("debugId");
-if (Global.GIsArrContain(r, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(S, n.getAppVersion())) if (Global.GIsArrContain(T, n.getAppVersion())) e.callFunWithState(8, "强制更新", E); else {
-console.log("主包本地脚本号==" + _);
-console.log("主包远程debug版本号==" + o);
-console.log("主包远程版本号==" + i);
-if (Global.GIsArrContain(s, R)) {
-if (parseInt(_) != parseInt(o)) {
+var n = e.localCfg.scriptVersion, o = e.remoteCfg.scriptVersion, r = e.remoteCfg.debugScriptVersion, s = e.remoteCfg.supportBinarys, a = e.remoteCfg.forcedBinaryVersions, c = e.remoteCfg.channels, l = e.remoteCfg.debugUIDs, u = e.remoteCfg.binaryUrl[window.DISTRIBUTE_CHANNEL] || e.remoteCfg[0], f = cc.sys.localStorage.getItem("debugId");
+if (Global.GIsArrContain(c, window.DISTRIBUTE_CHANNEL)) if (Global.GIsArrContain(s, i.getAppVersion())) if (Global.GIsArrContain(a, i.getAppVersion())) e.callFunWithState(8, "强制更新", u); else {
+console.log("主包本地脚本号==" + n);
+console.log("主包远程debug版本号==" + r);
+console.log("主包远程版本号==" + o);
+if (Global.GIsArrContain(l, f)) {
+if (parseInt(n) != parseInt(r)) {
 console.log("走测试玩家----热更新");
-var a = e.remoteCfg.debugBaseUrl, c = (a = cc.js.formatStr(a, o)) + e.remoteCfg.debugConfigFile;
-e.BaseUrl = a;
-e.downRemoteMd5(c);
+var d = e.remoteCfg.debugBaseUrl, h = (d = cc.js.formatStr(d, r)) + e.remoteCfg.debugConfigFile;
+e.BaseUrl = d;
+e.downRemoteMd5(h);
 return;
 }
 e.callFunWithState(0, "测试玩家版本和远程一样，不用更新");
-} else if (parseInt(_) == parseInt(i)) e.callFunWithState(0, "不用更新-本地和远程版本一致:" + _); else {
+} else if (parseInt(n) == parseInt(o)) e.callFunWithState(0, "不用更新-本地和远程版本一致:" + n); else {
 console.log("走正式----热更新");
-var I = e.remoteCfg.baseUrl;
-c = (I = cc.js.formatStr(I, i)) + e.remoteCfg.configFile;
-e.BaseUrl = I;
-e.downRemoteMd5(c);
+var p = e.remoteCfg.baseUrl;
+h = (p = cc.js.formatStr(p, o)) + e.remoteCfg.configFile;
+e.BaseUrl = p;
+e.downRemoteMd5(h);
 }
-} else e.callFunWithState(6, "不支持热更新的2进制版本号" + n.getAppVersion()); else e.callFunWithState(7, "不支持热更新的渠道号" + window.DISTRIBUTE_CHANNEL);
+} else e.callFunWithState(6, "不支持热更新的2进制版本号" + i.getAppVersion()); else e.callFunWithState(7, "不支持热更新的渠道号" + window.DISTRIBUTE_CHANNEL);
 } else e.callFunWithState(10, "远程配置json不合法"); else e.callFunWithState(1, "获取版本配置文件失败");
 });
 }
 }
 };
-t.exports = T;
+t.exports = a;
 cc._RF.pop();
 }, {
 Devices: "Devices",
@@ -5543,30 +5522,30 @@ HttpHelper: "HttpHelper"
 VoiceNative: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "6659eBg8ldPA6/b57j6ol8I", "VoiceNative");
-var _ = 12, n = 128 - _;
-function i(e) {
-e -= n;
-var t = Math.floor(e / _) + n, i = e % _ + n;
-return String.fromCharCode(t) + String.fromCharCode(i);
+var n = 12, i = 128 - n;
+function o(e) {
+e -= i;
+var t = Math.floor(e / n) + i, o = e % n + i;
+return String.fromCharCode(t) + String.fromCharCode(o);
 }
-for (var o = {}, S = {}, T = 0; T < 256; ++T) {
-var r, s = T + 1;
-r = s >= n ? i(s) : String.fromCharCode(s);
-o[T] = r;
-S[r] = T;
+for (var r = {}, s = {}, a = 0; a < 256; ++a) {
+var c, l = a + 1;
+c = l >= i ? o(l) : String.fromCharCode(l);
+r[a] = c;
+s[c] = a;
 }
-function E(e) {
-var t = "", _ = e.length;
-cc.log("encode, len=" + _ + ", data=" + e);
-var n = _ >> 16 & 255, i = _ >> 8 & 255, S = 255 & _;
-t += o[_ >> 24 & 255];
-t += o[n];
-t += o[i];
-t += o[S];
-for (var T = 0; T < e.length; ++T) t += o[e[T]];
+function u(e) {
+var t = "", n = e.length;
+cc.log("encode, len=" + n + ", data=" + e);
+var i = n >> 16 & 255, o = n >> 8 & 255, s = 255 & n;
+t += r[n >> 24 & 255];
+t += r[i];
+t += r[o];
+t += r[s];
+for (var a = 0; a < e.length; ++a) t += r[e[a]];
 return t;
 }
-var R = "com/casino/game/VoiceRecorder", a = cc.Class({
+var f = "com/casino/game/VoiceRecorder", d = cc.Class({
 extends: cc.Component,
 properties: {
 _voiceMediaPath: null
@@ -5582,26 +5561,26 @@ prepare: function(e) {
 if (cc.sys.isNative) {
 cc.audioEngine.pauseAll();
 this.clearCache(e);
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(R, "prepare", "(Ljava/lang/String;)V", e) : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "prepareRecord:", e));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(f, "prepare", "(Ljava/lang/String;)V", e) : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "prepareRecord:", e));
 }
 },
 release: function() {
 if (cc.sys.isNative) {
 cc.audioEngine.resumeAll();
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(R, "release", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "finishRecord"));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(f, "release", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "finishRecord"));
 }
 },
 cancel: function() {
 if (cc.sys.isNative) {
 cc.audioEngine.resumeAll();
-cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(R, "cancel", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "cancelRecord"));
+cc.sys.isNative && (cc.sys.os == cc.sys.OS_ANDROID ? jsb.reflection.callStaticMethod(f, "cancel", "()V") : cc.sys.os == cc.sys.OS_IOS && jsb.reflection.callStaticMethod("VoiceSDK", "cancelRecord"));
 }
 },
 writeVoice: function(e, t) {
 if (cc.sys.isNative && t && t.length > 0) {
-var _ = this._voiceMediaPath + e;
+var n = this._voiceMediaPath + e;
 this.clearCache(e);
-jsb.fileUtils.writeDataToFile(t, _);
+jsb.fileUtils.writeDataToFile(t, n);
 }
 },
 clearCache: function(e) {
@@ -5624,29 +5603,29 @@ getVoiceData: function(e) {
 if (cc.sys.isNative) {
 var t = this._voiceMediaPath + e;
 console.log("VoiceNative getVoiceData:" + t);
-var _ = jsb.fileUtils.getDataFromFile(t);
-if (_) return _;
+var n = jsb.fileUtils.getDataFromFile(t);
+if (n) return n;
 }
 return null;
 },
 getDataString: function(e) {
-return E(e);
+return u(e);
 },
 setStorageDir: function(e) {
-if (cc.sys.isNative) if (cc.sys.os == cc.sys.OS_ANDROID) jsb.reflection.callStaticMethod(R, "setStorageDir", "(Ljava/lang/String;)V", e); else if (cc.sys.os == cc.sys.OS_IOS) {
+if (cc.sys.isNative) if (cc.sys.os == cc.sys.OS_ANDROID) jsb.reflection.callStaticMethod(f, "setStorageDir", "(Ljava/lang/String;)V", e); else if (cc.sys.os == cc.sys.OS_IOS) {
 jsb.reflection.callStaticMethod("VoiceSDK", "setStorageDir:", e);
 jsb.fileUtils.isDirectoryExist(e) || jsb.fileUtils.createDirectory(e);
 }
 }
 });
-a = new a();
-t.exports = a;
+d = new d();
+t.exports = d;
 cc._RF.pop();
 }, {} ],
 WeChatModule: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "87018xPYahKfYfnLy3FlfhY", "WeChatModule");
-var _ = "org/cocos2dx/javascript/WeChatModule", n = e("HttpModule"), i = cc.Class({
+var n = "org/cocos2dx/javascript/WeChatModule", i = e("HttpModule"), o = cc.Class({
 name: "WeChatModlue",
 properties: {
 appId: "wx05017e4a3290433a",
@@ -5657,53 +5636,53 @@ console.log("[WeChatModule][ctor]---构造函数");
 this.initWx(this.appId, this.appSecret);
 },
 isInstallWx: function() {
-return !0 === gg.isAndroid ? jsb.reflection.callStaticMethod(_, "isInstallWx", "()Z") : !0 !== gg.isIOS || jsb.reflection.callStaticMethod("WeChatModule", "isInstallWx");
+return !0 === gg.isAndroid ? jsb.reflection.callStaticMethod(n, "isInstallWx", "()Z") : !0 !== gg.isIOS || jsb.reflection.callStaticMethod("WeChatModule", "isInstallWx");
 },
 initWx: function(e, t) {
 this.appId = e;
 this.appSecret = t;
-return !0 === gg.isAndroid ? jsb.reflection.callStaticMethod(_, "initWx", "(Ljava/lang/String;Ljava/lang/String;)V", e, t) : !0 !== gg.isIOS || jsb.reflection.callStaticMethod("WeChatModule", "initWx:andSecret:", e, t);
+return !0 === gg.isAndroid ? jsb.reflection.callStaticMethod(n, "initWx", "(Ljava/lang/String;Ljava/lang/String;)V", e, t) : !0 !== gg.isIOS || jsb.reflection.callStaticMethod("WeChatModule", "initWx:andSecret:", e, t);
 },
 loginWx: function() {
-!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(_, "loginWx", "()V") : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "loginWx");
+!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(n, "loginWx", "()V") : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "loginWx");
 },
-shareImageWx: function(e, t, n) {
-this.ShareCall = n;
-!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(_, "shareImageWx", "(Ljava/lang/String;I)V", e, t) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "shareImageWx:andType:", e, t);
+shareImageWx: function(e, t, i) {
+this.ShareCall = i;
+!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(n, "shareImageWx", "(Ljava/lang/String;I)V", e, t) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "shareImageWx:andType:", e, t);
 },
-shareTextWx: function(e, t, n) {
-this.ShareCall = n;
-!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(_, "shareTextWx", "(Ljava/lang/String;I)V", e, t) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "shareTextWx:andType:", e, t);
+shareTextWx: function(e, t, i) {
+this.ShareCall = i;
+!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(n, "shareTextWx", "(Ljava/lang/String;I)V", e, t) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "shareTextWx:andType:", e, t);
 },
-shareUrlWx: function(e, t, n, i, o) {
-this.ShareCall = o;
-!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(_, "shareUrlWx", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V", e, t, n, i) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "shareUrlWx:andTitle:andDesc:andType:", e, t, n, i);
+shareUrlWx: function(e, t, i, o, r) {
+this.ShareCall = r;
+!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(n, "shareUrlWx", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V", e, t, i, o) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "shareUrlWx:andTitle:andDesc:andType:", e, t, i, o);
 },
 login: function(e) {
 this.LoginCall = e;
-var t = cc.sys.localStorage.getItem("plaza_refresh_token"), _ = this;
+var t = cc.sys.localStorage.getItem("plaza_refresh_token"), n = this;
 if (t) {
-var i = JSON.parse(t), o = i.appid, S = i.refresh_token, T = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + o + "&grant_type=refresh_token&refresh_token=" + S;
-n.get({
-url: T,
+var o = JSON.parse(t), r = o.appid, s = o.refresh_token, a = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=" + r + "&grant_type=refresh_token&refresh_token=" + s;
+i.get({
+url: a,
 timeout: 1e4
 }, function(e, t) {
 if (e || t.errcode) {
-_.resetWx();
-_.loginWx();
+n.resetWx();
+n.loginWx();
 } else {
-var n = {
+var i = {
 ret: !0
 };
-n.access_token = t.access_token;
-n.openid = t.openid;
-var i = {};
-i.refresh_token = t.refresh_token;
-i.appid = o;
-cc.sys.localStorage.setItem("plaza_refresh_token", JSON.stringify(i));
-_.LoginCall && _.LoginCall(n);
+i.access_token = t.access_token;
+i.openid = t.openid;
+var o = {};
+o.refresh_token = t.refresh_token;
+o.appid = r;
+cc.sys.localStorage.setItem("plaza_refresh_token", JSON.stringify(o));
+n.LoginCall && n.LoginCall(i);
 }
-}.bind(_));
+}.bind(n));
 return !0;
 }
 if (!1 === this.isInstallWx()) {
@@ -5718,58 +5697,58 @@ return this.loginWx();
 },
 pay: function(e, t) {
 this.PayCall = t;
-!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(_, "payWx", "(Ljava/lang/String;)V", e) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "payWx", e);
+!0 === gg.isAndroid ? jsb.reflection.callStaticMethod(n, "payWx", "(Ljava/lang/String;)V", e) : !0 === gg.isIOS && jsb.reflection.callStaticMethod("WeChatModule", "payWx", e);
 },
 onWxLoginResultCallback: function(e, t) {
 console.log("WeChatModule onWxLoginResultCallback");
 if (!1 !== e) {
-var _ = this, i = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + this.appId + "&secret=" + this.appSecret + "&code=" + t + "&grant_type=authorization_code";
-n.get({
-url: i,
+var n = this, o = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + this.appId + "&secret=" + this.appSecret + "&code=" + t + "&grant_type=authorization_code";
+i.get({
+url: o,
 timeout: 1e4
 }, function(e, t) {
 if (e || t.errcode) {
-_.resetWx();
-_.LoginCall && _.LoginCall({
+n.resetWx();
+n.LoginCall && n.LoginCall({
 ret: !1,
 msg: "微信登录失败,请稍后重试"
 });
 } else {
-var n = {
+var i = {
 ret: !0
 };
-n.access_token = t.access_token;
-n.openid = t.openid;
-var i = {};
-i.refresh_token = t.refresh_token;
-i.appid = _.appid;
-cc.sys.localStorage.setItem("plaza_refresh_token", JSON.stringify(i));
-_.getWxUserInfo(n);
+i.access_token = t.access_token;
+i.openid = t.openid;
+var o = {};
+o.refresh_token = t.refresh_token;
+o.appid = n.appid;
+cc.sys.localStorage.setItem("plaza_refresh_token", JSON.stringify(o));
+n.getWxUserInfo(i);
 }
 });
 } else {
-var o = {
+var r = {
 ret: !1
 };
-o.msg = "微信登录失败，" + t;
-this.LoginCall && this.LoginCall(o);
+r.msg = "微信登录失败，" + t;
+this.LoginCall && this.LoginCall(r);
 }
 },
 getWxUserInfo: function(e) {
-var t = this, _ = this, i = cc.js.formatStr("https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s", e.access_token, e.openid);
-n.get({
-url: i,
+var t = this, n = this, o = cc.js.formatStr("https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s", e.access_token, e.openid);
+i.get({
+url: o,
 timeout: 1e4
-}, function(n, i) {
-if (n || i.errcode) {
-_.resetWx();
+}, function(i, o) {
+if (i || o.errcode) {
+n.resetWx();
 t.LoginCall && t.LoginCall({
 ret: !1,
 msg: "获取玩家信息失败"
 });
 } else {
-e.userinfo = i;
-_.LoginCall && _.LoginCall(e);
+e.userinfo = o;
+n.LoginCall && n.LoginCall(e);
 }
 });
 },
@@ -5780,16 +5759,16 @@ this.ShareCall && this.ShareCall(e, t);
 onWxPayResultCallback: function(e) {
 this.PayCall && this.PayCall(e);
 },
-onWindowLoginCallback: function(e, t, _) {
+onWindowLoginCallback: function(e, t, n) {
 this.appId = e;
 this.appSecret = t;
-this.onWxLoginResultCallback(!0, _);
+this.onWxLoginResultCallback(!0, n);
 },
 resetWx: function() {
 cc.sys.localStorage.removeItem("plaza_refresh_token");
 }
 });
-t.exports = i;
+t.exports = o;
 cc._RF.pop();
 }, {
 HttpModule: "HttpModule"
@@ -5797,12 +5776,12 @@ HttpModule: "HttpModule"
 WsTest: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "e5e9fObFGlLQbIbtk/t0ooz", "WsTest");
-var _ = e("Ws");
+var n = e("Ws");
 cc.Class({
 extends: cc.Component,
 properties: {},
 start: function() {
-var e = new _();
+var e = new n();
 e.connect("127.0.0.1", 9001);
 e.setOpenCall(function() {
 cc.log("连接成功");
@@ -5821,13 +5800,13 @@ txt: t
 e.string = "";
 },
 addText: function(e) {
-var t = cc.find("uipanel/scrollview", this.node), _ = cc.instantiate(cc.find("uipanel/item", this.node));
-_.getComponent(cc.Label).string = e;
-_.x = 0;
-_.active = !0;
-var n = t.getComponent(cc.ScrollView);
-n.content.addChild(_);
-n.scrollToBottom(.5);
+var t = cc.find("uipanel/scrollview", this.node), n = cc.instantiate(cc.find("uipanel/item", this.node));
+n.getComponent(cc.Label).string = e;
+n.x = 0;
+n.active = !0;
+var i = t.getComponent(cc.ScrollView);
+i.content.addChild(n);
+i.scrollToBottom(.5);
 }
 });
 cc._RF.pop();
@@ -5905,20 +5884,13 @@ cc._RF.pop();
 bundleSceneTest: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "aa93eq7R1lJppNkneqno1br", "bundleSceneTest");
-var _ = e("BaseComponent");
 cc.Class({
-extends: _,
+extends: cc.Component,
 properties: {},
-onLoad: function() {
-this._super();
-},
-onDestroy: function() {
-this._super();
-},
 start: function() {
 var e = this, t = cc.find("uipanel/btn_exit", this.node);
-ua.darkButton(t, function() {
-UiManager.gShowLoading(function(t) {
+UITool.addBtnClick(t, function() {
+UITool.showLoading(function(t) {
 t.updataProgress(30);
 e.scheduleOnce(function() {
 t.updataProgress(100);
@@ -5932,26 +5904,14 @@ Global.gReleaseBundle("bundleScene");
 }
 });
 cc._RF.pop();
-}, {
-BaseComponent: "BaseComponent"
-} ],
+}, {} ],
 chooseupdate: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "5a10feVxjlCLr90Fw2jtkf1", "chooseupdate");
-var _ = e("BaseComponent");
 cc.Class({
-extends: _,
-properties: {
-AimType: {
-default: 1,
-override: !0
-}
-},
-onDestroy: function() {
-this._super();
-},
+extends: cc.Component,
+properties: {},
 onLoad: function() {
-this._super();
 this.content = this.node.getChildByName("bg").getChildByName("ScrollView").getChildByName("view").getChildByName("content");
 this.item = this.node.getChildByName("bg").getChildByName("item");
 this.tiptext = this.node.getChildByName("bg").getChildByName("tiptext");
@@ -5963,1529 +5923,4611 @@ this.initView(e);
 initView: function(e) {
 var t = this;
 this.tiptext.getComponent(cc.Label).string = e.tips;
-var _ = e.items, n = function(e) {
-o = cc.instantiate(t.item);
-t.content.addChild(o);
-o.active = !0;
-o.getChildByName("text").getComponent(cc.Label).string = _[e].text;
-ua.darkButton(o, function() {
+var n = e.items, i = function(e) {
+r = cc.instantiate(t.item);
+t.content.addChild(r);
+r.active = !0;
+r.getChildByName("text").getComponent(cc.Label).string = n[e].text;
+UITool.addBtnClick(r, function() {
 t.call && t.call(e, t);
 });
 };
-for (var i in _) {
-var o;
-n(i);
+for (var o in n) {
+var r;
+i(o);
 }
 },
-onbackpress: function() {
-this._super();
-},
+onbackpress: function() {},
 start: function() {}
 });
 cc._RF.pop();
-}, {
-BaseComponent: "BaseComponent"
-} ],
-ch: [ function(e, t) {
+}, {} ],
+cmdDef: [ function(e, t) {
 "use strict";
-cc._RF.push(t, "2d2c7B6fVVH4p3u1YQFpkXF", "ch");
-t.exports = {
-STR_COREPLAY_BUTTON_FOLD: "弃牌",
-STR_COREPLAY_BUTTON_CHECK: "看牌",
-STR_COREPLAY_BUTTON_CALL: "跟注 %s",
-STR_COREPLAY_BUTTON_RAISE: "加注",
-STR_COREPLAY_BUTTON_CONFIRM: "确定",
-STR_COREPLAY_BUTTON_ALLIN: "全下",
-STR_COREPLAY_BUTTON_PREP_CHECKORFOLD: "看/弃",
-STR_COREPLAY_BUTTON_PREP_AUTOCHECK: "看牌",
-STR_COREPLAY_BUTTON_PREP_CALL: "跟注 %s",
-STR_COREPLAY_BUTTON_PREP_CALLANY: "跟任何注",
-STR_INFORMATION_TILLE_1: "个人信息",
-STR_INFORMATION_TILLE_2: "道具清单",
-STR_INFORMATION_TILLE_3: "快捷文字",
-STR_INFORMATION_TILLE_4: "快捷语音",
-STR_INFORMATION_TILLE_5: "数据统计",
-STR_INFORMATION_PERSONAL_LV: "等级",
-STR_INFORMATION_PERSONAL_ID: "ID",
-STR_INFORMATION_PERSONAL_NAME: "昵称",
-STR_INFORMATION_PERSONAL_MALE: "男性",
-STR_INFORMATION_PERSONAL_FEMALE: "女性",
-STR_INFORMATION_PERSONAL_ADDRESS: "地址",
-STR_INFORMATION_PERSONAL_ADDRESS_NULL: "未知",
-STR_INFORMATION_PERSONAL_SIGNATURE: "签名",
-STR_INFORMATION_PERSONAL_PHOTO_DEFAULT: "上传一张新照片",
-STR_INFORMATION_PERSONAL_PHOTO_INREVIEW: "审核中",
-STR_INFORMATION_ITEMLIST_TIME: "天",
-STR_INFORMATION_ITEMLIST_TIME_HOUR: "小时",
-STR_INFORMATION_QUICKCHAT_WORDS: "快捷文字 %d",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_1: "游戏开始了，我已经准备好赢钱了",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_2: "不要耽误时间了，赶快下注吧",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_3: "手牌这么好，看来这局是我赢了。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_4: "让我all-in，怕的人就赶快弃牌吧。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_5: "虽然这局我赢了，但是我依然不会手下留情的",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_6: "弃牌也未必代表我输了,让我先休息一下。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_7: "你牌打得真好，连我都忍不住要称赞你了",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_8: "居然有这种事，简直不能相信",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_9: "这一局我没认真玩，下次不会输了。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_10: "我大发慈悲的离开了，你们就庆幸吧。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_NULL: "点击此处输入您的快捷文字",
-STR_INFORMATION_QUICKCHAT_VOICE: "快捷语音 %d",
-STR_INFORMATION_QUICKCHAT_VOICE_DEFAULT: "长按此处进行录音",
-STR_INFORMATION_QUICKCHAT_VOICE_ENTERTITLE: "点击此处输入标题",
-STR_INFORMATION_QUICKCHAT_VOICE_RECORDING: "正在录入",
-STR_INFORMATION_STATISTICS_ID: "ID:",
-STR_INFORMATION_STATISTICS_GAMES: "游戏局数:",
-STR_INFORMATION_STATISTICS_WINS: "获胜局数",
-STR_INFORMATION_STATISTICS_LOSE: "失败局数",
-STR_INFORMATION_STATISTICS_WINRATE: "胜率:",
-STR_INFORMATION_STATISTICS_SHOWINRIVER: "亮牌率:",
-STR_INFORMATION_STATISTICS_FOLDINPREFLOP: "首轮弃牌率:",
-STR_INFORMATION_STATISTICS_ALLININPREFLOP: "首轮全下率:",
-STR_INFORMATION_STATISTICS_HIGHESTCHIP: "历史最多筹码:",
-STR_INFORMATION_STATISTICS_MOSTWIN: "最大赢取:",
-STR_INFORMATION_STATISTICS_BESTCARDS: "最大牌型:",
-STR_INFORMATION_STATISTICS_GIVECHIPTOFRIEND: "赠送好友免费筹码次数:",
-STR_INFORMATION_STATISTICS_GIVECHIPTOFRIEND_TIMES: "次",
-STR_INFORMATION_STATISTICS_GIVECHIPINGAME: "赠送玩家筹码次数:",
-STR_INFORMATION_STATISTICS_GIVECHIPINGAME_TIMES: "次",
-STR_INFORMATION_ITEMLIST_ITEM_TITLE: "您拥有的：",
-STR_INFORMATION_ITEMLIST_PATCH_TITLE: "您可兑换：",
-STR_RANKING_TITLE_MAIN: "排行版",
-STR_RANKING_TITLE_1: "总筹码",
-STR_RANKING_TITLE_2: "单词赢取倍率",
-STR_RANKING_TITLE_3: "筹码波动",
-STR_RANKING_TITLE_4: "今日赢取",
-STR_RANKING_TITLE_5: "互动",
-STR_RANKING_GMT_GMT: "格林威治时间",
-STR_RANKING_GMT_EXPLAIN: "游戏服务器采用格林威治时间为标准。此处显示的是格林威治时间，请各位玩家注意。",
-STR_RANKING_TOP_TOP: "前列",
-STR_RANKING_RANKING_NOPLAYER: "排行榜上没有玩家",
-STR_CHAT_EXPRESSION_TITLE: "表情",
-STR_CHAT_QUICKWORDS_TITLE: "快捷文字",
-STR_CHAT_QUICKVOICES_TITLE: "快捷语音",
-STR_CHAT_INPUT_DEFAULT: "点击此处输入您的文字",
-STR_CHAT_INPUT_DEFAULT_IOS: "点击此处输入您的文字",
-STR_CHAT_QUICKVOICE_NOVICE: "没有快捷语音",
-STR_CHAT_QUICKVOICE_NOTITLE: "没有输入描述",
-STR_TABLEBOARD_CAHT_NOQUICKVOICE: "您目前还没有预先录入的快捷语音。",
-STR_TABLEBOARD_CHAT_NOQUICKTEXT: "您目前还没有预先输入的快捷文字。",
-STR_TABLEBOARD_RECORDING_COUNTDOWN: "剩余%d 秒",
-STR_FRIENDS_TITLE: "您的好友",
-STR_FRIENDS_NOFRIENDS: "您目前还没有好友。点击右上角的搜索按键，您可以通过玩家昵称找到相应的玩家。在牌桌界面和主界面上点击玩家头像，点击加好友按键也能轻松的发送好友申请，快去尝试下吧。",
-STR_FRIENDS_FRIENDS_UPDATE: "优先显示更新了照片的好友",
-STR_FRIENDS_FRIENDS_OL: "优先显示在线的好友",
-STR_FRIENDS_FRIENDS_ACTIVE: "优先显示较活跃的好友",
-STR_FRIENDS_FRIENDS_MAX: "MAX",
-STR_FRIENDS_FRIENDS_INFORMATION_LV: "等级:",
-STR_FRIENDS_FRIENDS_INFORMATION_MALE: "男性",
-STR_FRIENDS_FRIENDS_INFORMATION_FEMALE: "女性",
-STR_FRIENDS_FRIENDS_INFORMATION_ADDRESS: "地址",
-STR_FRIENDS_FRIENDS_INFORMATION_DEFAULT: "显示您给予了该玩家多少赞，评论和免费筹码赠送次数",
-STR_FRIENDS_FRIENDS_INFORMATION_NOPHOTO: "该玩家没有上传任何照片",
-STR_FRIENDS_FRIENDS_INFORMATION_GAMES: "游戏",
-STR_FRIENDS_FRIENDS_INFORMATION_WIN: "胜利",
-STR_FRIENDS_FRIENDS_INFORMATION_LOSE: "失败",
-STR_FRIENDS_FRIENDS_INFORMATION_WINRATE: "胜率:",
-STR_FRIENDS_FRIENDS_INFORMATION_SHOWINRIVER: "亮牌率:",
-STR_FRIENDS_FRIENDS_INFORMATION_FOLDINPREFLOP: "首轮弃牌率:",
-STR_FRIENDS_FRIENDS_INFORMATION_ALLININPREFLOP: "首轮全下率:",
-STR_FRIENDS_FRIENDS_INFORMATION_HIGHESTCHIP: "历史最多筹码:",
-STR_FRIENDS_FRIENDS_INFORMATION_MOSTWIN: "最大赢取:",
-STR_FRIENDS_FRIENDS_INFORMATION_BESTCARDS: "最大牌型:",
-STR_FRIENDS_FRIENDS_SEARCHTITLE: "搜索到的好友",
-STR_FRIENDS_FRIENDS_SEARCHTIPS: "请至少输入四个字符来搜索昵称",
-STR_FRIENDS_FRIENDS_SEARCH: "根据玩家昵称找到了 %d 个玩家。最多能显示 %d 个相关玩家。",
-STR_LOGIN_PHONELOGIN: "手机登录",
-STR_LOGIN_ACCOUNTLOGIN: "账号登陆",
-STR_LOGIN_FACEBOOKLOGIN: "Facebook登陆",
-STR_LOGIN_GUESTLOGIN: "游客登陆",
-STR_LOGIN_ACCOUNTLOGIN_ACCOUNT: "输入您的邮箱",
-STR_LOGIN_ACCOUNTLOGIN_PASSWORD: "输入您的密码",
-STR_LOGIN_ACCOUNTLOGIN_AUTOLOGIN: "自动登录",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD: "找回密码",
-STR_LOGIN_ACCOUNTLOGIN_LOGIN: "登录",
-STR_LOGIN_ACCOUNTLOGIN_REGISTER: "注册",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERACCOUNT: "请输入您的邮箱",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERENTERPASSWORD: "请输入密码",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERCONFRIMPASSWORD: "请确认密码",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERREGISTER: "注册",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_EXPLAIN: "如果你想找回密码，请输入你注册账号时所使用的邮箱，我们会将密码找回邮件发送至该邮箱中。",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_ENTER: "请输入你的注册邮箱",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_SENDEMAIL: "发送邮件",
-STR_LOGIN_TERMSOFSERVICE: "用户协议",
-STR_LOBBY_TITLE: "房间",
-STR_LOBBY_ID: "房间ID",
-STR_LOBBY_BLIND: "盲注 %s/%s",
-STR_LOBBY_5PLAYERS: "5人场",
-STR_LOBBY_9PLAYERS: "9人场",
-STR_LOBBY_FULL: "满房间",
-STR_LOBBY_EMPTY: "空房间",
-STR_SIT_ROOMID: "房间ID %d",
-STR_SIT_BLIND: "大小盲注 %s/%s",
-STR_SIT_MINBLIND: "最小带入",
-STR_SIT_MAXBLIND: "最大带入",
-STR_SIT_AUTOSIT: "筹码不足时自动带入筹码并坐下",
-STR_SIT_LEAVE: "离开",
-STR_SIT_SIT: "坐下",
-STR_SIT_NOCHIP: "筹码不足",
-STR_SIT_SHOP: "商店",
-STR_INVITE_TITLE: "和您的朋友一起玩",
-STR_INVITE_BUTTON: "邀请到牌桌",
-STR_INVITE_NOFRIEND: "很遗憾，您还没有任何好友。快去和其他玩家交友吧。",
-STR_INVITE_UNKNOWN: "地址未知",
-STR_MES_FRIEND_TITLE: "好友消息",
-STR_MES_SYSTEM_TITLE: "系统消息",
-STR_MES_ADDFRIEND_RCCEIVE: "%s 想要和您成为好友。请问你要同意吗？",
-STR_MES_ADDFRIEND_AGREE: "恭喜！%s 已经通过了您的好友申请，您可以在好友界面找到他。",
-STR_MES_ADDFRIEND_YOUAGREE: "您通过了 %s 的好友申请，您可以在好友界面找到他。",
-STR_MES_CHIPS_GIVE: "%s 赠送给您 %d 免费筹码，快来接受吧。",
-STR_MES_CHIPS_RECEIVE: "您接受了来自 %s 的 %d 免费筹码。",
-STR_MES_MESSAGE_NULL: "目前为止没有消息。",
-STR_MES_MONTH_JAN: "一月",
-STR_MES_MONTH_FEB: "二月",
-STR_MES_MONTH_MAR: "三月",
-STR_MES_MONTH_APR: "四月",
-STR_MES_MONTH_MAY: "五月",
-STR_MES_MONTH_JUN: "六月",
-STR_MES_MONTH_JUL: "七月",
-STR_MES_MONTH_AUG: "八月",
-STR_MES_MONTH_SEP: "九月",
-STR_MES_MONTH_OCT: "十月",
-STR_MES_MONTH_NOV: "十一月",
-STR_MES_MONTH_DEC: "十二月",
-STR_HOMESCREEN_OLPLAYER: "%s 玩家在线",
-STR_HOMESCREEN_PHOTOUPLOAD: "你的好友 %s 更新了照片",
-STR_HOMESCREEN_NOUPLOAD: "没有好友更新照片",
-STR_EVENT_BACK: "返回",
-STR_ANNOUNCEMENT_TITLE: "公告",
-STR_PLAYER_INF_NAME: "姓名",
-STR_PLAYER_INF_TITLE_PHOTO: "照片",
-STR_PLAYER_INF_TITLE_ACHIEVEMENTS: "成就",
-STR_PLAYER_INF_LV: "等级",
-STR_PLAYER_INF_MALE: "男性",
-STR_PLAYER_INF_FEMALE: "女性",
-STR_PLAYER_INF_ADDRESS: "地址",
-STR_PLAYER_INF_BUTTON_BLOCK: "点击这里屏蔽玩家",
-STR_PLAYER_INF_BLOCKBUTTON: "屏蔽",
-STR_PLAYER_INF_BUTTON_UNLOCK: "点击这里解除屏蔽",
-STR_PLAYER_INF_UNLOCKBUTTON: "解除屏蔽",
-STR_PLAYER_INF_BUTTON_REPORT: "点击这里举报玩家头像",
-STR_PLAYER_INF_REPORTBUTTON: "举报",
-STR_PLAYER_INF_BLOCK: "屏蔽后，你将不会再收到任何来自该玩家的文字，语音或表情。您确定要屏蔽这名玩家吗？",
-STR_PLAYER_INF_UNBLOCK: "解除对该玩家的屏蔽后，你可以再次收到来自该玩家的文字，语音或表情。",
-STR_PLAYER_INF_REPORT: "有多名玩家举报此头像后，该头像将被屏蔽。我们将尽快进行审核。您确定要举报这个头像吗？",
-STR_PLAYER_PHOTO_NULL: "该玩家并未上传任何照片。",
-STR_CHECKPHOTO_NOAUTHORITY: "抱歉，由于该玩家的设置，您没有查看该玩家照片的权限。",
-STR_PLAYER_PHOTO_CRITICTITLE: "评论",
-STR_PLAYER_STATISTICS_GAMES: "游戏局数:",
-STR_PLAYER_STATISTICS_WINS: "胜利",
-STR_PLAYER_STATISTICS_LOSE: "失败",
-STR_PLAYER_STATISTICS_WINRATE: "胜率:",
-STR_PLAYER_STATISTICS_SHOWINRIVER: "亮牌率:",
-STR_PLAYER_STATISTICS_FOLDINPREFLOP: "首轮弃牌率:",
-STR_PLAYER_STATISTICS_ALLININPREFLOP: "首轮全下率:",
-STR_PLAYER_STATISTICS_HIGHESTCHIPS: "历史最多筹码:",
-STR_PLAYER_STATISTICS_MOSTWIN: "最大赢取:",
-STR_PLAYER_STATISTICS_BTESTCARD: "最大牌型:",
-STR_PLAYER_STATISTICS_MINS: "%s 分钟",
-STR_PLAYER_ACHIEVEMENT_NULL: "该玩家还没有获得任何成就。",
-STR_LOGINREWARD_TITLE: "连续登陆奖励",
-STR_LOGINREWARD_DAY: "第 %d 天",
-STR_LOGINREWARD_RECEIVED: "已经领取",
-STR_LOGINREWARD_TIPS: "如果你您保持连续登陆，您将获得更丰厚的奖励。",
-STR_LOGINREWARD_SUCCESS: "恭喜你领取了每日登录奖励 %d %s。",
-STR_ABOUTUS_STAFF: "Poker Royal Texas Hold'em Staff List\n\n\nGameDesinger\n\nStone\nJohn Smith\n\n\nProgrammer\n\nJack\nWillian\nHaven \nSpiro\nBob\nRussell\n\n\nArtDesinger\n\nPantheon\nEmma\nMandy\n\n\nGameTester\n\nJoffence\nDoris\n\n\nSpecial Thanks\n\nChris\nAlex\nMatata\nBlank",
-STR_BUTTON_YES: "是",
-STR_BUTTON_NO: "否",
-STR_BUTTON_OK: "确定",
-STR_BUTTON_IGNORE: "忽略",
-STR_BUTTON_AGREE: "同意",
-STR_OPTIONS_TITLE: "设置",
-STR_OPTIONS_VOICE: "语音",
-STR_OPTIONS_SOUND: "音效",
-STR_OPTIONS_AUTOSIT: "自动坐下",
-STR_OPTIONS_VIBRATION: "震动",
-STR_OPTIONS_FOLLOW: "允许好友跟踪",
-STR_OPTIONS_INVITE: "接受邀请信息",
-STR_OPTIONS_SEEPHOTOS: "谁能查看我的照片",
-STR_OPTIONS_CHOSEN_YES: "是",
-STR_OPTIONS_CHOSEN_NO: "否",
-STR_OPTIONS_SEEPHOTOS_FRIEND: "仅仅好友可查看",
-STR_OPTIONS_SEEPHOTOS_NOONE: "所有人都无法查看",
-STR_OPTIONS_SEEPHOTOS_ANYONE: "任何人都可查看",
-STR_OPTIONS_RATE: "评价游戏",
-STR_OPTIONS_CACHE: "清除缓存",
-STR_OPTIONS_CACHE_CONFIRM: "清除缓存将会删除您已经下载的头像，照片。您确定要清除缓存吗？",
-STR_OPTIONS_CACHE_CLEARED: "缓存已经清理成功。",
-STR_OPTIONS_ABOUT: "关于我们",
-STR_OPTIONS_REPORT: "报告问题",
-STR_OPTIONS_FOLLOWUS: "关注我们",
-STR_OPTIONS_CONTACT: "联系我们",
-STR_LOADING_1: "把你的朋友带到游戏中来，但也别忘了在现实中和他们一起玩。",
-STR_LOADING_2: "与他人交流时请务必保持礼貌，在尊重别人的同时，你会得到他人的尊重。",
-STR_LOADING_3: "永远不要尝试在牌桌上调戏荷官，不论他们有多英俊或者多性感。",
-STR_LOADING_4: "如果在你在游戏中感受到了挫折，不要气馁，生活并没有抛弃你。",
-STR_LOADING_5: "做任何事情都要适度，包括玩皇家德州扑克哦。",
-STR_LOADING_6: "请记得每天打开好友信息，点击赠送筹码按键向好友赠送免费筹码。",
-STR_LOADING_7: "轮到自己时，点击左下的筹码，可以快速选择加注金额。",
-STR_LOADING_8: "在牌桌上查看玩家详情的时候再次点击玩家头像，就可以屏蔽烦人的玩家欧。",
-STR_LOADING_9: "如果要和玩家私聊，请记得使用玩家详细信息界面的语音按键。",
-STR_LOADING_10: "请不要忘记查看活动欧，说不定会有惊喜的。",
-STR_LOADING_11: "保持连续登录，能够获得最好的奖励。",
-STR_LOADING_END: "随时保持一颗平常心，胜利不要兴奋，失败也不要沮丧。",
-STR_TABLEBOARD_ID: "房间ID %d 大小盲注 %s/%s",
-STR_CARDTYPE_HIGH_CARD: "高牌",
-STR_CARDTYPE_PAIR_CARD: "一对",
-STR_CARDTYPE_TWO_PAIRS_CARD: "两对",
-STR_CARDTYPE_THREE_CARD: "三条",
-STR_CARDTYPE_STRAIGHT: "顺子",
-STR_CARDTYPE_FLUSH: "同花",
-STR_CARDTYPE_FULL_HOUSE: "葫芦",
-STR_CARDTYPE_FOUR_OF_A_KIND: "四条",
-STR_CARDTYPE_STRAIGHT_FLUSH: "同花顺",
-STR_CARDTYPE_ROYAL_FLUSH: "皇家同花顺",
-STR_TABLEBOARD_EXP: "经验",
-STR_QUESTS_TITLE: "任务",
-STR_QUESTS_RECEIVEBUTTON: "领取",
-STR_ACHIEVEMENTS_TITLE: "成就",
-STR_LVUP_TITLE: "恭喜",
-STR_LVUP_TEXT: "恭喜您成功升至%d级，并且获得了%s的奖励筹码。",
-STR_SHOP_TITLE: "商店",
-STR_SHOP_BUTTON: "购买",
-STR_ALMS_TITLE: "复活",
-STR_ALMS_TEXT: "尊敬的玩家，由于您当前的钻石与筹码数过少，系统为您发放 %s 筹码。您今日还能领取 %d 次的救济金。",
-STR_BUG_REPORT: "点击提交问题",
-STR_BUG_INPUT: "请输入您要提交的问题",
-STR_BUG_TIP: "您的问题已经提交服务器。我们的客服将尽快解答您的疑问",
-STR_BUG_TIME: "提交时间",
-STR_BUG_WAIT: "等待客服回复",
-STR_BUG_RESPONSETIME: "回复时间",
-STR_BUG_DELTIP: "您确定要删除这个问题吗?",
-STR_BUG_VIEW: "查看详情",
-STR_BUG_COMMIT: "提交",
-STR_BUG_DELTIPDONE: "删除成功",
-STR_BUG_DELTIPFAIL: "删除失败",
-STR_BUG_COMMIT_TIP: "提交失败",
-STR_POKER_ROOM_BET: "赌注 %s/%s",
-STR_POKERTABLEBOARD_ID: "房间ID%d最小/最大 赌注%s%s",
-STR_POKER_PRE_BET: "赌注",
-STR_POKER_TYPE_POK9: "Pok9",
-STR_POKER_TYPE_POK8: "Pok8",
-STR_POKER_TYPE_TONG: "三条",
-STR_POKER_TYPE_SAM_LUEANG: "三公",
-STR_POKER_TYPE_STRAIGHT_FLUSH: "同花顺",
-STR_POKER_TYPE_STRAIGHT: "顺子",
-STR_POKER_TYPE_SCORE_0: "Score 0",
-STR_POKER_TYPE_SCORE_1: "Score 1",
-STR_POKER_TYPE_SCORE_2: "Score 2",
-STR_POKER_TYPE_SCORE_3: "Score 3",
-STR_POKER_TYPE_SCORE_4: "Score 4",
-STR_POKER_TYPE_SCORE_5: "Score 5",
-STR_POKER_TYPE_SCORE_6: "Score 6",
-STR_POKER_TYPE_SCORE_7: "Score 7",
-STR_POKER_TYPE_SCORE_8: "Score 8",
-STR_POKER_TYPE_SCORE_0_9: "Score 0-9",
-STR_POKER_TYPE_SCORE_9: "Score 9",
-STR_POKER_INTRUUCE: "牌型说明",
-STR_POKER_INTRUUCE1: "牌力大小由上至下排序",
-STR_POKER_INTRUUCE2: "这些牌为0点",
-STR_POKER_INTRUUCE3: "这些牌为1-9点",
-STR_POKER_INTRUUCE4: "所有手牌点数相加，取个位数",
-STR_POKER_INTRUUCE5: "2张初始牌为9点",
-STR_POKER_INTRUUCE6: "2张初始牌为8点",
-STR_POKER_INTRUUCE7: "KA2、A23不是顺子",
-STR_POKER_INTRUUCE8: "牌型的赔率倍数",
-STR_POKER_INTRUUCE9: "2张同花",
-STR_POKER_INTRUUCE10: "3张同花",
-STR_POKER_INTRUUCE11: "本局游戏结束后，将离开座位",
-STR_POKER_INTRUUCE12: "本局游戏结束后，将离开座位并退出房间",
-STR_WIN_STREAK: "连胜:",
-STR_PLAYER: "玩家",
-STR_DEAR: "庄家",
-STR_GAME_GOTODEAR: "点击上庄",
-STR_CHIP_NOT_ENOUGH: "筹码不足,至少%s筹码才能上庄,是否去商店？",
-STR_POKERTABLEBOARD_ID1: "最小/最大 赌注%s/%s",
-STR_GAME_GOTODEAR_1: "上庄成功，需要连续坐庄5场才能离座",
-STR_GAME_GOTODEAR_2: "一位玩家上庄成功",
-STR_STATIC_BIGWIN: "最大赢取:",
-STR_CARDTYPE100: "3卡组 JQK",
-STR_CARDTYPE101: "同花顺",
-STR_CARDTYPE102: "一对",
-STR_CARDTYPE103: "顺子",
-STR_CARDTYPE104: "3张牌是顺序",
-STR_ADDFRIEND_ONESELF: "您的好友数目已经达到了上限。您可以去商城购买通讯录来提升好友上限。",
-STR_ADDFRIEND_OTHERS: "很遗憾，对方玩家的好友数目已经达到上限了。您现在无法把他加为好友。",
-STR_MESSRECEIVE_UNDONE: "该消息中附带的所有物品已经被您领取过了。",
-STR_LOGIN_WORNING: "您的账号已经被冻结。如果您有任何疑问，请发送邮件到我们的客服邮箱。",
-STR_LOGIN_INFO_ERROR: "您输入的账号或密码有错误。请检查后重新输入。",
-STR_LOGIN_INFO_NULL: "登录账号或密码不能为空，请输入。",
-STR_LOGIN_EMALL_REGISTERED: "您输入的邮箱地址已经被注册。请重新输入可使用的邮箱地址。",
-STR_LOGIN_EMAIL_ERROR: "您输入的邮箱格式有错误。请检查后重新输入。",
-STR_LOGIN_PASSWORD_SHORT: "账号密码要求6-16位英文字母或数字。请重新输入您的密码。",
-STR_LOGIN_PASSWORD_DIFFERENT: "您两次输入的密码不一致。请检查后重新输入。",
-STR_LOGIN_PASSWORD_CHARACTER: "账号密码中不能包含除了英文字母和数字外的其他字符。请重新输入您的密码。",
-STR_LOGIN_REGISTER_SUCCESS: "恭喜您成功注册了皇家德州扑克的账号。赶快点击OK来加入游戏吧！",
-STR_LOGIN_RETRIEVE_SUCCESS: "密码找回邮件已经发送，请到您的邮箱中查收。如未收到，请稍等片刻再次查看。",
-STR_LOGIN_RETRIEVE_FAIL: "您输出的账号邮箱地址没有注册。请检查并重新输入已注册的邮箱地址。",
-STR_MAIN_LOGOFF: "您确定要登出游戏吗？",
-STR_MAIN_QUIT: "您确定要退出游戏吗？",
-STR_SHOP_CHIP: "您的筹码不足，想去商城买点筹码吗？",
-STR_SHOP_DIAMOND: "您的钻石不足，想去商城买点钻石吗？",
-STR_SHOP_BUYSUCCESSFUL: "您已经成功购买了商品 %s。",
-STR_SHOP_REACHLIMIT: "您已经达到了该道具的购买上限。",
-STR_SHOP_BUYFAIL: "抱歉，商品购买失败，请重试。",
-STR_PLAYERSEARCH_SHORT: "搜索好友时请至少输入四个英文字符或数字。",
-STR_PLAYERSEARCH_LONG: "搜索好友时至多只能输入十六个英文字符或数字。",
-STR_FRIEND_HAVEADDED: "该玩家已经在你的好友名单里了。",
-STR_FRIEND_LIMIT: "您的好友数量已经达到达到上限了。您可以去商城购买通讯录来提升好友上限。",
-STR_FRIEND_FOLLOW: "您的好友 %s 正在注额 %d/%d 的房间中打牌。您确定跟踪他进入此房间吗？",
-STR_FRIEND_DEL: "您确定要删除这名好友吗？",
-STR_FRIEND_ADDYOURSELF: "您不能添加自身为好友。",
-STR_PRESENT_NOTFRIEND: "只有好友之间才能赠送免费筹码。您和这位玩家还不是好友，无法赠送。",
-STR_PRESENT_DONE: "今天您已经向这位好友赠送过免费筹码了。明天才可以再次赠送欧。",
-STR_PERSONAL_NAME_SHORT: "您输入的昵称过短。请至少输入4个英文字母或数字。",
-STR_PERSONAL_NAME_LONG: "您输入的昵称过长。最多能够输入16个英文字母或数字。",
-STR_PERSONAL_NAME_REPEAK: "您输入的昵称和其他玩家的昵称重复了。请重新想个好昵称吧。",
-STR_PERSONAL_NAME_ILLEGAL: "您输入的昵称中包含了违规字符。请只使用英文字母和数字。",
-STR_PERSONAL_SIGNATURE_LONG: "您输入的签名过长。最多能够输入120个字符。",
-STR_PERSONAL_RECORDING_SHORT: "您的录音时间过短。请多说点吧。",
-STR_PERSONAL_QUICKVOICE_PLAY: "在语音播放时不能播放其他语音消息。",
-STR_PERSONAL_QUICKVOICE_RECORD: "在语音播放时不能录入其他语音消息。",
-STR_PERSONAL_QUICKVOICE_DEL: "您确定要删除这条快捷语音吗？",
-STR_PERSONAL_PHOTO_DEL: "您确定要删除这张照片吗？",
-STR_PERSONAL_PHOTO_LIMIT: "您的照片数目已经达到上限了。您可以去商城购买相册来提升照片上限。",
-STR_PERSONAL_ACCOUNT_BINDING: "您输入的邮箱地址已经被注册。请重新输入可使用的邮箱地址。",
-STR_PERSONAL_ITEMEXCHANGE_301002: "恭喜您，您已经成功兑换了%d个钻石，相应的碎片系统会自动扣除。",
-STR_PERSONAL_ITEMEXCHANGE_302003: "恭喜您，您已经成功兑换了%d个放大镜，相应的碎片系统会自动扣除。",
-STR_PERSONAL_ITEMEXCHANGE_302001: "恭喜您，您已经成功兑换了%d个麦克风到道具，相应的碎片会自动扣除。",
-STR_PERSONAL_ITEMEXCHANGE_302002: "恭喜您，您已经成功兑换了%d个互动表情道具，相应的碎片会自动扣除。",
-STR_PERSONAL_BINDIN: "请使用您的常用邮箱进行账号绑定。绑定后的账号能够在其他设备上游戏使用账号登录。",
-STR_ITEM_TUREEYE_NULL: "您的放大镜数量不足，想要去商城购买一些吗？",
-STR_REPORT_PHOTO_CONFRIM: "您确定要举报这张照片吗？有多名玩家举报此照片后，该照片将被屏蔽。我们将尽快进行审核。",
-STR_REPORT_PHOTO_REPEAK: "您已经举报过这张照片。请不要重复举报。",
-STR_SITDOWN_LIMIT: "此房间人数已满，无法进入。请选择其他有空位的房间。",
-STR_SITDOWN_FULL: "这个房间没有空位。点击“YES”，系统将为您自动匹配到另一个新房间。点击“NO”，您将留在目前房间观战。",
-STR_SITDOWN_REPEAK: "你已经在座位上了。",
-STR_SITDOWN_NOTEMPTY: "您选择的座位已经被其他玩家占据了，请选择其他的空座位。",
-STR_TABLE_RECORDIND_SHORT: "您录音的时间过短，请重新录音。",
-STR_ITEM_VOICE_NULL: "您的麦克风不够了，想要去商城购买一些麦克风吗？",
-STR_ITEM_VOICE_STAND: "您目前还未坐下，还不能够使用语音功能。",
-STR_ITEM_CHAT_STAND: "您目前还未坐下，还不能发送文字和表情。",
-STR_ITEM_EXPRESSION_NULL: "您的互动表情不够了，想要去商城购买一些互动表情吗？",
-STR_TABLE_LEAVE_SEAT: "离开座位会让您失去已下注的筹码。您确定要现在离开座位吗？",
-STR_TABLE_LEAVE_ROOM: "离开房间会让您失去已下注的筹码。您确定要现在离开房间吗？",
-STR_INVITE_RECEIVE: "玩家 %s 邀请您参加牌局，点击确认。",
-STR_INVITE_CONFRIM: "玩家 %s 邀请您参加他的牌局。房间ID %d，大小盲注 %s / %s。你确定要加入牌局吗？",
-STR_INVITE_CONFRIM1: "玩家 %s 邀请您参加他的牌局。房间ID %d，赌注 %s / %s。你确定要加入牌局吗？",
-STR_INVITE_SAMEROOM: "您和该玩家已经在同一房间中了。",
-STR_MISSION_COMPLETE: "您完成了一个任务，快去领取奖励吧。",
-STR_MUTE_ON: "您已成功开启静音功能。",
-STR_MUTE_OFF: "您已成功关闭静音功能。",
-STR_EQUIPMENT_MICROPHONE: "启动麦克风功能失败，请允许本游戏使用手机麦克风功能。请检查手机设置。",
-STR_ACHIEVEMENT_SUCCESS: "恭喜！您成功领取了成就奖励 %d %s.",
-STR_LOGIN_OTHERDEVICES: "您的账号已经在其他地方登录了。请检查您的账号密码安全，以避免损失。如果您有任何疑问，请发送邮件到我们的客服邮箱。",
-STR_NETWORK_REQUEST: "发生错误%d, 网络请求失败。请检查您的网络环境，并稍后尝试。",
-STR_NETWORK_ERROR_CHECK: "网络发生错误,连接断开。请检查您的设备或网络设置.",
-STR_UNKNOWN_ERROR: "发生未知错误，游戏无法正常进行。您可以通过我们的客服邮箱告知我们错误情况。",
-STR_ERROR_DATA: "出现数据错误，请退回至登陆界面重新登录游戏。",
-STR_EVALUATION_TEXT: "尊敬的玩家，您现在可以对我们的游戏进行评价了，进行评价后您将会获得奖励。请问是否跳转至相关页面？",
-STR_GOOGLEPLAY_ERROR_1: "进行购买操作时所需的一项或多项 Google Play 服务目前无法使用。",
-STR_GOOGLEPLAY_ERROR_2: "更新Google Play服务后才能进行购买。",
-STR_GOOGLEPLAY_ERROR_3: "您的手机中没有Google Play服务，您必须先安装该服务才能进行购买。",
-STR_GOOGLEPLAY_ERROR_4: "您必须先启用Google Play服务才能进行购买。",
-STR_ITEM_NAME_301001: "筹码",
-STR_ITEM_NAME_301002: "钻石",
-STR_ITEM_NAME_302001: "麦克风",
-STR_ITEM_NAME_302002: "互动表情",
-STR_ITEM_NAME_302003: "放大镜",
-STR_ITEM_NAME_303001: "金筹码",
-STR_ITEM_NAME_304001: "通讯录",
-STR_ITEM_NAME_304002: "相册",
-STR_ITEM_DESC_301001: "表示玩家的筹码个数，财富衡量单位",
-STR_ITEM_DESC_301002: "表示玩家的钻石个数，财富衡量单位",
-STR_ITEM_DESC_302001: "使用语音功能需要消耗的道具，每使用1次语音消耗1个。",
-STR_ITEM_DESC_302002: "使用互动表情需要消耗的道具，每使用1次互动表情消耗1个。",
-STR_ITEM_DESC_302003: "使用后可以查看玩家的游戏数据，每查看1名玩家消耗1个，效果持续 %d 分钟。",
-STR_ITEM_DESC_303001: "增加任务筹码奖励的道具，所有任务的筹码奖励变为 %s 倍，持续 %d 天。",
-STR_ITEM_DESC_304001: "提升好友数量上限的道具。初始上限为 %d 个好友。每拥有1个通讯录，上限提升 %d 个。",
-STR_ITEM_DESC_304002: "提升照片数量上限的道具。初始上限为 %d 张照片。每拥有1个相册，上限提升 %d 个。",
-STR_GOODS_NAME_401001: "%d 钻石包",
-STR_GOODS_NAME_401002: "%d 钻石包",
-STR_GOODS_NAME_401003: "%d 钻石包",
-STR_GOODS_NAME_401004: "%d 钻石包",
-STR_GOODS_NAME_402001: "%d 筹码包",
-STR_GOODS_NAME_402002: "%d 筹码包",
-STR_GOODS_NAME_402003: "%d 筹码包",
-STR_GOODS_NAME_402004: "%d 筹码包",
-STR_GOODS_NAME_403001: "%d 麦克风包",
-STR_GOODS_NAME_403002: "%d 麦克风包",
-STR_GOODS_NAME_404001: "%d 表情包",
-STR_GOODS_NAME_404002: "%d 表情包",
-STR_GOODS_NAME_405001: "%d 放大镜包",
-STR_GOODS_NAME_406001: "金筹码",
-STR_GOODS_NAME_407001: "通讯录",
-STR_GOODS_NAME_408001: "相册",
-STR_GOODS_DESC_401001: "%d 个钻石",
-STR_GOODS_DESC_401002: "%d 个钻石",
-STR_GOODS_DESC_401003: "%d 个钻石",
-STR_GOODS_DESC_401004: "%d 个钻石",
-STR_GOODS_DESC_402001: "%d 个筹码",
-STR_GOODS_DESC_402002: "%d 个筹码",
-STR_GOODS_DESC_402003: "%d 个筹码",
-STR_GOODS_DESC_402004: "%d 个筹码",
-STR_GOODS_DESC_403001: "%d 个麦克风。使用语音功能需要消耗的道具，每使用1次语音消耗1个。",
-STR_GOODS_DESC_403002: "%d 个麦克风。使用语音功能需要消耗的道具，每使用1次语音消耗1个。",
-STR_GOODS_DESC_404001: "%d 个互动表情。使用互动表情需要消耗的道具，每使用1次互动表情消耗1个。",
-STR_GOODS_DESC_404002: "%d 个互动表情。使用互动表情需要消耗的道具，每使用1次互动表情消耗1个。",
-STR_GOODS_DESC_405001: "%d 个放大镜。使用后可以查看玩家的游戏数据，每查看1名玩家消耗1个，效果持续 %d 分钟。",
-STR_GOODS_DESC_406001: "增加任务筹码奖励的道具，所有任务的筹码奖励变为 %d 倍，持续 %d 天。多次购买，持续时间加长。",
-STR_GOODS_DESC_407001: "提升好友数量上限的道具。初始上限为 %d 个好友。每拥有1个通讯录，上限提升 %d 个。最多购买 %d个，价格根据购买数变化。",
-STR_GOODS_DESC_408001: "提升照片数量上限的道具。初始上限为 %d 张照片。每拥有1个相册，上限提升 %d 个。最多购买 %d个，价格根据购买数变化",
-STR_QUEST_DESC_101101: "完成3盘牌局",
-STR_QUEST_DESC_101201: "游戏时间经过5分钟",
-STR_QUEST_DESC_102101: "赢得2盘牌局",
-STR_QUEST_DESC_102201: "在Preflop圈就赢得牌局3次",
-STR_QUEST_DESC_102301: "亮牌赢得牌局2次",
-STR_QUEST_DESC_103101: "赢取的筹码（未抽成前）是本局投入筹码的5倍以上,1次",
-STR_QUEST_DESC_104101: "在4个奖池以上的牌局中赢的全部奖池，1次",
-STR_QUEST_DESC_105101: "ALL IN后赢得牌局3次",
-STR_QUEST_DESC_106101: "5人及其以上ALL IN，并最终赢得牌局,1次",
-STR_QUEST_DESC_107101: "亮牌时，以同样的牌型击败其他玩家，1次",
-STR_QUEST_DESC_108101: "亮牌时，以高牌牌型赢得1次牌局",
-STR_QUEST_DESC_108201: "亮牌时，以一对牌型赢得1次牌局",
-STR_QUEST_DESC_108301: "亮牌时，以两对牌型赢得1次牌局",
-STR_QUEST_DESC_108401: "亮牌时，以三条牌型赢得1次牌局",
-STR_QUEST_DESC_108501: "亮牌时，以顺子牌型赢得1次牌局",
-STR_QUEST_DESC_108601: "亮牌时，以同花牌型赢得1次牌局",
-STR_QUEST_DESC_108701: "亮牌时，以葫芦牌型赢得1次牌局",
-STR_QUEST_DESC_109101: "聊天（包括表情，文字，互动表情，语音）20次",
-STR_QUEST_DESC_110101: "评论玩家的照片5次",
-STR_QUEST_DESC_101102: "完成10盘牌局",
-STR_QUEST_DESC_101202: "游戏时间经过15分钟",
-STR_QUEST_DESC_102102: "赢得5盘牌局",
-STR_QUEST_DESC_102202: "在Preflop圈就赢得牌局9次",
-STR_QUEST_DESC_102302: "亮牌赢得牌局5次",
-STR_QUEST_DESC_103102: "赢取的筹码（未抽成前）是本局投入筹码的5倍以上,3次",
-STR_QUEST_DESC_104102: "在4个奖池以上的牌局中赢的全部奖池，2次",
-STR_QUEST_DESC_105102: "ALL IN后赢得牌局9次",
-STR_QUEST_DESC_106102: "5人及其以上ALL IN，并最终赢得牌局,2次",
-STR_QUEST_DESC_107102: "亮牌时，以同样的牌型击败其他玩家，2次",
-STR_QUEST_DESC_108102: "亮牌时，以高牌牌型赢得2次牌局",
-STR_QUEST_DESC_108202: "亮牌时，以一对牌型赢得2次牌局",
-STR_QUEST_DESC_108302: "亮牌时，以两对牌型赢得2次牌局",
-STR_QUEST_DESC_108402: "亮牌时，以三条牌型赢得2次牌局",
-STR_QUEST_DESC_108502: "亮牌时，以顺子牌型赢得2次牌局",
-STR_QUEST_DESC_108602: "亮牌时，以同花牌型赢得2次牌局",
-STR_QUEST_DESC_108702: "亮牌时，以葫芦牌型赢得2次牌局",
-STR_QUEST_DESC_109102: "聊天（包括表情，文字，互动表情，语音）50次",
-STR_QUEST_DESC_110102: "评论玩家的照片25次",
-STR_QUEST_DESC_101103: "完成30盘牌局",
-STR_QUEST_DESC_101203: "游戏时间经过30分钟",
-STR_QUEST_DESC_102103: "赢得10盘牌局",
-STR_QUEST_DESC_102203: "在Preflop圈就赢得牌局15次",
-STR_QUEST_DESC_102303: "亮牌赢得牌局10次",
-STR_QUEST_DESC_103103: "赢取的筹码（未抽成前）是本局投入筹码的5倍以上,5次",
-STR_QUEST_DESC_104103: "在4个奖池以上的牌局中赢的全部奖池，3次",
-STR_QUEST_DESC_105103: "ALL IN后赢得牌局15次",
-STR_QUEST_DESC_106103: "5人及其以上ALL IN，并最终赢得牌局,3次",
-STR_QUEST_DESC_107103: "亮牌时，以同样的牌型击败其他玩家，3次",
-STR_QUEST_DESC_108103: "亮牌时，以高牌牌型赢得3次牌局",
-STR_QUEST_DESC_108203: "亮牌时，以一对牌型赢得3次牌局",
-STR_QUEST_DESC_108303: "亮牌时，以两对牌型赢得3次牌局",
-STR_QUEST_DESC_108403: "亮牌时，以三条牌型赢得3次牌局",
-STR_QUEST_DESC_108503: "亮牌时，以顺子牌型赢得3次牌局",
-STR_QUEST_DESC_108603: "亮牌时，以同花牌型赢得3次牌局",
-STR_QUEST_DESC_108703: "亮牌时，以葫芦牌型赢得3次牌局",
-STR_QUEST_DESC_109103: "聊天（包括表情，文字，互动表情，语音）100次",
-STR_QUEST_DESC_110103: "评论玩家的照片50次",
-STR_ACHIVEVMENT_DESC_201001: "等级达到5级",
-STR_ACHIVEVMENT_DESC_201002: "等级达到10级",
-STR_ACHIVEVMENT_DESC_201003: "等级达到20级",
-STR_ACHIVEVMENT_DESC_201004: "等级达到35级",
-STR_ACHIVEVMENT_DESC_201005: "等级达到50级",
-STR_ACHIVEVMENT_DESC_202001: "资产总量达到100万",
-STR_ACHIVEVMENT_DESC_202002: "资产总量达到1000万",
-STR_ACHIVEVMENT_DESC_202003: "资产总量达到1亿",
-STR_ACHIVEVMENT_DESC_202004: "资产总量达到10亿",
-STR_ACHIVEVMENT_DESC_202005: "资产总量达到100亿",
-STR_ACHIVEVMENT_DESC_203001: "完成50场牌局",
-STR_ACHIVEVMENT_DESC_203002: "完成500场牌局",
-STR_ACHIVEVMENT_DESC_203003: "完成2500场牌局",
-STR_ACHIVEVMENT_DESC_203004: "完成10000场牌局",
-STR_ACHIVEVMENT_DESC_203005: "完成25000场牌局",
-STR_ACHIVEVMENT_DESC_203006: "完成50000场牌局",
-STR_ACHIVEVMENT_DESC_203007: "完成100000场牌局",
-STR_ACHIVEVMENT_DESC_204001: "赢得10次牌局",
-STR_ACHIVEVMENT_DESC_204002: "赢得100次牌局",
-STR_ACHIVEVMENT_DESC_204003: "赢得500次牌局",
-STR_ACHIVEVMENT_DESC_204004: "赢得2000次牌局",
-STR_ACHIVEVMENT_DESC_204005: "赢得5000次牌局",
-STR_ACHIVEVMENT_DESC_204006: "赢得10000次牌局",
-STR_ACHIVEVMENT_DESC_204007: "赢得20000次牌局",
-STR_ACHIVEVMENT_DESC_205001: "在Preflop圈就赢的牌局达到5场",
-STR_ACHIVEVMENT_DESC_205002: "在Preflop圈就赢的牌局达到50场",
-STR_ACHIVEVMENT_DESC_205003: "在Preflop圈就赢的牌局达到500场",
-STR_ACHIVEVMENT_DESC_205004: "在Preflop圈就赢的牌局达到2500场",
-STR_ACHIVEVMENT_DESC_205005: "在Preflop圈就赢的牌局达到10000场",
-STR_ACHIVEVMENT_DESC_206001: "ALL IN后并最终赢牌的牌局达到5场",
-STR_ACHIVEVMENT_DESC_206002: "ALL IN后并最终赢牌的牌局达到50场",
-STR_ACHIVEVMENT_DESC_206003: "ALL IN后并最终赢牌的牌局达到500场",
-STR_ACHIVEVMENT_DESC_206004: "ALL IN后并最终赢牌的牌局达到2500场",
-STR_ACHIVEVMENT_DESC_206005: "ALL IN后并最终赢牌的牌局达到10000场",
-STR_ACHIVEVMENT_DESC_207001: "亮牌时，以高牌牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_207002: "亮牌时，以高牌牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_207003: "亮牌时，以高牌牌型赢得牌局达到250场",
-STR_ACHIVEVMENT_DESC_207004: "亮牌时，以高牌牌型赢得牌局达到1000场",
-STR_ACHIVEVMENT_DESC_207005: "亮牌时，以高牌牌型赢得牌局达到3000场",
-STR_ACHIVEVMENT_DESC_208001: "亮牌时，以一对牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_208002: "亮牌时，以一对牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_208003: "亮牌时，以一对牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_208004: "亮牌时，以一对牌型赢得牌局达到2000场",
-STR_ACHIVEVMENT_DESC_208005: "亮牌时，以一对牌型赢得牌局达到5000场",
-STR_ACHIVEVMENT_DESC_209001: "亮牌时，以两对牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_209002: "亮牌时，以两对牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_209003: "亮牌时，以两对牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_209004: "亮牌时，以两对牌型赢得牌局达到2000场",
-STR_ACHIVEVMENT_DESC_209005: "亮牌时，以两对牌型赢得牌局达到5000场",
-STR_ACHIVEVMENT_DESC_210001: "亮牌时，以三条牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_210002: "亮牌时，以三条牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_210003: "亮牌时，以三条牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_210004: "亮牌时，以三条牌型赢得牌局达到2000场",
-STR_ACHIVEVMENT_DESC_210005: "亮牌时，以三条牌型赢得牌局达到5000场",
-STR_ACHIVEVMENT_DESC_211001: "亮牌时，以顺子牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_211002: "亮牌时，以顺子牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_211003: "亮牌时，以顺子牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_211004: "亮牌时，以顺子牌型赢得牌局达到2000场",
-STR_ACHIVEVMENT_DESC_211005: "亮牌时，以顺子牌型赢得牌局达到5000场",
-STR_ACHIVEVMENT_DESC_212001: "亮牌时，以同花牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_212002: "亮牌时，以同花牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_212003: "亮牌时，以同花牌型赢得牌局达到250场",
-STR_ACHIVEVMENT_DESC_212004: "亮牌时，以同花牌型赢得牌局达到1000场",
-STR_ACHIVEVMENT_DESC_212005: "亮牌时，以同花牌型赢得牌局达到3000场",
-STR_ACHIVEVMENT_DESC_213001: "亮牌时，以葫芦牌型赢得牌局达到3场",
-STR_ACHIVEVMENT_DESC_213002: "亮牌时，以葫芦牌型赢得牌局达到30场",
-STR_ACHIVEVMENT_DESC_213003: "亮牌时，以葫芦牌型赢得牌局达到200场",
-STR_ACHIVEVMENT_DESC_213004: "亮牌时，以葫芦牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_213005: "亮牌时，以葫芦牌型赢得牌局达到1000场",
-STR_ACHIVEVMENT_DESC_214001: "亮牌时，以四条牌型赢得牌局达到2场",
-STR_ACHIVEVMENT_DESC_214002: "亮牌时，以四条牌型赢得牌局达到10场",
-STR_ACHIVEVMENT_DESC_214003: "亮牌时，以四条牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_214004: "亮牌时，以四条牌型赢得牌局达到200场",
-STR_ACHIVEVMENT_DESC_214005: "亮牌时，以四条牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_215001: "亮牌时，获得过所有数字的四条，从A到K",
-STR_ACHIVEVMENT_DESC_216001: "亮牌时，以同花顺牌型赢得牌局达到1场",
-STR_ACHIVEVMENT_DESC_216002: "亮牌时，以同花顺牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_216003: "亮牌时，以同花顺牌型赢得牌局达到20场",
-STR_ACHIVEVMENT_DESC_216004: "亮牌时，以同花顺牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_216005: "亮牌时，以同花顺牌型赢得牌局达到100场",
-STR_ACHIVEVMENT_DESC_217001: "亮牌时，以皇家同花顺牌型赢得牌局达到1场",
-STR_ACHIVEVMENT_DESC_217002: "亮牌时，以皇家同花顺牌型赢得牌局达到2场",
-STR_ACHIVEVMENT_DESC_217003: "亮牌时，以皇家同花顺牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_217004: "亮牌时，以皇家同花顺牌型赢得牌局达到10场",
-STR_ACHIVEVMENT_DESC_217005: "亮牌时，以皇家同花顺牌型赢得牌局达到20场",
-STR_ACHIVEVMENT_DESC_218001: "获得所有花色的皇家同花顺",
-STR_ACHIVEVMENT_DESC_219001: "使用20次语音",
-STR_ACHIVEVMENT_DESC_219002: "使用100次语音",
-STR_ACHIVEVMENT_DESC_219003: "使用500次语音",
-STR_ACHIVEVMENT_DESC_219004: "使用2500次语音",
-STR_ACHIVEVMENT_DESC_219005: "使用10000次语音",
-STR_ACHIVEVMENT_DESC_220001: "使用50次互动表情",
-STR_ACHIVEVMENT_DESC_220002: "使用250次互动表情",
-STR_ACHIVEVMENT_DESC_220003: "使用1000次互动表情",
-STR_ACHIVEVMENT_DESC_220004: "使用5000次互动表情",
-STR_ACHIVEVMENT_DESC_220005: "使用20000次互动表情",
-STR_ACHIVEVMENT_DESC_221001: "好友数量达到5人",
-STR_ACHIVEVMENT_DESC_221002: "好友数量达到20人",
-STR_ACHIVEVMENT_DESC_221003: "好友数量达到50人",
-STR_ACHIVEVMENT_DESC_222001: "上传过1张照片",
-STR_ACHIVEVMENT_DESC_222002: "上传过10张照片",
-STR_ACHIVEVMENT_DESC_222003: "上传过100张照片",
-STR_ACHIVEVMENT_DESC_223001: "得到5个赞",
-STR_ACHIVEVMENT_DESC_223002: "得到50个赞",
-STR_ACHIVEVMENT_DESC_223003: "得到500个赞",
-STR_ACHIVEVMENT_DESC_224001: "送出5个赞",
-STR_ACHIVEVMENT_DESC_224002: "送出50个赞",
-STR_ACHIVEVMENT_DESC_224003: "送出500个赞",
-STR_ACHIVEVMENT_DESC_225001: "自己的照片获得评论10次",
-STR_ACHIVEVMENT_DESC_225002: "自己的照片获得评论100次",
-STR_ACHIVEVMENT_DESC_225003: "自己的照片获得评论1000次",
-STR_ACHIVEVMENT_DESC_226001: "评论其他人照片10次",
-STR_ACHIVEVMENT_DESC_226002: "评论其他人照片100次",
-STR_ACHIVEVMENT_DESC_226003: "评论其他人照片1000次",
-STR_ACHIVEVMENT_DESC_227001: "完成5个任务",
-STR_ACHIVEVMENT_DESC_227002: "完成50个任务",
-STR_ACHIVEVMENT_DESC_227003: "完成500个任务",
-STR_ACHIVEVMENT_DESC_227004: "完成2500个任务",
-STR_ACHIVEVMENT_DESC_227005: "完成10000个任务",
-STR_ACHIVEVMENT_DESC_228001: "兑换5次道具",
-STR_ACHIVEVMENT_DESC_228002: "兑换50次道具",
-STR_ACHIVEVMENT_DESC_228003: "兑换500次道具",
-STR_ACHIVEVMENT_DESC_229001: "牌桌上赠送其他玩家筹码10次",
-STR_ACHIVEVMENT_DESC_229002: "牌桌上赠送其他玩家筹码100次",
-STR_ACHIVEVMENT_DESC_229003: "牌桌上赠送其他玩家筹码1000次",
-STR_ACHIVEVMENT_DESC_230001: "赠送好友免费筹码10次",
-STR_ACHIVEVMENT_DESC_230002: "赠送好友免费筹码100次",
-STR_ACHIVEVMENT_DESC_230003: "赠送好友免费筹码1000次",
-STR_ACHIVEVMENT_DESC_231001: "获得免费筹码总量达到10万",
-STR_ACHIVEVMENT_DESC_231002: "获得免费筹码总量达到25万",
-STR_ACHIVEVMENT_DESC_231003: "获得免费筹码总量达到100万",
-STR_ACHIVEVMENT_DESC_232001: "累计登陆天数达到5天",
-STR_ACHIVEVMENT_DESC_232002: "累计登陆天数达到25天",
-STR_ACHIVEVMENT_DESC_232003: "累计登陆天数达到100天",
-STR_ACHIVEVMENT_DESC_232004: "累计登陆天数达到250天",
-STR_ACHIVEVMENT_DESC_232005: "累计登陆天数达到500天",
-STR_LOGIN_VERSION: "版本号：",
-STR_INFORMATION_PERSONAL_SIGNATURE_DEFAULT: "这位玩家还没有留下任何笔迹。想更引人关注吗？留下一段个性签名吧。",
-STR_MESS_EVALUATION_TITLE: "感谢您的评价",
-STR_MESS_EVALUATION_CONTENT: "因为您对于我们游戏的支持与评价，系统为您发放%d筹码的奖励，请及时领取。"
+cc._RF.push(t, "e9f681cUfVN/rI19bJHUF5u", "cmdDef");
+var n = {}, i = {};
+n.Login = 100;
+i[n.Login] = {
+name: "Login",
+pak: "tutorial.Person",
+file: "addressbook.pb"
+};
+n.Login1 = 101;
+i[n.Login1] = {
+name: "Login1",
+pak: "tutorial.Person",
+file: "addressbook.pb"
+};
+n.Login2 = 102;
+i[n.Login2] = {
+name: "Login2",
+pak: "tutorial.Person",
+file: "addressbook.pb"
+};
+globalThis.CMD = n;
+globalThis.CMD2PB = i;
+cc._RF.pop();
+}, {} ],
+en: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "bc55aqoOKBC+4uvatFaL5MO", "en");
+Object.defineProperty(n, "__esModule", {
+value: !0
+});
+n.default = {
+2001: "Hello",
+2002: "Chinese",
+2003: "sixsixsix",
+2004: "two",
+2005: "five"
 };
 cc._RF.pop();
 }, {} ],
-en: [ function(e, t) {
+gameProto: [ function(e, t) {
 "use strict";
-cc._RF.push(t, "45e5cQaRXhIbLRP7QZnXbpz", "en");
-t.exports = {
-STR_COREPLAY_BUTTON_FOLD: "Fold",
-STR_COREPLAY_BUTTON_CHECK: "Check",
-STR_COREPLAY_BUTTON_CALL: "Call %s",
-STR_COREPLAY_BUTTON_RAISE: "Raise",
-STR_COREPLAY_BUTTON_CONFIRM: "Confirm",
-STR_COREPLAY_BUTTON_ALLIN: "All-In",
-STR_COREPLAY_BUTTON_PREP_CHECKORFOLD: "Check/Fold",
-STR_COREPLAY_BUTTON_PREP_AUTOCHECK: "Check",
-STR_COREPLAY_BUTTON_PREP_CALL: "Call %s",
-STR_COREPLAY_BUTTON_PREP_CALLANY: "Call Any",
-STR_INFORMATION_TILLE_1: "INFORMATION",
-STR_INFORMATION_TILLE_2: "ITEMS LIST",
-STR_INFORMATION_TILLE_3: "QUICK WORDS",
-STR_INFORMATION_TILLE_4: "QUICK VOICES",
-STR_INFORMATION_TILLE_5: "STATISTICS",
-STR_INFORMATION_PERSONAL_LV: "Level",
-STR_INFORMATION_PERSONAL_ID: "ID",
-STR_INFORMATION_PERSONAL_NAME: "Name",
-STR_INFORMATION_PERSONAL_MALE: "Male",
-STR_INFORMATION_PERSONAL_FEMALE: "Female",
-STR_INFORMATION_PERSONAL_ADDRESS: "Address: ",
-STR_INFORMATION_PERSONAL_ADDRESS_NULL: "Unknown",
-STR_INFORMATION_PERSONAL_SIGNATURE: "Signature:",
-STR_INFORMATION_PERSONAL_PHOTO_DEFAULT: "NEW PHOTO",
-STR_INFORMATION_PERSONAL_PHOTO_INREVIEW: "IN REVIEW",
-STR_INFORMATION_ITEMLIST_TIME: "Day",
-STR_INFORMATION_ITEMLIST_TIME_HOUR: "Hour",
-STR_INFORMATION_QUICKCHAT_WORDS: "Quick Words %d",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_1: "The game started off, and I'm prepared to win!",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_2: "Don't waste time, please make your play.",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_3: "I got very strong cards to win this time.",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_4: "I'm going to All-In. Fold your cards quickly if you are afraid.",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_5: "I won this hand, and I certainly won't hold back on you on the next.",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_6: '"Fold" doesn\'t mean I lose. I just want to take a break.',
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_7: "I have to say you play cards surprisingly well.",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_8: "I can't believe this thing could happen.",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_9: "I didn't play seriously, next time I won't lose.",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_10: "You are so lucky I am leaving now.",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_NULL: "Click here to enter your Quick Words",
-STR_INFORMATION_QUICKCHAT_VOICE: "Quick Voice %d",
-STR_INFORMATION_QUICKCHAT_VOICE_DEFAULT: "Hold here to record",
-STR_INFORMATION_QUICKCHAT_VOICE_ENTERTITLE: "Click here to enter the title",
-STR_INFORMATION_QUICKCHAT_VOICE_RECORDING: "Recording",
-STR_INFORMATION_STATISTICS_ID: "ID:",
-STR_INFORMATION_STATISTICS_GAMES: "Hands:",
-STR_INFORMATION_STATISTICS_WINS: "Win",
-STR_INFORMATION_STATISTICS_LOSE: "Lose",
-STR_INFORMATION_STATISTICS_WINRATE: "Win Rate:",
-STR_INFORMATION_STATISTICS_SHOWINRIVER: "Show in River:",
-STR_INFORMATION_STATISTICS_FOLDINPREFLOP: "Pre-flop Fold:",
-STR_INFORMATION_STATISTICS_ALLININPREFLOP: "Pre-flop All-In:",
-STR_INFORMATION_STATISTICS_HIGHESTCHIP: "Most Chips:",
-STR_INFORMATION_STATISTICS_MOSTWIN: "Biggest Pot Won:",
-STR_INFORMATION_STATISTICS_BESTCARDS: "Best Hand:",
-STR_INFORMATION_STATISTICS_GIVECHIPTOFRIEND: "Sent Free Chips to Friends",
-STR_INFORMATION_STATISTICS_GIVECHIPTOFRIEND_TIMES: "Times",
-STR_INFORMATION_STATISTICS_GIVECHIPINGAME: "Gave Chips to Other Players",
-STR_INFORMATION_STATISTICS_GIVECHIPINGAME_TIMES: "Times",
-STR_INFORMATION_ITEMLIST_ITEM_TITLE: "YOU HAVE:",
-STR_INFORMATION_ITEMLIST_PATCH_TITLE: "YOU CAN CHANGE:",
-STR_RANKING_TITLE_MAIN: "RANKING",
-STR_RANKING_TITLE_1: "TOP CHIPS",
-STR_RANKING_TITLE_2: "EARNING RATE",
-STR_RANKING_TITLE_3: "GAIN TODAY",
-STR_RANKING_TITLE_4: "WINS TODAY",
-STR_RANKING_TITLE_5: "INTERACTION",
-STR_RANKING_GMT_GMT: "GMT",
-STR_RANKING_GMT_EXPLAIN: "The server uses the GMT as the time standard. So the GMT is displayed in our game. Please be attention.",
-STR_RANKING_TOP_TOP: "TOP",
-STR_RANKING_RANKING_NOPLAYER: "No player in the ranking list.",
-STR_CHAT_EXPRESSION_TITLE: "Expressions",
-STR_CHAT_QUICKWORDS_TITLE: "Quick Words",
-STR_CHAT_QUICKVOICES_TITLE: "Quick Voices",
-STR_CHAT_INPUT_DEFAULT: "Please enter text here",
-STR_CHAT_INPUT_DEFAULT_IOS: "Please enter text here",
-STR_CHAT_QUICKVOICE_NOVICE: "No Quick Voice",
-STR_CHAT_QUICKVOICE_NOTITLE: "No description",
-STR_TABLEBOARD_CAHT_NOQUICKVOICE: "You haven't recorded any Quick Voices yet.",
-STR_TABLEBOARD_CHAT_NOQUICKTEXT: "You haven't recorded any Quick Words yet.",
-STR_TABLEBOARD_RECORDING_COUNTDOWN: "Remain %d seconds",
-STR_FRIENDS_TITLE: "YOUR FRIENDS",
-STR_FRIENDS_NOFRIENDS: "You have no friends so far. Please click the searching botton on the top right corner to find the player by using the player's nickname. Also, you can click the player's portrait in Play Table UI or Main UI to send the friend request. Go and try it now!",
-STR_FRIENDS_FRIENDS_UPDATE: "Show friends who updated new photos first",
-STR_FRIENDS_FRIENDS_OL: "Show online friends first",
-STR_FRIENDS_FRIENDS_ACTIVE: "Show active friends first",
-STR_FRIENDS_FRIENDS_MAX: "MAX",
-STR_FRIENDS_FRIENDS_INFORMATION_LV: "Level",
-STR_FRIENDS_FRIENDS_INFORMATION_MALE: "Male",
-STR_FRIENDS_FRIENDS_INFORMATION_FEMALE: "Female",
-STR_FRIENDS_FRIENDS_INFORMATION_ADDRESS: "Address: ",
-STR_FRIENDS_FRIENDS_INFORMATION_DEFAULT: "Likes, comments and free Chips you gave to this friend.",
-STR_FRIENDS_FRIENDS_INFORMATION_NOPHOTO: "This player haven't uploaded any photos.",
-STR_FRIENDS_FRIENDS_INFORMATION_GAMES: "Hands:",
-STR_FRIENDS_FRIENDS_INFORMATION_WIN: "Win",
-STR_FRIENDS_FRIENDS_INFORMATION_LOSE: "Lose",
-STR_FRIENDS_FRIENDS_INFORMATION_WINRATE: "Win Rate:",
-STR_FRIENDS_FRIENDS_INFORMATION_SHOWINRIVER: "Show in River:",
-STR_FRIENDS_FRIENDS_INFORMATION_FOLDINPREFLOP: "Pre-flop Fold:",
-STR_FRIENDS_FRIENDS_INFORMATION_ALLININPREFLOP: "Pre-flop All-In:",
-STR_FRIENDS_FRIENDS_INFORMATION_HIGHESTCHIP: "Most Chips:",
-STR_FRIENDS_FRIENDS_INFORMATION_MOSTWIN: "Biggest Pot Won:",
-STR_FRIENDS_FRIENDS_INFORMATION_BESTCARDS: "Best Hand:",
-STR_FRIENDS_FRIENDS_SEARCHTITLE: "SEARCH PLAYERS",
-STR_FRIENDS_FRIENDS_SEARCHTIPS: "Please enter at least four characters to search one player's nickname.",
-STR_FRIENDS_FRIENDS_SEARCH: "Find %d player(s) according to the players' nickname. At most display %d players.",
-STR_LOGIN_PHONELOGIN: "Phone Login",
-STR_LOGIN_ACCOUNTLOGIN: "Account Login",
-STR_LOGIN_FACEBOOKLOGIN: "FACEBOOK Login",
-STR_LOGIN_GUESTLOGIN: "Guest Login",
-STR_LOGIN_ACCOUNTLOGIN_ACCOUNT: "Please enter your email address ",
-STR_LOGIN_ACCOUNTLOGIN_PASSWORD: "Please enter your password",
-STR_LOGIN_ACCOUNTLOGIN_AUTOLOGIN: "Auto Login",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD: "Request Password",
-STR_LOGIN_ACCOUNTLOGIN_LOGIN: "LOGIN",
-STR_LOGIN_ACCOUNTLOGIN_REGISTER: "REGISTER",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERACCOUNT: "Please enter your email address ",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERENTERPASSWORD: "Please enter your password",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERCONFRIMPASSWORD: "Confirm Password",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERREGISTER: "REGISTER",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_EXPLAIN: "If you forgot your password, please enter the email address used for registration. We will send a new password to this email.",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_ENTER: "Please enter your registration email address",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_SENDEMAIL: "SEND EMAIL",
-STR_LOGIN_TERMSOFSERVICE: "TERMS OF SERVICE",
-STR_LOBBY_TITLE: "CASINO LOBBY",
-STR_LOBBY_ID: "ID",
-STR_LOBBY_BLIND: "Blind %s/%s",
-STR_LOBBY_5PLAYERS: "5 Players",
-STR_LOBBY_9PLAYERS: "9 Players",
-STR_LOBBY_FULL: "Full Room",
-STR_LOBBY_EMPTY: "Empty Room",
-STR_SIT_ROOMID: "ROOM ID %d",
-STR_SIT_BLIND: "Small/Big Blind %s/%s",
-STR_SIT_MINBLIND: "MIN",
-STR_SIT_MAXBLIND: "MAX",
-STR_SIT_AUTOSIT: "Auto take chips and sit down when chip is not enough.",
-STR_SIT_LEAVE: "LEAVE",
-STR_SIT_SIT: "SIT DOWN",
-STR_SIT_NOCHIP: "Your chip is not enough.",
-STR_SIT_SHOP: "SHOP",
-STR_INVITE_TITLE: "PLAY WITH YOUR FRIENDS!",
-STR_INVITE_BUTTON: "CALL TO TABLE",
-STR_INVITE_NOFRIEND: "Currently there is nobody on your friends list. Go and make some friends! ",
-STR_INVITE_UNKNOWN: "Address\nUnknown",
-STR_MES_FRIEND_TITLE: "FRIEND MESSAGE",
-STR_MES_SYSTEM_TITLE: "SYSTEM MESSAGE",
-STR_MES_ADDFRIEND_RCCEIVE: "Do you want to accept %s as your friend?",
-STR_MES_ADDFRIEND_AGREE: "%s accepted you as his/her friend. You can find %s in your friends list.",
-STR_MES_ADDFRIEND_YOUAGREE: "Your accepted %s as your friend. You can find him/her in your friends list.",
-STR_MES_CHIPS_GIVE: "%s gave you %d free chips. Click to accept.",
-STR_MES_CHIPS_RECEIVE: "You acceptd %d free chips from %s.",
-STR_MES_MESSAGE_NULL: "There's no message so far.",
-STR_MES_MONTH_JAN: "Jan.",
-STR_MES_MONTH_FEB: "Feb.",
-STR_MES_MONTH_MAR: "Mar.",
-STR_MES_MONTH_APR: "Apr.",
-STR_MES_MONTH_MAY: "May",
-STR_MES_MONTH_JUN: "Jun.",
-STR_MES_MONTH_JUL: "Jul.",
-STR_MES_MONTH_AUG: "Aug.",
-STR_MES_MONTH_SEP: "Sep.",
-STR_MES_MONTH_OCT: "Oct.",
-STR_MES_MONTH_NOV: "Nov.",
-STR_MES_MONTH_DEC: "Dec.",
-STR_HOMESCREEN_OLPLAYER: "%s Players Online!",
-STR_HOMESCREEN_PHOTOUPLOAD: "Your friend %s uploaded new photos.",
-STR_HOMESCREEN_NOUPLOAD: "No friends uploaded photos.",
-STR_EVENT_BACK: "BACK",
-STR_ANNOUNCEMENT_TITLE: "ANNOUNCEMENT",
-STR_PLAYER_INF_NAME: "Name:",
-STR_PLAYER_INF_TITLE_PHOTO: "PHOTOS",
-STR_PLAYER_INF_TITLE_ACHIEVEMENTS: "ACHIEVEMENTS",
-STR_PLAYER_INF_LV: "Level",
-STR_PLAYER_INF_MALE: "Male",
-STR_PLAYER_INF_FEMALE: "Female",
-STR_PLAYER_INF_ADDRESS: "Address: ",
-STR_PLAYER_INF_BUTTON_BLOCK: "Click here to block this player",
-STR_PLAYER_INF_BLOCKBUTTON: "BLOCK",
-STR_PLAYER_INF_BUTTON_UNLOCK: "Click here to unblock this player",
-STR_PLAYER_INF_UNLOCKBUTTON: "UNBLOCK",
-STR_PLAYER_INF_BUTTON_REPORT: "Click here to report this player's portrait",
-STR_PLAYER_INF_REPORTBUTTON: "REPORT",
-STR_PLAYER_INF_BLOCK: "After blocking, you will not receive any message, voice or emoji from this player. Are you sure to block this player?",
-STR_PLAYER_INF_UNBLOCK: "Unblock this player, you can receive the message, voice or emoji from this player again.",
-STR_PLAYER_INF_REPORT: "Report this player if you feel sick about his/her portrait. And his/her portrait will be blocked through several reports. We will review the portrait as soon as possible. Are you sure to report this portrait?",
-STR_PLAYER_PHOTO_NULL: "This player haven't uploaded any photos.",
-STR_CHECKPHOTO_NOAUTHORITY: "Sorry, you can't access this page due to the player's privacy settings.",
-STR_PLAYER_PHOTO_CRITICTITLE: "Comment",
-STR_PLAYER_STATISTICS_GAMES: "Hands:",
-STR_PLAYER_STATISTICS_WINS: "Win",
-STR_PLAYER_STATISTICS_LOSE: "Lose",
-STR_PLAYER_STATISTICS_WINRATE: "Win Rate:",
-STR_PLAYER_STATISTICS_SHOWINRIVER: "Show in River:",
-STR_PLAYER_STATISTICS_FOLDINPREFLOP: "Pre-flop Fold:",
-STR_PLAYER_STATISTICS_ALLININPREFLOP: "Pre-flop All-In:",
-STR_PLAYER_STATISTICS_HIGHESTCHIPS: "Most Chips:",
-STR_PLAYER_STATISTICS_MOSTWIN: "Biggest Pot Won:",
-STR_PLAYER_STATISTICS_BTESTCARD: "Best Hand:",
-STR_PLAYER_STATISTICS_MINS: "%s mins",
-STR_PLAYER_ACHIEVEMENT_NULL: "This player has not unlocked any achievements yet.",
-STR_LOGINREWARD_TITLE: "LOGIN REWARD",
-STR_LOGINREWARD_DAY: "DAY %d",
-STR_LOGINREWARD_RECEIVED: "Have received",
-STR_LOGINREWARD_TIPS: "If you keep continuous login,you can get more huge rewards.",
-STR_LOGINREWARD_SUCCESS: "You got %d %s by daily login.",
-STR_ABOUTUS_STAFF: "Poker Royal Texas Hold'em Staff List\n\n\nGameDesinger\n\nStone\nJohn Smith\n\n\nProgrammer\n\nJack\nWillian\nHaven \nSpiro\nBob\nRussell\n\n\nArtDesinger\n\nPantheon\nEmma\nMandy\n\n\nGameTester\n\nJoffence\nDoris\n\n\nSpecial Thanks\n\nChris\nAlex\nMatata\nBlank",
-STR_BUTTON_YES: "YES",
-STR_BUTTON_NO: "NO",
-STR_BUTTON_OK: "OK",
-STR_BUTTON_IGNORE: "IGNORE",
-STR_BUTTON_AGREE: "AGREE",
-STR_OPTIONS_TITLE: "OPTIONS",
-STR_OPTIONS_VOICE: "VOICE",
-STR_OPTIONS_SOUND: "SOUND",
-STR_OPTIONS_AUTOSIT: "SIT DOWN AUTO",
-STR_OPTIONS_VIBRATION: "VIBRATION",
-STR_OPTIONS_FOLLOW: "ALLOW FRIENDS TO FOLLOW",
-STR_OPTIONS_INVITE: "RECIEVE INVATATION MESSAGE",
-STR_OPTIONS_SEEPHOTOS: "WHO CAN SEE MY PHOTOS",
-STR_OPTIONS_CHOSEN_YES: "Yes",
-STR_OPTIONS_CHOSEN_NO: "No",
-STR_OPTIONS_SEEPHOTOS_FRIEND: "Only friends",
-STR_OPTIONS_SEEPHOTOS_NOONE: "No one",
-STR_OPTIONS_SEEPHOTOS_ANYONE: "Anyone",
-STR_OPTIONS_RATE: "RATE OUR GAME",
-STR_OPTIONS_CACHE: "CLEAR PORTRAIT CACHE",
-STR_OPTIONS_CACHE_CONFIRM: "Clear cache will delete the portraits and photos you downloaded. Are you sure you want to clear the cache?",
-STR_OPTIONS_CACHE_CLEARED: "Clear cache successed",
-STR_OPTIONS_ABOUT: "ABOUT US",
-STR_OPTIONS_REPORT: "Report issues",
-STR_OPTIONS_FOLLOWUS: "Follow us @FaceBook",
-STR_OPTIONS_CONTACT: "CONTACT US",
-STR_LOADING_1: "Bring your friends to play our game together. Also, don't forget to play with them offline.",
-STR_LOADING_2: "Please be polite when communicating with others. It's the way to repect each other.",
-STR_LOADING_3: "No matter how handsome and beautiful the dealers are, never try to take liberties with them in game.",
-STR_LOADING_4: "Never give up when you meet setback in game, the life will not abandon you.",
-STR_LOADING_5: "Do everything in moderation including play Poker Royal.",
-STR_LOADING_6: "Remember to send free chips to your friends at their player profile every day.",
-STR_LOADING_7: "Click the chip symbol in the botton left corner to chose how much you want to raise .",
-STR_LOADING_8: "You can block an opponent's chat messages by clicking the player's avatar in his player profile.",
-STR_LOADING_9: "Click the voice button in another player's profile to send a private message.",
-STR_LOADING_10: "Don't forget to check the activities daily. There might be a a new bonus waiting for you.",
-STR_LOADING_11: "The rewards will grow better with every continuous login.",
-STR_LOADING_END: "Maintaining peace of mind. Do not pleased by external gains or saddened by personal losses.",
-STR_TABLEBOARD_ID: "Room ID %d Blind %s/%s",
-STR_CARDTYPE_HIGH_CARD: "HIGH CARD",
-STR_CARDTYPE_PAIR_CARD: "A PAIR",
-STR_CARDTYPE_TWO_PAIRS_CARD: "TWO PAIRS",
-STR_CARDTYPE_THREE_CARD: "THREE OF A KIND",
-STR_CARDTYPE_STRAIGHT: "STRAIGHT",
-STR_CARDTYPE_FLUSH: "FLUSH",
-STR_CARDTYPE_FULL_HOUSE: "FULL HOUSE",
-STR_CARDTYPE_FOUR_OF_A_KIND: "FOUR OF A KIND",
-STR_CARDTYPE_STRAIGHT_FLUSH: "STRAIGHT FLUSH",
-STR_CARDTYPE_ROYAL_FLUSH: "ROYAL STRAIGHT FLUSH",
-STR_TABLEBOARD_EXP: "EXP",
-STR_QUESTS_TITLE: "QUESTS",
-STR_QUESTS_RECEIVEBUTTON: "RECEIVE",
-STR_ACHIEVEMENTS_TITLE: "ACHIEVEMENTS",
-STR_LVUP_TITLE: "CONGRATULATIONS",
-STR_LVUP_TEXT: "You reached Level %d and got the rewards %s chips.",
-STR_SHOP_TITLE: "SHOP",
-STR_SHOP_BUTTON: "BUY",
-STR_ALMS_TITLE: "RENASCENCE",
-STR_ALMS_TEXT: "Your chips and diamonds is not enough, you have %d chance(s) left to get %s free chips today.",
-STR_BUG_REPORT: "Click here to submit your new problem",
-STR_BUG_INPUT: "Please enter your questions.",
-STR_BUG_TIP: "Your questions have been submitted. We will answer your question as soon as possible. ",
-STR_BUG_TIME: "Submission Time",
-STR_BUG_WAIT: "Wait for the reply",
-STR_BUG_RESPONSETIME: "Reply Time",
-STR_BUG_DELTIP: "Are you sure to delete this question?",
-STR_BUG_VIEW: "View Details ",
-STR_BUG_COMMIT: "Commit",
-STR_BUG_DELTIPDONE: "Delete Success!",
-STR_BUG_DELTIPFAIL: "Delete Fail!",
-STR_BUG_COMMIT_TIP: "Commit Fail!",
-STR_POKER_ROOM_BET: "Bet %s/%s",
-STR_POKERTABLEBOARD_ID: "Room ID %d Min/Max Bet %s/%s",
-STR_POKER_PRE_BET: "Bet",
-STR_POKER_TYPE_POK9: "Pok9",
-STR_POKER_TYPE_POK8: "Pok8",
-STR_POKER_TYPE_TONG: "Tong",
-STR_POKER_TYPE_SAM_LUEANG: "Sam Lueang",
-STR_POKER_TYPE_STRAIGHT_FLUSH: "Straight Flush",
-STR_POKER_TYPE_STRAIGHT: "Straight",
-STR_POKER_TYPE_SCORE_0: "Score 0",
-STR_POKER_TYPE_SCORE_1: "Score 1",
-STR_POKER_TYPE_SCORE_2: "Score 2",
-STR_POKER_TYPE_SCORE_3: "Score 3",
-STR_POKER_TYPE_SCORE_4: "Score 4",
-STR_POKER_TYPE_SCORE_5: "Score 5",
-STR_POKER_TYPE_SCORE_6: "Score 6",
-STR_POKER_TYPE_SCORE_7: "Score 7",
-STR_POKER_TYPE_SCORE_8: "Score 8",
-STR_POKER_TYPE_SCORE_0_9: "Score 0-9",
-STR_POKER_TYPE_SCORE_9: "Score 9",
-STR_POKER_INTRUUCE: "Card type description",
-STR_POKER_INTRUUCE1: "The force of the cards is sorted from top to bottom",
-STR_POKER_INTRUUCE2: "These cards are 0 points",
-STR_POKER_INTRUUCE3: "These cards are 1-9 points",
-STR_POKER_INTRUUCE4: "Add up all your card's points and take the single digits",
-STR_POKER_INTRUUCE5: "2 initial cards' points is 9 ",
-STR_POKER_INTRUUCE6: "2 initial cards' points is 8",
-STR_POKER_INTRUUCE7: "KA2.A23 is not straight",
-STR_POKER_INTRUUCE8: "Odds multiples of the card type",
-STR_POKER_INTRUUCE9: "2 cards flush",
-STR_POKER_INTRUUCE10: "3 cards flush",
-STR_POKER_INTRUUCE11: "After the game is over, you will leave your seat",
-STR_POKER_INTRUUCE12: "After the game is over, you will leave your seat and exit room",
-STR_WIN_STREAK: "Winning Streak:",
-STR_PLAYER: "Player",
-STR_DEAR: "Dear",
-STR_GAME_GOTODEAR: "Click Go Dear",
-STR_CHIP_NOT_ENOUGH: "Your chip is not enough.At least %s chips can change dealer .Do you go to the store?",
-STR_POKERTABLEBOARD_ID1: "Min/Max Bet %s/%s",
-STR_GAME_GOTODEAR_1: "Dealer change success, 5 times after you can leave dealer's seat.\n",
-STR_GAME_GOTODEAR_2: "A Player Go Dear Success!",
-STR_STATIC_BIGWIN: "Biggest Win:\n",
-STR_CARDTYPE100: "3 card group JQK",
-STR_CARDTYPE101: "Straight Flush",
-STR_CARDTYPE102: "A PAIR",
-STR_CARDTYPE103: "Straight",
-STR_CARDTYPE104: "The three CARDS are the order",
-STR_ADDFRIEND_ONESELF: "You can not add more friends now. If you want to increase your friends limit, please buy the Mail List item at the shop.",
-STR_ADDFRIEND_OTHERS: "Unfortunately, the player's number of friends has reached the limit. You can not add him as a friend right now.",
-STR_MESSRECEIVE_UNDONE: "You have got all the attached things in this message.",
-STR_LOGIN_WORNING: "Your account was frozen. If you have any questions, please contact the customer service.",
-STR_LOGIN_INFO_ERROR: "Unable to log in. Please ensure that your email and password are correct.",
-STR_LOGIN_INFO_NULL: "Account and password can not be blank. Please enter.",
-STR_LOGIN_EMALL_REGISTERED: "This email is already registered. Please use a different one.",
-STR_LOGIN_EMAIL_ERROR: "Wrong email format. Please check again.",
-STR_LOGIN_PASSWORD_SHORT: "The password should consist of 6-16 letters or numbers. Please re-enter your password.",
-STR_LOGIN_PASSWORD_DIFFERENT: "Password and confirmation password do not match. Please double-check.",
-STR_LOGIN_PASSWORD_CHARACTER: "The password can only include numbers and letters. Please re-enter your password.",
-STR_LOGIN_REGISTER_SUCCESS: "Congratulations, you have successfully registered your account. Click Ok to join the game now.",
-STR_LOGIN_RETRIEVE_SUCCESS: "Password recovery email has been sent. Please check your mailbox. Please wait if there is some delay.",
-STR_LOGIN_RETRIEVE_FAIL: "The email address entered is not connected to a registered account. Please double-check.",
-STR_MAIN_LOGOFF: "Are you sure you want to log out? ",
-STR_MAIN_QUIT: "Are you sure to close our game?",
-STR_SHOP_CHIP: "You do not have enough chips. Do you want to buy some at the shop?",
-STR_SHOP_DIAMOND: "You do not have enough diamonds. Do you want to buy some at the shop?",
-STR_SHOP_BUYSUCCESSFUL: "You have successfully purchased the goods %s.",
-STR_SHOP_REACHLIMIT: "You reach the purchasing limitaton of this item.",
-STR_SHOP_BUYFAIL: "Sorry, trade failed, please try it again.",
-STR_PLAYERSEARCH_SHORT: "Please enter 4 characters at least to search for a friend.",
-STR_PLAYERSEARCH_LONG: "Please enter 16 characters at most to search for a friend.",
-STR_FRIEND_HAVEADDED: "This player is already existed in your friend list.",
-STR_FRIEND_LIMIT: "You can not add more friends now. If you want to increase your friends limit, please buy the Mail List item at the shop.",
-STR_FRIEND_FOLLOW: "Are you sure you want to join your friend %s's table? The Bet are %d/%d.",
-STR_FRIEND_DEL: "Are you sure you want to remove this friend from your friends list?",
-STR_FRIEND_ADDYOURSELF: "You can't add yourself to your friends list.",
-STR_PRESENT_NOTFRIEND: "Sorry, free chips only can be given to the one who is your friend.",
-STR_PRESENT_DONE: "You have already given the free chips to this friend today. Please try again tomorrow.",
-STR_PERSONAL_NAME_SHORT: "Your nickname should be at least 4 letters or numbers.",
-STR_PERSONAL_NAME_LONG: "Your nickname should be no more than 16 letters or numbers.",
-STR_PERSONAL_NAME_REPEAK: "This nickname already exists. Please enter a new one.",
-STR_PERSONAL_NAME_ILLEGAL: "This nickname includes characters that are not supported. Please retry using only numbers and letters.",
-STR_PERSONAL_SIGNATURE_LONG: "Your signature is too long. Please stay within 120 characters.",
-STR_PERSONAL_RECORDING_SHORT: "The recording time is too short.",
-STR_PERSONAL_QUICKVOICE_PLAY: "Only one voice can be played at a time.",
-STR_PERSONAL_QUICKVOICE_RECORD: "Can't record voice messages when another one is playing.",
-STR_PERSONAL_QUICKVOICE_DEL: "Are you sure you want to delete this Quick Voice?",
-STR_PERSONAL_PHOTO_DEL: "Are you sure you want to delete this photo?",
-STR_PERSONAL_PHOTO_LIMIT: "You can not upload more photos now. If you want to increase your photo limit, please buy the Album item at the shop.",
-STR_PERSONAL_ACCOUNT_BINDING: "This email is already registered. Please use a different one.",
-STR_PERSONAL_ITEMEXCHANGE_301002: "Congratulations! You have successfully exchange %d Diamond. The equal patch of Diamond will be deducted automatically.",
-STR_PERSONAL_ITEMEXCHANGE_302003: "Congratulations! You have successfully exchange %d Magnifier. The equal patch of Magnifier will be deducted automatically.",
-STR_PERSONAL_ITEMEXCHANGE_302001: "Congratulations! You have successfully exchange %d Microphones. The equal patch of Microphone will be deducted automatically.",
-STR_PERSONAL_ITEMEXCHANGE_302002: "Congratulations! You have successfully exchange %d Emoji. The equal patch of Emoji will be deducted automatically.",
-STR_PERSONAL_BINDIN: "Please connect your email address to your account. So, you can use this account to log in from other devices.",
-STR_ITEM_TUREEYE_NULL: "Magnifier is not enough. You should go shopping now.",
-STR_REPORT_PHOTO_CONFRIM: "Are you sure you want to report this photo? After several reports it will be blocked. We will review it as soon as possible.",
-STR_REPORT_PHOTO_REPEAK: "You have already reported this photo.",
-STR_SITDOWN_LIMIT: "This room is full. Please try another one.",
-STR_SITDOWN_FULL: 'This room is full. Click "Yes" to be automatically matched to a new room, or "No" to stay in the current room.',
-STR_SITDOWN_REPEAK: "You have sat down.",
-STR_SITDOWN_NOTEMPTY: "Please choose another seat, this seat is occupied.",
-STR_TABLE_RECORDIND_SHORT: "The recording time is too short. Please try again.",
-STR_ITEM_VOICE_NULL: "Microphone is not enough. Shopping now!",
-STR_ITEM_VOICE_STAND: "You need to sit down to use the Voice function.",
-STR_ITEM_CHAT_STAND: "You need to sit down to interact with other players.",
-STR_ITEM_EXPRESSION_NULL: "Emoji is not enough. Shopping now!",
-STR_TABLE_LEAVE_SEAT: "Are you sure you want to leave your seat? The chips you have bet will be lost.",
-STR_TABLE_LEAVE_ROOM: "Are you sure you want to exit to lobby? The chips you have bet will be lost.",
-STR_INVITE_RECEIVE: "%s invites you to join his/her game. Click here to confirm.",
-STR_INVITE_CONFRIM: "%s invites you to join his/her game. The room ID is %d, Blind %s/%s. Are you sure to join?",
-STR_INVITE_CONFRIM1: "%s invites you to join his/her game. The room ID is %d, Bet %s/%s. Are you sure to join?",
-STR_INVITE_SAMEROOM: "This player and you are in the same room now.",
-STR_MISSION_COMPLETE: "You have completed a quest. Go to reap your reward!",
-STR_MUTE_ON: "You have activated the mute function.",
-STR_MUTE_OFF: "You have deactivated the mute function.",
-STR_EQUIPMENT_MICROPHONE: "Recording failed. Please look in your phone settings to check whether you allow this game to use your microphone.",
-STR_ACHIEVEMENT_SUCCESS: "Congratulations! You receive the achievement reward %d %s.",
-STR_LOGIN_OTHERDEVICES: "Your account has currently logined from another device. If that is not you, please change your password and contact the customer service immediately.",
-STR_NETWORK_REQUEST: "Error %d ,network request failed. Please check your internet connection and try again.",
-STR_NETWORK_ERROR_CHECK: "Network error. Please check your device or the network setting.",
-STR_UNKNOWN_ERROR: "Unknow error ooccurred, the game can not operate normally. Please contact our customer service email to report this unknow error.",
-STR_ERROR_DATA: "Game data error,please login again.",
-STR_EVALUATION_TEXT: "Dear player, you could rate our game now. A well bonus will be awarded after your rating. Do you want to rate it now?",
-STR_GOOGLEPLAY_ERROR_1: "This purchase action requires one or more Google Play services that are not currently available. ",
-STR_GOOGLEPLAY_ERROR_2: "This purchase action requires an update for Google Play Services.",
-STR_GOOGLEPLAY_ERROR_3: "This purchase action won't run without Google Play services, which are missing from your phone.",
-STR_GOOGLEPLAY_ERROR_4: "This purchase action won't work unless you enable Google Play services.",
-STR_ITEM_NAME_301001: "Chips",
-STR_ITEM_NAME_301002: "Diamond(s)",
-STR_ITEM_NAME_302001: "Microphones",
-STR_ITEM_NAME_302002: "Emoji",
-STR_ITEM_NAME_302003: "Magnifiers",
-STR_ITEM_NAME_303001: "Golden Chip",
-STR_ITEM_NAME_304001: "Mail List",
-STR_ITEM_NAME_304002: "Album",
-STR_ITEM_DESC_301001: "Present the total chips of players. And it is the measurement of property.",
-STR_ITEM_DESC_301002: "Present the total diamonds of players. And it is the measurement of property.",
-STR_ITEM_DESC_302001: "Necessary item to use the voice function. For every voice message, a Microphone is used up.",
-STR_ITEM_DESC_302002: "Necessary item to use Emoji. For every Emoji used, one is used up.",
-STR_ITEM_DESC_302003: "Use this item to peek at your opponent's poker statistics. One Magnifier lasts for %d mins.",
-STR_ITEM_DESC_303001: "The Golden Chip %s the rewards received from completed quests. It lasts for %d days.",
-STR_ITEM_DESC_304001: "It can increase the quantity of adding friends. The original ceiling is 50.One item can increase 5 more spaces. ",
-STR_ITEM_DESC_304002: "It can increase the quantity of uploading photos. The original ceiling is 50.One item can increase 2 more spaces. ",
-STR_GOODS_NAME_401001: "%d Diamond Pack",
-STR_GOODS_NAME_401002: "%d Diamond Pack",
-STR_GOODS_NAME_401003: "%d Diamond Pack",
-STR_GOODS_NAME_401004: "%d Diamond Pack",
-STR_GOODS_NAME_402001: "%d Chip Pack",
-STR_GOODS_NAME_402002: "%d Chip Pack",
-STR_GOODS_NAME_402003: "%d Chip Pack",
-STR_GOODS_NAME_402004: "%d Chip Pack",
-STR_GOODS_NAME_403001: "%d Microphone Pack",
-STR_GOODS_NAME_403002: "%d Microphone Pack",
-STR_GOODS_NAME_404001: "%d Emoji Pack",
-STR_GOODS_NAME_404002: "%d Emoji Pack",
-STR_GOODS_NAME_405001: "%d Magnifier Pack",
-STR_GOODS_NAME_406001: "Golden Chip",
-STR_GOODS_NAME_407001: "Mail List",
-STR_GOODS_NAME_408001: "Album",
-STR_GOODS_DESC_401001: "Contains %d Diamonds.",
-STR_GOODS_DESC_401002: "Contains %d Diamonds",
-STR_GOODS_DESC_401003: "Contains %d Diamonds",
-STR_GOODS_DESC_401004: "Contains %d Diamonds",
-STR_GOODS_DESC_402001: "Contains %d Chips",
-STR_GOODS_DESC_402002: "Contains %d Chips",
-STR_GOODS_DESC_402003: "Contains %d Chips",
-STR_GOODS_DESC_402004: "Contains %d Chips",
-STR_GOODS_DESC_403001: "Contains %d Microphones. One Microphone can be used once.",
-STR_GOODS_DESC_403002: "Contains %d Microphones. One Microphone can be used once.",
-STR_GOODS_DESC_404001: "Contains %d Emoji. One Emoji can be used once.",
-STR_GOODS_DESC_404002: "Contains %d Emoji. One Emoji can be used once.",
-STR_GOODS_DESC_405001: "Contains %d Magnifiers. Use this item to peek at your opponent's poker statistics. One Magnifier lasts for %d mins.",
-STR_GOODS_DESC_406001: "The Golden Chip %s the rewards received from completed quests. Buying more than one will increase the duration by %d days each.",
-STR_GOODS_DESC_407001: "The Mail List increases your friends limit. The initial level is %d, and each Mail List increases it by %d. The price will increase with purchasing volume. Moreover, all %d Mail Lists can be purchased.",
-STR_GOODS_DESC_408001: "The Album increases your photo limit. The initial level is %d, and each Album increases it by %d. The price will increase with purchasing volume. Moreover, all %d Albums can be purchased.",
-STR_QUEST_DESC_101101: "Play 3 hands",
-STR_QUEST_DESC_101201: "Playing for 5 mins",
-STR_QUEST_DESC_102101: "Win 2 hands",
-STR_QUEST_DESC_102201: "Steal 3 pots pre-flop",
-STR_QUEST_DESC_102301: "Win 2 hands at showdown",
-STR_QUEST_DESC_103101: "Win a pot that is at least 5 times your bet",
-STR_QUEST_DESC_104101: "Win a pot and at least 3 side-pots at once",
-STR_QUEST_DESC_105101: "Win 3 hands after going All-In",
-STR_QUEST_DESC_106101: "Win 1 hand with at least 5 players going All-In ",
-STR_QUEST_DESC_107101: "Win 1 pot with the same hand category as your opponents at showdown",
-STR_QUEST_DESC_108101: "Win 1 hand with HIGH CARD at showdown",
-STR_QUEST_DESC_108201: "Win 1 hand with A PAIR at showdown",
-STR_QUEST_DESC_108301: "Win 1 hand with TWO PAIRS at showdown",
-STR_QUEST_DESC_108401: "Win 1 hand with 3 OF A KIND at showdown",
-STR_QUEST_DESC_108501: "Win 1 hand with STRAIGHT at showdown",
-STR_QUEST_DESC_108601: "Win 1 hand with FLUSH at showdown",
-STR_QUEST_DESC_108701: "Win 1 hand with a FULL HOUSE at showdown",
-STR_QUEST_DESC_109101: "Interact with others for 20 times",
-STR_QUEST_DESC_110101: "Comment on others' photos for 5 times",
-STR_QUEST_DESC_101102: "Play 10 hands",
-STR_QUEST_DESC_101202: "Play for 15 mins",
-STR_QUEST_DESC_102102: "Win 5 hands",
-STR_QUEST_DESC_102202: "Steal 9 pots pre-flop",
-STR_QUEST_DESC_102302: "Win 5 hands at showdown",
-STR_QUEST_DESC_103102: "Win a pot that is at least 5 times your bet for 3 times",
-STR_QUEST_DESC_104102: "Win a pot and at least 3 side-pots for 2 times",
-STR_QUEST_DESC_105102: "Win 9 hands after going All-In",
-STR_QUEST_DESC_106102: "Win 2 hands with at least 5 players going All-In",
-STR_QUEST_DESC_107102: "Win 2 pots with the same hand category as your opponents at showdown",
-STR_QUEST_DESC_108102: "Win 2 hand with HIGH CARD at showdown",
-STR_QUEST_DESC_108202: "Win 2 hand with A PAIR at showdown",
-STR_QUEST_DESC_108302: "Win 2 hand with TWO PAIRS at showdown",
-STR_QUEST_DESC_108402: "Win 2 hand with 3 OF A KIND at showdown",
-STR_QUEST_DESC_108502: "Win 2 hand with STRAIGHT at showdown",
-STR_QUEST_DESC_108602: "Win 2 hand with FLUSH at showdown",
-STR_QUEST_DESC_108702: "Win 2 hand with a FULL HOUSE at showdown",
-STR_QUEST_DESC_109102: "Interact with others for 50 times",
-STR_QUEST_DESC_110102: "Comment on others' photos for 25 times",
-STR_QUEST_DESC_101103: "Play 30 hands",
-STR_QUEST_DESC_101203: "Play for 30 mins",
-STR_QUEST_DESC_102103: "Win 10 hands",
-STR_QUEST_DESC_102203: "Steal 15 pots pre-flop",
-STR_QUEST_DESC_102303: "Win 10 hands at showdown",
-STR_QUEST_DESC_103103: "Win a pot that it at least 5 times your bet for 5 times",
-STR_QUEST_DESC_104103: "Win a pot and at least 3 side-pots at once for 3 times",
-STR_QUEST_DESC_105103: "Win 15 hands after going All-In",
-STR_QUEST_DESC_106103: "Win 3 hands with at least 5 players going All-In",
-STR_QUEST_DESC_107103: "Win 3 pots with the same hand category as your opponents at showdown",
-STR_QUEST_DESC_108103: "Win 3 hand with HIGH CARD at showdown",
-STR_QUEST_DESC_108203: "Win 3 hand with A PAIR at showdown",
-STR_QUEST_DESC_108303: "Win 3 hand with TWO PAIRS at showdown",
-STR_QUEST_DESC_108403: "Win 3 hand with 3 OF A KIND at showdown",
-STR_QUEST_DESC_108503: "Win 3 hand with STRAIGHT at showdown",
-STR_QUEST_DESC_108603: "Win 3 hand with FLUSH at showdown",
-STR_QUEST_DESC_108703: "Win 3 hand with a FULL HOUSE at showdown",
-STR_QUEST_DESC_109103: "Interact with others for 100 times",
-STR_QUEST_DESC_110103: "Comment on others' photos for 50 times",
-STR_ACHIVEVMENT_DESC_201001: "Reach level 5",
-STR_ACHIVEVMENT_DESC_201002: "Reach level 10",
-STR_ACHIVEVMENT_DESC_201003: "Reach level 20",
-STR_ACHIVEVMENT_DESC_201004: "Reach level 35",
-STR_ACHIVEVMENT_DESC_201005: "Reach level 50",
-STR_ACHIVEVMENT_DESC_202001: "Have 1 million chips",
-STR_ACHIVEVMENT_DESC_202002: "Have 10 million chips",
-STR_ACHIVEVMENT_DESC_202003: "Have 100 million chips",
-STR_ACHIVEVMENT_DESC_202004: "Have 1 billion chips",
-STR_ACHIVEVMENT_DESC_202005: "Have 10 billion chips",
-STR_ACHIVEVMENT_DESC_203001: "Play 50 hands",
-STR_ACHIVEVMENT_DESC_203002: "Play 500 hands",
-STR_ACHIVEVMENT_DESC_203003: "Play 2500 hands",
-STR_ACHIVEVMENT_DESC_203004: "Play 10000 hands",
-STR_ACHIVEVMENT_DESC_203005: "Play 25000 hands",
-STR_ACHIVEVMENT_DESC_203006: "Play 50000 hands",
-STR_ACHIVEVMENT_DESC_203007: "Play 100000 hands",
-STR_ACHIVEVMENT_DESC_204001: "Win 10 hands",
-STR_ACHIVEVMENT_DESC_204002: "Win 100 hands",
-STR_ACHIVEVMENT_DESC_204003: "Win 500 hands",
-STR_ACHIVEVMENT_DESC_204004: "Win 2000 hands",
-STR_ACHIVEVMENT_DESC_204005: "Win 5000 hands",
-STR_ACHIVEVMENT_DESC_204006: "Win 10000 hands",
-STR_ACHIVEVMENT_DESC_204007: "Win 20000 hands",
-STR_ACHIVEVMENT_DESC_205001: "Steal 5 pots pre-flop",
-STR_ACHIVEVMENT_DESC_205002: "Steal 50 pots pre-flop",
-STR_ACHIVEVMENT_DESC_205003: "Steal 500 pots pre-flop",
-STR_ACHIVEVMENT_DESC_205004: "Steal 2500 pots pre-flop",
-STR_ACHIVEVMENT_DESC_205005: "Steal 10000 pots pre-flop",
-STR_ACHIVEVMENT_DESC_206001: "Win 5 hands after going All-In",
-STR_ACHIVEVMENT_DESC_206002: "Win 50 hands after going All-In",
-STR_ACHIVEVMENT_DESC_206003: "Win 500 hands after going All-In",
-STR_ACHIVEVMENT_DESC_206004: "Win 2500 hands after going All-In",
-STR_ACHIVEVMENT_DESC_206005: "Win 10000 hands after going All-In",
-STR_ACHIVEVMENT_DESC_207001: "Win 5 hands with HIGH CARD at showdown",
-STR_ACHIVEVMENT_DESC_207002: "Win 50 hands with HIGH CARD at showdown",
-STR_ACHIVEVMENT_DESC_207003: "Win 250 hands with HIGH CARD at showdown",
-STR_ACHIVEVMENT_DESC_207004: "Win 1000 hands with HIGH CARD at showdown",
-STR_ACHIVEVMENT_DESC_207005: "Win 3000 hands with HIGH CARD at showdown",
-STR_ACHIVEVMENT_DESC_208001: "Win 5 hands with A PAIR at showdown",
-STR_ACHIVEVMENT_DESC_208002: "Win 50 hands with A PAIR at showdown",
-STR_ACHIVEVMENT_DESC_208003: "Win 500 hands with A PAIR at showdown",
-STR_ACHIVEVMENT_DESC_208004: "Win 2000 hands with A PAIR at showdown",
-STR_ACHIVEVMENT_DESC_208005: "Win 5000 hands with A PAIR at showdown",
-STR_ACHIVEVMENT_DESC_209001: "Win 5 hands with TWO PAIRS at showdown",
-STR_ACHIVEVMENT_DESC_209002: "Win 50 hands with TWO PAIRS at showdown",
-STR_ACHIVEVMENT_DESC_209003: "Win 500 hands with TWO PAIRS at showdown",
-STR_ACHIVEVMENT_DESC_209004: "Win 2000 hands with TWO PAIRS at showdown",
-STR_ACHIVEVMENT_DESC_209005: "Win 5000 hands with TWO PAIRS at showdown",
-STR_ACHIVEVMENT_DESC_210001: "Win 5 hands with 3 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_210002: "Win 50 hands with 3 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_210003: "Win 500 hands with 3 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_210004: "Win 2000 hands with 3 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_210005: "Win 5000 hands with 3 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_211001: "Win 5 hands with STRAIGHT at showdown",
-STR_ACHIVEVMENT_DESC_211002: "Win 50 hands with STRAIGHT at showdown",
-STR_ACHIVEVMENT_DESC_211003: "Win 500 hands with STRAIGHT at showdown",
-STR_ACHIVEVMENT_DESC_211004: "Win 2000 hands with STRAIGHT at showdown",
-STR_ACHIVEVMENT_DESC_211005: "Win 5000 hands with STRAIGHT at showdown",
-STR_ACHIVEVMENT_DESC_212001: "Win 5 hands with FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_212002: "Win 50 hands with FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_212003: "Win 250 hands with FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_212004: "Win 1000 hands with FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_212005: "Win 3000 hands with FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_213001: "Win 3 hands with FULL HOUSE at showdown",
-STR_ACHIVEVMENT_DESC_213002: "Win 30 hands with FULL HOUSE at showdown",
-STR_ACHIVEVMENT_DESC_213003: "Win 200 hands with FULL HOUSE at showdown",
-STR_ACHIVEVMENT_DESC_213004: "Win 500 hands with FULL HOUSE at showdown",
-STR_ACHIVEVMENT_DESC_213005: "Win 1000 hands with FULL HOUSE at showdown",
-STR_ACHIVEVMENT_DESC_214001: "Win 2 hands with 4 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_214002: "Win 10 hands with 4 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_214003: "Win 50 hands with 4 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_214004: "Win 200 hands with 4 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_214005: "Win 500 hands with 4 OF A KIND at showdown",
-STR_ACHIVEVMENT_DESC_215001: "Get all 4 OF A KIND (from 2 to A)",
-STR_ACHIVEVMENT_DESC_216001: "Win 1 hand with STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_216002: "Win 5 hands with STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_216003: "Win 20 hands with STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_216004: "Win 50 hands with STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_216005: "Win 100 hands with STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_217001: "Win 1 hand with ROYAL STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_217002: "Win 2 hands with ROYAL STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_217003: "Win 5 hands with ROYAL STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_217004: "Win 10 hands with ROYAL STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_217005: "Win 20 hands with ROYAL STRAIGHT FLUSH at showdown",
-STR_ACHIVEVMENT_DESC_218001: "Get all ROYAL STRAIGHT FLUSH (spade,heart,club,diamond)",
-STR_ACHIVEVMENT_DESC_219001: "Use voice for 20 times",
-STR_ACHIVEVMENT_DESC_219002: "Use voice for 100 times",
-STR_ACHIVEVMENT_DESC_219003: "Use voice for 500 times",
-STR_ACHIVEVMENT_DESC_219004: "Use voice for 2500 times",
-STR_ACHIVEVMENT_DESC_219005: "Use voice for 10000 times",
-STR_ACHIVEVMENT_DESC_220001: "Use emoji for 50 times",
-STR_ACHIVEVMENT_DESC_220002: "Use emoji for 250 times",
-STR_ACHIVEVMENT_DESC_220003: "Use emoji for 1000 times",
-STR_ACHIVEVMENT_DESC_220004: "Use emoji for 5000 times",
-STR_ACHIVEVMENT_DESC_220005: "Use emoji for 20000 times",
-STR_ACHIVEVMENT_DESC_221001: "Get 5 friends",
-STR_ACHIVEVMENT_DESC_221002: "Get 20 friends",
-STR_ACHIVEVMENT_DESC_221003: "Get 50 friends",
-STR_ACHIVEVMENT_DESC_222001: "Upload 1 photo",
-STR_ACHIVEVMENT_DESC_222002: "Upload 10 photos",
-STR_ACHIVEVMENT_DESC_222003: "Upload 100 photos",
-STR_ACHIVEVMENT_DESC_223001: 'Receive 5 "Like"',
-STR_ACHIVEVMENT_DESC_223002: 'Receive 50 "Like"',
-STR_ACHIVEVMENT_DESC_223003: 'Receive 500 "Like"',
-STR_ACHIVEVMENT_DESC_224001: 'Give 5 "Like"',
-STR_ACHIVEVMENT_DESC_224002: 'Give 50 "Like"',
-STR_ACHIVEVMENT_DESC_224003: 'Give 500 "Like"',
-STR_ACHIVEVMENT_DESC_225001: "Receive 10 comments on photos",
-STR_ACHIVEVMENT_DESC_225002: "Receive 100 comments on photos",
-STR_ACHIVEVMENT_DESC_225003: "Receive 1000 comments on photos",
-STR_ACHIVEVMENT_DESC_226001: "Comment on others' photos 10 times",
-STR_ACHIVEVMENT_DESC_226002: "Comment on others' photos 100 times",
-STR_ACHIVEVMENT_DESC_226003: "Comment on others' photos 1000 times",
-STR_ACHIVEVMENT_DESC_227001: "Complete 5 quests",
-STR_ACHIVEVMENT_DESC_227002: "Complete 50 quests",
-STR_ACHIVEVMENT_DESC_227003: "Complete 500 quests",
-STR_ACHIVEVMENT_DESC_227004: "Complete 2500 quests",
-STR_ACHIVEVMENT_DESC_227005: "Complete 10000 quests",
-STR_ACHIVEVMENT_DESC_228001: "Exchange items for 5 times",
-STR_ACHIVEVMENT_DESC_228002: "Exchange items for 50 times",
-STR_ACHIVEVMENT_DESC_228003: "Exchange items for 500 times",
-STR_ACHIVEVMENT_DESC_229001: "Give chips to other players in-game for 10 times",
-STR_ACHIVEVMENT_DESC_229002: "Give chips to other players in-game for 100 times",
-STR_ACHIVEVMENT_DESC_229003: "Give chips to other players in-game for 1000 times",
-STR_ACHIVEVMENT_DESC_230001: "Give free chips to your friends for 10 times",
-STR_ACHIVEVMENT_DESC_230002: "Give free chips to your friends for 100 times",
-STR_ACHIVEVMENT_DESC_230003: "Give free chips to your friends for 1000 times",
-STR_ACHIVEVMENT_DESC_231001: "Get 100000 free chips",
-STR_ACHIVEVMENT_DESC_231002: "Get 250000 free chips",
-STR_ACHIVEVMENT_DESC_231003: "Get 1 million free chips",
-STR_ACHIVEVMENT_DESC_232001: "Login to the game 5 days in total",
-STR_ACHIVEVMENT_DESC_232002: "Login to the game 25 days in total",
-STR_ACHIVEVMENT_DESC_232003: "Login to the game 100 days in total",
-STR_ACHIVEVMENT_DESC_232004: "Login to the game 250 days in total",
-STR_ACHIVEVMENT_DESC_232005: "Login to the game 500 days in total",
-STR_LOGIN_VERSION: "Version:",
-STR_INFORMATION_PERSONAL_SIGNATURE_DEFAULT: "Leave visitors a message by adding a personal signature.",
-STR_MESS_EVALUATION_TITLE: "Thanks for Your Rating",
-STR_MESS_EVALUATION_CONTENT: "Due to your support and rating of our game, %d free chips has been sent in this Message. Please get it through clicking the wallet in the bottom right corner."
-};
-cc._RF.pop();
-}, {} ],
-i18n: [ function(e, t) {
-"use strict";
-cc._RF.push(t, "93789C/shtIL6entYsZPjee", "i18n");
-var _ = e("polyglot"), n = cc.sys.language;
-"zh" !== n && (n = "en");
-var i = e(n), o = new _({
-phrases: i,
-allowMissing: !0
-});
-t.exports = {
-init: function(t) {
-i = e(n = t);
-o.replace(i);
-},
-t: function(e, t) {
-return o.t(e, t);
+cc._RF.push(t, "13451CQ89dDZrtZKs92TJO3", "gameProto");
+var n = e("./protobuf"), i = n.Reader, o = n.Writer, r = n.util, s = n.roots.default || (n.roots.default = {});
+s.tutorial = function() {
+var e = {};
+e.Person = function() {
+function e(e) {
+this.phones = [];
+if (e) for (var t = Object.keys(e), n = 0; n < t.length; ++n) null != e[t[n]] && (this[t[n]] = e[t[n]]);
 }
+e.prototype.name = "";
+e.prototype.id = 0;
+e.prototype.email = "";
+e.prototype.phones = r.emptyArray;
+e.create = function(t) {
+return new e(t);
 };
-cc._RF.pop();
-}, {
-polyglot: "polyglot"
-} ],
-polyglot: [ function(e, t, _) {
-(function(e) {
-"use strict";
-cc._RF.push(t, "69decSgpRlE1rzEKp0RzG3V", "polyglot");
-(function(e, n) {
-"function" == typeof define && define.amd ? define([], function() {
-return n(e);
-}) : "object" == typeof _ ? t.exports = n(e) : e.Polyglot = n(e);
-})("undefined" != typeof e ? e : void 0, function(e) {
-var t = String.prototype.replace;
-function _(e) {
-e = e || {};
-this.phrases = {};
-this.extend(e.phrases || {});
-this.currentLocale = e.locale || "en";
-this.allowMissing = !!e.allowMissing;
-this.warn = e.warn || I;
+e.encode = function(e, t) {
+t || (t = o.create());
+null != e.name && Object.hasOwnProperty.call(e, "name") && t.uint32(10).string(e.name);
+null != e.id && Object.hasOwnProperty.call(e, "id") && t.uint32(16).int32(e.id);
+null != e.email && Object.hasOwnProperty.call(e, "email") && t.uint32(26).string(e.email);
+if (null != e.phones && e.phones.length) for (var n = 0; n < e.phones.length; ++n) s.tutorial.Person.PhoneNumber.encode(e.phones[n], t.uint32(34).fork()).ldelim();
+return t;
+};
+e.encodeDelimited = function(e, t) {
+return this.encode(e, t).ldelim();
+};
+e.decode = function(e, t) {
+e instanceof i || (e = i.create(e));
+for (var n = void 0 === t ? e.len : e.pos + t, o = new s.tutorial.Person(); e.pos < n; ) {
+var r = e.uint32();
+switch (r >>> 3) {
+case 1:
+o.name = e.string();
+break;
+
+case 2:
+o.id = e.int32();
+break;
+
+case 3:
+o.email = e.string();
+break;
+
+case 4:
+o.phones && o.phones.length || (o.phones = []);
+o.phones.push(s.tutorial.Person.PhoneNumber.decode(e, e.uint32()));
+break;
+
+default:
+e.skipType(7 & r);
 }
-_.VERSION = "1.0.0";
-_.prototype.locale = function(e) {
-e && (this.currentLocale = e);
-return this.currentLocale;
-};
-_.prototype.extend = function(e, t) {
-var _;
-for (var n in e) if (e.hasOwnProperty(n)) {
-_ = e[n];
-t && (n = t + "." + n);
-"object" == typeof _ ? this.extend(_, n) : this.phrases[n] = _;
 }
+return o;
 };
-_.prototype.unset = function(e, t) {
-var _;
-if ("string" == typeof e) delete this.phrases[e]; else for (var n in e) if (e.hasOwnProperty(n)) {
-_ = e[n];
-t && (n = t + "." + n);
-"object" == typeof _ ? this.unset(_, n) : delete this.phrases[n];
+e.decodeDelimited = function(e) {
+e instanceof i || (e = new i(e));
+return this.decode(e, e.uint32());
+};
+e.verify = function(e) {
+if ("object" != typeof e || null === e) return "object expected";
+if (null != e.name && e.hasOwnProperty("name") && !r.isString(e.name)) return "name: string expected";
+if (null != e.id && e.hasOwnProperty("id") && !r.isInteger(e.id)) return "id: integer expected";
+if (null != e.email && e.hasOwnProperty("email") && !r.isString(e.email)) return "email: string expected";
+if (null != e.phones && e.hasOwnProperty("phones")) {
+if (!Array.isArray(e.phones)) return "phones: array expected";
+for (var t = 0; t < e.phones.length; ++t) {
+var n = s.tutorial.Person.PhoneNumber.verify(e.phones[t]);
+if (n) return "phones." + n;
 }
-};
-_.prototype.clear = function() {
-this.phrases = {};
-};
-_.prototype.replace = function(e) {
-this.clear();
-this.extend(e);
-};
-_.prototype.t = function(e, t) {
-var _, n;
-"number" == typeof (t = null == t ? {} : t) && (t = {
-smart_count: t
-});
-if ("string" == typeof this.phrases[e]) _ = this.phrases[e]; else if ("string" == typeof t._) _ = t._; else if (this.allowMissing) _ = e; else {
-this.warn('Missing translation for key: "' + e + '"');
-n = e;
 }
-if ("string" == typeof _) {
-t = l(t);
-n = c(n = r(_, this.currentLocale, t.smart_count), t);
+return null;
+};
+e.fromObject = function(e) {
+if (e instanceof s.tutorial.Person) return e;
+var t = new s.tutorial.Person();
+null != e.name && (t.name = String(e.name));
+null != e.id && (t.id = 0 | e.id);
+null != e.email && (t.email = String(e.email));
+if (e.phones) {
+if (!Array.isArray(e.phones)) throw TypeError(".tutorial.Person.phones: array expected");
+t.phones = [];
+for (var n = 0; n < e.phones.length; ++n) {
+if ("object" != typeof e.phones[n]) throw TypeError(".tutorial.Person.phones: object expected");
+t.phones[n] = s.tutorial.Person.PhoneNumber.fromObject(e.phones[n]);
+}
+}
+return t;
+};
+e.toObject = function(e, t) {
+t || (t = {});
+var n = {};
+(t.arrays || t.defaults) && (n.phones = []);
+if (t.defaults) {
+n.name = "";
+n.id = 0;
+n.email = "";
+}
+null != e.name && e.hasOwnProperty("name") && (n.name = e.name);
+null != e.id && e.hasOwnProperty("id") && (n.id = e.id);
+null != e.email && e.hasOwnProperty("email") && (n.email = e.email);
+if (e.phones && e.phones.length) {
+n.phones = [];
+for (var i = 0; i < e.phones.length; ++i) n.phones[i] = s.tutorial.Person.PhoneNumber.toObject(e.phones[i], t);
 }
 return n;
 };
-_.prototype.has = function(e) {
-return e in this.phrases;
+e.prototype.toJSON = function() {
+return this.constructor.toObject(this, n.util.toJSONOptions);
 };
-var n = "||||", i = {
-chinese: function() {
-return 0;
-},
-german: function(e) {
-return 1 !== e ? 1 : 0;
-},
-french: function(e) {
-return e > 1 ? 1 : 0;
-},
-russian: function(e) {
-return e % 10 == 1 && e % 100 != 11 ? 0 : e % 10 >= 2 && e % 10 <= 4 && (e % 100 < 10 || e % 100 >= 20) ? 1 : 2;
-},
-czech: function(e) {
-return 1 === e ? 0 : e >= 2 && e <= 4 ? 1 : 2;
-},
-polish: function(e) {
-return 1 === e ? 0 : e % 10 >= 2 && e % 10 <= 4 && (e % 100 < 10 || e % 100 >= 20) ? 1 : 2;
-},
-icelandic: function(e) {
-return e % 10 != 1 || e % 100 == 11 ? 1 : 0;
+e.PhoneType = function() {
+var e = {}, t = Object.create(e);
+t[e[0] = "MOBILE"] = 0;
+t[e[1] = "HOME"] = 1;
+t[e[2] = "WORK"] = 2;
+return t;
+}();
+e.PhoneNumber = function() {
+function e(e) {
+if (e) for (var t = Object.keys(e), n = 0; n < t.length; ++n) null != e[t[n]] && (this[t[n]] = e[t[n]]);
 }
-}, o = {
-chinese: [ "fa", "id", "ja", "ko", "lo", "ms", "th", "tr", "zh" ],
-german: [ "da", "de", "en", "es", "fi", "el", "he", "hu", "it", "nl", "no", "pt", "sv" ],
-french: [ "fr", "tl", "pt-br" ],
-russian: [ "hr", "ru" ],
-czech: [ "cs", "sk" ],
-polish: [ "pl" ],
-icelandic: [ "is" ]
+e.prototype.number = "";
+e.prototype.type = 0;
+e.create = function(t) {
+return new e(t);
 };
-function S(e) {
-var t, _, n, i = {};
-for (t in e) if (e.hasOwnProperty(t)) {
-_ = e[t];
-for (n in _) i[_[n]] = t;
+e.encode = function(e, t) {
+t || (t = o.create());
+null != e.number && Object.hasOwnProperty.call(e, "number") && t.uint32(10).string(e.number);
+null != e.type && Object.hasOwnProperty.call(e, "type") && t.uint32(16).int32(e.type);
+return t;
+};
+e.encodeDelimited = function(e, t) {
+return this.encode(e, t).ldelim();
+};
+e.decode = function(e, t) {
+e instanceof i || (e = i.create(e));
+for (var n = void 0 === t ? e.len : e.pos + t, o = new s.tutorial.Person.PhoneNumber(); e.pos < n; ) {
+var r = e.uint32();
+switch (r >>> 3) {
+case 1:
+o.number = e.string();
+break;
+
+case 2:
+o.type = e.int32();
+break;
+
+default:
+e.skipType(7 & r);
 }
-return i;
 }
-var T = /^\s+|\s+$/g;
-function r(e, _, i) {
-var o, S;
-return null != i && e ? (S = (o = e.split(n))[E(_, i)] || o[0], t.call(S, T, "")) : e;
+return o;
+};
+e.decodeDelimited = function(e) {
+e instanceof i || (e = new i(e));
+return this.decode(e, e.uint32());
+};
+e.verify = function(e) {
+if ("object" != typeof e || null === e) return "object expected";
+if (null != e.number && e.hasOwnProperty("number") && !r.isString(e.number)) return "number: string expected";
+if (null != e.type && e.hasOwnProperty("type")) switch (e.type) {
+default:
+return "type: enum value expected";
+
+case 0:
+case 1:
+case 2:
 }
-function s(e) {
-var t = S(o);
-return t[e] || t.en;
+return null;
+};
+e.fromObject = function(e) {
+if (e instanceof s.tutorial.Person.PhoneNumber) return e;
+var t = new s.tutorial.Person.PhoneNumber();
+null != e.number && (t.number = String(e.number));
+switch (e.type) {
+case "MOBILE":
+case 0:
+t.type = 0;
+break;
+
+case "HOME":
+case 1:
+t.type = 1;
+break;
+
+case "WORK":
+case 2:
+t.type = 2;
 }
-function E(e, t) {
-return i[s(e)](t);
+return t;
+};
+e.toObject = function(e, t) {
+t || (t = {});
+var n = {};
+if (t.defaults) {
+n.number = "";
+n.type = t.enums === String ? "MOBILE" : 0;
 }
-var R = /\$/g, a = "$$$$";
-function c(e, _) {
-for (var n in _) if ("_" !== n && _.hasOwnProperty(n)) {
-var i = _[n];
-"string" == typeof i && (i = t.call(_[n], R, a));
-e = t.call(e, new RegExp("%\\{" + n + "\\}", "g"), i);
-}
+null != e.number && e.hasOwnProperty("number") && (n.number = e.number);
+null != e.type && e.hasOwnProperty("type") && (n.type = t.enums === String ? s.tutorial.Person.PhoneType[e.type] : e.type);
+return n;
+};
+e.prototype.toJSON = function() {
+return this.constructor.toObject(this, n.util.toJSONOptions);
+};
 return e;
+}();
+return e;
+}();
+e.AddressBook = function() {
+function e(e) {
+this.people = [];
+if (e) for (var t = Object.keys(e), n = 0; n < t.length; ++n) null != e[t[n]] && (this[t[n]] = e[t[n]]);
 }
-function I(t) {
-e.console && e.console.warn && e.console.warn("WARNING: " + t);
+e.prototype.people = r.emptyArray;
+e.create = function(t) {
+return new e(t);
+};
+e.encode = function(e, t) {
+t || (t = o.create());
+if (null != e.people && e.people.length) for (var n = 0; n < e.people.length; ++n) s.tutorial.Person.encode(e.people[n], t.uint32(10).fork()).ldelim();
+return t;
+};
+e.encodeDelimited = function(e, t) {
+return this.encode(e, t).ldelim();
+};
+e.decode = function(e, t) {
+e instanceof i || (e = i.create(e));
+for (var n = void 0 === t ? e.len : e.pos + t, o = new s.tutorial.AddressBook(); e.pos < n; ) {
+var r = e.uint32();
+switch (r >>> 3) {
+case 1:
+o.people && o.people.length || (o.people = []);
+o.people.push(s.tutorial.Person.decode(e, e.uint32()));
+break;
+
+default:
+e.skipType(7 & r);
 }
-function l(e) {
-var t = {};
-for (var _ in e) t[_] = e[_];
+}
+return o;
+};
+e.decodeDelimited = function(e) {
+e instanceof i || (e = new i(e));
+return this.decode(e, e.uint32());
+};
+e.verify = function(e) {
+if ("object" != typeof e || null === e) return "object expected";
+if (null != e.people && e.hasOwnProperty("people")) {
+if (!Array.isArray(e.people)) return "people: array expected";
+for (var t = 0; t < e.people.length; ++t) {
+var n = s.tutorial.Person.verify(e.people[t]);
+if (n) return "people." + n;
+}
+}
+return null;
+};
+e.fromObject = function(e) {
+if (e instanceof s.tutorial.AddressBook) return e;
+var t = new s.tutorial.AddressBook();
+if (e.people) {
+if (!Array.isArray(e.people)) throw TypeError(".tutorial.AddressBook.people: array expected");
+t.people = [];
+for (var n = 0; n < e.people.length; ++n) {
+if ("object" != typeof e.people[n]) throw TypeError(".tutorial.AddressBook.people: object expected");
+t.people[n] = s.tutorial.Person.fromObject(e.people[n]);
+}
+}
+return t;
+};
+e.toObject = function(e, t) {
+t || (t = {});
+var n = {};
+(t.arrays || t.defaults) && (n.people = []);
+if (e.people && e.people.length) {
+n.people = [];
+for (var i = 0; i < e.people.length; ++i) n.people[i] = s.tutorial.Person.toObject(e.people[i], t);
+}
+return n;
+};
+e.prototype.toJSON = function() {
+return this.constructor.toObject(this, n.util.toJSONOptions);
+};
+return e;
+}();
+e.Package = function() {
+function e(e) {
+if (e) for (var t = Object.keys(e), n = 0; n < t.length; ++n) null != e[t[n]] && (this[t[n]] = e[t[n]]);
+}
+e.prototype.id = 0;
+e.prototype.data = r.newBuffer([]);
+e.create = function(t) {
+return new e(t);
+};
+e.encode = function(e, t) {
+t || (t = o.create());
+null != e.id && Object.hasOwnProperty.call(e, "id") && t.uint32(8).uint32(e.id);
+null != e.data && Object.hasOwnProperty.call(e, "data") && t.uint32(18).bytes(e.data);
+return t;
+};
+e.encodeDelimited = function(e, t) {
+return this.encode(e, t).ldelim();
+};
+e.decode = function(e, t) {
+e instanceof i || (e = i.create(e));
+for (var n = void 0 === t ? e.len : e.pos + t, o = new s.tutorial.Package(); e.pos < n; ) {
+var r = e.uint32();
+switch (r >>> 3) {
+case 1:
+o.id = e.uint32();
+break;
+
+case 2:
+o.data = e.bytes();
+break;
+
+default:
+e.skipType(7 & r);
+}
+}
+return o;
+};
+e.decodeDelimited = function(e) {
+e instanceof i || (e = new i(e));
+return this.decode(e, e.uint32());
+};
+e.verify = function(e) {
+return "object" != typeof e || null === e ? "object expected" : null != e.id && e.hasOwnProperty("id") && !r.isInteger(e.id) ? "id: integer expected" : null != e.data && e.hasOwnProperty("data") && !(e.data && "number" == typeof e.data.length || r.isString(e.data)) ? "data: buffer expected" : null;
+};
+e.fromObject = function(e) {
+if (e instanceof s.tutorial.Package) return e;
+var t = new s.tutorial.Package();
+null != e.id && (t.id = e.id >>> 0);
+null != e.data && ("string" == typeof e.data ? r.base64.decode(e.data, t.data = r.newBuffer(r.base64.length(e.data)), 0) : e.data.length && (t.data = e.data));
+return t;
+};
+e.toObject = function(e, t) {
+t || (t = {});
+var n = {};
+if (t.defaults) {
+n.id = 0;
+if (t.bytes === String) n.data = ""; else {
+n.data = [];
+t.bytes !== Array && (n.data = r.newBuffer(n.data));
+}
+}
+null != e.id && e.hasOwnProperty("id") && (n.id = e.id);
+null != e.data && e.hasOwnProperty("data") && (n.data = t.bytes === String ? r.base64.encode(e.data, 0, e.data.length) : t.bytes === Array ? Array.prototype.slice.call(e.data) : e.data);
+return n;
+};
+e.prototype.toJSON = function() {
+return this.constructor.toObject(this, n.util.toJSONOptions);
+};
+return e;
+}();
+return e;
+}();
+s.test = function() {
+var e = {};
+e.Hero = function() {
+function e(e) {
+this.skills = [];
+if (e) for (var t = Object.keys(e), n = 0; n < t.length; ++n) null != e[t[n]] && (this[t[n]] = e[t[n]]);
+}
+e.prototype.name = "";
+e.prototype.id = 0;
+e.prototype.age = 0;
+e.prototype.skills = r.emptyArray;
+e.create = function(t) {
+return new e(t);
+};
+e.encode = function(e, t) {
+t || (t = o.create());
+null != e.name && Object.hasOwnProperty.call(e, "name") && t.uint32(10).string(e.name);
+null != e.id && Object.hasOwnProperty.call(e, "id") && t.uint32(16).int32(e.id);
+null != e.age && Object.hasOwnProperty.call(e, "age") && t.uint32(24).int32(e.age);
+if (null != e.skills && e.skills.length) for (var n = 0; n < e.skills.length; ++n) t.uint32(34).string(e.skills[n]);
+return t;
+};
+e.encodeDelimited = function(e, t) {
+return this.encode(e, t).ldelim();
+};
+e.decode = function(e, t) {
+e instanceof i || (e = i.create(e));
+for (var n = void 0 === t ? e.len : e.pos + t, o = new s.test.Hero(); e.pos < n; ) {
+var r = e.uint32();
+switch (r >>> 3) {
+case 1:
+o.name = e.string();
+break;
+
+case 2:
+o.id = e.int32();
+break;
+
+case 3:
+o.age = e.int32();
+break;
+
+case 4:
+o.skills && o.skills.length || (o.skills = []);
+o.skills.push(e.string());
+break;
+
+default:
+e.skipType(7 & r);
+}
+}
+return o;
+};
+e.decodeDelimited = function(e) {
+e instanceof i || (e = new i(e));
+return this.decode(e, e.uint32());
+};
+e.verify = function(e) {
+if ("object" != typeof e || null === e) return "object expected";
+if (null != e.name && e.hasOwnProperty("name") && !r.isString(e.name)) return "name: string expected";
+if (null != e.id && e.hasOwnProperty("id") && !r.isInteger(e.id)) return "id: integer expected";
+if (null != e.age && e.hasOwnProperty("age") && !r.isInteger(e.age)) return "age: integer expected";
+if (null != e.skills && e.hasOwnProperty("skills")) {
+if (!Array.isArray(e.skills)) return "skills: array expected";
+for (var t = 0; t < e.skills.length; ++t) if (!r.isString(e.skills[t])) return "skills: string[] expected";
+}
+return null;
+};
+e.fromObject = function(e) {
+if (e instanceof s.test.Hero) return e;
+var t = new s.test.Hero();
+null != e.name && (t.name = String(e.name));
+null != e.id && (t.id = 0 | e.id);
+null != e.age && (t.age = 0 | e.age);
+if (e.skills) {
+if (!Array.isArray(e.skills)) throw TypeError(".test.Hero.skills: array expected");
+t.skills = [];
+for (var n = 0; n < e.skills.length; ++n) t.skills[n] = String(e.skills[n]);
+}
+return t;
+};
+e.toObject = function(e, t) {
+t || (t = {});
+var n = {};
+(t.arrays || t.defaults) && (n.skills = []);
+if (t.defaults) {
+n.name = "";
+n.id = 0;
+n.age = 0;
+}
+null != e.name && e.hasOwnProperty("name") && (n.name = e.name);
+null != e.id && e.hasOwnProperty("id") && (n.id = e.id);
+null != e.age && e.hasOwnProperty("age") && (n.age = e.age);
+if (e.skills && e.skills.length) {
+n.skills = [];
+for (var i = 0; i < e.skills.length; ++i) n.skills[i] = e.skills[i];
+}
+return n;
+};
+e.prototype.toJSON = function() {
+return this.constructor.toObject(this, n.util.toJSONOptions);
+};
+return e;
+}();
+return e;
+}();
+t.exports = s;
+cc._RF.pop();
+}, {
+"./protobuf": "protobuf"
+} ],
+i18nLabel: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "41ebaVoPpRA4Kp67XEdHfZn", "i18nLabel");
+Object.defineProperty(n, "__esModule", {
+value: !0
+});
+n.i18nLabel = void 0;
+var i = e("./i18nMgr"), o = cc._decorator, r = o.ccclass, s = o.property, a = o.executeInEditMode, c = o.disallowMultiple, l = o.requireComponent, u = o.menu, f = function(e) {
+__extends(t, e);
+function t() {
+var t = null !== e && e.apply(this, arguments) || this;
+t.i18n_string = "";
+t.i18n_params = [];
 return t;
 }
-return _;
+t.prototype.start = function() {
+i.i18nMgr._addOrDelLabel(this, !0);
+this._resetValue();
+};
+Object.defineProperty(t.prototype, "string", {
+get: function() {
+return this.i18n_string;
+},
+set: function(e) {
+this.i18n_string = e;
+this.setEndValue();
+},
+enumerable: !1,
+configurable: !0
 });
+Object.defineProperty(t.prototype, "params", {
+get: function() {
+return this.i18n_params;
+},
+set: function(e) {
+this.i18n_params = e;
+this.setEndValue();
+},
+enumerable: !1,
+configurable: !0
+});
+t.prototype.init = function(e, t) {
+this.i18n_string = e;
+this.i18n_params = t;
+this.setEndValue();
+};
+t.prototype.setEndValue = function() {
+var e = this.getComponent(cc.Label);
+cc.isValid(e) && (e.string = i.i18nMgr._getLabel(this.i18n_string, this.i18n_params));
+};
+t.prototype._resetValue = function() {
+this.string = this.i18n_string;
+};
+t.prototype.onDestroy = function() {
+i.i18nMgr._addOrDelLabel(this, !1);
+};
+__decorate([ s({
+visible: !1
+}) ], t.prototype, "i18n_string", void 0);
+__decorate([ s({
+visible: !1
+}) ], t.prototype, "i18n_params", void 0);
+__decorate([ s({
+type: cc.String
+}) ], t.prototype, "string", null);
+__decorate([ s({
+type: [ cc.String ]
+}) ], t.prototype, "params", null);
+return __decorate([ r, a, l(cc.Label), c, u("多语言/i18nLabel") ], t);
+}(cc.Component);
+n.i18nLabel = f;
 cc._RF.pop();
-}).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
-}, {} ],
-poplayer: [ function(e, t) {
+}, {
+"./i18nMgr": "i18nMgr"
+} ],
+i18nMgr: [ function(e, t, n) {
 "use strict";
-cc._RF.push(t, "a7524VdX5NCHaVy3DcwaMB3", "poplayer");
-var _ = e("BaseComponent");
-cc.Class({
-extends: _,
-properties: {
-AimType: {
-default: 1,
-override: !0
+cc._RF.push(t, "1e36aJmHntDxqZis49hy52h", "i18nMgr");
+Object.defineProperty(n, "__esModule", {
+value: !0
+});
+n.i18nMgr = void 0;
+var i = e("./Lang"), o = function() {
+function e() {}
+e.checkInit = function() {
+this.language || this.setLanguage("zh");
+};
+e.setLanguage = function(e) {
+if (this.language !== e) {
+this.language = e;
+this.reloadLabel();
+this.reloadSprite();
+}
+};
+e._addOrDelLabel = function(e, t) {
+if (t) this.labelArr.push(e); else {
+var n = this.labelArr.indexOf(e);
+-1 !== n && this.labelArr.splice(n, 1);
+}
+};
+e._getLabel = function(e, t) {
+this.checkInit();
+if (0 === t.length) return this.labelData[e] || e;
+for (var n = this.labelData[e] || e, i = 0; i < t.length; i++) {
+var o = new RegExp("#" + i, "g");
+n = n.replace(o, t[i]);
+}
+return n;
+};
+e._addOrDelSprite = function(e, t) {
+if (t) this.spriteArr.push(e); else {
+var n = this.spriteArr.indexOf(e);
+-1 !== n && this.spriteArr.splice(n, 1);
+}
+};
+e._getSprite = function(e, t) {
+this.checkInit();
+cc.resources.load("i18n/sprite/" + this.language + "/" + e, cc.SpriteFrame, function(e, n) {
+if (e) return t(null);
+t(n);
+});
+};
+e.reloadLabel = function() {
+this.labelData = i.default[this.language];
+};
+e.reloadSprite = function() {
+for (var e = 0, t = this.spriteArr; e < t.length; e++) t[e]._resetValue();
+};
+e.language = "";
+e.labelArr = [];
+e.labelData = {};
+e.spriteArr = [];
+return e;
+}();
+n.i18nMgr = o;
+cc._RF.pop();
+}, {
+"./Lang": "Lang"
+} ],
+i18nSprite: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "0ffbcbl89xEj5yYYH4SQgf+", "i18nSprite");
+Object.defineProperty(n, "__esModule", {
+value: !0
+});
+n.i18nSprite = void 0;
+var i = e("./i18nMgr"), o = cc._decorator, r = o.ccclass, s = o.property, a = o.executeInEditMode, c = o.disallowMultiple, l = o.requireComponent, u = o.menu, f = function(e) {
+__extends(t, e);
+function t() {
+var t = null !== e && e.apply(this, arguments) || this;
+t.i18n_string = "";
+return t;
+}
+t.prototype.start = function() {
+i.i18nMgr._addOrDelSprite(this, !0);
+this._resetValue();
+};
+Object.defineProperty(t.prototype, "string", {
+get: function() {
+return this.i18n_string;
+},
+set: function(e) {
+this.i18n_string = e;
+var t = this.getComponent(cc.Sprite);
+cc.isValid(t) && i.i18nMgr._getSprite(e, function(e) {
+cc.isValid(t) && (t.spriteFrame = e);
+});
+},
+enumerable: !1,
+configurable: !0
+});
+t.prototype._resetValue = function() {
+this.string = this.i18n_string;
+};
+t.prototype.onDestroy = function() {
+i.i18nMgr._addOrDelSprite(this, !1);
+};
+__decorate([ s({
+visible: !1
+}) ], t.prototype, "i18n_string", void 0);
+__decorate([ s({
+type: cc.String
+}) ], t.prototype, "string", null);
+return __decorate([ r, a, l(cc.Sprite), c, u("多语言/i18nSprite") ], t);
+}(cc.Component);
+n.i18nSprite = f;
+cc._RF.pop();
+}, {
+"./i18nMgr": "i18nMgr"
+} ],
+keypadManager: [ function(e, t) {
+"use strict";
+cc._RF.push(t, "d693eQSas5J5JPqhyHIJfR+", "keypadManager");
+var n = {
+mStack: [],
+init: function() {
+this.addEventListener();
+},
+add: function(e) {
+this.mStack.push(e);
+},
+remove: function(e) {
+this.mStack = this.mStack.filter(function(t) {
+return t._id !== e._id;
+});
+},
+onbackkeyup: function() {
+var e = this.mStack[this.mStack.length - 1];
+e && e.onbackpress && e.onbackpress();
+},
+addEventListener: function() {
+cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+},
+onKeyEvent: function(e) {
+var t = this.mStack[this.mStack.length - 1];
+t && t.onKeyEvent && t.onKeyEvent(e);
+},
+onKeyUp: function(e) {
+switch (e.keyCode) {
+case cc.macro.KEY.a:
+case cc.macro.KEY.back:
+this.onbackkeyup();
+break;
+
+default:
+this.onKeyEvent(e.keyCode);
 }
 },
 onDestroy: function() {
-this._super();
-},
-onLoad: function() {
-var e = this;
-this._super();
-var t = this.node.getChildByName("bg").getChildByName("btn_close");
-ua.darkButton(t, function() {
-e.bClose();
+cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+}
+};
+n.init();
+globalThis.keypadManager = n;
+cc._RF.pop();
+}, {} ],
+myModule: [ function(e, t) {
+"use strict";
+cc._RF.push(t, "eda722xrlhBrYGYnvjB3NbU", "myModule");
+var n = {
+say: function(e) {
+console.log("mymodule say==" + e);
+}
+};
+window.myModule = n;
+cc._RF.pop();
+}, {} ],
+popBaseView: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "2967aDcdoVPhKybAm7KLDhF", "popBaseView");
+Object.defineProperty(n, "__esModule", {
+value: !0
 });
-},
-onbackpress: function() {
-this._super();
-},
-start: function() {}
+var i = cc._decorator, o = i.ccclass, r = (i.property, function(e) {
+__extends(t, e);
+function t() {
+var t = null !== e && e.apply(this, arguments) || this;
+t.mChild = {};
+return t;
+}
+t.prototype.onLoad = function() {
+keypadManager.add(this);
+};
+t.prototype.onDestroy = function() {
+keypadManager.remove(this);
+};
+t.prototype.start = function() {};
+t.prototype.dismisssAnimation = function(e) {
+var t = this;
+void 0 === e && (e = "view_dismiss");
+UITool.playAnimation(this.mChild.view, e, function() {
+t.close();
 });
+};
+t.prototype.close = function() {
+this.node.destroy();
+};
+t.prototype.onbackpress = function() {
+this.dismisssAnimation();
+};
+t.prototype.onKeyEvent = function(e) {
+console.log("popBaseView onKeyEvent code:", e);
+};
+return __decorate([ o ], t);
+}(e("./BaseComponent").default));
+n.default = r;
 cc._RF.pop();
 }, {
-BaseComponent: "BaseComponent"
+"./BaseComponent": "BaseComponent"
+} ],
+popLayer: [ function(e, t, n) {
+"use strict";
+cc._RF.push(t, "fdb1bLvlMlICLftxQWYnKr+", "popLayer");
+Object.defineProperty(n, "__esModule", {
+value: !0
+});
+var i = cc._decorator, o = i.ccclass, r = (i.property, function(e) {
+__extends(t, e);
+function t() {
+return null !== e && e.apply(this, arguments) || this;
+}
+t.prototype.onLoad = function() {
+e.prototype.onLoad.call(this);
+UITool.getChildNode(this.mChild, this.node);
+};
+t.prototype.start = function() {
+var e = this;
+UITool.addBtnClick(this.mChild.btn_close, function() {
+e.dismisssAnimation();
+});
+};
+t.prototype.onbackpress = function() {
+this.dismisssAnimation();
+};
+t.prototype.onKeyEvent = function(e) {
+console.log("popLayer onKeyEvent code:", e);
+};
+return __decorate([ o ], t);
+}(e("../../core/popBaseView").default));
+n.default = r;
+cc._RF.pop();
+}, {
+"../../core/popBaseView": "popBaseView"
+} ],
+protoTool: [ function(e, t) {
+"use strict";
+cc._RF.push(t, "a5a7dhmpzJFxIxkTCe+Jlm8", "protoTool");
+var n = e("gameProto"), i = {
+encode: function(e, t) {
+var i = null;
+if (CMD2PB[e]) {
+for (var o = CMD2PB[e].pak.split("."), r = null, s = 0; s < o.length; s++) {
+var a = o[s];
+r = r ? r[a] : n[a];
+}
+i = r.create(t);
+i = r.encode(i).finish();
+}
+return i;
+},
+decode: function(e, t) {
+var i = null;
+if (CMD2PB[e]) {
+for (var o = CMD2PB[e].pak.split("."), r = null, s = 0; s < o.length; s++) {
+var a = o[s];
+r = r ? r[a] : n[a];
+}
+i = r.decode(new Uint8Array(t));
+}
+return i;
+},
+Uint8ArrayToString: function(e) {
+for (var t = "", n = 0; n < e.length; n++) t += String.fromCharCode(e[n]);
+return t;
+},
+stringToUint8Array: function(e) {
+for (var t = [], n = 0, i = e.length; n < i; ++n) t.push(e.charCodeAt(n));
+return new Uint8Array(t);
+},
+packData: function(e, t) {
+var i = {
+id: e,
+data: t
+}, o = n.tutorial.Package.create(i);
+return n.tutorial.Package.encode(o).finish();
+},
+parseData: function(e) {
+return n.tutorial.Package.decode(e);
+}
+};
+globalThis.ProtoTool = i;
+cc._RF.pop();
+}, {
+gameProto: "gameProto"
+} ],
+protobuf: [ function(require, module, exports) {
+(function(global) {
+"use strict";
+cc._RF.push(module, "72605jjxnlP8bI9N7a0gxhM", "protobuf");
+(function(undefined) {
+(function(e, t) {
+var n = function n(i) {
+var o = t[i];
+o || e[i][0].call(o = t[i] = {
+exports: {}
+}, n, o, o.exports);
+return o.exports;
+}(19);
+n.util.global.protobuf = n;
+"function" == typeof define && define.amd && define([ "long" ], function(e) {
+if (e && e.isLong) {
+n.util.Long = e;
+n.configure();
+}
+return n;
+});
+"object" == typeof module && module && module.exports && (module.exports = n);
+})({
+1: [ function(e, t) {
+t.exports = function(e, t) {
+for (var n = new Array(arguments.length - 1), i = 0, o = 2, r = !0; o < arguments.length; ) n[i++] = arguments[o++];
+return new Promise(function(o, s) {
+n[i] = function(e) {
+if (r) {
+r = !1;
+if (e) s(e); else {
+for (var t = new Array(arguments.length - 1), n = 0; n < t.length; ) t[n++] = arguments[n];
+o.apply(null, t);
+}
+}
+};
+try {
+e.apply(t || null, n);
+} catch (e) {
+if (r) {
+r = !1;
+s(e);
+}
+}
+});
+};
+}, {} ],
+2: [ function(e, t, n) {
+var i = n;
+i.length = function(e) {
+var t = e.length;
+if (!t) return 0;
+for (var n = 0; --t % 4 > 1 && "=" === e.charAt(t); ) ++n;
+return Math.ceil(3 * e.length) / 4 - n;
+};
+for (var o = new Array(64), r = new Array(123), s = 0; s < 64; ) r[o[s] = s < 26 ? s + 65 : s < 52 ? s + 71 : s < 62 ? s - 4 : s - 59 | 43] = s++;
+i.encode = function(e, t, n) {
+for (var i, r = null, s = [], a = 0, c = 0; t < n; ) {
+var l = e[t++];
+switch (c) {
+case 0:
+s[a++] = o[l >> 2];
+i = (3 & l) << 4;
+c = 1;
+break;
+
+case 1:
+s[a++] = o[i | l >> 4];
+i = (15 & l) << 2;
+c = 2;
+break;
+
+case 2:
+s[a++] = o[i | l >> 6];
+s[a++] = o[63 & l];
+c = 0;
+}
+if (a > 8191) {
+(r || (r = [])).push(String.fromCharCode.apply(String, s));
+a = 0;
+}
+}
+if (c) {
+s[a++] = o[i];
+s[a++] = 61;
+1 === c && (s[a++] = 61);
+}
+if (r) {
+a && r.push(String.fromCharCode.apply(String, s.slice(0, a)));
+return r.join("");
+}
+return String.fromCharCode.apply(String, s.slice(0, a));
+};
+i.decode = function(e, t, n) {
+for (var i, o = n, s = 0, a = 0; a < e.length; ) {
+var c = e.charCodeAt(a++);
+if (61 === c && s > 1) break;
+if ((c = r[c]) === undefined) throw Error("invalid encoding");
+switch (s) {
+case 0:
+i = c;
+s = 1;
+break;
+
+case 1:
+t[n++] = i << 2 | (48 & c) >> 4;
+i = c;
+s = 2;
+break;
+
+case 2:
+t[n++] = (15 & i) << 4 | (60 & c) >> 2;
+i = c;
+s = 3;
+break;
+
+case 3:
+t[n++] = (3 & i) << 6 | c;
+s = 0;
+}
+}
+if (1 === s) throw Error("invalid encoding");
+return n - o;
+};
+i.test = function(e) {
+return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(e);
+};
+}, {} ],
+3: [ function(e, t) {
+t.exports = n;
+function n(e, t) {
+if ("string" == typeof e) {
+t = e;
+e = undefined;
+}
+var i = [];
+function o(e) {
+if ("string" != typeof e) {
+var t = r();
+n.verbose && console.log("codegen: " + t);
+t = "return " + t;
+if (e) {
+for (var s = Object.keys(e), a = new Array(s.length + 1), c = new Array(s.length), l = 0; l < s.length; ) {
+a[l] = s[l];
+c[l] = e[s[l++]];
+}
+a[l] = t;
+return Function.apply(null, a).apply(null, c);
+}
+return Function(t)();
+}
+for (var u = new Array(arguments.length - 1), f = 0; f < u.length; ) u[f] = arguments[++f];
+f = 0;
+e = e.replace(/%([%dfijs])/g, function(e, t) {
+var n = u[f++];
+switch (t) {
+case "d":
+case "f":
+return String(Number(n));
+
+case "i":
+return String(Math.floor(n));
+
+case "j":
+return JSON.stringify(n);
+
+case "s":
+return String(n);
+}
+return "%";
+});
+if (f !== u.length) throw Error("parameter count mismatch");
+i.push(e);
+return o;
+}
+function r(n) {
+return "function " + (n || t || "") + "(" + (e && e.join(",") || "") + "){\n  " + i.join("\n  ") + "\n}";
+}
+o.toString = r;
+return o;
+}
+n.verbose = !1;
+}, {} ],
+4: [ function(e, t) {
+t.exports = n;
+function n() {
+this._listeners = {};
+}
+n.prototype.on = function(e, t, n) {
+(this._listeners[e] || (this._listeners[e] = [])).push({
+fn: t,
+ctx: n || this
+});
+return this;
+};
+n.prototype.off = function(e, t) {
+if (e === undefined) this._listeners = {}; else if (t === undefined) this._listeners[e] = []; else for (var n = this._listeners[e], i = 0; i < n.length; ) n[i].fn === t ? n.splice(i, 1) : ++i;
+return this;
+};
+n.prototype.emit = function(e) {
+var t = this._listeners[e];
+if (t) {
+for (var n = [], i = 1; i < arguments.length; ) n.push(arguments[i++]);
+for (i = 0; i < t.length; ) t[i].fn.apply(t[i++].ctx, n);
+}
+return this;
+};
+}, {} ],
+5: [ function(e, t) {
+t.exports = o;
+var n = e(1), i = e(7)("fs");
+function o(e, t, r) {
+if ("function" == typeof t) {
+r = t;
+t = {};
+} else t || (t = {});
+return r ? !t.xhr && i && i.readFile ? i.readFile(e, function(n, i) {
+return n && "undefined" != typeof XMLHttpRequest ? o.xhr(e, t, r) : n ? r(n) : r(null, t.binary ? i : i.toString("utf8"));
+}) : o.xhr(e, t, r) : n(o, this, e, t);
+}
+o.xhr = function(e, t, n) {
+var i = new XMLHttpRequest();
+i.onreadystatechange = function() {
+if (4 !== i.readyState) return undefined;
+if (0 !== i.status && 200 !== i.status) return n(Error("status " + i.status));
+if (t.binary) {
+var e = i.response;
+if (!e) {
+e = [];
+for (var o = 0; o < i.responseText.length; ++o) e.push(255 & i.responseText.charCodeAt(o));
+}
+return n(null, "undefined" != typeof Uint8Array ? new Uint8Array(e) : e);
+}
+return n(null, i.responseText);
+};
+if (t.binary) {
+"overrideMimeType" in i && i.overrideMimeType("text/plain; charset=x-user-defined");
+i.responseType = "arraybuffer";
+}
+i.open("GET", e);
+i.send();
+};
+}, {
+1: 1,
+7: 7
+} ],
+6: [ function(e, t) {
+t.exports = n(n);
+function n(e) {
+"undefined" != typeof Float32Array ? function() {
+var t = new Float32Array([ -0 ]), n = new Uint8Array(t.buffer), i = 128 === n[3];
+function o(e, i, o) {
+t[0] = e;
+i[o] = n[0];
+i[o + 1] = n[1];
+i[o + 2] = n[2];
+i[o + 3] = n[3];
+}
+function r(e, i, o) {
+t[0] = e;
+i[o] = n[3];
+i[o + 1] = n[2];
+i[o + 2] = n[1];
+i[o + 3] = n[0];
+}
+e.writeFloatLE = i ? o : r;
+e.writeFloatBE = i ? r : o;
+function s(e, i) {
+n[0] = e[i];
+n[1] = e[i + 1];
+n[2] = e[i + 2];
+n[3] = e[i + 3];
+return t[0];
+}
+function a(e, i) {
+n[3] = e[i];
+n[2] = e[i + 1];
+n[1] = e[i + 2];
+n[0] = e[i + 3];
+return t[0];
+}
+e.readFloatLE = i ? s : a;
+e.readFloatBE = i ? a : s;
+}() : function() {
+function t(e, t, n, i) {
+var o = t < 0 ? 1 : 0;
+o && (t = -t);
+if (0 === t) e(1 / t > 0 ? 0 : 2147483648, n, i); else if (isNaN(t)) e(2143289344, n, i); else if (t > 34028234663852886e22) e((o << 31 | 2139095040) >>> 0, n, i); else if (t < 11754943508222875e-54) e((o << 31 | Math.round(t / 1401298464324817e-60)) >>> 0, n, i); else {
+var r = Math.floor(Math.log(t) / Math.LN2);
+e((o << 31 | r + 127 << 23 | 8388607 & Math.round(t * Math.pow(2, -r) * 8388608)) >>> 0, n, i);
+}
+}
+e.writeFloatLE = t.bind(null, i);
+e.writeFloatBE = t.bind(null, o);
+function n(e, t, n) {
+var i = e(t, n), o = 2 * (i >> 31) + 1, r = i >>> 23 & 255, s = 8388607 & i;
+return 255 === r ? s ? NaN : Infinity * o : 0 === r ? 1401298464324817e-60 * o * s : o * Math.pow(2, r - 150) * (s + 8388608);
+}
+e.readFloatLE = n.bind(null, r);
+e.readFloatBE = n.bind(null, s);
+}();
+"undefined" != typeof Float64Array ? function() {
+var t = new Float64Array([ -0 ]), n = new Uint8Array(t.buffer), i = 128 === n[7];
+function o(e, i, o) {
+t[0] = e;
+i[o] = n[0];
+i[o + 1] = n[1];
+i[o + 2] = n[2];
+i[o + 3] = n[3];
+i[o + 4] = n[4];
+i[o + 5] = n[5];
+i[o + 6] = n[6];
+i[o + 7] = n[7];
+}
+function r(e, i, o) {
+t[0] = e;
+i[o] = n[7];
+i[o + 1] = n[6];
+i[o + 2] = n[5];
+i[o + 3] = n[4];
+i[o + 4] = n[3];
+i[o + 5] = n[2];
+i[o + 6] = n[1];
+i[o + 7] = n[0];
+}
+e.writeDoubleLE = i ? o : r;
+e.writeDoubleBE = i ? r : o;
+function s(e, i) {
+n[0] = e[i];
+n[1] = e[i + 1];
+n[2] = e[i + 2];
+n[3] = e[i + 3];
+n[4] = e[i + 4];
+n[5] = e[i + 5];
+n[6] = e[i + 6];
+n[7] = e[i + 7];
+return t[0];
+}
+function a(e, i) {
+n[7] = e[i];
+n[6] = e[i + 1];
+n[5] = e[i + 2];
+n[4] = e[i + 3];
+n[3] = e[i + 4];
+n[2] = e[i + 5];
+n[1] = e[i + 6];
+n[0] = e[i + 7];
+return t[0];
+}
+e.readDoubleLE = i ? s : a;
+e.readDoubleBE = i ? a : s;
+}() : function() {
+function t(e, t, n, i, o, r) {
+var s = i < 0 ? 1 : 0;
+s && (i = -i);
+if (0 === i) {
+e(0, o, r + t);
+e(1 / i > 0 ? 0 : 2147483648, o, r + n);
+} else if (isNaN(i)) {
+e(0, o, r + t);
+e(2146959360, o, r + n);
+} else if (i > 17976931348623157e292) {
+e(0, o, r + t);
+e((s << 31 | 2146435072) >>> 0, o, r + n);
+} else {
+var a;
+if (i < 22250738585072014e-324) {
+e((a = i / 5e-324) >>> 0, o, r + t);
+e((s << 31 | a / 4294967296) >>> 0, o, r + n);
+} else {
+var c = Math.floor(Math.log(i) / Math.LN2);
+1024 === c && (c = 1023);
+e(4503599627370496 * (a = i * Math.pow(2, -c)) >>> 0, o, r + t);
+e((s << 31 | c + 1023 << 20 | 1048576 * a & 1048575) >>> 0, o, r + n);
+}
+}
+}
+e.writeDoubleLE = t.bind(null, i, 0, 4);
+e.writeDoubleBE = t.bind(null, o, 4, 0);
+function n(e, t, n, i, o) {
+var r = e(i, o + t), s = e(i, o + n), a = 2 * (s >> 31) + 1, c = s >>> 20 & 2047, l = 4294967296 * (1048575 & s) + r;
+return 2047 === c ? l ? NaN : Infinity * a : 0 === c ? 5e-324 * a * l : a * Math.pow(2, c - 1075) * (l + 4503599627370496);
+}
+e.readDoubleLE = n.bind(null, r, 0, 4);
+e.readDoubleBE = n.bind(null, s, 4, 0);
+}();
+return e;
+}
+function i(e, t, n) {
+t[n] = 255 & e;
+t[n + 1] = e >>> 8 & 255;
+t[n + 2] = e >>> 16 & 255;
+t[n + 3] = e >>> 24;
+}
+function o(e, t, n) {
+t[n] = e >>> 24;
+t[n + 1] = e >>> 16 & 255;
+t[n + 2] = e >>> 8 & 255;
+t[n + 3] = 255 & e;
+}
+function r(e, t) {
+return (e[t] | e[t + 1] << 8 | e[t + 2] << 16 | e[t + 3] << 24) >>> 0;
+}
+function s(e, t) {
+return (e[t] << 24 | e[t + 1] << 16 | e[t + 2] << 8 | e[t + 3]) >>> 0;
+}
+}, {} ],
+7: [ function(require, module, exports) {
+module.exports = inquire;
+function inquire(moduleName) {
+try {
+var mod = eval("quire".replace(/^/, "re"))(moduleName);
+if (mod && (mod.length || Object.keys(mod).length)) return mod;
+} catch (e) {}
+return null;
+}
+}, {} ],
+8: [ function(e, t, n) {
+var i = n, o = i.isAbsolute = function(e) {
+return /^(?:\/|\w+:)/.test(e);
+}, r = i.normalize = function(e) {
+var t = (e = e.replace(/\\/g, "/").replace(/\/{2,}/g, "/")).split("/"), n = o(e), i = "";
+n && (i = t.shift() + "/");
+for (var r = 0; r < t.length; ) ".." === t[r] ? r > 0 && ".." !== t[r - 1] ? t.splice(--r, 2) : n ? t.splice(r, 1) : ++r : "." === t[r] ? t.splice(r, 1) : ++r;
+return i + t.join("/");
+};
+i.resolve = function(e, t, n) {
+n || (t = r(t));
+if (o(t)) return t;
+n || (e = r(e));
+return (e = e.replace(/(?:\/|^)[^/]+$/, "")).length ? r(e + "/" + t) : t;
+};
+}, {} ],
+9: [ function(e, t) {
+t.exports = function(e, t, n) {
+var i = n || 8192, o = i >>> 1, r = null, s = i;
+return function(n) {
+if (n < 1 || n > o) return e(n);
+if (s + n > i) {
+r = e(i);
+s = 0;
+}
+var a = t.call(r, s, s += n);
+7 & s && (s = 1 + (7 | s));
+return a;
+};
+};
+}, {} ],
+10: [ function(e, t, n) {
+var i = n;
+i.length = function(e) {
+for (var t = 0, n = 0, i = 0; i < e.length; ++i) if ((n = e.charCodeAt(i)) < 128) t += 1; else if (n < 2048) t += 2; else if (55296 == (64512 & n) && 56320 == (64512 & e.charCodeAt(i + 1))) {
+++i;
+t += 4;
+} else t += 3;
+return t;
+};
+i.read = function(e, t, n) {
+if (n - t < 1) return "";
+for (var i, o = null, r = [], s = 0; t < n; ) {
+if ((i = e[t++]) < 128) r[s++] = i; else if (i > 191 && i < 224) r[s++] = (31 & i) << 6 | 63 & e[t++]; else if (i > 239 && i < 365) {
+i = ((7 & i) << 18 | (63 & e[t++]) << 12 | (63 & e[t++]) << 6 | 63 & e[t++]) - 65536;
+r[s++] = 55296 + (i >> 10);
+r[s++] = 56320 + (1023 & i);
+} else r[s++] = (15 & i) << 12 | (63 & e[t++]) << 6 | 63 & e[t++];
+if (s > 8191) {
+(o || (o = [])).push(String.fromCharCode.apply(String, r));
+s = 0;
+}
+}
+if (o) {
+s && o.push(String.fromCharCode.apply(String, r.slice(0, s)));
+return o.join("");
+}
+return String.fromCharCode.apply(String, r.slice(0, s));
+};
+i.write = function(e, t, n) {
+for (var i, o, r = n, s = 0; s < e.length; ++s) if ((i = e.charCodeAt(s)) < 128) t[n++] = i; else if (i < 2048) {
+t[n++] = i >> 6 | 192;
+t[n++] = 63 & i | 128;
+} else if (55296 == (64512 & i) && 56320 == (64512 & (o = e.charCodeAt(s + 1)))) {
+i = 65536 + ((1023 & i) << 10) + (1023 & o);
+++s;
+t[n++] = i >> 18 | 240;
+t[n++] = i >> 12 & 63 | 128;
+t[n++] = i >> 6 & 63 | 128;
+t[n++] = 63 & i | 128;
+} else {
+t[n++] = i >> 12 | 224;
+t[n++] = i >> 6 & 63 | 128;
+t[n++] = 63 & i | 128;
+}
+return n - r;
+};
+}, {} ],
+11: [ function(e, t) {
+t.exports = o;
+var n, i = /\/|\./;
+function o(e, t) {
+if (!i.test(e)) {
+e = "google/protobuf/" + e + ".proto";
+t = {
+nested: {
+google: {
+nested: {
+protobuf: {
+nested: t
+}
+}
+}
+}
+};
+}
+o[e] = t;
+}
+o("any", {
+Any: {
+fields: {
+type_url: {
+type: "string",
+id: 1
+},
+value: {
+type: "bytes",
+id: 2
+}
+}
+}
+});
+o("duration", {
+Duration: n = {
+fields: {
+seconds: {
+type: "int64",
+id: 1
+},
+nanos: {
+type: "int32",
+id: 2
+}
+}
+}
+});
+o("timestamp", {
+Timestamp: n
+});
+o("empty", {
+Empty: {
+fields: {}
+}
+});
+o("struct", {
+Struct: {
+fields: {
+fields: {
+keyType: "string",
+type: "Value",
+id: 1
+}
+}
+},
+Value: {
+oneofs: {
+kind: {
+oneof: [ "nullValue", "numberValue", "stringValue", "boolValue", "structValue", "listValue" ]
+}
+},
+fields: {
+nullValue: {
+type: "NullValue",
+id: 1
+},
+numberValue: {
+type: "double",
+id: 2
+},
+stringValue: {
+type: "string",
+id: 3
+},
+boolValue: {
+type: "bool",
+id: 4
+},
+structValue: {
+type: "Struct",
+id: 5
+},
+listValue: {
+type: "ListValue",
+id: 6
+}
+}
+},
+NullValue: {
+values: {
+NULL_VALUE: 0
+}
+},
+ListValue: {
+fields: {
+values: {
+rule: "repeated",
+type: "Value",
+id: 1
+}
+}
+}
+});
+o("wrappers", {
+DoubleValue: {
+fields: {
+value: {
+type: "double",
+id: 1
+}
+}
+},
+FloatValue: {
+fields: {
+value: {
+type: "float",
+id: 1
+}
+}
+},
+Int64Value: {
+fields: {
+value: {
+type: "int64",
+id: 1
+}
+}
+},
+UInt64Value: {
+fields: {
+value: {
+type: "uint64",
+id: 1
+}
+}
+},
+Int32Value: {
+fields: {
+value: {
+type: "int32",
+id: 1
+}
+}
+},
+UInt32Value: {
+fields: {
+value: {
+type: "uint32",
+id: 1
+}
+}
+},
+BoolValue: {
+fields: {
+value: {
+type: "bool",
+id: 1
+}
+}
+},
+StringValue: {
+fields: {
+value: {
+type: "string",
+id: 1
+}
+}
+},
+BytesValue: {
+fields: {
+value: {
+type: "bytes",
+id: 1
+}
+}
+}
+});
+o("field_mask", {
+FieldMask: {
+fields: {
+paths: {
+rule: "repeated",
+type: "string",
+id: 1
+}
+}
+}
+});
+o.get = function(e) {
+return o[e] || null;
+};
+}, {} ],
+12: [ function(e, t, n) {
+var i = n, o = e(15), r = e(37);
+function s(e, t, n, i) {
+if (t.resolvedType) if (t.resolvedType instanceof o) {
+e("switch(d%s){", i);
+for (var r = t.resolvedType.values, s = Object.keys(r), a = 0; a < s.length; ++a) {
+t.repeated && r[s[a]] === t.typeDefault && e("default:");
+e("case%j:", s[a])("case %i:", r[s[a]])("m%s=%j", i, r[s[a]])("break");
+}
+e("}");
+} else e('if(typeof d%s!=="object")', i)("throw TypeError(%j)", t.fullName + ": object expected")("m%s=types[%i].fromObject(d%s)", i, n, i); else {
+var c = !1;
+switch (t.type) {
+case "double":
+case "float":
+e("m%s=Number(d%s)", i, i);
+break;
+
+case "uint32":
+case "fixed32":
+e("m%s=d%s>>>0", i, i);
+break;
+
+case "int32":
+case "sint32":
+case "sfixed32":
+e("m%s=d%s|0", i, i);
+break;
+
+case "uint64":
+c = !0;
+
+case "int64":
+case "sint64":
+case "fixed64":
+case "sfixed64":
+e("if(util.Long)")("(m%s=util.Long.fromValue(d%s)).unsigned=%j", i, i, c)('else if(typeof d%s==="string")', i)("m%s=parseInt(d%s,10)", i, i)('else if(typeof d%s==="number")', i)("m%s=d%s", i, i)('else if(typeof d%s==="object")', i)("m%s=new util.LongBits(d%s.low>>>0,d%s.high>>>0).toNumber(%s)", i, i, i, c ? "true" : "");
+break;
+
+case "bytes":
+e('if(typeof d%s==="string")', i)("util.base64.decode(d%s,m%s=util.newBuffer(util.base64.length(d%s)),0)", i, i, i)("else if(d%s.length)", i)("m%s=d%s", i, i);
+break;
+
+case "string":
+e("m%s=String(d%s)", i, i);
+break;
+
+case "bool":
+e("m%s=Boolean(d%s)", i, i);
+}
+}
+return e;
+}
+i.fromObject = function(e) {
+var t = e.fieldsArray, n = r.codegen([ "d" ], e.name + "$fromObject")("if(d instanceof this.ctor)")("return d");
+if (!t.length) return n("return new this.ctor");
+n("var m=new this.ctor");
+for (var i = 0; i < t.length; ++i) {
+var a = t[i].resolve(), c = r.safeProp(a.name);
+if (a.map) {
+n("if(d%s){", c)('if(typeof d%s!=="object")', c)("throw TypeError(%j)", a.fullName + ": object expected")("m%s={}", c)("for(var ks=Object.keys(d%s),i=0;i<ks.length;++i){", c);
+s(n, a, i, c + "[ks[i]]")("}")("}");
+} else if (a.repeated) {
+n("if(d%s){", c)("if(!Array.isArray(d%s))", c)("throw TypeError(%j)", a.fullName + ": array expected")("m%s=[]", c)("for(var i=0;i<d%s.length;++i){", c);
+s(n, a, i, c + "[i]")("}")("}");
+} else {
+a.resolvedType instanceof o || n("if(d%s!=null){", c);
+s(n, a, i, c);
+a.resolvedType instanceof o || n("}");
+}
+}
+return n("return m");
+};
+function a(e, t, n, i) {
+if (t.resolvedType) t.resolvedType instanceof o ? e("d%s=o.enums===String?types[%i].values[m%s]:m%s", i, n, i, i) : e("d%s=types[%i].toObject(m%s,o)", i, n, i); else {
+var r = !1;
+switch (t.type) {
+case "double":
+case "float":
+e("d%s=o.json&&!isFinite(m%s)?String(m%s):m%s", i, i, i, i);
+break;
+
+case "uint64":
+r = !0;
+
+case "int64":
+case "sint64":
+case "fixed64":
+case "sfixed64":
+e('if(typeof m%s==="number")', i)("d%s=o.longs===String?String(m%s):m%s", i, i, i)("else")("d%s=o.longs===String?util.Long.prototype.toString.call(m%s):o.longs===Number?new util.LongBits(m%s.low>>>0,m%s.high>>>0).toNumber(%s):m%s", i, i, i, i, r ? "true" : "", i);
+break;
+
+case "bytes":
+e("d%s=o.bytes===String?util.base64.encode(m%s,0,m%s.length):o.bytes===Array?Array.prototype.slice.call(m%s):m%s", i, i, i, i, i);
+break;
+
+default:
+e("d%s=m%s", i, i);
+}
+}
+return e;
+}
+i.toObject = function(e) {
+var t = e.fieldsArray.slice().sort(r.compareFieldsById);
+if (!t.length) return r.codegen()("return {}");
+for (var n = r.codegen([ "m", "o" ], e.name + "$toObject")("if(!o)")("o={}")("var d={}"), i = [], s = [], c = [], l = 0; l < t.length; ++l) t[l].partOf || (t[l].resolve().repeated ? i : t[l].map ? s : c).push(t[l]);
+if (i.length) {
+n("if(o.arrays||o.defaults){");
+for (l = 0; l < i.length; ++l) n("d%s=[]", r.safeProp(i[l].name));
+n("}");
+}
+if (s.length) {
+n("if(o.objects||o.defaults){");
+for (l = 0; l < s.length; ++l) n("d%s={}", r.safeProp(s[l].name));
+n("}");
+}
+if (c.length) {
+n("if(o.defaults){");
+for (l = 0; l < c.length; ++l) {
+var u = c[l], f = r.safeProp(u.name);
+if (u.resolvedType instanceof o) n("d%s=o.enums===String?%j:%j", f, u.resolvedType.valuesById[u.typeDefault], u.typeDefault); else if (u.long) n("if(util.Long){")("var n=new util.Long(%i,%i,%j)", u.typeDefault.low, u.typeDefault.high, u.typeDefault.unsigned)("d%s=o.longs===String?n.toString():o.longs===Number?n.toNumber():n", f)("}else")("d%s=o.longs===String?%j:%i", f, u.typeDefault.toString(), u.typeDefault.toNumber()); else if (u.bytes) {
+var d = "[" + Array.prototype.slice.call(u.typeDefault).join(",") + "]";
+n("if(o.bytes===String)d%s=%j", f, String.fromCharCode.apply(String, u.typeDefault))("else{")("d%s=%s", f, d)("if(o.bytes!==Array)d%s=util.newBuffer(d%s)", f, f)("}");
+} else n("d%s=%j", f, u.typeDefault);
+}
+n("}");
+}
+var h = !1;
+for (l = 0; l < t.length; ++l) {
+u = t[l];
+var p = e._fieldsArray.indexOf(u);
+f = r.safeProp(u.name);
+if (u.map) {
+if (!h) {
+h = !0;
+n("var ks2");
+}
+n("if(m%s&&(ks2=Object.keys(m%s)).length){", f, f)("d%s={}", f)("for(var j=0;j<ks2.length;++j){");
+a(n, u, p, f + "[ks2[j]]")("}");
+} else if (u.repeated) {
+n("if(m%s&&m%s.length){", f, f)("d%s=[]", f)("for(var j=0;j<m%s.length;++j){", f);
+a(n, u, p, f + "[j]")("}");
+} else {
+n("if(m%s!=null&&m.hasOwnProperty(%j)){", f, u.name);
+a(n, u, p, f);
+u.partOf && n("if(o.oneofs)")("d%s=%j", r.safeProp(u.partOf.name), u.name);
+}
+n("}");
+}
+return n("return d");
+};
+}, {
+15: 15,
+37: 37
+} ],
+13: [ function(e, t) {
+t.exports = function(e) {
+var t = o.codegen([ "r", "l" ], e.name + "$decode")("if(!(r instanceof Reader))")("r=Reader.create(r)")("var c=l===undefined?r.len:r.pos+l,m=new this.ctor" + (e.fieldsArray.filter(function(e) {
+return e.map;
+}).length ? ",k,value" : ""))("while(r.pos<c){")("var t=r.uint32()");
+e.group && t("if((t&7)===4)")("break");
+t("switch(t>>>3){");
+for (var s = 0; s < e.fieldsArray.length; ++s) {
+var a = e._fieldsArray[s].resolve(), c = a.resolvedType instanceof n ? "int32" : a.type, l = "m" + o.safeProp(a.name);
+t("case %i:", a.id);
+if (a.map) {
+t("if(%s===util.emptyObject)", l)("%s={}", l)("var c2 = r.uint32()+r.pos");
+i.defaults[a.keyType] !== undefined ? t("k=%j", i.defaults[a.keyType]) : t("k=null");
+i.defaults[c] !== undefined ? t("value=%j", i.defaults[c]) : t("value=null");
+t("while(r.pos<c2){")("var tag2=r.uint32()")("switch(tag2>>>3){")("case 1: k=r.%s(); break", a.keyType)("case 2:");
+i.basic[c] === undefined ? t("value=types[%i].decode(r,r.uint32())", s) : t("value=r.%s()", c);
+t("break")("default:")("r.skipType(tag2&7)")("break")("}")("}");
+i.long[a.keyType] !== undefined ? t('%s[typeof k==="object"?util.longToHash(k):k]=value', l) : t("%s[k]=value", l);
+} else if (a.repeated) {
+t("if(!(%s&&%s.length))", l, l)("%s=[]", l);
+i.packed[c] !== undefined && t("if((t&7)===2){")("var c2=r.uint32()+r.pos")("while(r.pos<c2)")("%s.push(r.%s())", l, c)("}else");
+i.basic[c] === undefined ? t(a.resolvedType.group ? "%s.push(types[%i].decode(r))" : "%s.push(types[%i].decode(r,r.uint32()))", l, s) : t("%s.push(r.%s())", l, c);
+} else i.basic[c] === undefined ? t(a.resolvedType.group ? "%s=types[%i].decode(r)" : "%s=types[%i].decode(r,r.uint32())", l, s) : t("%s=r.%s()", l, c);
+t("break");
+}
+t("default:")("r.skipType(t&7)")("break")("}")("}");
+for (s = 0; s < e._fieldsArray.length; ++s) {
+var u = e._fieldsArray[s];
+u.required && t("if(!m.hasOwnProperty(%j))", u.name)("throw util.ProtocolError(%j,{instance:m})", r(u));
+}
+return t("return m");
+};
+var n = e(15), i = e(36), o = e(37);
+function r(e) {
+return "missing required '" + e.name + "'";
+}
+}, {
+15: 15,
+36: 36,
+37: 37
+} ],
+14: [ function(e, t) {
+t.exports = function(e) {
+for (var t, s = o.codegen([ "m", "w" ], e.name + "$encode")("if(!w)")("w=Writer.create()"), a = e.fieldsArray.slice().sort(o.compareFieldsById), c = 0; c < a.length; ++c) {
+var l = a[c].resolve(), u = e._fieldsArray.indexOf(l), f = l.resolvedType instanceof n ? "int32" : l.type, d = i.basic[f];
+t = "m" + o.safeProp(l.name);
+if (l.map) {
+s("if(%s!=null&&Object.hasOwnProperty.call(m,%j)){", t, l.name)("for(var ks=Object.keys(%s),i=0;i<ks.length;++i){", t)("w.uint32(%i).fork().uint32(%i).%s(ks[i])", (l.id << 3 | 2) >>> 0, 8 | i.mapKey[l.keyType], l.keyType);
+d === undefined ? s("types[%i].encode(%s[ks[i]],w.uint32(18).fork()).ldelim().ldelim()", u, t) : s(".uint32(%i).%s(%s[ks[i]]).ldelim()", 16 | d, f, t);
+s("}")("}");
+} else if (l.repeated) {
+s("if(%s!=null&&%s.length){", t, t);
+if (l.packed && i.packed[f] !== undefined) s("w.uint32(%i).fork()", (l.id << 3 | 2) >>> 0)("for(var i=0;i<%s.length;++i)", t)("w.%s(%s[i])", f, t)("w.ldelim()"); else {
+s("for(var i=0;i<%s.length;++i)", t);
+d === undefined ? r(s, l, u, t + "[i]") : s("w.uint32(%i).%s(%s[i])", (l.id << 3 | d) >>> 0, f, t);
+}
+s("}");
+} else {
+l.optional && s("if(%s!=null&&Object.hasOwnProperty.call(m,%j))", t, l.name);
+d === undefined ? r(s, l, u, t) : s("w.uint32(%i).%s(%s)", (l.id << 3 | d) >>> 0, f, t);
+}
+}
+return s("return w");
+};
+var n = e(15), i = e(36), o = e(37);
+function r(e, t, n, i) {
+return t.resolvedType.group ? e("types[%i].encode(%s,w.uint32(%i)).uint32(%i)", n, i, (t.id << 3 | 3) >>> 0, (t.id << 3 | 4) >>> 0) : e("types[%i].encode(%s,w.uint32(%i).fork()).ldelim()", n, i, (t.id << 3 | 2) >>> 0);
+}
+}, {
+15: 15,
+36: 36,
+37: 37
+} ],
+15: [ function(e, t) {
+t.exports = r;
+var n = e(24);
+((r.prototype = Object.create(n.prototype)).constructor = r).className = "Enum";
+var i = e(23), o = e(37);
+function r(e, t, i, o, r) {
+n.call(this, e, i);
+if (t && "object" != typeof t) throw TypeError("values must be an object");
+this.valuesById = {};
+this.values = Object.create(this.valuesById);
+this.comment = o;
+this.comments = r || {};
+this.reserved = undefined;
+if (t) for (var s = Object.keys(t), a = 0; a < s.length; ++a) "number" == typeof t[s[a]] && (this.valuesById[this.values[s[a]] = t[s[a]]] = s[a]);
+}
+r.fromJSON = function(e, t) {
+var n = new r(e, t.values, t.options, t.comment, t.comments);
+n.reserved = t.reserved;
+return n;
+};
+r.prototype.toJSON = function(e) {
+var t = !!e && Boolean(e.keepComments);
+return o.toObject([ "options", this.options, "values", this.values, "reserved", this.reserved && this.reserved.length ? this.reserved : undefined, "comment", t ? this.comment : undefined, "comments", t ? this.comments : undefined ]);
+};
+r.prototype.add = function(e, t, n) {
+if (!o.isString(e)) throw TypeError("name must be a string");
+if (!o.isInteger(t)) throw TypeError("id must be an integer");
+if (this.values[e] !== undefined) throw Error("duplicate name '" + e + "' in " + this);
+if (this.isReservedId(t)) throw Error("id " + t + " is reserved in " + this);
+if (this.isReservedName(e)) throw Error("name '" + e + "' is reserved in " + this);
+if (this.valuesById[t] !== undefined) {
+if (!this.options || !this.options.allow_alias) throw Error("duplicate id " + t + " in " + this);
+this.values[e] = t;
+} else this.valuesById[this.values[e] = t] = e;
+this.comments[e] = n || null;
+return this;
+};
+r.prototype.remove = function(e) {
+if (!o.isString(e)) throw TypeError("name must be a string");
+var t = this.values[e];
+if (null == t) throw Error("name '" + e + "' does not exist in " + this);
+delete this.valuesById[t];
+delete this.values[e];
+delete this.comments[e];
+return this;
+};
+r.prototype.isReservedId = function(e) {
+return i.isReservedId(this.reserved, e);
+};
+r.prototype.isReservedName = function(e) {
+return i.isReservedName(this.reserved, e);
+};
+}, {
+23: 23,
+24: 24,
+37: 37
+} ],
+16: [ function(e, t) {
+t.exports = c;
+var n = e(24);
+((c.prototype = Object.create(n.prototype)).constructor = c).className = "Field";
+var i, o = e(15), r = e(36), s = e(37), a = /^required|optional|repeated$/;
+c.fromJSON = function(e, t) {
+return new c(e, t.id, t.type, t.rule, t.extend, t.options, t.comment);
+};
+function c(e, t, i, o, c, l, u) {
+if (s.isObject(o)) {
+u = c;
+l = o;
+o = c = undefined;
+} else if (s.isObject(c)) {
+u = l;
+l = c;
+c = undefined;
+}
+n.call(this, e, l);
+if (!s.isInteger(t) || t < 0) throw TypeError("id must be a non-negative integer");
+if (!s.isString(i)) throw TypeError("type must be a string");
+if (o !== undefined && !a.test(o = o.toString().toLowerCase())) throw TypeError("rule must be a string rule");
+if (c !== undefined && !s.isString(c)) throw TypeError("extend must be a string");
+"proto3_optional" === o && (o = "optional");
+this.rule = o && "optional" !== o ? o : undefined;
+this.type = i;
+this.id = t;
+this.extend = c || undefined;
+this.required = "required" === o;
+this.optional = !this.required;
+this.repeated = "repeated" === o;
+this.map = !1;
+this.message = null;
+this.partOf = null;
+this.typeDefault = null;
+this.defaultValue = null;
+this.long = !!s.Long && r.long[i] !== undefined;
+this.bytes = "bytes" === i;
+this.resolvedType = null;
+this.extensionField = null;
+this.declaringField = null;
+this._packed = null;
+this.comment = u;
+}
+Object.defineProperty(c.prototype, "packed", {
+get: function() {
+null === this._packed && (this._packed = !1 !== this.getOption("packed"));
+return this._packed;
+}
+});
+c.prototype.setOption = function(e, t, i) {
+"packed" === e && (this._packed = null);
+return n.prototype.setOption.call(this, e, t, i);
+};
+c.prototype.toJSON = function(e) {
+var t = !!e && Boolean(e.keepComments);
+return s.toObject([ "rule", "optional" !== this.rule && this.rule || undefined, "type", this.type, "id", this.id, "extend", this.extend, "options", this.options, "comment", t ? this.comment : undefined ]);
+};
+c.prototype.resolve = function() {
+if (this.resolved) return this;
+if ((this.typeDefault = r.defaults[this.type]) === undefined) {
+this.resolvedType = (this.declaringField ? this.declaringField.parent : this.parent).lookupTypeOrEnum(this.type);
+this.resolvedType instanceof i ? this.typeDefault = null : this.typeDefault = this.resolvedType.values[Object.keys(this.resolvedType.values)[0]];
+}
+if (this.options && null != this.options.default) {
+this.typeDefault = this.options.default;
+this.resolvedType instanceof o && "string" == typeof this.typeDefault && (this.typeDefault = this.resolvedType.values[this.typeDefault]);
+}
+if (this.options) {
+!0 !== this.options.packed && (this.options.packed === undefined || !this.resolvedType || this.resolvedType instanceof o) || delete this.options.packed;
+Object.keys(this.options).length || (this.options = undefined);
+}
+if (this.long) {
+this.typeDefault = s.Long.fromNumber(this.typeDefault, "u" === this.type.charAt(0));
+Object.freeze && Object.freeze(this.typeDefault);
+} else if (this.bytes && "string" == typeof this.typeDefault) {
+var e;
+s.base64.test(this.typeDefault) ? s.base64.decode(this.typeDefault, e = s.newBuffer(s.base64.length(this.typeDefault)), 0) : s.utf8.write(this.typeDefault, e = s.newBuffer(s.utf8.length(this.typeDefault)), 0);
+this.typeDefault = e;
+}
+this.map ? this.defaultValue = s.emptyObject : this.repeated ? this.defaultValue = s.emptyArray : this.defaultValue = this.typeDefault;
+this.parent instanceof i && (this.parent.ctor.prototype[this.name] = this.defaultValue);
+return n.prototype.resolve.call(this);
+};
+c.d = function(e, t, n, i) {
+"function" == typeof t ? t = s.decorateType(t).name : t && "object" == typeof t && (t = s.decorateEnum(t).name);
+return function(o, r) {
+s.decorateType(o.constructor).add(new c(r, e, t, n, {
+default: i
+}));
+};
+};
+c._configure = function(e) {
+i = e;
+};
+}, {
+15: 15,
+24: 24,
+36: 36,
+37: 37
+} ],
+17: [ function(e, t) {
+var n = t.exports = e(18);
+n.build = "light";
+n.load = function(e, t, i) {
+if ("function" == typeof t) {
+i = t;
+t = new n.Root();
+} else t || (t = new n.Root());
+return t.load(e, i);
+};
+n.loadSync = function(e, t) {
+t || (t = new n.Root());
+return t.loadSync(e);
+};
+n.encoder = e(14);
+n.decoder = e(13);
+n.verifier = e(40);
+n.converter = e(12);
+n.ReflectionObject = e(24);
+n.Namespace = e(23);
+n.Root = e(29);
+n.Enum = e(15);
+n.Type = e(35);
+n.Field = e(16);
+n.OneOf = e(25);
+n.MapField = e(20);
+n.Service = e(33);
+n.Method = e(22);
+n.Message = e(21);
+n.wrappers = e(41);
+n.types = e(36);
+n.util = e(37);
+n.ReflectionObject._configure(n.Root);
+n.Namespace._configure(n.Type, n.Service, n.Enum);
+n.Root._configure(n.Type);
+n.Field._configure(n.Type);
+}, {
+12: 12,
+13: 13,
+14: 14,
+15: 15,
+16: 16,
+18: 18,
+20: 20,
+21: 21,
+22: 22,
+23: 23,
+24: 24,
+25: 25,
+29: 29,
+33: 33,
+35: 35,
+36: 36,
+37: 37,
+40: 40,
+41: 41
+} ],
+18: [ function(e, t, n) {
+var i = n;
+i.build = "minimal";
+i.Writer = e(42);
+i.BufferWriter = e(43);
+i.Reader = e(27);
+i.BufferReader = e(28);
+i.util = e(39);
+i.rpc = e(31);
+i.roots = e(30);
+i.configure = o;
+function o() {
+i.util._configure();
+i.Writer._configure(i.BufferWriter);
+i.Reader._configure(i.BufferReader);
+}
+o();
+}, {
+27: 27,
+28: 28,
+30: 30,
+31: 31,
+39: 39,
+42: 42,
+43: 43
+} ],
+19: [ function(e, t) {
+var n = t.exports = e(17);
+n.build = "full";
+n.tokenize = e(34);
+n.parse = e(26);
+n.common = e(11);
+n.Root._configure(n.Type, n.parse, n.common);
+}, {
+11: 11,
+17: 17,
+26: 26,
+34: 34
+} ],
+20: [ function(e, t) {
+t.exports = r;
+var n = e(16);
+((r.prototype = Object.create(n.prototype)).constructor = r).className = "MapField";
+var i = e(36), o = e(37);
+function r(e, t, i, r, s, a) {
+n.call(this, e, t, r, undefined, undefined, s, a);
+if (!o.isString(i)) throw TypeError("keyType must be a string");
+this.keyType = i;
+this.resolvedKeyType = null;
+this.map = !0;
+}
+r.fromJSON = function(e, t) {
+return new r(e, t.id, t.keyType, t.type, t.options, t.comment);
+};
+r.prototype.toJSON = function(e) {
+var t = !!e && Boolean(e.keepComments);
+return o.toObject([ "keyType", this.keyType, "type", this.type, "id", this.id, "extend", this.extend, "options", this.options, "comment", t ? this.comment : undefined ]);
+};
+r.prototype.resolve = function() {
+if (this.resolved) return this;
+if (i.mapKey[this.keyType] === undefined) throw Error("invalid key type: " + this.keyType);
+return n.prototype.resolve.call(this);
+};
+r.d = function(e, t, n) {
+"function" == typeof n ? n = o.decorateType(n).name : n && "object" == typeof n && (n = o.decorateEnum(n).name);
+return function(i, s) {
+o.decorateType(i.constructor).add(new r(s, e, t, n));
+};
+};
+}, {
+16: 16,
+36: 36,
+37: 37
+} ],
+21: [ function(e, t) {
+t.exports = i;
+var n = e(39);
+function i(e) {
+if (e) for (var t = Object.keys(e), n = 0; n < t.length; ++n) this[t[n]] = e[t[n]];
+}
+i.create = function(e) {
+return this.$type.create(e);
+};
+i.encode = function(e, t) {
+return this.$type.encode(e, t);
+};
+i.encodeDelimited = function(e, t) {
+return this.$type.encodeDelimited(e, t);
+};
+i.decode = function(e) {
+return this.$type.decode(e);
+};
+i.decodeDelimited = function(e) {
+return this.$type.decodeDelimited(e);
+};
+i.verify = function(e) {
+return this.$type.verify(e);
+};
+i.fromObject = function(e) {
+return this.$type.fromObject(e);
+};
+i.toObject = function(e, t) {
+return this.$type.toObject(e, t);
+};
+i.prototype.toJSON = function() {
+return this.$type.toObject(this, n.toJSONOptions);
+};
+}, {
+39: 39
+} ],
+22: [ function(e, t) {
+t.exports = o;
+var n = e(24);
+((o.prototype = Object.create(n.prototype)).constructor = o).className = "Method";
+var i = e(37);
+function o(e, t, o, r, s, a, c, l, u) {
+if (i.isObject(s)) {
+c = s;
+s = a = undefined;
+} else if (i.isObject(a)) {
+c = a;
+a = undefined;
+}
+if (t !== undefined && !i.isString(t)) throw TypeError("type must be a string");
+if (!i.isString(o)) throw TypeError("requestType must be a string");
+if (!i.isString(r)) throw TypeError("responseType must be a string");
+n.call(this, e, c);
+this.type = t || "rpc";
+this.requestType = o;
+this.requestStream = !!s || undefined;
+this.responseType = r;
+this.responseStream = !!a || undefined;
+this.resolvedRequestType = null;
+this.resolvedResponseType = null;
+this.comment = l;
+this.parsedOptions = u;
+}
+o.fromJSON = function(e, t) {
+return new o(e, t.type, t.requestType, t.responseType, t.requestStream, t.responseStream, t.options, t.comment, t.parsedOptions);
+};
+o.prototype.toJSON = function(e) {
+var t = !!e && Boolean(e.keepComments);
+return i.toObject([ "type", "rpc" !== this.type && this.type || undefined, "requestType", this.requestType, "requestStream", this.requestStream, "responseType", this.responseType, "responseStream", this.responseStream, "options", this.options, "comment", t ? this.comment : undefined, "parsedOptions", this.parsedOptions ]);
+};
+o.prototype.resolve = function() {
+if (this.resolved) return this;
+this.resolvedRequestType = this.parent.lookupType(this.requestType);
+this.resolvedResponseType = this.parent.lookupType(this.responseType);
+return n.prototype.resolve.call(this);
+};
+}, {
+24: 24,
+37: 37
+} ],
+23: [ function(e, t) {
+t.exports = l;
+var n = e(24);
+((l.prototype = Object.create(n.prototype)).constructor = l).className = "Namespace";
+var i, o, r, s = e(16), a = e(37);
+l.fromJSON = function(e, t) {
+return new l(e, t.options).addJSON(t.nested);
+};
+function c(e, t) {
+if (!e || !e.length) return undefined;
+for (var n = {}, i = 0; i < e.length; ++i) n[e[i].name] = e[i].toJSON(t);
+return n;
+}
+l.arrayToJSON = c;
+l.isReservedId = function(e, t) {
+if (e) for (var n = 0; n < e.length; ++n) if ("string" != typeof e[n] && e[n][0] <= t && e[n][1] > t) return !0;
+return !1;
+};
+l.isReservedName = function(e, t) {
+if (e) for (var n = 0; n < e.length; ++n) if (e[n] === t) return !0;
+return !1;
+};
+function l(e, t) {
+n.call(this, e, t);
+this.nested = undefined;
+this._nestedArray = null;
+}
+function u(e) {
+e._nestedArray = null;
+return e;
+}
+Object.defineProperty(l.prototype, "nestedArray", {
+get: function() {
+return this._nestedArray || (this._nestedArray = a.toArray(this.nested));
+}
+});
+l.prototype.toJSON = function(e) {
+return a.toObject([ "options", this.options, "nested", c(this.nestedArray, e) ]);
+};
+l.prototype.addJSON = function(e) {
+if (e) for (var t, n = Object.keys(e), a = 0; a < n.length; ++a) {
+t = e[n[a]];
+this.add((t.fields !== undefined ? i.fromJSON : t.values !== undefined ? r.fromJSON : t.methods !== undefined ? o.fromJSON : t.id !== undefined ? s.fromJSON : l.fromJSON)(n[a], t));
+}
+return this;
+};
+l.prototype.get = function(e) {
+return this.nested && this.nested[e] || null;
+};
+l.prototype.getEnum = function(e) {
+if (this.nested && this.nested[e] instanceof r) return this.nested[e].values;
+throw Error("no such enum: " + e);
+};
+l.prototype.add = function(e) {
+if (!(e instanceof s && e.extend !== undefined || e instanceof i || e instanceof r || e instanceof o || e instanceof l)) throw TypeError("object must be a valid nested object");
+if (this.nested) {
+var t = this.get(e.name);
+if (t) {
+if (!(t instanceof l && e instanceof l) || t instanceof i || t instanceof o) throw Error("duplicate name '" + e.name + "' in " + this);
+for (var n = t.nestedArray, a = 0; a < n.length; ++a) e.add(n[a]);
+this.remove(t);
+this.nested || (this.nested = {});
+e.setOptions(t.options, !0);
+}
+} else this.nested = {};
+this.nested[e.name] = e;
+e.onAdd(this);
+return u(this);
+};
+l.prototype.remove = function(e) {
+if (!(e instanceof n)) throw TypeError("object must be a ReflectionObject");
+if (e.parent !== this) throw Error(e + " is not a member of " + this);
+delete this.nested[e.name];
+Object.keys(this.nested).length || (this.nested = undefined);
+e.onRemove(this);
+return u(this);
+};
+l.prototype.define = function(e, t) {
+if (a.isString(e)) e = e.split("."); else if (!Array.isArray(e)) throw TypeError("illegal path");
+if (e && e.length && "" === e[0]) throw Error("path must be relative");
+for (var n = this; e.length > 0; ) {
+var i = e.shift();
+if (n.nested && n.nested[i]) {
+if (!((n = n.nested[i]) instanceof l)) throw Error("path conflicts with non-namespace objects");
+} else n.add(n = new l(i));
+}
+t && n.addJSON(t);
+return n;
+};
+l.prototype.resolveAll = function() {
+for (var e = this.nestedArray, t = 0; t < e.length; ) e[t] instanceof l ? e[t++].resolveAll() : e[t++].resolve();
+return this.resolve();
+};
+l.prototype.lookup = function(e, t, n) {
+if ("boolean" == typeof t) {
+n = t;
+t = undefined;
+} else t && !Array.isArray(t) && (t = [ t ]);
+if (a.isString(e) && e.length) {
+if ("." === e) return this.root;
+e = e.split(".");
+} else if (!e.length) return this;
+if ("" === e[0]) return this.root.lookup(e.slice(1), t);
+var i = this.get(e[0]);
+if (i) {
+if (1 === e.length) {
+if (!t || t.indexOf(i.constructor) > -1) return i;
+} else if (i instanceof l && (i = i.lookup(e.slice(1), t, !0))) return i;
+} else for (var o = 0; o < this.nestedArray.length; ++o) if (this._nestedArray[o] instanceof l && (i = this._nestedArray[o].lookup(e, t, !0))) return i;
+return null === this.parent || n ? null : this.parent.lookup(e, t);
+};
+l.prototype.lookupType = function(e) {
+var t = this.lookup(e, [ i ]);
+if (!t) throw Error("no such type: " + e);
+return t;
+};
+l.prototype.lookupEnum = function(e) {
+var t = this.lookup(e, [ r ]);
+if (!t) throw Error("no such Enum '" + e + "' in " + this);
+return t;
+};
+l.prototype.lookupTypeOrEnum = function(e) {
+var t = this.lookup(e, [ i, r ]);
+if (!t) throw Error("no such Type or Enum '" + e + "' in " + this);
+return t;
+};
+l.prototype.lookupService = function(e) {
+var t = this.lookup(e, [ o ]);
+if (!t) throw Error("no such Service '" + e + "' in " + this);
+return t;
+};
+l._configure = function(e, t, n) {
+i = e;
+o = t;
+r = n;
+};
+}, {
+16: 16,
+24: 24,
+37: 37
+} ],
+24: [ function(e, t) {
+t.exports = o;
+o.className = "ReflectionObject";
+var n, i = e(37);
+function o(e, t) {
+if (!i.isString(e)) throw TypeError("name must be a string");
+if (t && !i.isObject(t)) throw TypeError("options must be an object");
+this.options = t;
+this.parsedOptions = null;
+this.name = e;
+this.parent = null;
+this.resolved = !1;
+this.comment = null;
+this.filename = null;
+}
+Object.defineProperties(o.prototype, {
+root: {
+get: function() {
+for (var e = this; null !== e.parent; ) e = e.parent;
+return e;
+}
+},
+fullName: {
+get: function() {
+for (var e = [ this.name ], t = this.parent; t; ) {
+e.unshift(t.name);
+t = t.parent;
+}
+return e.join(".");
+}
+}
+});
+o.prototype.toJSON = function() {
+throw Error();
+};
+o.prototype.onAdd = function(e) {
+this.parent && this.parent !== e && this.parent.remove(this);
+this.parent = e;
+this.resolved = !1;
+var t = e.root;
+t instanceof n && t._handleAdd(this);
+};
+o.prototype.onRemove = function(e) {
+var t = e.root;
+t instanceof n && t._handleRemove(this);
+this.parent = null;
+this.resolved = !1;
+};
+o.prototype.resolve = function() {
+if (this.resolved) return this;
+this.root instanceof n && (this.resolved = !0);
+return this;
+};
+o.prototype.getOption = function(e) {
+return this.options ? this.options[e] : undefined;
+};
+o.prototype.setOption = function(e, t, n) {
+n && this.options && this.options[e] !== undefined || ((this.options || (this.options = {}))[e] = t);
+return this;
+};
+o.prototype.setParsedOption = function(e, t, n) {
+this.parsedOptions || (this.parsedOptions = []);
+var o = this.parsedOptions;
+if (n) {
+var r = o.find(function(t) {
+return Object.prototype.hasOwnProperty.call(t, e);
+});
+if (r) {
+var s = r[e];
+i.setProperty(s, n, t);
+} else {
+(r = {})[e] = i.setProperty({}, n, t);
+o.push(r);
+}
+} else {
+var a = {};
+a[e] = t;
+o.push(a);
+}
+return this;
+};
+o.prototype.setOptions = function(e, t) {
+if (e) for (var n = Object.keys(e), i = 0; i < n.length; ++i) this.setOption(n[i], e[n[i]], t);
+return this;
+};
+o.prototype.toString = function() {
+var e = this.constructor.className, t = this.fullName;
+return t.length ? e + " " + t : e;
+};
+o._configure = function(e) {
+n = e;
+};
+}, {
+37: 37
+} ],
+25: [ function(e, t) {
+t.exports = r;
+var n = e(24);
+((r.prototype = Object.create(n.prototype)).constructor = r).className = "OneOf";
+var i = e(16), o = e(37);
+function r(e, t, i, o) {
+if (!Array.isArray(t)) {
+i = t;
+t = undefined;
+}
+n.call(this, e, i);
+if (t !== undefined && !Array.isArray(t)) throw TypeError("fieldNames must be an Array");
+this.oneof = t || [];
+this.fieldsArray = [];
+this.comment = o;
+}
+r.fromJSON = function(e, t) {
+return new r(e, t.oneof, t.options, t.comment);
+};
+r.prototype.toJSON = function(e) {
+var t = !!e && Boolean(e.keepComments);
+return o.toObject([ "options", this.options, "oneof", this.oneof, "comment", t ? this.comment : undefined ]);
+};
+function s(e) {
+if (e.parent) for (var t = 0; t < e.fieldsArray.length; ++t) e.fieldsArray[t].parent || e.parent.add(e.fieldsArray[t]);
+}
+r.prototype.add = function(e) {
+if (!(e instanceof i)) throw TypeError("field must be a Field");
+e.parent && e.parent !== this.parent && e.parent.remove(e);
+this.oneof.push(e.name);
+this.fieldsArray.push(e);
+e.partOf = this;
+s(this);
+return this;
+};
+r.prototype.remove = function(e) {
+if (!(e instanceof i)) throw TypeError("field must be a Field");
+var t = this.fieldsArray.indexOf(e);
+if (t < 0) throw Error(e + " is not a member of " + this);
+this.fieldsArray.splice(t, 1);
+(t = this.oneof.indexOf(e.name)) > -1 && this.oneof.splice(t, 1);
+e.partOf = null;
+return this;
+};
+r.prototype.onAdd = function(e) {
+n.prototype.onAdd.call(this, e);
+for (var t = 0; t < this.oneof.length; ++t) {
+var i = e.get(this.oneof[t]);
+if (i && !i.partOf) {
+i.partOf = this;
+this.fieldsArray.push(i);
+}
+}
+s(this);
+};
+r.prototype.onRemove = function(e) {
+for (var t, i = 0; i < this.fieldsArray.length; ++i) (t = this.fieldsArray[i]).parent && t.parent.remove(t);
+n.prototype.onRemove.call(this, e);
+};
+r.d = function() {
+for (var e = new Array(arguments.length), t = 0; t < arguments.length; ) e[t] = arguments[t++];
+return function(t, n) {
+o.decorateType(t.constructor).add(new r(n, e));
+Object.defineProperty(t, n, {
+get: o.oneOfGetter(e),
+set: o.oneOfSetter(e)
+});
+};
+};
+}, {
+16: 16,
+24: 24,
+37: 37
+} ],
+26: [ function(e, t) {
+t.exports = A;
+A.filename = null;
+A.defaults = {
+keepCase: !1
+};
+var n = e(34), i = e(29), o = e(35), r = e(16), s = e(20), a = e(25), c = e(15), l = e(33), u = e(22), f = e(36), d = e(37), h = /^[1-9][0-9]*$/, p = /^-?[1-9][0-9]*$/, g = /^0[x][0-9a-fA-F]+$/, m = /^-?0[x][0-9a-fA-F]+$/, y = /^0[0-7]+$/, v = /^-?0[0-7]+$/, b = /^(?![eE])[0-9]*(?:\.[0-9]*)?(?:[eE][+-]?[0-9]+)?$/, S = /^[a-zA-Z_][a-zA-Z_0-9]*$/, w = /^(?:\.?[a-zA-Z_][a-zA-Z_0-9]*)(?:\.[a-zA-Z_][a-zA-Z_0-9]*)*$/, C = /^(?:\.[a-zA-Z_][a-zA-Z_0-9]*)+$/;
+function A(e, t, _) {
+if (!(t instanceof i)) {
+_ = t;
+t = new i();
+}
+_ || (_ = A.defaults);
+var I, T, P, x, O, D = _.preferTrailingComment || !1, B = n(e, _.alternateCommentMode || !1), R = B.next, k = B.push, E = B.peek, M = B.skip, N = B.cmnt, j = !0, F = !1, U = t, L = _.keepCase ? function(e) {
+return e;
+} : d.camelCase;
+function G(e, t, n) {
+var i = A.filename;
+n || (A.filename = null);
+return Error("illegal " + (t || "token") + " '" + e + "' (" + (i ? i + ", " : "") + "line " + B.line + ")");
+}
+function V() {
+var e, t = [];
+do {
+if ('"' !== (e = R()) && "'" !== e) throw G(e);
+t.push(R());
+M(e);
+e = E();
+} while ('"' === e || "'" === e);
+return t.join("");
+}
+function W(e) {
+var t = R();
+switch (t) {
+case "'":
+case '"':
+k(t);
+return V();
+
+case "true":
+case "TRUE":
+return !0;
+
+case "false":
+case "FALSE":
+return !1;
+}
+try {
+return H(t, !0);
+} catch (n) {
+if (e && w.test(t)) return t;
+throw G(t, "value");
+}
+}
+function z(e, t) {
+var n, i;
+do {
+!t || '"' !== (n = E()) && "'" !== n ? e.push([ i = q(R()), M("to", !0) ? q(R()) : i ]) : e.push(V());
+} while (M(",", !0));
+M(";");
+}
+function H(e, t) {
+var n = 1;
+if ("-" === e.charAt(0)) {
+n = -1;
+e = e.substring(1);
+}
+switch (e) {
+case "inf":
+case "INF":
+case "Inf":
+return Infinity * n;
+
+case "nan":
+case "NAN":
+case "Nan":
+case "NaN":
+return NaN;
+
+case "0":
+return 0;
+}
+if (h.test(e)) return n * parseInt(e, 10);
+if (g.test(e)) return n * parseInt(e, 16);
+if (y.test(e)) return n * parseInt(e, 8);
+if (b.test(e)) return n * parseFloat(e);
+throw G(e, "number", t);
+}
+function q(e, t) {
+switch (e) {
+case "max":
+case "MAX":
+case "Max":
+return 536870911;
+
+case "0":
+return 0;
+}
+if (!t && "-" === e.charAt(0)) throw G(e, "id");
+if (p.test(e)) return parseInt(e, 10);
+if (m.test(e)) return parseInt(e, 16);
+if (v.test(e)) return parseInt(e, 8);
+throw G(e, "id");
+}
+function J() {
+if (I !== undefined) throw G("package");
+I = R();
+if (!w.test(I)) throw G(I, "name");
+U = U.define(I);
+M(";");
+}
+function Y() {
+var e, t = E();
+switch (t) {
+case "weak":
+e = P || (P = []);
+R();
+break;
+
+case "public":
+R();
+
+default:
+e = T || (T = []);
+}
+t = V();
+M(";");
+e.push(t);
+}
+function K() {
+M("=");
+x = V();
+if (!(F = "proto3" === x) && "proto2" !== x) throw G(x, "syntax");
+M(";");
+}
+function $(e, t) {
+switch (t) {
+case "option":
+re(e, t);
+M(";");
+return !0;
+
+case "message":
+X(e, t);
+return !0;
+
+case "enum":
+ie(e, t);
+return !0;
+
+case "service":
+ue(e, t);
+return !0;
+
+case "extend":
+de(e, t);
+return !0;
+}
+return !1;
+}
+function Z(e, t, n) {
+var i = B.line;
+if (e) {
+"string" != typeof e.comment && (e.comment = N());
+e.filename = A.filename;
+}
+if (M("{", !0)) {
+for (var o; "}" !== (o = R()); ) t(o);
+M(";", !0);
+} else {
+n && n();
+M(";");
+e && ("string" != typeof e.comment || D) && (e.comment = N(i) || e.comment);
+}
+}
+function X(e, t) {
+if (!S.test(t = R())) throw G(t, "type name");
+var n = new o(t);
+Z(n, function(e) {
+if (!$(n, e)) switch (e) {
+case "map":
+te(n);
+break;
+
+case "required":
+case "repeated":
+Q(n, e);
+break;
+
+case "optional":
+Q(n, F ? "proto3_optional" : "optional");
+break;
+
+case "oneof":
+ne(n, e);
+break;
+
+case "extensions":
+z(n.extensions || (n.extensions = []));
+break;
+
+case "reserved":
+z(n.reserved || (n.reserved = []), !0);
+break;
+
+default:
+if (!F || !w.test(e)) throw G(e);
+k(e);
+Q(n, "optional");
+}
+});
+e.add(n);
+}
+function Q(e, t, n) {
+var i = R();
+if ("group" !== i) {
+if (!w.test(i)) throw G(i, "type");
+var o = R();
+if (!S.test(o)) throw G(o, "name");
+o = L(o);
+M("=");
+var s = new r(o, q(R()), i, t, n);
+Z(s, function(e) {
+if ("option" !== e) throw G(e);
+re(s, e);
+M(";");
+}, function() {
+le(s);
+});
+if ("proto3_optional" === t) {
+var c = new a("_" + o);
+s.setOption("proto3_optional", !0);
+c.add(s);
+e.add(c);
+} else e.add(s);
+F || !s.repeated || f.packed[i] === undefined && f.basic[i] !== undefined || s.setOption("packed", !1, !0);
+} else ee(e, t);
+}
+function ee(e, t) {
+var n = R();
+if (!S.test(n)) throw G(n, "name");
+var i = d.lcFirst(n);
+n === i && (n = d.ucFirst(n));
+M("=");
+var s = q(R()), a = new o(n);
+a.group = !0;
+var c = new r(i, s, n, t);
+c.filename = A.filename;
+Z(a, function(e) {
+switch (e) {
+case "option":
+re(a, e);
+M(";");
+break;
+
+case "required":
+case "repeated":
+Q(a, e);
+break;
+
+case "optional":
+Q(a, F ? "proto3_optional" : "optional");
+break;
+
+default:
+throw G(e);
+}
+});
+e.add(a).add(c);
+}
+function te(e) {
+M("<");
+var t = R();
+if (f.mapKey[t] === undefined) throw G(t, "type");
+M(",");
+var n = R();
+if (!w.test(n)) throw G(n, "type");
+M(">");
+var i = R();
+if (!S.test(i)) throw G(i, "name");
+M("=");
+var o = new s(L(i), q(R()), t, n);
+Z(o, function(e) {
+if ("option" !== e) throw G(e);
+re(o, e);
+M(";");
+}, function() {
+le(o);
+});
+e.add(o);
+}
+function ne(e, t) {
+if (!S.test(t = R())) throw G(t, "name");
+var n = new a(L(t));
+Z(n, function(e) {
+if ("option" === e) {
+re(n, e);
+M(";");
+} else {
+k(e);
+Q(n, "optional");
+}
+});
+e.add(n);
+}
+function ie(e, t) {
+if (!S.test(t = R())) throw G(t, "name");
+var n = new c(t);
+Z(n, function(e) {
+switch (e) {
+case "option":
+re(n, e);
+M(";");
+break;
+
+case "reserved":
+z(n.reserved || (n.reserved = []), !0);
+break;
+
+default:
+oe(n, e);
+}
+});
+e.add(n);
+}
+function oe(e, t) {
+if (!S.test(t)) throw G(t, "name");
+M("=");
+var n = q(R(), !0), i = {};
+Z(i, function(e) {
+if ("option" !== e) throw G(e);
+re(i, e);
+M(";");
+}, function() {
+le(i);
+});
+e.add(t, n, i.comment);
+}
+function re(e, t) {
+var n = M("(", !0);
+if (!w.test(t = R())) throw G(t, "name");
+var i, o = t, r = o;
+if (n) {
+M(")");
+r = o = "(" + o + ")";
+t = E();
+if (C.test(t)) {
+i = t.substr(1);
+o += t;
+R();
+}
+}
+M("=");
+ce(e, r, se(e, o), i);
+}
+function se(e, t) {
+if (M("{", !0)) {
+for (var n = {}; !M("}", !0); ) {
+if (!S.test(O = R())) throw G(O, "name");
+var i, o = O;
+if ("{" === E()) i = se(e, t + "." + O); else {
+M(":");
+if ("{" === E()) i = se(e, t + "." + O); else {
+i = W(!0);
+ae(e, t + "." + O, i);
+}
+}
+var r = n[o];
+r && (i = [].concat(r).concat(i));
+n[o] = i;
+M(",", !0);
+}
+return n;
+}
+var s = W(!0);
+ae(e, t, s);
+return s;
+}
+function ae(e, t, n) {
+e.setOption && e.setOption(t, n);
+}
+function ce(e, t, n, i) {
+e.setParsedOption && e.setParsedOption(t, n, i);
+}
+function le(e) {
+if (M("[", !0)) {
+do {
+re(e, "option");
+} while (M(",", !0));
+M("]");
+}
+return e;
+}
+function ue(e, t) {
+if (!S.test(t = R())) throw G(t, "service name");
+var n = new l(t);
+Z(n, function(e) {
+if (!$(n, e)) {
+if ("rpc" !== e) throw G(e);
+fe(n, e);
+}
+});
+e.add(n);
+}
+function fe(e, t) {
+var n = N(), i = t;
+if (!S.test(t = R())) throw G(t, "name");
+var o, r, s, a, c = t;
+M("(");
+M("stream", !0) && (r = !0);
+if (!w.test(t = R())) throw G(t);
+o = t;
+M(")");
+M("returns");
+M("(");
+M("stream", !0) && (a = !0);
+if (!w.test(t = R())) throw G(t);
+s = t;
+M(")");
+var l = new u(c, i, o, s, r, a);
+l.comment = n;
+Z(l, function(e) {
+if ("option" !== e) throw G(e);
+re(l, e);
+M(";");
+});
+e.add(l);
+}
+function de(e, t) {
+if (!w.test(t = R())) throw G(t, "reference");
+var n = t;
+Z(null, function(t) {
+switch (t) {
+case "required":
+case "repeated":
+Q(e, t, n);
+break;
+
+case "optional":
+Q(e, F ? "proto3_optional" : "optional", n);
+break;
+
+default:
+if (!F || !w.test(t)) throw G(t);
+k(t);
+Q(e, "optional", n);
+}
+});
+}
+for (;null !== (O = R()); ) switch (O) {
+case "package":
+if (!j) throw G(O);
+J();
+break;
+
+case "import":
+if (!j) throw G(O);
+Y();
+break;
+
+case "syntax":
+if (!j) throw G(O);
+K();
+break;
+
+case "option":
+re(U, O);
+M(";");
+break;
+
+default:
+if ($(U, O)) {
+j = !1;
+continue;
+}
+throw G(O);
+}
+A.filename = null;
+return {
+package: I,
+imports: T,
+weakImports: P,
+syntax: x,
+root: t
+};
+}
+}, {
+15: 15,
+16: 16,
+20: 20,
+22: 22,
+25: 25,
+29: 29,
+33: 33,
+34: 34,
+35: 35,
+36: 36,
+37: 37
+} ],
+27: [ function(e, t) {
+t.exports = a;
+var n, i = e(39), o = i.LongBits, r = i.utf8;
+function s(e, t) {
+return RangeError("index out of range: " + e.pos + " + " + (t || 1) + " > " + e.len);
+}
+function a(e) {
+this.buf = e;
+this.pos = 0;
+this.len = e.length;
+}
+var c, l = "undefined" != typeof Uint8Array ? function(e) {
+if (e instanceof Uint8Array || Array.isArray(e)) return new a(e);
+throw Error("illegal buffer");
+} : function(e) {
+if (Array.isArray(e)) return new a(e);
+throw Error("illegal buffer");
+}, u = function() {
+return i.Buffer ? function(e) {
+return (a.create = function(e) {
+return i.Buffer.isBuffer(e) ? new n(e) : l(e);
+})(e);
+} : l;
+};
+a.create = u();
+a.prototype._slice = i.Array.prototype.subarray || i.Array.prototype.slice;
+a.prototype.uint32 = (c = 4294967295, function() {
+c = (127 & this.buf[this.pos]) >>> 0;
+if (this.buf[this.pos++] < 128) return c;
+c = (c | (127 & this.buf[this.pos]) << 7) >>> 0;
+if (this.buf[this.pos++] < 128) return c;
+c = (c | (127 & this.buf[this.pos]) << 14) >>> 0;
+if (this.buf[this.pos++] < 128) return c;
+c = (c | (127 & this.buf[this.pos]) << 21) >>> 0;
+if (this.buf[this.pos++] < 128) return c;
+c = (c | (15 & this.buf[this.pos]) << 28) >>> 0;
+if (this.buf[this.pos++] < 128) return c;
+if ((this.pos += 5) > this.len) {
+this.pos = this.len;
+throw s(this, 10);
+}
+return c;
+});
+a.prototype.int32 = function() {
+return 0 | this.uint32();
+};
+a.prototype.sint32 = function() {
+var e = this.uint32();
+return e >>> 1 ^ -(1 & e) | 0;
+};
+function f() {
+var e = new o(0, 0), t = 0;
+if (!(this.len - this.pos > 4)) {
+for (;t < 3; ++t) {
+if (this.pos >= this.len) throw s(this);
+e.lo = (e.lo | (127 & this.buf[this.pos]) << 7 * t) >>> 0;
+if (this.buf[this.pos++] < 128) return e;
+}
+e.lo = (e.lo | (127 & this.buf[this.pos++]) << 7 * t) >>> 0;
+return e;
+}
+for (;t < 4; ++t) {
+e.lo = (e.lo | (127 & this.buf[this.pos]) << 7 * t) >>> 0;
+if (this.buf[this.pos++] < 128) return e;
+}
+e.lo = (e.lo | (127 & this.buf[this.pos]) << 28) >>> 0;
+e.hi = (e.hi | (127 & this.buf[this.pos]) >> 4) >>> 0;
+if (this.buf[this.pos++] < 128) return e;
+t = 0;
+if (this.len - this.pos > 4) for (;t < 5; ++t) {
+e.hi = (e.hi | (127 & this.buf[this.pos]) << 7 * t + 3) >>> 0;
+if (this.buf[this.pos++] < 128) return e;
+} else for (;t < 5; ++t) {
+if (this.pos >= this.len) throw s(this);
+e.hi = (e.hi | (127 & this.buf[this.pos]) << 7 * t + 3) >>> 0;
+if (this.buf[this.pos++] < 128) return e;
+}
+throw Error("invalid varint encoding");
+}
+a.prototype.bool = function() {
+return 0 !== this.uint32();
+};
+function d(e, t) {
+return (e[t - 4] | e[t - 3] << 8 | e[t - 2] << 16 | e[t - 1] << 24) >>> 0;
+}
+a.prototype.fixed32 = function() {
+if (this.pos + 4 > this.len) throw s(this, 4);
+return d(this.buf, this.pos += 4);
+};
+a.prototype.sfixed32 = function() {
+if (this.pos + 4 > this.len) throw s(this, 4);
+return 0 | d(this.buf, this.pos += 4);
+};
+function h() {
+if (this.pos + 8 > this.len) throw s(this, 8);
+return new o(d(this.buf, this.pos += 4), d(this.buf, this.pos += 4));
+}
+a.prototype.float = function() {
+if (this.pos + 4 > this.len) throw s(this, 4);
+var e = i.float.readFloatLE(this.buf, this.pos);
+this.pos += 4;
+return e;
+};
+a.prototype.double = function() {
+if (this.pos + 8 > this.len) throw s(this, 4);
+var e = i.float.readDoubleLE(this.buf, this.pos);
+this.pos += 8;
+return e;
+};
+a.prototype.bytes = function() {
+var e = this.uint32(), t = this.pos, n = this.pos + e;
+if (n > this.len) throw s(this, e);
+this.pos += e;
+return Array.isArray(this.buf) ? this.buf.slice(t, n) : t === n ? new this.buf.constructor(0) : this._slice.call(this.buf, t, n);
+};
+a.prototype.string = function() {
+var e = this.bytes();
+return r.read(e, 0, e.length);
+};
+a.prototype.skip = function(e) {
+if ("number" == typeof e) {
+if (this.pos + e > this.len) throw s(this, e);
+this.pos += e;
+} else do {
+if (this.pos >= this.len) throw s(this);
+} while (128 & this.buf[this.pos++]);
+return this;
+};
+a.prototype.skipType = function(e) {
+switch (e) {
+case 0:
+this.skip();
+break;
+
+case 1:
+this.skip(8);
+break;
+
+case 2:
+this.skip(this.uint32());
+break;
+
+case 3:
+for (;4 != (e = 7 & this.uint32()); ) this.skipType(e);
+break;
+
+case 5:
+this.skip(4);
+break;
+
+default:
+throw Error("invalid wire type " + e + " at offset " + this.pos);
+}
+return this;
+};
+a._configure = function(e) {
+n = e;
+a.create = u();
+n._configure();
+var t = i.Long ? "toLong" : "toNumber";
+i.merge(a.prototype, {
+int64: function() {
+return f.call(this)[t](!1);
+},
+uint64: function() {
+return f.call(this)[t](!0);
+},
+sint64: function() {
+return f.call(this).zzDecode()[t](!1);
+},
+fixed64: function() {
+return h.call(this)[t](!0);
+},
+sfixed64: function() {
+return h.call(this)[t](!1);
+}
+});
+};
+}, {
+39: 39
+} ],
+28: [ function(e, t) {
+t.exports = o;
+var n = e(27);
+(o.prototype = Object.create(n.prototype)).constructor = o;
+var i = e(39);
+function o(e) {
+n.call(this, e);
+}
+o._configure = function() {
+i.Buffer && (o.prototype._slice = i.Buffer.prototype.slice);
+};
+o.prototype.string = function() {
+var e = this.uint32();
+return this.buf.utf8Slice ? this.buf.utf8Slice(this.pos, this.pos = Math.min(this.pos + e, this.len)) : this.buf.toString("utf-8", this.pos, this.pos = Math.min(this.pos + e, this.len));
+};
+o._configure();
+}, {
+27: 27,
+39: 39
+} ],
+29: [ function(e, t) {
+t.exports = u;
+var n = e(23);
+((u.prototype = Object.create(n.prototype)).constructor = u).className = "Root";
+var i, o, r, s = e(16), a = e(15), c = e(25), l = e(37);
+function u(e) {
+n.call(this, "", e);
+this.deferred = [];
+this.files = [];
+}
+u.fromJSON = function(e, t) {
+t || (t = new u());
+e.options && t.setOptions(e.options);
+return t.addJSON(e.nested);
+};
+u.prototype.resolvePath = l.path.resolve;
+u.prototype.fetch = l.fetch;
+function f() {}
+u.prototype.load = function e(t, n, i) {
+if ("function" == typeof n) {
+i = n;
+n = undefined;
+}
+var s = this;
+if (!i) return l.asPromise(e, s, t, n);
+var a = i === f;
+function c(e, t) {
+if (i) {
+var n = i;
+i = null;
+if (a) throw e;
+n(e, t);
+}
+}
+function u(e) {
+var t = e.lastIndexOf("google/protobuf/");
+if (t > -1) {
+var n = e.substring(t);
+if (n in r) return n;
+}
+return null;
+}
+function d(e, t) {
+try {
+l.isString(t) && "{" === t.charAt(0) && (t = JSON.parse(t));
+if (l.isString(t)) {
+o.filename = e;
+var i, r = o(t, s, n), f = 0;
+if (r.imports) for (;f < r.imports.length; ++f) (i = u(r.imports[f]) || s.resolvePath(e, r.imports[f])) && h(i);
+if (r.weakImports) for (f = 0; f < r.weakImports.length; ++f) (i = u(r.weakImports[f]) || s.resolvePath(e, r.weakImports[f])) && h(i, !0);
+} else s.setOptions(t.options).addJSON(t.nested);
+} catch (e) {
+c(e);
+}
+a || p || c(null, s);
+}
+function h(e, t) {
+if (!(s.files.indexOf(e) > -1)) {
+s.files.push(e);
+if (e in r) if (a) d(e, r[e]); else {
+++p;
+setTimeout(function() {
+--p;
+d(e, r[e]);
+});
+} else if (a) {
+var n;
+try {
+n = l.fs.readFileSync(e).toString("utf8");
+} catch (e) {
+t || c(e);
+return;
+}
+d(e, n);
+} else {
+++p;
+s.fetch(e, function(n, o) {
+--p;
+i && (n ? t ? p || c(null, s) : c(n) : d(e, o));
+});
+}
+}
+}
+var p = 0;
+l.isString(t) && (t = [ t ]);
+for (var g, m = 0; m < t.length; ++m) (g = s.resolvePath("", t[m])) && h(g);
+if (a) return s;
+p || c(null, s);
+return undefined;
+};
+u.prototype.loadSync = function(e, t) {
+if (!l.isNode) throw Error("not supported");
+return this.load(e, t, f);
+};
+u.prototype.resolveAll = function() {
+if (this.deferred.length) throw Error("unresolvable extensions: " + this.deferred.map(function(e) {
+return "'extend " + e.extend + "' in " + e.parent.fullName;
+}).join(", "));
+return n.prototype.resolveAll.call(this);
+};
+var d = /^[A-Z]/;
+function h(e, t) {
+var n = t.parent.lookup(t.extend);
+if (n) {
+var i = new s(t.fullName, t.id, t.type, t.rule, undefined, t.options);
+i.declaringField = t;
+t.extensionField = i;
+n.add(i);
+return !0;
+}
+return !1;
+}
+u.prototype._handleAdd = function(e) {
+if (e instanceof s) e.extend === undefined || e.extensionField || h(0, e) || this.deferred.push(e); else if (e instanceof a) d.test(e.name) && (e.parent[e.name] = e.values); else if (!(e instanceof c)) {
+if (e instanceof i) for (var t = 0; t < this.deferred.length; ) h(0, this.deferred[t]) ? this.deferred.splice(t, 1) : ++t;
+for (var n = 0; n < e.nestedArray.length; ++n) this._handleAdd(e._nestedArray[n]);
+d.test(e.name) && (e.parent[e.name] = e);
+}
+};
+u.prototype._handleRemove = function(e) {
+if (e instanceof s) {
+if (e.extend !== undefined) if (e.extensionField) {
+e.extensionField.parent.remove(e.extensionField);
+e.extensionField = null;
+} else {
+var t = this.deferred.indexOf(e);
+t > -1 && this.deferred.splice(t, 1);
+}
+} else if (e instanceof a) d.test(e.name) && delete e.parent[e.name]; else if (e instanceof n) {
+for (var i = 0; i < e.nestedArray.length; ++i) this._handleRemove(e._nestedArray[i]);
+d.test(e.name) && delete e.parent[e.name];
+}
+};
+u._configure = function(e, t, n) {
+i = e;
+o = t;
+r = n;
+};
+}, {
+15: 15,
+16: 16,
+23: 23,
+25: 25,
+37: 37
+} ],
+30: [ function(e, t) {
+t.exports = {};
+}, {} ],
+31: [ function(e, t, n) {
+n.Service = e(32);
+}, {
+32: 32
+} ],
+32: [ function(e, t) {
+t.exports = i;
+var n = e(39);
+(i.prototype = Object.create(n.EventEmitter.prototype)).constructor = i;
+function i(e, t, i) {
+if ("function" != typeof e) throw TypeError("rpcImpl must be a function");
+n.EventEmitter.call(this);
+this.rpcImpl = e;
+this.requestDelimited = Boolean(t);
+this.responseDelimited = Boolean(i);
+}
+i.prototype.rpcCall = function e(t, i, o, r, s) {
+if (!r) throw TypeError("request must be specified");
+var a = this;
+if (!s) return n.asPromise(e, a, t, i, o, r);
+if (!a.rpcImpl) {
+setTimeout(function() {
+s(Error("already ended"));
+}, 0);
+return undefined;
+}
+try {
+return a.rpcImpl(t, i[a.requestDelimited ? "encodeDelimited" : "encode"](r).finish(), function(e, n) {
+if (e) {
+a.emit("error", e, t);
+return s(e);
+}
+if (null === n) {
+a.end(!0);
+return undefined;
+}
+if (!(n instanceof o)) try {
+n = o[a.responseDelimited ? "decodeDelimited" : "decode"](n);
+} catch (e) {
+a.emit("error", e, t);
+return s(e);
+}
+a.emit("data", n, t);
+return s(null, n);
+});
+} catch (e) {
+a.emit("error", e, t);
+setTimeout(function() {
+s(e);
+}, 0);
+return undefined;
+}
+};
+i.prototype.end = function(e) {
+if (this.rpcImpl) {
+e || this.rpcImpl(null, null, null);
+this.rpcImpl = null;
+this.emit("end").off();
+}
+return this;
+};
+}, {
+39: 39
+} ],
+33: [ function(e, t) {
+t.exports = s;
+var n = e(23);
+((s.prototype = Object.create(n.prototype)).constructor = s).className = "Service";
+var i = e(22), o = e(37), r = e(31);
+function s(e, t) {
+n.call(this, e, t);
+this.methods = {};
+this._methodsArray = null;
+}
+s.fromJSON = function(e, t) {
+var n = new s(e, t.options);
+if (t.methods) for (var o = Object.keys(t.methods), r = 0; r < o.length; ++r) n.add(i.fromJSON(o[r], t.methods[o[r]]));
+t.nested && n.addJSON(t.nested);
+n.comment = t.comment;
+return n;
+};
+s.prototype.toJSON = function(e) {
+var t = n.prototype.toJSON.call(this, e), i = !!e && Boolean(e.keepComments);
+return o.toObject([ "options", t && t.options || undefined, "methods", n.arrayToJSON(this.methodsArray, e) || {}, "nested", t && t.nested || undefined, "comment", i ? this.comment : undefined ]);
+};
+Object.defineProperty(s.prototype, "methodsArray", {
+get: function() {
+return this._methodsArray || (this._methodsArray = o.toArray(this.methods));
+}
+});
+function a(e) {
+e._methodsArray = null;
+return e;
+}
+s.prototype.get = function(e) {
+return this.methods[e] || n.prototype.get.call(this, e);
+};
+s.prototype.resolveAll = function() {
+for (var e = this.methodsArray, t = 0; t < e.length; ++t) e[t].resolve();
+return n.prototype.resolve.call(this);
+};
+s.prototype.add = function(e) {
+if (this.get(e.name)) throw Error("duplicate name '" + e.name + "' in " + this);
+if (e instanceof i) {
+this.methods[e.name] = e;
+e.parent = this;
+return a(this);
+}
+return n.prototype.add.call(this, e);
+};
+s.prototype.remove = function(e) {
+if (e instanceof i) {
+if (this.methods[e.name] !== e) throw Error(e + " is not a member of " + this);
+delete this.methods[e.name];
+e.parent = null;
+return a(this);
+}
+return n.prototype.remove.call(this, e);
+};
+s.prototype.create = function(e, t, n) {
+for (var i, s = new r.Service(e, t, n), a = 0; a < this.methodsArray.length; ++a) {
+var c = o.lcFirst((i = this._methodsArray[a]).resolve().name).replace(/[^$\w_]/g, "");
+s[c] = o.codegen([ "r", "c" ], o.isReserved(c) ? c + "_" : c)("return this.rpcCall(m,q,s,r,c)")({
+m: i,
+q: i.resolvedRequestType.ctor,
+s: i.resolvedResponseType.ctor
+});
+}
+return s;
+};
+}, {
+22: 22,
+23: 23,
+31: 31,
+37: 37
+} ],
+34: [ function(e, t) {
+t.exports = d;
+var n = /[\s{}=;:[\],'"()<>]/g, i = /(?:"([^"\\]*(?:\\.[^"\\]*)*)")/g, o = /(?:'([^'\\]*(?:\\.[^'\\]*)*)')/g, r = /^ *[*/]+ */, s = /^\s*\*?\/*/, a = /\n/g, c = /\s/, l = /\\(.?)/g, u = {
+0: "\0",
+r: "\r",
+n: "\n",
+t: "\t"
+};
+function f(e) {
+return e.replace(l, function(e, t) {
+switch (t) {
+case "\\":
+case "":
+return t;
+
+default:
+return u[t] || "";
+}
+});
+}
+d.unescape = f;
+function d(e, t) {
+e = e.toString();
+var l = 0, u = e.length, d = 1, h = null, p = null, g = 0, m = !1, y = !1, v = [], b = null;
+function S(e) {
+return Error("illegal " + e + " (line " + d + ")");
+}
+function w() {
+var t = "'" === b ? o : i;
+t.lastIndex = l - 1;
+var n = t.exec(e);
+if (!n) throw S("string");
+l = t.lastIndex;
+P(b);
+b = null;
+return f(n[1]);
+}
+function C(t) {
+return e.charAt(t);
+}
+function A(n, i, o) {
+h = e.charAt(n++);
+g = d;
+m = !1;
+y = o;
+var c, l = n - (t ? 2 : 3);
+do {
+if (--l < 0 || "\n" === (c = e.charAt(l))) {
+m = !0;
+break;
+}
+} while (" " === c || "\t" === c);
+for (var u = e.substring(n, i).split(a), f = 0; f < u.length; ++f) u[f] = u[f].replace(t ? s : r, "").trim();
+p = u.join("\n").trim();
+}
+function _(t) {
+var n = I(t), i = e.substring(t, n);
+return /^\s*\/{1,2}/.test(i);
+}
+function I(e) {
+for (var t = e; t < u && "\n" !== C(t); ) t++;
+return t;
+}
+function T() {
+if (v.length > 0) return v.shift();
+if (b) return w();
+var i, o, r, s, a, f = 0 === l;
+do {
+if (l === u) return null;
+i = !1;
+for (;c.test(r = C(l)); ) {
+if ("\n" === r) {
+f = !0;
+++d;
+}
+if (++l === u) return null;
+}
+if ("/" === C(l)) {
+if (++l === u) throw S("comment");
+if ("/" === C(l)) if (t) {
+s = l;
+a = !1;
+if (_(l)) {
+a = !0;
+do {
+if ((l = I(l)) === u) break;
+l++;
+} while (_(l));
+} else l = Math.min(u, I(l) + 1);
+a && A(s, l, f);
+d++;
+i = !0;
+} else {
+a = "/" === C(s = l + 1);
+for (;"\n" !== C(++l); ) if (l === u) return null;
+++l;
+a && A(s, l - 1, f);
+++d;
+i = !0;
+} else {
+if ("*" !== (r = C(l))) return "/";
+s = l + 1;
+a = t || "*" === C(s);
+do {
+"\n" === r && ++d;
+if (++l === u) throw S("comment");
+o = r;
+r = C(l);
+} while ("*" !== o || "/" !== r);
+++l;
+a && A(s, l - 2, f);
+i = !0;
+}
+}
+} while (i);
+var h = l;
+n.lastIndex = 0;
+if (!n.test(C(h++))) for (;h < u && !n.test(C(h)); ) ++h;
+var p = e.substring(l, l = h);
+'"' !== p && "'" !== p || (b = p);
+return p;
+}
+function P(e) {
+v.push(e);
+}
+function x() {
+if (!v.length) {
+var e = T();
+if (null === e) return null;
+P(e);
+}
+return v[0];
+}
+return Object.defineProperty({
+next: T,
+peek: x,
+push: P,
+skip: function(e, t) {
+var n = x();
+if (n === e) {
+T();
+return !0;
+}
+if (!t) throw S("token '" + n + "', '" + e + "' expected");
+return !1;
+},
+cmnt: function(e) {
+var n = null;
+if (e === undefined) g === d - 1 && (t || "*" === h || m) && (n = y ? p : null); else {
+g < e && x();
+g !== e || m || !t && "/" !== h || (n = y ? null : p);
+}
+return n;
+}
+}, "line", {
+get: function() {
+return d;
+}
+});
+}
+}, {} ],
+35: [ function(e, t) {
+t.exports = y;
+var n = e(23);
+((y.prototype = Object.create(n.prototype)).constructor = y).className = "Type";
+var i = e(15), o = e(25), r = e(16), s = e(20), a = e(33), c = e(21), l = e(27), u = e(42), f = e(37), d = e(14), h = e(13), p = e(40), g = e(12), m = e(41);
+function y(e, t) {
+n.call(this, e, t);
+this.fields = {};
+this.oneofs = undefined;
+this.extensions = undefined;
+this.reserved = undefined;
+this.group = undefined;
+this._fieldsById = null;
+this._fieldsArray = null;
+this._oneofsArray = null;
+this._ctor = null;
+}
+Object.defineProperties(y.prototype, {
+fieldsById: {
+get: function() {
+if (this._fieldsById) return this._fieldsById;
+this._fieldsById = {};
+for (var e = Object.keys(this.fields), t = 0; t < e.length; ++t) {
+var n = this.fields[e[t]], i = n.id;
+if (this._fieldsById[i]) throw Error("duplicate id " + i + " in " + this);
+this._fieldsById[i] = n;
+}
+return this._fieldsById;
+}
+},
+fieldsArray: {
+get: function() {
+return this._fieldsArray || (this._fieldsArray = f.toArray(this.fields));
+}
+},
+oneofsArray: {
+get: function() {
+return this._oneofsArray || (this._oneofsArray = f.toArray(this.oneofs));
+}
+},
+ctor: {
+get: function() {
+return this._ctor || (this.ctor = y.generateConstructor(this)());
+},
+set: function(e) {
+var t = e.prototype;
+if (!(t instanceof c)) {
+(e.prototype = new c()).constructor = e;
+f.merge(e.prototype, t);
+}
+e.$type = e.prototype.$type = this;
+f.merge(e, c, !0);
+this._ctor = e;
+for (var n = 0; n < this.fieldsArray.length; ++n) this._fieldsArray[n].resolve();
+var i = {};
+for (n = 0; n < this.oneofsArray.length; ++n) i[this._oneofsArray[n].resolve().name] = {
+get: f.oneOfGetter(this._oneofsArray[n].oneof),
+set: f.oneOfSetter(this._oneofsArray[n].oneof)
+};
+n && Object.defineProperties(e.prototype, i);
+}
+}
+});
+y.generateConstructor = function(e) {
+for (var t, n = f.codegen([ "p" ], e.name), i = 0; i < e.fieldsArray.length; ++i) (t = e._fieldsArray[i]).map ? n("this%s={}", f.safeProp(t.name)) : t.repeated && n("this%s=[]", f.safeProp(t.name));
+return n("if(p)for(var ks=Object.keys(p),i=0;i<ks.length;++i)if(p[ks[i]]!=null)")("this[ks[i]]=p[ks[i]]");
+};
+function v(e) {
+e._fieldsById = e._fieldsArray = e._oneofsArray = null;
+delete e.encode;
+delete e.decode;
+delete e.verify;
+return e;
+}
+y.fromJSON = function(e, t) {
+var c = new y(e, t.options);
+c.extensions = t.extensions;
+c.reserved = t.reserved;
+for (var l = Object.keys(t.fields), u = 0; u < l.length; ++u) c.add(("undefined" != typeof t.fields[l[u]].keyType ? s.fromJSON : r.fromJSON)(l[u], t.fields[l[u]]));
+if (t.oneofs) for (l = Object.keys(t.oneofs), u = 0; u < l.length; ++u) c.add(o.fromJSON(l[u], t.oneofs[l[u]]));
+if (t.nested) for (l = Object.keys(t.nested), u = 0; u < l.length; ++u) {
+var f = t.nested[l[u]];
+c.add((f.id !== undefined ? r.fromJSON : f.fields !== undefined ? y.fromJSON : f.values !== undefined ? i.fromJSON : f.methods !== undefined ? a.fromJSON : n.fromJSON)(l[u], f));
+}
+t.extensions && t.extensions.length && (c.extensions = t.extensions);
+t.reserved && t.reserved.length && (c.reserved = t.reserved);
+t.group && (c.group = !0);
+t.comment && (c.comment = t.comment);
+return c;
+};
+y.prototype.toJSON = function(e) {
+var t = n.prototype.toJSON.call(this, e), i = !!e && Boolean(e.keepComments);
+return f.toObject([ "options", t && t.options || undefined, "oneofs", n.arrayToJSON(this.oneofsArray, e), "fields", n.arrayToJSON(this.fieldsArray.filter(function(e) {
+return !e.declaringField;
+}), e) || {}, "extensions", this.extensions && this.extensions.length ? this.extensions : undefined, "reserved", this.reserved && this.reserved.length ? this.reserved : undefined, "group", this.group || undefined, "nested", t && t.nested || undefined, "comment", i ? this.comment : undefined ]);
+};
+y.prototype.resolveAll = function() {
+for (var e = this.fieldsArray, t = 0; t < e.length; ) e[t++].resolve();
+var i = this.oneofsArray;
+t = 0;
+for (;t < i.length; ) i[t++].resolve();
+return n.prototype.resolveAll.call(this);
+};
+y.prototype.get = function(e) {
+return this.fields[e] || this.oneofs && this.oneofs[e] || this.nested && this.nested[e] || null;
+};
+y.prototype.add = function(e) {
+if (this.get(e.name)) throw Error("duplicate name '" + e.name + "' in " + this);
+if (e instanceof r && e.extend === undefined) {
+if (this._fieldsById ? this._fieldsById[e.id] : this.fieldsById[e.id]) throw Error("duplicate id " + e.id + " in " + this);
+if (this.isReservedId(e.id)) throw Error("id " + e.id + " is reserved in " + this);
+if (this.isReservedName(e.name)) throw Error("name '" + e.name + "' is reserved in " + this);
+e.parent && e.parent.remove(e);
+this.fields[e.name] = e;
+e.message = this;
+e.onAdd(this);
+return v(this);
+}
+if (e instanceof o) {
+this.oneofs || (this.oneofs = {});
+this.oneofs[e.name] = e;
+e.onAdd(this);
+return v(this);
+}
+return n.prototype.add.call(this, e);
+};
+y.prototype.remove = function(e) {
+if (e instanceof r && e.extend === undefined) {
+if (!this.fields || this.fields[e.name] !== e) throw Error(e + " is not a member of " + this);
+delete this.fields[e.name];
+e.parent = null;
+e.onRemove(this);
+return v(this);
+}
+if (e instanceof o) {
+if (!this.oneofs || this.oneofs[e.name] !== e) throw Error(e + " is not a member of " + this);
+delete this.oneofs[e.name];
+e.parent = null;
+e.onRemove(this);
+return v(this);
+}
+return n.prototype.remove.call(this, e);
+};
+y.prototype.isReservedId = function(e) {
+return n.isReservedId(this.reserved, e);
+};
+y.prototype.isReservedName = function(e) {
+return n.isReservedName(this.reserved, e);
+};
+y.prototype.create = function(e) {
+return new this.ctor(e);
+};
+y.prototype.setup = function() {
+for (var e = this.fullName, t = [], n = 0; n < this.fieldsArray.length; ++n) t.push(this._fieldsArray[n].resolve().resolvedType);
+this.encode = d(this)({
+Writer: u,
+types: t,
+util: f
+});
+this.decode = h(this)({
+Reader: l,
+types: t,
+util: f
+});
+this.verify = p(this)({
+types: t,
+util: f
+});
+this.fromObject = g.fromObject(this)({
+types: t,
+util: f
+});
+this.toObject = g.toObject(this)({
+types: t,
+util: f
+});
+var i = m[e];
+if (i) {
+var o = Object.create(this);
+o.fromObject = this.fromObject;
+this.fromObject = i.fromObject.bind(o);
+o.toObject = this.toObject;
+this.toObject = i.toObject.bind(o);
+}
+return this;
+};
+y.prototype.encode = function(e, t) {
+return this.setup().encode(e, t);
+};
+y.prototype.encodeDelimited = function(e, t) {
+return this.encode(e, t && t.len ? t.fork() : t).ldelim();
+};
+y.prototype.decode = function(e, t) {
+return this.setup().decode(e, t);
+};
+y.prototype.decodeDelimited = function(e) {
+e instanceof l || (e = l.create(e));
+return this.decode(e, e.uint32());
+};
+y.prototype.verify = function(e) {
+return this.setup().verify(e);
+};
+y.prototype.fromObject = function(e) {
+return this.setup().fromObject(e);
+};
+y.prototype.toObject = function(e, t) {
+return this.setup().toObject(e, t);
+};
+y.d = function(e) {
+return function(t) {
+f.decorateType(t, e);
+};
+};
+}, {
+12: 12,
+13: 13,
+14: 14,
+15: 15,
+16: 16,
+20: 20,
+21: 21,
+23: 23,
+25: 25,
+27: 27,
+33: 33,
+37: 37,
+40: 40,
+41: 41,
+42: 42
+} ],
+36: [ function(e, t, n) {
+var i = n, o = e(37), r = [ "double", "float", "int32", "uint32", "sint32", "fixed32", "sfixed32", "int64", "uint64", "sint64", "fixed64", "sfixed64", "bool", "string", "bytes" ];
+function s(e, t) {
+var n = 0, i = {};
+t |= 0;
+for (;n < e.length; ) i[r[n + t]] = e[n++];
+return i;
+}
+i.basic = s([ 1, 5, 0, 0, 0, 5, 5, 0, 0, 0, 1, 1, 0, 2, 2 ]);
+i.defaults = s([ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, !1, "", o.emptyArray, null ]);
+i.long = s([ 0, 0, 0, 1, 1 ], 7);
+i.mapKey = s([ 0, 0, 0, 5, 5, 0, 0, 0, 1, 1, 0, 2 ], 2);
+i.packed = s([ 1, 5, 0, 0, 0, 5, 5, 0, 0, 0, 1, 1, 0 ]);
+}, {
+37: 37
+} ],
+37: [ function(e, t) {
+var n, i, o = t.exports = e(39), r = e(30);
+o.codegen = e(3);
+o.fetch = e(5);
+o.path = e(8);
+o.fs = o.inquire("fs");
+o.toArray = function(e) {
+if (e) {
+for (var t = Object.keys(e), n = new Array(t.length), i = 0; i < t.length; ) n[i] = e[t[i++]];
+return n;
+}
+return [];
+};
+o.toObject = function(e) {
+for (var t = {}, n = 0; n < e.length; ) {
+var i = e[n++], o = e[n++];
+o !== undefined && (t[i] = o);
+}
+return t;
+};
+var s = /\\/g, a = /"/g;
+o.isReserved = function(e) {
+return /^(?:do|if|in|for|let|new|try|var|case|else|enum|eval|false|null|this|true|void|with|break|catch|class|const|super|throw|while|yield|delete|export|import|public|return|static|switch|typeof|default|extends|finally|package|private|continue|debugger|function|arguments|interface|protected|implements|instanceof)$/.test(e);
+};
+o.safeProp = function(e) {
+return !/^[$\w_]+$/.test(e) || o.isReserved(e) ? '["' + e.replace(s, "\\\\").replace(a, '\\"') + '"]' : "." + e;
+};
+o.ucFirst = function(e) {
+return e.charAt(0).toUpperCase() + e.substring(1);
+};
+var c = /_([a-z])/g;
+o.camelCase = function(e) {
+return e.substring(0, 1) + e.substring(1).replace(c, function(e, t) {
+return t.toUpperCase();
+});
+};
+o.compareFieldsById = function(e, t) {
+return e.id - t.id;
+};
+o.decorateType = function(t, i) {
+if (t.$type) {
+if (i && t.$type.name !== i) {
+o.decorateRoot.remove(t.$type);
+t.$type.name = i;
+o.decorateRoot.add(t.$type);
+}
+return t.$type;
+}
+n || (n = e(35));
+var r = new n(i || t.name);
+o.decorateRoot.add(r);
+r.ctor = t;
+Object.defineProperty(t, "$type", {
+value: r,
+enumerable: !1
+});
+Object.defineProperty(t.prototype, "$type", {
+value: r,
+enumerable: !1
+});
+return r;
+};
+var l = 0;
+o.decorateEnum = function(t) {
+if (t.$type) return t.$type;
+i || (i = e(15));
+var n = new i("Enum" + l++, t);
+o.decorateRoot.add(n);
+Object.defineProperty(t, "$type", {
+value: n,
+enumerable: !1
+});
+return n;
+};
+o.setProperty = function(e, t, n) {
+if ("object" != typeof e) throw TypeError("dst must be an object");
+if (!t) throw TypeError("path must be specified");
+return function e(t, n, i) {
+var o = n.shift();
+if (n.length > 0) t[o] = e(t[o] || {}, n, i); else {
+var r = t[o];
+r && (i = [].concat(r).concat(i));
+t[o] = i;
+}
+return t;
+}(e, t = t.split("."), n);
+};
+Object.defineProperty(o, "decorateRoot", {
+get: function() {
+return r.decorated || (r.decorated = new (e(29))());
+}
+});
+}, {
+15: 15,
+29: 29,
+3: 3,
+30: 30,
+35: 35,
+39: 39,
+5: 5,
+8: 8
+} ],
+38: [ function(e, t) {
+t.exports = i;
+var n = e(39);
+function i(e, t) {
+this.lo = e >>> 0;
+this.hi = t >>> 0;
+}
+var o = i.zero = new i(0, 0);
+o.toNumber = function() {
+return 0;
+};
+o.zzEncode = o.zzDecode = function() {
+return this;
+};
+o.length = function() {
+return 1;
+};
+var r = i.zeroHash = "\0\0\0\0\0\0\0\0";
+i.fromNumber = function(e) {
+if (0 === e) return o;
+var t = e < 0;
+t && (e = -e);
+var n = e >>> 0, r = (e - n) / 4294967296 >>> 0;
+if (t) {
+r = ~r >>> 0;
+n = ~n >>> 0;
+if (++n > 4294967295) {
+n = 0;
+++r > 4294967295 && (r = 0);
+}
+}
+return new i(n, r);
+};
+i.from = function(e) {
+if ("number" == typeof e) return i.fromNumber(e);
+if (n.isString(e)) {
+if (!n.Long) return i.fromNumber(parseInt(e, 10));
+e = n.Long.fromString(e);
+}
+return e.low || e.high ? new i(e.low >>> 0, e.high >>> 0) : o;
+};
+i.prototype.toNumber = function(e) {
+if (!e && this.hi >>> 31) {
+var t = 1 + ~this.lo >>> 0, n = ~this.hi >>> 0;
+t || (n = n + 1 >>> 0);
+return -(t + 4294967296 * n);
+}
+return this.lo + 4294967296 * this.hi;
+};
+i.prototype.toLong = function(e) {
+return n.Long ? new n.Long(0 | this.lo, 0 | this.hi, Boolean(e)) : {
+low: 0 | this.lo,
+high: 0 | this.hi,
+unsigned: Boolean(e)
+};
+};
+var s = String.prototype.charCodeAt;
+i.fromHash = function(e) {
+return e === r ? o : new i((s.call(e, 0) | s.call(e, 1) << 8 | s.call(e, 2) << 16 | s.call(e, 3) << 24) >>> 0, (s.call(e, 4) | s.call(e, 5) << 8 | s.call(e, 6) << 16 | s.call(e, 7) << 24) >>> 0);
+};
+i.prototype.toHash = function() {
+return String.fromCharCode(255 & this.lo, this.lo >>> 8 & 255, this.lo >>> 16 & 255, this.lo >>> 24, 255 & this.hi, this.hi >>> 8 & 255, this.hi >>> 16 & 255, this.hi >>> 24);
+};
+i.prototype.zzEncode = function() {
+var e = this.hi >> 31;
+this.hi = ((this.hi << 1 | this.lo >>> 31) ^ e) >>> 0;
+this.lo = (this.lo << 1 ^ e) >>> 0;
+return this;
+};
+i.prototype.zzDecode = function() {
+var e = -(1 & this.lo);
+this.lo = ((this.lo >>> 1 | this.hi << 31) ^ e) >>> 0;
+this.hi = (this.hi >>> 1 ^ e) >>> 0;
+return this;
+};
+i.prototype.length = function() {
+var e = this.lo, t = (this.lo >>> 28 | this.hi << 4) >>> 0, n = this.hi >>> 24;
+return 0 === n ? 0 === t ? e < 16384 ? e < 128 ? 1 : 2 : e < 2097152 ? 3 : 4 : t < 16384 ? t < 128 ? 5 : 6 : t < 2097152 ? 7 : 8 : n < 128 ? 9 : 10;
+};
+}, {
+39: 39
+} ],
+39: [ function(e, t, n) {
+var i = n;
+i.asPromise = e(1);
+i.base64 = e(2);
+i.EventEmitter = e(4);
+i.float = e(6);
+i.inquire = e(7);
+i.utf8 = e(10);
+i.pool = e(9);
+i.LongBits = e(38);
+i.isNode = Boolean("undefined" != typeof global && global && global.process && global.process.versions && global.process.versions.node);
+i.global = i.isNode && global || "undefined" != typeof window && window || "undefined" != typeof self && self || this;
+i.emptyArray = Object.freeze ? Object.freeze([]) : [];
+i.emptyObject = Object.freeze ? Object.freeze({}) : {};
+i.isInteger = Number.isInteger || function(e) {
+return "number" == typeof e && isFinite(e) && Math.floor(e) === e;
+};
+i.isString = function(e) {
+return "string" == typeof e || e instanceof String;
+};
+i.isObject = function(e) {
+return e && "object" == typeof e;
+};
+i.isset = i.isSet = function(e, t) {
+var n = e[t];
+return !(null == n || !e.hasOwnProperty(t)) && ("object" != typeof n || (Array.isArray(n) ? n.length : Object.keys(n).length) > 0);
+};
+i.Buffer = function() {
+try {
+var e = i.inquire("buffer").Buffer;
+return e.prototype.utf8Write ? e : null;
+} catch (e) {
+return null;
+}
+}();
+i._Buffer_from = null;
+i._Buffer_allocUnsafe = null;
+i.newBuffer = function(e) {
+return "number" == typeof e ? i.Buffer ? i._Buffer_allocUnsafe(e) : new i.Array(e) : i.Buffer ? i._Buffer_from(e) : "undefined" == typeof Uint8Array ? e : new Uint8Array(e);
+};
+i.Array = "undefined" != typeof Uint8Array ? Uint8Array : Array;
+i.Long = i.global.dcodeIO && i.global.dcodeIO.Long || i.global.Long || i.inquire("long");
+i.key2Re = /^true|false|0|1$/;
+i.key32Re = /^-?(?:0|[1-9][0-9]*)$/;
+i.key64Re = /^(?:[\\x00-\\xff]{8}|-?(?:0|[1-9][0-9]*))$/;
+i.longToHash = function(e) {
+return e ? i.LongBits.from(e).toHash() : i.LongBits.zeroHash;
+};
+i.longFromHash = function(e, t) {
+var n = i.LongBits.fromHash(e);
+return i.Long ? i.Long.fromBits(n.lo, n.hi, t) : n.toNumber(Boolean(t));
+};
+function o(e, t, n) {
+for (var i = Object.keys(t), o = 0; o < i.length; ++o) e[i[o]] !== undefined && n || (e[i[o]] = t[i[o]]);
+return e;
+}
+i.merge = o;
+i.lcFirst = function(e) {
+return e.charAt(0).toLowerCase() + e.substring(1);
+};
+function r(e) {
+function t(e, n) {
+if (!(this instanceof t)) return new t(e, n);
+Object.defineProperty(this, "message", {
+get: function() {
+return e;
+}
+});
+Error.captureStackTrace ? Error.captureStackTrace(this, t) : Object.defineProperty(this, "stack", {
+value: new Error().stack || ""
+});
+n && o(this, n);
+}
+(t.prototype = Object.create(Error.prototype)).constructor = t;
+Object.defineProperty(t.prototype, "name", {
+get: function() {
+return e;
+}
+});
+t.prototype.toString = function() {
+return this.name + ": " + this.message;
+};
+return t;
+}
+i.newError = r;
+i.ProtocolError = r("ProtocolError");
+i.oneOfGetter = function(e) {
+for (var t = {}, n = 0; n < e.length; ++n) t[e[n]] = 1;
+return function() {
+for (var e = Object.keys(this), n = e.length - 1; n > -1; --n) if (1 === t[e[n]] && this[e[n]] !== undefined && null !== this[e[n]]) return e[n];
+};
+};
+i.oneOfSetter = function(e) {
+return function(t) {
+for (var n = 0; n < e.length; ++n) e[n] !== t && delete this[e[n]];
+};
+};
+i.toJSONOptions = {
+longs: String,
+enums: String,
+bytes: String,
+json: !0
+};
+i._configure = function() {
+var e = i.Buffer;
+if (e) {
+i._Buffer_from = e.from !== Uint8Array.from && e.from || function(t, n) {
+return new e(t, n);
+};
+i._Buffer_allocUnsafe = e.allocUnsafe || function(t) {
+return new e(t);
+};
+} else i._Buffer_from = i._Buffer_allocUnsafe = null;
+};
+}, {
+1: 1,
+10: 10,
+2: 2,
+38: 38,
+4: 4,
+6: 6,
+7: 7,
+9: 9
+} ],
+40: [ function(e, t) {
+t.exports = function(e) {
+var t = i.codegen([ "m" ], e.name + "$verify")('if(typeof m!=="object"||m===null)')("return%j", "object expected"), n = {};
+e.oneofsArray.length && t("var p={}");
+for (var a = 0; a < e.fieldsArray.length; ++a) {
+var c = e._fieldsArray[a].resolve(), l = "m" + i.safeProp(c.name);
+c.optional && t("if(%s!=null&&m.hasOwnProperty(%j)){", l, c.name);
+if (c.map) {
+t("if(!util.isObject(%s))", l)("return%j", o(c, "object"))("var k=Object.keys(%s)", l)("for(var i=0;i<k.length;++i){");
+s(t, c, "k[i]");
+r(t, c, a, l + "[k[i]]")("}");
+} else if (c.repeated) {
+t("if(!Array.isArray(%s))", l)("return%j", o(c, "array"))("for(var i=0;i<%s.length;++i){", l);
+r(t, c, a, l + "[i]")("}");
+} else {
+if (c.partOf) {
+var u = i.safeProp(c.partOf.name);
+1 === n[c.partOf.name] && t("if(p%s===1)", u)("return%j", c.partOf.name + ": multiple values");
+n[c.partOf.name] = 1;
+t("p%s=1", u);
+}
+r(t, c, a, l);
+}
+c.optional && t("}");
+}
+return t("return null");
+};
+var n = e(15), i = e(37);
+function o(e, t) {
+return e.name + ": " + t + (e.repeated && "array" !== t ? "[]" : e.map && "object" !== t ? "{k:" + e.keyType + "}" : "") + " expected";
+}
+function r(e, t, i, r) {
+if (t.resolvedType) if (t.resolvedType instanceof n) {
+e("switch(%s){", r)("default:")("return%j", o(t, "enum value"));
+for (var s = Object.keys(t.resolvedType.values), a = 0; a < s.length; ++a) e("case %i:", t.resolvedType.values[s[a]]);
+e("break")("}");
+} else e("{")("var e=types[%i].verify(%s);", i, r)("if(e)")("return%j+e", t.name + ".")("}"); else switch (t.type) {
+case "int32":
+case "uint32":
+case "sint32":
+case "fixed32":
+case "sfixed32":
+e("if(!util.isInteger(%s))", r)("return%j", o(t, "integer"));
+break;
+
+case "int64":
+case "uint64":
+case "sint64":
+case "fixed64":
+case "sfixed64":
+e("if(!util.isInteger(%s)&&!(%s&&util.isInteger(%s.low)&&util.isInteger(%s.high)))", r, r, r, r)("return%j", o(t, "integer|Long"));
+break;
+
+case "float":
+case "double":
+e('if(typeof %s!=="number")', r)("return%j", o(t, "number"));
+break;
+
+case "bool":
+e('if(typeof %s!=="boolean")', r)("return%j", o(t, "boolean"));
+break;
+
+case "string":
+e("if(!util.isString(%s))", r)("return%j", o(t, "string"));
+break;
+
+case "bytes":
+e('if(!(%s&&typeof %s.length==="number"||util.isString(%s)))', r, r, r)("return%j", o(t, "buffer"));
+}
+return e;
+}
+function s(e, t, n) {
+switch (t.keyType) {
+case "int32":
+case "uint32":
+case "sint32":
+case "fixed32":
+case "sfixed32":
+e("if(!util.key32Re.test(%s))", n)("return%j", o(t, "integer key"));
+break;
+
+case "int64":
+case "uint64":
+case "sint64":
+case "fixed64":
+case "sfixed64":
+e("if(!util.key64Re.test(%s))", n)("return%j", o(t, "integer|Long key"));
+break;
+
+case "bool":
+e("if(!util.key2Re.test(%s))", n)("return%j", o(t, "boolean key"));
+}
+return e;
+}
+}, {
+15: 15,
+37: 37
+} ],
+41: [ function(e, t, n) {
+var i = n, o = e(21);
+i[".google.protobuf.Any"] = {
+fromObject: function(e) {
+if (e && e["@type"]) {
+var t = e["@type"].substring(e["@type"].lastIndexOf("/") + 1), n = this.lookup(t);
+if (n) {
+var i = "." === e["@type"].charAt(0) ? e["@type"].substr(1) : e["@type"];
+-1 === i.indexOf("/") && (i = "/" + i);
+return this.create({
+type_url: i,
+value: n.encode(n.fromObject(e)).finish()
+});
+}
+}
+return this.fromObject(e);
+},
+toObject: function(e, t) {
+var n = "", i = "";
+if (t && t.json && e.type_url && e.value) {
+i = e.type_url.substring(e.type_url.lastIndexOf("/") + 1);
+n = e.type_url.substring(0, e.type_url.lastIndexOf("/") + 1);
+var r = this.lookup(i);
+r && (e = r.decode(e.value));
+}
+if (!(e instanceof this.ctor) && e instanceof o) {
+var s = e.$type.toObject(e, t);
+"" === n && (n = "type.googleapis.com/");
+i = n + ("." === e.$type.fullName[0] ? e.$type.fullName.substr(1) : e.$type.fullName);
+s["@type"] = i;
+return s;
+}
+return this.toObject(e, t);
+}
+};
+}, {
+21: 21
+} ],
+42: [ function(e, t) {
+t.exports = u;
+var n, i = e(39), o = i.LongBits, r = i.base64, s = i.utf8;
+function a(e, t, n) {
+this.fn = e;
+this.len = t;
+this.next = undefined;
+this.val = n;
+}
+function c() {}
+function l(e) {
+this.head = e.head;
+this.tail = e.tail;
+this.len = e.len;
+this.next = e.states;
+}
+function u() {
+this.len = 0;
+this.head = new a(c, 0, 0);
+this.tail = this.head;
+this.states = null;
+}
+var f = function() {
+return i.Buffer ? function() {
+return (u.create = function() {
+return new n();
+})();
+} : function() {
+return new u();
+};
+};
+u.create = f();
+u.alloc = function(e) {
+return new i.Array(e);
+};
+i.Array !== Array && (u.alloc = i.pool(u.alloc, i.Array.prototype.subarray));
+u.prototype._push = function(e, t, n) {
+this.tail = this.tail.next = new a(e, t, n);
+this.len += t;
+return this;
+};
+function d(e, t, n) {
+t[n] = 255 & e;
+}
+function h(e, t) {
+this.len = e;
+this.next = undefined;
+this.val = t;
+}
+h.prototype = Object.create(a.prototype);
+h.prototype.fn = function(e, t, n) {
+for (;e > 127; ) {
+t[n++] = 127 & e | 128;
+e >>>= 7;
+}
+t[n] = e;
+};
+u.prototype.uint32 = function(e) {
+this.len += (this.tail = this.tail.next = new h((e >>>= 0) < 128 ? 1 : e < 16384 ? 2 : e < 2097152 ? 3 : e < 268435456 ? 4 : 5, e)).len;
+return this;
+};
+u.prototype.int32 = function(e) {
+return e < 0 ? this._push(p, 10, o.fromNumber(e)) : this.uint32(e);
+};
+u.prototype.sint32 = function(e) {
+return this.uint32((e << 1 ^ e >> 31) >>> 0);
+};
+function p(e, t, n) {
+for (;e.hi; ) {
+t[n++] = 127 & e.lo | 128;
+e.lo = (e.lo >>> 7 | e.hi << 25) >>> 0;
+e.hi >>>= 7;
+}
+for (;e.lo > 127; ) {
+t[n++] = 127 & e.lo | 128;
+e.lo = e.lo >>> 7;
+}
+t[n++] = e.lo;
+}
+u.prototype.uint64 = function(e) {
+var t = o.from(e);
+return this._push(p, t.length(), t);
+};
+u.prototype.int64 = u.prototype.uint64;
+u.prototype.sint64 = function(e) {
+var t = o.from(e).zzEncode();
+return this._push(p, t.length(), t);
+};
+u.prototype.bool = function(e) {
+return this._push(d, 1, e ? 1 : 0);
+};
+function g(e, t, n) {
+t[n] = 255 & e;
+t[n + 1] = e >>> 8 & 255;
+t[n + 2] = e >>> 16 & 255;
+t[n + 3] = e >>> 24;
+}
+u.prototype.fixed32 = function(e) {
+return this._push(g, 4, e >>> 0);
+};
+u.prototype.sfixed32 = u.prototype.fixed32;
+u.prototype.fixed64 = function(e) {
+var t = o.from(e);
+return this._push(g, 4, t.lo)._push(g, 4, t.hi);
+};
+u.prototype.sfixed64 = u.prototype.fixed64;
+u.prototype.float = function(e) {
+return this._push(i.float.writeFloatLE, 4, e);
+};
+u.prototype.double = function(e) {
+return this._push(i.float.writeDoubleLE, 8, e);
+};
+var m = i.Array.prototype.set ? function(e, t, n) {
+t.set(e, n);
+} : function(e, t, n) {
+for (var i = 0; i < e.length; ++i) t[n + i] = e[i];
+};
+u.prototype.bytes = function(e) {
+var t = e.length >>> 0;
+if (!t) return this._push(d, 1, 0);
+if (i.isString(e)) {
+var n = u.alloc(t = r.length(e));
+r.decode(e, n, 0);
+e = n;
+}
+return this.uint32(t)._push(m, t, e);
+};
+u.prototype.string = function(e) {
+var t = s.length(e);
+return t ? this.uint32(t)._push(s.write, t, e) : this._push(d, 1, 0);
+};
+u.prototype.fork = function() {
+this.states = new l(this);
+this.head = this.tail = new a(c, 0, 0);
+this.len = 0;
+return this;
+};
+u.prototype.reset = function() {
+if (this.states) {
+this.head = this.states.head;
+this.tail = this.states.tail;
+this.len = this.states.len;
+this.states = this.states.next;
+} else {
+this.head = this.tail = new a(c, 0, 0);
+this.len = 0;
+}
+return this;
+};
+u.prototype.ldelim = function() {
+var e = this.head, t = this.tail, n = this.len;
+this.reset().uint32(n);
+if (n) {
+this.tail.next = e.next;
+this.tail = t;
+this.len += n;
+}
+return this;
+};
+u.prototype.finish = function() {
+for (var e = this.head.next, t = this.constructor.alloc(this.len), n = 0; e; ) {
+e.fn(e.val, t, n);
+n += e.len;
+e = e.next;
+}
+return t;
+};
+u._configure = function(e) {
+n = e;
+u.create = f();
+n._configure();
+};
+}, {
+39: 39
+} ],
+43: [ function(e, t) {
+t.exports = o;
+var n = e(42);
+(o.prototype = Object.create(n.prototype)).constructor = o;
+var i = e(39);
+function o() {
+n.call(this);
+}
+o._configure = function() {
+o.alloc = i._Buffer_allocUnsafe;
+o.writeBytesBuffer = i.Buffer && i.Buffer.prototype instanceof Uint8Array && "set" === i.Buffer.prototype.set.name ? function(e, t, n) {
+t.set(e, n);
+} : function(e, t, n) {
+if (e.copy) e.copy(t, n, 0, e.length); else for (var i = 0; i < e.length; ) t[n++] = e[i++];
+};
+};
+o.prototype.bytes = function(e) {
+i.isString(e) && (e = i._Buffer_from(e, "base64"));
+var t = e.length >>> 0;
+this.uint32(t);
+t && this._push(o.writeBytesBuffer, t, e);
+return this;
+};
+function r(e, t, n) {
+e.length < 40 ? i.utf8.write(e, t, n) : t.utf8Write ? t.utf8Write(e, n) : t.write(e, n);
+}
+o.prototype.string = function(e) {
+var t = i.Buffer.byteLength(e);
+this.uint32(t);
+t && this._push(r, t, e);
+return this;
+};
+o._configure();
+}, {
+39: 39,
+42: 42
+} ]
+}, {});
+})();
+cc._RF.pop();
+}).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
+}, {
+1: void 0,
+10: void 0,
+11: void 0,
+12: void 0,
+13: void 0,
+14: void 0,
+15: void 0,
+16: void 0,
+17: void 0,
+18: void 0,
+2: void 0,
+20: void 0,
+21: void 0,
+22: void 0,
+23: void 0,
+24: void 0,
+25: void 0,
+26: void 0,
+27: void 0,
+28: void 0,
+29: void 0,
+3: void 0,
+30: void 0,
+31: void 0,
+32: void 0,
+33: void 0,
+34: void 0,
+35: void 0,
+36: void 0,
+37: void 0,
+38: void 0,
+39: void 0,
+4: void 0,
+40: void 0,
+41: void 0,
+42: void 0,
+43: void 0,
+5: void 0,
+6: void 0,
+7: void 0,
+8: void 0,
+9: void 0
 } ],
 startClone: [ function(e, t) {
 "use strict";
@@ -7514,33 +10556,33 @@ this.touchLayer.on(cc.Node.EventType.TOUCH_MOVE, this.touchMove, this);
 this.touchLayer.on(cc.Node.EventType.TOUCH_END, this.touchEnded, this);
 this.touchLayer.on(cc.Node.EventType.TOUCH_CANCEL, this.touchCancel, this);
 },
-getRotatePos: function(e, t, _) {
-var n = _ / (180 / Math.PI), i = cc.v2(t.x - e.x, t.y - e.y), o = cc.v2(0, 0);
-o.x = i.x * Math.cos(n) - i.y * Math.sin(n);
-o.y = i.x * Math.sin(n) + i.y * Math.cos(n);
-o.x = o.x + e.x;
-o.y = o.y + e.y;
+getRotatePos: function(e, t, n) {
+var i = n / (180 / Math.PI), o = cc.v2(t.x - e.x, t.y - e.y), r = cc.v2(0, 0);
+r.x = o.x * Math.cos(i) - o.y * Math.sin(i);
+r.y = o.x * Math.sin(i) + o.y * Math.cos(i);
+r.x = r.x + e.x;
+r.y = r.y + e.y;
+return r;
+},
+isInside: function(e, t, n, i) {
+for (var o = !1, r = e - 1, s = 0; s < e; r = s++) {
+var a = n[s] > i.y != n[r] > i.y, c = i.x < (t[r] - t[s]) * (i.y - n[s]) / (n[r] - n[s]) + t[s];
+a && c && (o = !o);
+}
 return o;
 },
-isInside: function(e, t, _, n) {
-for (var i = !1, o = e - 1, S = 0; S < e; o = S++) {
-var T = _[S] > n.y != _[o] > n.y, r = n.x < (t[o] - t[S]) * (n.y - _[S]) / (_[o] - _[S]) + t[S];
-T && r && (i = !i);
-}
-return i;
-},
 getTouchTypeByNode: function(e, t) {
-var _ = t.convertToWorldSpaceAR(cc.v2(0, 0)), n = t.anchorX, i = t.anchorY, o = t.angle, S = t.width * t.scaleX, T = t.height * t.scaleY, r = Math.max(10, S * this.pukeDisRatio), s = Math.max(10, T * this.pukeDisRatio), E = cc.v2(-S * n + _.x, T * (1 - i) + _.y), R = cc.v2(-S * n + _.x, -T * i + _.y), a = cc.v2(S * (1 - n) + _.x, -T * i + _.y), c = cc.v2(S * (1 - n) + _.x, T * (1 - i) + _.y), I = cc.v2(E.x + r, E.y - s), l = cc.v2(R.x + r, R.y + s), N = cc.v2(a.x - r, a.y + s), C = cc.v2(c.x - r, c.y - s);
-E = this.getRotatePos(_, E, o);
-R = this.getRotatePos(_, R, o);
-a = this.getRotatePos(_, a, o);
-c = this.getRotatePos(_, c, o);
-I = this.getRotatePos(_, I, o);
-l = this.getRotatePos(_, l, o);
-N = this.getRotatePos(_, N, o);
-C = this.getRotatePos(_, C, o);
-var A = [ E.x, R.x, a.x, c.x ], O = [ E.y, R.y, a.y, c.y ], d = [ I.x, l.x, N.x, C.x ], h = [ I.y, l.y, N.y, C.y ];
-return this.isInside(4, A, O, e) && !this.isInside(4, d, h, e) ? 2 : this.isInside(4, d, h, e) ? 1 : 3;
+var n = t.convertToWorldSpaceAR(cc.v2(0, 0)), i = t.anchorX, o = t.anchorY, r = t.angle, s = t.width * t.scaleX, a = t.height * t.scaleY, c = Math.max(10, s * this.pukeDisRatio), l = Math.max(10, a * this.pukeDisRatio), u = cc.v2(-s * i + n.x, a * (1 - o) + n.y), f = cc.v2(-s * i + n.x, -a * o + n.y), d = cc.v2(s * (1 - i) + n.x, -a * o + n.y), h = cc.v2(s * (1 - i) + n.x, a * (1 - o) + n.y), p = cc.v2(u.x + c, u.y - l), g = cc.v2(f.x + c, f.y + l), m = cc.v2(d.x - c, d.y + l), y = cc.v2(h.x - c, h.y - l);
+u = this.getRotatePos(n, u, r);
+f = this.getRotatePos(n, f, r);
+d = this.getRotatePos(n, d, r);
+h = this.getRotatePos(n, h, r);
+p = this.getRotatePos(n, p, r);
+g = this.getRotatePos(n, g, r);
+m = this.getRotatePos(n, m, r);
+y = this.getRotatePos(n, y, r);
+var v = [ u.x, f.x, d.x, h.x ], b = [ u.y, f.y, d.y, h.y ], S = [ p.x, g.x, m.x, y.x ], w = [ p.y, g.y, m.y, y.y ];
+return this.isInside(4, v, b, e) && !this.isInside(4, S, w, e) ? 2 : this.isInside(4, S, w, e) ? 1 : 3;
 },
 resetPos: function() {
 var e = cc.v2(0, 0);
@@ -7556,22 +10598,22 @@ this._zmMaterial.effect.setProperty("firstPos", e);
 this._zmMaterial.effect.setProperty("secondPos", t);
 },
 getAngleByPos: function(e, t) {
-var _ = t.x - e.x, n = t.y - e.y;
-if (0 == _) return n > 0 ? 90 : 180;
-var i = Math.atan(n / _);
-return 180 / Math.PI * i;
+var n = t.x - e.x, i = t.y - e.y;
+if (0 == n) return i > 0 ? 90 : 180;
+var o = Math.atan(i / n);
+return 180 / Math.PI * o;
 },
 runRatationAction: function(e, t) {
-var _ = this._bgMaterialNode.convertToWorldSpaceAR(cc.v2(0, 0)), n = this.getAngleByPos(_, e), i = this.getAngleByPos(_, t);
-this._bgMaterialNode.angle = this.backAngle + (i - n);
+var n = this._bgMaterialNode.convertToWorldSpaceAR(cc.v2(0, 0)), i = this.getAngleByPos(n, e), o = this.getAngleByPos(n, t);
+this._bgMaterialNode.angle = this.backAngle + (o - i);
 this.labelAngle.string = this._bgMaterialNode.angle;
 },
 touchBegan: function(e) {
-var t = e.getLocation(), _ = this.getTouchTypeByNode(t, this._bgMaterialNode);
-if (1 == _) {
+var t = e.getLocation(), n = this.getTouchTypeByNode(t, this._bgMaterialNode);
+if (1 == n) {
 this.rotateFirstPos = t;
 this.backAngle = this._bgMaterialNode.angle;
-} else 2 == _ && (this.touchFirstPos = t);
+} else 2 == n && (this.touchFirstPos = t);
 },
 touchMove: function(e) {
 var t = e.getLocation();
@@ -7593,23 +10635,13 @@ cc._RF.pop();
 textinput: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "0043b7TOBhKiYqrFXaldTiM", "textinput");
-var _ = e("BaseComponent");
 cc.Class({
-extends: _,
-properties: {
-AimType: {
-default: 2,
-override: !0
-}
-},
-onDestroy: function() {
-this._super();
-},
+extends: cc.Component,
+properties: {},
+onDestroy: function() {},
 onLoad: function() {
-var e = this;
-this._super();
-var t = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("btn_done");
-ua.darkButton(t, function() {
+var e = this, t = this.node.getChildByName("uicontent").getChildByName("panel").getChildByName("btn_done");
+UITool.addBtnClick(t, function() {
 if (e.call) {
 var t = e.Editbox.getComponent(cc.EditBox).string;
 window.Save.set("LastHoturl", t);
@@ -7625,668 +10657,9 @@ var t = window.Save.get("LastHoturl", null);
 t && (this.Editbox.getComponent(cc.EditBox).string = t);
 this.Editbox.getComponent(cc.EditBox).setFocus();
 },
-onbackpress: function() {
-this._super();
-},
+onbackpress: function() {},
 start: function() {}
 });
-cc._RF.pop();
-}, {
-BaseComponent: "BaseComponent"
-} ],
-th: [ function(e, t) {
-"use strict";
-cc._RF.push(t, "8500782U4xMr4qYmU3oN13C", "th");
-t.exports = {
-STR_COREPLAY_BUTTON_FOLD: "หมอบ",
-STR_COREPLAY_BUTTON_CHECK: "ผ่าน",
-STR_COREPLAY_BUTTON_CALL: "สู้%s",
-STR_COREPLAY_BUTTON_RAISE: "เกทับ",
-STR_COREPLAY_BUTTON_CONFIRM: "",
-STR_COREPLAY_BUTTON_ALLIN: "All In",
-STR_COREPLAY_BUTTON_PREP_CHECKORFOLD: "ผ่าน/หมอบ",
-STR_COREPLAY_BUTTON_PREP_AUTOCHECK: "ผ่าน",
-STR_COREPLAY_BUTTON_PREP_CALL: "สู้%s",
-STR_COREPLAY_BUTTON_PREP_CALLANY: "สู้อัตโนมัติ",
-STR_INFORMATION_TILLE_1: "ข้อมูลส่วนตัว",
-STR_INFORMATION_TILLE_2: "รายการไอเทม",
-STR_INFORMATION_TILLE_3: "ข้อความสำเร็จรูป",
-STR_INFORMATION_TILLE_4: "เสียงสำเร็จรูป",
-STR_INFORMATION_TILLE_5: "ข้อมูลสถิติ",
-STR_INFORMATION_PERSONAL_LV: "Lv.",
-STR_INFORMATION_PERSONAL_ID: "ID",
-STR_INFORMATION_PERSONAL_NAME: "ชื่อ",
-STR_INFORMATION_PERSONAL_MALE: "ชาย",
-STR_INFORMATION_PERSONAL_FEMALE: "หญิง",
-STR_INFORMATION_PERSONAL_ADDRESS: "ที่อยู่：",
-STR_INFORMATION_PERSONAL_ADDRESS_NULL: "ไม่ทราบ",
-STR_INFORMATION_PERSONAL_SIGNATURE: "เซ็นชื่อ：",
-STR_INFORMATION_PERSONAL_PHOTO_DEFAULT: "อัพโหลดใหม่ 1รูป",
-STR_INFORMATION_PERSONAL_PHOTO_INREVIEW: "ตรวจสอบอยู่",
-STR_INFORMATION_ITEMLIST_TIME: "วัน",
-STR_INFORMATION_ITEMLIST_TIME_HOUR: "ชม.",
-STR_INFORMATION_QUICKCHAT_WORDS: "",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_1: "เกมส์เริ่มแล้ว ฉันพร้อมชนะแล้วนะ",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_2: "อย่าช้าสิ รีบลงเดิมพันหน่อย",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_3: "ไพ่ในมือดีมากๆ ดูเหมือนรอบนี้ฉันจะชนะแล้ว",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_4: "ฉันall in กลัวก็หมอบไพ่ไปนะ",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_5: "แม้ว่ารอบนี้ฉันชนะแล้ว แต่ฉันก็ไม่ปราณีหรอกนะ",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_6: "หมอบก็ไม่ได้แสดงว่าฉันแพ้นะ ฉันแค่อยากพัก",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_7: "คุณเล่นไพ่ได้ดีมาก จนฉันอยากยกนิ้วให้เลย",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_8: "ถึงแม้จะมีเรื่องแบบนี้ แต่อย่าไปเชื่อ",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_9: "รอบนี้ฉันไม่ได้จริงจัง ครั้งหน้าไม่แพ้แน่",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_10: "ฉันยอมออกไปแล้ว พวกเธอก็โชคดีนะ",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_NULL: "กดตรงนี้กรอกข้อความสำเร็จรูปของคุณ",
-STR_INFORMATION_QUICKCHAT_VOICE: "",
-STR_INFORMATION_QUICKCHAT_VOICE_DEFAULT: "กดค้างตรงนี้บันทึกเสียง",
-STR_INFORMATION_QUICKCHAT_VOICE_ENTERTITLE: "กดตรงนี้กรอกหัวเรื่อง",
-STR_INFORMATION_QUICKCHAT_VOICE_RECORDING: "กำลังบันทึกเสียง",
-STR_INFORMATION_STATISTICS_ID: "ID:",
-STR_INFORMATION_STATISTICS_GAMES: "จำนวนรอบไพ่:",
-STR_INFORMATION_STATISTICS_WINS: "จำนวนรอบชนะ:",
-STR_INFORMATION_STATISTICS_LOSE: "จำนวนรอบแพ้:",
-STR_INFORMATION_STATISTICS_WINRATE: "อัตราชนะ:",
-STR_INFORMATION_STATISTICS_SHOWINRIVER: "อัตราเปิดไพ่:",
-STR_INFORMATION_STATISTICS_FOLDINPREFLOP: "อัตราหมอบ：",
-STR_INFORMATION_STATISTICS_ALLININPREFLOP: "อัตราall inหลังแจกไพ่：",
-STR_INFORMATION_STATISTICS_HIGHESTCHIP: "ประวัติชิปมากสุด:",
-STR_INFORMATION_STATISTICS_MOSTWIN: "ชนะมากสุด:",
-STR_INFORMATION_STATISTICS_BESTCARDS: "รูปแบบไพ่ใหญ่สุด:",
-STR_INFORMATION_STATISTICS_GIVECHIPTOFRIEND: "จำนวนครั้งส่งชิปฟรีให้เพื่อน:",
-STR_INFORMATION_STATISTICS_GIVECHIPTOFRIEND_TIMES: "ครั้ง",
-STR_INFORMATION_STATISTICS_GIVECHIPINGAME: "จำนวนครั้งส่งชิปให้ผู้เล่น:",
-STR_INFORMATION_STATISTICS_GIVECHIPINGAME_TIMES: "ครั้ง",
-STR_INFORMATION_ITEMLIST_ITEM_TITLE: "ที่คุณมีอยู่:",
-STR_INFORMATION_ITEMLIST_PATCH_TITLE: "คุณสามารถแลกได้:",
-STR_RANKING_TITLE_MAIN: "แรงกิ้งค์",
-STR_RANKING_TITLE_1: "ชิปรวม",
-STR_RANKING_TITLE_2: "อัตรากำไร",
-STR_RANKING_TITLE_3: "ได้รับชิปวันนี้",
-STR_RANKING_TITLE_4: "ชนะวันนี้",
-STR_RANKING_TITLE_5: "ปฎิสัมพันธ์",
-STR_RANKING_GMT_GMT: "เวลาGMT",
-STR_RANKING_GMT_EXPLAIN: "เกมส์ใช้เวลาตามGMTเป็นมาตรฐาน ที่นี้แสดงเวลาแบบGMT ผู้เล่นทุกท่านโปรดทราบ",
-STR_RANKING_TOP_TOP: "แถวหน้า",
-STR_RANKING_RANKING_NOPLAYER: "แรงกิ้งค์ยังไม่มีผู้เล่น",
-STR_CHAT_EXPRESSION_TITLE: "อิโมจิแสดงสีหน้า",
-STR_CHAT_QUICKWORDS_TITLE: "ข้อความสำเร็จรูป",
-STR_CHAT_QUICKVOICES_TITLE: "เสียงสำเร็จรูป",
-STR_CHAT_INPUT_DEFAULT: "กดตรงนี้กรอกตัวอักษร",
-STR_CHAT_INPUT_DEFAULT_IOS: "กดตรงนี้กรอกตัวอักษร",
-STR_CHAT_QUICKVOICE_NOVICE: "",
-STR_CHAT_QUICKVOICE_NOTITLE: "ยังไม่ได้กรอกคำบรรยาย",
-STR_TABLEBOARD_CAHT_NOQUICKVOICE: "ตอนนี้คุณยังไม่มีเสียงสำเร็จรูปที่บันทึกไว้",
-STR_TABLEBOARD_CHAT_NOQUICKTEXT: "ตอนนี้คุณยังไม่มีข้อความสำเร็จรูปที่บันทึกไว้",
-STR_TABLEBOARD_RECORDING_COUNTDOWN: "เหลือ%dวินาที",
-STR_FRIENDS_TITLE: "เพื่อนของคุณ",
-STR_FRIENDS_NOFRIENDS: "ตอนนี้คุณยังไม่มีเพื่อน กดปุ่มค้นหาที่บนมุมขวา คุณสามารถใช้ชื่อผู้เล่นหาผู้เล่นที่สอดคล้อง ที่หน้าหลักโต๊ะเกมส์และหน้าหลักเกมส์ กดที่รูปโปรไฟต์ผู้เล่น กดปุ่มเพิ่มเป็นเพื่อน ก็จะส่งคำขอได้ง่ายๆ รีบมาลองดูนะ",
-STR_FRIENDS_FRIENDS_UPDATE: "แสดงรูปภาพล่าสุดของเพื่อนก่อน",
-STR_FRIENDS_FRIENDS_OL: "แสดงเพื่อนที่ออนไลน์อยู่ก่อน",
-STR_FRIENDS_FRIENDS_ACTIVE: "แสดงเพื่อนที่ใช้งานอยู่ก่อน",
-STR_FRIENDS_FRIENDS_MAX: "MAX",
-STR_FRIENDS_FRIENDS_INFORMATION_LV: "Lv.",
-STR_FRIENDS_FRIENDS_INFORMATION_MALE: "ชาย",
-STR_FRIENDS_FRIENDS_INFORMATION_FEMALE: "หญิง",
-STR_FRIENDS_FRIENDS_INFORMATION_ADDRESS: "ที่อยู่：",
-STR_FRIENDS_FRIENDS_INFORMATION_DEFAULT: "แสดงจำนวนการส่งไลก์ คอนเม้นต์และส่งชิปฟรีให้ผู้เล่นคนนี้แล้วเท่าไหร่",
-STR_FRIENDS_FRIENDS_INFORMATION_NOPHOTO: "ผู้เล่นคนนี้ไม่ได้อัพโหลดรูปใดๆ เลย",
-STR_FRIENDS_FRIENDS_INFORMATION_GAMES: "เกมส์",
-STR_FRIENDS_FRIENDS_INFORMATION_WIN: "ชนะ ",
-STR_FRIENDS_FRIENDS_INFORMATION_LOSE: "แพ้",
-STR_FRIENDS_FRIENDS_INFORMATION_WINRATE: "อัตราชนะ:",
-STR_FRIENDS_FRIENDS_INFORMATION_SHOWINRIVER: "อัตราเปิดไพ่:",
-STR_FRIENDS_FRIENDS_INFORMATION_FOLDINPREFLOP: "อัตราหมอบ：",
-STR_FRIENDS_FRIENDS_INFORMATION_ALLININPREFLOP: "อัตราall inหลังแจกไพ่:",
-STR_FRIENDS_FRIENDS_INFORMATION_HIGHESTCHIP: "ประวัติชิปมากสุด:",
-STR_FRIENDS_FRIENDS_INFORMATION_MOSTWIN: "ชนะมากสุด:",
-STR_FRIENDS_FRIENDS_INFORMATION_BESTCARDS: "รูปแบบไพ่ใหญ่สุด:",
-STR_FRIENDS_FRIENDS_SEARCHTITLE: "เพื่อนที่ค้นหาพบ",
-STR_FRIENDS_FRIENDS_SEARCHTIPS: "กรุณากรอกอย่างน้อย4ตัวอักษร เพื่อค้นหาชื่อ",
-STR_FRIENDS_FRIENDS_SEARCH: "ตามชื่อผู้เล่นพบแล้ว %dคน แสดงผู้เล่นคล้ายกันมากสุด %dคน",
-STR_LOGIN_PHONELOGIN: "โทรศัพท์",
-STR_LOGIN_ACCOUNTLOGIN: "บัญชี",
-STR_LOGIN_FACEBOOKLOGIN: "Facebook",
-STR_LOGIN_GUESTLOGIN: "นักท่องเที่ยว",
-STR_LOGIN_ACCOUNTLOGIN_ACCOUNT: "กรอกอีเมลของคุณ",
-STR_LOGIN_ACCOUNTLOGIN_PASSWORD: "กรอกรหัสผ่านของคุณ",
-STR_LOGIN_ACCOUNTLOGIN_AUTOLOGIN: "ล็อกอินอัตโนมัต",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD: "กู้คืนรหัสผ่าน",
-STR_LOGIN_ACCOUNTLOGIN_LOGIN: "ล็อกอิน",
-STR_LOGIN_ACCOUNTLOGIN_REGISTER: "ลงทะเบียน",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERACCOUNT: "กรุณากรอกอีเมลของคุณ",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERENTERPASSWORD: "กรุณากรอกรหัสผ่านของคุณ",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERCONFRIMPASSWORD: "กรุณายืนยันรหัสผ่าน",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERREGISTER: "ลงทะเบียน",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_EXPLAIN: "หากคุณต้องการกู้คืนรหัสผ่าน กรุณากรอกอีเมลที่ใช้ลงทะเบียนแล้ว เราจะส่งรหัสผ่านไปที่อีเมลนี้",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_ENTER: "กรุณากรอกอีเมลที่ลงทะเบียนของคุณ",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_SENDEMAIL: "ส่งอีเมล",
-STR_LOGIN_TERMSOFSERVICE: "ข้อตกลงผู้ใช้",
-STR_LOBBY_TITLE: "ห้อง",
-STR_LOBBY_ID: "ห้องID",
-STR_LOBBY_BLIND: "บลายด์ %s/%s",
-STR_LOBBY_5PLAYERS: "ห้อง5คน",
-STR_LOBBY_9PLAYERS: "ห้อง9คน",
-STR_LOBBY_FULL: "ห้องเต็ม",
-STR_LOBBY_EMPTY: "ห้องว่าง",
-STR_SIT_ROOMID: "ห้องID %d",
-STR_SIT_BLIND: "บิ๊ก/สมอลบลายด์ %s/%s",
-STR_SIT_MINBLIND: "นำเข้าน้อยสุด",
-STR_SIT_MAXBLIND: "นำเข้ามากสุด",
-STR_SIT_AUTOSIT: "เมื่อชิปไม่พอนำชิปเข้าอัตโนมัตพร้อมทั้งนั่งลง",
-STR_SIT_LEAVE: "",
-STR_SIT_SIT: "นั่งลง",
-STR_SIT_NOCHIP: "ชิปไม่พอ",
-STR_SIT_SHOP: "ห้าง",
-STR_INVITE_TITLE: "เล่นกับเพื่อนของคุณ",
-STR_INVITE_BUTTON: "เชิญมาที่ห้องเกมส์",
-STR_INVITE_NOFRIEND: "เสียใจด้วย คุณยังไม่มีเพื่อน รีบไปเป็นเพื่อนกับผู้เล่นคนอื่นเร็ว",
-STR_INVITE_UNKNOWN: "ที่อยู่     ไม่ทราบ",
-STR_MES_FRIEND_TITLE: "ข้อมูลเพื่อน",
-STR_MES_SYSTEM_TITLE: "ข้อมูลระบบ",
-STR_MES_ADDFRIEND_RCCEIVE: "%s ต้องการเป็นเพื่อนกับคุณ คุณต้องการยินยอมไหม？",
-STR_MES_ADDFRIEND_AGREE: "ยินดีด้วย！%sยอมรับคำร้องขอเป็นเพื่อนของคุณแล้ว คุณสามารถหาเขาได้ที่หน้าหลักเพื่อน\n",
-STR_MES_ADDFRIEND_YOUAGREE: " คุณยอมรับคำร้องขอเป็นเพื่อนของ%sแล้ว คุณสามารถหาเขาได้ที่หน้าหลักเพื่อน\n",
-STR_MES_CHIPS_GIVE: "%sส่ง %dชิปฟรีให้คุณ รีบมารับเร็ว",
-STR_MES_CHIPS_RECEIVE: "คุณรับ %dชิปฟรี ที่มาจาก%s ",
-STR_MES_MESSAGE_NULL: "ตอนนี้ยังไม่มีข้อมูล",
-STR_MES_MONTH_JAN: "ม.ค.",
-STR_MES_MONTH_FEB: "ก.พ.",
-STR_MES_MONTH_MAR: "มี.ค.",
-STR_MES_MONTH_APR: "เม.ย.",
-STR_MES_MONTH_MAY: "พ.ค.",
-STR_MES_MONTH_JUN: "มิ.ย.",
-STR_MES_MONTH_JUL: "ก.ค.",
-STR_MES_MONTH_AUG: "ส.ค.",
-STR_MES_MONTH_SEP: "ก.ย.",
-STR_MES_MONTH_OCT: "ต.ค.",
-STR_MES_MONTH_NOV: "พ.ย.",
-STR_MES_MONTH_DEC: "ธ.ค.",
-STR_HOMESCREEN_OLPLAYER: " ผู้เล่นออนไลน์:%s",
-STR_HOMESCREEN_PHOTOUPLOAD: "เพื่อนของคุณ %s อัพเดทรูปภาพใหม่แล้ว",
-STR_HOMESCREEN_NOUPLOAD: " ยังไม่มีเพื่อนอัพเดทรูปภาพใหม่",
-STR_EVENT_BACK: "กลับ",
-STR_ANNOUNCEMENT_TITLE: "ประกาศ",
-STR_PLAYER_INF_NAME: "",
-STR_PLAYER_INF_TITLE_PHOTO: "รูปภาพ",
-STR_PLAYER_INF_TITLE_ACHIEVEMENTS: "ผลงาน",
-STR_PLAYER_INF_LV: "Lv.",
-STR_PLAYER_INF_MALE: "ชาย",
-STR_PLAYER_INF_FEMALE: "หญิง",
-STR_PLAYER_INF_ADDRESS: "ที่อยู่",
-STR_PLAYER_INF_BUTTON_BLOCK: "กดตรงนี้บล็อกผู้เล่น",
-STR_PLAYER_INF_BLOCKBUTTON: "บล็อก",
-STR_PLAYER_INF_BUTTON_UNLOCK: "",
-STR_PLAYER_INF_UNLOCKBUTTON: "ปลดบล็อก",
-STR_PLAYER_INF_BUTTON_REPORT: "กดตรงนี้รายงานรูปโปรไฟต์ผู้เล่น",
-STR_PLAYER_INF_REPORTBUTTON: "รายงาน",
-STR_PLAYER_INF_BLOCK: "หลังจากบล็อกแล้ว คุณจะไม่สามารถได้รับข้อความ เสียง หรืออิโมจิที่มาจากผู้เล่นคนนี้อีก คุณแน่ใจหรือไม่ว่าจะบล็อกผู้เล่นคนนี้？",
-STR_PLAYER_INF_UNBLOCK: "หลังจากปลดบล็อกผู้เล่นคนนี้แล้ว คุณสามารถได้รับข้อความ เสียง หรืออิโมจิที่มาจากผู้เล่นคนนี้ได้อีกครั้ง",
-STR_PLAYER_INF_REPORT: "หลังจากมีผู้เล่นจำนวนมากรายงานรูปโปรไฟต์นี้ รูปโปรไฟต์นี้จะถูกบล็อก เราจะรีบดำเนินการตรวจสอบโดยเร็ว คุณแน่ใจหรือไม่ว่าจะรายงานรูปโปรไฟต์นี้？",
-STR_PLAYER_PHOTO_NULL: "ผู้เล่นคนนี้ไม่ได้อัพโหลดรูปใดๆ เลย",
-STR_CHECKPHOTO_NOAUTHORITY: "ขออภัย เนื่องจากการตั้งค่าของผู้เล่นคนนี้ คุณไม่มีสิทธิ์ตรวจเช็ครูปของผู้เล่นคนนี้",
-STR_PLAYER_PHOTO_CRITICTITLE: "คอมเม้นต์",
-STR_PLAYER_STATISTICS_GAMES: "จำนวนรอบไพ่:",
-STR_PLAYER_STATISTICS_WINS: "ชนะ",
-STR_PLAYER_STATISTICS_LOSE: "แพ้",
-STR_PLAYER_STATISTICS_WINRATE: "อัตราชนะ:",
-STR_PLAYER_STATISTICS_SHOWINRIVER: "อัตราเปิดไพ่:",
-STR_PLAYER_STATISTICS_FOLDINPREFLOP: "อัตราหมอบ：",
-STR_PLAYER_STATISTICS_ALLININPREFLOP: "อัตราall inหลังแจกไพ่：",
-STR_PLAYER_STATISTICS_HIGHESTCHIPS: "ประวัติชิปมากสุด:",
-STR_PLAYER_STATISTICS_MOSTWIN: "ชนะมากสุด:",
-STR_PLAYER_STATISTICS_BTESTCARD: "รูปแบบไพ่ใหญ่สุด:",
-STR_PLAYER_STATISTICS_MINS: "%s นาที",
-STR_PLAYER_ACHIEVEMENT_NULL: "ผู้เล่นคนนี้ยังไม่ได้รับผลงานใดๆ เลย",
-STR_LOGINREWARD_TITLE: "รางวัลล็อกอินต่อเนื่อง",
-STR_LOGINREWARD_DAY: "วันที่%d",
-STR_LOGINREWARD_RECEIVED: "รับแล้ว",
-STR_LOGINREWARD_TIPS: "หากคุณรักษาการล็อกอินต่อนเนื่องไว้ คุณจะได้รับรางวัลมากยิ่งขึ้น",
-STR_LOGINREWARD_SUCCESS: "",
-STR_ABOUTUS_STAFF: "Poker Royal Texas Hold'em Staff List\n\n\nGameDesinger\n\nStone\nJohn Smith\n\n\nProgrammer\n\nJack\nWillian\nHaven \nSpiro\nBob\nRussell\n\n\nArtDesinger\n\nPantheon\nEmma\nMandy\n\n\nGameTester\n\nJoffence\nDoris\n\n\nSpecial Thanks\n\nChris\nAlex\nMatata\nBlank",
-STR_BUTTON_YES: "ใช่",
-STR_BUTTON_NO: "ไม่ใช่",
-STR_BUTTON_OK: "ยืนยัน",
-STR_BUTTON_IGNORE: "",
-STR_BUTTON_AGREE: "ตกลง",
-STR_OPTIONS_TITLE: "ตั้งค่า",
-STR_OPTIONS_VOICE: "เสียง",
-STR_OPTIONS_SOUND: "เสียงซาวด์",
-STR_OPTIONS_AUTOSIT: "นั่งอัตโนมัต",
-STR_OPTIONS_VIBRATION: "สั่น",
-STR_OPTIONS_FOLLOW: "ยินยอมให้ผู้เล่นติดตาม",
-STR_OPTIONS_INVITE: "รับข้อมูลการเชิญ",
-STR_OPTIONS_SEEPHOTOS: "ใครสามารถดูรูปของฉันได้",
-STR_OPTIONS_CHOSEN_YES: "ใช่",
-STR_OPTIONS_CHOSEN_NO: "ไม่ใช่",
-STR_OPTIONS_SEEPHOTOS_FRIEND: "เฉพาะเพื่อนที่ดูได้",
-STR_OPTIONS_SEEPHOTOS_NOONE: "ทุกคนไม่สามารถดูได้",
-STR_OPTIONS_SEEPHOTOS_ANYONE: "ทุกคนสามารถดูได้",
-STR_OPTIONS_RATE: "ให้คะแนนเกมส์",
-STR_OPTIONS_CACHE: "ล้างแคช",
-STR_OPTIONS_CACHE_CONFIRM: "ล้างแคชจะลบรูปโปรไฟต์ รูปภาพที่คุณได้โหลดแล้ว คุณแน่ใจหรือไม่ว่าจะล้างแคช？",
-STR_OPTIONS_CACHE_CLEARED: "ล้างแคชสำเร็จ",
-STR_OPTIONS_ABOUT: "เกี่ยวกับเรา",
-STR_OPTIONS_REPORT: "รายงานปัญหา",
-STR_OPTIONS_FOLLOWUS: "ติดตามเรา",
-STR_OPTIONS_CONTACT: "ติดต่อเรา",
-STR_LOADING_1: "นำเพื่อนมาที่เกมส์ แต่ก็อย่าลืมว่าในความเป็นจริงก็เล่นด้วยอยู่",
-STR_LOADING_2: "สื่อสารกับคนอื่นกรุณารักษามารยาท ในขณะที่เคารพผู้อื่นนั้น คุณก็จะได้รับการเคารพจากคนอื่นเช่นกัน",
-STR_LOADING_3: "ในห้องเกมส์อย่าได้ลวนลามเจ้ามือ แม้ว่าพวกเขาจะหล่อหรือเซ็กซี่มากก็ตาม",
-STR_LOADING_4: "หากอยู่ในเกมส์ได้รับความล้มเหลวขัดข้อง ไม่ต้องท้อไป ชีวิตไม่ได้ทอดทิ้งคุณ",
-STR_LOADING_5: "ทำเรื่องอะไรก็ตามต้องการระดับความเหมาะสม รวมทั้งการเล่นโป๊กเกอร์รอยัล",
-STR_LOADING_6: "กรุณาอย่าลืมเปิดข้อมูลเพื่อนทุกวัน กดปุ่มส่งชิปส่งชิปฟรีให้เพื่อน",
-STR_LOADING_7: "เมื่อถึงรอบคุณแล้ว กดชิปด้านล่างซ้าย ก็สามารถเลือกจำนวนเงินเกทับแบบเร็วได้",
-STR_LOADING_8: "ตอนที่ตรวจเช็คข้อมูลผู้เล่น กดที่รูปโปรไฟต์อีกครั้ง ก็สามารถบล็อกผู้เล่นน่ารำคาญได้",
-STR_LOADING_9: "หากต้องการคุยกันส่วนตัว กรุณาอย่าลืมใช้ปุ่มเสียงที่หน้ารายละเอียดข้อมูลผู้เล่น",
-STR_LOADING_10: "กรุณาอย่าลืมตรวจเช็คกิจกรรมนะ ไม่แน่อาจมีเซอร์ไพรส์",
-STR_LOADING_11: "รักษาการล็อกอินต่อเนื่อง จะได้รับรางวัลที่ดีที่สุด",
-STR_LOADING_END: "รักษาจิตใจให้ปกติอยู่ตลอดเวลา ชนะก็ไม่ต้องตื่นเต้น แพ้ก็ไม่ต้องหดหู่ใจ",
-STR_TABLEBOARD_ID: "ห้องID%d บิ๊ก/สมอบลายด์ %s/%s",
-STR_CARDTYPE_HIGH_CARD: "ไพ่สูง",
-STR_CARDTYPE_PAIR_CARD: "1คู่",
-STR_CARDTYPE_TWO_PAIRS_CARD: "2คู่",
-STR_CARDTYPE_THREE_CARD: "ตอง",
-STR_CARDTYPE_STRAIGHT: "สเตรท",
-STR_CARDTYPE_FLUSH: "ฟลัช",
-STR_CARDTYPE_FULL_HOUSE: "ฟูลเฮ้าท์",
-STR_CARDTYPE_FOUR_OF_A_KIND: "โฟร์การ์ด",
-STR_CARDTYPE_STRAIGHT_FLUSH: "สเตรทฟลัช",
-STR_CARDTYPE_ROYAL_FLUSH: "รอยัลสเตรทฟลัช",
-STR_TABLEBOARD_EXP: "Exp.",
-STR_QUESTS_TITLE: "ภารกิจ",
-STR_QUESTS_RECEIVEBUTTON: "กดรับ",
-STR_ACHIEVEMENTS_TITLE: "ผลงาน",
-STR_LVUP_TITLE: "ยินดีด้วย！",
-STR_LVUP_TEXT: "ยินดีด้วย คุณอัพเกรดถึงLv.%d ได้รับรางวัล %sชิปแล้ว",
-STR_SHOP_TITLE: " ห้าง",
-STR_SHOP_BUTTON: "ซื้อ",
-STR_ALMS_TITLE: "ฟื้นคืนชีพ",
-STR_ALMS_TEXT: "ผู้เล่นที่น่ารัก เนื่องจากตอนนี้จำนวนชิปและเพชรของคุณน้อยมาก ระบบส่ง %sชิปให้คุณ วันนี้คุณยังสามารถได้รับเงินสงเคราะห์อีก %dครั้ง",
-STR_BUG_REPORT: "กดส่งคำถาม",
-STR_BUG_INPUT: "กรุณากรอกคำถามที่คุณต้องการส่ง",
-STR_BUG_TIP: "คำถามของคุณส่งให้เซิร์ฟเวอร์แล้ว ฝ่ายบริการลูกค้าจะเร่งแก้ไขและตอบกลับโดยเร็ว",
-STR_BUG_TIME: "เวลาส่ง",
-STR_BUG_WAIT: "รอฝ่ายบริการลูกค้าตอบกลับ",
-STR_BUG_RESPONSETIME: "เวลาตอบกลับ",
-STR_BUG_DELTIP: "คุณแน่ใจหรือไม่ว่าจะลบคำถามนี้？",
-STR_BUG_VIEW: "ดูรายละเอียด",
-STR_BUG_COMMIT: "ส่ง",
-STR_BUG_DELTIPDONE: "ลบสำเร็จ",
-STR_BUG_DELTIPFAIL: "ลบล้มเหลว",
-STR_BUG_COMMIT_TIP: "ส่งล้มเหลว",
-STR_POKER_ROOM_BET: "เดิมพัน%s/%s",
-STR_POKERTABLEBOARD_ID: "ห้องID%d น้อยสุด/มากสุด เดิมพัน%s/%s",
-STR_POKER_PRE_BET: "เดิมพัน",
-STR_POKER_TYPE_POK9: "ป๊อก9",
-STR_POKER_TYPE_POK8: "ป๊อก8",
-STR_POKER_TYPE_TONG: "ตอง",
-STR_POKER_TYPE_SAM_LUEANG: "สามเหลือง",
-STR_POKER_TYPE_STRAIGHT_FLUSH: "ไพ่เรียงดอก",
-STR_POKER_TYPE_STRAIGHT: "ไพ่เรียง",
-STR_POKER_TYPE_SCORE_0: "0แต้ม",
-STR_POKER_TYPE_SCORE_1: "1แต้ม",
-STR_POKER_TYPE_SCORE_2: "2แต้ม",
-STR_POKER_TYPE_SCORE_3: "3แต้ม",
-STR_POKER_TYPE_SCORE_4: "4แต้ม",
-STR_POKER_TYPE_SCORE_5: "5แต้ม",
-STR_POKER_TYPE_SCORE_6: "6แต้ม",
-STR_POKER_TYPE_SCORE_7: "7แต้ม",
-STR_POKER_TYPE_SCORE_8: "8แต้ม",
-STR_POKER_TYPE_SCORE_0_9: "ไพ่นับแต้ม 0-9",
-STR_POKER_TYPE_SCORE_9: "9แต้ม",
-STR_POKER_INTRUUCE: "อธิบายรูปแบบไพ่",
-STR_POKER_INTRUUCE1: "ไพ่ใหญ่น้อยดูจากบนลงล่าง",
-STR_POKER_INTRUUCE2: "ไพ่เหล่านี้คือ 0แต้ม",
-STR_POKER_INTRUUCE3: "ไพ่เหล่านี้คือ1-9แต้ม",
-STR_POKER_INTRUUCE4: "ไพ่ในมือบวกรวมกัน นับแต้มแค่หลักหน่อย",
-STR_POKER_INTRUUCE5: "ไพ่2ใบแรกคือ9แต้ม",
-STR_POKER_INTRUUCE6: "ไพ่2ใบแรกคือ8แต้ม",
-STR_POKER_INTRUUCE7: "KA2、A24 ไม่ใช่ไพ่เรียง",
-STR_POKER_INTRUUCE8: "อัตราการจ่ายนับเด้ง",
-STR_POKER_INTRUUCE9: "ไพ่ 2ใบทีมีดอกเหมือนกัน",
-STR_POKER_INTRUUCE10: "ไพ่ 3ใบที่มีดอกเหมือนกัน （เทียบไพ่โดยดูแต้ม）",
-STR_POKER_INTRUUCE11: "จบไพ่รอบนี้แล้ว ออกจากห้อง",
-STR_POKER_INTRUUCE12: "หลังจากไพ่รอบนี้จบ ลุกจากที่นั่งและออกจากห้อง\n",
-STR_WIN_STREAK: "ชนะต่อเนื่อง:",
-STR_PLAYER: "ผู้เล่น",
-STR_DEAR: "เจ้ามือ",
-STR_GAME_GOTODEAR: "กดเป็นเจ้ามือ",
-STR_CHIP_NOT_ENOUGH: "ชิปไม่เพียงพอ อย่างน้อย%s ชิป ถึงจะเป็นเจ้ามือได้ ไปที่ห้างหรือไม่？",
-STR_POKERTABLEBOARD_ID1: "น้อยสุด/มากสุด เดิมพัน%s/%s",
-STR_GAME_GOTODEAR_1: "เป็นเจ้ามือสำเร็จ ต้องเล่นให้ครบ 5รอบถึงจะออกได้\n",
-STR_GAME_GOTODEAR_2: "ผู้เล่นเป็นเจ้ามือสำเร็จ",
-STR_STATIC_BIGWIN: "ชนะมากสุด:",
-STR_CARDTYPE100: "ไพ่ 3ใบในกลุ่ม JQK",
-STR_CARDTYPE101: "ไพ่ 3ใบเรียงกันและมีดอกเหมือนกัน",
-STR_CARDTYPE102: "ไพ่ 2ใบทีมีแต้มเหมือนกัน  ",
-STR_CARDTYPE103: "ไพ่เรียง",
-STR_CARDTYPE104: "ไพ่ 3ใบเรียงกัน ดอกไม่เหมือนกัน",
-STR_ADDFRIEND_ONESELF: "จำนวนเพื่อนของคุณได้ถึงขีดจำกัดแล้ว คุณสามารถไปซื้อไอเทมสมุดรายชื่อได้ที่ห้าง เพื่ออัพระดับขีดจำกัดเพื่อน ",
-STR_ADDFRIEND_OTHERS: "เสียใจด้วย จำนวนเพื่อนของฝ่ายตรงข้ามได้ถึงขีดจำกัดแล้ว ตอนนี้คุณไม่สามารถเพิ่มเขาเป็นเพื่อนได้",
-STR_MESSRECEIVE_UNDONE: "ของรางวัลที่อยู่ในข้อมูลนี้ได้ถูกคุณกดรับแล้วเรียบร้อย",
-STR_LOGIN_WORNING: "บัญชีของคุณถูกอายัญ หากคุณมีข้อสงสัย กรุณาส่งอีเมลมาที่ฝ่ายบริการของเรา",
-STR_LOGIN_INFO_ERROR: "คุณกรอกบัญชีหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง",
-STR_LOGIN_INFO_NULL: "ล็อกอินบัญชีหรือรหัสผ่านไม่สามารถเว้นว่างได้ กรุณากรอกด้วย",
-STR_LOGIN_EMALL_REGISTERED: "อีเมลที่คุณกรอกเคยถูกลงทะเบียนแล้ว กรุณากรอกอีเมลที่สามารถใช้งานได้ใหม่อีกครั้ง",
-STR_LOGIN_EMAIL_ERROR: "คุณกรอกรูปแบบอีเมลผิดพลาด กรุณากรอกใหม่อีกครั้ง",
-STR_LOGIN_PASSWORD_SHORT: "รหัสบัญชีอย่างน้อย6-16ตัวอักษร กรุณากรอกรหัสผ่านของคุณใหม่อีกครั้ง",
-STR_LOGIN_PASSWORD_DIFFERENT: "คุณกรอกรหัสผ่านทั้งสองครั้งไม่เหมือนกัน กรุณากรอกใหม่อีกครั้ง",
-STR_LOGIN_PASSWORD_CHARACTER: "รหัสผ่านไม่รวมสัญลักษณ์อื่น นอกจากอักษรภาษาอังกฤษและตัวเลข กรุณากรอกใหม่อีกครั้ง",
-STR_LOGIN_REGISTER_SUCCESS: "ยินดีด้วย คุณลงทะเบียนบัญชีโป๊กเกอร์รอยัลสำเร็จ กดOKเข้าร่วมเกมส์เร็ว！",
-STR_LOGIN_RETRIEVE_SUCCESS: "ส่งรหัสผ่านกู้คืนอีเมลเรียบร้อยแล้ว กรุณาเข้าอีเมลเพื่อตรวจรับ หากไม่ได้รับ กรุณารอสักครู่แล้วเช็คอีกครั้ง",
-STR_LOGIN_RETRIEVE_FAIL: "บัญชีอีเมลที่คุณกรอกยังไม่ได้ลงทะเบียน กรุณาตรวจสอบและกรอกอีเมลที่ได้ลงทะเบียนแล้ว",
-STR_MAIN_LOGOFF: "คุณแน่ใจหรือไม่ว่าจะล็อกเอาท์จากเกมส์？",
-STR_MAIN_QUIT: "คุณแน่ใจหรือไม่ว่าจะออกจากเกมส์？",
-STR_SHOP_CHIP: "ชิปของคุณไม่พอ ต้องการไปซื้อชิปที่ห้างหน่อยไหม？",
-STR_SHOP_DIAMOND: "เพชรของคุณไม่พอ ต้องการไปซื้อเพชรที่ห้างหน่อยไหม？",
-STR_SHOP_BUYSUCCESSFUL: "คุณได้ซื้อสินค้าสำเร็จแล้ว%s。",
-STR_SHOP_REACHLIMIT: "คุณได้ซื้อไอเทมนี้ถึงขีดจำกัดแล้ว",
-STR_SHOP_BUYFAIL: "ขออภัย ซื้อสินค้าล้มเหลว กรุณาลองใหม่อีกครั้ง",
-STR_PLAYERSEARCH_SHORT: "เวลาค้นหาเพื่อน อย่างน้อยกรอก4ตัวอักษรภาษาอักกฤษหรือตัวเลข",
-STR_PLAYERSEARCH_LONG: "เวลาค้นหาเพื่อน อย่างมากกรอกได้16ตัวอักษรภาษาอักกฤษหรือตัวเลข",
-STR_FRIEND_HAVEADDED: "ผู้เล่นคนนี้อยู่ในรายการเพื่อนแล้ว",
-STR_FRIEND_LIMIT: "จำนวนเพื่อนของคุณได้ถึงขีดจำกัดแล้ว คุณสามารถไปซื้อไอเทมสมุดรายชื่อได้ที่ห้าง เพื่ออัพระดับขีดจำกัดเพื่อน ",
-STR_FRIEND_FOLLOW: "%s เพื่อนของคุณ กำลังเล่นไพ่อยู่ในห้อง%d/%d คุณยืนยันว่าจะตามเขาไปที่ห้องนั้นไหม？",
-STR_FRIEND_DEL: "คุณแน่ใจว่าจะลบเพื่อนคนนี้หรือไม่？",
-STR_FRIEND_ADDYOURSELF: "คุณไม่สามารถเพื่มตัวเองเป็นเพื่อนได้",
-STR_PRESENT_NOTFRIEND: "เป็นเพื่อนถึงจะส่งชิปฟรีได้ คุณกับผู้เล่นคนนี้ยังไม่ได้เป็นเพื่อนกัน ส่งชิปให้ไม่ได้",
-STR_PRESENT_DONE: "วันนี้คุณได้ส่งชิปให้เพื่อนคนนี้แล้ว พรุ่งนี้ค่อยส่งให้ใหม่นะ",
-STR_PERSONAL_NAME_SHORT: "คุณกรอกชื่อสั้นเกินไป กรุณากรอกอย่างน้อย4ตัวอักษรภาษาอังกฤษหรือตัวเลข",
-STR_PERSONAL_NAME_LONG: "คุณกรอกชื่อยาวเกินไป กรอกมากสุด16ตัวอักษรภาษาอังกฤษหรือตัวเลข",
-STR_PERSONAL_NAME_REPEAK: "คุณกรอกชื่อซ้ำกับผู้อื่น กรุณากรอกชื่อใหม่อีกครั้ง",
-STR_PERSONAL_NAME_ILLEGAL: "คุณกรอกชื่อผิดกฏ กรุณาใช้อักษรภาษาอังกฤษหรือตัวเลขกรอก",
-STR_PERSONAL_SIGNATURE_LONG: "คุณกรอกสเตตัสยาวเกินไป กรอกได้มากสุด 120ตัวอักษร",
-STR_PERSONAL_RECORDING_SHORT: "คุณอัดเสียงสั้นเกินไป กรุณาพูดยาวหน่อย",
-STR_PERSONAL_QUICKVOICE_PLAY: "ตอนที่กำลังเล่นเสียง ไม่สามารถเปิดเสียงอื่นๆ ได้",
-STR_PERSONAL_QUICKVOICE_RECORD: "ตอนที่กำลังเล่นเสียง ไม่สามารถอัดเสียงอื่นๆ ได้",
-STR_PERSONAL_QUICKVOICE_DEL: "คุณแน่ใจหรือไม่ว่าจะลบเสียงสำเร็จรูปนี้？",
-STR_PERSONAL_PHOTO_DEL: "คุณแน่ใจหรือไม่ว่าจะลบรูปภาพนี้？",
-STR_PERSONAL_PHOTO_LIMIT: "จำนวนรูปภาพของคุณได้ถึงขีดจำกัดแล้ว คุณสามารถไปซื้อไอเทมอัลบัมรูปได้ที่ห้าง เพื่ออัพระดับขีดจำกัดรูปภาพ",
-STR_PERSONAL_ACCOUNT_BINDING: "อีเมลที่คุณกรอกเคยถูกลงทะเบียนแล้ว กรุณากรอกอีเมลที่สามารถใช้งานได้ใหม่อีกครั้ง",
-STR_PERSONAL_ITEMEXCHANGE_301002: "ยินดีด้วย คุณแลกเพชร%dเม็ดสำเร็จ ชิ้นส่วนที่สอดคล้องจะหักโดยอัตโนมัต",
-STR_PERSONAL_ITEMEXCHANGE_302003: "ยินดีด้วย คุณแลกแว่นขยาย%dชิ้นสำเร็จ ชิ้นส่วนที่สอดคล้องจะหักโดยอัตโนมัต",
-STR_PERSONAL_ITEMEXCHANGE_302001: "ยินดีด้วย คุณแลกไอเทมไมโครโฟน%dชิ้นสำเร็จ ชิ้นส่วนที่สอดคล้องจะหักโดยอัตโนมัต",
-STR_PERSONAL_ITEMEXCHANGE_302002: "ยินดีด้วย คุณแลกไอเทมอิโมจิ%dชิ้นสำเร็จ ชิ้นส่วนที่สอดคล้องจะหักโดยอัตโนมัต",
-STR_PERSONAL_BINDIN: "กรุณาใช้อีเมลที่ใช้งานอยู่เป็นประจำในการผูกบัญชี หลังจากผูกบัญชีแล้วจะสามารถใช้บัญชีล็อกอินเกมส์กับอุปกรณ์เครื่องอื่นได้",
-STR_ITEM_TUREEYE_NULL: "จำนวนแว่นขยายของคุณไม่พอ ต้องการไปซื้อที่ห้างหน่อยไหม？",
-STR_REPORT_PHOTO_CONFRIM: "คุณแน่ใจหรือไม่ว่าจะรายงานรูปภาพนี้？หลังจากรูปนี้ถูกผู้เล่นจำนวนมากรายงาน รูปภาพนี้จะถูกบล็อก เราจะเร่งดำเนินการตรวจสอบ",
-STR_REPORT_PHOTO_REPEAK: "คุณได้รายงานรูปภาพนี้แล้ว กรุณาอย่ารายงานซ้ำ",
-STR_SITDOWN_LIMIT: "จำนวนคนในห้องนี้เต็ม ไม่สามารถเข้าได้ กรุณาเลือกห้องอื่นที่มีที่ว่าง",
-STR_SITDOWN_FULL: "ห้องนี้ไม่มีที่ว่าง กด“YES” ระบบจะจัดให้คุณไปอยู่ที่ห้องใหม่โดยอัตโนมัต กด“NO”คุณจะอยู่ที่เดิมเป็นผู้ชม",
-STR_SITDOWN_REPEAK: "",
-STR_SITDOWN_NOTEMPTY: "ที่นั่งที่คุณเลือกถูกผู้เล่นท่านอื่นนั่งแล้ว กรุณาเลือกที่นั่งว่างอื่น",
-STR_TABLE_RECORDIND_SHORT: "คุณอัดเสียงสั้นเกินไป กรุณาอัดเสียงใหม่อีกครั้ง",
-STR_ITEM_VOICE_NULL: "ไมโครโฟนของคุณไม่พอแล้ว ต้องการไปซื้อไมโครโฟนที่ห้างหน่อยไหม？",
-STR_ITEM_VOICE_STAND: "ตอนนี้คุณยังไม่ได้นั่งลง ยังไม่สามารถใช้ฟังก์ชั่นสนทนาด้วยเสียงได้",
-STR_ITEM_CHAT_STAND: "ตอนนี้คุณยังไม่ได้นั่งลง ยังไม่สามารถใช้การแชทและอิโมจิได้",
-STR_ITEM_EXPRESSION_NULL: "อิโมจิของคุณไม่พอแล้ว ต้องการไปซื้ออิโมจิที่ห้างหน่อยไหม？",
-STR_TABLE_LEAVE_SEAT: "ออกจากที่นั่งคุณจะเสียชิปที่ลงเดิมพันไปแล้ว คุณแน่ใจหรือไม่ว่าจะออกจากที่นั่งตอนนี้？",
-STR_TABLE_LEAVE_ROOM: "ออกจากห้องคุณจะเสียชิปที่ลงเดิมพันไปแล้ว คุณแน่ใจหรือไม่ว่าจะออกจากห้องตอนนี้？",
-STR_INVITE_RECEIVE: "ผู้เล่น%s เชิญคุณเข้าร่วมเล่นไพ่ กดยืนยัน",
-STR_INVITE_CONFRIM: "ผู้เล่น%s เชิญคุณเข้าร่วมเล่นไพ่ ห้องID %d บิ๊กสมอลบลายด์%s / %s คุณแน่ใจหรือไม่ว่าต้องการเข้าร่วมเล่นไพ่？",
-STR_INVITE_CONFRIM1: "ผู้เล่น%s เชิญคุณเข้าร่วมห้องเกมส์ของเขา\nห้องID%d เดิมพัน%s / %s\nคุณยืนยันจะเข้าร่วมห้องเกมส์ไหม？",
-STR_INVITE_SAMEROOM: "คุณและผู้เล่นคนนี้อยู่ในห้องเดียวกันแล้ว",
-STR_MISSION_COMPLETE: "คุณเสร็จสิ้น1ภารกิจแล้ว รีบไปกดรับรางวัลเร็ว",
-STR_MUTE_ON: "คุณเปิดฟังก์ชั่นเงียบสำเร็จ",
-STR_MUTE_OFF: "คุณปิดฟังก์ชั่นเงียบสำเร็จ",
-STR_EQUIPMENT_MICROPHONE: "เปิดฟังก์ชั่นไมโครโฟนล้มเหลว กรุณายินยอมให้เกมส์เข้าใช้งานฟังก์ชั่นไมโครโฟนบนมือถือ กรุณาตรวจสอบการตั้งค่ามือถือ",
-STR_ACHIEVEMENT_SUCCESS: "ยินดีด้วย！คุณกดรับรางวัลผลงานสำเร็จแล้ว%d %s.",
-STR_LOGIN_OTHERDEVICES: "บัญชีของคุณถูกใช้งานที่อื่นแล้ว กรุณาตรวจสอบความปลอดภัยของรหัสผ่านบัญชีของคุณ เพื่อป้องกันความเสียหาย หากคุณมีข้อสงสัย กรุณาส่งอีเมลมาที่ฝ่ายบริการเรา",
-STR_NETWORK_REQUEST: "เกิดข้อผิดพลาด%d คำร้องขออินเตอร์เน็ตล้มเหลว กรุณาตรวจสอบสภาพอินเตอร์เน็ตและลองใหม่อีกครั้ง",
-STR_NETWORK_ERROR_CHECK: "อินเตอร์เน็ตเกิดข้อผิดพลาด การเชื่อมต่อถูกตัดขาด กรุณาตรวจสอบอุปกรณ์หรือการตั้งค่าอินเตอร์เน็ต",
-STR_UNKNOWN_ERROR: "เกิดข้อผิดพลาดที่ระบุไม่ได้ เกมส์ไม่สามารถเข้าเล่นได้ปกติ คุณสามารถส่งอีเมลแจ้งฝ่ายบริการบอกรายละเอียดของข้อผิดพลาด",
-STR_ERROR_DATA: "ข้อมูลเกมส์error กรุณาล็อกอินเกมส์ใหม่อีกครั้ง",
-STR_EVALUATION_TEXT: "ผู้เล่นที่น่ารัก ตอนนี้คุณสามารถทำการให้คะแนนเกมส์เราได้แล้ว หลังจากให้คะแนนแล้วจะได้รับรางวัล ขอทราบว่าต้องการไปยังหน้าที่สอดคล้องหรือไม่？",
-STR_GOOGLEPLAY_ERROR_1: "ในการซื้อนี้ต้องมีบริการGoogle Play หนึ่งรายการหรือมากกว่า ซึ่งตอนนี้ยังไม่สามารถใช้งานได้",
-STR_GOOGLEPLAY_ERROR_2: "หลังอัพเดทบริการGoogle Playแล้ว ถึงจะสามารถทำการซื้อได้",
-STR_GOOGLEPLAY_ERROR_3: "โทรศัพท์ของคุณไม่มีบริการGoogle Play คุณจำเป็นต้องติดตั้งบริการนี้ก่อน ถึงจะสามารถทำการซื้อได้",
-STR_GOOGLEPLAY_ERROR_4: "คุณจำเป็นต้องเปิดบริการGoogle Playก่อน ถึงจะทำการซื้อได้",
-STR_ITEM_NAME_301001: "ชิป",
-STR_ITEM_NAME_301002: "เพชร",
-STR_ITEM_NAME_302001: "ไมโครโฟน",
-STR_ITEM_NAME_302002: "อิโมจิ",
-STR_ITEM_NAME_302003: "แว่นขยาย",
-STR_ITEM_NAME_303001: "ชิปทองคำ",
-STR_ITEM_NAME_304001: "สมุดรายชื่อ",
-STR_ITEM_NAME_304002: "อัลบัมรูป",
-STR_ITEM_DESC_301001: "",
-STR_ITEM_DESC_301002: "",
-STR_ITEM_DESC_302001: "ใช้ฟังก์ชั่นสนทนาต้องเสียไอเทม ทุกครั้งที่ใช้สนทนา1ครั้ง ต้องเสีย1ไอเทม",
-STR_ITEM_DESC_302002: "ใช้อิโมจิต้องเสียไอเทม ทุกครั้งที่ใช้อิโมจิ1ครั้ง ต้องเสีย1ไอเทม",
-STR_ITEM_DESC_302003: "หลังจากใช้แล้ว สามารถตรวจเช็คข้อมูลเกมส์ของผู้เล่นได้ ทุกครั้งที่ตรวจเช็คผู้เล่น1ชื่อ ต้องเสีย1ไอเทม มีผลต่อเนื่อง%dนาที",
-STR_ITEM_DESC_303001: "เพิ่มไอเทมของภารกิจรางวัลชิป ทุกภารกิจรางวัลชิปเปลี่ยนเป็น %sเท่า ต่อเนื่อง %dวัน",
-STR_ITEM_DESC_304001: "",
-STR_ITEM_DESC_304002: "",
-STR_GOODS_NAME_401001: "%d แพ็คเพชร",
-STR_GOODS_NAME_401002: "%d แพ็คเพชร",
-STR_GOODS_NAME_401003: "%d แพ็คเพชร",
-STR_GOODS_NAME_401004: "%d แพ็คเพชร",
-STR_GOODS_NAME_402001: "%d แพ็คชิป",
-STR_GOODS_NAME_402002: "%d แพ็คชิป",
-STR_GOODS_NAME_402003: "%d แพ็คชิป",
-STR_GOODS_NAME_402004: "%d แพ็คชิป",
-STR_GOODS_NAME_403001: "%d แพ็คไมโครโฟน",
-STR_GOODS_NAME_403002: "%d แพ็คไมโครโฟน",
-STR_GOODS_NAME_404001: "%d แพ็คอิโมจิ",
-STR_GOODS_NAME_404002: "%d แพ็คอิโมจิ",
-STR_GOODS_NAME_405001: "%d แพ็คแว่นขยาย",
-STR_GOODS_NAME_406001: "ชิปทองคำ",
-STR_GOODS_NAME_407001: "สมุดรายชื่อ",
-STR_GOODS_NAME_408001: "อัลบัมรูป",
-STR_GOODS_DESC_401001: "เพชร %dเม็ด",
-STR_GOODS_DESC_401002: "เพชร %dเม็ด",
-STR_GOODS_DESC_401003: "เพชร %dเม็ด",
-STR_GOODS_DESC_401004: "เพชร %dเม็ด",
-STR_GOODS_DESC_402001: "%d ชิป",
-STR_GOODS_DESC_402002: "%d ชิป",
-STR_GOODS_DESC_402003: "%d ชิป",
-STR_GOODS_DESC_402004: "%d ชิป",
-STR_GOODS_DESC_403001: "ไมโครโฟน%dชิ้น ใช้ฟังก์ชั่นสนทนาต้องเสียไอเทม ทุกครั้งที่ใช้สนทนา1ครั้ง ต้องเสีย1ไอเทม",
-STR_GOODS_DESC_403002: "ไมโครโฟน%dชิ้น ใช้ฟังก์ชั่นสนทนาต้องเสียไอเทม ทุกครั้งที่ใช้สนทนา1ครั้ง ต้องเสีย 1ไอเทม",
-STR_GOODS_DESC_404001: "อิโมจิ%dชิ้น ใช้อิโมจิต้องเสียไอเทม ทุกครั้งที่ใช้อิโมจิ1ครั้ง ต้องเสียไอเทมอิโมจิ1ชิ้น",
-STR_GOODS_DESC_404002: "อิโมจิ%dชิ้น ใช้อิโมจิต้องเสียไอเทม ทุกครั้งที่ใช้อิโมจิ1ครั้ง ต้องเสียไอเทมอิโมจิ1ชิ้น",
-STR_GOODS_DESC_405001: "แว่นขยาย%dชิ้น หลังจากใช้แล้ว สามารถตรวจเช็คข้อมูลเกมส์ของผู้เล่นได้ ทุกครั้งที่ตรวจเช็คผู้เล่น1ชื่อ ต้องเสีย1ไอเทม มีผลต่อเนื่อง%dนาที",
-STR_GOODS_DESC_406001: "เพิ่มไอเทมของภารกิจรางวัลชิป ทุกภารกิจรางวัลชิปเปลี่ยนเป็น %sเท่า ต่อเนื่อง %dวัน ซื้อหลายครั้ง เวลาต่อเนื่องยาวขึ้น",
-STR_GOODS_DESC_407001: "ไอเทมอัพเกรดจำนวนเพื่อน เริ่มต้นจำกัดที่เพื่อน%dคน ทุกการมีสมุดรายชื่อ1ชิ้น ขีดจำกัดอัพเป็น%dคน ซื้อได้มากสุด%dชิ้น ราคาเปลี่ยนตามจำนวนที่ซื้อ",
-STR_GOODS_DESC_408001: "ไอเทมอัพเกรดจำนวนรูปภาพ เริ่มต้นจำกัดรูปภาพ%dรูป ทุกการมีอัลบัมรูป1ชิ้น ขีดจำกัดอัพเป็น%dรูป ซื้อได้มากสุด%dชิ้น ราคาเปลี่ยนตามจำนวนที่ซื้อ",
-STR_QUEST_DESC_101101: "เล่นไพ่ครบ 3รอบ",
-STR_QUEST_DESC_101201: "เล่นเกมส์ 5นาที",
-STR_QUEST_DESC_102101: "ชนะ 2รอบ",
-STR_QUEST_DESC_102201: "ในช่วงPreflopชนะ 3ครั้ง",
-STR_QUEST_DESC_102301: "หงายไพ่ชนะ 2ครั้ง",
-STR_QUEST_DESC_103101: "ชิปชนะ(ยังไงเก็บค่าต๋ง)\nคือชิปที่ลงในรอบนี้เพิ่ม\n5เท่าขึ้นไป 1ครั้ง",
-STR_QUEST_DESC_104101: "รอบที่มีชิปกองกลาง\nมากกว่า4 ชนะชิป\nทั้งหมด 1ครั้ง",
-STR_QUEST_DESC_105101: "หลังจาก ALL In\nชนะไพ่ 3ครั้ง",
-STR_QUEST_DESC_106101: "5คนหรือมากกว่าALL IN\nและชนะในที่สุด 1ครั้ง",
-STR_QUEST_DESC_107101: "ตอนหงายไพ่ ใช้ไพ่\nรอยัลสเตรทฟลัช\nชนะ 1รอบ",
-STR_QUEST_DESC_108101: "ตอนหงายไพ่ ใช้ไพ่สูง\nชนะ 1ครั้ง",
-STR_QUEST_DESC_108201: "ตอนหงายไพ่ ใช้ไพ่1คู่\nชนะ 1ครั้ง",
-STR_QUEST_DESC_108301: "ตอนหงายไพ่ ใช้ไพ่2คู่\nชนะ 1ครั้ง",
-STR_QUEST_DESC_108401: "ตอนหงายไพ่ ใช้\nไพ่ตองชนะ 1ครั้ง",
-STR_QUEST_DESC_108501: "ตอนหงายไพ่ ใช้\nไพ่สเตรทชนะ 1ครั้ง",
-STR_QUEST_DESC_108601: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 1ครั้ง",
-STR_QUEST_DESC_108701: "ตอนหงายไพ่ ใช้ไพ่\nฟูลเฮ้าท์ชนะ 1ครั้ง",
-STR_QUEST_DESC_109101: "พูดคุย (รวมทั้งอิโมจิ\nแชท สนทนา) 20ครั้ง",
-STR_QUEST_DESC_110101: "คอมเม้นต์รูปภาพ\nผู้เล่น 5ครั้ง",
-STR_QUEST_DESC_101102: "เล่นไพ่ครบ 10รอบ",
-STR_QUEST_DESC_101202: "เวลาเล่นเกมส์ผ่าน 15นาที",
-STR_QUEST_DESC_102102: "ชนะ 5รอบ",
-STR_QUEST_DESC_102202: "ในช่วงPreflopชนะ 9ครั้ง",
-STR_QUEST_DESC_102302: "หงายไพ่ชนะ 5ครั้ง",
-STR_QUEST_DESC_103102: "ชิปชนะ(ยังไงเก็บค่าต๋ง)\nคือชิปที่ลงในรอบนี้เพิ่ม\n5เท่าขึ้นไป 3ครั้ง",
-STR_QUEST_DESC_104102: "รอบที่มีชิปกองกลาง\nมากกว่า4 ชนะชิป\nทั้งหมด 2ครั้ง",
-STR_QUEST_DESC_105102: "หลังจาก ALL In\nชนะไพ่ 9ครั้ง",
-STR_QUEST_DESC_106102: "5คนหรือมากกว่าALL IN\nและชนะในที่สุด 2ครั้ง",
-STR_QUEST_DESC_107102: "ตอนหงายไพ่ ใช้รูปแบบ\nไพ่เหมือนกันชนะ\nผู้เล่นคนอื่น 2ครั้ง",
-STR_QUEST_DESC_108102: "ตอนหงายไพ่ ใช้ไพ่สูง\nชนะ 2ครั้ง",
-STR_QUEST_DESC_108202: "ตอนหงายไพ่ ใช้ไพ่1คู่\nชนะ 2ครั้ง",
-STR_QUEST_DESC_108302: "ตอนหงายไพ่ ใช้ไพ่2คู่\nชนะ 2ครั้ง",
-STR_QUEST_DESC_108402: "ตอนหงายไพ่ ใช้\nไพ่ตองชนะ 2ครั้ง",
-STR_QUEST_DESC_108502: "ตอนหงายไพ่ ใช้\nไพ่สเตรทชนะ 2ครั้ง",
-STR_QUEST_DESC_108602: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 2ครั้ง",
-STR_QUEST_DESC_108702: "ตอนหงายไพ่ ใช้\nไพ่ฟูลเฮ้าท์ชนะ 2ครั้ง",
-STR_QUEST_DESC_109102: "พูดคุย (รวมทั้งอิโมจิ\nแชท สนทนา) 50ครั้ง",
-STR_QUEST_DESC_110102: "คอมเม้นต์รูปภาพ\nผู้เล่น 25ครั้ง",
-STR_QUEST_DESC_101103: "เล่นไพ่ครบ 30รอบ",
-STR_QUEST_DESC_101203: "เวลาเล่นเกมส์ผ่าน 30นาที",
-STR_QUEST_DESC_102103: "ชนะ 10รอบ",
-STR_QUEST_DESC_102203: "หลังแจกไพ่ชนะ 15ครั้ง",
-STR_QUEST_DESC_102303: "หงายไพ่ชนะ 10ครั้ง",
-STR_QUEST_DESC_103103: "ชิปชนะ(ยังไงเก็บค่าต๋ง)\nคือชิปที่ลงในรอบนี้เพิ่ม\n5เท่าขึ้นไป 1ครั้ง",
-STR_QUEST_DESC_104103: "รอบที่มีชิปกองกลาง\nมากกว่า4 ชนะชิป\nทั้งหมด 3ครั้ง",
-STR_QUEST_DESC_105103: "หลังจาก ALL In\nชนะไพ่ 15ครั้ง",
-STR_QUEST_DESC_106103: "5คนหรือมากกว่าALL IN\nและชนะในที่สุด 3ครั้ง",
-STR_QUEST_DESC_107103: "ตอนหงายไพ่ ใช้รูปแบบ\nไพ่เหมือนกันชนะผู้เล่น\nคนอื่น 3ครั้ง",
-STR_QUEST_DESC_108103: "ตอนหงายไพ่ ใช้ไพ่สูง\nชนะ 3ครั้ง",
-STR_QUEST_DESC_108203: "ตอนหงายไพ่ ใช้ไพ่1คู่\nชนะ 3ครั้ง",
-STR_QUEST_DESC_108303: "ตอนหงายไพ่ ใช้ไพ่2คู่\nชนะ 3ครั้ง",
-STR_QUEST_DESC_108403: "ตอนหงายไพ่ ใช้\nไพ่ตองชนะ 3ครั้ง",
-STR_QUEST_DESC_108503: "ตอนหงายไพ่ ใช้ไพ่\nสเตรทชนะ 3ครั้ง",
-STR_QUEST_DESC_108603: "ตอนหงายไพ่ ใช้ไพ่\nฟลัชชนะ 3ครั้ง",
-STR_QUEST_DESC_108703: "ตอนหงายไพ่ ใช้ไพ่\nฟูลเฮ้าท์ชนะ 3ครั้ง",
-STR_QUEST_DESC_109103: "พูดคุย (รวมทั้งอิโมจิ\nแชท สนทนา) 100ครั้ง",
-STR_QUEST_DESC_110103: "คอมเม้นต์รูปภาพ\nผู้เล่น 50ครั้ง",
-STR_ACHIVEVMENT_DESC_201001: "อัพเลเวลถึง 5",
-STR_ACHIVEVMENT_DESC_201002: "อัพเลเวลถึง 10",
-STR_ACHIVEVMENT_DESC_201003: "อัพเลเวลถึง 20",
-STR_ACHIVEVMENT_DESC_201004: "อัพเลเวลถึง 35",
-STR_ACHIVEVMENT_DESC_201005: "อัพเลเวลถึง 50",
-STR_ACHIVEVMENT_DESC_202001: "ทรัพย์สินรวม 1ล้าน",
-STR_ACHIVEVMENT_DESC_202002: "ทรัพย์สินรวม 10ล้าน",
-STR_ACHIVEVMENT_DESC_202003: "ทรัพย์สินรวม 100ล้าน",
-STR_ACHIVEVMENT_DESC_202004: "ทรัพย์สินรวม 1000ล้าน",
-STR_ACHIVEVMENT_DESC_202005: "ทรัพย์สินรวม\n10000ล้าน",
-STR_ACHIVEVMENT_DESC_203001: "เล่นไพ่ครบ 50รอบ",
-STR_ACHIVEVMENT_DESC_203002: "เล่นไพ่ครบ 500รอบ",
-STR_ACHIVEVMENT_DESC_203003: "เล่นไพ่ครบ 2500รอบ",
-STR_ACHIVEVMENT_DESC_203004: "เล่นไพ่ครบ 10000รอบ",
-STR_ACHIVEVMENT_DESC_203005: "เล่นไพ่ครบ 25000รอบ",
-STR_ACHIVEVMENT_DESC_203006: "เล่นไพ่ครบ 50000รอบ",
-STR_ACHIVEVMENT_DESC_203007: "เล่นไพ่ครบ 100000รอบ",
-STR_ACHIVEVMENT_DESC_204001: "ชนะ 10รอบ",
-STR_ACHIVEVMENT_DESC_204002: "ชนะ 100รอบ",
-STR_ACHIVEVMENT_DESC_204003: "ชนะ 500รอบ",
-STR_ACHIVEVMENT_DESC_204004: "ชนะ 2000รอบ",
-STR_ACHIVEVMENT_DESC_204005: "ชนะ 5000รอบ",
-STR_ACHIVEVMENT_DESC_204006: "ชนะ 10000รอบ",
-STR_ACHIVEVMENT_DESC_204007: "ชนะ 20000รอบ",
-STR_ACHIVEVMENT_DESC_205001: "ในช่วงPreflop\nชนะ 5รอบ",
-STR_ACHIVEVMENT_DESC_205002: "ในช่วงPreflop\nชนะ 50รอบ",
-STR_ACHIVEVMENT_DESC_205003: "ในช่วงPreflop\nชนะ 500รอบ",
-STR_ACHIVEVMENT_DESC_205004: "ในช่วงPreflop\nชนะ 2500รอบ",
-STR_ACHIVEVMENT_DESC_205005: "ในช่วงPreflop\nชนะ 10000รอบ",
-STR_ACHIVEVMENT_DESC_206001: "หลังจาก ALL In\nชนะไพ่ 5รอบ",
-STR_ACHIVEVMENT_DESC_206002: "หลังจาก ALL In\nชนะไพ่ 50รอบ",
-STR_ACHIVEVMENT_DESC_206003: "หลังจาก ALL In\nชนะไพ่ 500รอบ",
-STR_ACHIVEVMENT_DESC_206004: "หลังจาก ALL In\nชนะไพ่ 2500รอบ",
-STR_ACHIVEVMENT_DESC_206005: "หลังจาก ALL In\nชนะไพ่ 10000รอบ",
-STR_ACHIVEVMENT_DESC_207001: "ตอนหงายไพ่ ใช้ไพ่สูง\nชนะ 5รอบ",
-STR_ACHIVEVMENT_DESC_207002: "ตอนหงายไพ่ ใช้ไพ่สูง\nชนะ 50รอบ",
-STR_ACHIVEVMENT_DESC_207003: "ตอนหงายไพ่ ใช้ไพ่สูง\nชนะ 250รอบ",
-STR_ACHIVEVMENT_DESC_207004: "ตอนหงายไพ่ ใช้ไพ่สูง\nชนะ 1000รอบ",
-STR_ACHIVEVMENT_DESC_207005: "ตอนหงายไพ่ ใช้ไพ่สูง\nชนะ 3000รอบ",
-STR_ACHIVEVMENT_DESC_208001: "ตอนหงายไพ่ ใช้ไพ่1คู่\nชนะ 5รอบ",
-STR_ACHIVEVMENT_DESC_208002: "ตอนหงายไพ่ ใช้ไพ่1คู่\nชนะ 50รอบ",
-STR_ACHIVEVMENT_DESC_208003: "ตอนหงายไพ่ ใช้ไพ่1คู่\nชนะ 500รอบ",
-STR_ACHIVEVMENT_DESC_208004: "ตอนหงายไพ่ ใช้ไพ่1คู่\nชนะ 2000รอบ",
-STR_ACHIVEVMENT_DESC_208005: "ตอนหงายไพ่ ใช้ไพ่1คู่\nชนะ 5000รอบ",
-STR_ACHIVEVMENT_DESC_209001: "ตอนหงายไพ่ ใช้ไพ่2คู่\nชนะ 5รอบ",
-STR_ACHIVEVMENT_DESC_209002: "ตอนหงายไพ่ ใช้ไพ่2คู่\nชนะ 50รอบ",
-STR_ACHIVEVMENT_DESC_209003: "ตอนหงายไพ่ ใช้ไพ่2คู่\nชนะ 500รอบ",
-STR_ACHIVEVMENT_DESC_209004: "ตอนหงายไพ่ ใช้ไพ่2คู่\nชนะ 2000รอบ",
-STR_ACHIVEVMENT_DESC_209005: "ตอนหงายไพ่ ใช้ไพ่2คู่\nชนะ 5000รอบ",
-STR_ACHIVEVMENT_DESC_210001: "ตอนหงายไพ่ ใช้\nไพ่ตองชนะ 5รอบ",
-STR_ACHIVEVMENT_DESC_210002: "ตอนหงายไพ่ ใช้\nไพ่ตองชนะ 50รอบ",
-STR_ACHIVEVMENT_DESC_210003: "ตอนหงายไพ่ ใช้\nไพ่ตองชนะ 500รอบ",
-STR_ACHIVEVMENT_DESC_210004: "ตอนหงายไพ่ ใช้\nไพ่ตองชนะ 2000รอบ",
-STR_ACHIVEVMENT_DESC_210005: "ตอนหงายไพ่ ใช้\nไพ่ตองชนะ 5000รอบ",
-STR_ACHIVEVMENT_DESC_211001: "ตอนหงายไพ่ ใช้\nไพ่สเตรทชนะ 5รอบ",
-STR_ACHIVEVMENT_DESC_211002: "ตอนหงายไพ่ ใช้\nไพ่สเตรทชนะ 50รอบ",
-STR_ACHIVEVMENT_DESC_211003: "ตอนหงายไพ่ ใช้\nไพ่สเตรทชนะ 500รอบ",
-STR_ACHIVEVMENT_DESC_211004: "ตอนหงายไพ่ ใช้\nไพ่สเตรทชนะ 2000รอบ",
-STR_ACHIVEVMENT_DESC_211005: "ตอนหงายไพ่ ใช้\nไพ่สเตรทชนะ 5000รอบ",
-STR_ACHIVEVMENT_DESC_212001: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 5รอบ",
-STR_ACHIVEVMENT_DESC_212002: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 50รอบ",
-STR_ACHIVEVMENT_DESC_212003: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 250รอบ",
-STR_ACHIVEVMENT_DESC_212004: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 1000รอบ",
-STR_ACHIVEVMENT_DESC_212005: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 3000รอบ",
-STR_ACHIVEVMENT_DESC_213001: "ตอนหงายไพ่ ใช้\nไพ่ฟูลเฮ้าท์ชนะ 3รอบ",
-STR_ACHIVEVMENT_DESC_213002: "ตอนหงายไพ่ ใช้\nไพ่ฟูลเฮ้าท์ชนะ 30รอบ",
-STR_ACHIVEVMENT_DESC_213003: "ตอนหงายไพ่ ใช้\nไพ่ฟูลเฮ้าท์ชนะ 200รอบ",
-STR_ACHIVEVMENT_DESC_213004: "ตอนหงายไพ่ ใช้\nไพ่ฟูลเฮ้าท์ชนะ 500รอบ",
-STR_ACHIVEVMENT_DESC_213005: "ตอนหงายไพ่ ใช้\nไพ่ฟูลเฮ้าท์ชนะ 1000รอบ",
-STR_ACHIVEVMENT_DESC_214001: "ตอนหงายไพ่ ใช้\nไพ่โฟร์การ์ดชนะ 2รอบ",
-STR_ACHIVEVMENT_DESC_214002: "ตอนหงายไพ่ ใช้\nไพ่โฟร์การ์ดชนะ 10รอบ",
-STR_ACHIVEVMENT_DESC_214003: "ตอนหงายไพ่ ใช้\nไพ่โฟร์การ์ดชนะ 50รอบ",
-STR_ACHIVEVMENT_DESC_214004: "ตอนหงายไพ่ ใช้\nไพ่โฟร์การ์ดชนะ 200รอบ",
-STR_ACHIVEVMENT_DESC_214005: "ตอนหงายไพ่ ใช้\nไพ่โฟร์การ์ดชนะ 500รอบ",
-STR_ACHIVEVMENT_DESC_215001: "ตอนหงายไพ่ ได้รับ\nไพ่โฟร์การ์ดทุกเลข\nเริ่มA-K",
-STR_ACHIVEVMENT_DESC_216001: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 1รอบ",
-STR_ACHIVEVMENT_DESC_216002: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 5รอบ",
-STR_ACHIVEVMENT_DESC_216003: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 20รอบ",
-STR_ACHIVEVMENT_DESC_216004: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 50รอบ",
-STR_ACHIVEVMENT_DESC_216005: "ตอนหงายไพ่ ใช้\nไพ่ฟลัชชนะ 100รอบ",
-STR_ACHIVEVMENT_DESC_217001: "ตอนหงายไพ่ ใช้\nไพ่รอยัลสเตรทฟลัช\nชนะ 1รอบ",
-STR_ACHIVEVMENT_DESC_217002: "ตอนหงายไพ่ ใช้\nไพ่รอยัลสเตรทฟลัช\nชนะ 2รอบ",
-STR_ACHIVEVMENT_DESC_217003: "ตอนหงายไพ่ ใช้\nไพ่รอยัลสเตรทฟลัช\nชนะ 5รอบ",
-STR_ACHIVEVMENT_DESC_217004: "ตอนหงายไพ่ ใช้\nไพ่รอยัลสเตรทฟลัช\nชนะ 10รอบ",
-STR_ACHIVEVMENT_DESC_217005: "ตอนหงายไพ่ ใช้\nไพ่รอยัลสเตรทฟลัช\nชนะ 20รอบ",
-STR_ACHIVEVMENT_DESC_218001: "ได้รับไพ่รอยัลสเตรทฟลัช\nทุกดอกและสี",
-STR_ACHIVEVMENT_DESC_219001: "ใช้สนทนาเสียง 20ครั้ง",
-STR_ACHIVEVMENT_DESC_219002: "ใช้สนทนาเสียง 100ครั้ง",
-STR_ACHIVEVMENT_DESC_219003: "ใช้สนทนาเสียง 500ครั้ง",
-STR_ACHIVEVMENT_DESC_219004: "ใช้สนทนาเสียง 2500ครั้ง",
-STR_ACHIVEVMENT_DESC_219005: "ใช้สนทนาเสียง 10000ครั้ง",
-STR_ACHIVEVMENT_DESC_220001: "ใช้อิโมจิ 50ครั้ง",
-STR_ACHIVEVMENT_DESC_220002: "ใช้อิโมจิ 250ครั้ง",
-STR_ACHIVEVMENT_DESC_220003: "ใช้อิโมจิ 1000ครั้ง",
-STR_ACHIVEVMENT_DESC_220004: "ใช้อิโมจิ 5000ครั้ง",
-STR_ACHIVEVMENT_DESC_220005: "ใช้อิโมจิ 20000ครั้ง",
-STR_ACHIVEVMENT_DESC_221001: "จำนวนเพื่อนถึง 5คน",
-STR_ACHIVEVMENT_DESC_221002: "จำนวนเพื่อนถึง 20คน",
-STR_ACHIVEVMENT_DESC_221003: "จำนวนเพื่อนถึง 50คน",
-STR_ACHIVEVMENT_DESC_222001: "อัพโหลดรูป 1รูป",
-STR_ACHIVEVMENT_DESC_222002: "อัพโหลดรูป 10รูป",
-STR_ACHIVEVMENT_DESC_222003: "อัพโหลดรูป 100รูป",
-STR_ACHIVEVMENT_DESC_223001: "ได้รับกดไลค์ 5ครั้ง",
-STR_ACHIVEVMENT_DESC_223002: "ได้รับกดไลค์ 50ครั้ง",
-STR_ACHIVEVMENT_DESC_223003: "ได้รับกดไลค์ 500ครั้ง",
-STR_ACHIVEVMENT_DESC_224001: "ให้ไลค์ 5ครั้ง",
-STR_ACHIVEVMENT_DESC_224002: "ให้ไลค์ 50ครั้ง",
-STR_ACHIVEVMENT_DESC_224003: "ให้ไลค์ 500ครั้ง",
-STR_ACHIVEVMENT_DESC_225001: "รูปของตัวเองได้รับ\nคอมเม้นต์ 10ครั้ง",
-STR_ACHIVEVMENT_DESC_225002: "รูปของตัวเองได้รับ\nคอมเม้นต์ 100ครั้ง",
-STR_ACHIVEVMENT_DESC_225003: "รูปของตัวเองได้รับ\nคอมเม้นต์ 1000ครั้ง",
-STR_ACHIVEVMENT_DESC_226001: "คอมเม้นต์รูป\nคนอื่น 10ครั้ง",
-STR_ACHIVEVMENT_DESC_226002: "คอมเม้นต์รูป\nคนอื่น 100ครั้ง",
-STR_ACHIVEVMENT_DESC_226003: "คอมเม้นต์รูป\nคนอื่น 1000ครั้ง",
-STR_ACHIVEVMENT_DESC_227001: "เสร็จ 5ภารกิจ",
-STR_ACHIVEVMENT_DESC_227002: "เสร็จ 50ภารกิจ",
-STR_ACHIVEVMENT_DESC_227003: "เสร็จ 500ภารกิจ",
-STR_ACHIVEVMENT_DESC_227004: "เสร็จ 2500ภารกิจ",
-STR_ACHIVEVMENT_DESC_227005: "เสร็จ 10000ภารกิจ",
-STR_ACHIVEVMENT_DESC_228001: "แลกไอเทม 5ครั้ง",
-STR_ACHIVEVMENT_DESC_228002: "แลกไอเทม 50ครั้ง",
-STR_ACHIVEVMENT_DESC_228003: "แลกไอเทม 500ครั้ง",
-STR_ACHIVEVMENT_DESC_229001: "ให้ชิปผู้เล่นคนอื่น\nบนโต๊ะไพ่ 10ครั้ง",
-STR_ACHIVEVMENT_DESC_229002: "ให้ชิปผู้เล่นคนอื่น\nบนโต๊ะไพ่ 100ครั้ง",
-STR_ACHIVEVMENT_DESC_229003: "ให้ชิปผู้เล่นคนอื่น\nบนโต๊ะไพ่ 1000ครั้ง",
-STR_ACHIVEVMENT_DESC_230001: "ส่งชิปฟรีให้เพื่อน 10ครั้ง",
-STR_ACHIVEVMENT_DESC_230002: "ส่งชิปฟรีให้เพื่อน 100ครั้ง",
-STR_ACHIVEVMENT_DESC_230003: "ส่งชิปฟรีให้เพื่อน 1000ครั้ง",
-STR_ACHIVEVMENT_DESC_231001: "ได้รับชิปฟรีรวมถึง100000",
-STR_ACHIVEVMENT_DESC_231002: "ได้รับชิปฟรีรวมถึง250000",
-STR_ACHIVEVMENT_DESC_231003: "ได้รับชิปฟรีรวมถึง 1ล้าน",
-STR_ACHIVEVMENT_DESC_232001: "จำนวนวันล็อกอิน\nสะสมติดถึง 5วัน",
-STR_ACHIVEVMENT_DESC_232002: "จำนวนวันล็อกอิน\nสะสมติดถึง 25วัน",
-STR_ACHIVEVMENT_DESC_232003: "จำนวนวันล็อกอิน\nสะสมติดถึง 100วัน",
-STR_ACHIVEVMENT_DESC_232004: "จำนวนวันล็อกอิน\nสะสมติดถึง 250วัน",
-STR_ACHIVEVMENT_DESC_232005: "จำนวนวันล็อกอิน\nสะสมติดถึง 500วัน",
-STR_LOGIN_VERSION: "เวอร์ชั่น：",
-STR_INFORMATION_PERSONAL_SIGNATURE_DEFAULT: "ผู้เล่นคนนี้ยังไม่ได้เขียนข้อความใดๆ เลย อยากให้คนติดตามเยอะๆ ไหม？\nเขียนสเตตัสสักหน่อยนะ",
-STR_MESS_EVALUATION_TITLE: "ขอบคุณสำหรับการให้คะแนน",
-STR_MESS_EVALUATION_CONTENT: "เพราะว่าคุณได้ให้การสนับสนุนและให้คะแนนเกมส์ของเราระบบได้ส่ง%d เป็นชิปรางวัลให้คุณ กรุณากดรับด่วน"
-};
 cc._RF.pop();
 }, {} ],
 use_reversed_rotateBy: [ function(e, t) {
@@ -8298,28 +10671,28 @@ cc._RF.pop();
 xxtea: [ function(e, t) {
 "use strict";
 cc._RF.push(t, "639b6ohfOFGqbHyT0ZVfBTi", "xxtea");
-var _ = e("buffer").Buffer, n = 2654435769;
-function i(e, t) {
-var _ = e.length, n = _ << 2;
-if (t) {
-var i = e[_ - 1];
-if (i < (n -= 4) - 3 || i > n) return null;
-n = i;
-}
-for (var o = new Uint8Array(n), S = 0; S < n; ++S) o[S] = e[S >> 2] >> ((3 & S) << 3);
-return o;
-}
+var n = e("buffer").Buffer, i = 2654435769;
 function o(e, t) {
-var _, n = e.length, i = n >> 2;
-0 != (3 & n) && ++i;
-t ? (_ = new Uint32Array(i + 1))[i] = n : _ = new Uint32Array(i);
-for (var o = 0; o < n; ++o) _[o >> 2] |= e[o] << ((3 & o) << 3);
-return _;
+var n = e.length, i = n << 2;
+if (t) {
+var o = e[n - 1];
+if (o < (i -= 4) - 3 || o > i) return null;
+i = o;
 }
-function S(e, t, _, n, i, o) {
-return (_ >>> 5 ^ t << 2) + (t >>> 3 ^ _ << 4) ^ (e ^ t) + (o[3 & n ^ i] ^ _);
+for (var r = new Uint8Array(i), s = 0; s < i; ++s) r[s] = e[s >> 2] >> ((3 & s) << 3);
+return r;
 }
-function T(e) {
+function r(e, t) {
+var n, i = e.length, o = i >> 2;
+0 != (3 & i) && ++o;
+t ? (n = new Uint32Array(o + 1))[o] = i : n = new Uint32Array(o);
+for (var r = 0; r < i; ++r) n[r >> 2] |= e[r] << ((3 & r) << 3);
+return n;
+}
+function s(e, t, n, i, o, r) {
+return (n >>> 5 ^ t << 2) + (t >>> 3 ^ n << 4) ^ (e ^ t) + (r[3 & i ^ o] ^ n);
+}
+function a(e) {
 if (e.length < 16) {
 var t = new Uint8Array(16);
 t.set(e);
@@ -8327,68 +10700,68 @@ e = t;
 }
 return e;
 }
-function r(e, t) {
-var _, i, o, T, r, s, E = e.length, R = E - 1;
-i = e[R];
-o = 0;
-for (s = 0 | Math.floor(6 + 52 / E); s > 0; --s) {
-T = (o += n) >>> 2 & 3;
-for (r = 0; r < R; ++r) {
-_ = e[r + 1];
-i = e[r] += S(o, _, i, r, T, t);
+function c(e, t) {
+var n, o, r, a, c, l, u = e.length, f = u - 1;
+o = e[f];
+r = 0;
+for (l = 0 | Math.floor(6 + 52 / u); l > 0; --l) {
+a = (r += i) >>> 2 & 3;
+for (c = 0; c < f; ++c) {
+n = e[c + 1];
+o = e[c] += s(r, n, o, c, a, t);
 }
-_ = e[0];
-i = e[R] += S(o, _, i, r, T, t);
-}
-return e;
-}
-function s(e, t) {
-var _, i, o, T, r, s = e.length, E = s - 1;
-_ = e[0];
-for (o = Math.floor(6 + 52 / s) * n; 0 !== o; o -= n) {
-T = o >>> 2 & 3;
-for (r = E; r > 0; --r) {
-i = e[r - 1];
-_ = e[r] -= S(o, _, i, r, T, t);
-}
-i = e[E];
-_ = e[0] -= S(o, _, i, r, T, t);
+n = e[0];
+o = e[f] += s(r, n, o, c, a, t);
 }
 return e;
 }
-function E(e) {
-for (var t = e.length, _ = new Uint8Array(3 * t), n = 0, i = 0; i < t; i++) {
-var o = e.charCodeAt(i);
-if (o < 128) _[n++] = o; else if (o < 2048) {
-_[n++] = 192 | o >> 6;
-_[n++] = 128 | 63 & o;
+function l(e, t) {
+var n, o, r, a, c, l = e.length, u = l - 1;
+n = e[0];
+for (r = Math.floor(6 + 52 / l) * i; 0 !== r; r -= i) {
+a = r >>> 2 & 3;
+for (c = u; c > 0; --c) {
+o = e[c - 1];
+n = e[c] -= s(r, n, o, c, a, t);
+}
+o = e[u];
+n = e[0] -= s(r, n, o, c, a, t);
+}
+return e;
+}
+function u(e) {
+for (var t = e.length, n = new Uint8Array(3 * t), i = 0, o = 0; o < t; o++) {
+var r = e.charCodeAt(o);
+if (r < 128) n[i++] = r; else if (r < 2048) {
+n[i++] = 192 | r >> 6;
+n[i++] = 128 | 63 & r;
 } else {
-if (!(o < 55296 || o > 57343)) {
-if (i + 1 < t) {
-var S = e.charCodeAt(i + 1);
-if (o < 56320 && 56320 <= S && S <= 57343) {
-var T = 65536 + ((1023 & o) << 10 | 1023 & S);
-_[n++] = 240 | T >> 18;
-_[n++] = 128 | T >> 12 & 63;
-_[n++] = 128 | T >> 6 & 63;
-_[n++] = 128 | 63 & T;
-i++;
+if (!(r < 55296 || r > 57343)) {
+if (o + 1 < t) {
+var s = e.charCodeAt(o + 1);
+if (r < 56320 && 56320 <= s && s <= 57343) {
+var a = 65536 + ((1023 & r) << 10 | 1023 & s);
+n[i++] = 240 | a >> 18;
+n[i++] = 128 | a >> 12 & 63;
+n[i++] = 128 | a >> 6 & 63;
+n[i++] = 128 | 63 & a;
+o++;
 continue;
 }
 }
 throw new Error("Malformed string");
 }
-_[n++] = 224 | o >> 12;
-_[n++] = 128 | o >> 6 & 63;
-_[n++] = 128 | 63 & o;
+n[i++] = 224 | r >> 12;
+n[i++] = 128 | r >> 6 & 63;
+n[i++] = 128 | 63 & r;
 }
 }
-return _.subarray(0, n);
+return n.subarray(0, i);
 }
-function R(e, t) {
-for (var _ = new Uint16Array(t), n = 0, i = 0, o = e.length; n < t && i < o; n++) {
-var S = e[i++];
-switch (S >> 4) {
+function f(e, t) {
+for (var n = new Uint16Array(t), i = 0, o = 0, r = e.length; i < t && o < r; i++) {
+var s = e[o++];
+switch (s >> 4) {
 case 0:
 case 1:
 case 2:
@@ -8397,39 +10770,39 @@ case 4:
 case 5:
 case 6:
 case 7:
-_[n] = S;
+n[i] = s;
 break;
 
 case 12:
 case 13:
-if (!(i < o)) throw new Error("Unfinished UTF-8 octet sequence");
-_[n] = (31 & S) << 6 | 63 & e[i++];
+if (!(o < r)) throw new Error("Unfinished UTF-8 octet sequence");
+n[i] = (31 & s) << 6 | 63 & e[o++];
 break;
 
 case 14:
-if (!(i + 1 < o)) throw new Error("Unfinished UTF-8 octet sequence");
-_[n] = (15 & S) << 12 | (63 & e[i++]) << 6 | 63 & e[i++];
+if (!(o + 1 < r)) throw new Error("Unfinished UTF-8 octet sequence");
+n[i] = (15 & s) << 12 | (63 & e[o++]) << 6 | 63 & e[o++];
 break;
 
 case 15:
-if (!(i + 2 < o)) throw new Error("Unfinished UTF-8 octet sequence");
-var T = ((7 & S) << 18 | (63 & e[i++]) << 12 | (63 & e[i++]) << 6 | 63 & e[i++]) - 65536;
-if (!(0 <= T && T <= 1048575)) throw new Error("Character outside valid Unicode range: 0x" + T.toString(16));
-_[n++] = T >> 10 & 1023 | 55296;
-_[n] = 1023 & T | 56320;
+if (!(o + 2 < r)) throw new Error("Unfinished UTF-8 octet sequence");
+var a = ((7 & s) << 18 | (63 & e[o++]) << 12 | (63 & e[o++]) << 6 | 63 & e[o++]) - 65536;
+if (!(0 <= a && a <= 1048575)) throw new Error("Character outside valid Unicode range: 0x" + a.toString(16));
+n[i++] = a >> 10 & 1023 | 55296;
+n[i] = 1023 & a | 56320;
 break;
 
 default:
-throw new Error("Bad UTF-8 encoding 0x" + S.toString(16));
+throw new Error("Bad UTF-8 encoding 0x" + s.toString(16));
 }
 }
-n < t && (_ = _.subarray(0, n));
-return String.fromCharCode.apply(String, _);
+i < t && (n = n.subarray(0, i));
+return String.fromCharCode.apply(String, n);
 }
-function a(e, t) {
-for (var _ = [], n = new Uint16Array(32768), i = 0, o = 0, S = e.length; i < t && o < S; i++) {
-var T = e[o++];
-switch (T >> 4) {
+function d(e, t) {
+for (var n = [], i = new Uint16Array(32768), o = 0, r = 0, s = e.length; o < t && r < s; o++) {
+var a = e[r++];
+switch (a >> 4) {
 case 0:
 case 1:
 case 2:
@@ -8438,76 +10811,76 @@ case 4:
 case 5:
 case 6:
 case 7:
-n[i] = T;
+i[o] = a;
 break;
 
 case 12:
 case 13:
-if (!(o < S)) throw new Error("Unfinished UTF-8 octet sequence");
-n[i] = (31 & T) << 6 | 63 & e[o++];
+if (!(r < s)) throw new Error("Unfinished UTF-8 octet sequence");
+i[o] = (31 & a) << 6 | 63 & e[r++];
 break;
 
 case 14:
-if (!(o + 1 < S)) throw new Error("Unfinished UTF-8 octet sequence");
-n[i] = (15 & T) << 12 | (63 & e[o++]) << 6 | 63 & e[o++];
+if (!(r + 1 < s)) throw new Error("Unfinished UTF-8 octet sequence");
+i[o] = (15 & a) << 12 | (63 & e[r++]) << 6 | 63 & e[r++];
 break;
 
 case 15:
-if (!(o + 2 < S)) throw new Error("Unfinished UTF-8 octet sequence");
-var r = ((7 & T) << 18 | (63 & e[o++]) << 12 | (63 & e[o++]) << 6 | 63 & e[o++]) - 65536;
-if (!(0 <= r && r <= 1048575)) throw new Error("Character outside valid Unicode range: 0x" + r.toString(16));
-n[i++] = r >> 10 & 1023 | 55296;
-n[i] = 1023 & r | 56320;
+if (!(r + 2 < s)) throw new Error("Unfinished UTF-8 octet sequence");
+var c = ((7 & a) << 18 | (63 & e[r++]) << 12 | (63 & e[r++]) << 6 | 63 & e[r++]) - 65536;
+if (!(0 <= c && c <= 1048575)) throw new Error("Character outside valid Unicode range: 0x" + c.toString(16));
+i[o++] = c >> 10 & 1023 | 55296;
+i[o] = 1023 & c | 56320;
 break;
 
 default:
-throw new Error("Bad UTF-8 encoding 0x" + T.toString(16));
+throw new Error("Bad UTF-8 encoding 0x" + a.toString(16));
 }
-if (i >= 32766) {
-var s = i + 1;
-_.push(String.fromCharCode.apply(String, n.subarray(0, s)));
-t -= s;
-i = -1;
+if (o >= 32766) {
+var l = o + 1;
+n.push(String.fromCharCode.apply(String, i.subarray(0, l)));
+t -= l;
+o = -1;
 }
 }
-i > 0 && _.push(String.fromCharCode.apply(String, n.subarray(0, i)));
-return _.join("");
+o > 0 && n.push(String.fromCharCode.apply(String, i.subarray(0, o)));
+return n.join("");
 }
-function c(e) {
+function h(e) {
 var t = e.length;
-return 0 === t ? "" : t < 32767 ? R(e, t) : a(e, t);
+return 0 === t ? "" : t < 32767 ? f(e, t) : d(e, t);
 }
-function I(e, t) {
-"string" == typeof e && (e = E(e));
-"string" == typeof t && (t = E(t));
-return null == e || 0 === e.length ? e : i(r(o(e, !0), o(T(t), !1)), !1);
+function p(e, t) {
+"string" == typeof e && (e = u(e));
+"string" == typeof t && (t = u(t));
+return null == e || 0 === e.length ? e : o(c(r(e, !0), r(a(t), !1)), !1);
 }
-function l(e, t) {
-"string" == typeof e && (e = new _(e, "base64"));
-"string" == typeof t && (t = E(t));
-return null == e || 0 === e.length ? e : i(s(o(e, !1), o(T(t), !1)), !0);
+function g(e, t) {
+"string" == typeof e && (e = new n(e, "base64"));
+"string" == typeof t && (t = u(t));
+return null == e || 0 === e.length ? e : o(l(r(e, !1), r(a(t), !1)), !0);
 }
 t.exports = Object.create(null, {
 toBytes: {
-value: E
+value: u
 },
 toString: {
-value: c
+value: h
 },
 encrypt: {
-value: I
+value: p
 },
 encryptToString: {
 value: function(e, t) {
-return new _(I(e, t)).toString("base64");
+return new n(p(e, t)).toString("base64");
 }
 },
 decrypt: {
-value: l
+value: g
 },
 decryptToString: {
 value: function(e, t) {
-return c(l(e, t));
+return h(g(e, t));
 }
 }
 });
@@ -8515,659 +10888,19 @@ cc._RF.pop();
 }, {
 buffer: 6
 } ],
-zh: [ function(e, t) {
+zh: [ function(e, t, n) {
 "use strict";
-cc._RF.push(t, "a6b10GfdmNMvoO9FiRQgmv1", "zh");
-t.exports = {
-STR_COREPLAY_BUTTON_FOLD: "弃牌",
-STR_COREPLAY_BUTTON_CHECK: "看牌",
-STR_COREPLAY_BUTTON_CALL: "跟注 %s",
-STR_COREPLAY_BUTTON_RAISE: "加注",
-STR_COREPLAY_BUTTON_CONFIRM: "确定",
-STR_COREPLAY_BUTTON_ALLIN: "全下",
-STR_COREPLAY_BUTTON_PREP_CHECKORFOLD: "看/弃",
-STR_COREPLAY_BUTTON_PREP_AUTOCHECK: "看牌",
-STR_COREPLAY_BUTTON_PREP_CALL: "跟注 %s",
-STR_COREPLAY_BUTTON_PREP_CALLANY: "跟任何注",
-STR_INFORMATION_TILLE_1: "个人信息",
-STR_INFORMATION_TILLE_2: "道具清单",
-STR_INFORMATION_TILLE_3: "快捷文字",
-STR_INFORMATION_TILLE_4: "快捷语音",
-STR_INFORMATION_TILLE_5: "数据统计",
-STR_INFORMATION_PERSONAL_LV: "等级",
-STR_INFORMATION_PERSONAL_ID: "ID",
-STR_INFORMATION_PERSONAL_NAME: "昵称",
-STR_INFORMATION_PERSONAL_MALE: "男性",
-STR_INFORMATION_PERSONAL_FEMALE: "女性",
-STR_INFORMATION_PERSONAL_ADDRESS: "地址",
-STR_INFORMATION_PERSONAL_ADDRESS_NULL: "未知",
-STR_INFORMATION_PERSONAL_SIGNATURE: "签名",
-STR_INFORMATION_PERSONAL_PHOTO_DEFAULT: "上传一张新照片",
-STR_INFORMATION_PERSONAL_PHOTO_INREVIEW: "审核中",
-STR_INFORMATION_ITEMLIST_TIME: "天",
-STR_INFORMATION_ITEMLIST_TIME_HOUR: "小时",
-STR_INFORMATION_QUICKCHAT_WORDS: "快捷文字 %d",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_1: "游戏开始了，我已经准备好赢钱了",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_2: "不要耽误时间了，赶快下注吧",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_3: "手牌这么好，看来这局是我赢了。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_4: "让我all-in，怕的人就赶快弃牌吧。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_5: "虽然这局我赢了，但是我依然不会手下留情的",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_6: "弃牌也未必代表我输了,让我先休息一下。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_7: "你牌打得真好，连我都忍不住要称赞你了",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_8: "居然有这种事，简直不能相信",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_9: "这一局我没认真玩，下次不会输了。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_10: "我大发慈悲的离开了，你们就庆幸吧。",
-STR_INFORMATION_QUICKCHAT_WORDS_DEFAULT_NULL: "点击此处输入您的快捷文字",
-STR_INFORMATION_QUICKCHAT_VOICE: "快捷语音 %d",
-STR_INFORMATION_QUICKCHAT_VOICE_DEFAULT: "长按此处进行录音",
-STR_INFORMATION_QUICKCHAT_VOICE_ENTERTITLE: "点击此处输入标题",
-STR_INFORMATION_QUICKCHAT_VOICE_RECORDING: "正在录入",
-STR_INFORMATION_STATISTICS_ID: "ID:",
-STR_INFORMATION_STATISTICS_GAMES: "游戏局数:",
-STR_INFORMATION_STATISTICS_WINS: "获胜局数",
-STR_INFORMATION_STATISTICS_LOSE: "失败局数",
-STR_INFORMATION_STATISTICS_WINRATE: "胜率:",
-STR_INFORMATION_STATISTICS_SHOWINRIVER: "亮牌率:",
-STR_INFORMATION_STATISTICS_FOLDINPREFLOP: "首轮弃牌率:",
-STR_INFORMATION_STATISTICS_ALLININPREFLOP: "首轮全下率:",
-STR_INFORMATION_STATISTICS_HIGHESTCHIP: "历史最多筹码:",
-STR_INFORMATION_STATISTICS_MOSTWIN: "最大赢取:",
-STR_INFORMATION_STATISTICS_BESTCARDS: "最大牌型:",
-STR_INFORMATION_STATISTICS_GIVECHIPTOFRIEND: "赠送好友免费筹码次数:",
-STR_INFORMATION_STATISTICS_GIVECHIPTOFRIEND_TIMES: "次",
-STR_INFORMATION_STATISTICS_GIVECHIPINGAME: "赠送玩家筹码次数:",
-STR_INFORMATION_STATISTICS_GIVECHIPINGAME_TIMES: "次",
-STR_INFORMATION_ITEMLIST_ITEM_TITLE: "您拥有的：",
-STR_INFORMATION_ITEMLIST_PATCH_TITLE: "您可兑换：",
-STR_RANKING_TITLE_MAIN: "排行版",
-STR_RANKING_TITLE_1: "总筹码",
-STR_RANKING_TITLE_2: "单词赢取倍率",
-STR_RANKING_TITLE_3: "筹码波动",
-STR_RANKING_TITLE_4: "今日赢取",
-STR_RANKING_TITLE_5: "互动",
-STR_RANKING_GMT_GMT: "格林威治时间",
-STR_RANKING_GMT_EXPLAIN: "游戏服务器采用格林威治时间为标准。此处显示的是格林威治时间，请各位玩家注意。",
-STR_RANKING_TOP_TOP: "前列",
-STR_RANKING_RANKING_NOPLAYER: "排行榜上没有玩家",
-STR_CHAT_EXPRESSION_TITLE: "表情",
-STR_CHAT_QUICKWORDS_TITLE: "快捷文字",
-STR_CHAT_QUICKVOICES_TITLE: "快捷语音",
-STR_CHAT_INPUT_DEFAULT: "点击此处输入您的文字",
-STR_CHAT_INPUT_DEFAULT_IOS: "点击此处输入您的文字",
-STR_CHAT_QUICKVOICE_NOVICE: "没有快捷语音",
-STR_CHAT_QUICKVOICE_NOTITLE: "没有输入描述",
-STR_TABLEBOARD_CAHT_NOQUICKVOICE: "您目前还没有预先录入的快捷语音。",
-STR_TABLEBOARD_CHAT_NOQUICKTEXT: "您目前还没有预先输入的快捷文字。",
-STR_TABLEBOARD_RECORDING_COUNTDOWN: "剩余%d 秒",
-STR_FRIENDS_TITLE: "您的好友",
-STR_FRIENDS_NOFRIENDS: "您目前还没有好友。点击右上角的搜索按键，您可以通过玩家昵称找到相应的玩家。在牌桌界面和主界面上点击玩家头像，点击加好友按键也能轻松的发送好友申请，快去尝试下吧。",
-STR_FRIENDS_FRIENDS_UPDATE: "优先显示更新了照片的好友",
-STR_FRIENDS_FRIENDS_OL: "优先显示在线的好友",
-STR_FRIENDS_FRIENDS_ACTIVE: "优先显示较活跃的好友",
-STR_FRIENDS_FRIENDS_MAX: "MAX",
-STR_FRIENDS_FRIENDS_INFORMATION_LV: "等级:",
-STR_FRIENDS_FRIENDS_INFORMATION_MALE: "男性",
-STR_FRIENDS_FRIENDS_INFORMATION_FEMALE: "女性",
-STR_FRIENDS_FRIENDS_INFORMATION_ADDRESS: "地址",
-STR_FRIENDS_FRIENDS_INFORMATION_DEFAULT: "显示您给予了该玩家多少赞，评论和免费筹码赠送次数",
-STR_FRIENDS_FRIENDS_INFORMATION_NOPHOTO: "该玩家没有上传任何照片",
-STR_FRIENDS_FRIENDS_INFORMATION_GAMES: "游戏",
-STR_FRIENDS_FRIENDS_INFORMATION_WIN: "胜利",
-STR_FRIENDS_FRIENDS_INFORMATION_LOSE: "失败",
-STR_FRIENDS_FRIENDS_INFORMATION_WINRATE: "胜率:",
-STR_FRIENDS_FRIENDS_INFORMATION_SHOWINRIVER: "亮牌率:",
-STR_FRIENDS_FRIENDS_INFORMATION_FOLDINPREFLOP: "首轮弃牌率:",
-STR_FRIENDS_FRIENDS_INFORMATION_ALLININPREFLOP: "首轮全下率:",
-STR_FRIENDS_FRIENDS_INFORMATION_HIGHESTCHIP: "历史最多筹码:",
-STR_FRIENDS_FRIENDS_INFORMATION_MOSTWIN: "最大赢取:",
-STR_FRIENDS_FRIENDS_INFORMATION_BESTCARDS: "最大牌型:",
-STR_FRIENDS_FRIENDS_SEARCHTITLE: "搜索到的好友",
-STR_FRIENDS_FRIENDS_SEARCHTIPS: "请至少输入四个字符来搜索昵称",
-STR_FRIENDS_FRIENDS_SEARCH: "根据玩家昵称找到了 %d 个玩家。最多能显示 %d 个相关玩家。",
-STR_LOGIN_PHONELOGIN: "手机登录",
-STR_LOGIN_ACCOUNTLOGIN: "账号登陆",
-STR_LOGIN_FACEBOOKLOGIN: "Facebook登陆",
-STR_LOGIN_GUESTLOGIN: "游客登陆",
-STR_LOGIN_ACCOUNTLOGIN_ACCOUNT: "输入您的邮箱",
-STR_LOGIN_ACCOUNTLOGIN_PASSWORD: "输入您的密码",
-STR_LOGIN_ACCOUNTLOGIN_AUTOLOGIN: "自动登录",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD: "找回密码",
-STR_LOGIN_ACCOUNTLOGIN_LOGIN: "登录",
-STR_LOGIN_ACCOUNTLOGIN_REGISTER: "注册",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERACCOUNT: "请输入您的邮箱",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERENTERPASSWORD: "请输入密码",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERCONFRIMPASSWORD: "请确认密码",
-STR_LOGIN_ACCOUNTLOGIN_REGISTERREGISTER: "注册",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_EXPLAIN: "如果你想找回密码，请输入你注册账号时所使用的邮箱，我们会将密码找回邮件发送至该邮箱中。",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_ENTER: "请输入你的注册邮箱",
-STR_LOGIN_ACCOUNTLOGIN_RETRIEVEPASSWORD_SENDEMAIL: "发送邮件",
-STR_LOGIN_TERMSOFSERVICE: "用户协议",
-STR_LOBBY_TITLE: "房间",
-STR_LOBBY_ID: "房间ID",
-STR_LOBBY_BLIND: "盲注 %s/%s",
-STR_LOBBY_5PLAYERS: "5人场",
-STR_LOBBY_9PLAYERS: "9人场",
-STR_LOBBY_FULL: "满房间",
-STR_LOBBY_EMPTY: "空房间",
-STR_SIT_ROOMID: "房间ID %d",
-STR_SIT_BLIND: "大小盲注 %s/%s",
-STR_SIT_MINBLIND: "最小带入",
-STR_SIT_MAXBLIND: "最大带入",
-STR_SIT_AUTOSIT: "筹码不足时自动带入筹码并坐下",
-STR_SIT_LEAVE: "离开",
-STR_SIT_SIT: "坐下",
-STR_SIT_NOCHIP: "筹码不足",
-STR_SIT_SHOP: "商店",
-STR_INVITE_TITLE: "和您的朋友一起玩",
-STR_INVITE_BUTTON: "邀请到牌桌",
-STR_INVITE_NOFRIEND: "很遗憾，您还没有任何好友。快去和其他玩家交友吧。",
-STR_INVITE_UNKNOWN: "地址未知",
-STR_MES_FRIEND_TITLE: "好友消息",
-STR_MES_SYSTEM_TITLE: "系统消息",
-STR_MES_ADDFRIEND_RCCEIVE: "%s 想要和您成为好友。请问你要同意吗？",
-STR_MES_ADDFRIEND_AGREE: "恭喜！%s 已经通过了您的好友申请，您可以在好友界面找到他。",
-STR_MES_ADDFRIEND_YOUAGREE: "您通过了 %s 的好友申请，您可以在好友界面找到他。",
-STR_MES_CHIPS_GIVE: "%s 赠送给您 %d 免费筹码，快来接受吧。",
-STR_MES_CHIPS_RECEIVE: "您接受了来自 %s 的 %d 免费筹码。",
-STR_MES_MESSAGE_NULL: "目前为止没有消息。",
-STR_MES_MONTH_JAN: "一月",
-STR_MES_MONTH_FEB: "二月",
-STR_MES_MONTH_MAR: "三月",
-STR_MES_MONTH_APR: "四月",
-STR_MES_MONTH_MAY: "五月",
-STR_MES_MONTH_JUN: "六月",
-STR_MES_MONTH_JUL: "七月",
-STR_MES_MONTH_AUG: "八月",
-STR_MES_MONTH_SEP: "九月",
-STR_MES_MONTH_OCT: "十月",
-STR_MES_MONTH_NOV: "十一月",
-STR_MES_MONTH_DEC: "十二月",
-STR_HOMESCREEN_OLPLAYER: "%s 玩家在线",
-STR_HOMESCREEN_PHOTOUPLOAD: "你的好友 %s 更新了照片",
-STR_HOMESCREEN_NOUPLOAD: "没有好友更新照片",
-STR_EVENT_BACK: "返回",
-STR_ANNOUNCEMENT_TITLE: "公告",
-STR_PLAYER_INF_NAME: "姓名",
-STR_PLAYER_INF_TITLE_PHOTO: "照片",
-STR_PLAYER_INF_TITLE_ACHIEVEMENTS: "成就",
-STR_PLAYER_INF_LV: "等级",
-STR_PLAYER_INF_MALE: "男性",
-STR_PLAYER_INF_FEMALE: "女性",
-STR_PLAYER_INF_ADDRESS: "地址",
-STR_PLAYER_INF_BUTTON_BLOCK: "点击这里屏蔽玩家",
-STR_PLAYER_INF_BLOCKBUTTON: "屏蔽",
-STR_PLAYER_INF_BUTTON_UNLOCK: "点击这里解除屏蔽",
-STR_PLAYER_INF_UNLOCKBUTTON: "解除屏蔽",
-STR_PLAYER_INF_BUTTON_REPORT: "点击这里举报玩家头像",
-STR_PLAYER_INF_REPORTBUTTON: "举报",
-STR_PLAYER_INF_BLOCK: "屏蔽后，你将不会再收到任何来自该玩家的文字，语音或表情。您确定要屏蔽这名玩家吗？",
-STR_PLAYER_INF_UNBLOCK: "解除对该玩家的屏蔽后，你可以再次收到来自该玩家的文字，语音或表情。",
-STR_PLAYER_INF_REPORT: "有多名玩家举报此头像后，该头像将被屏蔽。我们将尽快进行审核。您确定要举报这个头像吗？",
-STR_PLAYER_PHOTO_NULL: "该玩家并未上传任何照片。",
-STR_CHECKPHOTO_NOAUTHORITY: "抱歉，由于该玩家的设置，您没有查看该玩家照片的权限。",
-STR_PLAYER_PHOTO_CRITICTITLE: "评论",
-STR_PLAYER_STATISTICS_GAMES: "游戏局数:",
-STR_PLAYER_STATISTICS_WINS: "胜利",
-STR_PLAYER_STATISTICS_LOSE: "失败",
-STR_PLAYER_STATISTICS_WINRATE: "胜率:",
-STR_PLAYER_STATISTICS_SHOWINRIVER: "亮牌率:",
-STR_PLAYER_STATISTICS_FOLDINPREFLOP: "首轮弃牌率:",
-STR_PLAYER_STATISTICS_ALLININPREFLOP: "首轮全下率:",
-STR_PLAYER_STATISTICS_HIGHESTCHIPS: "历史最多筹码:",
-STR_PLAYER_STATISTICS_MOSTWIN: "最大赢取:",
-STR_PLAYER_STATISTICS_BTESTCARD: "最大牌型:",
-STR_PLAYER_STATISTICS_MINS: "%s 分钟",
-STR_PLAYER_ACHIEVEMENT_NULL: "该玩家还没有获得任何成就。",
-STR_LOGINREWARD_TITLE: "连续登陆奖励",
-STR_LOGINREWARD_DAY: "第 %d 天",
-STR_LOGINREWARD_RECEIVED: "已经领取",
-STR_LOGINREWARD_TIPS: "如果你您保持连续登陆，您将获得更丰厚的奖励。",
-STR_LOGINREWARD_SUCCESS: "恭喜你领取了每日登录奖励 %d %s。",
-STR_ABOUTUS_STAFF: "Poker Royal Texas Hold'em Staff List\n\n\nGameDesinger\n\nStone\nJohn Smith\n\n\nProgrammer\n\nJack\nWillian\nHaven \nSpiro\nBob\nRussell\n\n\nArtDesinger\n\nPantheon\nEmma\nMandy\n\n\nGameTester\n\nJoffence\nDoris\n\n\nSpecial Thanks\n\nChris\nAlex\nMatata\nBlank",
-STR_BUTTON_YES: "是",
-STR_BUTTON_NO: "否",
-STR_BUTTON_OK: "确定",
-STR_BUTTON_IGNORE: "忽略",
-STR_BUTTON_AGREE: "同意",
-STR_OPTIONS_TITLE: "设置",
-STR_OPTIONS_VOICE: "语音",
-STR_OPTIONS_SOUND: "音效",
-STR_OPTIONS_AUTOSIT: "自动坐下",
-STR_OPTIONS_VIBRATION: "震动",
-STR_OPTIONS_FOLLOW: "允许好友跟踪",
-STR_OPTIONS_INVITE: "接受邀请信息",
-STR_OPTIONS_SEEPHOTOS: "谁能查看我的照片",
-STR_OPTIONS_CHOSEN_YES: "是",
-STR_OPTIONS_CHOSEN_NO: "否",
-STR_OPTIONS_SEEPHOTOS_FRIEND: "仅仅好友可查看",
-STR_OPTIONS_SEEPHOTOS_NOONE: "所有人都无法查看",
-STR_OPTIONS_SEEPHOTOS_ANYONE: "任何人都可查看",
-STR_OPTIONS_RATE: "评价游戏",
-STR_OPTIONS_CACHE: "清除缓存",
-STR_OPTIONS_CACHE_CONFIRM: "清除缓存将会删除您已经下载的头像，照片。您确定要清除缓存吗？",
-STR_OPTIONS_CACHE_CLEARED: "缓存已经清理成功。",
-STR_OPTIONS_ABOUT: "关于我们",
-STR_OPTIONS_REPORT: "报告问题",
-STR_OPTIONS_FOLLOWUS: "关注我们",
-STR_OPTIONS_CONTACT: "联系我们",
-STR_LOADING_1: "把你的朋友带到游戏中来，但也别忘了在现实中和他们一起玩。",
-STR_LOADING_2: "与他人交流时请务必保持礼貌，在尊重别人的同时，你会得到他人的尊重。",
-STR_LOADING_3: "永远不要尝试在牌桌上调戏荷官，不论他们有多英俊或者多性感。",
-STR_LOADING_4: "如果在你在游戏中感受到了挫折，不要气馁，生活并没有抛弃你。",
-STR_LOADING_5: "做任何事情都要适度，包括玩皇家德州扑克哦。",
-STR_LOADING_6: "请记得每天打开好友信息，点击赠送筹码按键向好友赠送免费筹码。",
-STR_LOADING_7: "轮到自己时，点击左下的筹码，可以快速选择加注金额。",
-STR_LOADING_8: "在牌桌上查看玩家详情的时候再次点击玩家头像，就可以屏蔽烦人的玩家欧。",
-STR_LOADING_9: "如果要和玩家私聊，请记得使用玩家详细信息界面的语音按键。",
-STR_LOADING_10: "请不要忘记查看活动欧，说不定会有惊喜的。",
-STR_LOADING_11: "保持连续登录，能够获得最好的奖励。",
-STR_LOADING_END: "随时保持一颗平常心，胜利不要兴奋，失败也不要沮丧。",
-STR_TABLEBOARD_ID: "房间ID %d 大小盲注 %s/%s",
-STR_CARDTYPE_HIGH_CARD: "高牌",
-STR_CARDTYPE_PAIR_CARD: "一对",
-STR_CARDTYPE_TWO_PAIRS_CARD: "两对",
-STR_CARDTYPE_THREE_CARD: "三条",
-STR_CARDTYPE_STRAIGHT: "顺子",
-STR_CARDTYPE_FLUSH: "同花",
-STR_CARDTYPE_FULL_HOUSE: "葫芦",
-STR_CARDTYPE_FOUR_OF_A_KIND: "四条",
-STR_CARDTYPE_STRAIGHT_FLUSH: "同花顺",
-STR_CARDTYPE_ROYAL_FLUSH: "皇家同花顺",
-STR_TABLEBOARD_EXP: "经验",
-STR_QUESTS_TITLE: "任务",
-STR_QUESTS_RECEIVEBUTTON: "领取",
-STR_ACHIEVEMENTS_TITLE: "成就",
-STR_LVUP_TITLE: "恭喜",
-STR_LVUP_TEXT: "恭喜您成功升至%d级，并且获得了%s的奖励筹码。",
-STR_SHOP_TITLE: "商店",
-STR_SHOP_BUTTON: "购买",
-STR_ALMS_TITLE: "复活",
-STR_ALMS_TEXT: "尊敬的玩家，由于您当前的钻石与筹码数过少，系统为您发放 %s 筹码。您今日还能领取 %d 次的救济金。",
-STR_BUG_REPORT: "点击提交问题",
-STR_BUG_INPUT: "请输入您要提交的问题",
-STR_BUG_TIP: "您的问题已经提交服务器。我们的客服将尽快解答您的疑问",
-STR_BUG_TIME: "提交时间",
-STR_BUG_WAIT: "等待客服回复",
-STR_BUG_RESPONSETIME: "回复时间",
-STR_BUG_DELTIP: "您确定要删除这个问题吗?",
-STR_BUG_VIEW: "查看详情",
-STR_BUG_COMMIT: "提交",
-STR_BUG_DELTIPDONE: "删除成功",
-STR_BUG_DELTIPFAIL: "删除失败",
-STR_BUG_COMMIT_TIP: "提交失败",
-STR_POKER_ROOM_BET: "赌注 %s/%s",
-STR_POKERTABLEBOARD_ID: "房间ID%d最小/最大 赌注%s%s",
-STR_POKER_PRE_BET: "赌注",
-STR_POKER_TYPE_POK9: "Pok9",
-STR_POKER_TYPE_POK8: "Pok8",
-STR_POKER_TYPE_TONG: "三条",
-STR_POKER_TYPE_SAM_LUEANG: "三公",
-STR_POKER_TYPE_STRAIGHT_FLUSH: "同花顺",
-STR_POKER_TYPE_STRAIGHT: "顺子",
-STR_POKER_TYPE_SCORE_0: "Score 0",
-STR_POKER_TYPE_SCORE_1: "Score 1",
-STR_POKER_TYPE_SCORE_2: "Score 2",
-STR_POKER_TYPE_SCORE_3: "Score 3",
-STR_POKER_TYPE_SCORE_4: "Score 4",
-STR_POKER_TYPE_SCORE_5: "Score 5",
-STR_POKER_TYPE_SCORE_6: "Score 6",
-STR_POKER_TYPE_SCORE_7: "Score 7",
-STR_POKER_TYPE_SCORE_8: "Score 8",
-STR_POKER_TYPE_SCORE_0_9: "Score 0-9",
-STR_POKER_TYPE_SCORE_9: "Score 9",
-STR_POKER_INTRUUCE: "牌型说明",
-STR_POKER_INTRUUCE1: "牌力大小由上至下排序",
-STR_POKER_INTRUUCE2: "这些牌为0点",
-STR_POKER_INTRUUCE3: "这些牌为1-9点",
-STR_POKER_INTRUUCE4: "所有手牌点数相加，取个位数",
-STR_POKER_INTRUUCE5: "2张初始牌为9点",
-STR_POKER_INTRUUCE6: "2张初始牌为8点",
-STR_POKER_INTRUUCE7: "KA2、A23不是顺子",
-STR_POKER_INTRUUCE8: "牌型的赔率倍数",
-STR_POKER_INTRUUCE9: "2张同花",
-STR_POKER_INTRUUCE10: "3张同花",
-STR_POKER_INTRUUCE11: "本局游戏结束后，将离开座位",
-STR_POKER_INTRUUCE12: "本局游戏结束后，将离开座位并退出房间",
-STR_WIN_STREAK: "连胜:",
-STR_PLAYER: "玩家",
-STR_DEAR: "庄家",
-STR_GAME_GOTODEAR: "点击上庄",
-STR_CHIP_NOT_ENOUGH: "筹码不足,至少%s筹码才能上庄,是否去商店？",
-STR_POKERTABLEBOARD_ID1: "最小/最大 赌注%s/%s",
-STR_GAME_GOTODEAR_1: "上庄成功，需要连续坐庄5场才能离座",
-STR_GAME_GOTODEAR_2: "一位玩家上庄成功",
-STR_STATIC_BIGWIN: "最大赢取:",
-STR_CARDTYPE100: "3卡组 JQK",
-STR_CARDTYPE101: "同花顺",
-STR_CARDTYPE102: "一对",
-STR_CARDTYPE103: "顺子",
-STR_CARDTYPE104: "3张牌是顺序",
-STR_ADDFRIEND_ONESELF: "您的好友数目已经达到了上限。您可以去商城购买通讯录来提升好友上限。",
-STR_ADDFRIEND_OTHERS: "很遗憾，对方玩家的好友数目已经达到上限了。您现在无法把他加为好友。",
-STR_MESSRECEIVE_UNDONE: "该消息中附带的所有物品已经被您领取过了。",
-STR_LOGIN_WORNING: "您的账号已经被冻结。如果您有任何疑问，请发送邮件到我们的客服邮箱。",
-STR_LOGIN_INFO_ERROR: "您输入的账号或密码有错误。请检查后重新输入。",
-STR_LOGIN_INFO_NULL: "登录账号或密码不能为空，请输入。",
-STR_LOGIN_EMALL_REGISTERED: "您输入的邮箱地址已经被注册。请重新输入可使用的邮箱地址。",
-STR_LOGIN_EMAIL_ERROR: "您输入的邮箱格式有错误。请检查后重新输入。",
-STR_LOGIN_PASSWORD_SHORT: "账号密码要求6-16位英文字母或数字。请重新输入您的密码。",
-STR_LOGIN_PASSWORD_DIFFERENT: "您两次输入的密码不一致。请检查后重新输入。",
-STR_LOGIN_PASSWORD_CHARACTER: "账号密码中不能包含除了英文字母和数字外的其他字符。请重新输入您的密码。",
-STR_LOGIN_REGISTER_SUCCESS: "恭喜您成功注册了皇家德州扑克的账号。赶快点击OK来加入游戏吧！",
-STR_LOGIN_RETRIEVE_SUCCESS: "密码找回邮件已经发送，请到您的邮箱中查收。如未收到，请稍等片刻再次查看。",
-STR_LOGIN_RETRIEVE_FAIL: "您输出的账号邮箱地址没有注册。请检查并重新输入已注册的邮箱地址。",
-STR_MAIN_LOGOFF: "您确定要登出游戏吗？",
-STR_MAIN_QUIT: "您确定要退出游戏吗？",
-STR_SHOP_CHIP: "您的筹码不足，想去商城买点筹码吗？",
-STR_SHOP_DIAMOND: "您的钻石不足，想去商城买点钻石吗？",
-STR_SHOP_BUYSUCCESSFUL: "您已经成功购买了商品 %s。",
-STR_SHOP_REACHLIMIT: "您已经达到了该道具的购买上限。",
-STR_SHOP_BUYFAIL: "抱歉，商品购买失败，请重试。",
-STR_PLAYERSEARCH_SHORT: "搜索好友时请至少输入四个英文字符或数字。",
-STR_PLAYERSEARCH_LONG: "搜索好友时至多只能输入十六个英文字符或数字。",
-STR_FRIEND_HAVEADDED: "该玩家已经在你的好友名单里了。",
-STR_FRIEND_LIMIT: "您的好友数量已经达到达到上限了。您可以去商城购买通讯录来提升好友上限。",
-STR_FRIEND_FOLLOW: "您的好友 %s 正在注额 %d/%d 的房间中打牌。您确定跟踪他进入此房间吗？",
-STR_FRIEND_DEL: "您确定要删除这名好友吗？",
-STR_FRIEND_ADDYOURSELF: "您不能添加自身为好友。",
-STR_PRESENT_NOTFRIEND: "只有好友之间才能赠送免费筹码。您和这位玩家还不是好友，无法赠送。",
-STR_PRESENT_DONE: "今天您已经向这位好友赠送过免费筹码了。明天才可以再次赠送欧。",
-STR_PERSONAL_NAME_SHORT: "您输入的昵称过短。请至少输入4个英文字母或数字。",
-STR_PERSONAL_NAME_LONG: "您输入的昵称过长。最多能够输入16个英文字母或数字。",
-STR_PERSONAL_NAME_REPEAK: "您输入的昵称和其他玩家的昵称重复了。请重新想个好昵称吧。",
-STR_PERSONAL_NAME_ILLEGAL: "您输入的昵称中包含了违规字符。请只使用英文字母和数字。",
-STR_PERSONAL_SIGNATURE_LONG: "您输入的签名过长。最多能够输入120个字符。",
-STR_PERSONAL_RECORDING_SHORT: "您的录音时间过短。请多说点吧。",
-STR_PERSONAL_QUICKVOICE_PLAY: "在语音播放时不能播放其他语音消息。",
-STR_PERSONAL_QUICKVOICE_RECORD: "在语音播放时不能录入其他语音消息。",
-STR_PERSONAL_QUICKVOICE_DEL: "您确定要删除这条快捷语音吗？",
-STR_PERSONAL_PHOTO_DEL: "您确定要删除这张照片吗？",
-STR_PERSONAL_PHOTO_LIMIT: "您的照片数目已经达到上限了。您可以去商城购买相册来提升照片上限。",
-STR_PERSONAL_ACCOUNT_BINDING: "您输入的邮箱地址已经被注册。请重新输入可使用的邮箱地址。",
-STR_PERSONAL_ITEMEXCHANGE_301002: "恭喜您，您已经成功兑换了%d个钻石，相应的碎片系统会自动扣除。",
-STR_PERSONAL_ITEMEXCHANGE_302003: "恭喜您，您已经成功兑换了%d个放大镜，相应的碎片系统会自动扣除。",
-STR_PERSONAL_ITEMEXCHANGE_302001: "恭喜您，您已经成功兑换了%d个麦克风到道具，相应的碎片会自动扣除。",
-STR_PERSONAL_ITEMEXCHANGE_302002: "恭喜您，您已经成功兑换了%d个互动表情道具，相应的碎片会自动扣除。",
-STR_PERSONAL_BINDIN: "请使用您的常用邮箱进行账号绑定。绑定后的账号能够在其他设备上游戏使用账号登录。",
-STR_ITEM_TUREEYE_NULL: "您的放大镜数量不足，想要去商城购买一些吗？",
-STR_REPORT_PHOTO_CONFRIM: "您确定要举报这张照片吗？有多名玩家举报此照片后，该照片将被屏蔽。我们将尽快进行审核。",
-STR_REPORT_PHOTO_REPEAK: "您已经举报过这张照片。请不要重复举报。",
-STR_SITDOWN_LIMIT: "此房间人数已满，无法进入。请选择其他有空位的房间。",
-STR_SITDOWN_FULL: "这个房间没有空位。点击“YES”，系统将为您自动匹配到另一个新房间。点击“NO”，您将留在目前房间观战。",
-STR_SITDOWN_REPEAK: "你已经在座位上了。",
-STR_SITDOWN_NOTEMPTY: "您选择的座位已经被其他玩家占据了，请选择其他的空座位。",
-STR_TABLE_RECORDIND_SHORT: "您录音的时间过短，请重新录音。",
-STR_ITEM_VOICE_NULL: "您的麦克风不够了，想要去商城购买一些麦克风吗？",
-STR_ITEM_VOICE_STAND: "您目前还未坐下，还不能够使用语音功能。",
-STR_ITEM_CHAT_STAND: "您目前还未坐下，还不能发送文字和表情。",
-STR_ITEM_EXPRESSION_NULL: "您的互动表情不够了，想要去商城购买一些互动表情吗？",
-STR_TABLE_LEAVE_SEAT: "离开座位会让您失去已下注的筹码。您确定要现在离开座位吗？",
-STR_TABLE_LEAVE_ROOM: "离开房间会让您失去已下注的筹码。您确定要现在离开房间吗？",
-STR_INVITE_RECEIVE: "玩家 %s 邀请您参加牌局，点击确认。",
-STR_INVITE_CONFRIM: "玩家 %s 邀请您参加他的牌局。房间ID %d，大小盲注 %s / %s。你确定要加入牌局吗？",
-STR_INVITE_CONFRIM1: "玩家 %s 邀请您参加他的牌局。房间ID %d，赌注 %s / %s。你确定要加入牌局吗？",
-STR_INVITE_SAMEROOM: "您和该玩家已经在同一房间中了。",
-STR_MISSION_COMPLETE: "您完成了一个任务，快去领取奖励吧。",
-STR_MUTE_ON: "您已成功开启静音功能。",
-STR_MUTE_OFF: "您已成功关闭静音功能。",
-STR_EQUIPMENT_MICROPHONE: "启动麦克风功能失败，请允许本游戏使用手机麦克风功能。请检查手机设置。",
-STR_ACHIEVEMENT_SUCCESS: "恭喜！您成功领取了成就奖励 %d %s.",
-STR_LOGIN_OTHERDEVICES: "您的账号已经在其他地方登录了。请检查您的账号密码安全，以避免损失。如果您有任何疑问，请发送邮件到我们的客服邮箱。",
-STR_NETWORK_REQUEST: "发生错误%d, 网络请求失败。请检查您的网络环境，并稍后尝试。",
-STR_NETWORK_ERROR_CHECK: "网络发生错误,连接断开。请检查您的设备或网络设置.",
-STR_UNKNOWN_ERROR: "发生未知错误，游戏无法正常进行。您可以通过我们的客服邮箱告知我们错误情况。",
-STR_ERROR_DATA: "出现数据错误，请退回至登陆界面重新登录游戏。",
-STR_EVALUATION_TEXT: "尊敬的玩家，您现在可以对我们的游戏进行评价了，进行评价后您将会获得奖励。请问是否跳转至相关页面？",
-STR_GOOGLEPLAY_ERROR_1: "进行购买操作时所需的一项或多项 Google Play 服务目前无法使用。",
-STR_GOOGLEPLAY_ERROR_2: "更新Google Play服务后才能进行购买。",
-STR_GOOGLEPLAY_ERROR_3: "您的手机中没有Google Play服务，您必须先安装该服务才能进行购买。",
-STR_GOOGLEPLAY_ERROR_4: "您必须先启用Google Play服务才能进行购买。",
-STR_ITEM_NAME_301001: "筹码",
-STR_ITEM_NAME_301002: "钻石",
-STR_ITEM_NAME_302001: "麦克风",
-STR_ITEM_NAME_302002: "互动表情",
-STR_ITEM_NAME_302003: "放大镜",
-STR_ITEM_NAME_303001: "金筹码",
-STR_ITEM_NAME_304001: "通讯录",
-STR_ITEM_NAME_304002: "相册",
-STR_ITEM_DESC_301001: "表示玩家的筹码个数，财富衡量单位",
-STR_ITEM_DESC_301002: "表示玩家的钻石个数，财富衡量单位",
-STR_ITEM_DESC_302001: "使用语音功能需要消耗的道具，每使用1次语音消耗1个。",
-STR_ITEM_DESC_302002: "使用互动表情需要消耗的道具，每使用1次互动表情消耗1个。",
-STR_ITEM_DESC_302003: "使用后可以查看玩家的游戏数据，每查看1名玩家消耗1个，效果持续 %d 分钟。",
-STR_ITEM_DESC_303001: "增加任务筹码奖励的道具，所有任务的筹码奖励变为 %s 倍，持续 %d 天。",
-STR_ITEM_DESC_304001: "提升好友数量上限的道具。初始上限为 %d 个好友。每拥有1个通讯录，上限提升 %d 个。",
-STR_ITEM_DESC_304002: "提升照片数量上限的道具。初始上限为 %d 张照片。每拥有1个相册，上限提升 %d 个。",
-STR_GOODS_NAME_401001: "%d 钻石包",
-STR_GOODS_NAME_401002: "%d 钻石包",
-STR_GOODS_NAME_401003: "%d 钻石包",
-STR_GOODS_NAME_401004: "%d 钻石包",
-STR_GOODS_NAME_402001: "%d 筹码包",
-STR_GOODS_NAME_402002: "%d 筹码包",
-STR_GOODS_NAME_402003: "%d 筹码包",
-STR_GOODS_NAME_402004: "%d 筹码包",
-STR_GOODS_NAME_403001: "%d 麦克风包",
-STR_GOODS_NAME_403002: "%d 麦克风包",
-STR_GOODS_NAME_404001: "%d 表情包",
-STR_GOODS_NAME_404002: "%d 表情包",
-STR_GOODS_NAME_405001: "%d 放大镜包",
-STR_GOODS_NAME_406001: "金筹码",
-STR_GOODS_NAME_407001: "通讯录",
-STR_GOODS_NAME_408001: "相册",
-STR_GOODS_DESC_401001: "%d 个钻石",
-STR_GOODS_DESC_401002: "%d 个钻石",
-STR_GOODS_DESC_401003: "%d 个钻石",
-STR_GOODS_DESC_401004: "%d 个钻石",
-STR_GOODS_DESC_402001: "%d 个筹码",
-STR_GOODS_DESC_402002: "%d 个筹码",
-STR_GOODS_DESC_402003: "%d 个筹码",
-STR_GOODS_DESC_402004: "%d 个筹码",
-STR_GOODS_DESC_403001: "%d 个麦克风。使用语音功能需要消耗的道具，每使用1次语音消耗1个。",
-STR_GOODS_DESC_403002: "%d 个麦克风。使用语音功能需要消耗的道具，每使用1次语音消耗1个。",
-STR_GOODS_DESC_404001: "%d 个互动表情。使用互动表情需要消耗的道具，每使用1次互动表情消耗1个。",
-STR_GOODS_DESC_404002: "%d 个互动表情。使用互动表情需要消耗的道具，每使用1次互动表情消耗1个。",
-STR_GOODS_DESC_405001: "%d 个放大镜。使用后可以查看玩家的游戏数据，每查看1名玩家消耗1个，效果持续 %d 分钟。",
-STR_GOODS_DESC_406001: "增加任务筹码奖励的道具，所有任务的筹码奖励变为 %d 倍，持续 %d 天。多次购买，持续时间加长。",
-STR_GOODS_DESC_407001: "提升好友数量上限的道具。初始上限为 %d 个好友。每拥有1个通讯录，上限提升 %d 个。最多购买 %d个，价格根据购买数变化。",
-STR_GOODS_DESC_408001: "提升照片数量上限的道具。初始上限为 %d 张照片。每拥有1个相册，上限提升 %d 个。最多购买 %d个，价格根据购买数变化",
-STR_QUEST_DESC_101101: "完成3盘牌局",
-STR_QUEST_DESC_101201: "游戏时间经过5分钟",
-STR_QUEST_DESC_102101: "赢得2盘牌局",
-STR_QUEST_DESC_102201: "在Preflop圈就赢得牌局3次",
-STR_QUEST_DESC_102301: "亮牌赢得牌局2次",
-STR_QUEST_DESC_103101: "赢取的筹码（未抽成前）是本局投入筹码的5倍以上,1次",
-STR_QUEST_DESC_104101: "在4个奖池以上的牌局中赢的全部奖池，1次",
-STR_QUEST_DESC_105101: "ALL IN后赢得牌局3次",
-STR_QUEST_DESC_106101: "5人及其以上ALL IN，并最终赢得牌局,1次",
-STR_QUEST_DESC_107101: "亮牌时，以同样的牌型击败其他玩家，1次",
-STR_QUEST_DESC_108101: "亮牌时，以高牌牌型赢得1次牌局",
-STR_QUEST_DESC_108201: "亮牌时，以一对牌型赢得1次牌局",
-STR_QUEST_DESC_108301: "亮牌时，以两对牌型赢得1次牌局",
-STR_QUEST_DESC_108401: "亮牌时，以三条牌型赢得1次牌局",
-STR_QUEST_DESC_108501: "亮牌时，以顺子牌型赢得1次牌局",
-STR_QUEST_DESC_108601: "亮牌时，以同花牌型赢得1次牌局",
-STR_QUEST_DESC_108701: "亮牌时，以葫芦牌型赢得1次牌局",
-STR_QUEST_DESC_109101: "聊天（包括表情，文字，互动表情，语音）20次",
-STR_QUEST_DESC_110101: "评论玩家的照片5次",
-STR_QUEST_DESC_101102: "完成10盘牌局",
-STR_QUEST_DESC_101202: "游戏时间经过15分钟",
-STR_QUEST_DESC_102102: "赢得5盘牌局",
-STR_QUEST_DESC_102202: "在Preflop圈就赢得牌局9次",
-STR_QUEST_DESC_102302: "亮牌赢得牌局5次",
-STR_QUEST_DESC_103102: "赢取的筹码（未抽成前）是本局投入筹码的5倍以上,3次",
-STR_QUEST_DESC_104102: "在4个奖池以上的牌局中赢的全部奖池，2次",
-STR_QUEST_DESC_105102: "ALL IN后赢得牌局9次",
-STR_QUEST_DESC_106102: "5人及其以上ALL IN，并最终赢得牌局,2次",
-STR_QUEST_DESC_107102: "亮牌时，以同样的牌型击败其他玩家，2次",
-STR_QUEST_DESC_108102: "亮牌时，以高牌牌型赢得2次牌局",
-STR_QUEST_DESC_108202: "亮牌时，以一对牌型赢得2次牌局",
-STR_QUEST_DESC_108302: "亮牌时，以两对牌型赢得2次牌局",
-STR_QUEST_DESC_108402: "亮牌时，以三条牌型赢得2次牌局",
-STR_QUEST_DESC_108502: "亮牌时，以顺子牌型赢得2次牌局",
-STR_QUEST_DESC_108602: "亮牌时，以同花牌型赢得2次牌局",
-STR_QUEST_DESC_108702: "亮牌时，以葫芦牌型赢得2次牌局",
-STR_QUEST_DESC_109102: "聊天（包括表情，文字，互动表情，语音）50次",
-STR_QUEST_DESC_110102: "评论玩家的照片25次",
-STR_QUEST_DESC_101103: "完成30盘牌局",
-STR_QUEST_DESC_101203: "游戏时间经过30分钟",
-STR_QUEST_DESC_102103: "赢得10盘牌局",
-STR_QUEST_DESC_102203: "在Preflop圈就赢得牌局15次",
-STR_QUEST_DESC_102303: "亮牌赢得牌局10次",
-STR_QUEST_DESC_103103: "赢取的筹码（未抽成前）是本局投入筹码的5倍以上,5次",
-STR_QUEST_DESC_104103: "在4个奖池以上的牌局中赢的全部奖池，3次",
-STR_QUEST_DESC_105103: "ALL IN后赢得牌局15次",
-STR_QUEST_DESC_106103: "5人及其以上ALL IN，并最终赢得牌局,3次",
-STR_QUEST_DESC_107103: "亮牌时，以同样的牌型击败其他玩家，3次",
-STR_QUEST_DESC_108103: "亮牌时，以高牌牌型赢得3次牌局",
-STR_QUEST_DESC_108203: "亮牌时，以一对牌型赢得3次牌局",
-STR_QUEST_DESC_108303: "亮牌时，以两对牌型赢得3次牌局",
-STR_QUEST_DESC_108403: "亮牌时，以三条牌型赢得3次牌局",
-STR_QUEST_DESC_108503: "亮牌时，以顺子牌型赢得3次牌局",
-STR_QUEST_DESC_108603: "亮牌时，以同花牌型赢得3次牌局",
-STR_QUEST_DESC_108703: "亮牌时，以葫芦牌型赢得3次牌局",
-STR_QUEST_DESC_109103: "聊天（包括表情，文字，互动表情，语音）100次",
-STR_QUEST_DESC_110103: "评论玩家的照片50次",
-STR_ACHIVEVMENT_DESC_201001: "等级达到5级",
-STR_ACHIVEVMENT_DESC_201002: "等级达到10级",
-STR_ACHIVEVMENT_DESC_201003: "等级达到20级",
-STR_ACHIVEVMENT_DESC_201004: "等级达到35级",
-STR_ACHIVEVMENT_DESC_201005: "等级达到50级",
-STR_ACHIVEVMENT_DESC_202001: "资产总量达到100万",
-STR_ACHIVEVMENT_DESC_202002: "资产总量达到1000万",
-STR_ACHIVEVMENT_DESC_202003: "资产总量达到1亿",
-STR_ACHIVEVMENT_DESC_202004: "资产总量达到10亿",
-STR_ACHIVEVMENT_DESC_202005: "资产总量达到100亿",
-STR_ACHIVEVMENT_DESC_203001: "完成50场牌局",
-STR_ACHIVEVMENT_DESC_203002: "完成500场牌局",
-STR_ACHIVEVMENT_DESC_203003: "完成2500场牌局",
-STR_ACHIVEVMENT_DESC_203004: "完成10000场牌局",
-STR_ACHIVEVMENT_DESC_203005: "完成25000场牌局",
-STR_ACHIVEVMENT_DESC_203006: "完成50000场牌局",
-STR_ACHIVEVMENT_DESC_203007: "完成100000场牌局",
-STR_ACHIVEVMENT_DESC_204001: "赢得10次牌局",
-STR_ACHIVEVMENT_DESC_204002: "赢得100次牌局",
-STR_ACHIVEVMENT_DESC_204003: "赢得500次牌局",
-STR_ACHIVEVMENT_DESC_204004: "赢得2000次牌局",
-STR_ACHIVEVMENT_DESC_204005: "赢得5000次牌局",
-STR_ACHIVEVMENT_DESC_204006: "赢得10000次牌局",
-STR_ACHIVEVMENT_DESC_204007: "赢得20000次牌局",
-STR_ACHIVEVMENT_DESC_205001: "在Preflop圈就赢的牌局达到5场",
-STR_ACHIVEVMENT_DESC_205002: "在Preflop圈就赢的牌局达到50场",
-STR_ACHIVEVMENT_DESC_205003: "在Preflop圈就赢的牌局达到500场",
-STR_ACHIVEVMENT_DESC_205004: "在Preflop圈就赢的牌局达到2500场",
-STR_ACHIVEVMENT_DESC_205005: "在Preflop圈就赢的牌局达到10000场",
-STR_ACHIVEVMENT_DESC_206001: "ALL IN后并最终赢牌的牌局达到5场",
-STR_ACHIVEVMENT_DESC_206002: "ALL IN后并最终赢牌的牌局达到50场",
-STR_ACHIVEVMENT_DESC_206003: "ALL IN后并最终赢牌的牌局达到500场",
-STR_ACHIVEVMENT_DESC_206004: "ALL IN后并最终赢牌的牌局达到2500场",
-STR_ACHIVEVMENT_DESC_206005: "ALL IN后并最终赢牌的牌局达到10000场",
-STR_ACHIVEVMENT_DESC_207001: "亮牌时，以高牌牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_207002: "亮牌时，以高牌牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_207003: "亮牌时，以高牌牌型赢得牌局达到250场",
-STR_ACHIVEVMENT_DESC_207004: "亮牌时，以高牌牌型赢得牌局达到1000场",
-STR_ACHIVEVMENT_DESC_207005: "亮牌时，以高牌牌型赢得牌局达到3000场",
-STR_ACHIVEVMENT_DESC_208001: "亮牌时，以一对牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_208002: "亮牌时，以一对牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_208003: "亮牌时，以一对牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_208004: "亮牌时，以一对牌型赢得牌局达到2000场",
-STR_ACHIVEVMENT_DESC_208005: "亮牌时，以一对牌型赢得牌局达到5000场",
-STR_ACHIVEVMENT_DESC_209001: "亮牌时，以两对牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_209002: "亮牌时，以两对牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_209003: "亮牌时，以两对牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_209004: "亮牌时，以两对牌型赢得牌局达到2000场",
-STR_ACHIVEVMENT_DESC_209005: "亮牌时，以两对牌型赢得牌局达到5000场",
-STR_ACHIVEVMENT_DESC_210001: "亮牌时，以三条牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_210002: "亮牌时，以三条牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_210003: "亮牌时，以三条牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_210004: "亮牌时，以三条牌型赢得牌局达到2000场",
-STR_ACHIVEVMENT_DESC_210005: "亮牌时，以三条牌型赢得牌局达到5000场",
-STR_ACHIVEVMENT_DESC_211001: "亮牌时，以顺子牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_211002: "亮牌时，以顺子牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_211003: "亮牌时，以顺子牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_211004: "亮牌时，以顺子牌型赢得牌局达到2000场",
-STR_ACHIVEVMENT_DESC_211005: "亮牌时，以顺子牌型赢得牌局达到5000场",
-STR_ACHIVEVMENT_DESC_212001: "亮牌时，以同花牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_212002: "亮牌时，以同花牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_212003: "亮牌时，以同花牌型赢得牌局达到250场",
-STR_ACHIVEVMENT_DESC_212004: "亮牌时，以同花牌型赢得牌局达到1000场",
-STR_ACHIVEVMENT_DESC_212005: "亮牌时，以同花牌型赢得牌局达到3000场",
-STR_ACHIVEVMENT_DESC_213001: "亮牌时，以葫芦牌型赢得牌局达到3场",
-STR_ACHIVEVMENT_DESC_213002: "亮牌时，以葫芦牌型赢得牌局达到30场",
-STR_ACHIVEVMENT_DESC_213003: "亮牌时，以葫芦牌型赢得牌局达到200场",
-STR_ACHIVEVMENT_DESC_213004: "亮牌时，以葫芦牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_213005: "亮牌时，以葫芦牌型赢得牌局达到1000场",
-STR_ACHIVEVMENT_DESC_214001: "亮牌时，以四条牌型赢得牌局达到2场",
-STR_ACHIVEVMENT_DESC_214002: "亮牌时，以四条牌型赢得牌局达到10场",
-STR_ACHIVEVMENT_DESC_214003: "亮牌时，以四条牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_214004: "亮牌时，以四条牌型赢得牌局达到200场",
-STR_ACHIVEVMENT_DESC_214005: "亮牌时，以四条牌型赢得牌局达到500场",
-STR_ACHIVEVMENT_DESC_215001: "亮牌时，获得过所有数字的四条，从A到K",
-STR_ACHIVEVMENT_DESC_216001: "亮牌时，以同花顺牌型赢得牌局达到1场",
-STR_ACHIVEVMENT_DESC_216002: "亮牌时，以同花顺牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_216003: "亮牌时，以同花顺牌型赢得牌局达到20场",
-STR_ACHIVEVMENT_DESC_216004: "亮牌时，以同花顺牌型赢得牌局达到50场",
-STR_ACHIVEVMENT_DESC_216005: "亮牌时，以同花顺牌型赢得牌局达到100场",
-STR_ACHIVEVMENT_DESC_217001: "亮牌时，以皇家同花顺牌型赢得牌局达到1场",
-STR_ACHIVEVMENT_DESC_217002: "亮牌时，以皇家同花顺牌型赢得牌局达到2场",
-STR_ACHIVEVMENT_DESC_217003: "亮牌时，以皇家同花顺牌型赢得牌局达到5场",
-STR_ACHIVEVMENT_DESC_217004: "亮牌时，以皇家同花顺牌型赢得牌局达到10场",
-STR_ACHIVEVMENT_DESC_217005: "亮牌时，以皇家同花顺牌型赢得牌局达到20场",
-STR_ACHIVEVMENT_DESC_218001: "获得所有花色的皇家同花顺",
-STR_ACHIVEVMENT_DESC_219001: "使用20次语音",
-STR_ACHIVEVMENT_DESC_219002: "使用100次语音",
-STR_ACHIVEVMENT_DESC_219003: "使用500次语音",
-STR_ACHIVEVMENT_DESC_219004: "使用2500次语音",
-STR_ACHIVEVMENT_DESC_219005: "使用10000次语音",
-STR_ACHIVEVMENT_DESC_220001: "使用50次互动表情",
-STR_ACHIVEVMENT_DESC_220002: "使用250次互动表情",
-STR_ACHIVEVMENT_DESC_220003: "使用1000次互动表情",
-STR_ACHIVEVMENT_DESC_220004: "使用5000次互动表情",
-STR_ACHIVEVMENT_DESC_220005: "使用20000次互动表情",
-STR_ACHIVEVMENT_DESC_221001: "好友数量达到5人",
-STR_ACHIVEVMENT_DESC_221002: "好友数量达到20人",
-STR_ACHIVEVMENT_DESC_221003: "好友数量达到50人",
-STR_ACHIVEVMENT_DESC_222001: "上传过1张照片",
-STR_ACHIVEVMENT_DESC_222002: "上传过10张照片",
-STR_ACHIVEVMENT_DESC_222003: "上传过100张照片",
-STR_ACHIVEVMENT_DESC_223001: "得到5个赞",
-STR_ACHIVEVMENT_DESC_223002: "得到50个赞",
-STR_ACHIVEVMENT_DESC_223003: "得到500个赞",
-STR_ACHIVEVMENT_DESC_224001: "送出5个赞",
-STR_ACHIVEVMENT_DESC_224002: "送出50个赞",
-STR_ACHIVEVMENT_DESC_224003: "送出500个赞",
-STR_ACHIVEVMENT_DESC_225001: "自己的照片获得评论10次",
-STR_ACHIVEVMENT_DESC_225002: "自己的照片获得评论100次",
-STR_ACHIVEVMENT_DESC_225003: "自己的照片获得评论1000次",
-STR_ACHIVEVMENT_DESC_226001: "评论其他人照片10次",
-STR_ACHIVEVMENT_DESC_226002: "评论其他人照片100次",
-STR_ACHIVEVMENT_DESC_226003: "评论其他人照片1000次",
-STR_ACHIVEVMENT_DESC_227001: "完成5个任务",
-STR_ACHIVEVMENT_DESC_227002: "完成50个任务",
-STR_ACHIVEVMENT_DESC_227003: "完成500个任务",
-STR_ACHIVEVMENT_DESC_227004: "完成2500个任务",
-STR_ACHIVEVMENT_DESC_227005: "完成10000个任务",
-STR_ACHIVEVMENT_DESC_228001: "兑换5次道具",
-STR_ACHIVEVMENT_DESC_228002: "兑换50次道具",
-STR_ACHIVEVMENT_DESC_228003: "兑换500次道具",
-STR_ACHIVEVMENT_DESC_229001: "牌桌上赠送其他玩家筹码10次",
-STR_ACHIVEVMENT_DESC_229002: "牌桌上赠送其他玩家筹码100次",
-STR_ACHIVEVMENT_DESC_229003: "牌桌上赠送其他玩家筹码1000次",
-STR_ACHIVEVMENT_DESC_230001: "赠送好友免费筹码10次",
-STR_ACHIVEVMENT_DESC_230002: "赠送好友免费筹码100次",
-STR_ACHIVEVMENT_DESC_230003: "赠送好友免费筹码1000次",
-STR_ACHIVEVMENT_DESC_231001: "获得免费筹码总量达到10万",
-STR_ACHIVEVMENT_DESC_231002: "获得免费筹码总量达到25万",
-STR_ACHIVEVMENT_DESC_231003: "获得免费筹码总量达到100万",
-STR_ACHIVEVMENT_DESC_232001: "累计登陆天数达到5天",
-STR_ACHIVEVMENT_DESC_232002: "累计登陆天数达到25天",
-STR_ACHIVEVMENT_DESC_232003: "累计登陆天数达到100天",
-STR_ACHIVEVMENT_DESC_232004: "累计登陆天数达到250天",
-STR_ACHIVEVMENT_DESC_232005: "累计登陆天数达到500天",
-STR_LOGIN_VERSION: "版本号：",
-STR_INFORMATION_PERSONAL_SIGNATURE_DEFAULT: "这位玩家还没有留下任何笔迹。想更引人关注吗？留下一段个性签名吧。",
-STR_MESS_EVALUATION_TITLE: "感谢您的评价",
-STR_MESS_EVALUATION_CONTENT: "因为您对于我们游戏的支持与评价，系统为您发放%d筹码的奖励，请及时领取。"
+cc._RF.push(t, "79c7e+nlZtJObmei4hgBrCW", "zh");
+Object.defineProperty(n, "__esModule", {
+value: !0
+});
+n.default = {
+2001: "你好",
+2002: "中国",
+2003: "666",
+2004: "222",
+2005: "5"
 };
 cc._RF.pop();
 }, {} ]
-}, {}, [ "Bubble", "BubbleScene", "CastTest", "VoiceNative", "ball", "Chanel", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "Global", "KeypadDispatch", "LoadingLayer", "Save", "SubGameManager", "UiManager", "VersionManager", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Ws", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "AlertIII", "bundleSceneTest", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "startClone", "poplayer", "Cell", "SlotPanel", "SlotScene", "TestScene", "textinput", "WsTest", "HttpModule", "WeChatModule", "Testts", "LabelLocalized", "ch", "en", "th", "zh", "i18n", "polyglot", "use_reversed_rotateBy" ]);
+}, {}, [ "Person", "Bubble", "BubbleScene", "CastTest", "VoiceNative", "ball", "Chanel", "ConstEventDefine", "ConstantItem", "PhysicsCenter", "AdaptBg", "AdaptCanvas", "AdaptUI", "Base64Tool", "BaseComponent", "EventManager", "Global", "LoadingLayer", "Save", "SubGameManager", "UITool", "VersionManager", "keypadManager", "popBaseView", "xxtea", "GameClient", "HttpHelper", "OnlineWS", "Onlinedef", "Package", "Ws", "Devices", "DevicesAndroid", "DevicesIos", "DevicesWeb", "Sound", "Alert", "bundleSceneTest", "chooseupdate", "LaunchScene", "LoginScene", "MainScene", "startClone", "popLayer", "Cell", "SlotPanel", "SlotScene", "TestScene", "textinput", "WsTest", "HttpModule", "WeChatModule", "Testts", "Lang", "en", "i18nLabel", "i18nMgr", "i18nSprite", "zh", "use_reversed_rotateBy", "myModule", "cmdDef", "gameProto", "protoTool", "protobuf" ]);
