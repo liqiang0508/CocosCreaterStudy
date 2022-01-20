@@ -1,13 +1,20 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: li qiang
  * @Date: 2021-12-28 16:44:15
- * @LastEditTime: 2021-12-28 17:24:55
+ * @LastEditTime: 2022-01-20 20:30:50
  */
-globalThis.ConstEventDefine = {
+// globalThis.ConstEventDefine = {
+//     TEST: "TEST",
+// }
 
-    EVENT_NAME: {
-        TEST: "TEST",
-    }
+// const ConstEventDefine = {
+//     TEST: "TEST",
+// }
 
+
+export default {
+    TEST: "TEST",
 }
+
+

@@ -16,10 +16,7 @@
         "USE_OLD_PHOTO": true
       },
       "props": {
-        "edge": 0.3,
-        "xRadius": 2222,
-        "yRadius": 20,
-        "oldLevel": 0
+        "time": 0
       }
     }
   }

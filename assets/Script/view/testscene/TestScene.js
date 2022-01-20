@@ -3,10 +3,8 @@ var xxtea = require("xxtea")
 // let i18n = require("i18n")
 var Package = require("Package")
 var DevicesInfo = require("Devices")
-
+import ConstEventDefine from "../../config/ConstEventDefine"
 const voiceNative = require("VoiceNative");
-
-
 cc.Class({
     extends: cc.Component,
 
@@ -145,7 +143,7 @@ cc.Class({
         //btn_EventTest
         var btn_EventTest = cc.find("uipanel/btn_EventTest", this.node)
         UITool.addBtnClick(btn_EventTest, (event) => {
-            EventManager.dispatchEvent(ConstEventDefine.EVENT_NAME.TEST, { "name": "Lee123" })
+            EventManager.dispatchEvent(ConstEventDefine.TEST, { "name": "Lee123" })
         })
 
         //load Tex
@@ -243,11 +241,11 @@ cc.Class({
             cc.log("取消录音")
         }, this)
 
-        EventManager.on(ConstEventDefine.EVENT_NAME.TEST, this.EventTest)
+        EventManager.on(ConstEventDefine.TEST, this.EventTest)
 
-        EventManager.on(ConstEventDefine.EVENT_NAME.TEST, (data)=>{
+        EventManager.on(ConstEventDefine.TEST, (data) => {
 
-            console.log("EventTest===2",data.detail)
+            console.log("EventTest===2", data.detail)
         })
         //encryptToString 语音-》string(字符串压缩)）发送  接收后解密 存储
         // var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
@@ -279,7 +277,7 @@ cc.Class({
                     cc.director.getScene().getChildByName('Canvas').addChild(prefabNode)
                     var com = prefabNode.getComponent("poplayer")
                     if (com) {
-                       
+
                     }
                 }
             })
@@ -322,16 +320,16 @@ cc.Class({
         var btn_loadbundle = cc.find("uipanel/btn_loadbundle", this.node)
         UITool.addBtnClick(btn_loadbundle, () => {
 
-            if(cc.sys.isNative == false)//web 平台
+            if (cc.sys.isNative == false)//web 平台
             {
                 console.log("bundle测试目前只测试了原生")
-                return 
+                return
             }
-            
+
             var subGameName = "bundleScene"
             SubGameManager.getSubGameState(subGameName, (state) => {
 
-               
+
                 // "not_in_app"     不在本地，没有下载
                 // "need_update"    在本地，需要更新
                 // "no_need_update" 在本地，不需要更新
