@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2021-12-31 15:13:38
+ * @LastEditTime: 2022-01-22 18:48:37
  */
 var UITool = {
     showWaitState: false,
@@ -14,7 +14,7 @@ var UITool = {
             this.getChildNode(nodeObject, childNode[i])
         }
     },
-    showLoading: function (todoCall, endcall) {
+    showLoading: function (todoCall: Function, endcall: Function) {
         this.loadPrefabRes("prefabs/loadinglayer", (node: cc.Node) => {
             if (node) {
                 this.sceneAddNode(node)
@@ -25,7 +25,7 @@ var UITool = {
             }
         })
     },
-    showFlotText: function (text, parent = null, pos = cc.v2(0, 0)) {
+    showFlotText: function (text: string, parent = null, pos = cc.v2(0, 0)) {
         this.loadPrefabRes("prefabs/FloatText", (node: cc.Node) => {
             if (node) {
                 node.getComponent(cc.Label).string = text
@@ -42,15 +42,15 @@ var UITool = {
             }
         })
     },
-    sceneAddNode: function (node) {
+    sceneAddNode: function (node: cc.Node) {
         cc.director.getScene().getChildByName('Canvas').addChild(node)
     },
     //加载场景
-    loadScene: function (sceneName, onLaunchCall = null) {
+    loadScene: function (sceneName: string, onLaunchCall = null) {
         cc.director.loadScene(sceneName, onLaunchCall)
     },
     //预加载场景
-    preloadScene: function (sceneName, progressCall, endCall) {
+    preloadScene: function (sceneName: string, progressCall: Function, endCall: Function) {
         cc.director.preloadScene(sceneName, (completedCount: number, totalCount: number, item: any) => {
             var progress = Math.floor(completedCount / totalCount * 100)
             if (progressCall) {
@@ -81,7 +81,7 @@ var UITool = {
         })
     },
     //弹框
-    showAlert: function (str, btninfo = [], call) {
+    showAlert: function (str: string, btninfo = [], call: Function) {
         this.loadPrefabRes("prefabs/AlertLayer", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(node)
@@ -96,7 +96,7 @@ var UITool = {
             }
         })
     },
-    showTextInput: function (call) {
+    showTextInput: function (call: Function) {
         this.loadPrefabRes("prefabs/textinput", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(node)
@@ -107,7 +107,7 @@ var UITool = {
             }
         })
     },
-    showChooseUpdate: function (data, call) {
+    showChooseUpdate: function (data, call: Function) {
         this.loadPrefabRes("prefabs/selectupdate", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName('Canvas').addChild(node)
@@ -119,7 +119,7 @@ var UITool = {
         })
     },
 
-    loadBundleScene: function (bundleName, finishCall) {
+    loadBundleScene: function (bundleName: string, finishCall: Function) {
         this.showLoading((layer) => {
             layer.updataProgress(30)
             //@ts-ignore
@@ -151,7 +151,7 @@ var UITool = {
             this.loadScene(bundleName)
         })
     },
-    loadBundle: function (url, option, complete) {
+    loadBundle: function (url, option, complete: Function) {
         cc.assetManager.loadBundle(url, option, (err, bundle) => {
             if (complete) {
                 complete(err, bundle)
@@ -159,7 +159,7 @@ var UITool = {
         })
     },
     //切换场景
-    changeScene: function (sceneName, call) {
+    changeScene: function (sceneName: string, call: Function) {
         this.showLoading((layer) => {
             this.preloadScene(sceneName, (progress) => {
                 layer.updataProgress(progress)
