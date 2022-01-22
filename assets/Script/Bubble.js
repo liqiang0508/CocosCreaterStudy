@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-12 11:09:31
- * @LastEditTime: 2021-12-31 09:41:25
+ * @LastEditTime: 2022-01-22 19:50:31
  */
 
 
@@ -26,10 +26,10 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        life:{//泡泡生命，碰撞几次屏幕边缘 就销毁
+        life: {//泡泡生命，碰撞几次屏幕边缘 就销毁
 
-            type:cc.Integer,
-            default:5
+            type: cc.Integer,
+            default: 5
         }
     },
 
@@ -37,73 +37,65 @@ cc.Class({
 
     // onLoad () {},
 
-    start () {
+    start() {
         // console.log("  buble start===",cc.view.getVisibleSize().width)
-        this.Speed = cc.v2(Math.random()*1000-500,Math.random()*1000-500)
+        this.Speed = cc.v2(Math.random() * 1000 - 500, Math.random() * 1000 - 500)
         this.ScreenSize = cc.view.getVisibleSize()
-
-        UITool.addBtnClick(this.node,null,()=>{
-            if (window.GameState==1)//暂停
+        this.node.color = cc.color(Math.random() * 255, Math.random() * 255, Math.random() * 255)
+        UITool.addBtnClick(this.node, null, () => {
+            if (globalThis.GameState == 1)//暂停
             {
                 return
             }
-            if (this.ClickCall)
-            {
-                this.ClickCall()
+            if (this.ClickCall) {
+                this.ClickCall(this.node)
             }
-            this.node.removeFromParent()
-            this.node.destroy()
         })
     },
 
-    onDestroy(){
+    onDestroy() {
 
         this.node.targetOff(this)
     },
-    setClickCall(call){
+    setClickCall(call) {
         this.ClickCall = call
     },
-    update (dt) {
-      
-        if (window.GameState==1)//暂停
+    update(dt) {
+
+        if (globalThis.GameState == 1)//暂停
         {
             return
         }
         // cc.log("update")
-        this.node.x = this.node.x + this.Speed.x*dt
-        this.node.y = this.node.y + this.Speed.y*dt
-        if (this.node.x<= -(this.ScreenSize.width/2-this.node.width/2))
-        {
+        this.node.x = this.node.x + this.Speed.x * dt
+        this.node.y = this.node.y + this.Speed.y * dt
+        if (this.node.x <= -(this.ScreenSize.width / 2 - this.node.width / 2)) {
             // cc.log("超出最左边")
-            this.node.x = -(this.ScreenSize.width/2-this.node.width/2)
+            this.node.x = -(this.ScreenSize.width / 2 - this.node.width / 2)
             this.Speed.x = -this.Speed.x
-            this.life =  this.life -1
+            this.life = this.life - 1
         }
 
-        if (this.node.x>= (this.ScreenSize.width/2-this.node.width/2))
-        {
-            this.node.x = (this.ScreenSize.width/2-this.node.width/2)
+        if (this.node.x >= (this.ScreenSize.width / 2 - this.node.width / 2)) {
+            this.node.x = (this.ScreenSize.width / 2 - this.node.width / 2)
             this.Speed.x = -this.Speed.x
             // cc.log("超出最右边")
-            this.life =  this.life -1
+            this.life = this.life - 1
         }
 
-        if (this.node.y<= -(this.ScreenSize.height/2-this.node.height/2))
-        {
-            this.node.y = -(this.ScreenSize.height/2-this.node.height/2)
+        if (this.node.y <= -(this.ScreenSize.height / 2 - this.node.height / 2)) {
+            this.node.y = -(this.ScreenSize.height / 2 - this.node.height / 2)
             this.Speed.y = -this.Speed.y
-            this.life =  this.life -1
+            this.life = this.life - 1
         }
 
-        if (this.node.y>= (this.ScreenSize.height/2-this.node.height/2))
-        {
-            this.node.y = (this.ScreenSize.height/2-this.node.height/2)
+        if (this.node.y >= (this.ScreenSize.height / 2 - this.node.height / 2)) {
+            this.node.y = (this.ScreenSize.height / 2 - this.node.height / 2)
             this.Speed.y = -this.Speed.y
-            this.life =  this.life -1
+            this.life = this.life - 1
         }
         // cc.log("update")
-        if  (this.life ==0)
-        {
+        if (this.life == 0) {
             this.node.removeFromParent()
             this.node.destroy()
         }

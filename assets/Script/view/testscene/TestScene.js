@@ -306,7 +306,7 @@ cc.Class({
 
         var btn_bubble = cc.find("uipanel/btn_bubble", this.node)
         UITool.addBtnClick(btn_bubble, () => {
-            UITool.loadScene("bubbleScene")
+            UITool.loadScene("bubbleTest")
         })
 
         var btn_mipai = cc.find("uipanel/btn_mipai", this.node)
