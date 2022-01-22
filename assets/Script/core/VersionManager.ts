@@ -19,7 +19,7 @@ if (cc && cc.sys.isNative) {//web跑的时候会报错
 }
 
 // stateCode
-// 0:不用更新 
+// 0:不用更新
 // 1:获取版本配置文件失败
 // 2:获取MD5配置文件失败
 // 3:下载单个文件失败
@@ -33,7 +33,8 @@ if (cc && cc.sys.isNative) {//web跑的时候会报错
 // 11:远程md5-json不合法
 // 100 :更新成功
 
-var VersionManager = {
+// var VersionManager = 
+export default {
     remoteCfg: null,//远程配置
     remoteMd5Cfg: '',//远程md5
     localCfg: '',//local配置
@@ -50,7 +51,6 @@ var VersionManager = {
         this.downcall = downcall;
         this.progressCall = progressCall;
         this.remoteCfg = url
-
         this.parseLocalCfg()//读取本地配置
 
     },
@@ -201,7 +201,7 @@ var VersionManager = {
             var realfilePath = data[index]["realfile"]
             // console.log("tempfilePath===",tempfilePath,realfilePath);
             var filedata = Global.GgetDataFromFile(tempfilePath)
-            if (filedata) {
+            if (filedata != null) {
                 Global.GwriteDataToFile(filedata, realfilePath)
                 if (self.moveStep < data.length - 1) {
                     self.moveStep = self.moveStep + 1
@@ -355,6 +355,7 @@ var VersionManager = {
                 return
             }
             self.remoteCfg = JSON.parse(data)
+            var distributeChanel = globalThis.DISTRIBUTE_CHANNEL //分发渠道
             var localscriptVersion = self.localCfg["scriptVersion"]//本地配置版本号
             var remotescriptVersion = self.remoteCfg["scriptVersion"]//远程配置版本号
             var debugscriptVersion = self.remoteCfg["debugScriptVersion"]//测试版本号
@@ -362,11 +363,11 @@ var VersionManager = {
             var forcedBinaryVersions = self.remoteCfg["forcedBinaryVersions"]//强制更新版本号
             var channels = self.remoteCfg["channels"]//支持热更新的渠道号
             var debugUIDs = self.remoteCfg["debugUIDs"]//测试id组
-            var binaryUrl = self.remoteCfg["binaryUrl"][window.DISTRIBUTE_CHANNEL] || self.remoteCfg[0]//商店地址  根据远程配置的渠道号对应的数组
+            var binaryUrl = self.remoteCfg["binaryUrl"][distributeChanel] || self.remoteCfg[0]//商店地址  根据远程配置的渠道号对应的数组
             var localId = cc.sys.localStorage.getItem('debugId');//本地存的上次登录的玩家id
-            if (!Global.GIsArrContain(channels, window.DISTRIBUTE_CHANNEL))//app版本是否支持热更新
+            if (!Global.GIsArrContain(channels, distributeChanel))//app版本是否支持热更新
             {
-                self.callFunWithState(7, "不支持热更新的渠道号" + window.DISTRIBUTE_CHANNEL)
+                self.callFunWithState(7, "不支持热更新的渠道号" + distributeChanel)
                 return
             }
 
@@ -432,5 +433,3 @@ var VersionManager = {
 }
 
 
-
-module.exports = VersionManager;

@@ -1,7 +1,7 @@
 
 // 一些辅助函数 没有用插件 是因为用了插件 不能用require
 var Global = {
-
+    isDebugTest: false,
     sayHello: function () {
 
         console.log("Global sayehello")
@@ -36,7 +36,7 @@ var Global = {
         for (var i in arr) {
             var value = arr[i]
             // cc.log(value,typeof(value),n,typeof(n))
-            if (value == n || value == toString(n)) {
+            if (value == n) {
                 return true
             }
         }
@@ -306,17 +306,23 @@ if (Global.GgameType == 3)//debug包
 }
 
 // module.exports = Global;
-window.Global = Global
-
-
-window.gg = {};
-
+globalThis.Global = Global
 var WeChatModule = require('WeChatModule');
+var gg = {
+    isAndroid: false,
+    isIOS: false,
+    isWindows: false,
+    wechat: null
+};
+
+globalThis.gg = gg
+
+gg.wechat = new WeChatModule()
 
 
-gg.isAndroid = false
-gg.isIOS = false
-gg.isWindows = false
+// gg.isAndroid = false
+// gg.isIOS = false
+// gg.isWindows = false
 
 if (cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID)//android
 {
@@ -330,4 +336,10 @@ else {
     gg.isWindows = true
 }
 
-gg.wechat = new WeChatModule();
+
+
+
+
+
+
+

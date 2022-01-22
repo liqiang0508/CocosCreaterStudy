@@ -1,5 +1,6 @@
 
-var VersionManager = require("VersionManager")
+// var VersionManager = require("VersionManager")
+import VersionManager from "VersionManager"
 var xxtea = require("xxtea")
 import Lang from "zh"
 cc.Class({

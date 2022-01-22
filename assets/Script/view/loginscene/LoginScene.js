@@ -3,9 +3,10 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2022-01-22 17:59:17
+ * @LastEditTime: 2022-01-22 19:18:06
  */
-var VersionManager = require("VersionManager")
+// var VersionManager = require("VersionManager")
+import VersionManager from "VersionManager"
 // var Global = require("Global")
 var DevicesInfo = require("Devices")
 cc.Class({
