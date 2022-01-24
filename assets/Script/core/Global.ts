@@ -305,36 +305,58 @@ if (Global.GgameType == 3)//debug包
     Global.isDebugTest = true
 }
 
-// module.exports = Global;
+// 平台判断-------------------------------------
 globalThis.Global = Global
 var WeChatModule = require('WeChatModule');
 var gg = {
-    isAndroid: false,
-    isIOS: false,
-    isWindows: false,
+    isAndroid: function () {
+        return cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID
+    },
+    isIOS: function () {
+        return cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS
+    },
+    isWindows: function () {
+        return cc.sys.os == cc.sys.OS_WINDOWS
+    },
+    isBrowser: function () {
+        return cc.sys.isBrowser
+    },
     wechat: null
 };
 
 globalThis.gg = gg
-
-if (cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID)//android
-{
-    gg.isAndroid = true
-}
-else if (cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS)//ios
-{
-    gg.isIOS = true
-}
-else {
-    gg.isWindows = true
-}
-
 gg.wechat = new WeChatModule()
+// 平台判断-------------------------------------
 
+// 渠道定义------------------------
+var chanel = {
+    WIN32: 0,
+    IOS_APPSTORE: 1,
+    H5: 2,
+    ANDROID_GOOGLE_PLAY: 3,
 
-// gg.isAndroid = false
-// gg.isIOS = false
-// gg.isWindows = false
+}
+globalThis.chanel = chanel
+globalThis.DISTRIBUTE_CHANNEL = 0
+
+if (gg.isBrowser())//h5
+{
+    globalThis.DISTRIBUTE_CHANNEL = chanel.H5;
+}
+else if (gg.isAndroid())//android
+{
+    globalThis.DISTRIBUTE_CHANNEL = chanel.ANDROID_GOOGLE_PLAY;
+}
+else if (gg.isIOS())//ios
+{
+    globalThis.DISTRIBUTE_CHANNEL = chanel.IOS_APPSTORE;
+}
+else //其他的都是算模拟器
+{
+    globalThis.DISTRIBUTE_CHANNEL = chanel.WIN32;
+}
+// 渠道定义------------------------
+
 
 
 

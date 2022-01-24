@@ -25,12 +25,12 @@ var WeChatModule = cc.Class({
 
     //判断是否安装微信
     isInstallWx: function () {
-        if (gg.isAndroid === true) {
+        if (gg.isAndroid() === true) {
             return jsb.reflection.callStaticMethod(
                 wxClassPath,
                 "isInstallWx",
                 "()Z");
-        } else if (gg.isIOS === true) {
+        } else if (gg.isIOS() === true) {
             return jsb.reflection.callStaticMethod("WeChatModule", "isInstallWx");
         }
         return true;
@@ -41,7 +41,7 @@ var WeChatModule = cc.Class({
         this.appId = appId;
         this.appSecret = appSecret;
 
-        if (gg.isAndroid === true) {
+        if (gg.isAndroid() === true) {
             return jsb.reflection.callStaticMethod(
                 wxClassPath,
                 "initWx",
@@ -53,12 +53,12 @@ var WeChatModule = cc.Class({
     },
 
     loginWx: function () {
-        if (gg.isAndroid === true) {
+        if (gg.isAndroid() === true) {
             jsb.reflection.callStaticMethod(
                 wxClassPath,
                 "loginWx",
                 "()V");
-        } else if (gg.isIOS === true) {
+        } else if (gg.isIOS() === true) {
             jsb.reflection.callStaticMethod("WeChatModule", "loginWx");
         }
 
@@ -67,7 +67,7 @@ var WeChatModule = cc.Class({
     //type 1 朋友圈，0转发好友
     shareImageWx: function (imgPath, type, shareCall) {
         this.ShareCall = shareCall
-        if (gg.isAndroid === true) {
+        if (gg.isAndroid() === true) {
             jsb.reflection.callStaticMethod(
                 wxClassPath,
                 "shareImageWx",
@@ -80,12 +80,12 @@ var WeChatModule = cc.Class({
     //type 1 朋友圈，0转发好友
     shareTextWx: function (text, type, shareCall) {
         this.ShareCall = shareCall
-        if (gg.isAndroid === true) {
+        if (gg.isAndroid() === true) {
             jsb.reflection.callStaticMethod(
                 wxClassPath,
                 "shareTextWx",
                 "(Ljava/lang/String;I)V", text, type);
-        } else if (gg.isIOS === true) {
+        } else if (gg.isIOS() === true) {
             jsb.reflection.callStaticMethod("WeChatModule", "shareTextWx:andType:", text, type);
         }
     },
@@ -93,12 +93,12 @@ var WeChatModule = cc.Class({
     //type 1 朋友圈，0转发好友
     shareUrlWx: function (url, title, desc, type, shareCall) {
         this.ShareCall = shareCall
-        if (gg.isAndroid === true) {
+        if (gg.isAndroid() === true) {
             jsb.reflection.callStaticMethod(
                 wxClassPath,
                 "shareUrlWx",
                 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V", url, title, desc, type);
-        } else if (gg.isIOS === true) {
+        } else if (gg.isIOS() === true) {
             jsb.reflection.callStaticMethod("WeChatModule", "shareUrlWx:andTitle:andDesc:andType:", url, title, desc, type);
         }
     },
@@ -142,7 +142,7 @@ var WeChatModule = cc.Class({
             return false;
         }
 
-        if (gg.isWindows) {
+        if (gg.isWindows()) {
             // gg.fun.createDialog('WechatLoginView', '', false);
             cc.log('WechatLoginView')
             return true;
@@ -154,12 +154,12 @@ var WeChatModule = cc.Class({
     //微信支付
     pay: function (content, paycall) {
         this.PayCall = paycall
-        if (gg.isAndroid === true) {
+        if (gg.isAndroid() === true) {
             jsb.reflection.callStaticMethod(
                 wxClassPath,
                 "payWx",
                 "(Ljava/lang/String;)V", content);
-        } else if (gg.isIOS === true) {
+        } else if (gg.isIOS() === true) {
             jsb.reflection.callStaticMethod("WeChatModule", "payWx", content);
         }
 

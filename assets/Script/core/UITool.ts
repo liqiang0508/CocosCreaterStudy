@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2022-01-24 12:29:05
+ * @LastEditTime: 2022-01-24 15:57:41
  */
 var UITool = {
     showWaitState: false,
@@ -220,14 +220,15 @@ var UITool = {
         })
         node.on(cc.Node.EventType.TOUCH_END, (event) => {
             if (endCall) {
-                endCall(event)
                 Sound.playEffect(soundName)
+                endCall(event)
+
             }
         })
         node.on(cc.Node.EventType.TOUCH_CANCEL, (event) => {
             if (endCall) {
-                endCall(event)
                 Sound.playEffect(soundName)
+                endCall(event)
             }
         })
     }
