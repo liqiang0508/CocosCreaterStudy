@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2022-01-22 19:18:06
+ * @LastEditTime: 2022-01-24 12:42:30
  */
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
@@ -64,6 +64,7 @@ cc.Class({
     },
 
     start() {
+        Sound.playMusic("bgm_main")
         if (Global.GgameType == 1)//正式包
         {
             this.VersionText.string = DevicesInfo.getAppVersion() + "(R" + VersionManager.getScriptVersion() + ")"

@@ -87,6 +87,9 @@
     "_active": true,
     "_components": [
       {
+        "__id__": 121
+      },
+      {
         "__id__": 122
       },
       {
@@ -97,9 +100,6 @@
       },
       {
         "__id__": 125
-      },
-      {
-        "__id__": 126
       }
     ],
     "_prefab": null,
@@ -1302,9 +1302,6 @@
       },
       {
         "__id__": 120
-      },
-      {
-        "__id__": 121
       }
     ],
     "_prefab": null,
@@ -6080,38 +6077,6 @@
     "_id": "21f5xQLaJLKbdLeidMeh/q"
   },
   {
-    "__type__": "cc.Layout",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 29
-    },
-    "_enabled": true,
-    "_layoutSize": {
-      "__type__": "cc.Size",
-      "width": 750,
-      "height": 1334
-    },
-    "_resize": 0,
-    "_N$layoutType": 0,
-    "_N$cellSize": {
-      "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
-    },
-    "_N$startAxis": 0,
-    "_N$paddingLeft": 0,
-    "_N$paddingRight": 0,
-    "_N$paddingTop": 0,
-    "_N$paddingBottom": 0,
-    "_N$spacingX": 0,
-    "_N$spacingY": 0,
-    "_N$verticalDirection": 1,
-    "_N$horizontalDirection": 0,
-    "_N$affectedByScale": false,
-    "_id": "54RtAbpd1MfKIXUb2Ds+hG"
-  },
-  {
     "__type__": "cc.Widget",
     "_name": "",
     "_objFlags": 0,
@@ -6151,7 +6116,7 @@
       "width": 750,
       "height": 1334
     },
-    "_fitWidth": false,
+    "_fitWidth": true,
     "_fitHeight": false,
     "_id": "3ft+ibpoFC/79HORYwx8WM"
   },

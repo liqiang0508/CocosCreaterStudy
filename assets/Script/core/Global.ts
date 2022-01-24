@@ -317,13 +317,6 @@ var gg = {
 
 globalThis.gg = gg
 
-gg.wechat = new WeChatModule()
-
-
-// gg.isAndroid = false
-// gg.isIOS = false
-// gg.isWindows = false
-
 if (cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID)//android
 {
     gg.isAndroid = true
@@ -335,6 +328,15 @@ else if (cc.sys.isNative && cc.sys.os == cc.sys.OS_IOS)//ios
 else {
     gg.isWindows = true
 }
+
+gg.wechat = new WeChatModule()
+
+
+// gg.isAndroid = false
+// gg.isIOS = false
+// gg.isWindows = false
+
+
 
 
 

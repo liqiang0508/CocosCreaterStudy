@@ -1,5 +1,5 @@
 {
-    "scriptVersion": 140,
+    "scriptVersion": 144,
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc",
@@ -43,8 +43,8 @@
         },
         {
             "filename": "assets/main/index.jsc",
-            "md5": "A0C896262B202B4B451FF5D14CBAF1FB",
-            "size": 70852
+            "md5": "60F15331CEAF9033E30FE482C69A0556",
+            "size": 70548
         },
         {
             "filename": "assets/main/import/23/2335bd42-26a9-441a-b92e-8d482d3c7f28.json",
@@ -138,8 +138,8 @@
         },
         {
             "filename": "assets/main/import/ac/ac78b3ac-1484-4cd5-af9c-53b5f88129fb.json",
-            "md5": "360DDF3E459B4A4D470EC7EEB1EC15FE",
-            "size": 9238
+            "md5": "7A64ACD3B878FD8CDE4B7A6EEDFBB14A",
+            "size": 9155
         },
         {
             "filename": "assets/main/import/b1/b1ac605e-7f7a-4e8a-be14-ec5aa3a7ef25.json",
@@ -203,8 +203,8 @@
         },
         {
             "filename": "assets/resources/config.json",
-            "md5": "851D6814D63E9D3BA5471F77C0AD78CF",
-            "size": 3403
+            "md5": "19F0DDDBA9863D09AA9324664FFC6C8A",
+            "size": 3461
         },
         {
             "filename": "assets/resources/index.jsc",
@@ -215,6 +215,11 @@
             "filename": "assets/resources/import/01/013f3076-d06a-45fa-a9cc-ec917a9b27fd.json",
             "md5": "91DE05A7AF0DC9C1842B7C8089A7C935",
             "size": 78
+        },
+        {
+            "filename": "assets/resources/import/18/18171d71-68b1-4f58-963e-05346edac8ee.json",
+            "md5": "37B47BC644B576911C3313EF6064D59F",
+            "size": 129
         },
         {
             "filename": "assets/resources/import/1e/1ea8d7fd-e317-47c0-8151-ea8064e99688.json",
@@ -590,6 +595,11 @@
             "filename": "assets/resources/native/01/013f3076-d06a-45fa-a9cc-ec917a9b27fd.png",
             "md5": "B679E8B6A733FD911F1E6BE2A732772D",
             "size": 22450
+        },
+        {
+            "filename": "assets/resources/native/18/18171d71-68b1-4f58-963e-05346edac8ee.ogg",
+            "md5": "EE2A3C955611CED48A1DB50FB734677E",
+            "size": 12152
         },
         {
             "filename": "assets/resources/native/28/2896f8e8-5acc-41ef-9005-523b8542b2a2.png",

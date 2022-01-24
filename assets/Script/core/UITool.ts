@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2022-01-22 18:48:37
+ * @LastEditTime: 2022-01-24 12:29:05
  */
 var UITool = {
     showWaitState: false,
@@ -207,7 +207,7 @@ var UITool = {
             }, this);
         }
     },
-    addBtnClick: function (node: cc.Node, endCall: Function, startCall: Function = null, moveCall: Function = null) {
+    addBtnClick: function (node: cc.Node, endCall: Function, startCall: Function = null, moveCall: Function = null, soundName = "audio_ui_btn_01") {
         node.on(cc.Node.EventType.TOUCH_START, (event) => {
             if (startCall) {
                 startCall(event)
@@ -221,11 +221,13 @@ var UITool = {
         node.on(cc.Node.EventType.TOUCH_END, (event) => {
             if (endCall) {
                 endCall(event)
+                Sound.playEffect(soundName)
             }
         })
         node.on(cc.Node.EventType.TOUCH_CANCEL, (event) => {
             if (endCall) {
                 endCall(event)
+                Sound.playEffect(soundName)
             }
         })
     }

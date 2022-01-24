@@ -50,11 +50,11 @@ cc.Class({
             }
 
             if (sp4.IsOriginPos == true) {
-                var ac = cc.moveTo(1, pos2).easing(cc.easeSineOut())
+                var ac = cc.moveTo(1, pos2)//.easing(cc.easeSineOut())
                 sp4.runAction(ac)
             }
             else {
-                var ac = cc.moveTo(1, this.sp4OldPos).easing(cc.easeSineOut())
+                var ac = cc.moveTo(1, this.sp4OldPos)//.easing(cc.easeSineOut())
                 sp4.runAction(ac)
             }
             sp4.IsOriginPos = !sp4.IsOriginPos
