@@ -62,13 +62,12 @@ cc.Class({
 
         this.count = this.count + 1
         this.count = this.count % 4
-        this.Text.string = "Updating" + Global.StrTime(".", this.count)
-        // cc.log("Updating" + Global.StrTime(".", this.count),this.count)
+        this.Text.string = "Updating" + Global.strTime(".", this.count)
     },
 
     unSchduleUpdateText() {//取消显示updating...
         // this.Text.node.opacity = 0
-        Global.gUnSchduleFun(this, this.updateText)
+        Global.unSchduleFun(this, this.updateText)
 
     },
     start() {
@@ -115,8 +114,7 @@ cc.Class({
                                 console.log("请输入自定义的热更新地址")
                                 layer.bClose()
                                 UITool.showAlert("请输入正确自定义的热更新地址", [], () => {
-
-                                    Global.gExitGame()
+                                    Global.exitGame()
                                 })
                             }
 
@@ -134,13 +132,13 @@ cc.Class({
             }
             else {//正式不选择
 
-                Global.gSchduleOnce(this, () => {
+                Global.schduleOnce(this, () => {
 
                     this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
 
                 }, 3)
             }
-            Global.gSchduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0)//显示update...
+            Global.schduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0)//显示update...
         }
         else {//web
             VersionManager.getH5ScriptVersion()//直接读取本地配置版本号 便于登录界面右下角展示
@@ -212,14 +210,14 @@ cc.Class({
     Reboot() {//重启
 
         this.scheduleOnce(() => {
-            Global.gReBoot()
+            Global.reBoot()
         }, 2)
 
     },
 
     goLoginScene() {
 
-        Global.gSchduleOnce(this, () => {
+        Global.schduleOnce(this, () => {
             UITool.changeScene("LoginScene")
         }, 1.5)
 

@@ -8,7 +8,7 @@ var Global = {
     },
 
     // schdule
-    gSchduleFun: function (component, call, interval, repeat, delay) {
+    schduleFun: function (component, call, interval, repeat, delay) {
         if (repeat == undefined) {
             repeat = cc.macro.REPEAT_FOREVER
         }
@@ -19,20 +19,20 @@ var Global = {
 
     },
     //schduleonece
-    gSchduleOnce: function (component, call, time) {
+    schduleOnce: function (component, call, time) {
 
         component.scheduleOnce(() => {
             call();
         }, time);
     },
     //unschdule
-    gUnSchduleFun: function (component, call) {
+    unSchduleFun: function (component, call) {
         cc.director.getScheduler().unschedule(call, component);
     },
 
 
     // 数组是否包含
-    GIsArrContain: function (arr, n) {
+    isArrContain: function (arr, n) {
         for (var i in arr) {
             var value = arr[i]
             // cc.log(value,typeof(value),n,typeof(n))
@@ -43,7 +43,7 @@ var Global = {
         return false
     },
     // 获取文件数据
-    GgetDataFromFile: function (path) {
+    getDataFromFile: function (path) {
         if (cc.sys.isNative) {
             var data = jsb.fileUtils.getDataFromFile(path)
             return data
@@ -51,20 +51,20 @@ var Global = {
         return null
     },
     // 写文件  字符串
-    GwriteStringToFile: function (str, path) {
+    writeStringToFile: function (str, path) {
         if (cc.sys.isNative) {
             jsb.fileUtils.writeStringToFile(str, path);
         }
     },
     // 写文件数据
-    GwriteDataToFile: function (data, path) {
+    writeDataToFile: function (data, path) {
         if (cc.sys.isNative) {
             jsb.fileUtils.writeDataToFile(new Uint8Array(data), path);
         }
     },
 
     //创建目录
-    GcreateDir: function (path) {
+    createDir: function (path) {
         if (cc.sys.isNative) {
             if (!jsb.fileUtils.isDirectoryExist(path)) {
                 jsb.fileUtils.createDirectory(path);
@@ -73,9 +73,9 @@ var Global = {
         }
     },
     //    url转成目录
-    GgetDirByUrl: function (url) {
+    getDirByUrl: function (url) {
         var arr = url.split("/")
-        // console.log("GgetDirByUrl==",arr)
+        // console.log("getDirByUrl==",arr)
         var path = ""
         if (arr.length > 1) {
             for (var i = 0; i < arr.length - 1; i++) {
@@ -97,24 +97,24 @@ var Global = {
         return path
     },
     //保留小数几位
-    GnumberToFix(n, num) {
+    numberToFix(n, num) {
         var t = Math.pow(10, num)
         return Math.floor(n * t) / t
     },
     //获取url最后的文件名
-    GgetFileNameByUrl: function (url) {
+    getFileNameByUrl: function (url) {
         var arr = url.split("/")
 
         return arr[arr.length - 1]
     },
     //load图片  web直接load  原生先缓存在本地
-    GloadPic: function (url, call) {
+    loadPic: function (url, call) {
 
         if (cc.sys.isNative) //原生先下载
         {
             var picPath = jsb.fileUtils.getWritablePath() + "PicTemp/"
-            this.GcreateDir(picPath)
-            var filename = this.GgetFileNameByUrl(url)
+            this.createDir(picPath)
+            var filename = this.getFileNameByUrl(url)
             var localpath = picPath + filename
             if (jsb.fileUtils.isFileExist(localpath))//存在
             {
@@ -126,8 +126,8 @@ var Global = {
                 })
             }
             else {//不存在
-                this.GDownFile(url, (data) => {
-                    this.GwriteDataToFile(data, localpath)
+                this.downFile(url, (data) => {
+                    this.writeDataToFile(data, localpath)
                     this.loadTexture(localpath, function (tex) {
 
                         if (call) {
@@ -156,7 +156,7 @@ var Global = {
     },
 
     //下载pic
-    loadTexture: function (url, call) {
+    loadTexture: function (url, call: Function) {
         cc.assetManager.loadRemote(url, { ext: '.png' }, function (error, texture) {
             if (error) {
                 if (call) {
@@ -172,7 +172,7 @@ var Global = {
 
     },
     //下载文件
-    GDownFile: function (url, call) {
+    downFile: function (url, call) {
         if (cc.sys.isNative) {
 
             var xhr = new XMLHttpRequest();
@@ -208,7 +208,7 @@ var Global = {
 
     },
     //字符串 *num
-    StrTime: function (str, num) {
+    strTime: function (str, num) {
         var s = ""
         for (var i = 0; i < num; i++) {
             s = s + str
@@ -217,21 +217,21 @@ var Global = {
     },
 
     //获取node世界坐标
-    ConverToWorldPos: function (node) {
+    converToWorldPos: function (node) {
 
         var worldpos = node.parent.convertToWorldSpaceAR(node.getPosition())
         return worldpos
 
     },
     //把一个世界坐标转换成这个节点下的坐标
-    ConverToNodePos: function (node, worldpos) {
+    converToNodePos: function (node, worldpos) {
         var pos = node.convertToNodeSpaceAR(worldpos)
         return pos
 
     },
 
 
-    GgetTwoV2Angle: function (vA, vB) {//获得2点的夹角vA起点，vB终点
+    getTwoV2Angle: function (vA, vB) {//获得2点的夹角vA起点，vB终点
 
         var dx = vB.x - vA.x;
         var dy = vB.y - vA.y;
@@ -262,9 +262,9 @@ var Global = {
         })
     },
     //释放bundle
-    gReleaseBundle: function (bundleName) {
+    releaseBundle: function (bundleName) {
 
-        let bundle = this.gGetBundle(bundleName)
+        let bundle = this.getBundle(bundleName)
         if (bundle) {
             bundle.releaseAll();
             cc.assetManager.removeBundle(bundle);//释放bundle
@@ -272,18 +272,18 @@ var Global = {
 
     },
     //获取已加载了的bundle
-    gGetBundle: function (bundlename) {
+    getBundle: function (bundlename) {
         var bundle = cc.assetManager.getBundle(bundlename);
         return bundle
     },
 
     //重启
-    gReBoot: function () {
+    reBoot: function () {
 
         cc.game.restart()
     },
     //退出游戏
-    gExitGame: function () {
+    exitGame: function () {
         if (cc.sys.isNative) {
             cc.game.end()
         }

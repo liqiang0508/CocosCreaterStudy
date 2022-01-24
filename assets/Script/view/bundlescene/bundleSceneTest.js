@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: liqiang
+ * @email: 497232807@qq.com
+ * @Date: 2021-01-07 19:56:40
+ * @LastEditTime: 2022-01-24 17:50:51
+ */
 
 
 cc.Class({
@@ -7,7 +15,7 @@ cc.Class({
 
     },
 
- 
+
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
@@ -25,8 +33,7 @@ cc.Class({
             }, (layer) => {
 
                 cc.director.loadScene("TestScene", () => {
-
-                    Global.gReleaseBundle("bundleScene")
+                    Global.releaseBundle("bundleScene")
                 })
             })
         })

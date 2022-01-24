@@ -37,8 +37,8 @@ cc.Class({
         // 坐标转换
         var sp2 = cc.find("uipanel/New Sprite", this.node)
         var sp4 = cc.find("content/sp4", this.node)
-        var sp2worldpos = Global.ConverToWorldPos(sp2)//sp2.parent.convertToWorldSpaceAR(sp2.getPosition())//转换成世界坐标
-        var pos2 = Global.ConverToNodePos(sp4.parent, sp2worldpos)//sp4.parent.convertToNodeSpaceAR(sp2worldpos);//将世界坐标转换成父节点的坐标
+        var sp2worldpos = Global.converToWorldPos(sp2)//sp2.parent.convertToWorldSpaceAR(sp2.getPosition())//转换成世界坐标
+        var pos2 = Global.converToNodePos(sp4.parent, sp2worldpos)//sp4.parent.convertToNodeSpaceAR(sp2worldpos);//将世界坐标转换成父节点的坐标
         // sp4.setPosition(pos2)
         this.sp4OldPos = sp4.getPosition()
         sp4.IsOriginPos = true
@@ -151,7 +151,7 @@ cc.Class({
         var loadTex = cc.find("uipanel/loadTex", this.node)
         var url = "http://54.179.180.39:8080/CSLServer/img/welcome.png"//"http://tools.itharbors.com/christmas/res/tree.png"
         url = "http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ1E1XEicr8vAj5o8DMT7GTfCtFyC6vok9TImPjf6BfKBKLFA8hKBS6Wiaz2GJyQQWoV5lA7fhqS4SA/96"
-        Global.GloadPic(url, function (tex) {
+        Global.loadPic(url, function (tex) {
             if (tex) {
                 var SpriteCom = loadTex.getComponent(cc.Sprite)
                 SpriteCom.spriteFrame = new cc.SpriteFrame(tex)
@@ -455,7 +455,7 @@ cc.Class({
 
             touchLoc = sp2.parent.convertToNodeSpaceAR(touchLoc);
 
-            var Angle = Global.GgetTwoV2Angle(sp2.getPosition(), touchLoc)
+            var Angle = Global.getTwoV2Angle(sp2.getPosition(), touchLoc)
             sp2.angle = -Angle
 
             garpgics.moveTo(touchLoc.x, touchLoc.y)
@@ -471,7 +471,7 @@ cc.Class({
             touchLoc = sp2.parent.convertToNodeSpaceAR(touchLoc);
             // cc.log(touchLoc)
 
-            var Angle = Global.GgetTwoV2Angle(sp2.getPosition(), touchLoc)
+            var Angle = Global.getTwoV2Angle(sp2.getPosition(), touchLoc)
             sp2.angle = -Angle
 
             garpgics.lineTo(touchLoc.x, touchLoc.y)
@@ -484,7 +484,7 @@ cc.Class({
         var winsizeA = cc.view.getVisibleSize()
         var vA = cc.v2(-winsizeA.width / 2, winsizeA.height / 2)
         var vB = cc.v2(winsizeA.width / 2, -winsizeA.height / 2)
-        var degree = Global.GgetTwoV2Angle(vA, vB)
+        var degree = Global.getTwoV2Angle(vA, vB)
         var node = cc.find("uipanel/New Sprite", this.node)
         node.angle = -degree
 

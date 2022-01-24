@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2022-01-24 12:42:30
+ * @LastEditTime: 2022-01-24 17:51:36
  */
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
@@ -153,7 +153,7 @@ cc.Class({
 
         UITool.addBtnClick(this.node, (event) => {
             console.log("getLocation=====", event.getLocation().x, event.getLocation().y)//原点在左下角
-            // var pos = Global.ConverToNodePos(gotest.parent,event.getLocation())
+            // var pos = Global.converToNodePos(gotest.parent,event.getLocation())
             // gotest.setPosition(pos)
             console.log("getLocationInView=====", event.getLocationInView().x, event.getLocationInView().y)//原点在左上角
 

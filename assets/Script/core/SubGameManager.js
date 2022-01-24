@@ -193,20 +193,20 @@ SubGameManager.downFiles = function (data) {
         var fileurl = BaseUrl + fileName.replace(self.curSubgameName, self.curSubgameName + "_" + self.downversion)//下载文件的url fileName替换成fileName_xx
         var filetempPath = SubGamesPathTemp + fileName//临时目录
         var filerealPath = SubGamesPath + fileName//真实目录
-        var tempDir = SubGamesPathTemp + Global.GgetDirByUrl(fileName)//临时文件夹
-        var realDir = SubGamesPath + Global.GgetDirByUrl(fileName)//真实文件夹
+        var tempDir = SubGamesPathTemp + Global.getDirByUrl(fileName)//临时文件夹
+        var realDir = SubGamesPath + Global.getDirByUrl(fileName)//真实文件夹
         // console.log("fileName====",fileName)
-        Global.GcreateDir(tempDir)//创建临时文件夹
-        Global.GcreateDir(realDir)//创建真实文件夹
+        Global.createDir(tempDir)//创建临时文件夹
+        Global.createDir(realDir)//创建真实文件夹
 
         downFileList[index]["tempfile"] = filetempPath//临时文件路径
         downFileList[index]["realfile"] = filerealPath//正式文件路径
         // console.log("index====",index, filetempPath,filerealPath)
 
         cc.log("下载=====", fileurl)
-        Global.GDownFile(fileurl, function (data) {
+        Global.downFile(fileurl, function (data) {
             if (data) {
-                Global.GwriteDataToFile(data, filetempPath)
+                Global.writeDataToFile(data, filetempPath)
 
                 self.downedSize = self.downedSize + fileSize//记录已下载文件的大小
 
@@ -242,59 +242,59 @@ SubGameManager.downFiles = function (data) {
 
 },
 
-//移动差异文件
-SubGameManager.MoveFiles = function (data) {
-    this.moveStep = 0
-    var self = this
-    var moveOneFile = function (index) {
-        var tempfilePath = data[index]["tempfile"]
-        var realfilePath = data[index]["realfile"]
-        // console.log("tempfilePath===",tempfilePath,realfilePath);
-        var filedata = Global.GgetDataFromFile(tempfilePath)
-        if (filedata) {
-            Global.GwriteDataToFile(filedata, realfilePath)
-            if (self.moveStep < data.length - 1) {
-                self.moveStep = self.moveStep + 1
-                moveOneFile(self.moveStep)
+    //移动差异文件
+    SubGameManager.MoveFiles = function (data) {
+        this.moveStep = 0
+        var self = this
+        var moveOneFile = function (index) {
+            var tempfilePath = data[index]["tempfile"]
+            var realfilePath = data[index]["realfile"]
+            // console.log("tempfilePath===",tempfilePath,realfilePath);
+            var filedata = Global.getDataFromFile(tempfilePath)
+            if (filedata) {
+                Global.writeDataToFile(filedata, realfilePath)
+                if (self.moveStep < data.length - 1) {
+                    self.moveStep = self.moveStep + 1
+                    moveOneFile(self.moveStep)
+                }
+                else {
+                    self.MoveDone()
+                }
             }
             else {
-                self.MoveDone()
+                var path = SubGamesPath + self.curSubgameName
+                this.removeLocalBundle(path)//移动失败不知道移动了多少，就删掉本地当前子游戏文件夹
+                self.callFunWithState(6, "移动文件失败" + tempfilePath)
             }
         }
-        else {
-            var path = SubGamesPath + self.curSubgameName
-            this.removeLocalBundle(path)//移动失败不知道移动了多少，就删掉本地当前子游戏文件夹
-            self.callFunWithState(6, "移动文件失败" + tempfilePath)
+
+        moveOneFile(this.moveStep)
+    },
+
+    //移动完成 保存配置
+    SubGameManager.MoveDone = function () {
+        var str = JSON.stringify(this.remoteSubgameCfg, null, 4)
+        var subgamecfgpath = SubGamesPath + this.curSubgameName + "/appinfo.json" //子游戏本地配置路径
+        Global.writeStringToFile(str, subgamecfgpath)//移动完成后再把远程子游戏的配置当前子游戏bundle文件夹下面 比如
+
+        this.callFunWithState(0, "下载子游戏完成")
+    },
+
+    // code
+    // 0 下载子游戏成功
+    // 1,"读取子游戏本地配置失败
+    // 2,"子游戏本地配置不存在====" + subgameName
+    // 3,"读取远程子游戏配置失败====
+    // 4,"读取远程子游戏远程md5-json不合法===
+    // 5,"子游戏下载单个文件失败
+    // 6,"移动文件失败
+    SubGameManager.callFunWithState = function (code, dec) {
+        cc.log(dec + "====" + code)
+        if (this.finishCall) {
+            this.finishCall(code)
+
         }
     }
-
-    moveOneFile(this.moveStep)
-},
-
-//移动完成 保存配置
-SubGameManager.MoveDone = function () {
-    var str = JSON.stringify(this.remoteSubgameCfg, null, 4)
-    var subgamecfgpath = SubGamesPath + this.curSubgameName + "/appinfo.json" //子游戏本地配置路径
-    Global.GwriteStringToFile(str, subgamecfgpath)//移动完成后再把远程子游戏的配置当前子游戏bundle文件夹下面 比如
-
-    this.callFunWithState(0, "下载子游戏完成")
-},
-
-// code
-// 0 下载子游戏成功
-// 1,"读取子游戏本地配置失败
-// 2,"子游戏本地配置不存在====" + subgameName
-// 3,"读取远程子游戏配置失败====
-// 4,"读取远程子游戏远程md5-json不合法===
-// 5,"子游戏下载单个文件失败
-// 6,"移动文件失败
-SubGameManager.callFunWithState = function (code, dec) {
-    cc.log(dec + "====" + code)
-    if (this.finishCall) {
-        this.finishCall(code)
-
-    }
-}
 
 //获取本地bundle path
 SubGameManager.getLocalBundlePath = function (bundleName) {
@@ -305,7 +305,7 @@ SubGameManager.getLocalBundlePath = function (bundleName) {
 }
 
 //移除本地的bundle
-SubGameManager.removeLocalBundle = function(bundleName){
+SubGameManager.removeLocalBundle = function (bundleName) {
     var bundlePath = SubGamesPath + bundleName
     jsb.fileUtils.removeDirectory(bundlePath)
     jsb.fileUtils.createDirectory(bundlePath)
@@ -316,7 +316,7 @@ SubGameManager.removeLocalBundle = function(bundleName){
 SubGameManager.isDeugPalyer = function () {
     var debugUids = this.remoteData["debugUid"]//debug玩家数组
     var localId = cc.sys.localStorage.getItem('debugId');//本地存的上次登录的玩家id
-    if (Global.GIsArrContain(debugUids, localId))//先看是不是测试玩家
+    if (Global.isArrContain(debugUids, localId))//先看是不是测试玩家
     {
         return true
     }
