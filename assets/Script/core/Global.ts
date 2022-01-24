@@ -1,5 +1,5 @@
 
-// 一些辅助函数 没有用插件 是因为用了插件 不能用require
+// Global 函数
 var Global = {
     isDebugTest: false,
     sayHello: function () {
@@ -8,7 +8,7 @@ var Global = {
     },
 
     // schdule
-    schduleFun: function (component, call, interval, repeat, delay) {
+    schduleFun: function (component: cc.Component, call: Function, interval: number, repeat: number, delay: number) {
         if (repeat == undefined) {
             repeat = cc.macro.REPEAT_FOREVER
         }
@@ -19,20 +19,20 @@ var Global = {
 
     },
     //schduleonece
-    schduleOnce: function (component, call, time) {
+    schduleOnce: function (component: cc.Component, call: Function, time: number) {
 
         component.scheduleOnce(() => {
             call();
         }, time);
     },
     //unschdule
-    unSchduleFun: function (component, call) {
+    unSchduleFun: function (component: cc.Component, call: Function) {
         cc.director.getScheduler().unschedule(call, component);
     },
 
 
     // 数组是否包含
-    isArrContain: function (arr, n) {
+    isArrContain: function (arr: [], n: string) {
         for (var i in arr) {
             var value = arr[i]
             // cc.log(value,typeof(value),n,typeof(n))
@@ -43,7 +43,7 @@ var Global = {
         return false
     },
     // 获取文件数据
-    getDataFromFile: function (path) {
+    getDataFromFile: function (path: string) {
         if (cc.sys.isNative) {
             var data = jsb.fileUtils.getDataFromFile(path)
             return data
@@ -51,20 +51,20 @@ var Global = {
         return null
     },
     // 写文件  字符串
-    writeStringToFile: function (str, path) {
+    writeStringToFile: function (str: string, path: string) {
         if (cc.sys.isNative) {
             jsb.fileUtils.writeStringToFile(str, path);
         }
     },
     // 写文件数据
-    writeDataToFile: function (data, path) {
+    writeDataToFile: function (data, path: string) {
         if (cc.sys.isNative) {
             jsb.fileUtils.writeDataToFile(new Uint8Array(data), path);
         }
     },
 
     //创建目录
-    createDir: function (path) {
+    createDir: function (path: string) {
         if (cc.sys.isNative) {
             if (!jsb.fileUtils.isDirectoryExist(path)) {
                 jsb.fileUtils.createDirectory(path);
@@ -73,7 +73,7 @@ var Global = {
         }
     },
     //    url转成目录
-    getDirByUrl: function (url) {
+    getDirByUrl: function (url: string) {
         var arr = url.split("/")
         // console.log("getDirByUrl==",arr)
         var path = ""
@@ -97,18 +97,18 @@ var Global = {
         return path
     },
     //保留小数几位
-    numberToFix(n, num) {
+    numberToFix(n: number, num: number) {
         var t = Math.pow(10, num)
         return Math.floor(n * t) / t
     },
     //获取url最后的文件名
-    getFileNameByUrl: function (url) {
+    getFileNameByUrl: function (url: string) {
         var arr = url.split("/")
 
         return arr[arr.length - 1]
     },
     //load图片  web直接load  原生先缓存在本地
-    loadPic: function (url, call) {
+    loadPic: function (url: string, call: Function) {
 
         if (cc.sys.isNative) //原生先下载
         {
@@ -156,7 +156,7 @@ var Global = {
     },
 
     //下载pic
-    loadTexture: function (url, call: Function) {
+    loadTexture: function (url: string, call: Function) {
         cc.assetManager.loadRemote(url, { ext: '.png' }, function (error, texture) {
             if (error) {
                 if (call) {
@@ -172,7 +172,7 @@ var Global = {
 
     },
     //下载文件
-    downFile: function (url, call) {
+    downFile: function (url: string, call: Function) {
         if (cc.sys.isNative) {
 
             var xhr = new XMLHttpRequest();
@@ -208,7 +208,7 @@ var Global = {
 
     },
     //字符串 *num
-    strTime: function (str, num) {
+    strTime: function (str: string, num: number) {
         var s = ""
         for (var i = 0; i < num; i++) {
             s = s + str
@@ -217,21 +217,21 @@ var Global = {
     },
 
     //获取node世界坐标
-    converToWorldPos: function (node) {
+    converToWorldPos: function (node: cc.Node) {
 
         var worldpos = node.parent.convertToWorldSpaceAR(node.getPosition())
         return worldpos
 
     },
     //把一个世界坐标转换成这个节点下的坐标
-    converToNodePos: function (node, worldpos) {
+    converToNodePos: function (node: cc.Node, worldpos: cc.Vec2) {
         var pos = node.convertToNodeSpaceAR(worldpos)
         return pos
 
     },
 
 
-    getTwoV2Angle: function (vA, vB) {//获得2点的夹角vA起点，vB终点
+    getTwoV2Angle: function (vA: cc.Vec2, vB: cc.Vec2) {//获得2点的夹角vA起点，vB终点
 
         var dx = vB.x - vA.x;
         var dy = vB.y - vA.y;
@@ -242,7 +242,7 @@ var Global = {
         return degree
     },
     //判断是不是正确的json
-    isjson: function (str) {
+    isjson: function (str: string) {
         if (typeof str == 'string') {
             try {
                 JSON.parse(str);
@@ -254,7 +254,7 @@ var Global = {
         }
     },
     //加载bundle
-    loadBundle: function (url, option, complete) {
+    loadBundle: function (url: string, option: Record<string, any>, complete: Function) {
         cc.assetManager.loadBundle(url, option, (err, bundle) => {
             if (complete) {
                 complete(err, bundle)
@@ -262,7 +262,7 @@ var Global = {
         })
     },
     //释放bundle
-    releaseBundle: function (bundleName) {
+    releaseBundle: function (bundleName: string) {
 
         let bundle = this.getBundle(bundleName)
         if (bundle) {
@@ -272,7 +272,7 @@ var Global = {
 
     },
     //获取已加载了的bundle
-    getBundle: function (bundlename) {
+    getBundle: function (bundlename: string) {
         var bundle = cc.assetManager.getBundle(bundlename);
         return bundle
     },
