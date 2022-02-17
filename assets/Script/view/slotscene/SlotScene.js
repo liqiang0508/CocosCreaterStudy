@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: liqiang
+ * @email: 497232807@qq.com
+ * @Date: 2020-12-31 16:05:17
+ * @LastEditTime: 2022-02-15 19:12:05
+ */
 // Learn cc.Class:
 //  - https://docs.cocos.com/creator/manual/en/scripting/class.html
 // Learn Attribute:
@@ -28,53 +36,52 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-     
+    onLoad() {
+
 
         this.Slots = new Array()
-        for(let i =1;i<=1;i++)
-        {
-            var slot = cc.find("content/slot"+i,this.node)
+        for (let i = 1; i <= 1; i++) {
+            var slot = cc.find("content/slot" + i, this.node)
             this.Slots.push(slot)
         }
-        var btn_spin = cc.find("UI/btn_spin",this.node)
-     
-        UITool.addBtnClick(btn_spin,()=>{
+        var btn_spin = cc.find("UI/btn_spin", this.node)
+
+        UITool.addBtnClick(btn_spin, () => {
             cc.log("Start spin")
-          
-            for (var i = 0;i<this.Slots.length;i++) {
+
+            for (var i = 0; i < this.Slots.length; i++) {
                 let slot = this.Slots[i]
-              
+
                 let SlotPanel = slot.getComponent("SlotPanel")
                 if (SlotPanel) {
-                   
-                    SlotPanel.Spin()
-                    let stopIndex = Math.floor(Math.random() * 4)
 
+                    SlotPanel.Spin()
+                    let stopIndex = cc.math.randomRangeInt(0, 4)
+                    cc.log("stopIndex", stopIndex)
                     //请求服务器停止点显示什么图片
                     SlotPanel.StopAtIndex(stopIndex, function () {
                         console.log("stop- call")
                     })
 
-                   
-                   
+
+
                 }
             }
         })
 
-        var btn_back =  cc.find("UI/btn_back",this.node)
-        UITool.addBtnClick(btn_back,function(){
+        var btn_back = cc.find("UI/btn_back", this.node)
+        UITool.addBtnClick(btn_back, function () {
 
             cc.director.loadScene("TestScene")
         })
     },
 
-    start () {
-        var slot1 = cc.find("content/slot1",this.node)
-        var bg = cc.find("content/bg",this.node)
+    start() {
+        var slot1 = cc.find("content/slot1", this.node)
+        var bg = cc.find("content/bg", this.node)
         bg.height = slot1.height
         bg.width = slot1.width
-     
+
     },
 
     // update (dt) {},

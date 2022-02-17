@@ -3,11 +3,12 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2022-01-24 17:51:36
+ * @LastEditTime: 2022-02-17 13:15:49
  */
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
 // var Global = require("Global")
+import PopViewManager from "PopViewManager"
 var DevicesInfo = require("Devices")
 cc.Class({
     extends: cc.Component,
@@ -24,8 +25,8 @@ cc.Class({
 
     onLoad() {
 
-
-
+        console.log(PopViewManager.getInstance() === PopViewManager.getInstance())
+        PopViewManager.getInstance().SayHello()
         // this.schedule(this.update1, 1/60);
         this.speed = 5  //vt*vt-v0*v0=2as
         // this.MaxSpeed = 100

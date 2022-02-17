@@ -12,12 +12,12 @@ const Slot_BackDistance = 15;//滚动到最后回滚的距离
 
 
 window.SlotState = {
-    eStoped : 0, //--停止
-    eSpeedUp :1, //--加速
-    eMaxSpeed : 2, //--最大速度
-    eWaitSpeedDown : 3,// --等待减速
-    eSpeedDown :4, //--减速
-    eKickBack : 5, //--回弹
+    eStoped: 0, //--停止
+    eSpeedUp: 1, //--加速
+    eMaxSpeed: 2, //--最大速度
+    eWaitSpeedDown: 3,// --等待减速
+    eSpeedDown: 4, //--减速
+    eKickBack: 5, //--回弹
 };
 
 
@@ -25,62 +25,61 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-       
-        item:{
 
-            default: null,       
+        item: {
+
+            default: null,
             type: cc.Prefab,
-            tooltip:"预制体item",
+            tooltip: "预制体item",
         },
 
-        width:{
+        width: {
 
-            default: 0,       
+            default: 0,
             type: cc.Float,
-            tooltip:"itemd的宽度，初始化用来设置容器宽度",
+            tooltip: "itemd的宽度，初始化用来设置容器宽度",
         },
 
-        space:{
-            default:0,
-            type:cc.Float,
-            tooltip:"间距",
+        space: {
+            default: 0,
+            type: cc.Float,
+            tooltip: "间距",
         },
-         
-        movedirection:{
-            default:0,
-            type:cc.Integer,
-            tooltip:"方向 0为往上移动 1为往下",
+
+        movedirection: {
+            default: 0,
+            type: cc.Integer,
+            tooltip: "方向 0为往上移动 1为往下",
         },
-        showItemNum:{
-            default:3,
-            type:cc.Integer,
-            tooltip:"面板显示几个可见的item",
+        showItemNum: {
+            default: 3,
+            type: cc.Integer,
+            tooltip: "面板显示几个可见的item",
         },
-        
+
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
 
-        if(this.width!=0)
-        {
-            this.node.width =this.width;
+        if (this.width != 0) {
+            this.node.width = this.width;
         }
-         this.node.height = this.showItemNum*this.width+( this.showItemNum+1)*this.space
-         this.SlotState = window.SlotState.eStoped;
-         this.addSlotCell();
+        this.node.height = this.showItemNum * this.width + (this.showItemNum + 1) * this.space
+        this.SlotState = window.SlotState.eStoped;
+        this.addSlotCell();
 
-         this.curIndex = 1;//当前index
-         this.StartSpin = false;//是否在spin
-         this.stopIndex = null; //停止的index；
-         this.HaveCompelete = true;//是否完成了一次spin
-         this.SpeedY = 0;//当前速度
-         this.restPos  = false
-         this.schedule(this.update1, 1/60);
-        
-         this.offsetY = 0
-         this.itemNum = this.ItemArray.length  //有几个cell
+        this.curIndex = 1;//当前index
+        this.StartSpin = false;//是否在spin
+        this.stopIndex = null; //停止的index；
+        this.HaveCompelete = true;//是否完成了一次spin
+        this.SpeedY = 0;//当前速度
+        this.restPos = false
+        this.schedule(this.update1, 1 / 60);
+
+        this.offsetY = 0
+        this.itemNum = this.ItemArray.length  //有几个cell
 
         //  this.node.on(cc.Node.EventType.TOUCH_MOVE,(event)=>{
 
@@ -91,33 +90,32 @@ cc.Class({
 
 
 
-    start () {
+    start() {
         // this.Spin();
 
     },
 
-    addSlotCell(){
+    addSlotCell() {
 
         this.ItemArray = new Array();
 
-        for(let i = 0 ;i<Slot_PerNum;i++)
-        {
+        for (let i = 0; i < Slot_PerNum; i++) {
             var item = cc.instantiate(this.item);
             item.parent = this.node;
             item.x = 0;
             item.tag = i;
-             
-            if(this.movedirection==0)//往上
+
+            if (this.movedirection == 0)//往上
             {
-                item.y = this.node.height/2-item.height*i-item.height/2-this.space*(i+1);
+                item.y = this.node.height / 2 - item.height * i - item.height / 2 - this.space * (i + 1);
             }
             else//往下
             {
-                item.y = -this.node.height/2+item.height*i+item.height/2+this.space*(i+1);
+                item.y = -this.node.height / 2 + item.height * i + item.height / 2 + this.space * (i + 1);
             }
-            
+
             var cellComponent = item.getComponent("Cell")
-            cellComponent.seTextString(i) 
+            cellComponent.seTextString(i)
             cellComponent.setBgRes(i)
             this.ItemArray.push(item);
 
@@ -125,160 +123,151 @@ cc.Class({
 
         this.item.height = 120//this.ItemArray[0].height;
 
-      
+
     },
 
-    updateItem(deltaY){//更新节点位置
-        
-        if(deltaY==0)
-        {
+    updateItem(deltaY) {//更新节点位置
+
+        if (deltaY == 0) {
             return;
         }
-      
+
         // var _DT = 1/60;
         var child = this.node.children;
-  
-       
-        for(let start = 0; start < child.length;start++)
-        {
+
+
+        for (let start = 0; start < child.length; start++) {
             let target = child[start];
 
-            if(deltaY>0)//往上移动
+            if (deltaY > 0)//往上移动
             {
 
-                var posy = this.node.height/2+target.height/2;
+                var posy = this.node.height / 2 + target.height / 2;
                 // cc.log(target)
-                if(target.y>=posy)// 超出了最上面 y坐标下移
+                if (target.y >= posy)// 超出了最上面 y坐标下移
                 {
-                        target.y = target.y+(-child.length*this.item.height-child.length*this.space);
-                        this.curIndex+=1;
-                        if(this.curIndex>(Slot_PerNum-1))
-                        {
-                            this.curIndex-=(Slot_PerNum);
-                        }
-                       
-                           
-                }
-                else{ //small
+                    target.y = target.y + (-child.length * this.item.height - child.length * this.space);
+                    this.curIndex += 1;
+                    if (this.curIndex > (Slot_PerNum - 1)) {
+                        this.curIndex -= (Slot_PerNum);
+                    }
 
-                    target.y=target.y+deltaY;//move
-                     if(target.y>=posy)//top)
-                     {
-                        
-                        target.y = target.y+(-child.length*this.item.height-child.length*this.space);
-                        this.curIndex+=1;
-                        if(this.curIndex>(Slot_PerNum-1))
-                        {
-                            this.curIndex-=(Slot_PerNum);
+
+                }
+                else { //small
+
+                    target.y = target.y + deltaY;//move
+                    if (target.y >= posy)//top)
+                    {
+
+                        target.y = target.y + (-child.length * this.item.height - child.length * this.space);
+                        this.curIndex += 1;
+                        if (this.curIndex > (Slot_PerNum - 1)) {
+                            this.curIndex -= (Slot_PerNum);
                         }
-                        
-                     }
+
+                    }
 
                 }
             }
-            else{//往下移动
+            else {//往下移动
 
-                var posy = -this.node.height/2-target.height/2;
-                if(target.y<=posy)// 超过最下面 y坐标上移
+                var posy = -this.node.height / 2 - target.height / 2;
+                if (target.y <= posy)// 超过最下面 y坐标上移
                 {
-                        target.y = target.y+(child.length*this.item.height+child.length*this.space);
-                        // this.curIndex+=1;
-                       
-                           
-                }
-                else{ //向下滚动
+                    target.y = target.y + (child.length * this.item.height + child.length * this.space);
+                    // this.curIndex+=1;
 
-                    target.y = target.y+deltaY;//move
-                    
-                     if(target.y<=posy)//top)
-                     {
-                        
-                        target.y = target.y+(child.length*this.item.height+child.length*this.space);
+
+                }
+                else { //向下滚动
+
+                    target.y = target.y + deltaY;//move
+
+                    if (target.y <= posy)//top)
+                    {
+
+                        target.y = target.y + (child.length * this.item.height + child.length * this.space);
                         // this.curIndex+=1;
-                        
-                       
-                     }
+
+
+                    }
 
                 }
             }
         }
-       
-        this.offsetY = this.offsetY+Math.abs(deltaY)
-        if (this.offsetY>this.item.height)
-        {
-            this.offsetY = this.offsetY -this.item.height
-            this.curIndex =  (this.curIndex + 1)%Slot_PerNum;
+
+        this.offsetY = this.offsetY + Math.abs(deltaY)
+        if (this.offsetY > this.item.height) {
+            this.offsetY = this.offsetY - this.item.height
+            this.curIndex = (this.curIndex + 1) % Slot_PerNum;
         }
-        cc.log("Index==", this.curIndex)
+        // cc.log("Index==", this.curIndex)
     },
 
 
-    updateSlotsToDown(dt){//往下滚动 
+    updateSlotsToDown(dt) {//往下滚动 
 
-        var timedeal = 1/60;
-        if(this.SlotState == window.SlotState.eSpeedUp)//加速
+        var timedeal = 1 / 60;
+        if (this.SlotState == window.SlotState.eSpeedUp)//加速
         {
-          
-            if(this.SpeedY>-Max_Speed)
-            {
-                this.SpeedY= this.SpeedY +this.Acceleration*timedeal;
-                if(this.SpeedY<=-Max_Speed)
-                {
-                   
+
+            if (this.SpeedY > -Max_Speed) {
+                this.SpeedY = this.SpeedY + this.Acceleration * timedeal;
+                if (this.SpeedY <= -Max_Speed) {
+
                     this.SpeedY = -Max_Speed;//达到最高速度，等待减速
-                    this.SlotState =window.SlotState.eWaitSpeedDown;
+                    this.SlotState = window.SlotState.eWaitSpeedDown;
                 }
-              
+
             }
-            else{
+            else {
                 this.SpeedY = -Max_Speed;//达到最高速度，等待减速
-                this.SlotState =window.SlotState.eWaitSpeedDown;
+                this.SlotState = window.SlotState.eWaitSpeedDown;
             }
         }
 
-        if(this.SlotState == window.SlotState.eWaitSpeedDown)//等待减速
+        if (this.SlotState == window.SlotState.eWaitSpeedDown)//等待减速
         {
 
-            
-            if(this.stopIndex==this.curIndex)//停止的位置和当前的一样
+
+            if (this.stopIndex == this.curIndex)//停止的位置和当前的一样
             {
                 // this.SpeedY = 0
                 // this.resetPosY()
-                var offset = 0-this.ItemArray[this.curIndex].y
-                var S = this.itemNum * this.item.height+60+Slot_BackDistance-offset
-                cc.log("this offset----",S,this.offsetY)
+                var offset = 0 - this.ItemArray[this.curIndex].y
+                var S = this.itemNum * this.item.height + 60 + Slot_BackDistance - offset
+                cc.log("this offset----", S, this.offsetY)
                 // var S = this.node.height *Slot_StopTime +  this.space*(this.ItemArray.length-1)*Slot_StopTime +Slot_BackDistance+this.item.height*Slot_StopTime*2//-this.ItemArray[this.stopIndex].y*2
-                this.Acceleration = this.SpeedY * this.SpeedY/ (2 * S)*60; 
-                
+                this.Acceleration = this.SpeedY * this.SpeedY / (2 * S) * 60;
+
                 cc.log(" 减速this.Acceleration---", this.Acceleration)
                 this.SlotState = window.SlotState.eSpeedDown;
                 return;
-                
+
             }
-           
+
         }
 
-        if(this.SlotState == window.SlotState.eSpeedDown)//减速
+        if (this.SlotState == window.SlotState.eSpeedDown)//减速
         {
 
-            if(this.SpeedY<0)
-            {
-                this.SpeedY = this.SpeedY + this.Acceleration*timedeal;
-                if( this.SpeedY>=0)
-                {
+            if (this.SpeedY < 0) {
+                this.SpeedY = this.SpeedY + this.Acceleration * timedeal;
+                if (this.SpeedY >= 0) {
                     this.SpeedY = 0;
-                    this.SlotState =window.SlotState.eStoped;
+                    this.SlotState = window.SlotState.eStoped;
 
                 }
             }
-            else{
+            else {
                 this.SpeedY = 0;
-                this.SlotState =window.SlotState.eStoped;
+                this.SlotState = window.SlotState.eStoped;
 
             }
         }
 
-        if(this.SlotState == window.SlotState.eKickBack)//回弹
+        if (this.SlotState == window.SlotState.eKickBack)//回弹
         {
             // cc.log("回弹==",this.SpeedY);
             // this.SpeedY -= 200*timedeal;
@@ -292,52 +281,47 @@ cc.Class({
             // this.Bounce()//回弹；
         }
 
-        if(this.SlotState == window.SlotState.eStoped)//stop
+        if (this.SlotState == window.SlotState.eStoped)//stop
         {
-            if(this.StartSpin)
-            {
-                
+            if (this.StartSpin) {
+
                 this.Bounce()//回弹；
                 this.StartSpin = false;
             }
-            
+
         }
         this.updateItem(this.SpeedY);
     },
 
-    Bounce(){
+    Bounce() {
 
         var self = this;
         var child = this.node.children;
-        var dis = 0-this.ItemArray[this.stopIndex].y
-        for(var start = 0; start < child.length;start++)
-        {
+        var dis = 0 - this.ItemArray[this.stopIndex].y
+        for (var start = 0; start < child.length; start++) {
             var haha = child[start];
-            
-            if(haha)
-            {
+
+            if (haha) {
                 var move;
-               if(this.movedirection==0)
-               {
-                 move = cc.moveBy(0.1,cc.Vec2(0,-dis)).easing(cc.easeOut(1));
-               }
-               else{
-                 move = cc.moveBy(0.1,cc.Vec2(0,dis)).easing(cc.easeOut(1));
-               }
-             
-               var call = cc.callFunc(function(){
-
-                if(self.StopCall)
-                {
-                    self.StopCall();
-                    self.StopCall = null
+                if (this.movedirection == 0) {
+                    move = cc.moveBy(0.1, cc.Vec2(0, -dis)).easing(cc.easeOut(1));
                 }
-                self.HaveCompelete = true;
+                else {
+                    move = cc.moveBy(0.1, cc.Vec2(0, dis)).easing(cc.easeOut(1));
+                }
 
-               });
-               var seq = cc.sequence(move,call);
-               haha.runAction(seq);
-            
+                var call = cc.callFunc(function () {
+
+                    if (self.StopCall) {
+                        self.StopCall();
+                        self.StopCall = null
+                    }
+                    self.HaveCompelete = true;
+
+                });
+                var seq = cc.sequence(move, call);
+                haha.runAction(seq);
+
             }
         }
 
@@ -351,14 +335,12 @@ cc.Class({
 
         // cc.log("resetPosY==",offset);
         var child = this.node.children;
-        for(var start = 0; start < child.length;start++)
-        {
+        for (var start = 0; start < child.length; start++) {
             var haha = child[start];
-            
-            if(haha)
-            {
-               
-                haha.y = haha.y-offset;
+
+            if (haha) {
+
+                haha.y = haha.y - offset;
             }
         }
         this.restPos = false
@@ -366,11 +348,11 @@ cc.Class({
     },
     Spin()//开始spin
     {
-        
-        
-        this.Acceleration= Max_Speed/SLOT_SPEED_UP_TIME; //开始加速度
 
-        if(this.movedirection==1)//往下
+
+        this.Acceleration = Max_Speed / SLOT_SPEED_UP_TIME; //开始加速度
+
+        if (this.movedirection == 1)//往下
         {
             this.Acceleration = -this.Acceleration;
         }
@@ -384,15 +366,14 @@ cc.Class({
         this.HaveCompelete = false;
 
     },
-    setStopIndex(index){
+    setStopIndex(index) {
         this.stopIndex = index
 
     },
-    StopAtIndex(index,stopcall){//在哪个index停止
-        console.log("StopAtIndex==",index)
+    StopAtIndex(index, stopcall) {//在哪个index停止
+        console.log("StopAtIndex==", index)
         this.stopIndex = index;
-        if(stopcall)
-        {
+        if (stopcall) {
             this.StopCall = stopcall;
         }
         // this.SlotState = window.SlotState.eSpeedDown;
@@ -402,30 +383,29 @@ cc.Class({
 
         // cc.log("update==",dt);
 
-     
+
         // return;
-        if(!this.StartSpin || this.resetPosY==true)
-        {
+        if (!this.StartSpin || this.resetPosY == true) {
             // cc.log("stop update");
             return;
 
         }
 
-        if(this.movedirection==0)//往上移动
+        if (this.movedirection == 0)//往上移动
         {
             // this.updateSlotsToTop(dt);
-        }  
+        }
         else//往下移动
         {
             this.updateSlotsToDown(dt);
         }
-      
-       
+
+
     },
 
-   getSlotState(){//获取当前slot的状态
+    getSlotState() {//获取当前slot的状态
 
         return this.SlotState;
-   },
-   
+    },
+
 });

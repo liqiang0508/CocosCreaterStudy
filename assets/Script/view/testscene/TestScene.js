@@ -245,7 +245,7 @@ cc.Class({
 
         EventManager.on(ConstEventDefine.TEST, (data) => {
 
-            console.log("EventTest===2", data.detail)
+            console.log("EventTest===2", data)
         })
         //encryptToString 语音-》string(字符串压缩)）发送  接收后解密 存储
         // var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
