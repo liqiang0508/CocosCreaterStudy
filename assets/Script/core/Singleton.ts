@@ -4,16 +4,14 @@
  * @Author: liqiang
  * @email: 497232807@qq.com
  * @Date: 2022-02-17 12:54:23
- * @LastEditTime: 2022-02-17 13:15:30
+ * @LastEditTime: 2022-02-17 14:29:02
  */
 
-export default class Singleton<T> {
-
-    private static instance: any;
-    public static getInstance<T>(): T {
-        if (!this.instance) {
-            this.instance = new this();
+export default class Singleton {
+    static getInstance<T extends {}>(this: new () => T): T {
+        if (!(<any>this).instance) {
+            (<any>this).instance = new this();
         }
-        return this.instance;
+        return (<any>this).instance;
     }
 }
