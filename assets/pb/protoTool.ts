@@ -3,7 +3,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-24 15:02:42
- * @LastEditTime: 2022-07-21 16:12:47
+ * @LastEditTime: 2022-07-21 16:20:06
  */
 var gameProto = require("gameProto")
 let ProtoTool = {
@@ -78,10 +78,6 @@ let ProtoTool = {
      * @return {*}
      */
     packData: function (cmd, data) {
-        // var message = {cmd:cmd,data:ProtoTool.Uint8ArrayToString(byteData)}
-        // console.log("message==",message)
-        // message = ProtoTool.stringToUint8Array(JSON.stringify(message))
-        // console.log("message==1",message)
         var byteData = this.encode(cmd, data)
         var data  = {cmd:cmd,data:byteData}
         var message = gameProto.tutorial.Package.create(data)
