@@ -1,11 +1,11 @@
-//@ts-nocheck
+
 /*
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-24 15:02:42
- * @LastEditTime: 2022-07-21 16:20:06
+ * @LastEditTime: 2022-07-21 16:40:52
  */
-var gameProto = require("gameProto")
+import gameProto = require("./gameProto.js")
 let ProtoTool = {
     //根据协议编码pb数据
     encode: function (cmd, data) {
@@ -79,8 +79,8 @@ let ProtoTool = {
      */
     packData: function (cmd, data) {
         var byteData = this.encode(cmd, data)
-        var data  = {cmd:cmd,data:byteData}
-        var message = gameProto.tutorial.Package.create(data)
+        var pack_data  = {cmd:cmd,data:byteData}
+        var message = gameProto.tutorial.Package.create(pack_data)
         var bytesData = gameProto.tutorial.Package.encode(message).finish()
         return bytesData
     },
