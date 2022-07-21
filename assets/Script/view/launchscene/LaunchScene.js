@@ -48,7 +48,7 @@ cc.Class({
         var res1 = ProtoTool.decode(CMD.Login, res)
         console.log("ProtoTool 解码==", JSON.stringify(res1))
         // console.log("ProtoTool test =========================== end")
-        var message = ProtoTool.packData(CMD.Login, { name: "hello world", email: "497232807@qq.com", id: 201162 })
+        var message = ProtoTool.packData(CMD.Login, { name: "hello world", email: "497232807@qq.com", id: 201162,phones:[{number:"111",type:"1"},{number:"112",type:"2"}] })
         // console.log("ProtoTool 编码 协议==", message)
         var message2 = ProtoTool.parseData(message)
         console.log("ProtoTool 解码 协议==", JSON.stringify(message2))

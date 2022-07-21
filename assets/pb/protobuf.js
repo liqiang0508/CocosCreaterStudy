@@ -8095,7 +8095,7 @@ util.oneOfSetter = function setOneOf(fieldNames) {
  */
 util.toJSONOptions = {
     longs: String,
-    enums: String,
+    // enums: String,
     bytes: String,
     json: true
 };
