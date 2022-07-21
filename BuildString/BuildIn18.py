@@ -54,7 +54,7 @@ for langue in Langue: #把语言存起来遍历生成xml文件
  
 	src = langue+".ts"
 	dst = "../assets/i18n/"+langue+".ts"
-	shutil.copyfile(src, dst)
+	shutil.move(src, dst)
 
 print("build success------------------")
 os.system("pause")
