@@ -18,7 +18,7 @@ cc.Class({
     onLoad() {
 
         cc.log("launchsene onLoad")
-        console.log("protobufjs test===========")
+        // console.log("protobufjs test===========")
         var Proto = require("gameProto")
         var peron2 = Proto.tutorial.Person.create()
         peron2.name = "hello world"
@@ -38,20 +38,20 @@ cc.Class({
         console.log("编码测试 stringToUint8Array===========", ProtoTool.stringToUint8Array(strData))
         var decodeData = Proto.tutorial.Person.decode(byteData)
         console.log("解码测试===========", JSON.stringify(decodeData))
-        console.log("protobufjs test===========end")
+        // console.log("protobufjs test===========end")
 
 
-        console.log("ProtoTool test ===========================")
+        // console.log("ProtoTool test ===========================")
         var res = ProtoTool.encode(CMD.Login, { name: "hello world", email: "497232807@qq.com", id: 201162 })
-        console.log("ProtoTool 编码==", res)
+        // console.log("ProtoTool 编码==", res)
         // console.log("ProtoTool 编码==toString", JSON.stringify(res))
         var res1 = ProtoTool.decode(CMD.Login, res)
         console.log("ProtoTool 解码==", JSON.stringify(res1))
-        console.log("ProtoTool test =========================== end")
-        var message = ProtoTool.packData(CMD.Login, res)
-        console.log("pack message==", message)
+        // console.log("ProtoTool test =========================== end")
+        var message = ProtoTool.packData(CMD.Login, { name: "hello world", email: "497232807@qq.com", id: 201162 })
+        // console.log("ProtoTool 编码 协议==", message)
         var message2 = ProtoTool.parseData(message)
-        console.log("parseData==", message2)
+        console.log("ProtoTool 解码 协议==", JSON.stringify(message2))
     },
 
     onDestroy() {

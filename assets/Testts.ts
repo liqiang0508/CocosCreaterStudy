@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-07 15:30:49
- * @LastEditTime: 2021-08-05 17:34:56
+ * @LastEditTime: 2022-07-21 15:30:04
  */
 
 import { Lee  } from "./Person";
@@ -60,7 +60,7 @@ export default class Testts extends cc.Component {
     }
 
     SayHello(str:string,callback:(data:string)=>void){
-        console.log("Test ts SayHello=="+str)
+        // console.log("Test ts SayHello=="+str)
         if (callback!=null)
         {
             callback(str)

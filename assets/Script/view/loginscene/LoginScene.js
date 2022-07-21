@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2022-02-17 13:15:49
+ * @LastEditTime: 2022-07-21 15:26:01
  */
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
@@ -25,7 +25,6 @@ cc.Class({
 
     onLoad() {
 
-        console.log(PopViewManager.getInstance() === PopViewManager.getInstance())
         PopViewManager.getInstance().SayHello()
         // this.schedule(this.update1, 1/60);
         this.speed = 5  //vt*vt-v0*v0=2as
@@ -33,7 +32,7 @@ cc.Class({
         this.S = 375.0
         this.ACC = -this.speed * this.speed / (2 * this.S) * 60
         this.offsetX = 0
-        cc.log("ACC", this.ACC)
+
     },
 
     onDestroy() {
@@ -78,7 +77,7 @@ cc.Class({
 
         var gotest = cc.find("uipanel/gotest", this.node)
         this.gotest = gotest
-        cc.log("this.gotest.x1", this.gotest.x)
+        // cc.log("this.gotest.x1", this.gotest.x)
         var wechat = cc.find("uipanel/wechat", this.node)
         var label = cc.find("uipanel/label", this.node)
         var wechatShare = cc.find("uipanel/wechatShare", this.node)

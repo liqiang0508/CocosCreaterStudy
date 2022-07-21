@@ -3,7 +3,7 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-24 15:02:42
- * @LastEditTime: 2021-12-27 17:47:49
+ * @LastEditTime: 2022-07-21 16:12:47
  */
 var gameProto = require("gameProto")
 let ProtoTool = {
@@ -71,20 +71,35 @@ let ProtoTool = {
         return tmpUint8Array
     },
 
-    packData: function (cmd, byteData) {
+    /**
+     * @description: 根据协议编码pb数据
+     * @param {*} cmd 协议号
+     * @param {*} data 协议数据
+     * @return {*}
+     */
+    packData: function (cmd, data) {
         // var message = {cmd:cmd,data:ProtoTool.Uint8ArrayToString(byteData)}
         // console.log("message==",message)
         // message = ProtoTool.stringToUint8Array(JSON.stringify(message))
         // console.log("message==1",message)
-        var data  = {id:cmd,data:byteData}
+        var byteData = this.encode(cmd, data)
+        var data  = {cmd:cmd,data:byteData}
         var message = gameProto.tutorial.Package.create(data)
         var bytesData = gameProto.tutorial.Package.encode(message).finish()
         return bytesData
     },
 
+    /**
+     * @description: 根据协议号解析数据
+     * @param {*} cmd  协议号
+     * @param {*} byteData 数据
+     * @return {*}
+     */
     parseData: function (byteData) {
         var message = gameProto.tutorial.Package.decode(byteData)
-        return message
+        var cmd = message.cmd 
+        var data = message.data
+        return {cmd:cmd,data:this.decode(cmd,data)}
     },
 
 }

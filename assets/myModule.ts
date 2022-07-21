@@ -2,7 +2,7 @@ var myModule = {
 
     say:function(text:string){
 
-        console.log("mymodule say=="+text)
+        console.log("mymodule say77=="+text)
     }
 
 }
