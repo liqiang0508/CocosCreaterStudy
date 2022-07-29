@@ -1,27 +1,27 @@
 /****************************************************************************
- Copyright (c) 2015-2016 Chukong Technologies Inc.
- Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+Copyright (c) 2015-2016 Chukong Technologies Inc.
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+ 
+http://www.cocos2d-x.org
 
- http://www.cocos2d-x.org
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- ****************************************************************************/
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+****************************************************************************/
 package org.cocos2dx.javascript;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
@@ -38,6 +38,7 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.casino.game.ApplicationUtil;
+import com.casino.game.BuglyUtils;
 import com.casino.game.PermissionManager;
 
 import java.io.File;
@@ -52,7 +53,7 @@ public class AppActivity extends Cocos2dxActivity {
         super.onCreate(savedInstanceState);
         DetectCoverInstall();
 
-
+        BuglyUtils.initSDK(getContext(),"59fb8ee7bc");
         // Workaround in
         // https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
@@ -66,9 +67,9 @@ public class AppActivity extends Cocos2dxActivity {
         SDKWrapper.getInstance().init(this);
         Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
         Log.i("bbbbbbbbb===",b+"");
-        if(!b)//没有权限
+        if(!b)//û��Ȩ��
         {
-            if (PermissionManager.IsUserDenyPermission(activity,android.Manifest.permission.RECORD_AUDIO)==false)//表示勾选了“不再提醒”。
+            if (PermissionManager.IsUserDenyPermission(activity,android.Manifest.permission.RECORD_AUDIO)==false)//��ʾ��ѡ�ˡ��������ѡ���
             {
             }
             else
@@ -171,12 +172,12 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
 
-    public void DetectCoverInstall()//覆盖安装的话先删掉的热更新目录
+    public void DetectCoverInstall()//���ǰ�װ�Ļ���ɾ�����ȸ���Ŀ¼
     {
 
         SharedPreferences perference = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
         String appVersion = ApplicationUtil.getApplicationVersion();
-        if(!appVersion.equalsIgnoreCase(perference.getString("resource_app_version", "0.0.0")))//当前app 版本不等于存的版本号。肯定是覆盖安装
+        if(!appVersion.equalsIgnoreCase(perference.getString("resource_app_version", "0.0.0")))//��ǰapp �汾�����ڴ�İ汾�š��϶��Ǹ��ǰ�װ
         {
             String dataDir = getApplication().getFilesDir().getAbsolutePath();
             File packageFile = new File(dataDir+"/package");
@@ -196,33 +197,33 @@ public class AppActivity extends Cocos2dxActivity {
         }
 
         SharedPreferences.Editor editor = perference.edit();
-        editor.putString("resource_app_version", appVersion);//存下当前版本号
+        editor.putString("resource_app_version", appVersion);//���µ�ǰ�汾��
         editor.commit();
 
     }
 
     public  boolean deleteDirectory(String dir) {
-        // 如果dir不以文件分隔符结尾，自动添加文件分隔符
+        // ���dir�����ļ��ָ�����β���Զ�����ļ��ָ���
         if (!dir.endsWith(File.separator))
             dir = dir + File.separator;
         File dirFile = new File(dir);
-        // 如果dir对应的文件不存在，或者不是一个目录，则退出
+        // ���dir��Ӧ���ļ������ڣ����߲���һ��Ŀ¼�����˳�
         if ((!dirFile.exists()) || (!dirFile.isDirectory())) {
-            System.out.println("删除目录失败：" + dir + "不存在！");
+            System.out.println("ɾ��Ŀ¼ʧ�ܣ�" + dir + "�����ڣ�");
             return false;
         }
-        // 用于标识是否删除成功
+        // ���ڱ�ʶ�Ƿ�ɾ���ɹ�
         boolean flag = true;
-        // 删除文件夹中的所有文件包括子目录
+        // ɾ���ļ����е������ļ�������Ŀ¼
         File[] files = dirFile.listFiles();
         for (int i = 0; i < files.length; i++) {
-            // 删除子文件
+            // ɾ�����ļ�
             if (files[i].isFile()) {
                 flag = delFile(files[i].getAbsolutePath());
                 if (!flag)
                     break;
             }
-            // 删除子目录
+            // ɾ����Ŀ¼
             else if (files[i].isDirectory()) {
                 flag = deleteDirectory(files[i]
                         .getAbsolutePath());
@@ -231,12 +232,12 @@ public class AppActivity extends Cocos2dxActivity {
             }
         }
         if (!flag) {
-            System.out.println("删除目录失败！");
+            System.out.println("ɾ��Ŀ¼ʧ�ܣ�");
             return false;
         }
-        // 删除当前目录
+        // ɾ����ǰĿ¼
         if (dirFile.delete()) {
-            System.out.println("删除目录" + dir + "成功！");
+            System.out.println("ɾ��Ŀ¼" + dir + "�ɹ���");
             return true;
         } else {
             return false;

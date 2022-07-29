@@ -36,30 +36,30 @@ android {
         versionName "1.3.0"
         signingConfig signingConfigs.release
 
-//        externalNativeBuild {
-//            ndkBuild {
-//                if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
-//                    // skip the NDK Build step if PROP_NDK_MODE is none
-//                    targets 'cocos2djs'
-//                    arguments 'NDK_TOOLCHAIN_VERSION=clang'
-//
-//                    def module_paths = [project.file("../../../cocos2d-x"),
-//                                        project.file("../../../cocos2d-x/cocos"),
-//                                        project.file("../../../cocos2d-x/external")]
-//                    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-//                        arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
-//                    }
-//                    else {
-//                        arguments 'NDK_MODULE_PATH=' + module_paths.join(':')
-//                    }
-//
-//                    arguments '-j' + Runtime.runtime.availableProcessors()
-//                }
-//            }
-//            ndk {
-//                abiFilters PROP_APP_ABI.split(':')
-//            }
-//        }
+        externalNativeBuild {
+            ndkBuild {
+                if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
+                    // skip the NDK Build step if PROP_NDK_MODE is none
+                    targets 'cocos2djs'
+                    arguments 'NDK_TOOLCHAIN_VERSION=clang'
+
+                    def module_paths = [project.file("../../../cocos2d-x"),
+                                        project.file("../../../cocos2d-x/cocos"),
+                                        project.file("../../../cocos2d-x/external")]
+                    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                        arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
+                    }
+                    else {
+                        arguments 'NDK_MODULE_PATH=' + module_paths.join(':')
+                    }
+                    
+                    arguments '-j' + Runtime.runtime.availableProcessors()
+                }
+            }
+            ndk {
+                abiFilters PROP_APP_ABI.split(':')
+            }
+        }
     }
 
     sourceSets.main {
@@ -69,14 +69,14 @@ android {
         manifest.srcFile "AndroidManifest.xml"
     }
 
-//    externalNativeBuild {
-//        ndkBuild {
-//            if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
-//                // skip the NDK Build step if PROP_NDK_MODE is none
-//                path "jni/Android.mk"
-//            }
-//        }
-//    }
+    externalNativeBuild {
+        ndkBuild {
+            if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
+                // skip the NDK Build step if PROP_NDK_MODE is none
+                path "jni/Android.mk"
+            }
+        }
+    }
 
     signingConfigs {
 
@@ -103,11 +103,11 @@ android {
                 signingConfig signingConfigs.release
             }
 
-//            externalNativeBuild {
-//                ndkBuild {
-//                    arguments 'NDK_DEBUG=0'
-//                }
-//            }
+            externalNativeBuild {
+                ndkBuild {
+                    arguments 'NDK_DEBUG=0'
+                }
+            }
         }
 
         debug {
@@ -115,11 +115,11 @@ android {
             debuggable true
             jniDebuggable true
             renderscriptDebuggable true
-//            externalNativeBuild {
-//                ndkBuild {
-//                    arguments 'NDK_DEBUG=1'
-//                }
-//            }
+            externalNativeBuild {
+                ndkBuild {
+                    arguments 'NDK_DEBUG=1'
+                }
+            }
         }
     }
 }
@@ -155,4 +155,5 @@ dependencies {
     implementation "androidx.core:core-ktx:1.2.0"
 //    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.20'
     api 'com.tencent.mm.opensdk:wechat-sdk-android:+'
+    implementation 'com.tencent.bugly:crashreport:latest.release'
 }

@@ -33,6 +33,10 @@
 #include "cocos/scripting/js-bindings/event/EventDispatcher.h"
 #include "cocos/scripting/js-bindings/manual/jsb_classtype.hpp"
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+#include "platform/android/jni/JniHelper.h"
+#endif
+
 USING_NS_CC;
 
 AppDelegate::AppDelegate(int width, int height) : Application("Cocos Game", width, height)
@@ -58,6 +62,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     se->setExceptionCallback([](const char* location, const char* message, const char* stack){
         // Send exception information to server like Tencent Bugly.
         cocos2d::log("\nUncaught Exception:\n - location :  %s\n - msg : %s\n - detail : \n      %s\n", location, message, stack);
+        #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+                JniHelper::callStaticVoidMethod("com/casino/game/BuglyUtils", "postException", 5, "JSError", message, stack);
+        #elif(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+                //CrashReport::reportException(message, stack);
+        #endif
     });
 
     jsb_register_all_modules();

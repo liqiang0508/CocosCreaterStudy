@@ -1,1 +1,0 @@
-[1,0,0,[["cc.AnimationClip",["_name","_duration","curveData"],1,11]],[[0,0,1,2,3]],[[0,"view_show",0.3,[{},"props",11,[{"opacity":[{"frame":0,"value":0,"curve":"cubicOut"},{"frame":0.3,"value":255}]},"scale",12,[[[{"frame":0,"curve":"cubicOut"},"value",8,[0,0,0]],[{"frame":0.25},"value",8,[0,1.1,1.1]],[{"frame":0.3},"value",8,[0,1,1]]],11,11,11]]]]],0,0,[],[],[]]

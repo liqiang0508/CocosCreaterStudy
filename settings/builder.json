@@ -10,19 +10,20 @@
   "startScene": "910e66c0-f310-4a44-8391-91bc62a030e5",
   "title": "hello_world",
   "webOrientation": "portrait",
-  "includeSDKBox": false,
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": false,
-  "mergeStartScene": false,
+  "mainCompressionType": "default",
+  "mainIsRemote": false,
   "optimizeHotUpdate": false,
-  "md5Cache": false,
+  "md5Cache": true,
+  "nativeMd5Cache": true,
   "encryptJs": true,
   "xxteaKey": "e2ededca-352b-49",
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
-    "REMOTE_SERVER_ROOT": "http://lee.free.vipnps.vip/hotupversion/",
-    "packageName": "org.cocos2d.helloworld"
+    "packageName": "org.cocos2d.helloworld",
+     "REMOTE_SERVER_ROOT": ""
   },
   "ios": {
     "REMOTE_SERVER_ROOT": "",
@@ -49,7 +50,5 @@
     "skipRecord": false
   },
   "appBundle": false,
-  "mainCompressionType": "default",
-  "mainIsRemote": false,
-  "nativeMd5Cache": false
+  "agreements": {}
 }

@@ -1,1 +1,0 @@
-window._CCSettings={platform:"android",groupList:["default"],collisionMatrix:[[true]],hasResourcesBundle:true,hasStartSceneBundle:false,remoteBundles:["bundleScene","Testbundle"],subpackages:[],launchScene:"db://assets/Scene/LaunchScene.fire",orientation:"",server:"http://lee.free.vipnps.vip/hotupversion/",jsList:["assets/Script/core/StringTools.js"]};
