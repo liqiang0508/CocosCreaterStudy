@@ -78,17 +78,6 @@ android {
         }
     }
 
-    signingConfigs {
-
-       release {
-            if (project.hasProperty("RELEASE_STORE_FILE")) {
-                storeFile file(RELEASE_STORE_FILE)
-                storePassword RELEASE_STORE_PASSWORD
-                keyAlias RELEASE_KEY_ALIAS
-                keyPassword RELEASE_KEY_PASSWORD
-            }
-        }
-    }
 
     buildTypes {
         release {
@@ -122,6 +111,7 @@ android {
             }
         }
     }
+    ndkVersion '24.0.8215888'
 }
 
 android.applicationVariants.all { variant ->
