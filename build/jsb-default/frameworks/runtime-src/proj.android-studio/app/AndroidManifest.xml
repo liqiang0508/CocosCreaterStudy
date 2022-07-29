@@ -52,6 +52,24 @@
                 <data android:scheme="wx05017e4a3290433a" />
             </intent-filter>
         </activity>
+
+<!--        bugly-->
+        <!-- 配置APP ID -->
+        <meta-data
+            android:name="BUGLY_APPID"
+            android:value="${bugly_app_id}" />
+        <!-- 配置APP版本号 -->
+        <meta-data
+            android:name="BUGLY_APP_VERSION"
+            android:value="${bugly_version}" />
+        <!-- 配置APP渠道号 -->
+        <meta-data
+            android:name="BUGLY_APP_CHANNEL"
+            android:value="${bugly_channel}" />
+        <!-- 配置Bugly调试模式（true或者false）-->
+        <meta-data
+            android:name="BUGLY_ENABLE_DEBUG"
+            android:value="${bugly_debug}" />
     </application>
 
     <!--    permission-->

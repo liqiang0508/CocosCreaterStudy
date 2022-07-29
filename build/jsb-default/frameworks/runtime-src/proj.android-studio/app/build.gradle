@@ -32,8 +32,8 @@ android {
         applicationId "com.tao.honour"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 130
-        versionName "1.3.0"
+        versionCode 140
+        versionName "1.4.0"
         signingConfig signingConfigs.release
 
         externalNativeBuild {
@@ -91,12 +91,16 @@ android {
             if (project.hasProperty("RELEASE_STORE_FILE")) {
                 signingConfig signingConfigs.release
             }
-
             externalNativeBuild {
                 ndkBuild {
                     arguments 'NDK_DEBUG=0'
                 }
             }
+            manifestPlaceholders = ["bugly_app_id":"59fb8ee7bc",
+                                    "bugly_version":"$defaultConfig.versionName",
+                                    "bugly_channel":"chanel_12",
+                                    "bugly_debug":"false"
+            ]
         }
 
         debug {
@@ -109,6 +113,11 @@ android {
                     arguments 'NDK_DEBUG=1'
                 }
             }
+            manifestPlaceholders = ["bugly_app_id":"59fb8ee7bc",
+                                    "bugly_version":"$defaultConfig.versionName",
+                                    "bugly_channel":"chanel_12",
+                                    "bugly_debug":"false"
+            ]
         }
     }
     ndkVersion '24.0.8215888'

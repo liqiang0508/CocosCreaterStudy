@@ -14,7 +14,7 @@ import java.util.Map;
  * description :
  */
 public class BuglyUtils {
-    public static void initSDK(Context context,String appId)
+    public static void initSDK(Context context)
     {
         CrashReport.initCrashReport(context);
         CrashReport.setDeviceModel(context, Build.MODEL);

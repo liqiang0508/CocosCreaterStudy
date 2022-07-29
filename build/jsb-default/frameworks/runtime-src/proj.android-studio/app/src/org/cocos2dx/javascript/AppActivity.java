@@ -53,7 +53,7 @@ public class AppActivity extends Cocos2dxActivity {
         super.onCreate(savedInstanceState);
         DetectCoverInstall();
 
-        BuglyUtils.initSDK(getContext(),"59fb8ee7bc");
+        BuglyUtils.initSDK(getContext());
         // Workaround in
         // https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
