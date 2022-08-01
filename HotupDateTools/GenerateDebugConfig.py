@@ -8,13 +8,15 @@ import json
 import shutil
 import ziputils
 from collections import OrderedDict
-import projectConfig
 
+# 忽略文件
 IgnorFile = [
     "CT_main.strings", "EN_main.strings", "appinfoiii.json", "NO_main.strings"
 ]
-
+# 忽略文件夹
 IgnorDir = ["res\\config", "res\\Default"]
+# exe路径
+ExePath = "E:\\CocosDashboard_1.1.1\\resources\\.editors\\Creator\\2.4.9\\CocosCreator.exe"
 
 
 #复制 src目录下面所有的文件到 dst目录下面
@@ -95,9 +97,7 @@ def BuildRes():
     print("BuildRes Start**************")
     # projectPath = os.getcwd()
     projectPath = os.path.abspath(os.path.join(os.getcwd(), "../"))
-    encodekey = projectConfig.Key
-    ExePath = projectConfig.CocosCreatorExePath
-    buildcmd = ExePath + "  --build platform=android;debug=false;template=default;xxteaKey=" + encodekey + " --path " + projectPath
+    buildcmd = ExePath + "  --build platform=android;debug=false;template=default;"  + " --path " + projectPath
     os.system(buildcmd)
     print("BuildRes end**************")
 

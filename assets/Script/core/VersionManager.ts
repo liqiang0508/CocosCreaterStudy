@@ -1,6 +1,6 @@
 
 var HttpHelper = require("HttpHelper");
-var DevicesInfo = require("Devices")
+var Devices = require("Devices")
 // var Global = require("Global")
 var GtempFolder = ""
 
@@ -371,15 +371,15 @@ export default {
                 return
             }
 
-            if (!Global.isArrContain(supportBinarys, DevicesInfo.getAppVersion()))//app版本是否支持热更新
+            if (!Global.isArrContain(supportBinarys, Devices.getAppVersion()))//app版本是否支持热更新
             {
 
-                self.callFunWithState(6, "不支持热更新的2进制版本号" + DevicesInfo.getAppVersion())
+                self.callFunWithState(6, "不支持热更新的2进制版本号" + Devices.getAppVersion())
                 return
             }
 
             //forcedBinaryVersions 强制更新
-            if (Global.isArrContain(forcedBinaryVersions, DevicesInfo.getAppVersion()))//版本在里面
+            if (Global.isArrContain(forcedBinaryVersions, Devices.getAppVersion()))//版本在里面
             {
                 self.callFunWithState(8, "强制更新", binaryUrl)
                 return

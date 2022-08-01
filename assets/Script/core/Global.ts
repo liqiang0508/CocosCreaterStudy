@@ -296,18 +296,20 @@ var Global = {
 // 根据不同包指定不同的热更新地址
 if (Global.GgameType == 1)//正式包
 {
-    Global.Ghotupdateurl = "http://192.168.0.105/hotupversion/configrelease"
+    Global.Ghotupdateurl = "http://192.168.199.31/hotupversion/configrelease"
     Global.isDebugTest = false
 }
 if (Global.GgameType == 3)//debug包
 {
-    Global.Ghotupdateurl = "http://192.168.0.105/hotupversion/configdebug"
+    Global.Ghotupdateurl = "http://192.168.199.31/hotupversion/configdebug"
     Global.isDebugTest = true
 }
 
 // 平台判断-------------------------------------
 globalThis.Global = Global
+// import WeChatModule = require("./Script/wechat/WeChatModule.js")
 var WeChatModule = require('WeChatModule');
+var Devices = require("Devices")
 var gg = {
     isAndroid: function () {
         return cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID
@@ -334,18 +336,21 @@ var chanel = {
     IOS_APPSTORE: 1,
     H5: 2,
     ANDROID_GOOGLE_PLAY: 3,
+    LOCAL_ANDROID: 4,
 
 }
 globalThis.chanel = chanel
+// 分发的渠道
 globalThis.DISTRIBUTE_CHANNEL = 0
 
 if (gg.isBrowser())//h5
 {
     globalThis.DISTRIBUTE_CHANNEL = chanel.H5;
+
 }
 else if (gg.isAndroid())//android
 {
-    globalThis.DISTRIBUTE_CHANNEL = chanel.ANDROID_GOOGLE_PLAY;
+    globalThis.DISTRIBUTE_CHANNEL = Devices.getAppChanel()//chanel.ANDROID_GOOGLE_PLAY;
 }
 else if (gg.isIOS())//ios
 {

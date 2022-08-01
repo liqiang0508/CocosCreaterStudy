@@ -16,18 +16,19 @@
   "mainIsRemote": false,
   "optimizeHotUpdate": false,
   "md5Cache": true,
-  "nativeMd5Cache": true,
+  "nativeMd5Cache": false,
   "encryptJs": true,
   "xxteaKey": "e2ededca-352b-49",
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
     "packageName": "org.cocos2d.helloworld",
-     "REMOTE_SERVER_ROOT": ""
+    "REMOTE_SERVER_ROOT": ""
   },
   "ios": {
     "REMOTE_SERVER_ROOT": "",
-    "packageName": "org.cocos2d.helloworld"
+    "packageName": "org.cocos2d.helloworld",
+    "ios_enable_jit": true
   },
   "mac": {
     "REMOTE_SERVER_ROOT": "",

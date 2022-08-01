@@ -6,8 +6,10 @@ var DevicesIos = {
     },
     getAppVersion:function(){
         cc.log("TODO DevicesIos getAppVersion")
-        return "1.3.0"
-        
+        return "1.3.0" 
+    },
+    getChanel:function(){
+        return "ios"
     }
 
 }

@@ -52,7 +52,10 @@
                 <data android:scheme="wx05017e4a3290433a" />
             </intent-filter>
         </activity>
-
+<!--        渠道-->
+        <meta-data
+            android:name="GAME_CHANNEL"
+            android:value="4"/>
 <!--        bugly-->
         <!-- 配置APP ID -->
         <meta-data

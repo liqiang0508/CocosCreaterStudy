@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-07 15:30:49
- * @LastEditTime: 2022-07-21 15:30:04
+ * @LastEditTime: 2022-08-01 19:01:50
  */
 
 import { Lee  } from "./Person";
@@ -29,8 +29,8 @@ export default class Testts extends cc.Component {
 
     start () {
         // cc.log("test ts Start"+this.text)
-        // var data = xxtea.encryptToString("adadjaojdaj","poker")
-        // console.log("encrypt_data=", data);
+        var data = xxtea.encryptToString("adadjaojdaj","poker")
+        console.log("encrypt_data=", data);
 
         // var a = (x:number):string=>{cc.log(x); return x.toString()}
         // var b = a(66666666)

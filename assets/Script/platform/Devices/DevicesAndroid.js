@@ -11,6 +11,11 @@ var DevicesAndroid = {
         //console.log("TODO DevicesAndroid getAppVersion===="+result,className)
         return result
         
+    },
+    getChanel:function(){
+        var result = jsb.reflection.callStaticMethod(className, "getChanel", "()Ljava/lang/String;");
+        //console.log("TODO DevicesAndroid getChanel===="+result,className)
+        return result
     }
 
 }

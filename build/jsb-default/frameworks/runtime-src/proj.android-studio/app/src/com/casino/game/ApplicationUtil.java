@@ -8,11 +8,14 @@ import java.util.Map;
 import java.util.UUID;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
@@ -237,16 +240,20 @@ public class ApplicationUtil {
 		return param;
 	}
 	
-	public static int getGameChanelId()
+	public static String getChanel()
 	{
-		int bret = AppActivity.getGameChanel();
-		return bret;
-	}
-	
-	public static int getLoginChanelId()
-	{
-		int bret = AppActivity.getLoginChanel();
-		return bret;
+		String defaultValue = "1";
+		try {
+			//application标签下用getApplicationinfo，如果是activity下的用getActivityInfo
+			//Sting类型的用getString，Boolean类型的getBoolean，其他具体看api
+			String value = AppActivity.getContext().getPackageManager()
+					.getApplicationInfo(AppActivity.getContext().getPackageName(), PackageManager.GET_META_DATA)
+					.metaData.getString("GAME_CHANNEL", defaultValue);
+			return value;
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+			return defaultValue;
+		}
 	}
 	
 	public static String getToken()

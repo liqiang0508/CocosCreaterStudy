@@ -260,13 +260,4 @@ public class AppActivity extends Cocos2dxActivity {
         }
         return true;
     }
-    public static int getGameChanel(){
-
-        return 1;
-    }
-    public static int getLoginChanel(){
-
-        return 1;
-    }
-
 }

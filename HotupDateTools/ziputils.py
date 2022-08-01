@@ -4,17 +4,17 @@ version:
 Author: liqiang
 email: 497232807@qq.com
 Date: 2020-12-31 16:05:17
-LastEditTime: 2022-01-18 13:38:41
+LastEditTime: 2022-08-01 19:21:58
 '''
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import os
 import sys
 import zipfile
-import projectConfig
+# import projectConfig
 global azip
 
-
+Zip_Exe = os.path.join(os.getcwd(), "7za.exe")
 # 初始化一个zip文件
 def ZipInit(targetzip):
     global azip
@@ -60,7 +60,7 @@ def ZipExtral(targetzip, destpath):
 #压缩的时候只想把一个目录下的所有文件压缩，文件目录使用.\\dir\\* 这样压缩的zip不包含根目录
 def zipFolder(saveZipName, zipFolder, pwd=None):  #压缩文件
 
-    cmd = projectConfig.Zip_Exe + " a " + saveZipName + " " + zipFolder + "  -mx=9 -mm=LZMA"
+    cmd = Zip_Exe + " a " + saveZipName + " " + zipFolder + "  -mx=9 -mm=LZMA"
     if pwd:
         cmd = cmd + " -p" + pwd
     print(cmd)
@@ -74,7 +74,7 @@ def extralFolder(zippath, savefoler, pwd=None):  #解压zip
     if not os.path.exists(savefoler):
         os.makedirs(savefoler)
 
-    cmd = projectConfig.Zip_Exe + " x -o " + savefoler + " " + zippath
+    cmd = Zip_Exe + " x -o " + savefoler + " " + zippath
 
     if pwd:
         cmd = cmd + " -p" + pwd

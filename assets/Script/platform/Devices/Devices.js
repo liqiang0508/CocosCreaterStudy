@@ -9,6 +9,10 @@ var Devices = {
     getAppVersion:function(){
         return this.instance.getAppVersion()
         
+    },
+    getAppChanel:function(){
+        return this.instance.getChanel()
+        
     }
 
 

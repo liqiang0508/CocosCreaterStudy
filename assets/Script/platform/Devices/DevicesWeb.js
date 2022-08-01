@@ -9,11 +9,12 @@ var DevicesWeb = {
         }
         return id
     },
-
     getAppVersion:function(){
-        
+
         return "1.3.0"
-        
+    },
+    getChanel:function(){
+        return "web"
     }
     
 
