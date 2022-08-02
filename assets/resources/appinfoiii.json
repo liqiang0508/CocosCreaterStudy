@@ -1,9 +1,9 @@
 {
-    "scriptVersion": 151,
+    "scriptVersion": 157,
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc",
-            "md5": "427242554B3F4BED680EB95EFDA8F59B",
+            "md5": "4A849265607B5155D70282642E6D3C91",
             "size": 419728
         },
         {
@@ -53,8 +53,8 @@
         },
         {
             "filename": "assets/main/index.jsc",
-            "md5": "89DB15405C94A48092B90C5154D8B433",
-            "size": 71524
+            "md5": "687E39EC16C7A97C5529B1877AC92AAE",
+            "size": 71620
         },
         {
             "filename": "assets/main/import/23/2335bd42-26a9-441a-b92e-8d482d3c7f28.json",
@@ -113,8 +113,8 @@
         },
         {
             "filename": "assets/main/import/7e/7ecab21f-96fc-40c4-9a24-6f0532744388.json",
-            "md5": "6207BC846C8764AAFEAFD46A980A0E66",
-            "size": 5226
+            "md5": "ECCB5353EDB476283CB4788D74AA012B",
+            "size": 5234
         },
         {
             "filename": "assets/main/import/7f/7ff66ea4-0a20-4930-bf86-b9fd6696a3d1.json",

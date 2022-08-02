@@ -38,7 +38,7 @@
 #endif
 
 USING_NS_CC;
-
+using namespace std;
 AppDelegate::AppDelegate(int width, int height) : Application("Cocos Game", width, height)
 {
 }
@@ -49,6 +49,17 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+	//搜索路径
+    string tDir = FileUtils::getInstance()->getWritablePath();
+    FileUtils::getInstance()->createDirectory(tDir + "package/");
+    FileUtils::getInstance()->createDirectory(tDir + "packageTemp/");
+    FileUtils::getInstance()->createDirectory(tDir + "config/");
+
+
+    FileUtils::getInstance()->addSearchPath(tDir + "package/src/",true);
+    FileUtils::getInstance()->addSearchPath(tDir + "package/res/",true);
+    FileUtils::getInstance()->addSearchPath(tDir + "package/",true);
+	
     se::ScriptEngine* se = se::ScriptEngine::getInstance();
 
     jsb_set_xxtea_key("e2ededca-352b-49");

@@ -103,7 +103,7 @@ cc.Class({
         // console.log("decrypt_data==", decrypt_data);
 
         //some test
-        // cc.log("window.DISTRIBUTE_CHANNEL ==", window.DISTRIBUTE_CHANNEL, cc.sys.isNative, cc.sys.os)
+        // cc.log("globalThis.DISTRIBUTE_CHANNEL ==", globalThis.DISTRIBUTE_CHANNEL, cc.sys.isNative, cc.sys.os)
         // i18n.init("zh")
         // cc.log("i18n===", i18n.t("STR_COREPLAY_BUTTON_FOLD"))
 

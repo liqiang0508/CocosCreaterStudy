@@ -72,13 +72,12 @@ cc.Class({
     },
     start() {
 
-        cc.log("渠道号===", window.DISTRIBUTE_CHANNEL)
+        cc.log("渠道号===", globalThis.DISTRIBUTE_CHANNEL)
         cc.sys.localStorage.setItem('debugId', 724001)
         this.count = 0
 
         if (cc && cc.sys.isNative) {//native 
-
-            if (window.DISTRIBUTE_CHANNEL == window.chanel.WIN32)// 自带的模拟器不进行热更新   
+            if (globalThis.DISTRIBUTE_CHANNEL == window.chanel.WIN32)// 自带的模拟器不进行热更新   
             {
                 // cc.log("模拟器不热更新")
                 // VersionManager.parseLocalCfg()//直接读取本地配置版本号 便于登录界面右下角展示

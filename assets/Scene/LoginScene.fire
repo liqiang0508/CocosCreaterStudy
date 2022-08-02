@@ -2278,7 +2278,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 22.25,
+      "width": 80,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2330,8 +2330,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "5",
-    "_N$string": "5",
+    "_string": "你好",
+    "_N$string": "你好",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -2356,7 +2356,7 @@
       "__id__": 47
     },
     "_enabled": true,
-    "i18n_string": "2005",
+    "i18n_string": "2001",
     "i18n_params": [],
     "_id": "67x/WECddNW5wPM9Lm28u+"
   },
@@ -2378,9 +2378,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 0,
-      "b": 0,
+      "r": 157,
+      "g": 54,
+      "b": 48,
       "a": 255
     },
     "_contentSize": {
@@ -2472,9 +2472,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 255,
-      "b": 0,
+      "r": 89,
+      "g": 53,
+      "b": 60,
       "a": 255
     },
     "_contentSize": {

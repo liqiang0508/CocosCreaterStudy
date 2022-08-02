@@ -1,7 +1,6 @@
 
-var HttpHelper = require("HttpHelper");
-var Devices = require("Devices")
-// var Global = require("Global")
+import HttpHelper = require("./../../Script/online/HttpHelper.js")
+import Devices = require("./../../Script/platform/Devices/Devices.js")
 var GtempFolder = ""
 
 var GHotUpFolder = ""
@@ -64,7 +63,7 @@ export default {
                 this.callFunWithState(2, "获取MD5配置文件失败")
                 return
             }
-            if (!Global.isjson(data)) {
+            if (!globalThis.Global.isjson(data)) {
                 this.callFunWithState(11, "远程md5-json不合法")
                 return
             }
@@ -148,20 +147,20 @@ export default {
             var fileurl = BaseUrl + fileName//下载文件的url
             var filetempPath = GtempFolder + fileName//临时目录
             var filerealPath = GHotUpFolder + fileName//真实目录
-            var tempDir = GtempFolder + Global.getDirByUrl(fileName)//临时文件夹
-            var realDir = GHotUpFolder + Global.getDirByUrl(fileName)//临时文件夹
+            var tempDir = GtempFolder + globalThis.Global.getDirByUrl(fileName)//临时文件夹
+            var realDir = GHotUpFolder + globalThis.Global.getDirByUrl(fileName)//临时文件夹
             // console.log("fileName====",fileName)
-            Global.createDir(tempDir)//创建临时文件夹
-            Global.createDir(realDir)//创建真实文件夹
+            globalThis.Global.createDir(tempDir)//创建临时文件夹
+            globalThis.Global.createDir(realDir)//创建真实文件夹
 
             downFileList[index]["tempfile"] = filetempPath//临时文件路径
             downFileList[index]["realfile"] = filerealPath//正式文件路径
             // console.log("index====",index, filetempPath,filerealPath)
 
             cc.log("下载=====", fileurl)
-            Global.downFile(fileurl, function (data) {
+            globalThis.Global.downFile(fileurl, function (data) {
                 if (data) {
-                    Global.writeDataToFile(data, filetempPath)
+                    globalThis.Global.writeDataToFile(data, filetempPath)
 
                     self.downedSize = self.downedSize + fileSize//记录已下载文件的大小
 
@@ -200,9 +199,9 @@ export default {
             var tempfilePath = data[index]["tempfile"]
             var realfilePath = data[index]["realfile"]
             // console.log("tempfilePath===",tempfilePath,realfilePath);
-            var filedata = Global.getDataFromFile(tempfilePath)
+            var filedata = globalThis.Global.getDataFromFile(tempfilePath)
             if (filedata != null) {
-                Global.writeDataToFile(filedata, realfilePath)
+                globalThis.Global.writeDataToFile(filedata, realfilePath)
                 if (self.moveStep < data.length - 1) {
                     self.moveStep = self.moveStep + 1
                     moveOneFile(self.moveStep)
@@ -233,8 +232,8 @@ export default {
     MoveDone: function () {
         cc.log("移动成功****")
         var str = JSON.stringify(this.remoteMd5Cfg, null, 4)
-        Global.createDir(jsb.fileUtils.getWritablePath() + "config")
-        Global.writeStringToFile(str, GtempCfg)//移动完成后再把远程的配置存在可读写路径下的config目录
+        globalThis.Global.createDir(jsb.fileUtils.getWritablePath() + "config")
+        globalThis.Global.writeStringToFile(str, GtempCfg)//移动完成后再把远程的配置存在可读写路径下的config目录
 
         this.callFunWithState(100, "更新成功")
     },
@@ -275,7 +274,7 @@ export default {
         if (jsb.fileUtils.isFileExist(path)) {//先看包外是否有配置 包外有先读取包外的
             console.log("读取包外配置");
             var data = jsb.fileUtils.getStringFromFile(path)
-            if (Global.isjson(data))//判断是不是合法的json
+            if (globalThis.Global.isjson(data))//判断是不是合法的json
             {
                 self.localCfg = JSON.parse(data)
                 //拉取远程配置
@@ -349,7 +348,7 @@ export default {
                 self.callFunWithState(1, "获取版本配置文件失败")
                 return
             }
-            if (!Global.isjson(data))//判断是不是合法的json
+            if (!globalThis.Global.isjson(data))//判断是不是合法的json
             {
                 self.callFunWithState(10, "远程配置json不合法")
                 return
@@ -365,13 +364,13 @@ export default {
             var debugUIDs = self.remoteCfg["debugUIDs"]//测试id组
             var binaryUrl = self.remoteCfg["binaryUrl"][distributeChanel] || self.remoteCfg[0]//商店地址  根据远程配置的渠道号对应的数组
             var localId = cc.sys.localStorage.getItem('debugId');//本地存的上次登录的玩家id
-            if (!Global.isArrContain(channels, distributeChanel))//app版本是否支持热更新
+            if (!globalThis.Global.isArrContain(channels, distributeChanel))//app版本是否支持热更新
             {
                 self.callFunWithState(7, "不支持热更新的渠道号" + distributeChanel)
                 return
             }
 
-            if (!Global.isArrContain(supportBinarys, Devices.getAppVersion()))//app版本是否支持热更新
+            if (!globalThis.Global.isArrContain(supportBinarys, Devices.getAppVersion()))//app版本是否支持热更新
             {
 
                 self.callFunWithState(6, "不支持热更新的2进制版本号" + Devices.getAppVersion())
@@ -379,7 +378,7 @@ export default {
             }
 
             //forcedBinaryVersions 强制更新
-            if (Global.isArrContain(forcedBinaryVersions, Devices.getAppVersion()))//版本在里面
+            if (globalThis.Global.isArrContain(forcedBinaryVersions, Devices.getAppVersion()))//版本在里面
             {
                 self.callFunWithState(8, "强制更新", binaryUrl)
                 return
@@ -389,7 +388,7 @@ export default {
             console.log("主包远程debug版本号==" + debugscriptVersion)
             console.log("主包远程版本号==" + remotescriptVersion)
 
-            if (Global.isArrContain(debugUIDs, localId))//先看是不是测试玩家
+            if (globalThis.Global.isArrContain(debugUIDs, localId))//先看是不是测试玩家
             {
                 // console.log("是测试玩家",parseInt(localscriptVersion) != parseInt(debugscriptVersion))
                 if (parseInt(localscriptVersion) != parseInt(debugscriptVersion)) {

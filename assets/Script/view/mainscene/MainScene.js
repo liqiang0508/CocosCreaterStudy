@@ -27,7 +27,7 @@ cc.Class({
     
 
         var Text = cc.director.getScene().getChildByName('Canvas').getChildByName("label")
-        Text.getComponent(cc.Label).string = "设备版本号："+DevicesInfo.getAppVersion()+"\n"+"chanle"+window.DISTRIBUTE_CHANNEL
+        Text.getComponent(cc.Label).string = "设备版本号："+DevicesInfo.getAppVersion()+"\n"+"chanle"+globalThis.DISTRIBUTE_CHANNEL
         
 
         // cc.director.getScheduler().schedule(function(){

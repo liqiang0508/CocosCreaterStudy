@@ -288,7 +288,7 @@ var Global = {
             cc.game.end()
         }
     },
-    Ghotupdateurl: "xxx", // 热更新地址
+    Ghotupdateurl: "请配置热更新地址", // 热更新地址
     GgameType: 1  // 1正式包 3debug 注意1前面不要有空格
 
 }
@@ -297,9 +297,8 @@ var Global = {
 
 // 平台判断-------------------------------------
 globalThis.Global = Global
-// import WeChatModule = require("./Script/wechat/WeChatModule.js")
-var WeChatModule = require('WeChatModule');
-var Devices = require("Devices")
+import WeChatModule = require("./../../Script/wechat/WeChatModule.js")
+import Devices = require("./../../Script/platform/Devices/Devices.js")
 var gg = {
     isAndroid: function () {
         return cc.sys.isNative && cc.sys.os == cc.sys.OS_ANDROID
@@ -358,6 +357,7 @@ else if (gg.isIOS())//ios
 else //其他的都是算模拟器
 {
     globalThis.DISTRIBUTE_CHANNEL = chanel.WIN32;
+    Global.Ghotupdateurl = serverInfo[globalThis.DISTRIBUTE_CHANNEL].hotUrl
 }
 // 渠道定义------------------------
 
