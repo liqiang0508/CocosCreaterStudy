@@ -96,11 +96,6 @@ android {
                     arguments 'NDK_DEBUG=0'
                 }
             }
-            manifestPlaceholders = ["bugly_app_id":"59fb8ee7bc",
-                                    "bugly_version":"$defaultConfig.versionName",
-                                    "bugly_channel":"chanel_12",
-                                    "bugly_debug":"false"
-            ]
         }
 
         debug {
@@ -113,14 +108,35 @@ android {
                     arguments 'NDK_DEBUG=1'
                 }
             }
-            manifestPlaceholders = ["bugly_app_id":"59fb8ee7bc",
-                                    "bugly_version":"$defaultConfig.versionName",
-                                    "bugly_channel":"chanel_12",
-                                    "bugly_debug":"false"
-            ]
+
         }
     }
     ndkVersion '24.0.8215888'
+    flavorDimensions "flavor"
+    productFlavors {
+        local{
+            dimension "flavor"
+            applicationId 'com.tao.honour_local'
+            manifestPlaceholders = ["BUGLY_ID":"59fb8ee7bc",
+                                    "BUGLY_VERSION":"$defaultConfig.versionName",
+                                    "BUGLY_CHANNEL":"local",
+                                    "BUGLY_DEBUG":"false",
+                                    "APP_NAME":"cocos_local",
+                                    "GAME_CHANNEL":"4"
+            ]
+        }
+        pro {
+            dimension "flavor"
+            applicationId 'com.tao.honour'
+            manifestPlaceholders = ["BUGLY_ID":"59fb8ee7bc",
+                                    "BUGLY_VERSION":"$defaultConfig.versionName",
+                                    "BUGLY_CHANNEL":"pro",
+                                    "BUGLY_DEBUG":"false",
+                                    "APP_NAME":"cocos_pro",
+                                    "GAME_CHANNEL":"4"
+            ]
+        }
+    }
 }
 
 android.applicationVariants.all { variant ->
