@@ -124,6 +124,7 @@ android {
                                     "APP_NAME":"cocos_local",
                                     "GAME_CHANNEL":"4"
             ]
+            signingConfig signingConfigs.release
         }
         pro {
             dimension "flavor"
@@ -135,7 +136,16 @@ android {
                                     "APP_NAME":"cocos_pro",
                                     "GAME_CHANNEL":"4"
             ]
+            signingConfig signingConfigs.release
         }
+    }
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                //在这里修改apk文件名
+                outputFileName = "creater-${variant.name}-v${variant.versionName}(${variant.versionCode}).apk"
+            }
     }
 }
 
