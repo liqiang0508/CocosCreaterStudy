@@ -5,10 +5,10 @@
     "770x",
     "-----------"
   ],
-  "scriptVersion": 149,
+  "scriptVersion": 151,
   "baseUrl": "http://192.168.199.31/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
-  "debugScriptVersion": 149,
+  "debugScriptVersion": 151,
   "debugBaseUrl": "http://192.168.199.31/hotupversion/Script_%s/",
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [
@@ -25,6 +25,7 @@
     "1",
     "2",
     "3",
+    "4",
     "-----------"
   ],
   "subgames": {
@@ -45,7 +46,7 @@
     "-----------",
     "x.x.x",
     "1.3.0",
-    "1.0",
+    "1.4.0",
     "-----------"
   ],
   "forcedBinaryVersions": [

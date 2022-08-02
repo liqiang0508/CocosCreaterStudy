@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -242,18 +243,14 @@ public class ApplicationUtil {
 	
 	public static String getChanel()
 	{
-		String defaultValue = "1";
+		String channel = null;
 		try {
-			//application标签下用getApplicationinfo，如果是activity下的用getActivityInfo
-			//Sting类型的用getString，Boolean类型的getBoolean，其他具体看api
-			String value = AppActivity.getContext().getPackageManager()
-					.getApplicationInfo(AppActivity.getContext().getPackageName(), PackageManager.GET_META_DATA)
-					.metaData.getString("GAME_CHANNEL", defaultValue);
-			return value;
-		} catch (PackageManager.NameNotFoundException e) {
+			ApplicationInfo ai = AppActivity.getContext().getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+			channel = String.valueOf(ai.metaData.getInt("GAME_CHANNEL"));
+		} catch (NameNotFoundException e) {
 			e.printStackTrace();
-			return defaultValue;
 		}
+		return  channel;
 	}
 	
 	public static String getToken()

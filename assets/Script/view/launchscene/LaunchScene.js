@@ -186,7 +186,7 @@ cc.Class({
             }
             else {//热更新error 
 
-                UITool.showAlert("ErrorCode=====" + code+"\n是否重试", [], (index) => {
+                UITool.showAlert("ErrorCode=====" + code+"\n是否重试", ["yes","no"], (index) => {
                     if (index == 0) {
                         this.goLoginScene()//
                     }else

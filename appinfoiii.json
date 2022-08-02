@@ -1,5 +1,5 @@
 {
-    "scriptVersion": 150,
+    "scriptVersion": 151,
     "files": [
         {
             "filename": "src/cocos2d-jsb.jsc",
@@ -53,8 +53,8 @@
         },
         {
             "filename": "assets/main/index.jsc",
-            "md5": "CCAAF8918C4F44BB7F3D62C3624AC751",
-            "size": 71140
+            "md5": "89DB15405C94A48092B90C5154D8B433",
+            "size": 71524
         },
         {
             "filename": "assets/main/import/23/2335bd42-26a9-441a-b92e-8d482d3c7f28.json",

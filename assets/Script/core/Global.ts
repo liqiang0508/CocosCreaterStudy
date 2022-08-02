@@ -293,17 +293,7 @@ var Global = {
 
 }
 
-// 根据不同包指定不同的热更新地址
-if (Global.GgameType == 1)//正式包
-{
-    Global.Ghotupdateurl = "http://192.168.199.31/hotupversion/configrelease"
-    Global.isDebugTest = false
-}
-if (Global.GgameType == 3)//debug包
-{
-    Global.Ghotupdateurl = "http://192.168.199.31/hotupversion/configdebug"
-    Global.isDebugTest = true
-}
+
 
 // 平台判断-------------------------------------
 globalThis.Global = Global
@@ -339,6 +329,13 @@ var chanel = {
     LOCAL_ANDROID: 4,
 
 }
+var serverInfo = {
+    [chanel.WIN32]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
+    [chanel.IOS_APPSTORE]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
+    [chanel.H5]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
+    [chanel.ANDROID_GOOGLE_PLAY]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
+    [chanel.LOCAL_ANDROID]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
+}
 globalThis.chanel = chanel
 // 分发的渠道
 globalThis.DISTRIBUTE_CHANNEL = 0
@@ -350,11 +347,13 @@ if (gg.isBrowser())//h5
 }
 else if (gg.isAndroid())//android
 {
-    globalThis.DISTRIBUTE_CHANNEL = Devices.getAppChanel()//chanel.ANDROID_GOOGLE_PLAY;
+    globalThis.DISTRIBUTE_CHANNEL = Devices.getAppChanel()
+    Global.Ghotupdateurl = serverInfo[globalThis.DISTRIBUTE_CHANNEL].hotUrl
 }
 else if (gg.isIOS())//ios
 {
     globalThis.DISTRIBUTE_CHANNEL = chanel.IOS_APPSTORE;
+    Global.Ghotupdateurl = serverInfo[globalThis.DISTRIBUTE_CHANNEL].hotUrl
 }
 else //其他的都是算模拟器
 {
