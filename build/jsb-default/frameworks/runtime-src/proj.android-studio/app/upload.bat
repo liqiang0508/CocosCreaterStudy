@@ -1,0 +1,1 @@
+java -jar buglyqq-upload-symbol.jar -appid 59fb8ee7bc -appkey c42d2836-f704-4bc4-8ba0-792cea49a403 -bundleid com.tao.honour -version 1.4.0 -platform Android -inputSymbol build\intermediates\ndkBuild\proRelease\obj\local\

@@ -117,7 +117,11 @@ android {
         local{
             dimension "flavor"
             applicationId 'com.tao.honour_local'
-            manifestPlaceholders = ["BUGLY_ID":"59fb8ee7bc",
+            versionCode 142
+            versionName "1.4.2"
+            ext.BUGLY_ID = "59fb8ee7bc"
+            ext.BUGLY_KEY = "c42d2836-f704-4bc4-8ba0-792cea49a403"
+            manifestPlaceholders = ["BUGLY_ID":ext.BUGLY_ID,
                                     "BUGLY_VERSION":"$defaultConfig.versionName",
                                     "BUGLY_CHANNEL":"local",
                                     "BUGLY_DEBUG":"false",
@@ -129,7 +133,11 @@ android {
         pro {
             dimension "flavor"
             applicationId 'com.tao.honour'
-            manifestPlaceholders = ["BUGLY_ID":"59fb8ee7bc",
+            versionCode 150
+            versionName "1.5.0"
+            ext.BUGLY_ID = "59fb8ee7bc"
+            ext.BUGLY_KEY = "c42d2836-f704-4bc4-8ba0-792cea49a403"
+            manifestPlaceholders = ["BUGLY_ID": ext.BUGLY_ID,
                                     "BUGLY_VERSION":"$defaultConfig.versionName",
                                     "BUGLY_CHANNEL":"pro",
                                     "BUGLY_DEBUG":"false",
@@ -146,9 +154,28 @@ android {
                 //在这里修改apk文件名
                 outputFileName = "creater-${variant.name}-v${variant.versionName}(${variant.versionCode}).apk"
             }
+
     }
 }
+this.gradle.buildFinished {
+    android.applicationVariants.all { variant ->
+        println "buildFinished ${variant.name}"
+        if(variant.name == "proRelease")
+        {
+            exec {
+                def cmd = "java -jar buglyqq-upload-symbol.jar -appid " + variant.getProductFlavors().ext.BUGLY_ID[0] +
+                        " -appkey " + variant.getProductFlavors().ext.BUGLY_KEY[0] + " -bundleid " + applicationId + " -version " + versionName +
+                        " -platform Android -inputSymbol ${projectDir}/build/intermediates/ndkBuild/${variant.name}/obj/local"
+                if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                    commandLine 'cmd', '/c', cmd
+                } else {
+                    commandLine 'bash', '-c', cmd
+                }
+            }
 
+        }
+    }
+}
 android.applicationVariants.all { variant ->
     // delete previous files first
     delete "${buildDir}/intermediates/merged_assets/${variant.dirName}"
