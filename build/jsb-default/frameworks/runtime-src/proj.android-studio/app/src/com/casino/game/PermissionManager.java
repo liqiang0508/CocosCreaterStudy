@@ -56,6 +56,7 @@ public class PermissionManager {
     //请求一个或多个权限
     public static void RequestPermission(Activity activity, String[] permissions, int code)
     {
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ActivityCompat.requestPermissions(activity,permissions,code);
         }

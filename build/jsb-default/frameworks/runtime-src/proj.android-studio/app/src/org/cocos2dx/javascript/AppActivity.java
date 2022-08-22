@@ -27,8 +27,13 @@ package org.cocos2dx.javascript;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -37,15 +42,26 @@ import android.content.res.Configuration;
 import android.util.Log;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.casino.game.ApplicationUtil;
 import com.casino.game.BuglyUtils;
 import com.casino.game.PermissionManager;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppActivity extends Cocos2dxActivity {
     public static Context context;
     public static AppActivity activity;
+    List<String> mPermissionList = new ArrayList<>();
+    public String[] permissions = new String[]{
+    };
+    private static final int PERMISSION_REQUEST = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         activity = this;
@@ -65,19 +81,70 @@ public class AppActivity extends Cocos2dxActivity {
         }
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.getInstance().init(this);
-        Boolean b = PermissionManager.CheckPermission(AppActivity.context, new String[]{android.Manifest.permission.RECORD_AUDIO});
-        Log.i("bbbbbbbbb===",b+"");
-        if(!b)//û��Ȩ��
-        {
-            if (PermissionManager.IsUserDenyPermission(activity,android.Manifest.permission.RECORD_AUDIO)==false)//��ʾ��ѡ�ˡ��������ѡ���
-            {
-            }
-            else
-            {
-                PermissionManager.RequestPermission(AppActivity.activity,new String[]{android.Manifest.permission.RECORD_AUDIO},1);
+        permissions=  new String[]{
+                android.Manifest.permission.READ_CONTACTS,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.RECORD_AUDIO
+        };
+        checkPermissions();
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSION_REQUEST:
+                for (int i = 0; i<grantResults.length; i++){
+                    if (grantResults[i] == -1){
+                        showWaringDialog();
+                        return;
+                    }
+                }
+                checkPermissions();
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                break;
+        }
+    }
+
+    private void showWaringDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(this,android.R.style.Theme_DeviceDefault_Light_Dialog_Alert)
+                .setTitle("WARNING")
+                .setMessage("Insufficient permissions, go to settings！")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                        intent.setData(Uri.fromParts("package", activity.getPackageName(), null));
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        activity.finish();
+                    }
+                })
+                .show();
+    }
+
+    private void checkPermissions(){
+        mPermissionList.clear();
+        //判断哪些权限未授予
+        for (int i = 0; i < permissions.length; i++) {
+            if (ContextCompat.checkSelfPermission(this, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
+                mPermissionList.add(permissions[i]);
             }
         }
 
+        if (mPermissionList.isEmpty()) {
+
+        } else {
+            //请求权限方法
+            String[] permissions = mPermissionList.toArray(new String[mPermissionList.size()]);//将List转为数组
+            PermissionManager.RequestPermission(AppActivity.activity,permissions,PERMISSION_REQUEST);
+        }
     }
 
     @Override
