@@ -119,13 +119,14 @@ android {
             applicationId 'com.tao.honour_local'
             versionCode 142
             versionName "1.4.2"
+            ext.APP_NAME = "cocos_local"
             ext.BUGLY_ID = "59fb8ee7bc"
             ext.BUGLY_KEY = "c42d2836-f704-4bc4-8ba0-792cea49a403"
             manifestPlaceholders = ["BUGLY_ID":ext.BUGLY_ID,
                                     "BUGLY_VERSION":"$defaultConfig.versionName",
                                     "BUGLY_CHANNEL":"local",
                                     "BUGLY_DEBUG":"false",
-                                    "APP_NAME":"cocos_local",
+                                    "APP_NAME":ext.APP_NAME,
                                     "GAME_CHANNEL":"4"
             ]
             signingConfig signingConfigs.release
@@ -135,13 +136,14 @@ android {
             applicationId 'com.tao.honour'
             versionCode 150
             versionName "1.5.0"
+            ext.APP_NAME = "cocos_pro"
             ext.BUGLY_ID = "59fb8ee7bc"
             ext.BUGLY_KEY = "c42d2836-f704-4bc4-8ba0-792cea49a403"
             manifestPlaceholders = ["BUGLY_ID": ext.BUGLY_ID,
                                     "BUGLY_VERSION":"$defaultConfig.versionName",
                                     "BUGLY_CHANNEL":"pro",
                                     "BUGLY_DEBUG":"false",
-                                    "APP_NAME":"cocos_pro",
+                                    "APP_NAME":ext.APP_NAME,
                                     "GAME_CHANNEL":"4"
             ]
             signingConfig signingConfigs.release
