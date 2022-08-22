@@ -157,25 +157,7 @@ android {
 
     }
 }
-this.gradle.buildFinished {
-    android.applicationVariants.all { variant ->
-        println "buildFinished ${variant.name}"
-        if(variant.name == "proRelease")
-        {
-            exec {
-                def cmd = "java -jar buglyqq-upload-symbol.jar -appid " + variant.getProductFlavors().ext.BUGLY_ID[0] +
-                        " -appkey " + variant.getProductFlavors().ext.BUGLY_KEY[0] + " -bundleid " + applicationId + " -version " + versionName +
-                        " -platform Android -inputSymbol ${projectDir}/build/intermediates/ndkBuild/${variant.name}/obj/local"
-                if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                    commandLine 'cmd', '/c', cmd
-                } else {
-                    commandLine 'bash', '-c', cmd
-                }
-            }
 
-        }
-    }
-}
 android.applicationVariants.all { variant ->
     // delete previous files first
     delete "${buildDir}/intermediates/merged_assets/${variant.dirName}"
@@ -195,6 +177,21 @@ android.applicationVariants.all { variant ->
             from "${sourceDir}/main.js"
             from "${sourceDir}/project.json"
             into outputDir
+        }
+
+        if(variant.name == "proRelease")
+        {
+            exec {
+                def cmd = "java -jar buglyqq-upload-symbol.jar -appid " + variant.getProductFlavors().ext.BUGLY_ID[0] +
+                        " -appkey " + variant.getProductFlavors().ext.BUGLY_KEY[0] + " -bundleid " + applicationId + " -version " + versionName +
+                        " -platform Android -inputSymbol ${projectDir}/build/intermediates/ndkBuild/${variant.name}/obj/local"
+                if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                    commandLine 'cmd', '/c', cmd
+                } else {
+                    commandLine 'bash', '-c', cmd
+                }
+            }
+
         }
     }
 }
