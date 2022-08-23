@@ -123,7 +123,7 @@ android {
             ext.BUGLY_ID = "59fb8ee7bc"
             ext.BUGLY_KEY = "c42d2836-f704-4bc4-8ba0-792cea49a403"
             manifestPlaceholders = ["BUGLY_ID":ext.BUGLY_ID,
-                                    "BUGLY_VERSION":"$defaultConfig.versionName",
+                                    "BUGLY_VERSION":versionName,
                                     "BUGLY_CHANNEL":"local",
                                     "BUGLY_DEBUG":"false",
                                     "APP_NAME":ext.APP_NAME,
@@ -134,13 +134,13 @@ android {
         pro {
             dimension "flavor"
             applicationId 'com.tao.honour'
-            versionCode 150
-            versionName "1.5.0"
+            versionCode 155
+            versionName "1.5.5"
             ext.APP_NAME = "cocos_pro"
             ext.BUGLY_ID = "59fb8ee7bc"
             ext.BUGLY_KEY = "c42d2836-f704-4bc4-8ba0-792cea49a403"
             manifestPlaceholders = ["BUGLY_ID": ext.BUGLY_ID,
-                                    "BUGLY_VERSION":"$defaultConfig.versionName",
+                                    "BUGLY_VERSION":versionName,
                                     "BUGLY_CHANNEL":"pro",
                                     "BUGLY_DEBUG":"false",
                                     "APP_NAME":ext.APP_NAME,
