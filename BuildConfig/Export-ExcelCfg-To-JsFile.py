@@ -6,33 +6,31 @@ import os
 import shutil
 import sys
 import xlrd
-reload(sys)
-sys.setdefaultencoding( "utf-8" )
+
 # print openpyxl.__version__
 print("Build start****************************************************")
 
 def mymovefile(srcfile,dstfile):#移动文件
     if not os.path.isfile(srcfile):
-        print "%s not exist!"%(srcfile)
+        print("%s not exist!"%(srcfile))
     else:
         fpath,fname=os.path.split(dstfile)    #分离文件名和路径
         if len(os.path.split(dstfile))>1 and not os.path.exists(fpath):
             os.makedirs(fpath)                #创建路径
         shutil.move(srcfile,dstfile)          #移动文件
-        print "move-------> %s -> %s"%( srcfile,dstfile)
+        print("move-------> %s -> %s"%( srcfile,dstfile))
 
 def ExportFileByXlrd(file):
 	print("ExportFileByXlrd========>"+file)
 	if os.path.exists(file):
 		FileName = os.path.split(file)[1]#文件名称 xx.xlsx
 		LuaModuleName = os.path.splitext(FileName)[0]
-		outFilename = LuaModuleName+".js"#导出的lua脚本名称  xx.lua
+		outFilename = LuaModuleName+".ts"#导出的lua脚本名称  xx.lua
 
 		if os.path.exists(outFilename):
 			os.remove(outFilename)
 		
 		writeStr = "var {}={{}};\n".format(os.path.splitext(FileName)[0])
-
 		workbook = xlrd.open_workbook(file) #读取excel文件
 		sheets = workbook.sheets()
 		# print sheets
@@ -41,13 +39,14 @@ def ExportFileByXlrd(file):
 			MaxCol = sheet.ncols  #获取列表的有效列数
 			MaxRow = sheet.nrows  #获取该sheet中的有效行数
 			startrow =3 #开始行数
-			for row in xrange(startrow,MaxRow):
-				for i in xrange(0,MaxCol):
+			for row in range(startrow,MaxRow):
+				for i in range(0,MaxCol):
 					if row >= startrow:
 						key = sheet.cell(1,i).value#字段
 						key_type = sheet.cell(2,i).value#字段类型
 						ID = sheet.cell(row, 0).value #ID
 						value = sheet.cell(row, i).value #ID
+						
 						ID = int(ID)
 						
 						# 1 ID int 1
@@ -65,7 +64,7 @@ def ExportFileByXlrd(file):
 
 		#write
 		writeStr = writeStr+"module.exports =  "+LuaModuleName+";"
-		with open(outFilename,"w") as f:
+		with open(outFilename,"w",encoding="utf-8") as f:
 			f.write(writeStr)
 			f.close()
 		#move
