@@ -288,6 +288,19 @@ var Global = {
             cc.game.end()
         }
     },
+    //深拷贝
+    deepClone(obj, newObj) {
+        var newObj = newObj || {};
+        for (let key in obj) {
+            if (typeof obj[key] == 'object') {
+                newObj[key] = (obj[key].constructor === Array) ? [] : {}
+                this.deepClone(obj[key], newObj[key]);
+            } else {
+                newObj[key] = obj[key]
+            }
+        }
+        return newObj;
+    },
     Ghotupdateurl: "请配置热更新地址", // 热更新地址
     GgameType: 1  // 1正式包 3debug 注意1前面不要有空格
 
