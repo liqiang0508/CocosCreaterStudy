@@ -26,9 +26,9 @@ def ExportFileByXlrd(file):
 		FileName = os.path.split(file)[1]#文件名称 xx.xlsx
 		LuaModuleName = os.path.splitext(FileName)[0]
 		outFilename = LuaModuleName+".ts"#导出的lua脚本名称  xx.lua
-
-		if os.path.exists(outFilename):
-			os.remove(outFilename)
+		srcPath = "sheet_ts/"+outFilename
+		if os.path.exists(srcPath):
+			os.remove(srcPath)
 		
 		writeStr = "var {}={{}};\n".format(os.path.splitext(FileName)[0])
 		workbook = xlrd.open_workbook(file) #读取excel文件
@@ -64,12 +64,12 @@ def ExportFileByXlrd(file):
 
 		#write
 		writeStr = writeStr+"module.exports =  "+LuaModuleName+";"
-		with open(outFilename,"w",encoding="utf-8") as f:
+		with open(srcPath,"w",encoding="utf-8") as f:
 			f.write(writeStr)
 			f.close()
 		#move
 		desPath = "../assets/Script/config/"+outFilename
-		mymovefile(outFilename,desPath)
+		mymovefile(srcPath,desPath)
 
 
 
@@ -123,7 +123,10 @@ def ExportFileByXlrd(file):
 '''
 
 
-targeDir = os.getcwd()#"../tableconvxls"#目标文件夹
+targeDir = "sheets"#目标文件夹
+outDir = "sheets_ts"
+if not os.path.exists(outDir):
+	os.mkdir(outDir)
 for dirpath,dirnames,filenames in os.walk(targeDir):#遍历目录下的所有文件
             for file in filenames:
                     if not file.endswith("py"):#是xlsx后缀的文件
