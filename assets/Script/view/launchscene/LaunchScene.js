@@ -19,9 +19,9 @@ cc.Class({
     onLoad() {
         cc.log("ActivityOnlineConfig==",ActivityOnlineConfig)
         var cfg = ActivityOnlineConfig
-        for (const key in cfg) {
-            cc.log(key, cfg[key]);
-          }
+        Object.entries(cfg).forEach(([k, v]) => {
+            cc.log("--",k, v);
+          })
         cc.log("launchsene onLoad")
         // console.log("protobufjs test===========")
         var Proto = require("gameProto")
