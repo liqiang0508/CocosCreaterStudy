@@ -1,6 +1,7 @@
 
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
+import ActivityOnlineConfig from "../../config/ActivityOnlineConfig"
 var xxtea = require("xxtea")
 import Lang from "zh"
 cc.Class({
@@ -16,7 +17,7 @@ cc.Class({
 
 
     onLoad() {
-
+        cc.log("ActivityOnlineConfig==",ActivityOnlineConfig)
         cc.log("launchsene onLoad")
         // console.log("protobufjs test===========")
         var Proto = require("gameProto")
