@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-07 15:30:49
- * @LastEditTime: 2022-12-14 13:39:31
+ * @LastEditTime: 2022-12-14 13:48:16
  */
 
 import { Lee  } from "./Person";
@@ -31,7 +31,7 @@ export default class Testts extends cc.Component {
     start () {
         var data = xxtea.encryptToString("adadjaojdaj","poker")
         console.log("encrypt_data=", data);
-
+        console.log("ActivityOnlineConfig==", JSON.stringify(ActivityOnlineConfig));
         this.SayHello(this.text,(data:string)=>{
             console.log("我是回调=="+data)
         })

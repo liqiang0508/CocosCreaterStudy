@@ -21,9 +21,9 @@ cc.Class({
         var b = Global.deepClone(a,b)
         b.age = 50
         b.hobby.c=9
-        cc.log(b)
-        cc.log(a)
-        cc.log("ActivityOnlineConfig==",ActivityOnlineConfig)
+        // cc.log(b)
+        // cc.log(a)
+        // cc.log("ActivityOnlineConfig==1",ActivityOnlineConfig)
         var cfg = ActivityOnlineConfig
         Object.entries(cfg).forEach(([k, v]) => {
             cc.log("ActivityOnlineConfig",k, v);
