@@ -17,10 +17,16 @@ cc.Class({
 
 
     onLoad() {
+        var a = {name:"dad",age:28,hobby:{c:6}}
+        var b = Global.deepClone(a,b)
+        b.age = 50
+        b.hobby.c=9
+        cc.log(b)
+        cc.log(a)
         cc.log("ActivityOnlineConfig==",ActivityOnlineConfig)
         var cfg = ActivityOnlineConfig
         Object.entries(cfg).forEach(([k, v]) => {
-            cc.log("--",k, v);
+            cc.log("ActivityOnlineConfig",k, v);
           })
         cc.log("launchsene onLoad")
         // console.log("protobufjs test===========")

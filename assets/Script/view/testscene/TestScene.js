@@ -3,7 +3,7 @@ var xxtea = require("xxtea")
 // let i18n = require("i18n")
 var Package = require("Package")
 var DevicesInfo = require("Devices")
-import ConstEventDefine from "../../config/ConstEventDefine"
+// import ConstEventDefine from "../../ConstEventDefine"
 const voiceNative = require("VoiceNative");
 cc.Class({
     extends: cc.Component,
@@ -143,7 +143,7 @@ cc.Class({
         //btn_EventTest
         var btn_EventTest = cc.find("uipanel/btn_EventTest", this.node)
         UITool.addBtnClick(btn_EventTest, (event) => {
-            EventManager.dispatchEvent(ConstEventDefine.TEST, { "name": "Lee123" })
+            // EventManager.dispatchEvent(ConstEventDefine.TEST, { "name": "Lee123" })
         })
 
         //load Tex
@@ -241,12 +241,12 @@ cc.Class({
             cc.log("取消录音")
         }, this)
 
-        EventManager.on(ConstEventDefine.TEST, this.EventTest)
+        // EventManager.on(ConstEventDefine.TEST, this.EventTest)
 
-        EventManager.on(ConstEventDefine.TEST, (data) => {
+        // EventManager.on(ConstEventDefine.TEST, (data) => {
 
-            console.log("EventTest===2", data)
-        })
+        //     console.log("EventTest===2", data)
+        // })
         //encryptToString 语音-》string(字符串压缩)）发送  接收后解密 存储
         // var data = jsb.fileUtils.getDataFromFile(jsb.fileUtils.getWritablePath()+"packageTemp/record.amr")
         // var endata = xxtea.encryptToString(data,"1234")//编码成字符串

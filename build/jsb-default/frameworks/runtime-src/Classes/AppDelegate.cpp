@@ -79,11 +79,10 @@ bool AppDelegate::applicationDidFinishLaunching()
                 //CrashReport::reportException(message, stack);
         #endif
     });
-
+    //throw "Division by zero condition!";
     jsb_register_all_modules();
 
     se->start();
-
     se::AutoHandleScope hs;
     jsb_run_script("jsb-adapter/jsb-builtin.js");
     jsb_run_script("main.js");

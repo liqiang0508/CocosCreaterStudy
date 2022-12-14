@@ -4386,7 +4386,10 @@ var cacheManager = require('./jsb-cache-manager');
   };
 
   skeleton.setSkeletonData = function (skeletonData) {
-    null != skeletonData.width && null != skeletonData.height && this.node.setContentSize(skeletonData.width, skeletonData.height);
+    if (null != skeletonData.width && null != skeletonData.height && 0 !== skeletonData.width && 0 !== skeletonData.height) {
+      this.node.setContentSize(skeletonData.width, skeletonData.height);
+    }
+
     var uuid = skeletonData._uuid;
 
     if (!uuid) {

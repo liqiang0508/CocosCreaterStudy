@@ -3,14 +3,15 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-07 15:30:49
- * @LastEditTime: 2022-08-01 19:01:50
+ * @LastEditTime: 2022-12-14 13:39:31
  */
 
 import { Lee  } from "./Person";
 
+import  ActivityOnlineConfig from "./config/ActivityOnlineConfig"
 
 const {ccclass, property} = cc._decorator;
-import xxtea = require("./Script/core/xxtea.js")
+import xxtea = require("./core/xxtea.js")
 @ccclass
 export default class Testts extends cc.Component {
 
@@ -28,15 +29,9 @@ export default class Testts extends cc.Component {
     // onLoad () {}
 
     start () {
-        // cc.log("test ts Start"+this.text)
         var data = xxtea.encryptToString("adadjaojdaj","poker")
         console.log("encrypt_data=", data);
 
-        // var a = (x:number):string=>{cc.log(x); return x.toString()}
-        // var b = a(66666666)
-        // cc.log(typeof(b))
-        // cc.log(this.addSum(1,2,3))
-        // cc.log(cc.ENGINE_VERSION)
         this.SayHello(this.text,(data:string)=>{
             console.log("我是回调=="+data)
         })

@@ -50,6 +50,7 @@ window.boot = function () {
                 cc.sys.BROWSER_TYPE_UC,
             ].indexOf(cc.sys.browserType) < 0);
         }
+        
 
         // Limit downloading max concurrent task to 2,
         // more tasks simultaneously may cause performance draw back on some android system / browsers.
