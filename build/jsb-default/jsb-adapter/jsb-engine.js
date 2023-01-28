@@ -721,8 +721,6 @@ cc.js.mixin(proto, {
     this.ignoreOpacityFlag();
   },
   update: function update(comp, dt) {
-    comp.node._updateWorldMatrix();
-
     _update.call(this, comp, dt);
 
     var _this$_renderData$_fl = this._renderData._flexBuffer,
@@ -3550,6 +3548,7 @@ function parsePlist(url, options, onComplete) {
 
 parser.parsePVRTex = downloader.downloadDomImage;
 parser.parsePKMTex = downloader.downloadDomImage;
+parser.parseASTCTex = downloader.downloadDomImage;
 downloader.downloadScript = downloadScript;
 downloader.register({
   // JS
@@ -3567,6 +3566,7 @@ downloader.register({
   '.image': downloadAsset,
   '.pvr': downloadAsset,
   '.pkm': downloadAsset,
+  '.astc': downloadAsset,
   // Audio
   '.mp3': downloadAsset,
   '.ogg': downloadAsset,
@@ -3620,6 +3620,7 @@ parser.register({
   // compressed texture
   '.pvr': downloader.downloadDomImage,
   '.pkm': downloader.downloadDomImage,
+  '.astc': downloader.downloadDomImage,
   '.binary': parseArrayBuffer,
   '.bin': parseArrayBuffer,
   '.dbbin': parseArrayBuffer,
