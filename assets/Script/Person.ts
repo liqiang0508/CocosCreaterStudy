@@ -2,13 +2,13 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-08-05 16:45:31
- * @LastEditTime: 2022-07-21 15:28:04
+ * @LastEditTime: 2023-01-28 11:04:47
  */
 
 export namespace Lee {
     export class Person {
-        Say(text:String): void {
-            console.log("Lee person.Say"+text)
+        Say(text: String): void {
+            console.log("Lee person.Say" + text)
         };
     }
 }

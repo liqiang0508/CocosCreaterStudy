@@ -144,7 +144,7 @@ var WeChatModule = cc.Class({
 
         if (gg.isWindows()) {
             // gg.fun.createDialog('WechatLoginView', '', false);
-            cc.log('WechatLoginView')
+            // cc.log('WechatLoginView')
             return true;
         } else {
             return this.loginWx();

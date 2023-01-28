@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2022-07-21 15:26:01
+ * @LastEditTime: 2023-01-28 11:02:54
  */
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
@@ -101,7 +101,8 @@ cc.Class({
             //         "unionid": "oL3hmuFGiJbK95lVFaBHHHXI-XhA"
             //     }
             // }
-            if (cc.sys.isNative == false) {
+            console.log("wx登录")
+            if (cc.sys.isNative == false || cc.sys.os == cc.sys.OS_WINDOWS) {
                 // console.log("Wx 登录只支持原生平台")
                 UITool.showFlotText("Wx 登录只支持原生平台")
                 return
@@ -118,8 +119,7 @@ cc.Class({
         })
 
         UITool.addBtnClick(wechatShare, () => {
-
-            if (cc.sys.isNative == false) {
+            if (cc.sys.isNative == false || cc.sys.os == cc.sys.OS_WINDOWS) {
                 // console.log("Wx 分享只支持原生平台")
                 UITool.showFlotText("Wx 分享只支持原生平台")
                 return
