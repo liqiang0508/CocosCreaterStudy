@@ -1,6 +1,5 @@
 import * as i18nLabel from "./i18nLabel";
 import * as i18nSprite from "./i18nSprite";
-import Lang from "./Lang";
 export class i18nMgr {
     private static language = "";     // 当前语言
     private static labelArr: i18nLabel.i18nLabel[] = [];        // i18nLabel 列表
@@ -82,9 +81,11 @@ export class i18nMgr {
         // import * as Text from this.language
         // this.labelData = Text
         // console.log(this.labelData)
-        this.labelData = Lang[this.language];
+        const win: any = window;
+        // console.log("win.languages", win.languages)
+        this.labelData = win.languages[this.language];
         // let url = "i18n/label/" + this.language;
-        
+
         // cc.resources.load(url, (err, data: cc.JsonAsset) => {
         //     if (err) {
         //         console.error(err);

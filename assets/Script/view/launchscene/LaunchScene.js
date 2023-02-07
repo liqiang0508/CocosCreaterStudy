@@ -17,17 +17,17 @@ cc.Class({
 
 
     onLoad() {
-        var a = {name:"dad",age:28,hobby:{c:6}}
-        var b = Global.deepClone(a,b)
+        var a = { name: "dad", age: 28, hobby: { c: 6 } }
+        var b = Global.deepClone(a, b)
         b.age = 50
-        b.hobby.c=9
+        b.hobby.c = 9
         // cc.log(b)
         // cc.log(a)
         // cc.log("ActivityOnlineConfig==1",ActivityOnlineConfig)
         var cfg = ActivityOnlineConfig
         Object.entries(cfg).forEach(([k, v]) => {
-            cc.log("ActivityOnlineConfig",k, v);
-          })
+            cc.log("ActivityOnlineConfig", k, v);
+        })
         cc.log("launchsene onLoad")
         // console.log("protobufjs test===========")
         var Proto = require("gameProto")
@@ -196,14 +196,13 @@ cc.Class({
             }
             else {//热更新error 
 
-                UITool.showAlert("ErrorCode=====" + code+"\n是否重试", ["yes","no"], (index) => {
+                UITool.showAlert("ErrorCode=====" + code + "\n是否重试", ["yes", "no"], (index) => {
                     if (index == 0) {
                         this.goLoginScene()//
-                    }else
-                    {
+                    } else {
                         this.Reboot()//失败重启
                     }
-                    
+
 
                 })
             }

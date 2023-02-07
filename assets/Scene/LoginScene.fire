@@ -2206,9 +2206,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "410fb916-8721-4663-bab8-34397391ace7"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -2330,8 +2328,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "你好",
-    "_N$string": "你好",
+    "_string": "中国",
+    "_N$string": "中国",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -2356,7 +2354,7 @@
       "__id__": 47
     },
     "_enabled": true,
-    "i18n_string": "2001",
+    "i18n_string": "2002",
     "i18n_params": [],
     "_id": "67x/WECddNW5wPM9Lm28u+"
   },
