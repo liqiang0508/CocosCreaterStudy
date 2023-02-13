@@ -2631,7 +2631,9 @@
       "__id__": 2
     },
     "_enabled": true,
-    "label": null,
+    "label": {
+      "__id__": 48
+    },
     "text": "Lee",
     "_id": "42slWT/s1ARZm0pCTrwmHp"
   }

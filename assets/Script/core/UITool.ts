@@ -2,8 +2,9 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2022-01-24 15:57:41
+ * @LastEditTime: 2023-02-13 10:10:34
  */
+import { SubGameManager } from "./SubGameManager.js"
 var UITool = {
     showWaitState: false,
     getChildNode: function (nodeObject: object, node: cc.Node) {
@@ -122,7 +123,6 @@ var UITool = {
     loadBundleScene: function (bundleName: string, finishCall: Function) {
         this.showLoading((layer) => {
             layer.updataProgress(30)
-            //@ts-ignore
             var bunldeurl = SubGameManager.getLocalBundlePath(bundleName)
             this.loadBundle(bunldeurl, { onFileProgress: (loaded, total) => console.log("bundle progress==", loaded, total) }, (err, bundle) => {
                 if (err) {

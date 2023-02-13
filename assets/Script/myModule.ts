@@ -1,14 +1,9 @@
-var myModule = {
 
-    say:function(text:string){
+var myModule = {} as any
 
-        console.log("mymodule say77=="+text)
-    }
+myModule.say = function (text: string) {
 
+    console.log("mymodule say==" + text)
 }
 
-
-
-
-
-window.myModule = myModule;
+globalThis.myModule = myModule;
