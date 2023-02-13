@@ -424,7 +424,7 @@ cc.Class({
         // btn_goslot
         var btn_goslot = cc.find("uipanel/btn_goslot", this.node)
         UITool.addBtnClick(btn_goslot, function () {
-            cc.director.loadScene("SlotScene")
+            cc.director.loadScene("slotScene")
             // var bezier = [cc.v2(-windowSize.width / 2, windowSize.height / 2), cc.v2(0, 0), cc.v2(windowSize.width / 2, windowSize.height / 2)];
             // var bezierTo = cc.bezierTo(2, bezier);
             // btn_goslot.setPosition(cc.v2(-windowSize.width / 2, windowSize.height / 2))

@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-07 15:30:49
- * @LastEditTime: 2023-02-13 10:07:03
+ * @LastEditTime: 2023-02-13 10:22:40
  */
 
 import { Lee } from "./Person";
@@ -23,6 +23,8 @@ export default class Testts extends cc.Component {
 
     })
     text: string = 'hello';
+    timer: number = null;
+
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -43,7 +45,7 @@ export default class Testts extends cc.Component {
 
         new Promise((resolve, reject) => {
             console.log("Promise======", this.label)
-            setTimeout(() => {
+            this.timer = setTimeout(() => {
                 console.log(this.label)
                 this.label.string = "666"
             }, 5000)
@@ -83,7 +85,11 @@ export default class Testts extends cc.Component {
             callback(str)
         }
     }
-
+    onDestroy() {
+        if (this.timer) {
+            clearTimeout(this.timer)
+        }
+    }
 
 
     // update (dt) {}

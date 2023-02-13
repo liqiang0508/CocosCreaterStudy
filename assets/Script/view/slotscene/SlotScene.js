@@ -4,7 +4,7 @@
  * @Author: liqiang
  * @email: 497232807@qq.com
  * @Date: 2020-12-31 16:05:17
- * @LastEditTime: 2022-02-15 19:12:05
+ * @LastEditTime: 2023-02-13 10:16:58
  */
 // Learn cc.Class:
 //  - https://docs.cocos.com/creator/manual/en/scripting/class.html
@@ -32,6 +32,10 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+        txt: {
+            default: null,
+            type: cc.Label
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -59,6 +63,7 @@ cc.Class({
                     let stopIndex = cc.math.randomRangeInt(0, 4)
                     cc.log("stopIndex", stopIndex)
                     //请求服务器停止点显示什么图片
+                    this.txt.string = stopIndex
                     SlotPanel.StopAtIndex(stopIndex, function () {
                         console.log("stop- call")
                     })
