@@ -4,9 +4,9 @@ import popBaseView from "../../core/popBaseView";
 @ccclass
 export default class Alert extends popBaseView {
 
-    mText:string = ""
-    mBtnInfo:any = []
-    mCall:Function = null;
+    mText: string = ""
+    mBtnInfo: any = []
+    mCall: Function = null;
 
     setTitle(str) {//设置提示文字
         this.mChild.text.getComponent(cc.Label).string = str;
@@ -106,9 +106,9 @@ export default class Alert extends popBaseView {
             this.dismisssAnimation()
 
         })
-        UITool.addBtnClick(this.mChild.mask, () => {
-            this.dismisssAnimation()
-        })
+        // UITool.addBtnClick(this.mChild.mask, () => {
+        //     this.dismisssAnimation()
+        // })
         this.fresh()
     }
 
