@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2023-02-13 13:59:28
+ * @LastEditTime: 2023-02-13 19:46:47
  */
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
@@ -65,7 +65,7 @@ cc.Class({
 
     start() {
         Sound.playMusic("bgm_main")
-        this.VersionText.string = DevicesInfo.getAppVersion() + VersionManager.getScriptVersion() + ")"
+        this.VersionText.string = DevicesInfo.getAppVersion() + "(" + VersionManager.getScriptVersion() + ")"
 
         var gotest = cc.find("uipanel/gotest", this.node)
         this.gotest = gotest

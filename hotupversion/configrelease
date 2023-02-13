@@ -5,10 +5,10 @@
     "770x",
     "-----------"
   ],
-  "scriptVersion": 175,
+  "scriptVersion": 176,
   "baseUrl": "http://192.168.0.106/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
-  "debugScriptVersion": 175,
+  "debugScriptVersion": 176,
   "debugBaseUrl": "http://192.168.0.106/hotupversion/Script_%s/",
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [
