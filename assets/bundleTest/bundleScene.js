@@ -4,10 +4,10 @@
  * @Author: liqiang
  * @email: 497232807@qq.com
  * @Date: 2020-12-31 16:05:17
- * @LastEditTime: 2023-02-13 14:00:30
+ * @LastEditTime: 2023-02-13 16:03:33
  */
 
-import UITool from "../../core/UITool"
+import UITool from "../Script/core/UITool"
 cc.Class({
     extends: cc.Component,
 

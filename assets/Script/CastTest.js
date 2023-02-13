@@ -1,6 +1,6 @@
 
 
-import UITool from "../../core/UITool"
+import UITool from "./core/UITool"
 const AIM_LINE_MAX_LENGTH = 1440;
 cc.Class({
     extends: cc.Component,

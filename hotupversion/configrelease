@@ -5,10 +5,10 @@
     "770x",
     "-----------"
   ],
-  "scriptVersion": 174,
+  "scriptVersion": 175,
   "baseUrl": "http://192.168.0.106/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
-  "debugScriptVersion": 174,
+  "debugScriptVersion": 175,
   "debugBaseUrl": "http://192.168.0.106/hotupversion/Script_%s/",
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [
@@ -46,7 +46,7 @@
     "-----------",
     "x.x.x",
     "1.3.0",
-    "1.4.0",
+    "1.4.2",
     "-----------"
   ],
   "forcedBinaryVersions": [

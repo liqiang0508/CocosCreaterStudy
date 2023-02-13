@@ -44,6 +44,7 @@ var Global = {
     // 获取文件数据
     getDataFromFile: function (path: string) {
         if (cc.sys.isNative) {
+            // @ts-ignore
             var data = jsb.fileUtils.getDataFromFile(path)
             return data
         }
@@ -58,6 +59,7 @@ var Global = {
     // 写文件数据
     writeDataToFile: function (data, path: string) {
         if (cc.sys.isNative) {
+            // @ts-ignore
             jsb.fileUtils.writeDataToFile(new Uint8Array(data), path);
         }
     },
