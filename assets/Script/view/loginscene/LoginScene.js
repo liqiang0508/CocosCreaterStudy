@@ -3,11 +3,11 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2023-02-13 12:50:04
+ * @LastEditTime: 2023-02-13 13:59:28
  */
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
-// var Global = require("Global")
+import UITool from "../../core/UITool"
 import PopViewManager from "PopViewManager"
 var DevicesInfo = require("Devices")
 cc.Class({

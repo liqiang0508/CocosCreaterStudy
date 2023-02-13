@@ -2,10 +2,10 @@
  * @Description: 
  * @Author: li qiang
  * @Date: 2021-12-29 14:56:57
- * @LastEditTime: 2023-02-13 10:10:34
+ * @LastEditTime: 2023-02-13 13:57:39
  */
 import { SubGameManager } from "./SubGameManager.js"
-var UITool = {
+export default {
     showWaitState: false,
     getChildNode: function (nodeObject: object, node: cc.Node) {
         var childNode: cc.Node[] = node.children
@@ -178,7 +178,7 @@ var UITool = {
             return
         }
         this.showWaitState = true
-        UITool.loadPrefabRes("prefabs/rotateLoading", function (node: cc.Node) {
+        this.loadPrefabRes("prefabs/rotateLoading", function (node: cc.Node) {
             if (node) {
                 cc.director.getScene().getChildByName("Canvas").addChild(node)
                 node.name = "rotateLoading"
@@ -234,4 +234,6 @@ var UITool = {
     }
 }
 
-globalThis.UITool = UITool;
+// export default UITool = UITool
+// globalThis.UITool = UITool;
+

@@ -4,10 +4,10 @@
  * @Author: liqiang
  * @email: 497232807@qq.com
  * @Date: 2023-01-29 15:32:54
- * @LastEditTime: 2023-01-29 16:02:01
+ * @LastEditTime: 2023-02-13 14:00:55
  */
 const { ccclass, property } = cc._decorator;
-
+import UITool from "./core/UITool"
 @ccclass
 export default class TableItem extends cc.Component {
     @property(cc.Node)

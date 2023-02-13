@@ -3,10 +3,10 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-12 11:09:31
- * @LastEditTime: 2023-02-13 11:13:40
+ * @LastEditTime: 2023-02-13 14:08:23
  */
 
-
+import UITool from "../core/UITool"
 cc.Class({
     extends: cc.Component,
 

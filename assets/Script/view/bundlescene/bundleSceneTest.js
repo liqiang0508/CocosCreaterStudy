@@ -7,7 +7,7 @@
  * @LastEditTime: 2022-01-24 17:50:51
  */
 
-
+import UITool from "../../core/UITool"
 cc.Class({
     extends: cc.Component,
 

@@ -13,6 +13,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import UITool from "../../core/UITool"
 cc.Class({
     extends: cc.Component,
 

@@ -1,6 +1,7 @@
 
 const { ccclass, property } = cc._decorator;
 import popBaseView from "../../core/popBaseView";
+import UITool from "../../core/UITool"
 @ccclass
 export default class Alert extends popBaseView {
 

@@ -3,9 +3,9 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-12 13:56:57
- * @LastEditTime: 2023-02-13 11:10:53
+ * @LastEditTime: 2023-02-13 14:05:09
  */
-
+import UITool from "../core/UITool"
 cc.Class({
     extends: cc.Component,
 
@@ -48,6 +48,7 @@ cc.Class({
         this.Score = 0
 
         var btn_pause = cc.find("uipanel/btn_pause", this.node)
+        console.log("UITool", UITool)
         UITool.addBtnClick(btn_pause, () => {
             if (globalThis.GameState == 0) {
                 globalThis.GameState = 1

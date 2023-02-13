@@ -1,6 +1,15 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: liqiang
+ * @email: 497232807@qq.com
+ * @Date: 2020-12-31 16:05:17
+ * @LastEditTime: 2023-02-13 14:00:30
+ */
 
+import UITool from "../../core/UITool"
 cc.Class({
-    extends:cc.Component,
+    extends: cc.Component,
 
     properties: {
         // foo: {
@@ -24,9 +33,9 @@ cc.Class({
 
     // onLoad () {},
 
-    start () {
-        this.btn_back = cc.find("uipanel/btn_back",this.node)
-        UITool.addBtnClick(this.btn_back,function(){
+    start() {
+        this.btn_back = cc.find("uipanel/btn_back", this.node)
+        UITool.addBtnClick(this.btn_back, function () {
 
             // cc.director.loadScene("TestScene")
         })
@@ -34,5 +43,5 @@ cc.Class({
 
     // update (dt) {},
 
- 
+
 });

@@ -2,6 +2,7 @@
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
 import ActivityOnlineConfig from "../../config/ActivityOnlineConfig"
+import UITool from "../../core/UITool"
 cc.Class({
     extends: cc.Component,
 
@@ -78,7 +79,7 @@ cc.Class({
 
     },
     start() {
-        console.log("launchsene start")
+        console.log(UITool)
         console.log("渠道号===" + globalThis.DISTRIBUTE_CHANNEL)
         cc.sys.localStorage.setItem('debugId', 724001)
         this.count = 0

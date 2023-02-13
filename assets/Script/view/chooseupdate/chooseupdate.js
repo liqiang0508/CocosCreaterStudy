@@ -1,4 +1,5 @@
 
+import UITool from "../../core/UITool"
 cc.Class({
     extends: cc.Component,
 
@@ -6,9 +7,9 @@ cc.Class({
     },
 
     // LIFE-CYCLE CALLBACKS:
- 
+
     onLoad() {
- 
+
 
         this.content = this.node.getChildByName("bg").getChildByName("ScrollView").getChildByName("view").getChildByName("content")
         this.item = this.node.getChildByName("bg").getChildByName("item")
@@ -37,18 +38,18 @@ cc.Class({
             var textNode = item.getChildByName("text")
             textNode.getComponent(cc.Label).string = items[index]["text"]
 
-            UITool.addBtnClick(item,  ()=> {
-               
+            UITool.addBtnClick(item, () => {
+
                 if (this.call) {
-                    this.call(index,this)
+                    this.call(index, this)
                 }
-               
+
             })
         };
 
     },
     onbackpress() {
-        
+
 
     },
 

@@ -2,13 +2,13 @@
  * @Description: 弹框基类
  * @Author: li qiang
  * @Date: 2021-12-31 09:53:56
- * @LastEditTime: 2022-01-16 20:09:42
+ * @LastEditTime: 2023-02-13 14:02:08
  */
 
 
 const { ccclass, property } = cc._decorator;
 import BaseComponent from "./BaseComponent";
-
+import UITool from "./UITool"
 @ccclass
 export default class popBaseView extends BaseComponent {
     mChild: any = {}

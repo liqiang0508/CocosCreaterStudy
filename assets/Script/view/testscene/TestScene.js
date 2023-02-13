@@ -1,8 +1,5 @@
 
-var xxtea = require("xxtea")
-// let i18n = require("i18n")
-var Package = require("Package")
-var DevicesInfo = require("Devices")
+import UITool from "../../core/UITool"
 import ConstEventDefine from "../../event/ConstEventDefine"
 const voiceNative = require("VoiceNative");
 cc.Class({

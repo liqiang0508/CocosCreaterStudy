@@ -1,5 +1,6 @@
 
 
+import UITool from "../../core/UITool"
 const AIM_LINE_MAX_LENGTH = 1440;
 cc.Class({
     extends: cc.Component,
@@ -21,9 +22,9 @@ cc.Class({
         //     }
         // },
         _cur_length: 0,
-        graphic_line:{
-            type:cc.Graphics,
-            default:null,
+        graphic_line: {
+            type: cc.Graphics,
+            default: null,
         }
     },
 
@@ -52,22 +53,22 @@ cc.Class({
         // this.graphic_line.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this);
         // this.graphic_line.node.on(cc.Node.EventType.TOUCH_CANCEL, this.onTouchEnd, this);
         var self = this
-        this.img = cc.find("img",this.node)
-        this.img.setPosition(cc.v2(0,0))
+        this.img = cc.find("img", this.node)
+        this.img.setPosition(cc.v2(0, 0))
         // this.img.getComponent(cc.RigidBody).linearVelocity = cc.v2(0,-200)
 
-        window.EventManager.on(this.node,"gameover",function(){
+        window.EventManager.on(this.node, "gameover", function () {
             console.log("game over====")
         })
-        var firebtn = cc.find("uipanel/firebtn",this.node)
-        UITool.addBtnClick(firebtn,(event)=>{
-            cc.log("firebtn*****vec",self.forceVec)
-            var force = cc.v2(self.forceVec.x,self.forceVec.y).mul(600000)
-            cc.log("firebtn*****force",force)
+        var firebtn = cc.find("uipanel/firebtn", this.node)
+        UITool.addBtnClick(firebtn, (event) => {
+            cc.log("firebtn*****vec", self.forceVec)
+            var force = cc.v2(self.forceVec.x, self.forceVec.y).mul(600000)
+            cc.log("firebtn*****force", force)
             this.img.getComponent(cc.RigidBody).applyForceToCenter(force)
         })
-        UITool.addBtnClick(this.node,function(event){
-            
+        UITool.addBtnClick(this.node, function (event) {
+
             // var node = cc.instantiate(self.img)
             // self.node.addChild(node)
 
@@ -76,13 +77,13 @@ cc.Class({
             // var touch2 = touches[0].getLocationInView();//屏幕坐标系  原点在左上角
             // touchLoc = node.parent.convertToNodeSpaceAR(touchLoc);
             // node.setPosition(touchLoc)
-            touchLoc =  self.img.parent.convertToNodeSpaceAR(touchLoc);
+            touchLoc = self.img.parent.convertToNodeSpaceAR(touchLoc);
             var v = self.img.getPosition().subSelf(touchLoc).normalizeSelf()
-            cc.log("v===",v)
+            cc.log("v===", v)
             self.forceVec = v
 
-            
-           
+
+
         })
 
     },
@@ -172,35 +173,35 @@ cc.Class({
 
     start() {
 
-      
 
-        
+
+
 
     },
 
-    update (dt) {
-      
+    update(dt) {
+
 
     },
 
     // 只在两个碰撞体开始接触时被调用一次
-    onBeginContact (contact, selfCollider, otherCollider) {
+    onBeginContact(contact, selfCollider, otherCollider) {
         console.log("onBeginContact")
     },
 
     // 只在两个碰撞体结束接触时被调用一次
-    onEndContact (contact, selfCollider, otherCollider) {
+    onEndContact(contact, selfCollider, otherCollider) {
         console.log("onEndContact")
     },
 
     // 每次将要处理碰撞体接触逻辑时被调用
-    onPreSolve (contact, selfCollider, otherCollider) {
+    onPreSolve(contact, selfCollider, otherCollider) {
         console.log("onPreSolve")
-        
+
     },
 
     // 每次处理完碰撞体接触逻辑时被调用
-    onPostSolve (contact, selfCollider, otherCollider) {
+    onPostSolve(contact, selfCollider, otherCollider) {
         console.log("onPostSolve")
     },
 
