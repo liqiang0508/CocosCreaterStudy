@@ -1,7 +1,6 @@
 
 // Global 函数
 var Global = {
-    isDebugTest: false,
     sayHello: function () {
 
         console.log("Global sayehello")
@@ -302,7 +301,6 @@ var Global = {
         return newObj;
     },
     Ghotupdateurl: "请配置热更新地址", // 热更新地址
-    GgameType: 1  // 1正式包 3debug 注意1前面不要有空格
 
 }
 
@@ -342,11 +340,11 @@ var chanel = {
 
 }
 var serverInfo = {
-    [chanel.WIN32]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
-    [chanel.IOS_APPSTORE]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
-    [chanel.H5]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
-    [chanel.ANDROID_GOOGLE_PLAY]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
-    [chanel.LOCAL_ANDROID]: { server: "", hotUrl: "http://192.168.199.31/hotupversion/configdebug" },
+    [chanel.WIN32]: { server: "", hotUrl: "http://192.168.0.106/hotupversion/configdebug" },
+    [chanel.IOS_APPSTORE]: { server: "", hotUrl: "http://192.168.0.106/hotupversion/configdebug" },
+    [chanel.H5]: { server: "", hotUrl: "http://192.168.0.106/hotupversion/configdebug" },
+    [chanel.ANDROID_GOOGLE_PLAY]: { server: "", hotUrl: "http://192.168.0.106/hotupversion/configrelease" },
+    [chanel.LOCAL_ANDROID]: { server: "", hotUrl: "http://192.168.0.106/hotupversion/configdebug" },
 }
 globalThis.chanel = chanel
 // 分发的渠道
@@ -360,17 +358,20 @@ if (gg.isBrowser())//h5
 else if (gg.isAndroid())//android
 {
     globalThis.DISTRIBUTE_CHANNEL = Devices.getAppChanel()
+    console.log("globalThis.DISTRIBUTE_CHANNEL1" + globalThis.DISTRIBUTE_CHANNEL)
     Global.Ghotupdateurl = serverInfo[globalThis.DISTRIBUTE_CHANNEL].hotUrl
 }
 else if (gg.isIOS())//ios
 {
     globalThis.DISTRIBUTE_CHANNEL = chanel.IOS_APPSTORE;
     Global.Ghotupdateurl = serverInfo[globalThis.DISTRIBUTE_CHANNEL].hotUrl
+    console.log("globalThis.DISTRIBUTE_CHANNEL2" + globalThis.DISTRIBUTE_CHANNEL)
 }
 else //其他的都是算模拟器
 {
     globalThis.DISTRIBUTE_CHANNEL = chanel.WIN32;
     Global.Ghotupdateurl = serverInfo[globalThis.DISTRIBUTE_CHANNEL].hotUrl
+    console.log("globalThis.DISTRIBUTE_CHANNEL3" + globalThis.DISTRIBUTE_CHANNEL)
 }
 // 渠道定义------------------------
 

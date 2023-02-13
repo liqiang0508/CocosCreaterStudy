@@ -5,11 +5,11 @@
     "770x",
     "-----------"
   ],
-  "scriptVersion": 157,
-  "baseUrl": "http://192.168.199.31/hotupversion/Script_%s/",
+  "scriptVersion": 174,
+  "baseUrl": "http://192.168.0.106/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
-  "debugScriptVersion": 157,
-  "debugBaseUrl": "http://192.168.199.31/hotupversion/Script_%s/",
+  "debugScriptVersion": 174,
+  "debugBaseUrl": "http://192.168.0.106/hotupversion/Script_%s/",
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [
     "-----------",
@@ -43,7 +43,7 @@
     "-----------",
     "x.x.x",
     "1.3.0",
-    "1.4.0",
+    "1.4.2",
     "-----------"
   ],
   "forcedBinaryVersions": [

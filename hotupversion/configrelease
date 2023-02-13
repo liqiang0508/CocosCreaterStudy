@@ -5,11 +5,11 @@
     "770x",
     "-----------"
   ],
-  "scriptVersion": 152,
-  "baseUrl": "http://192.168.199.31/hotupversion/Script_%s/",
+  "scriptVersion": 174,
+  "baseUrl": "http://192.168.0.106/hotupversion/Script_%s/",
   "configFile": "appinfoiii.json",
-  "debugScriptVersion": 152,
-  "debugBaseUrl": "http://192.168.199.31/hotupversion/Script_%s/",
+  "debugScriptVersion": 174,
+  "debugBaseUrl": "http://192.168.0.106/hotupversion/Script_%s/",
   "debugConfigFile": "appinfoiii.json",
   "debugUIDs": [
     "-----------",
@@ -29,7 +29,7 @@
     "-----------"
   ],
   "subgames": {
-    "baseUrl": "http://192.168.0.105/hotupversion/remote/",
+    "baseUrl": "http://192.168.0.106/hotupversion/remote/",
     "debugUid": [
       "------",
       "724001",

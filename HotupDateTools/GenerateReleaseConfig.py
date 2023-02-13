@@ -1,11 +1,3 @@
-'''
-Descripttion: 
-version: 
-Author: liqiang
-email: 497232807@qq.com
-Date: 2020-12-31 16:05:17
-LastEditTime: 2022-08-01 19:22:58
-'''
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 print("generateLocalConfig Start==========================")
@@ -17,7 +9,7 @@ import json
 import shutil
 import ziputils
 from collections import OrderedDict
-
+import projectConfig
 # 忽略文件
 IgnorFile = [
     "CT_main.strings", "EN_main.strings", "appinfoiii.json", "NO_main.strings"
@@ -25,7 +17,7 @@ IgnorFile = [
 # 忽略文件夹
 IgnorDir = ["res\\config", "res\\Default"]
 # exe路径
-ExePath = "E:\\CocosDashboard_1.1.1\\resources\\.editors\\Creator\\2.4.9\\CocosCreator.exe"
+ExePath = projectConfig.CocosCreatorExePath
 
 
 #复制 src目录下面所有的文件到 dst目录下面
@@ -135,6 +127,7 @@ if not os.path.exists("../hotupversion"):
 BuildRes()  #先生成编译出来的资源和脚本
 IgnorFile.append(GetAppInfoFileName())  #把appinfoiii生成的文件在生成md5里面去掉
 data = OrderedDict()
+oldscriptVersion = scriptVersion  #老的版本号
 scriptVersion = scriptVersion + 1  #版本号加1
 data["scriptVersion"] = scriptVersion
 data["files"] = []
@@ -181,17 +174,6 @@ ziputils.AddFile("src")
 ziputils.AddFile("../../appinfoiii.json")  #添加配置文件
 ziputils.ZipEnd()
 
-# 压缩之后再来生成md5
-# walk("src")#生成src的配置
-# walk("res")#生成res的配置
-# with open("../../appinfoiii.json","w") as f:#保存md5配置文件
-# 	f.write(json.dumps(data,indent=4))
-# 	f.close()
-
-# #配置文件移动到热更新资源没了和项目目录
-# copyFile("../../appinfoiii.json","../../assets/resources/appinfoiii.json")#生成最新的配置复制到项目中
-# copyFile("../../appinfoiii.json","../../hotupversion/Script_"+str(scriptVersion)+"/appinfoiii.json")#配置文件移动到hotupversion文件夹
-
 # move移动zip包到上一层目录
 moveFile("Script_" + str(scriptVersion) + ".zip",
          "../Script_" + str(scriptVersion) + ".zip")
@@ -202,4 +184,20 @@ BuildRes()  #上面生成最新的配置 所以还要编译一次
 
 print("GenerateReleaseConfig  Script_" + str(scriptVersion) +
       "/res   End==========================")
+#修改hotupversion 的 configrelease
+os.chdir("../hotupversion")
+configrelease = "configrelease"
+data = None
+with open(configrelease, "r") as f:
+    data = f.read()
+    f.close()
+
+print("oldscriptVersion",oldscriptVersion,scriptVersion)
+data = data.replace('\"scriptVersion\": ' + str(oldscriptVersion),
+                    '\"scriptVersion\": ' + str(scriptVersion))
+data = data.replace('\"debugScriptVersion\": ' + str(oldscriptVersion),
+                    '\"debugScriptVersion\": ' + str(scriptVersion))
+with open(configrelease, "w") as f:
+    f.write(data)
+    f.close()
 os.system('pause')

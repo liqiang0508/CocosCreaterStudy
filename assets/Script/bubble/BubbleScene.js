@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-12 13:56:57
- * @LastEditTime: 2022-01-22 19:53:11
+ * @LastEditTime: 2023-02-13 11:10:53
  */
 
 cc.Class({
@@ -33,8 +33,8 @@ cc.Class({
 
     start() {
         this.ball = cc.find("ball", this.node)
-        this.ballPool = new cc.NodePool();
-        let initCount = 5;
+        this.ballPool = new cc.NodePool("Ball");
+        let initCount = 10;
         for (let i = 0; i < initCount; ++i) {
             let ball = cc.instantiate(this.ball); // 创建节点
             this.ballPool.put(ball); // 通过 put 接口放入对象池
@@ -61,9 +61,10 @@ cc.Class({
 
     addScore(ballNode) {
         this.ballPool.put(ballNode);
+        ballNode.active = false
         this.Score = this.Score + 1
         this.scoreText.getComponent(cc.Label).string = "Score:" + this.Score
-
+        console.log("addScore", this.Score)
         cc.tween(this.scoreText)
             .to(0.08, { scale: 1.1 })
             .to(0.05, { scale: 0.8 })
@@ -81,11 +82,13 @@ cc.Class({
             ball = this.ballPool.get();
         } else { // 如果没有空闲对象，也就是对象池中备用对象不够时，我们就用 cc.instantiate 重新创建
             ball = cc.instantiate(this.ball);
-
         }
         if (ball) {
             ball.active = true
-            ball.getComponent("Bubble").setClickCall((node) => { this.addScore(node) })
+            var ballComponent = ball.getComponent("Bubble")
+            ballComponent.setClickCall((node) => { this.addScore(node) })
+            ballComponent.setDeadCall((node) => { this.ballPool.put(node); })
+            ballComponent.init()
             this.content.addChild(ball)
             ball.x = 0;
             ball.y = 0

@@ -56,7 +56,7 @@ export default {
     //下载远程md5
     downRemoteMd5: function (url) {
 
-        cc.log("下载远程md5,", url)
+        console.log("下载远程md5,", url)
 
         HttpHelper.sendHttpRequest(url, (data) => {
             if (data == null) {

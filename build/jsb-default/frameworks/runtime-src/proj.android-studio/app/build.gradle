@@ -144,7 +144,7 @@ android {
                                     "BUGLY_CHANNEL":"pro",
                                     "BUGLY_DEBUG":"false",
                                     "APP_NAME":ext.APP_NAME,
-                                    "GAME_CHANNEL":"4"
+                                    "GAME_CHANNEL":"3"
             ]
             signingConfig signingConfigs.release
         }

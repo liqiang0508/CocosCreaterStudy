@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-04-16 10:31:57
- * @LastEditTime: 2023-01-28 11:02:54
+ * @LastEditTime: 2023-02-13 12:50:04
  */
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
@@ -65,15 +65,7 @@ cc.Class({
 
     start() {
         Sound.playMusic("bgm_main")
-        if (Global.GgameType == 1)//正式包
-        {
-            this.VersionText.string = DevicesInfo.getAppVersion() + "(R" + VersionManager.getScriptVersion() + ")"
-        }
-
-        if (Global.GgameType == 3)//debug包
-        {
-            this.VersionText.string = DevicesInfo.getAppVersion() + "(D" + VersionManager.getScriptVersion() + ")"
-        }
+        this.VersionText.string = DevicesInfo.getAppVersion() + VersionManager.getScriptVersion() + ")"
 
         var gotest = cc.find("uipanel/gotest", this.node)
         this.gotest = gotest

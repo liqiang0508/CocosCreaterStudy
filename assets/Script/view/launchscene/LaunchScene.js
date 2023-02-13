@@ -2,8 +2,6 @@
 // var VersionManager = require("VersionManager")
 import VersionManager from "VersionManager"
 import ActivityOnlineConfig from "../../config/ActivityOnlineConfig"
-var xxtea = require("xxtea")
-import Lang from "zh"
 cc.Class({
     extends: cc.Component,
 
@@ -17,18 +15,16 @@ cc.Class({
 
 
     onLoad() {
+        console.log("launchsene onLoad")
         var a = { name: "dad", age: 28, hobby: { c: 6 } }
         var b = Global.deepClone(a, b)
         b.age = 50
         b.hobby.c = 9
-        // cc.log(b)
-        // cc.log(a)
-        // cc.log("ActivityOnlineConfig==1",ActivityOnlineConfig)
         var cfg = ActivityOnlineConfig
         Object.entries(cfg).forEach(([k, v]) => {
             cc.log("ActivityOnlineConfig", k, v);
         })
-        cc.log("launchsene onLoad")
+
         // console.log("protobufjs test===========")
         var Proto = require("gameProto")
         var peron2 = Proto.tutorial.Person.create()
@@ -36,7 +32,7 @@ cc.Class({
         peron2.email = "497232807@qq.com"
         peron2.id = 110
         var byteData = Proto.tutorial.Person.encode(peron2).finish()
-        console.log("编码测试===========", byteData)
+        console.log("编码测试1===========", byteData)
 
         if (cc.sys.isNative) {
             var path = jsb.fileUtils.getWritablePath() + "test2.txt"
@@ -82,8 +78,8 @@ cc.Class({
 
     },
     start() {
-
-        cc.log("渠道号===", globalThis.DISTRIBUTE_CHANNEL)
+        console.log("launchsene start")
+        console.log("渠道号===" + globalThis.DISTRIBUTE_CHANNEL)
         cc.sys.localStorage.setItem('debugId', 724001)
         this.count = 0
 
@@ -95,57 +91,9 @@ cc.Class({
                 this.goLoginScene()
                 return
             }
-            cc.log("Global.isDebugTest===", Global.isDebugTest)
-            if (Global.isDebugTest) {//debug选择热更新地址
-                var data = {
-                    "tips": "热更新选择",
-                    "items": [
-                        { "text": "默认热更新地址" },//http://lee.free.vipnps.vip/hotupversion/configdebug
-                        { "text": "手动输入热更新地址" },
-                        { "text": "公司热更新地址" }//http://192.168.65.151/hotupversion/configdebug
-                    ]
-                }
-                UITool.showChooseUpdate(data, (index, layer) => {
-
-                    console.log("点击了", index)
-                    if (index == 0) {
-                        this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
-                        layer.bClose()
-                    }
-                    else if (index == 1)//手动输入地址
-                    {
-                        UITool.showTextInput((text) => {
-                            if (text.length > 0) {
-                                Global.Ghotupdateurl = text
-                                this.goCheckUpdate(text)//热更新检查
-                                layer.bClose()
-                            }
-                            else {
-                                console.log("请输入自定义的热更新地址")
-                                layer.bClose()
-                                UITool.showAlert("请输入正确自定义的热更新地址", [], () => {
-                                    Global.exitGame()
-                                })
-                            }
-
-                        })
-
-                    }
-                    else if (index == 2) //公司热更新地址
-                    {
-                        Global.Ghotupdateurl = "http://192.168.65.151/hotupversion/configdebug"
-                        this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
-                        layer.bClose()
-                    }
-
-                })
-            }
-            else {//正式不选择
-                // this.goLoginScene()
-                Global.schduleOnce(this, () => {
-                    this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
-                }, 3)
-            }
+            Global.schduleOnce(this, () => {
+                this.goCheckUpdate(Global.Ghotupdateurl)//热更新检查
+            }, 3)
             Global.schduleFun(this, this.updateText, 1, cc.macro.REPEAT_FOREVER, 0)//显示update...
         }
         else {//web

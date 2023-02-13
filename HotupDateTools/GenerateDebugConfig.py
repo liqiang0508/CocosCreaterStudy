@@ -8,7 +8,7 @@ import json
 import shutil
 import ziputils
 from collections import OrderedDict
-
+import projectConfig
 # 忽略文件
 IgnorFile = [
     "CT_main.strings", "EN_main.strings", "appinfoiii.json", "NO_main.strings"
@@ -16,7 +16,7 @@ IgnorFile = [
 # 忽略文件夹
 IgnorDir = ["res\\config", "res\\Default"]
 # exe路径
-ExePath = "E:\\CocosDashboard_1.1.1\\resources\\.editors\\Creator\\2.4.9\\CocosCreator.exe"
+ExePath = projectConfig.CocosCreatorExePath
 
 
 #复制 src目录下面所有的文件到 dst目录下面
@@ -97,7 +97,7 @@ def BuildRes():
     print("BuildRes Start**************")
     # projectPath = os.getcwd()
     projectPath = os.path.abspath(os.path.join(os.getcwd(), "../"))
-    buildcmd = ExePath + "  --build platform=android;debug=false;template=default;"  + " --path " + projectPath
+    buildcmd = ExePath + "  --build platform=android;debug=false;template=default;" + " --path " + projectPath
     os.system(buildcmd)
     print("BuildRes end**************")
 
@@ -110,19 +110,6 @@ def GetAppInfoFileName():  #获取appinfoiii的打包后的资源名 然后生�
         print(data["uuid"])
         return data["uuid"] + ".json"
 
-
-# 先把golbal里面的GgameType 修改为3 再来bild
-filepath = "../assets/Script/core/Global.js"
-data = ""
-with open(filepath, "r", encoding='utf8') as f:
-    data = f.read()
-    data = data.replace("GgameType:1", "GgameType:3")
-    f.close()
-
-with open(filepath, "w+") as F:
-    F.write(data)
-    F.close()
-#
 
 scriptVersion = 0
 if os.path.exists("../assets/resources/appinfoiii.json"):  #判断本地有没有配置文件 获取当前版本号
@@ -137,6 +124,7 @@ if not os.path.exists("../hotupversion"):
 BuildRes()  #先生成编译出来的资源和脚本
 IgnorFile.append(GetAppInfoFileName())  #把appinfoiii生成的文件在生成md5里面去掉
 data = OrderedDict()
+oldscriptVersion = scriptVersion  #老的版本号
 scriptVersion = scriptVersion + 1  #版本号加1
 data["scriptVersion"] = scriptVersion
 data["files"] = []
@@ -192,19 +180,24 @@ os.chdir("../../HotupDateTools")
 BuildRes()  #上面生成最新的配置 所以还要编译一次
 # copyFile("main.js","../build/jsb-default/main.js") #复制一份main 里面加了热更新的路径
 
-# 先把golbal里面的GgameType 修改回去
-filepath = "../assets/Script/core/Global.js"
-data = ""
-with open(filepath, "r") as f:
-    data = f.read()
-    data = data.replace("GgameType:3", "GgameType:1")
-    f.close()
-
-with open(filepath, "w+", encoding='utf8') as F:
-    F.write(data)
-    F.close()
-#
-
 print("GenerateDebugConfig  Script_" + str(scriptVersion) +
       "/res   End==========================")
+
+#修改hotupversion 的 configdebug的版本号
+os.chdir("../hotupversion")
+configdebug = "configdebug"
+data = None
+with open(configdebug, "r") as f:
+    data = f.read()
+    f.close()
+
+# print(data)
+data = data.replace('\"scriptVersion\": ' + str(oldscriptVersion),
+                    '\"scriptVersion\": ' + str(scriptVersion))
+data = data.replace('\"debugScriptVersion\": ' + str(oldscriptVersion),
+                    '\"debugScriptVersion\": ' + str(scriptVersion))
+with open(configdebug, "w") as f:
+    f.write(data)
+    f.close()
+
 os.system('pause')

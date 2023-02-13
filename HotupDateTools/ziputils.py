@@ -1,11 +1,3 @@
-'''
-Descripttion: 
-version: 
-Author: liqiang
-email: 497232807@qq.com
-Date: 2020-12-31 16:05:17
-LastEditTime: 2022-08-01 19:21:58
-'''
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import os
@@ -15,6 +7,8 @@ import zipfile
 global azip
 
 Zip_Exe = os.path.join(os.getcwd(), "7za.exe")
+
+
 # 初始化一个zip文件
 def ZipInit(targetzip):
     global azip
