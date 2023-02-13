@@ -3,7 +3,7 @@
  * @version: 
  * @Author: Lee
  * @Date: 2020-08-07 15:30:49
- * @LastEditTime: 2023-02-13 10:22:40
+ * @LastEditTime: 2023-02-13 20:12:53
  */
 
 import { Lee } from "./Person";
@@ -47,7 +47,7 @@ export default class Testts extends cc.Component {
             console.log("Promise======", this.label)
             this.timer = setTimeout(() => {
                 console.log(this.label)
-                this.label.string = "666"
+                this.label.string = "hello  world"
             }, 5000)
         })
         this.asyncFunc()

@@ -127,7 +127,6 @@ if not os.path.exists("../hotupversion"):
 BuildRes()  #先生成编译出来的资源和脚本
 IgnorFile.append(GetAppInfoFileName())  #把appinfoiii生成的文件在生成md5里面去掉
 data = OrderedDict()
-oldscriptVersion = scriptVersion  #老的版本号
 scriptVersion = scriptVersion + 1  #版本号加1
 data["scriptVersion"] = scriptVersion
 data["files"] = []
@@ -185,14 +184,13 @@ BuildRes()  #上面生成最新的配置 所以还要编译一次
 print("GenerateReleaseConfig  Script_" + str(scriptVersion) +
       "/res   End==========================")
 #修改hotupversion 的 configrelease
-os.chdir("../hotupversion")
+os.chdir("../")
 configrelease = "configrelease"
 data = None
 with open(configrelease, "r") as f:
     data = f.read()
     f.close()
-
-print("oldscriptVersion",oldscriptVersion,scriptVersion)
+oldscriptVersion = json.loads(data)['scriptVersion']  #老的版本号
 data = data.replace('\"scriptVersion\": ' + str(oldscriptVersion),
                     '\"scriptVersion\": ' + str(scriptVersion))
 data = data.replace('\"debugScriptVersion\": ' + str(oldscriptVersion),
@@ -200,4 +198,5 @@ data = data.replace('\"debugScriptVersion\": ' + str(oldscriptVersion),
 with open(configrelease, "w") as f:
     f.write(data)
     f.close()
+copyFile(configrelease, "hotupversion/" + configrelease)
 os.system('pause')

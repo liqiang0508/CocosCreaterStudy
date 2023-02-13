@@ -1,8 +1,8 @@
 ﻿一 项目初始化设置
     构建发布那设置好参数
-    projectConfig.py 修改Key值，和发布面板一样的加密密钥
-    当前文件夹下面新建ExePath.txt 文件 里面输入自己本地 cocoscreater.exe的路径  例如 D:/CocosDashboard/resources/.editors/Creator/2.4.3/CocosCreator.exe
-
+    projectConfig.py 修改Key值,和发布面板一样的加密密钥
+    当前文件夹下面新建ExePath.txt 文件 里面输入自己本地 cocoscreater.exe的路径例如 D:/CocosDashboard/resources/.editors/Creator/2.4.3/CocosCreator.exe
+    
 
 
 
@@ -12,10 +12,10 @@
     1 运行 GenerateDebugConfig.py
 
 打包正式包
-    1 运行 GenerateReleaseConfigII.py  
+    1 运行 GenerateReleaseConfig.py  
 
 
-大致流程:热更新会自动调用命令行打包，将生成的代码和资源生成appinfoiii.json文件，生成对应Script_x文件夹, 并放在hotupversion文件夹下面
+大致流程:热更新会自动调用命令行打包,将生成的代码和资源生成appinfoiii.json文,生成对应Script_x文件夹, 并放在hotupversion文件夹下面
 
 
 
@@ -38,5 +38,5 @@
 }
 
 每个子游戏的美术资源为一个bundle
-当子游戏的资源修改的时候，修改对应子游戏的isupdate为true，构建面板构建项目后，运行buildSubGameCfg.py
+当子游戏的资源修改的时候,修改对应子游戏的isupdate为true,构建面板构建项目后,运行buildSubGameCfg.py
 会在hotupversion/remote下面生成最新的   子游戏名称_版本号  文件夹
