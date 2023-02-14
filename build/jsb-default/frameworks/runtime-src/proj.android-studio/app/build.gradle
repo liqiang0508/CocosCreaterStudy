@@ -111,7 +111,7 @@ android {
 
         }
     }
-//    ndkVersion '19.2.5345600'
+    ndkVersion '19.2.5345600'
     flavorDimensions "flavor"
     productFlavors {
         local{
